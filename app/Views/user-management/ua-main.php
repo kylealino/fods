@@ -227,10 +227,10 @@ echo view('templates/myheader.php');
                                 ?>
                                 <tr>
                                     <td class="text-center">
-                                        <input type="text" class="form-control form-control-sm" name="access_name" data-dtid="<?= $with_ua === '1' ? $accessid : ''?>" id="" value="<?=$access_name;?>">
+                                        <input type="text" class="form-control form-control-sm border-0 text-center" name="access_name" data-dtid="<?= $with_ua === '1' ? $accessid : ''?>" id="" value="<?=$access_name;?>">
                                     </td>
                                     <td class="text-center">
-                                        <input type="text" class="form-control form-control-sm" name="access_code" id="" value="<?=$access_code;?>">
+                                        <input type="text" class="form-control form-control-sm border-0 text-center" name="access_code" id="" value="<?=$access_code;?>">
                                     </td>
                                     <td class="text-center align-middle">
                                         <div class="form-check form-switch">
