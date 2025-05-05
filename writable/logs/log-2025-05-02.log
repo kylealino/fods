@@ -1,0 +1,179 @@
+CRITICAL - 2025-05-02 01:04:40 --> ParseError: syntax error, unexpected token "if", expecting "function" or "const"
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\Models\MyBudgetAllotmentModel.php on line 38.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\ci4-flexy\\app\\Models\\MyBudgetAllotmentModel.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\MyBudgetAllotmentModel')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\MyBudgetAllotmentModel')
+ 4 SYSTEMPATH\Config\Factories.php(297): class_exists('App\\Models\\MyBudgetAllotmentModel')
+ 5 SYSTEMPATH\Config\Factories.php(216): CodeIgniter\Config\Factories::locateClass([...], 'App\\Models\\MyBudgetAllotmentModel')
+ 6 SYSTEMPATH\Config\Factories.php(159): CodeIgniter\Config\Factories::getDefinedInstance([...], 'App\\Models\\MyBudgetAllotmentModel', [...])
+ 7 SYSTEMPATH\Common.php(804): CodeIgniter\Config\Factories::__callStatic('models', [...])
+ 8 APPPATH\Controllers\MyBudgetAllotment.php(12): model('App\\Models\\MyBudgetAllotmentModel')
+ 9 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\MyBudgetAllotment->__construct()
+10 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-02 01:28:55 --> ErrorException: Undefined property: App\Controllers\MyBudgetApproval::$cuser
+[Method: GET, Route: mybudgetapproval]
+in APPPATH\Controllers\MyBudgetApproval.php on line 15.
+ 1 APPPATH\Controllers\MyBudgetApproval.php(15): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\MyBudgetApproval::$cuser', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Controllers\\MyBudgetApproval.php', 15)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetApproval->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetApproval))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-02 05:09:47 --> ErrorException: Undefined variable $userfile
+[Method: POST, Route: uploadFile]
+in APPPATH\Controllers\Upload.php on line 14.
+ 1 APPPATH\Controllers\Upload.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $userfile', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Controllers\\Upload.php', 14)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Upload->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Upload))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-02 05:10:00 --> ErrorException: Undefined variable $userfile
+[Method: POST, Route: uploadFile]
+in APPPATH\Controllers\Upload.php on line 14.
+ 1 APPPATH\Controllers\Upload.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $userfile', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Controllers\\Upload.php', 14)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Upload->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Upload))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-02 05:11:11 --> ErrorException: Undefined variable $userfile
+[Method: POST, Route: uploadFile]
+in APPPATH\Controllers\Upload.php on line 23.
+ 1 APPPATH\Controllers\Upload.php(23): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $userfile', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Controllers\\Upload.php', 23)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Upload->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Upload))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-02 05:17:42 --> CodeIgniter\HTTP\Exceptions\HTTPException: Could not move file "phpE6EF.tmp" to "C:\xampp\htdocs\ci4-flexy\public\uploads/". Reason: 
+[Method: POST, Route: uploadFile]
+in SYSTEMPATH\HTTP\Files\UploadedFile.php on line 154.
+ 1 SYSTEMPATH\HTTP\Files\UploadedFile.php(154): CodeIgniter\HTTP\Exceptions\HTTPException::forMoveFailed('phpE6EF.tmp', 'C:\\xampp\\htdocs\\ci4-flexy\\public\\uploads/', '')
+ 2 APPPATH\Controllers\Upload.php(38): CodeIgniter\HTTP\Files\UploadedFile->move('C:\\xampp\\htdocs\\ci4-flexy\\public\\uploads/', 'C:\\xampp\\tmp\\phpE6EF.tmp')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Upload->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Upload))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-02 05:19:11 --> CodeIgniter\HTTP\Exceptions\HTTPException: Could not move file "php441E.tmp" to "C:\xampp\htdocs\ci4-flexy\public\uploads/". Reason: 
+[Method: POST, Route: uploadFile]
+in SYSTEMPATH\HTTP\Files\UploadedFile.php on line 154.
+ 1 SYSTEMPATH\HTTP\Files\UploadedFile.php(154): CodeIgniter\HTTP\Exceptions\HTTPException::forMoveFailed('php441E.tmp', 'C:\\xampp\\htdocs\\ci4-flexy\\public\\uploads/', '')
+ 2 APPPATH\Controllers\Upload.php(38): CodeIgniter\HTTP\Files\UploadedFile->move('C:\\xampp\\htdocs\\ci4-flexy\\public\\uploads/', 'C:\\xampp\\tmp\\php441E.tmp')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Upload->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Upload))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-02 05:54:26 --> CodeIgniter\Database\Exceptions\DatabaseException: You must set the database table to be used with your query.
+[Method: POST, Route: mybudgetallotment]
+in SYSTEMPATH\Database\BaseConnection.php on line 941.
+ 1 SYSTEMPATH\Model.php(714): CodeIgniter\Database\BaseConnection->table(null)
+ 2 SYSTEMPATH\Model.php(895): CodeIgniter\Model->builder()
+ 3 APPPATH\Models\MyBudgetAllotmentModel.php(387): CodeIgniter\Model->__get('db_main')
+ 4 APPPATH\Models\MyBudgetAllotmentModel.php(28): App\Models\MyBudgetAllotmentModel->get_ctr_budget('JE', 'fods', 'CTRL_NO01')
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(36): App\Models\MyBudgetAllotmentModel->budget_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-02 05:54:26 --> CodeIgniter\Database\Exceptions\DatabaseException: You must set the database table to be used with your query.
+[Method: POST, Route: mybudgetallotment]
+in SYSTEMPATH\Database\BaseConnection.php on line 941.
+ 1 SYSTEMPATH\Model.php(714): CodeIgniter\Database\BaseConnection->table(null)
+ 2 SYSTEMPATH\Model.php(895): CodeIgniter\Model->builder()
+ 3 APPPATH\Models\MyBudgetAllotmentModel.php(387): CodeIgniter\Model->__get('db_main')
+ 4 APPPATH\Models\MyBudgetAllotmentModel.php(28): App\Models\MyBudgetAllotmentModel->get_ctr_budget('JE', 'fods', 'CTRL_NO01')
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(36): App\Models\MyBudgetAllotmentModel->budget_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-02 05:55:52 --> CodeIgniter\Database\Exceptions\DatabaseException: You must set the database table to be used with your query.
+[Method: POST, Route: mybudgetallotment]
+in SYSTEMPATH\Database\BaseConnection.php on line 941.
+ 1 SYSTEMPATH\Model.php(714): CodeIgniter\Database\BaseConnection->table(null)
+ 2 SYSTEMPATH\Model.php(895): CodeIgniter\Model->builder()
+ 3 APPPATH\Models\MyBudgetAllotmentModel.php(387): CodeIgniter\Model->__get('db_main')
+ 4 APPPATH\Models\MyBudgetAllotmentModel.php(28): App\Models\MyBudgetAllotmentModel->get_ctr_budget('JE', 'fods', 'CTRL_NO01')
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(36): App\Models\MyBudgetAllotmentModel->budget_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-02 05:56:32 --> CodeIgniter\Database\Exceptions\DatabaseException: You must set the database table to be used with your query.
+[Method: POST, Route: mybudgetallotment]
+in SYSTEMPATH\Database\BaseConnection.php on line 941.
+ 1 SYSTEMPATH\Model.php(714): CodeIgniter\Database\BaseConnection->table(null)
+ 2 SYSTEMPATH\Model.php(895): CodeIgniter\Model->builder()
+ 3 APPPATH\Models\MyBudgetAllotmentModel.php(387): CodeIgniter\Model->__get('db_main')
+ 4 APPPATH\Models\MyBudgetAllotmentModel.php(28): App\Models\MyBudgetAllotmentModel->get_ctr_budget('JE', 'fods', 'CTRL_NO01')
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(36): App\Models\MyBudgetAllotmentModel->budget_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-02 05:56:56 --> CodeIgniter\Database\Exceptions\DatabaseException: You must set the database table to be used with your query.
+[Method: POST, Route: mybudgetallotment]
+in SYSTEMPATH\Database\BaseConnection.php on line 941.
+ 1 SYSTEMPATH\Model.php(714): CodeIgniter\Database\BaseConnection->table(null)
+ 2 SYSTEMPATH\Model.php(895): CodeIgniter\Model->builder()
+ 3 APPPATH\Models\MyBudgetAllotmentModel.php(387): CodeIgniter\Model->__get('db_main')
+ 4 APPPATH\Models\MyBudgetAllotmentModel.php(28): App\Models\MyBudgetAllotmentModel->get_ctr_budget('JE', 'fods', 'CTRL_NO01')
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(36): App\Models\MyBudgetAllotmentModel->budget_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-02 06:47:54 --> ErrorException: Undefined variable $file
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\Views\budget\budget-allotment-main.php on line 433.
+ 1 APPPATH\Views\budget\budget-allotment-main.php(433): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $file', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php', 433)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(110): view('budget/budget-allotment-main', [...])
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(28): App\Controllers\MyBudgetAllotment->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-02 07:26:38 --> ErrorException: Undefined variable $realign_id
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\Views\budget\budget-allotment-main.php on line 82.
+ 1 APPPATH\Views\budget\budget-allotment-main.php(82): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $realign_id', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php', 82)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(110): view('budget/budget-allotment-main', [...])
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(28): App\Controllers\MyBudgetAllotment->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

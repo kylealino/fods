@@ -1,0 +1,618 @@
+CRITICAL - 2025-04-23 01:10:59 --> ErrorException: Undefined property: App\Controllers\MyLogIn::$myusermdl
+[Method: POST, Route: mylogin-auth]
+in APPPATH\Controllers\MyLogIn.php on line 21.
+ 1 APPPATH\Controllers\MyLogIn.php(21): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\MyLogIn::$myusermdl', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Controllers\\MyLogIn.php', 21)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-04-23 01:11:39 --> mysqli_sql_exception: Table 'dbtest1.dbtest1' doesn't exist in C:\xampp\htdocs\ci4-flexy\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ci4-flexy\system\Database\MySQLi\Connection.php(327): mysqli->query('select `myua_un...', 0)
+#1 C:\xampp\htdocs\ci4-flexy\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select `myua_un...')
+#2 C:\xampp\htdocs\ci4-flexy\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select `myua_un...')
+#3 C:\xampp\htdocs\ci4-flexy\app\Controllers\MyLogIn.php(52): CodeIgniter\Database\BaseConnection->query('select `myua_un...')
+#4 C:\xampp\htdocs\ci4-flexy\app\Controllers\MyLogIn.php(23): App\Controllers\MyLogIn->Verify_User('admin1')
+#5 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+#6 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+#7 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\ci4-flexy\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\ci4-flexy\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\ci4-flexy\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-04-23 01:11:39 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'dbtest1.dbtest1' doesn't exist
+[Method: POST, Route: mylogin-auth]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MyLogIn.php(52): CodeIgniter\Database\BaseConnection->query('select `myua_uname` FROM dbtest1 where myua_uname = \'admin1\' limit 1 ')
+ 2 APPPATH\Controllers\MyLogIn.php(23): App\Controllers\MyLogIn->Verify_User('admin1')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-23 01:11:39 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'dbtest1.dbtest1' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select `myua_uname` FROM dbtest1 where myua_uname = \'admin1\' limit 1 ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select `myua_uname` FROM dbtest1 where myua_uname = \'admin1\' limit 1 ')
+ 3 APPPATH\Controllers\MyLogIn.php(52): CodeIgniter\Database\BaseConnection->query('select `myua_uname` FROM dbtest1 where myua_uname = \'admin1\' limit 1 ')
+ 4 APPPATH\Controllers\MyLogIn.php(23): App\Controllers\MyLogIn->Verify_User('admin1')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-23 01:11:39 --> [Caused by] mysqli_sql_exception: Table 'dbtest1.dbtest1' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('select `myua_uname` FROM dbtest1 where myua_uname = \'admin1\' limit 1 ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select `myua_uname` FROM dbtest1 where myua_uname = \'admin1\' limit 1 ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select `myua_uname` FROM dbtest1 where myua_uname = \'admin1\' limit 1 ')
+ 4 APPPATH\Controllers\MyLogIn.php(52): CodeIgniter\Database\BaseConnection->query('select `myua_uname` FROM dbtest1 where myua_uname = \'admin1\' limit 1 ')
+ 5 APPPATH\Controllers\MyLogIn.php(23): App\Controllers\MyLogIn->Verify_User('admin1')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-04-23 01:13:27 --> mysqli_sql_exception: Unknown column 'myua_uname' in 'field list' in C:\xampp\htdocs\ci4-flexy\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ci4-flexy\system\Database\MySQLi\Connection.php(327): mysqli->query('select `myua_un...', 0)
+#1 C:\xampp\htdocs\ci4-flexy\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select `myua_un...')
+#2 C:\xampp\htdocs\ci4-flexy\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select `myua_un...')
+#3 C:\xampp\htdocs\ci4-flexy\app\Controllers\MyLogIn.php(49): CodeIgniter\Database\BaseConnection->query('select `myua_un...')
+#4 C:\xampp\htdocs\ci4-flexy\app\Controllers\MyLogIn.php(23): App\Controllers\MyLogIn->Verify_User('admin1')
+#5 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+#6 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+#7 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\ci4-flexy\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\ci4-flexy\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\ci4-flexy\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-04-23 01:13:27 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'myua_uname' in 'field list'
+[Method: POST, Route: mylogin-auth]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MyLogIn.php(49): CodeIgniter\Database\BaseConnection->query('select `myua_uname` FROM myua_user where myua_uname = \'admin1\' limit 1 ')
+ 2 APPPATH\Controllers\MyLogIn.php(23): App\Controllers\MyLogIn->Verify_User('admin1')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-23 01:13:27 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'myua_uname' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select `myua_uname` FROM myua_user where myua_uname = \'admin1\' limit 1 ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select `myua_uname` FROM myua_user where myua_uname = \'admin1\' limit 1 ')
+ 3 APPPATH\Controllers\MyLogIn.php(49): CodeIgniter\Database\BaseConnection->query('select `myua_uname` FROM myua_user where myua_uname = \'admin1\' limit 1 ')
+ 4 APPPATH\Controllers\MyLogIn.php(23): App\Controllers\MyLogIn->Verify_User('admin1')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-23 01:13:27 --> [Caused by] mysqli_sql_exception: Unknown column 'myua_uname' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('select `myua_uname` FROM myua_user where myua_uname = \'admin1\' limit 1 ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select `myua_uname` FROM myua_user where myua_uname = \'admin1\' limit 1 ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select `myua_uname` FROM myua_user where myua_uname = \'admin1\' limit 1 ')
+ 4 APPPATH\Controllers\MyLogIn.php(49): CodeIgniter\Database\BaseConnection->query('select `myua_uname` FROM myua_user where myua_uname = \'admin1\' limit 1 ')
+ 5 APPPATH\Controllers\MyLogIn.php(23): App\Controllers\MyLogIn->Verify_User('admin1')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-23 01:14:32 --> ErrorException: Undefined array key "myua_passwd"
+[Method: POST, Route: mylogin-auth]
+in APPPATH\Controllers\MyLogIn.php on line 27.
+ 1 APPPATH\Controllers\MyLogIn.php(27): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "myua_passwd"', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Controllers\\MyLogIn.php', 27)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-23 01:15:37 --> ErrorException: Undefined property: App\Controllers\MyLogIn::$session
+[Method: POST, Route: mylogin-auth]
+in APPPATH\Controllers\MyLogIn.php on line 33.
+ 1 APPPATH\Controllers\MyLogIn.php(33): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\MyLogIn::$session', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Controllers\\MyLogIn.php', 33)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-23 01:24:01 --> CodeIgniter\Filters\Exceptions\FilterException: "myauthuser" filter must have a matching alias defined.
+[Method: GET, Route: mydashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('myauthuser')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('myauthuser', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-23 01:29:12 --> Error: Class "App\Filters\Myauthuser" not found
+[Method: GET, Route: mydashboard]
+in SYSTEMPATH\Filters\Filters.php on line 299.
+ 1 SYSTEMPATH\Filters\Filters.php(239): CodeIgniter\Filters\Filters->createFilter('App\\Filters\\Myauthuser')
+ 2 SYSTEMPATH\Filters\Filters.php(221): CodeIgniter\Filters\Filters->runBefore([...])
+ 3 SYSTEMPATH\CodeIgniter.php(479): CodeIgniter\Filters\Filters->run('mydashboard', 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-23 02:21:29 --> CodeIgniter\Filters\Exceptions\FilterException: "myauthuser" filter must have a matching alias defined.
+[Method: GET, Route: mydashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('myauthuser')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('myauthuser', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-23 02:21:39 --> CodeIgniter\Filters\Exceptions\FilterException: "myauthuser" filter must have a matching alias defined.
+[Method: GET, Route: mydashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('myauthuser')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('myauthuser', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-23 05:06:43 --> ErrorException: Undefined variable $GLATC_DESC
+[Method: GET, Route: mymaintenance]
+in APPPATH\Views\maintenance\payee-main.php on line 74.
+ 1 APPPATH\Views\maintenance\payee-main.php(74): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $GLATC_DESC', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\maintenance\\payee-main.php', 74)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\maintenance\\payee-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('maintenance/payee-main', [], true)
+ 5 APPPATH\Controllers\MyMaintenance.php(22): view('maintenance/payee-main')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyMaintenance->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyMaintenance))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-04-23 06:29:46 --> mysqli_sql_exception: Column count doesn't match value count at row 1 in C:\xampp\htdocs\ci4-flexy\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ci4-flexy\system\Database\MySQLi\Connection.php(327): mysqli->query('\n\t\t\t\tINSERT INT...', 0)
+#1 C:\xampp\htdocs\ci4-flexy\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\n\t\t\t\tINSERT INT...')
+#2 C:\xampp\htdocs\ci4-flexy\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\n\t\t\t\tINSERT INT...')
+#3 C:\xampp\htdocs\ci4-flexy\app\Models\MyPayeeModel.php(56): CodeIgniter\Database\BaseConnection->query('\n\t\t\t\tINSERT INT...')
+#4 C:\xampp\htdocs\ci4-flexy\app\Controllers\MyPayee.php(26): App\Models\MyPayeeModel->payee_save()
+#5 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(933): App\Controllers\MyPayee->index()
+#6 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPayee))
+#7 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\ci4-flexy\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\ci4-flexy\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\ci4-flexy\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-04-23 06:29:46 --> CodeIgniter\Database\Exceptions\DatabaseException: Column count doesn't match value count at row 1
+[Method: POST, Route: mypayee]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyPayeeModel.php(56): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `tbl_payee` (
+					`payee_name`, 
+					`payee_account_num`, 
+					`payee_office`, 
+					`payee_tin`, 
+					`payee_address`, 
+					`disb_method`, 
+					`currency`, 
+					`created_at`, 
+					`created_by`, 
+					`active_status`
+				) VALUES (
+					\'IMELDA ANGELES AGDEPPA\',
+					\'1827-0037-40\',
+					\'FAD\',
+					\'2918301237\',
+					\'CAVITE CITY\',
+					\'CASH\',
+					\'PHP\',
+					NOW(),
+					\'admin\'
+				)
+			')
+ 2 APPPATH\Controllers\MyPayee.php(26): App\Models\MyPayeeModel->payee_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPayee->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPayee))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-23 06:29:46 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column count doesn't match value count at row 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				INSERT INTO `tbl_payee` (
+					`payee_name`, 
+					`payee_account_num`, 
+					`payee_office`, 
+					`payee_tin`, 
+					`payee_address`, 
+					`disb_method`, 
+					`currency`, 
+					`created_at`, 
+					`created_by`, 
+					`active_status`
+				) VALUES (
+					\'IMELDA ANGELES AGDEPPA\',
+					\'1827-0037-40\',
+					\'FAD\',
+					\'2918301237\',
+					\'CAVITE CITY\',
+					\'CASH\',
+					\'PHP\',
+					NOW(),
+					\'admin\'
+				)
+			')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				INSERT INTO `tbl_payee` (
+					`payee_name`, 
+					`payee_account_num`, 
+					`payee_office`, 
+					`payee_tin`, 
+					`payee_address`, 
+					`disb_method`, 
+					`currency`, 
+					`created_at`, 
+					`created_by`, 
+					`active_status`
+				) VALUES (
+					\'IMELDA ANGELES AGDEPPA\',
+					\'1827-0037-40\',
+					\'FAD\',
+					\'2918301237\',
+					\'CAVITE CITY\',
+					\'CASH\',
+					\'PHP\',
+					NOW(),
+					\'admin\'
+				)
+			')
+ 3 APPPATH\Models\MyPayeeModel.php(56): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `tbl_payee` (
+					`payee_name`, 
+					`payee_account_num`, 
+					`payee_office`, 
+					`payee_tin`, 
+					`payee_address`, 
+					`disb_method`, 
+					`currency`, 
+					`created_at`, 
+					`created_by`, 
+					`active_status`
+				) VALUES (
+					\'IMELDA ANGELES AGDEPPA\',
+					\'1827-0037-40\',
+					\'FAD\',
+					\'2918301237\',
+					\'CAVITE CITY\',
+					\'CASH\',
+					\'PHP\',
+					NOW(),
+					\'admin\'
+				)
+			')
+ 4 APPPATH\Controllers\MyPayee.php(26): App\Models\MyPayeeModel->payee_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPayee->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPayee))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-23 06:29:46 --> [Caused by] mysqli_sql_exception: Column count doesn't match value count at row 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+				INSERT INTO `tbl_payee` (
+					`payee_name`, 
+					`payee_account_num`, 
+					`payee_office`, 
+					`payee_tin`, 
+					`payee_address`, 
+					`disb_method`, 
+					`currency`, 
+					`created_at`, 
+					`created_by`, 
+					`active_status`
+				) VALUES (
+					\'IMELDA ANGELES AGDEPPA\',
+					\'1827-0037-40\',
+					\'FAD\',
+					\'2918301237\',
+					\'CAVITE CITY\',
+					\'CASH\',
+					\'PHP\',
+					NOW(),
+					\'admin\'
+				)
+			', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				INSERT INTO `tbl_payee` (
+					`payee_name`, 
+					`payee_account_num`, 
+					`payee_office`, 
+					`payee_tin`, 
+					`payee_address`, 
+					`disb_method`, 
+					`currency`, 
+					`created_at`, 
+					`created_by`, 
+					`active_status`
+				) VALUES (
+					\'IMELDA ANGELES AGDEPPA\',
+					\'1827-0037-40\',
+					\'FAD\',
+					\'2918301237\',
+					\'CAVITE CITY\',
+					\'CASH\',
+					\'PHP\',
+					NOW(),
+					\'admin\'
+				)
+			')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				INSERT INTO `tbl_payee` (
+					`payee_name`, 
+					`payee_account_num`, 
+					`payee_office`, 
+					`payee_tin`, 
+					`payee_address`, 
+					`disb_method`, 
+					`currency`, 
+					`created_at`, 
+					`created_by`, 
+					`active_status`
+				) VALUES (
+					\'IMELDA ANGELES AGDEPPA\',
+					\'1827-0037-40\',
+					\'FAD\',
+					\'2918301237\',
+					\'CAVITE CITY\',
+					\'CASH\',
+					\'PHP\',
+					NOW(),
+					\'admin\'
+				)
+			')
+ 4 APPPATH\Models\MyPayeeModel.php(56): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `tbl_payee` (
+					`payee_name`, 
+					`payee_account_num`, 
+					`payee_office`, 
+					`payee_tin`, 
+					`payee_address`, 
+					`disb_method`, 
+					`currency`, 
+					`created_at`, 
+					`created_by`, 
+					`active_status`
+				) VALUES (
+					\'IMELDA ANGELES AGDEPPA\',
+					\'1827-0037-40\',
+					\'FAD\',
+					\'2918301237\',
+					\'CAVITE CITY\',
+					\'CASH\',
+					\'PHP\',
+					NOW(),
+					\'admin\'
+				)
+			')
+ 5 APPPATH\Controllers\MyPayee.php(26): App\Models\MyPayeeModel->payee_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPayee->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPayee))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-23 06:33:03 --> ErrorException: Undefined variable $status
+[Method: POST, Route: mypayee]
+in APPPATH\Models\MyPayeeModel.php on line 30.
+ 1 APPPATH\Models\MyPayeeModel.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $status', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Models\\MyPayeeModel.php', 30)
+ 2 APPPATH\Controllers\MyPayee.php(26): App\Models\MyPayeeModel->payee_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPayee->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPayee))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-23 07:55:50 --> ErrorException: Undefined property: CodeIgniter\View\View::$db
+[Method: GET, Route: mypayee]
+in APPPATH\Views\payee\payee-main.php on line 16.
+ 1 APPPATH\Views\payee\payee-main.php(16): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$db', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\payee\\payee-main.php', 16)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\payee\\payee-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('payee/payee-main', [], true)
+ 5 APPPATH\Controllers\MyPayee.php(43): view('payee/payee-main', [...])
+ 6 APPPATH\Controllers\MyPayee.php(22): App\Controllers\MyPayee->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPayee->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPayee))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-04-23 07:56:33 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM 
+        `tbl_payee` 
+    WHERE 
+        `recid` = '1'' at line 9 in C:\xampp\htdocs\ci4-flexy\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ci4-flexy\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT \r\n...', 0)
+#1 C:\xampp\htdocs\ci4-flexy\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT \r\n...')
+#2 C:\xampp\htdocs\ci4-flexy\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT \r\n...')
+#3 C:\xampp\htdocs\ci4-flexy\app\Views\payee\payee-main.php(17): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT \r\n...')
+#4 C:\xampp\htdocs\ci4-flexy\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\ci4-flexy\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\ci4-flexy\system\Common.php(1173): CodeIgniter\View\View->render('payee/payee-mai...', Array, true)
+#7 C:\xampp\htdocs\ci4-flexy\app\Controllers\MyPayee.php(43): view('payee/payee-mai...', Array)
+#8 C:\xampp\htdocs\ci4-flexy\app\Controllers\MyPayee.php(22): App\Controllers\MyPayee->loadMainView()
+#9 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(933): App\Controllers\MyPayee->index()
+#10 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPayee))
+#11 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\ci4-flexy\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\ci4-flexy\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\ci4-flexy\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2025-04-23 07:56:33 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM 
+        `tbl_payee` 
+    WHERE 
+        `recid` = '1'' at line 9
+[Method: GET, Route: mypayee]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\payee\payee-main.php(17): CodeIgniter\Database\BaseConnection->query('
+    SELECT 
+        `payee_name`, 
+        `payee_account_num`, 
+        `payee_office`, 
+        `payee_tin`, 
+        `payee_address`, 
+        `disb_method`, 
+        `currency`, 
+    FROM 
+        `tbl_payee` 
+    WHERE 
+        `recid` = \'1\'')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\payee\\payee-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('payee/payee-main', [], true)
+ 5 APPPATH\Controllers\MyPayee.php(43): view('payee/payee-main', [...])
+ 6 APPPATH\Controllers\MyPayee.php(22): App\Controllers\MyPayee->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPayee->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPayee))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-23 07:56:33 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM 
+        `tbl_payee` 
+    WHERE 
+        `recid` = '1'' at line 9
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT 
+        `payee_name`, 
+        `payee_account_num`, 
+        `payee_office`, 
+        `payee_tin`, 
+        `payee_address`, 
+        `disb_method`, 
+        `currency`, 
+    FROM 
+        `tbl_payee` 
+    WHERE 
+        `recid` = \'1\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT 
+        `payee_name`, 
+        `payee_account_num`, 
+        `payee_office`, 
+        `payee_tin`, 
+        `payee_address`, 
+        `disb_method`, 
+        `currency`, 
+    FROM 
+        `tbl_payee` 
+    WHERE 
+        `recid` = \'1\'')
+ 3 APPPATH\Views\payee\payee-main.php(17): CodeIgniter\Database\BaseConnection->query('
+    SELECT 
+        `payee_name`, 
+        `payee_account_num`, 
+        `payee_office`, 
+        `payee_tin`, 
+        `payee_address`, 
+        `disb_method`, 
+        `currency`, 
+    FROM 
+        `tbl_payee` 
+    WHERE 
+        `recid` = \'1\'')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\payee\\payee-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('payee/payee-main', [], true)
+ 7 APPPATH\Controllers\MyPayee.php(43): view('payee/payee-main', [...])
+ 8 APPPATH\Controllers\MyPayee.php(22): App\Controllers\MyPayee->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPayee->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPayee))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-23 07:56:33 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM 
+        `tbl_payee` 
+    WHERE 
+        `recid` = '1'' at line 9
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT 
+        `payee_name`, 
+        `payee_account_num`, 
+        `payee_office`, 
+        `payee_tin`, 
+        `payee_address`, 
+        `disb_method`, 
+        `currency`, 
+    FROM 
+        `tbl_payee` 
+    WHERE 
+        `recid` = \'1\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT 
+        `payee_name`, 
+        `payee_account_num`, 
+        `payee_office`, 
+        `payee_tin`, 
+        `payee_address`, 
+        `disb_method`, 
+        `currency`, 
+    FROM 
+        `tbl_payee` 
+    WHERE 
+        `recid` = \'1\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT 
+        `payee_name`, 
+        `payee_account_num`, 
+        `payee_office`, 
+        `payee_tin`, 
+        `payee_address`, 
+        `disb_method`, 
+        `currency`, 
+    FROM 
+        `tbl_payee` 
+    WHERE 
+        `recid` = \'1\'')
+ 4 APPPATH\Views\payee\payee-main.php(17): CodeIgniter\Database\BaseConnection->query('
+    SELECT 
+        `payee_name`, 
+        `payee_account_num`, 
+        `payee_office`, 
+        `payee_tin`, 
+        `payee_address`, 
+        `disb_method`, 
+        `currency`, 
+    FROM 
+        `tbl_payee` 
+    WHERE 
+        `recid` = \'1\'')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\payee\\payee-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('payee/payee-main', [], true)
+ 8 APPPATH\Controllers\MyPayee.php(43): view('payee/payee-main', [...])
+ 9 APPPATH\Controllers\MyPayee.php(22): App\Controllers\MyPayee->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPayee->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPayee))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

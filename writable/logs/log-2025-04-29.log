@@ -1,0 +1,169 @@
+CRITICAL - 2025-04-29 00:53:37 --> ParseError: syntax error, unexpected token "}", expecting ";"
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\Controllers\MyBudgetAllotment.php on line 30.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\ci4-flexy\\app\\Controllers\\MyBudgetAllotment.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\MyBudgetAllotment')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\MyBudgetAllotment')
+ 4 SYSTEMPATH\CodeIgniter.php(885): class_exists('\\App\\Controllers\\MyBudgetAllotment', true)
+ 5 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-29 00:53:54 --> ErrorException: Undefined property: App\Controllers\MyBudgetAllotment::$session
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\Controllers\MyBudgetAllotment.php on line 14.
+ 1 APPPATH\Controllers\MyBudgetAllotment.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\MyBudgetAllotment::$session', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Controllers\\MyBudgetAllotment.php', 14)
+ 2 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\MyBudgetAllotment->__construct()
+ 3 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-29 01:58:34 --> ParseError: syntax error, unexpected token "endif"
+[Method: GET, Route: myua]
+in APPPATH\Views\user-management\ua-main.php on line 212.
+ 1 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user-management/ua-main', [], true)
+ 3 APPPATH\Controllers\MyUserManagement.php(51): view('user-management/ua-main', [...])
+ 4 APPPATH\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-29 03:25:43 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: myua]
+in APPPATH\Views\user-management\ua-main.php on line 29.
+ 1 APPPATH\Views\user-management\ua-main.php(29): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\user-management\\ua-main.php', 29)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\user-management\\ua-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user-management/ua-main', [], true)
+ 5 APPPATH\Controllers\MyUserManagement.php(57): view('user-management/ua-main', [...])
+ 6 APPPATH\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-04-29 07:06:20 --> mysqli_sql_exception: Unknown column 'username' in 'where clause' in C:\xampp\htdocs\ci4-flexy\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ci4-flexy\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT * FROM t...', 0)
+#1 C:\xampp\htdocs\ci4-flexy\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM t...')
+#2 C:\xampp\htdocs\ci4-flexy\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM t...')
+#3 C:\xampp\htdocs\ci4-flexy\app\Controllers\MyUserManagement.php(59): CodeIgniter\Database\BaseConnection->query('SELECT * FROM t...')
+#4 C:\xampp\htdocs\ci4-flexy\app\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+#5 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+#6 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+#7 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\ci4-flexy\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\ci4-flexy\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\ci4-flexy\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-04-29 07:06:20 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'username' in 'where clause'
+[Method: GET, Route: myua]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MyUserManagement.php(59): CodeIgniter\Database\BaseConnection->query('SELECT * FROM tbl_access_modules WHERE `username` = \'admin\' LIMIT 1')
+ 2 APPPATH\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-29 07:06:20 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'username' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM tbl_access_modules WHERE `username` = \'admin\' LIMIT 1')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM tbl_access_modules WHERE `username` = \'admin\' LIMIT 1')
+ 3 APPPATH\Controllers\MyUserManagement.php(59): CodeIgniter\Database\BaseConnection->query('SELECT * FROM tbl_access_modules WHERE `username` = \'admin\' LIMIT 1')
+ 4 APPPATH\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-29 07:06:20 --> [Caused by] mysqli_sql_exception: Unknown column 'username' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT * FROM tbl_access_modules WHERE `username` = \'admin\' LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM tbl_access_modules WHERE `username` = \'admin\' LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM tbl_access_modules WHERE `username` = \'admin\' LIMIT 1')
+ 4 APPPATH\Controllers\MyUserManagement.php(59): CodeIgniter\Database\BaseConnection->query('SELECT * FROM tbl_access_modules WHERE `username` = \'admin\' LIMIT 1')
+ 5 APPPATH\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-29 07:36:11 --> ParseError: syntax error, unexpected token ":", expecting "," or ";"
+[Method: GET, Route: myua]
+in APPPATH\Views\user-management\ua-main.php on line 230.
+ 1 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user-management/ua-main', [], true)
+ 3 APPPATH\Controllers\MyUserManagement.php(80): view('user-management/ua-main', [...])
+ 4 APPPATH\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-29 07:37:01 --> ErrorException: Undefined array key "with_ua"
+[Method: GET, Route: myua]
+in APPPATH\Views\user-management\ua-main.php on line 226.
+ 1 APPPATH\Views\user-management\ua-main.php(226): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "with_ua"', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\user-management\\ua-main.php', 226)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\user-management\\ua-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user-management/ua-main', [], true)
+ 5 APPPATH\Controllers\MyUserManagement.php(80): view('user-management/ua-main', [...])
+ 6 APPPATH\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-29 07:37:47 --> ErrorException: Undefined array key "with_ua"
+[Method: GET, Route: myua]
+in APPPATH\Views\user-management\ua-main.php on line 226.
+ 1 APPPATH\Views\user-management\ua-main.php(226): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "with_ua"', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\user-management\\ua-main.php', 226)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\user-management\\ua-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user-management/ua-main', [], true)
+ 5 APPPATH\Controllers\MyUserManagement.php(80): view('user-management/ua-main', [...])
+ 6 APPPATH\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-29 07:38:14 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: myua]
+in APPPATH\Controllers\MyUserManagement.php on line 56.
+ 1 APPPATH\Controllers\MyUserManagement.php(56): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Controllers\\MyUserManagement.php', 56)
+ 2 APPPATH\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-29 07:40:07 --> ErrorException: Undefined array key "with_ua"
+[Method: GET, Route: myua]
+in APPPATH\Views\user-management\ua-main.php on line 226.
+ 1 APPPATH\Views\user-management\ua-main.php(226): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "with_ua"', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\user-management\\ua-main.php', 226)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\user-management\\ua-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user-management/ua-main', [], true)
+ 5 APPPATH\Controllers\MyUserManagement.php(85): view('user-management/ua-main', [...])
+ 6 APPPATH\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

@@ -1,0 +1,585 @@
+CRITICAL - 2025-04-24 01:09:07 --> ErrorException: Undefined variable $query
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\Controllers\MyBudgetAllotment.php on line 41.
+ 1 APPPATH\Controllers\MyBudgetAllotment.php(41): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $query', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Controllers\\MyBudgetAllotment.php', 41)
+ 2 APPPATH\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-24 01:12:17 --> ErrorException: Attempt to read property "fund_cluster_code" on array
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\Views\budget\budget-allotment-main.php on line 114.
+ 1 APPPATH\Views\budget\budget-allotment-main.php(114): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "fund_cluster_code" on array', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php', 114)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(43): view('budget/budget-allotment-main', [...])
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-24 02:05:55 --> ErrorException: Undefined variable $responsibility_code
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\Views\budget\budget-allotment-main.php on line 103.
+ 1 APPPATH\Views\budget\budget-allotment-main.php(103): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $responsibility_code', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php', 103)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(49): view('budget/budget-allotment-main', [...])
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-24 02:10:01 --> ErrorException: Undefined variable $responsibility_code
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\Views\budget\budget-allotment-main.php on line 103.
+ 1 APPPATH\Views\budget\budget-allotment-main.php(103): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $responsibility_code', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php', 103)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(49): view('budget/budget-allotment-main', [...])
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-24 02:10:10 --> ErrorException: Undefined variable $responsibility_code
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\Views\budget\budget-allotment-main.php on line 103.
+ 1 APPPATH\Views\budget\budget-allotment-main.php(103): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $responsibility_code', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php', 103)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(49): view('budget/budget-allotment-main', [...])
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-24 06:13:49 --> ErrorException: Undefined variable $query
+[Method: POST, Route: mybudgetallotment]
+in APPPATH\Models\MyBudgetAllotmentModel.php on line 125.
+ 1 APPPATH\Models\MyBudgetAllotmentModel.php(125): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $query', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Models\\MyBudgetAllotmentModel.php', 125)
+ 2 APPPATH\Controllers\MyBudgetAllotment.php(26): App\Models\MyBudgetAllotmentModel->budget_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-24 06:28:23 --> ErrorException: Undefined array key "disb_method"
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\Views\budget\budget-allotment-main.php on line 223.
+ 1 APPPATH\Views\budget\budget-allotment-main.php(223): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "disb_method"', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php', 223)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(66): view('budget/budget-allotment-main', [...])
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-24 06:39:18 --> ErrorException: Undefined variable $__division_name
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\Views\budget\budget-allotment-main.php on line 136.
+ 1 APPPATH\Views\budget\budget-allotment-main.php(136): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $__division_name', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php', 136)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(67): view('budget/budget-allotment-main', [...])
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-24 06:46:38 --> ErrorException: Undefined array key "particcodeulars"
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\Views\budget\budget-allotment-main.php on line 207.
+ 1 APPPATH\Views\budget\budget-allotment-main.php(207): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "particcodeulars"', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php', 207)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(67): view('budget/budget-allotment-main', [...])
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-04-24 06:48:15 --> mysqli_sql_exception: Unknown column 'project' in 'where clause' in C:\xampp\htdocs\ci4-flexy\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ci4-flexy\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n             ...', 0)
+#1 C:\xampp\htdocs\ci4-flexy\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n             ...')
+#2 C:\xampp\htdocs\ci4-flexy\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n             ...')
+#3 C:\xampp\htdocs\ci4-flexy\app\Views\budget\budget-allotment-main.php(194): CodeIgniter\Database\BaseConnection->query('\r\n             ...')
+#4 C:\xampp\htdocs\ci4-flexy\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\ci4-flexy\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\ci4-flexy\system\Common.php(1173): CodeIgniter\View\View->render('budget/budget-a...', Array, true)
+#7 C:\xampp\htdocs\ci4-flexy\app\Controllers\MyBudgetAllotment.php(67): view('budget/budget-a...', Array)
+#8 C:\xampp\htdocs\ci4-flexy\app\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+#9 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+#10 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+#11 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\ci4-flexy\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\ci4-flexy\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\ci4-flexy\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2025-04-24 06:48:15 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'project' in 'where clause'
+[Method: GET, Route: mybudgetallotment]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\budget\budget-allotment-main.php(194): CodeIgniter\Database\BaseConnection->query('
+                                        SELECT
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project` = \'2\'')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(67): view('budget/budget-allotment-main', [...])
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-24 06:48:15 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'project' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+                                        SELECT
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project` = \'2\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+                                        SELECT
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project` = \'2\'')
+ 3 APPPATH\Views\budget\budget-allotment-main.php(194): CodeIgniter\Database\BaseConnection->query('
+                                        SELECT
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project` = \'2\'')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 7 APPPATH\Controllers\MyBudgetAllotment.php(67): view('budget/budget-allotment-main', [...])
+ 8 APPPATH\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-24 06:48:15 --> [Caused by] mysqli_sql_exception: Unknown column 'project' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+                                        SELECT
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project` = \'2\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+                                        SELECT
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project` = \'2\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+                                        SELECT
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project` = \'2\'')
+ 4 APPPATH\Views\budget\budget-allotment-main.php(194): CodeIgniter\Database\BaseConnection->query('
+                                        SELECT
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project` = \'2\'')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 8 APPPATH\Controllers\MyBudgetAllotment.php(67): view('budget/budget-allotment-main', [...])
+ 9 APPPATH\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-04-24 07:03:55 --> mysqli_sql_exception: Unknown column 'dt_id' in 'field list' in C:\xampp\htdocs\ci4-flexy\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ci4-flexy\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n             ...', 0)
+#1 C:\xampp\htdocs\ci4-flexy\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n             ...')
+#2 C:\xampp\htdocs\ci4-flexy\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n             ...')
+#3 C:\xampp\htdocs\ci4-flexy\app\Views\budget\budget-allotment-main.php(194): CodeIgniter\Database\BaseConnection->query('\r\n             ...')
+#4 C:\xampp\htdocs\ci4-flexy\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\ci4-flexy\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\ci4-flexy\system\Common.php(1173): CodeIgniter\View\View->render('budget/budget-a...', Array, true)
+#7 C:\xampp\htdocs\ci4-flexy\app\Controllers\MyBudgetAllotment.php(67): view('budget/budget-a...', Array)
+#8 C:\xampp\htdocs\ci4-flexy\app\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+#9 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+#10 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+#11 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\ci4-flexy\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\ci4-flexy\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\ci4-flexy\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2025-04-24 07:03:55 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'dt_id' in 'field list'
+[Method: GET, Route: mybudgetallotment]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\budget\budget-allotment-main.php(194): CodeIgniter\Database\BaseConnection->query('
+                                        SELECT
+                                            `dt_id`,
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project_id` = \'2\'')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(67): view('budget/budget-allotment-main', [...])
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-24 07:03:55 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'dt_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+                                        SELECT
+                                            `dt_id`,
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project_id` = \'2\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+                                        SELECT
+                                            `dt_id`,
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project_id` = \'2\'')
+ 3 APPPATH\Views\budget\budget-allotment-main.php(194): CodeIgniter\Database\BaseConnection->query('
+                                        SELECT
+                                            `dt_id`,
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project_id` = \'2\'')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 7 APPPATH\Controllers\MyBudgetAllotment.php(67): view('budget/budget-allotment-main', [...])
+ 8 APPPATH\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-24 07:03:55 --> [Caused by] mysqli_sql_exception: Unknown column 'dt_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+                                        SELECT
+                                            `dt_id`,
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project_id` = \'2\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+                                        SELECT
+                                            `dt_id`,
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project_id` = \'2\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+                                        SELECT
+                                            `dt_id`,
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project_id` = \'2\'')
+ 4 APPPATH\Views\budget\budget-allotment-main.php(194): CodeIgniter\Database\BaseConnection->query('
+                                        SELECT
+                                            `dt_id`,
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project_id` = \'2\'')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 8 APPPATH\Controllers\MyBudgetAllotment.php(67): view('budget/budget-allotment-main', [...])
+ 9 APPPATH\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-04-24 07:04:32 --> mysqli_sql_exception: Unknown column 'dt_id' in 'field list' in C:\xampp\htdocs\ci4-flexy\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ci4-flexy\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n             ...', 0)
+#1 C:\xampp\htdocs\ci4-flexy\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n             ...')
+#2 C:\xampp\htdocs\ci4-flexy\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n             ...')
+#3 C:\xampp\htdocs\ci4-flexy\app\Views\budget\budget-allotment-main.php(194): CodeIgniter\Database\BaseConnection->query('\r\n             ...')
+#4 C:\xampp\htdocs\ci4-flexy\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\ci4-flexy\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\ci4-flexy\system\Common.php(1173): CodeIgniter\View\View->render('budget/budget-a...', Array, true)
+#7 C:\xampp\htdocs\ci4-flexy\app\Controllers\MyBudgetAllotment.php(67): view('budget/budget-a...', Array)
+#8 C:\xampp\htdocs\ci4-flexy\app\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+#9 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+#10 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+#11 C:\xampp\htdocs\ci4-flexy\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\ci4-flexy\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\ci4-flexy\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\ci4-flexy\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2025-04-24 07:04:32 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'dt_id' in 'field list'
+[Method: GET, Route: mybudgetallotment]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\budget\budget-allotment-main.php(194): CodeIgniter\Database\BaseConnection->query('
+                                        SELECT
+                                            `dt_id`,
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project_id` = \'1\'')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(67): view('budget/budget-allotment-main', [...])
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-24 07:04:32 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'dt_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+                                        SELECT
+                                            `dt_id`,
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project_id` = \'1\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+                                        SELECT
+                                            `dt_id`,
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project_id` = \'1\'')
+ 3 APPPATH\Views\budget\budget-allotment-main.php(194): CodeIgniter\Database\BaseConnection->query('
+                                        SELECT
+                                            `dt_id`,
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project_id` = \'1\'')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 7 APPPATH\Controllers\MyBudgetAllotment.php(67): view('budget/budget-allotment-main', [...])
+ 8 APPPATH\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-24 07:04:32 --> [Caused by] mysqli_sql_exception: Unknown column 'dt_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+                                        SELECT
+                                            `dt_id`,
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project_id` = \'1\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+                                        SELECT
+                                            `dt_id`,
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project_id` = \'1\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+                                        SELECT
+                                            `dt_id`,
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project_id` = \'1\'')
+ 4 APPPATH\Views\budget\budget-allotment-main.php(194): CodeIgniter\Database\BaseConnection->query('
+                                        SELECT
+                                            `dt_id`,
+                                            `particulars`,
+                                            `code`,
+                                            `approved_budget`
+                                        FROM
+                                            `tbl_budget_allotment_dt`
+                                        WHERE 
+                                            `project_id` = \'1\'')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 8 APPPATH\Controllers\MyBudgetAllotment.php(67): view('budget/budget-allotment-main', [...])
+ 9 APPPATH\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-24 07:23:58 --> ErrorException: Undefined variable $project_id
+[Method: POST, Route: mybudgetallotment]
+in APPPATH\Models\MyBudgetAllotmentModel.php on line 169.
+ 1 APPPATH\Models\MyBudgetAllotmentModel.php(169): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $project_id', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Models\\MyBudgetAllotmentModel.php', 169)
+ 2 APPPATH\Controllers\MyBudgetAllotment.php(26): App\Models\MyBudgetAllotmentModel->budget_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-24 07:24:07 --> ErrorException: Undefined variable $project_id
+[Method: POST, Route: mybudgetallotment]
+in APPPATH\Models\MyBudgetAllotmentModel.php on line 169.
+ 1 APPPATH\Models\MyBudgetAllotmentModel.php(169): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $project_id', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Models\\MyBudgetAllotmentModel.php', 169)
+ 2 APPPATH\Controllers\MyBudgetAllotment.php(26): App\Models\MyBudgetAllotmentModel->budget_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-24 07:54:36 --> ErrorException: Undefined property: CodeIgniter\View\View::$session
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\Views\budget\budget-allotment-main.php on line 5.
+ 1 APPPATH\Views\budget\budget-allotment-main.php(5): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$session', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php', 5)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(67): view('budget/budget-allotment-main', [...])
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-24 07:55:01 --> ErrorException: Undefined property: CodeIgniter\View\View::$session
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\Views\budget\budget-allotment-main.php on line 5.
+ 1 APPPATH\Views\budget\budget-allotment-main.php(5): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$session', 'C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php', 5)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\ci4-flexy\\app\\Views\\budget\\budget-allotment-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(67): view('budget/budget-allotment-main', [...])
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(22): App\Controllers\MyBudgetAllotment->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
