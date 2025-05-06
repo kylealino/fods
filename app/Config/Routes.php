@@ -8,6 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 
 $routes->get('/', 'Home::index');
 $routes->add('mylogin-auth', 'MyLogIn::auth');
+$routes->add('mylogout', 'MyLogIn::logout');
 $routes->get('mydashboard', 'MyDashboard::index',['filter' => 'myauthuser']);
 
 //User Management - User module

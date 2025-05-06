@@ -120,7 +120,7 @@
               <span class="hide-menu">Functions</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link sidebar-link" href="../docs/index.html" aria-expanded="false">
+              <a class="sidebar-link sidebar-link" href="<?=site_url();?>myorsburs?meaction=MAIN" aria-expanded="false">
                 <span class="rounded-3">
                   <i class="ti ti-pencil"></i>
                 </span>
@@ -248,7 +248,12 @@
                               </div>
                             </div>
                           </div>
-                          <a href="<?= base_url();?>" class="btn btn-outline-primary">Log Out</a>
+                          <form action="<?= site_url('mylogout'); ?>" method="post" novalidate>
+                              <!-- Add a CSRF token for security -->
+                              <?= csrf_field(); ?>
+                              
+                              <button type="submit" class="btn btn-outline-primary">Log Out</button>
+                          </form>
                         </div>
                       </div>
                     </div>
