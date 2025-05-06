@@ -148,6 +148,46 @@ $pdf->Cell(15, 3.5, 'Salaries' , 0, 1, 'L');
 $pdf->Cell(5, 3.5, '', 0, 0, 'L');
 $pdf->Cell(15, 3.5, 'Honoraria' , 0, 1, 'L');
 
+//LINE IN HONORARIA
+$pdf->SetFont('Arial', '', 7);
+$pdf->SetXY(105, 107);
+$pdf->Cell(25, 3.5, '' , 'B', 1, 'L');
+
+$pdf->SetXY(135, 107);
+$pdf->Cell(25, 3.5, '' , 'B', 1, 'L');
+
+$pdf->SetXY(165, 107);
+$pdf->Cell(25, 3.5, '' , 'B', 1, 'L');
+
+//P IN HONORARIA
+$pdf->SetFont('Arial', 'B', 7);
+$pdf->SetXY(40, 110);
+$pdf->Cell(20, 3.5, 'Sub-total for PS' , 0, 1, 'L');
+
+//P IN HONORARIA
+$pdf->SetFont('Arial', '', 7);
+$pdf->SetXY(100, 110);
+$pdf->Cell(5, 3.5, 'P' , 0, 1, 'L');
+
+$pdf->SetXY(130, 110);
+$pdf->Cell(5, 3.5, 'P' , 0, 1, 'L');
+
+$pdf->SetXY(160, 110);
+$pdf->Cell(5, 3.5, 'P' , 0, 1, 'L');
+
+//II.
+$pdf->SetXY(10, 115);
+$pdf->SetFont('Arial', 'B', 7);
+$pdf->Cell(5, 3.5, 'II.', 0, 0, 'L');
+$pdf->Cell(60, 3.5, 'Maintenance and Other Operating Expenses' , 0, 1, 'L');
+
+$pdf->SetFont('Arial', '', 7);
+$pdf->SetXY(10, 118.5);
+$pdf->Cell(5, 3.5, '', 0, 0, 'L');
+$pdf->Cell(15, 3.5, 'Direct Cost' , 'B', 1, 'L');
+
+$pdf->Cell(5, 3.5, '', 0, 0, 'L');
+$pdf->Cell(15, 3.5, 'Traveling Expenses' , 0, 1, 'L');
 
 
 

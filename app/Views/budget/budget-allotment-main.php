@@ -204,6 +204,14 @@ echo view('templates/myheader.php');
             <form action="<?=site_url();?>mybudgetallotment?meaction=MAIN-SAVE" method="post" class="mybudgetallotment-validation">
                 <div class="row">
                     <div class="col-sm-12 mb-2">
+                        <div class="row mb-2">
+                            <div class="col-sm-2">
+                                <span>Program Title:</span>
+                            </div>
+                            <div class="col-sm-10">
+                                <textarea name="program_title" id="program_title" placeholder="" rows="4" class="form-control form-control-sm"></textarea>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-sm-2">
                                 <span>Project Title:</span>
@@ -272,6 +280,34 @@ echo view('templates/myheader.php');
                                 <input type="text" id="division_name" name="division_name" value="<?=$division_name;?>" class="form-control form-control-sm" readonly />
                             </div>
                         </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span>Total Duration:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <select id="total_duration" name="total_duration" class="form-select form-select-sm" required>
+                                    <option value="One (1) Year">One (1) Year</option>
+                                    <option value="Two (2) Years">Two (2) Years</option>
+                                    <option value="Three (3) Years">Three (3) Years</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span>From:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="date" id="division_name" name="division_name" value="" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span>To:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="date" id="division_name" name="division_name" value="" class="form-control form-control-sm" />
+                            </div>
+                        </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="row mb-2">
@@ -282,6 +318,30 @@ echo view('templates/myheader.php');
                                 <input type="hidden" class="form-control form-control-sm" id="recid" name="recid" value="<?=$recid;?>"/>
                                 <input type="hidden" class="form-control form-control-sm" id="realign_id" name="realign_id" value="<?=$realign_id;?>"/>
                                 <input type="text" id="responsibility_code" name="responsibility_code" value="<?=$responsibility_code;?>" class="form-control form-control-sm" readonly />
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span>Program Leader:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" id="program_leader" name="program_leader" value="" class="form-control form-control-sm"/>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span>Monitoring Agency:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" id="monitoring_agency" name="monitoring_agency" value="" class="form-control form-control-sm"/>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span>Collaborating Agencies:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <textarea name="collaborating_agencies" id="collaborating_agencies" placeholder="" rows="2" class="form-control form-control-sm"></textarea>
                             </div>
                         </div>
                         <div class="row mb-2">
