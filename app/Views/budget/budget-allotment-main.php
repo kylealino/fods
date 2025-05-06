@@ -465,6 +465,7 @@ echo view('templates/myheader.php');
                         <th>Division</th>
                         <th>Budget</th>
                         <th>Status</th>
+                        <th>Print LIB</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -507,6 +508,11 @@ echo view('templates/myheader.php');
                         <td class="text-center"><?=$division_name;?></td>
                         <td class="text-center"><?=$approved_budget;?></td>
                         <td class="text-center text-<?=$color;?>"><?=$status;?></td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-outline-secondary" onclick="window.open('<?= base_url('mybudgetallotment?meaction=PRINT-LIB&recid='.$recid) ?>', '_blank')">
+                                Print
+                            </button>
+                        </td>
                     </tr>
                     <?php endforeach; endif;?>
                 </tbody>

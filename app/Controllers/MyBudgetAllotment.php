@@ -52,6 +52,10 @@ class MyBudgetAllotment extends BaseController
                 return redirect()->to('mybudgetallotment?meaction=MAIN');
                 break;
             
+            case 'PRINT-LIB': 
+                return view('budget/budget-lib-print');
+                break;
+            
         }
     }
     
