@@ -1,3 +1,12 @@
+
+<?php 
+$this->request = \Config\Services::request();
+$this->db = \Config\Database::connect();
+$this->session = session();
+$this->cuser = $this->session->get('__xsys_myuserzicas__');
+
+
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr" data-bs-theme="light" data-color-theme="Blue_Theme" data-layout="vertical">
 
@@ -198,7 +207,7 @@
                         <div class="d-flex align-items-center py-9 mx-7 border-bottom">
                           <img src="<?=base_url('assets/images/profile/user-1.jpg')?>" class="rounded-circle" width="80" height="80" alt="flexy-img" />
                           <div class="ms-3">
-                            <h5 class="mb-1 fs-4">Johnathan Doe</h5>
+                            <h5 class="mb-1 fs-4"><?=$this->cuser;?></h5>
                             <span class="mb-1 d-block">Administrator</span>
                             <p class="mb-0 d-flex align-items-center gap-2">
                               <i class="ti ti-mail fs-4"></i> info@flexy.com

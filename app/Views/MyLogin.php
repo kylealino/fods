@@ -75,7 +75,7 @@
                         Remeber this Device
                       </label>
                     </div>
-                    <a class="text-primary fw-medium fs-3" href="../main/authentication-forgot-password.html">Forgot Password ?</a>
+                    <a class="text-primary fw-medium fs-3" href="">Forgot Password ?</a>
                   </div>
                   <!-- <a href="../main/index.html" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Sign In</a> -->
                   <button type="submit" class="btn btn-primary w-100 mb-4 rounded-2">Sign In</button>
@@ -89,7 +89,7 @@
                   ?>    
                   <div class="d-flex align-items-center justify-content-center">
                     <p class="fs-4 mb-0 fw-medium">New to spike?</p>
-                    <a class="text-primary fw-medium ms-2" href="../main/authentication-register.html">Create an
+                    <a class="text-primary fw-medium ms-2" href="">Create an
                       account</a>
                   </div>
                 </form>

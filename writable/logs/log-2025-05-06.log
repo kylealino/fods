@@ -16,3 +16,22 @@ in APPPATH\Controllers\Home.php on line 11.
  4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
  5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
  6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-06 03:45:21 --> ErrorException: Undefined property: CodeIgniter\View\View::$session
+[Method: GET, Route: myua]
+in APPPATH\Views\templates\myheader.php on line 5.
+ 1 APPPATH\Views\templates\myheader.php(5): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: CodeIgniter\\View\\View::$session', 'C:\\xampp\\htdocs\\fods\\app\\Views\\templates\\myheader.php', 5)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\templates\\myheader.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('templates/myheader.php', [], true)
+ 5 APPPATH\Views\user-management\ua-main.php(37): view('templates/myheader.php')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\user-management\\ua-main.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user-management/ua-main', [], true)
+ 9 APPPATH\Controllers\MyUserManagement.php(88): view('user-management/ua-main', [...])
+10 APPPATH\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+11 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+12 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+13 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+15 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+16 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
