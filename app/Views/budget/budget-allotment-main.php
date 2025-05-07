@@ -205,8 +205,11 @@ echo view('templates/myheader.php');
         </div>
         <div class="card-header   bg-info p-1">
             <div class="row d-flex align-items-center">
-                <div class="col-sm-6 text-start">
-                    <h6 class="mb-0 lh-base px-3 text-white fw-semibold "><i class="ti ti-pencil fs-6"></i> Entry</h6>
+                <div class="col-sm-6 d-flex align-items-center text-start">
+                    <h6 class="mb-0 lh-base px-3 text-white fw-semibold d-flex align-items-center">
+                        <i class="ti ti-pencil fs-5 me-1"></i>
+                        <span class="pt-1">Entry</span>
+                    </h6>
                 </div>
                 <div class="col-sm-6 text-end ">
                     <?php if ($action == 'appr_pending'):?>
@@ -226,10 +229,7 @@ echo view('templates/myheader.php');
                         </button>
                     <?php endif;?>
                     <?php if(!empty($recid)):?>
-                        <button type="button" class="btn btn-sm mx-3"
-                            onclick="window.location.href='<?= site_url('mybudgetallotment?meaction=MAIN&realign_id=' .$recid) ?>'">
-                            <i class="ti ti-brand-doctrine mt-1 fs-6 me-1"></i> Realign
-                        </button>
+                        <a class="text-white me-4 h6" href="<?= site_url('mybudgetallotment?meaction=MAIN&realign_id=' .$recid) ?>"> <i class="ti ti-brand-doctrine mt-1 fs-6 me-1"></i> Realign</a>
                     <?php endif;?>
                 </div>
             </div>
@@ -422,17 +422,17 @@ echo view('templates/myheader.php');
                         <!-- Nav tabs -->
                         <ul class="nav nav-pills mb-3 gap-2" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active rounded-pill px-3 h6" data-bs-toggle="tab" href="#ps-pill" role="tab">
+                                <a class="nav-link active rounded-pill px-3 fs-3 fw-semibold" data-bs-toggle="tab" href="#ps-pill" role="tab">
                                 I. Personal Services
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link rounded-pill px-3 h6" data-bs-toggle="tab" href="#mooe-pill" role="tab">
+                                <a class="nav-link rounded-pill px-3 fs-3 fw-semibold" data-bs-toggle="tab" href="#mooe-pill" role="tab">
                                 II. Maintenance
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link rounded-pill px-3 h6" data-bs-toggle="tab" href="#co-pill" role="tab">
+                                <a class="nav-link rounded-pill px-3 fs-3 fw-semibold" data-bs-toggle="tab" href="#co-pill" role="tab">
                                 III. Capital Outlay
                                 </a>
                             </li>
@@ -580,28 +580,16 @@ echo view('templates/myheader.php');
                             <!-- MOOE TAB CONTENT -->
                             <div class="tab-pane p-3" id="mooe-pill" role="tabpanel">
                                 <div class="row">
-                                <div class="col-md-8">
-                                    Raw denim you probably haven't heard of them jean
-                                    shorts Austin. Nesciunt tofu stumptown aliqua,
-                                    retro synth master cleanse. Mustache cliche
-                                    tempor, williamsburg carles vegan helvetica.
-                                </div>
-                                <div class="col-md-4">
-                                    <img src="../assets/images/blog/blog-img2.jpg" alt="flexy-img" class="img-fluid" />
-                                </div>
+                                    <div class="col-md-12">
+                                        TEST WORKING MOOE
+                                    </div>
                                 </div>
                             </div>
                             <div class="tab-pane p-3" id="co-pill" role="tabpanel">
                                 <div class="row">
-                                <div class="col-md-4">
-                                    <img src="../assets/images/blog/blog-img3.jpg" alt="flexy-img" class="img-fluid" />
-                                </div>
-                                <div class="col-md-8">
-                                    Raw denim you probably haven't heard of them jean
-                                    shorts Austin. Nesciunt tofu stumptown aliqua,
-                                    retro synth master cleanse. Mustache cliche
-                                    tempor, williamsburg carles vegan helvetica.
-                                </div>
+                                    <div class="col-md-12">
+                                        TEST WORKING CO
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -623,11 +611,13 @@ echo view('templates/myheader.php');
     <div class="card">
         <div class="card-header bg-info p-1">
             <div class="row">
-                <div class="col-sm-12 d-flex align-items-center">
-                    <h6 class="mb-0 lh-base px-3 text-white fw-semibold "><i class="ti ti-list fs-6"></i> Records</h6>
+                <div class="col-sm-6 d-flex align-items-center text-start">
+                    <h6 class="mb-0 lh-base px-3 text-white fw-semibold d-flex align-items-center">
+                        <i class="ti ti-list fs-5 me-1"></i>
+                        <span class="pt-1">List</span>
+                    </h6>
                 </div>
             </div>
-            
 		</div>						
         <div class="card-body p-0 px-4 py-2 my-2">
             <table id="datatablesSimple" class="table table-bordered table-striped table-hover">
@@ -648,7 +638,7 @@ echo view('templates/myheader.php');
                     <?php if(!empty($budgetdtdata)):
                         
                         foreach ($budgetdtdata as $data):
-                            $recid = $data['recid'];
+                            $dt_recid = $data['recid'];
                             $hdtrxno = $data['trxno'];
                             $project_title = $data['project_title'];
                             $responsibility_code = $data['responsibility_code'];
@@ -673,7 +663,7 @@ echo view('templates/myheader.php');
                     ?>
                     <tr>
                         <td class="text-center align-middle">
-                            <a class="text-info nav-icon-hover" href="mybudgetallotment?meaction=MAIN&recid=<?= $recid ?>">
+                            <a class="text-info nav-icon-hover" href="mybudgetallotment?meaction=MAIN&recid=<?= $dt_recid ?>">
                                 Review
                             </a>
                         </td>
@@ -685,7 +675,7 @@ echo view('templates/myheader.php');
                         <td class="text-center"><?=$approved_budget;?></td>
                         <td class="text-center text-<?=$color;?>"><?=$status;?></td>
                         <td class="text-center">
-                            <button class="btn btn-sm btn-outline-secondary" onclick="window.open('<?= base_url('mybudgetallotment?meaction=PRINT-LIB&recid='.$recid) ?>', '_blank')">
+                            <button class="btn btn-sm btn-outline-secondary" onclick="window.open('<?= base_url('mybudgetallotment?meaction=PRINT-LIB&recid='.$dt_recid) ?>', '_blank')">
                                 Print
                             </button>
                         </td>
@@ -699,8 +689,11 @@ echo view('templates/myheader.php');
     <div class="card">
         <div class="card-header bg-info p-1">
             <div class="row">
-                <div class="col-sm-12 d-flex align-items-center">
-                    <h6 class="mb-0 lh-base px-3 text-white fw-semibold"><i class="ti ti-files fs-6"></i> Attachments</h6>
+                <div class="col-sm-6 d-flex align-items-center text-start">
+                    <h6 class="mb-0 lh-base px-3 text-white fw-semibold d-flex align-items-center">
+                        <i class="ti ti-files fs-5 me-1"></i>
+                        <span class="pt-1">Project Attachments</span>
+                    </h6>
                 </div>
             </div>
 		</div>						
@@ -713,7 +706,12 @@ echo view('templates/myheader.php');
                         <input class="form-control form-control-sm" name="userfile" type="file" />
                         <input type="hidden" name="hd_trxno" value="<?=$trxno;?>">
                         <input type="hidden" name="meaction"  value="MAIN-UPLOAD">
-                        <button type="submit" class="btn btn-sm btn-primary" <?= empty($recid) ? 'disabled' : '' ?>>Upload</button>
+                        
+                        <?php if(!empty($recid)):?>
+                            <button type="submit" class="btn btn-sm btn-primary">Upload</button>
+                        <?php else:?>
+                            <button type="submit" class="btn btn-sm btn-primary" disabled>Upload</button>
+                        <?php endif;?>
                     </div>
                 </div>
                 
@@ -764,8 +762,8 @@ echo view('templates/myheader.php');
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header bg-secondary-subtle text-white">
-        <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Delete</h5>
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title text-white" id="confirmDeleteModalLabel">Confirm Delete</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -782,8 +780,8 @@ echo view('templates/myheader.php');
 <div class="modal fade" id="confirmApproveModal" tabindex="-1" aria-labelledby="confirmApproveModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header bg-secondary-subtle text-white">
-        <h5 class="modal-title" id="confirmApproveModalLabel">Confirm Approval</h5>
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title text-white" id="confirmApproveModalLabel">Confirm Approval</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -832,8 +830,8 @@ echo view('templates/myheader.php');
 <div class="modal fade" id="confirmDisapproveModal" tabindex="-1" aria-labelledby="confirmDisapproveModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header bg-secondary-subtle text-white">
-        <h5 class="modal-title" id="confirmDisapproveModalLabel">Confirm Disapproval</h5>
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title text-white" id="confirmDisapproveModalLabel">Confirm Disapproval</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

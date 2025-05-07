@@ -54,31 +54,28 @@ echo view('templates/myheader.php');
     <div class="row me-myua-outp-msg mx-0">
     </div>
     <input type="hidden" id="__siteurl" data-mesiteurl="<?=site_url();?>" />
-    <div class="card bg-secondary-subtle shadow-none position-relative overflow-hidden mb-4">
-        <div class="card-body px-4 py-3">
-            <div class="row align-items-center">
-                <div class="col-9">
-                    <h4 class="fw-semibold mb-8">User Management</h4>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a class="text-muted text-decoration-none" href="<?=site_url();?>">Home</a>
-                        </li>
-                        <li class="breadcrumb-item" aria-current="page">Maintenance</li>
-                        <li class="breadcrumb-item" aria-current="page"><span class="form-label fw-bold">User Management</span></li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>		
-    </div> 
+    <div class="row mb-2 mt-0">
+        <h4 class="fw-semibold mb-8">User Management</h4>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a class="text-muted text-decoration-none" href="<?=site_url();?>"><i class="ti ti-home fs-5"></i></a>
+            </li>
+            <li class="breadcrumb-item" aria-current="page">Maintenance</li>
+            <li class="breadcrumb-item" aria-current="page"><span class="form-label fw-bold">User Management</span></li>
+            </ol>
+        </nav>
+    </div>
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-header bg-secondary-subtle p-2">
+                <div class="card-header bg-info p-1">
                     <div class="row">
-                        <div class="col-sm-6 text-start">
-                            <h6 class="mb-0 lh-base  px-3">Register New User</h6>
+                        <div class="col-sm-6 d-flex align-items-center text-start">
+                            <h6 class="mb-0 lh-base px-3 text-white fw-semibold d-flex align-items-center">
+                                <i class="ti ti-pencil fs-5 me-1"></i>
+                                <span class="pt-1">Register new user</span>
+                            </h6>
                         </div>
                         <div class="col-sm-6 text-end ">
 
@@ -145,9 +142,15 @@ echo view('templates/myheader.php');
         </div>
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-header bg-secondary-subtle p-2">
-                    <h6 class="mb-0 lh-base  px-3">User List</h6>
-                    <input type="hidden" id="atc_xx" value="" class="form-control form-control-sm" required />
+                <div class="card-header bg-info p-1">
+                    <div class="row">
+                        <div class="col-sm-6 d-flex align-items-center text-start">
+                            <h6 class="mb-0 lh-base px-3 text-white fw-semibold d-flex align-items-center">
+                                <i class="ti ti-list fs-5 me-1"></i>
+                                <span class="pt-1">List</span>
+                            </h6>
+                        </div>
+                    </div>
                 </div>						
                 <div class="card-body p-0 px-4 py-2 my-2">
                     <table id="datatablesSimple" class="table table-bordered table-hover">
@@ -191,10 +194,13 @@ echo view('templates/myheader.php');
     
     <?php if(!empty($recid)):?>
         <div class="card">
-            <div class="card-header bg-secondary-subtle p-2">
+            <div class="card-header bg-info p-1">
                 <div class="row">
-                    <div class="col-sm-6 text-start">
-                        <h6 class="mb-0 lh-base  px-3">Access Codes/Modules</h6>
+                    <div class="col-sm-6 d-flex align-items-center text-start">
+                        <h6 class="mb-0 lh-base px-3 text-white fw-semibold d-flex align-items-center">
+                            <i class="ti ti-user-check fs-5 me-1"></i>
+                            <span class="pt-1">User Module Access</span>
+                        </h6>
                     </div>
                     <div class="col-sm-6 text-end">
                         <button type="button" id="btn_add_useraccess" name="btn_add_useraccess" class="btn_add_useraccess btn btn-sm btn-info mx-3">
