@@ -26,6 +26,18 @@ class MyBudgetAllotmentModel extends Model
 		$division_name = $this->request->getPostGet('division_name');
 		$project_leader = $this->request->getPostGet('project_leader');
 		$budgetdtdata = $this->request->getPostGet('budgetdtdata');
+		//newly added fields
+		$program_title = $this->request->getPostGet('program_title');
+		$total_duration = $this->request->getPostGet('total_duration');
+		$duration_from = $this->request->getPostGet('duration_from');
+		$duration_to = $this->request->getPostGet('duration_to');
+		$program_leader = $this->request->getPostGet('program_leader');
+		$monitoring_agency = $this->request->getPostGet('monitoring_agency');
+		$collaborating_agencies = $this->request->getPostGet('collaborating_agencies');
+		$implementing_agency = $this->request->getPostGet('implementing_agency');
+
+
+
 
 		$cseqn =  $this->get_ctr_budget('LIB','fods','CTRL_NO01');//TRANSACTION NO
 
@@ -35,6 +47,102 @@ class MyBudgetAllotmentModel extends Model
 			echo "
 			<script>
 			toastr.error('Project title is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($program_title)) {
+			echo "
+			<script>
+			toastr.error('Program title is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($total_duration)) {
+			echo "
+			<script>
+			toastr.error('Total duration is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($duration_from)) {
+			echo "
+			<script>
+			toastr.error('Duration from is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($duration_to)) {
+			echo "
+			<script>
+			toastr.error('Duration to is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($program_leader)) {
+			echo "
+			<script>
+			toastr.error('Program leader is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($monitoring_agency)) {
+			echo "
+			<script>
+			toastr.error('Monitoring agency is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($collaborating_agencies)) {
+			echo "
+			<script>
+			toastr.error('Collaborating agencies is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($implementing_agency)) {
+			echo "
+			<script>
+			toastr.error('Implementing agency is required!', 'Oops!', {
 					progressBar: true,
 					closeButton: true,
 					timeOut:2000,
@@ -55,7 +163,8 @@ class MyBudgetAllotmentModel extends Model
 			";
 			die();
 		}
-		
+
+	
 		if (empty($recid)) {
 			$accessquery = $this->db->query("
 				SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '1002' AND `is_active` = '1'
@@ -83,7 +192,15 @@ class MyBudgetAllotmentModel extends Model
 				`division_name`,
 				`project_leader`, 
 				`added_at`, 
-				`added_by`) 
+				`added_by`,
+				`program_title`,
+				`total_duration`,
+				`duration_from`,
+				`duration_to`,
+				`program_leader`,
+				`monitoring_agency`,
+				`collaborating_agencies`,
+				`implementing_agency`) 
 				VALUES (
 				'$trx',
 				'$project_title',
@@ -92,7 +209,15 @@ class MyBudgetAllotmentModel extends Model
 				'$division_name',
 				'$project_leader',
 				NOW(),
-				'{$this->cuser}'
+				'{$this->cuser}',
+				'$program_title',
+				'$total_duration',
+				'$duration_from',
+				'$duration_to',
+				'$program_leader',
+				'$monitoring_agency',
+				'$collaborating_agencies',
+				'$implementing_agency'
 				)
 			");
 
@@ -203,7 +328,16 @@ class MyBudgetAllotmentModel extends Model
 					`project_title` = '$project_title',
 					`responsibility_code` = '$responsibility_code',
 					`fund_cluster_code` = '$fund_cluster_code',
-					`division_name` = '$division_name'
+					`division_name` = '$division_name',
+					`project_leader` = '$project_leader',
+					`program_title` = '$program_title',
+					`total_duration` = '$total_duration',
+					`duration_from` = '$duration_from',
+					`duration_to` = '$duration_to',
+					`program_leader` = '$program_leader',
+					`monitoring_agency` = '$monitoring_agency',
+					`collaborating_agencies` = '$collaborating_agencies',
+					`implementing_agency` = '$implementing_agency'
 				WHERE `recid` = '$recid'
 			");
 

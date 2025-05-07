@@ -17,6 +17,14 @@ $is_approved = "";
 $is_disapproved = "";
 $approver = "";
 $remarks = "";
+$program_title = "";
+$total_duration = "";
+$duration_from = "";
+$duration_to = "";
+$program_leader = "";
+$monitoring_agency = "";
+$collaborating_agencies = "";
+$implementing_agency = "";
 $MDL_jsscript = "";
 $counter = 1;
 
@@ -35,7 +43,15 @@ if(!empty($recid) || !is_null($recid)) {
         `is_disapproved`,
         `is_pending`,
         `approver`,
-        `remarks`
+        `remarks`,
+        `program_title`,
+        `total_duration`,
+        `duration_from`,
+        `duration_to`,
+        `program_leader`,
+        `monitoring_agency`,
+        `collaborating_agencies`,
+        `implementing_agency`
     FROM
         `tbl_budget_hd`
     WHERE 
@@ -53,6 +69,15 @@ if(!empty($recid) || !is_null($recid)) {
     $is_disapproved = $data['is_disapproved'];
     $approver = $data['approver'];
     $remarks = $data['remarks'];
+    $program_title = $data['program_title'];
+    $total_duration = $data['total_duration'];
+    $duration_from = $data['duration_from'];
+    $duration_to = $data['duration_to'];
+    $program_leader = $data['program_leader'];
+    $monitoring_agency = $data['monitoring_agency'];
+    $collaborating_agencies = $data['collaborating_agencies'];
+    $implementing_agency = $data['implementing_agency'];
+
 
     if ($action == 'appr_pending') {
         $MDL_jsscript = "
@@ -95,7 +120,15 @@ if(!empty($realign_id) || !is_null($realign_id)) {
         `is_disapproved`,
         `is_pending`,
         `approver`,
-        `remarks`
+        `remarks`,
+        `program_title`,
+        `total_duration`,
+        `duration_from`,
+        `duration_to`,
+        `program_leader`,
+        `monitoring_agency`,
+        `collaborating_agencies`,
+        `implementing_agency`
     FROM
         `tbl_budget_hd`
     WHERE 
@@ -112,6 +145,14 @@ if(!empty($realign_id) || !is_null($realign_id)) {
     $is_disapproved = $data['is_disapproved'];
     $approver = $data['approver'];
     $remarks = $data['remarks'];
+    $program_title = $data['program_title'];
+    $total_duration = $data['total_duration'];
+    $duration_from = $data['duration_from'];
+    $duration_to = $data['duration_to'];
+    $program_leader = $data['program_leader'];
+    $monitoring_agency = $data['monitoring_agency'];
+    $collaborating_agencies = $data['collaborating_agencies'];
+    $implementing_agency = $data['implementing_agency'];
 
     if ($action == 'appr_pending') {
         $MDL_jsscript = "
@@ -206,15 +247,15 @@ echo view('templates/myheader.php');
                     <div class="col-sm-12 mb-2">
                         <div class="row mb-2">
                             <div class="col-sm-2">
-                                <span>Program Title:</span>
+                                <span class="fw-bold">Program Title:</span>
                             </div>
                             <div class="col-sm-10">
-                                <textarea name="program_title" id="program_title" placeholder="" rows="4" class="form-control form-control-sm"></textarea>
+                                <textarea name="program_title" id="program_title" placeholder="" rows="4" class="form-control form-control-sm"><?=$program_title;?></textarea>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-2">
-                                <span>Project Title:</span>
+                                <span class="fw-bold">Project Title:</span>
                             </div>
                             <div class="col-sm-10">
                                 <?php if(!empty($recid)):?>
@@ -266,7 +307,7 @@ echo view('templates/myheader.php');
                     <div class="col-sm-6">
                         <div class="row mb-2">
                             <div class="col-sm-4">
-                                <span>Fund Cluster:</span>
+                                <span class="fw-bold">Fund Cluster:</span>
                             </div>
                             <div class="col-sm-8">
                                 <input type="text" id="fund_cluster_code" name="fund_cluster_code" value="<?=$fund_cluster_code;?>" class="form-control form-control-sm" readonly />
@@ -274,7 +315,7 @@ echo view('templates/myheader.php');
                         </div>
                         <div class="row mb-2">
                             <div class="col-sm-4">
-                                <span>Division:</span>
+                                <span class="fw-bold">Division:</span>
                             </div>
                             <div class="col-sm-8">
                                 <input type="text" id="division_name" name="division_name" value="<?=$division_name;?>" class="form-control form-control-sm" readonly />
@@ -282,37 +323,63 @@ echo view('templates/myheader.php');
                         </div>
                         <div class="row mb-2">
                             <div class="col-sm-4">
-                                <span>Total Duration:</span>
+                                <span class="fw-bold">Total Duration:</span>
                             </div>
                             <div class="col-sm-8">
-                                <select id="total_duration" name="total_duration" class="form-select form-select-sm" required>
-                                    <option value="One (1) Year">One (1) Year</option>
-                                    <option value="Two (2) Years">Two (2) Years</option>
-                                    <option value="Three (3) Years">Three (3) Years</option>
-                                </select>
+                                <?php if(!empty($recid)):?>
+                                    <select id="total_duration" name="total_duration" class="form-select form-select-sm">
+                                        <option selected value="<?=$total_duration;?>"><?=$total_duration;?></option>
+                                        <option value="One (1) Year">One (1) Year</option>
+                                        <option value="Two (2) Years">Two (2) Years</option>
+                                        <option value="Three (3) Years">Three (3) Years</option>
+                                    </select>
+                                <?php else:?>
+                                    <select id="total_duration" name="total_duration" class="form-select form-select-sm">
+                                        <option selected value="">Choose...</option>
+                                        <option value="One (1) Year">One (1) Year</option>
+                                        <option value="Two (2) Years">Two (2) Years</option>
+                                        <option value="Three (3) Years">Three (3) Years</option>
+                                    </select>
+                                <?php endif;?>
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-sm-4">
-                                <span>From:</span>
+                                <span class="fw-bold">From:</span>
                             </div>
                             <div class="col-sm-8">
-                                <input type="date" id="division_name" name="division_name" value="" class="form-control form-control-sm" />
+                                <input type="date" id="duration_from" name="duration_from" value="<?=$duration_from;?>" class="form-control form-control-sm" />
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-sm-4">
-                                <span>To:</span>
+                                <span class="fw-bold">To:</span>
                             </div>
                             <div class="col-sm-8">
-                                <input type="date" id="division_name" name="division_name" value="" class="form-control form-control-sm" />
+                                <input type="date" id="duration_to" name="duration_to" value="<?=$duration_to;?>" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span class="fw-bold">Project Leader:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" id="project_leader" name="project_leader" value="<?=$this->cuser;?>" class="form-control form-control-sm" disabled />
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span class="fw-bold">Transaction No.:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" id="trxno" name="trxno" placeholder="-system-generated-" value="<?=$trxno;?>" class="form-control form-control-sm" disabled/>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="row mb-2">
                             <div class="col-sm-4">
-                                <span>Responsibility Code:</span>
+                                <span class="fw-bold">Responsibility Code:</span>
                             </div>
                             <div class="col-sm-8">
                                 <input type="hidden" class="form-control form-control-sm" id="recid" name="recid" value="<?=$recid;?>"/>
@@ -322,44 +389,37 @@ echo view('templates/myheader.php');
                         </div>
                         <div class="row mb-2">
                             <div class="col-sm-4">
-                                <span>Program Leader:</span>
+                                <span class="fw-bold">Program Leader:</span>
                             </div>
                             <div class="col-sm-8">
-                                <input type="text" id="program_leader" name="program_leader" value="" class="form-control form-control-sm"/>
+                                <input type="text" id="program_leader" name="program_leader" value="<?=$program_leader;?>" class="form-control form-control-sm"/>
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-sm-4">
-                                <span>Monitoring Agency:</span>
+                                <span class="fw-bold">Implementing Agency:</span>
                             </div>
                             <div class="col-sm-8">
-                                <input type="text" id="monitoring_agency" name="monitoring_agency" value="" class="form-control form-control-sm"/>
+                                <input type="text" id="implementing_agency" name="implementing_agency" value="<?=$implementing_agency;?>" class="form-control form-control-sm"/>
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-sm-4">
-                                <span>Collaborating Agencies:</span>
+                                <span class="fw-bold">Monitoring Agency:</span>
                             </div>
                             <div class="col-sm-8">
-                                <textarea name="collaborating_agencies" id="collaborating_agencies" placeholder="" rows="2" class="form-control form-control-sm"></textarea>
+                                <input type="text" id="monitoring_agency" name="monitoring_agency" value="<?=$monitoring_agency;?>" class="form-control form-control-sm"/>
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-sm-4">
-                                <span>Project Leader:</span>
+                                <span class="fw-bold">Collaborating Agencies:</span>
                             </div>
                             <div class="col-sm-8">
-                                <input type="text" id="project_leader" name="project_leader" value="<?=$this->cuser;?>" class="form-control form-control-sm" disabled />
+                                <textarea name="collaborating_agencies" id="collaborating_agencies" placeholder="" rows="5" class="form-control form-control-sm"><?=$collaborating_agencies;?></textarea>
                             </div>
                         </div>
-                        <div class="row mb-2">
-                            <div class="col-sm-4">
-                                <span>Transaction No.:</span>
-                            </div>
-                            <div class="col-sm-8">
-                                <input type="text" id="trxno" name="trxno" placeholder="-system-generated-" value="<?=$trxno;?>" class="form-control form-control-sm" disabled/>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
                 <hr>

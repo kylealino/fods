@@ -79,6 +79,16 @@ function __mysys_budget_allotment_ent() {
 					var division_name = document.getElementById("division_name");
 					var project_leader = document.getElementById("project_leader");
 
+					//newly added fields
+					var program_title = document.getElementById("program_title");
+					var total_duration = document.getElementById("total_duration");
+					var duration_from = document.getElementById("duration_from");
+					var duration_to = document.getElementById("duration_to");
+					var program_leader = document.getElementById("program_leader");
+					var monitoring_agency = document.getElementById("monitoring_agency");
+					var collaborating_agencies = document.getElementById("collaborating_agencies");
+					var implementing_agency = document.getElementById("implementing_agency");
+
 					// Prepare data for saving
 					var rowcount1 = jQuery('.budgetdata-list tr').length;
 					var budgetdtdata = [];
@@ -104,6 +114,15 @@ function __mysys_budget_allotment_ent() {
 						fund_cluster_code: fund_cluster_code.value,
 						division_name: division_name.value,
 						project_leader: project_leader.value,
+						//newly added fields
+						program_title: program_title.value,
+						total_duration: total_duration.value,
+						duration_from: duration_from.value,
+						duration_to: duration_to.value,
+						program_leader: program_leader.value,
+						monitoring_agency: monitoring_agency.value,
+						collaborating_agencies: collaborating_agencies.value,
+						implementing_agency: implementing_agency.value,
 						budgetdtdata: budgetdtdata,
 						meaction: 'MAIN-SAVE'
 					}
