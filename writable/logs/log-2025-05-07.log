@@ -26,3 +26,36 @@ in APPPATH\Views\budget\budget-lib-print.php on line 22.
  9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
 10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
 11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-07 03:16:22 --> Exception: FPDF error: Undefined font: times-roman B
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\ThirdParty\fpdf\fpdf.php on line 267.
+ 1 APPPATH\ThirdParty\fpdf\fpdf.php(513): FPDF->Error('Undefined font: times-roman B')
+ 2 APPPATH\Views\budget\budget-lib-print.php(27): FPDF->SetFont('times-roman', 'B', 16)
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-07 03:18:17 --> ErrorException: include(C:\xampp\htdocs\fods\app\ThirdParty\fpdf/font/times-romanb.php): Failed to open stream: No such file or directory
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\ThirdParty\fpdf\fpdf.php on line 1137.
+ 1 APPPATH\ThirdParty\fpdf\fpdf.php(1137): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(C:\\xampp\\htdocs\\fods\\app\\ThirdParty\\fpdf/font/times-romanb.php): Failed to open stream: No such file or directory', 'C:\\xampp\\htdocs\\fods\\app\\ThirdParty\\fpdf\\fpdf.php', 1137)
+ 2 APPPATH\ThirdParty\fpdf\fpdf.php(1137): include()
+ 3 APPPATH\ThirdParty\fpdf\fpdf.php(461): FPDF->_loadfont('C:\\xampp\\htdocs\\fods\\app\\ThirdParty\\fpdf/font/times-romanb.php')
+ 4 APPPATH\ThirdParty\fpdf\fpdf.php(510): FPDF->AddFont('times-roman', 'B')
+ 5 APPPATH\Views\budget\budget-lib-print.php(27): FPDF->SetFont('times-roman', 'B', 16)
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 9 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

@@ -187,33 +187,26 @@ echo view('templates/myheader.php');
     </div>
 
     <input type="hidden" id="__siteurl" data-mesiteurl="<?=site_url();?>" />
-    <div class="card bg-secondary-subtle shadow-none position-relative overflow-hidden mb-4">
-        <div class="card-body px-4 py-3">
-            <div class="row align-items-center">
-                <div class="col-9">
-                    <h4 class="fw-semibold mb-8">Budget Allotment</h4>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a class="text-muted text-decoration-none" href="<?=site_url();?>">Home</a>
-                        </li>
-                        <li class="breadcrumb-item" aria-current="page">Budget</li>
-                        <li class="breadcrumb-item" aria-current="page"><span class="form-label fw-bold">Budget Allotment</span></li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>		
-    </div> 
-    <div class="card">
+    <div class="row mb-2 mt-0">
+        <h4 class="fw-semibold mb-8">Budget Allotment</h4>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a class="text-muted text-decoration-none" href="<?=site_url();?>"><i class="ti ti-home fs-5"></i></a>
+            </li>
+            <li class="breadcrumb-item" aria-current="page">Budget</li>
+            <li class="breadcrumb-item" aria-current="page"><span class="form-label fw-bold">Budget Allotment Module</span></li>
+            </ol>
+        </nav>
+    </div>
+    <div class="card rounded">
         <div class="row mybudgetallotment-outp-msg mx-0">
 
         </div>
-        <div class="card-header bg-secondary-subtle p-2">
-            
-            <div class="row">
+        <div class="card-header   bg-info p-1">
+            <div class="row d-flex align-items-center">
                 <div class="col-sm-6 text-start">
-                    <h6 class="mb-0 lh-base  px-3">Entry</h6>
+                    <h6 class="mb-0 lh-base px-3 text-white fw-semibold "><i class="ti ti-pencil fs-6"></i> Entry</h6>
                 </div>
                 <div class="col-sm-6 text-end ">
                     <?php if ($action == 'appr_pending'):?>
@@ -233,9 +226,9 @@ echo view('templates/myheader.php');
                         </button>
                     <?php endif;?>
                     <?php if(!empty($recid)):?>
-                        <button type="button" class="btn btn-sm bg-secondary-subtle border mx-3"
+                        <button type="button" class="btn btn-sm mx-3"
                             onclick="window.location.href='<?= site_url('mybudgetallotment?meaction=MAIN&realign_id=' .$recid) ?>'">
-                            <i class="ti ti-brand-doctrine mt-1 fs-4 me-1"></i> Realign
+                            <i class="ti ti-brand-doctrine mt-1 fs-6 me-1"></i> Realign
                         </button>
                     <?php endif;?>
                 </div>
@@ -423,140 +416,199 @@ echo view('templates/myheader.php');
                     </div>
                 </div>
                 <hr>
-                <div class="row metblentry-font  mt-2">
-                    <div class="table-responsive pe-2 ps-0">
-                        <div class="col-md-12 mb-3">
-                            <table id="budget_line_items" class="table-sm table-striped budgetdata-list">
-                                <thead>
-                                    <th class="text-center">
-                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" href="javascript:__mysys_budget_allotment_ent.my_add_budget_line();"><i class="ti ti-new-section"></i></a>
-                                    </th>
-                                    <th class="text-center align-middle">Particulars</th>
-                                    <th class="text-center align-middle">UACS.</th>
-                                    <th class="text-center align-middle">Approved Budget</th>
-                                </thead>
-                                <tbody>
-                                    <tr style="display:none;">
-                                        <td class="text-center align-middle">
-                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
-                                            <i class="ti ti-trash"></i>
-                                            </a>
-                                        </td>
-                                        <td class="text-center align-middle" nowrap>
-                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                <option selected value ="">Choose...</option>
-                                                <?php foreach($uacsdata as $data){
-                                                    $object_of_expenditures = $data['object_of_expenditures'];
-                                                    $code = $data['code'];
-                                                ?>
-                                                    <option value="<?=$object_of_expenditures?>" data-uacs="<?=$code;?>"><?=$object_of_expenditures?></option>
-                                                <?php }?>
-                                            </select>
-                                        </td>
-                                        <td class="text-center align-middle" nowrap>
-                                            <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
-                                        </td>
-                                        <td class="text-center align-middle" nowrap>
-                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" class="approved_budget text-center"/>
-                                        </td>
-                                    </tr>
-                                    <?php if(!empty($recid)):
-                                        $query = $this->db->query("
-                                        SELECT
-                                            `recid`,
-                                            `particulars`,
-                                            `code`,
-                                            `approved_budget`
-                                        FROM
-                                            `tbl_budget_dt`
-                                        WHERE 
-                                            `project_id` = '$recid'"
-                                        );
-                                        $result = $query->getResultArray();
-                                        foreach ($result as $data):
-                                            $dt_id = $data['recid'];
-                                            $particulars = $data['particulars'];
-                                            $code = $data['code'];
-                                            $approved_budget = $data['approved_budget'];
-                                    ?>
-                                    <tr>
-                                        <td class="text-center align-middle">
-                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
-                                            <i class="ti ti-trash"></i>
-                                            </a>
-                                        </td>
-                                        <td class="text-center align-middle" nowrap>
-                                            <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
-                                                <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
-                                                <?php foreach($uacsdata as $data){
-                                                    $object_of_expenditures = $data['object_of_expenditures'];
-                                                    $_code = $data['code'];
-                                                ?>
-                                                    <option value="<?=$object_of_expenditures?>"  data-uacs="<?=$_code;?>"><?=$object_of_expenditures?></option>
-                                                <?php }?>
-                                            </select>
-                                        </td>
-                                        <td class="text-center align-middle" nowrap>
-                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
-                                        </td>
-                                        <td class="text-center align-middle" nowrap>
-                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center"/>
-                                        </td>
-                                    </tr>
-                                    <?php endforeach; endif;?>
-                                    <?php if(!empty($realign_id)):
-                                        $query = $this->db->query("
-                                        SELECT
-                                            `recid`,
-                                            `particulars`,
-                                            `code`,
-                                            `approved_budget`
-                                        FROM
-                                            `tbl_budget_dt`
-                                        WHERE 
-                                            `project_id` = '$realign_id'"
-                                        );
-                                        $result = $query->getResultArray();
-                                        foreach ($result as $data):
-                                            $dt_id = $data['recid'];
-                                            $particulars = $data['particulars'];
-                                            $code = $data['code'];
-                                            $approved_budget = $data['approved_budget'];
-                                    ?>
-                                    <tr>
-                                        <td class="text-center align-middle">
-                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
-                                            <i class="ti ti-trash"></i>
-                                            </a>
-                                        </td>
-                                        <td class="text-center align-middle" nowrap>
-                                            <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
-                                                <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
-                                                <?php foreach($uacsdata as $data){
-                                                    $object_of_expenditures = $data['object_of_expenditures'];
-                                                    $_code = $data['code'];
-                                                ?>
-                                                    <option value="<?=$object_of_expenditures?>"  data-uacs="<?=$_code;?>"><?=$object_of_expenditures?></option>
-                                                <?php }?>
-                                            </select>
-                                        </td>
-                                        <td class="text-center align-middle" nowrap>
-                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
-                                        </td>
-                                        <td class="text-center align-middle" nowrap>
-                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center"/>
-                                        </td>
-                                    </tr>
-                                    <?php endforeach; endif;?>
-                                </tbody>
-                            </table>
+
+                <div class="row mb-2">
+                    <div class="col-sm-12">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-pills mb-3 gap-2" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active rounded-pill px-3 h6" data-bs-toggle="tab" href="#ps-pill" role="tab">
+                                I. Personal Services
+                                </a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link rounded-pill px-3 h6" data-bs-toggle="tab" href="#mooe-pill" role="tab">
+                                II. Maintenance
+                                </a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link rounded-pill px-3 h6" data-bs-toggle="tab" href="#co-pill" role="tab">
+                                III. Capital Outlay
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content border">
+                            <!-- PS TAB CONTENT -->
+                            <div class="tab-pane active p-3" id="ps-pill" role="tabpanel">
+                                <div class="row">
+                                    <div class="table-responsive pe-2 ps-0">
+                                        <div class="col-md-12 ">
+                                            <table id="budget_line_items" class="table-sm table-striped budgetdata-list">
+                                                <thead>
+                                                    <th class="text-center">
+                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" href="javascript:__mysys_budget_allotment_ent.my_add_budget_line();"><i class="ti ti-new-section"></i></a>
+                                                    </th>
+                                                    <th class="text-center align-middle">Particulars</th>
+                                                    <th class="text-center align-middle">UACS.</th>
+                                                    <th class="text-center align-middle">Approved Budget</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr style="display:none;">
+                                                        <td class="text-center align-middle">
+                                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
+                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
+                                                            <i class="ti ti-trash"></i>
+                                                            </a>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
+                                                                <option selected value ="">Choose...</option>
+                                                                <?php foreach($uacsdata as $data){
+                                                                    $object_of_expenditures = $data['object_of_expenditures'];
+                                                                    $code = $data['code'];
+                                                                ?>
+                                                                    <option value="<?=$object_of_expenditures?>" data-uacs="<?=$code;?>"><?=$object_of_expenditures?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" class="approved_budget text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php if(!empty($recid)):
+                                                        $query = $this->db->query("
+                                                        SELECT
+                                                            `recid`,
+                                                            `particulars`,
+                                                            `code`,
+                                                            `approved_budget`
+                                                        FROM
+                                                            `tbl_budget_dt`
+                                                        WHERE 
+                                                            `project_id` = '$recid'"
+                                                        );
+                                                        $result = $query->getResultArray();
+                                                        foreach ($result as $data):
+                                                            $dt_id = $data['recid'];
+                                                            $particulars = $data['particulars'];
+                                                            $code = $data['code'];
+                                                            $approved_budget = $data['approved_budget'];
+                                                    ?>
+                                                    <tr>
+                                                        <td class="text-center align-middle">
+                                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
+                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
+                                                            <i class="ti ti-trash"></i>
+                                                            </a>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
+                                                                <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
+                                                                <?php foreach($uacsdata as $data){
+                                                                    $object_of_expenditures = $data['object_of_expenditures'];
+                                                                    $_code = $data['code'];
+                                                                ?>
+                                                                    <option value="<?=$object_of_expenditures?>"  data-uacs="<?=$_code;?>"><?=$object_of_expenditures?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php endforeach; endif;?>
+                                                    <?php if(!empty($realign_id)):
+                                                        $query = $this->db->query("
+                                                        SELECT
+                                                            `recid`,
+                                                            `particulars`,
+                                                            `code`,
+                                                            `approved_budget`
+                                                        FROM
+                                                            `tbl_budget_dt`
+                                                        WHERE 
+                                                            `project_id` = '$realign_id'"
+                                                        );
+                                                        $result = $query->getResultArray();
+                                                        foreach ($result as $data):
+                                                            $dt_id = $data['recid'];
+                                                            $particulars = $data['particulars'];
+                                                            $code = $data['code'];
+                                                            $approved_budget = $data['approved_budget'];
+                                                    ?>
+                                                    <tr>
+                                                        <td class="text-center align-middle">
+                                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
+                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
+                                                            <i class="ti ti-trash"></i>
+                                                            </a>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
+                                                                <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
+                                                                <?php foreach($uacsdata as $data){
+                                                                    $object_of_expenditures = $data['object_of_expenditures'];
+                                                                    $_code = $data['code'];
+                                                                ?>
+                                                                    <option value="<?=$object_of_expenditures?>"  data-uacs="<?=$_code;?>"><?=$object_of_expenditures?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php endforeach; endif;?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- MOOE TAB CONTENT -->
+                            <div class="tab-pane p-3" id="mooe-pill" role="tabpanel">
+                                <div class="row">
+                                <div class="col-md-8">
+                                    Raw denim you probably haven't heard of them jean
+                                    shorts Austin. Nesciunt tofu stumptown aliqua,
+                                    retro synth master cleanse. Mustache cliche
+                                    tempor, williamsburg carles vegan helvetica.
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="../assets/images/blog/blog-img2.jpg" alt="flexy-img" class="img-fluid" />
+                                </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane p-3" id="co-pill" role="tabpanel">
+                                <div class="row">
+                                <div class="col-md-4">
+                                    <img src="../assets/images/blog/blog-img3.jpg" alt="flexy-img" class="img-fluid" />
+                                </div>
+                                <div class="col-md-8">
+                                    Raw denim you probably haven't heard of them jean
+                                    shorts Austin. Nesciunt tofu stumptown aliqua,
+                                    retro synth master cleanse. Mustache cliche
+                                    tempor, williamsburg carles vegan helvetica.
+                                </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
+
+
                 <div class="row mb-2">  
                     <div class="col-sm-12 text-end">
                         <button type="submit" class="btn bg-<?= empty($recid) ? 'success' : 'info' ?>-subtle text-<?= empty($recid) ? 'success' : 'info' ?> btn-sm"><i class="ti ti-brand-doctrine mt-1 fs-4 me-1"></i>
@@ -569,9 +621,13 @@ echo view('templates/myheader.php');
     </div>
     
     <div class="card">
-        <div class="card-header bg-secondary-subtle p-2">
-            <h6 class="mb-0 lh-base  px-3">Records</h6>
-            <input type="hidden" id="atc_xx" value="" class="form-control form-control-sm" required />
+        <div class="card-header bg-info p-1">
+            <div class="row">
+                <div class="col-sm-12 d-flex align-items-center">
+                    <h6 class="mb-0 lh-base px-3 text-white fw-semibold "><i class="ti ti-list fs-6"></i> Records</h6>
+                </div>
+            </div>
+            
 		</div>						
         <div class="card-body p-0 px-4 py-2 my-2">
             <table id="datatablesSimple" class="table table-bordered table-striped table-hover">
@@ -641,9 +697,12 @@ echo view('templates/myheader.php');
     </div>
 
     <div class="card">
-        <div class="card-header bg-secondary-subtle p-2">
-            <h6 class="mb-0 lh-base  px-3">Attachments</h6>
-            <input type="hidden" id="atc_xx" value="" class="form-control form-control-sm" required />
+        <div class="card-header bg-info p-1">
+            <div class="row">
+                <div class="col-sm-12 d-flex align-items-center">
+                    <h6 class="mb-0 lh-base px-3 text-white fw-semibold"><i class="ti ti-files fs-6"></i> Attachments</h6>
+                </div>
+            </div>
 		</div>						
         <div class="card-body p-0 px-4 py-2 my-2">
             <form id="uploadForm" action="<?=site_url();?>mybudgetallotment" method="post" enctype="multipart/form-data">

@@ -574,7 +574,7 @@ class MyBudgetAllotmentModel extends Model
 						timeOut:2500,
 					});
 				setTimeout(function() {
-						window.location.href = 'mybudgetallotment?meaction=MAIN'; // Redirect to MAIN view
+						window.location.href = 'mybudgetallotment?meaction=MAIN&recid=' . $recid; // Redirect to MAIN view
 					}, 2500); // 2-second delay for user to see the toast
 			</script>
 			";
