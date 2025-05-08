@@ -1,0 +1,220 @@
+CRITICAL - 2025-05-08 05:57:44 --> TypeError: count(): Argument #1 ($value) must be of type Countable|array, null given
+[Method: POST, Route: mybudgetallotment]
+in APPPATH\Models\MyBudgetAllotmentModel.php on line 279.
+ 1 APPPATH\Models\MyBudgetAllotmentModel.php(279): count(null)
+ 2 APPPATH\Controllers\MyBudgetAllotment.php(36): App\Models\MyBudgetAllotmentModel->budget_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-05-08 06:06:50 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'on
+            a.`recid` = b.`project_id`
+        GROUP BY a.`trxno`' at line 14 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\n        SELECT...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\n        SELECT...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\n        SELECT...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MyBudgetAllotment.php(66): CodeIgniter\Database\BaseConnection->query('\n        SELECT...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MyBudgetAllotment.php(28): App\Controllers\MyBudgetAllotment->loadMainView()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-05-08 06:06:50 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'on
+            a.`recid` = b.`project_id`
+        GROUP BY a.`trxno`' at line 14
+[Method: GET, Route: mybudgetallotment]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MyBudgetAllotment.php(66): CodeIgniter\Database\BaseConnection->query('
+        SELECT 
+            a.`recid`,
+            a.`trxno`,
+            a.`project_title`,
+            a.`responsibility_code`,
+            a.`fund_cluster_code`,
+            a.`division_name`,
+            a.`is_pending`,
+            a.`is_approved`,
+            a.`is_disapproved`,
+            \'1111\' approved_budget
+        FROM
+            tbl_budget_hd a
+        on
+            a.`recid` = b.`project_id`
+        GROUP BY a.`trxno`
+        ')
+ 2 APPPATH\Controllers\MyBudgetAllotment.php(28): App\Controllers\MyBudgetAllotment->loadMainView()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-08 06:06:50 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'on
+            a.`recid` = b.`project_id`
+        GROUP BY a.`trxno`' at line 14
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT 
+            a.`recid`,
+            a.`trxno`,
+            a.`project_title`,
+            a.`responsibility_code`,
+            a.`fund_cluster_code`,
+            a.`division_name`,
+            a.`is_pending`,
+            a.`is_approved`,
+            a.`is_disapproved`,
+            \'1111\' approved_budget
+        FROM
+            tbl_budget_hd a
+        on
+            a.`recid` = b.`project_id`
+        GROUP BY a.`trxno`
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT 
+            a.`recid`,
+            a.`trxno`,
+            a.`project_title`,
+            a.`responsibility_code`,
+            a.`fund_cluster_code`,
+            a.`division_name`,
+            a.`is_pending`,
+            a.`is_approved`,
+            a.`is_disapproved`,
+            \'1111\' approved_budget
+        FROM
+            tbl_budget_hd a
+        on
+            a.`recid` = b.`project_id`
+        GROUP BY a.`trxno`
+        ')
+ 3 APPPATH\Controllers\MyBudgetAllotment.php(66): CodeIgniter\Database\BaseConnection->query('
+        SELECT 
+            a.`recid`,
+            a.`trxno`,
+            a.`project_title`,
+            a.`responsibility_code`,
+            a.`fund_cluster_code`,
+            a.`division_name`,
+            a.`is_pending`,
+            a.`is_approved`,
+            a.`is_disapproved`,
+            \'1111\' approved_budget
+        FROM
+            tbl_budget_hd a
+        on
+            a.`recid` = b.`project_id`
+        GROUP BY a.`trxno`
+        ')
+ 4 APPPATH\Controllers\MyBudgetAllotment.php(28): App\Controllers\MyBudgetAllotment->loadMainView()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-08 06:06:50 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'on
+            a.`recid` = b.`project_id`
+        GROUP BY a.`trxno`' at line 14
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT 
+            a.`recid`,
+            a.`trxno`,
+            a.`project_title`,
+            a.`responsibility_code`,
+            a.`fund_cluster_code`,
+            a.`division_name`,
+            a.`is_pending`,
+            a.`is_approved`,
+            a.`is_disapproved`,
+            \'1111\' approved_budget
+        FROM
+            tbl_budget_hd a
+        on
+            a.`recid` = b.`project_id`
+        GROUP BY a.`trxno`
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT 
+            a.`recid`,
+            a.`trxno`,
+            a.`project_title`,
+            a.`responsibility_code`,
+            a.`fund_cluster_code`,
+            a.`division_name`,
+            a.`is_pending`,
+            a.`is_approved`,
+            a.`is_disapproved`,
+            \'1111\' approved_budget
+        FROM
+            tbl_budget_hd a
+        on
+            a.`recid` = b.`project_id`
+        GROUP BY a.`trxno`
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT 
+            a.`recid`,
+            a.`trxno`,
+            a.`project_title`,
+            a.`responsibility_code`,
+            a.`fund_cluster_code`,
+            a.`division_name`,
+            a.`is_pending`,
+            a.`is_approved`,
+            a.`is_disapproved`,
+            \'1111\' approved_budget
+        FROM
+            tbl_budget_hd a
+        on
+            a.`recid` = b.`project_id`
+        GROUP BY a.`trxno`
+        ')
+ 4 APPPATH\Controllers\MyBudgetAllotment.php(66): CodeIgniter\Database\BaseConnection->query('
+        SELECT 
+            a.`recid`,
+            a.`trxno`,
+            a.`project_title`,
+            a.`responsibility_code`,
+            a.`fund_cluster_code`,
+            a.`division_name`,
+            a.`is_pending`,
+            a.`is_approved`,
+            a.`is_disapproved`,
+            \'1111\' approved_budget
+        FROM
+            tbl_budget_hd a
+        on
+            a.`recid` = b.`project_id`
+        GROUP BY a.`trxno`
+        ')
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(28): App\Controllers\MyBudgetAllotment->loadMainView()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-08 07:40:12 --> ErrorException: Undefined variable $uacsdata
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\Views\budget\budget-allotment-main.php on line 612.
+ 1 APPPATH\Views\budget\budget-allotment-main.php(612): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $uacsdata', 'C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-allotment-main.php', 612)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-allotment-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(120): view('budget/budget-allotment-main', [...])
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(28): App\Controllers\MyBudgetAllotment->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

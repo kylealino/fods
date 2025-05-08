@@ -6,6 +6,7 @@ $recid = $this->request->getPostGet('recid');
 $uacs_category_id = "";
 $expenditure_category = "";
 $object_of_expenditures = "";
+$parent_category = "";
 $code = "";
 $counter = 1;
 
@@ -17,6 +18,7 @@ if(!empty($recid) || !is_null($recid)) {
         a.`uacs_category_id` ,
         (select `expenditure_category` FROM `tbl_uacs_category` WHERE `recid` = a.`uacs_category_id`) AS expenditure_category,
         a.`object_of_expenditures`,
+        a.`parent_category`,
         a.`code`
     FROM
         `tbl_uacs` a
@@ -28,6 +30,7 @@ if(!empty($recid) || !is_null($recid)) {
     $uacs_category_id = $data['uacs_category_id'];
     $expenditure_category = $data['expenditure_category'];
     $object_of_expenditures = $data['object_of_expenditures'];
+    $parent_category = $data['parent_category'];
     $code = $data['code'];
 
 }
@@ -69,17 +72,7 @@ echo view('templates/myheader.php');
         <div class="card-body p-0 px-4 py-2 my-2">
             <form action="<?=site_url();?>myuacs?meaction=MAIN-SAVE" method="post" class="myuacs-validation">
                 <div class="row">
-                    <div class="col-sm-12 mb-2">
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <span>Object of Expenditure:</span>
-                            </div>
-                            <div class="col-sm-10">
-                                <textarea name="object_of_expenditures" id="object_of_expenditures" placeholder="" rows="4" class="form-control form-control-sm"><?=$object_of_expenditures;?></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <div class="row mb-2">
                             <div class="col-sm-4">
                                 <span>Expenditure Category:</span>
@@ -115,7 +108,7 @@ echo view('templates/myheader.php');
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <div class="row mb-2">
                             <div class="col-sm-4">
                                 <span>Code:</span>
@@ -123,6 +116,33 @@ echo view('templates/myheader.php');
                             <div class="col-sm-8">
                                 <input type="hidden" class="form-control form-control-sm" id="recid" name="recid" value="<?=$recid;?>"/>
                                 <input type="text" id="code" name="code" value="<?=$code;?>" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span>Parent Expenditure:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <select id="parent_category" name="parent_category" class="form-select form-select-sm">
+                                    <?php if(!empty($recid)):?>
+                                    <option value="<?=$parent_category;?>"><?=$parent_category;?></option>
+                                    <?php endif;?>
+                                    <option value="Personal Services">Personal Services</option>
+                                    <option value="Maintenance and Other Operating Expenses">Maintenance and Other Operating Expenses</option>
+                                    <option value="Capital Outlay">Capital Outlay</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 mb-2">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <span>Object of Expenditure:</span>
+                            </div>
+                            <div class="col-sm-10">
+                                <textarea name="object_of_expenditures" id="object_of_expenditures" placeholder="" rows="4" class="form-control form-control-sm"><?=$object_of_expenditures;?></textarea>
                             </div>
                         </div>
                     </div>

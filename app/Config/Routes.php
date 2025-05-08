@@ -15,6 +15,10 @@ $routes->get('mydashboard', 'MyDashboard::index',['filter' => 'myauthuser']);
 $routes->get('myua', 'MyUserManagement::index',['filter' => 'myauthuser']);
 $routes->post('myua', 'MyUserManagement::index',['filter' => 'myauthuser']);
 
+//User Management - User module
+$routes->get('myaccount', 'MyUserAccount::index',['filter' => 'myauthuser']);
+$routes->post('myaccount', 'MyUserAccount::index',['filter' => 'myauthuser']);
+
 //Data-entity - Autocomplete data hovers
 $routes->post('mydata-entity', 'MyDataEntity::index',['filter' => 'myauthuser']);
 $routes->get('mydata-entity', 'MyDataEntity::index',['filter' => 'myauthuser']);

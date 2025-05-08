@@ -74,13 +74,9 @@ class MyBudgetAllotment extends BaseController
             a.`is_pending`,
             a.`is_approved`,
             a.`is_disapproved`,
-            SUM(b.`approved_budget`) approved_budget
+            '1111' approved_budget
         FROM
             tbl_budget_hd a
-        JOIN
-            tbl_budget_dt b
-        on
-            a.`recid` = b.`project_id`
         GROUP BY a.`trxno`
         ");
         $budgetdtdata = $budgetdtquery->getResultArray();
@@ -92,8 +88,11 @@ class MyBudgetAllotment extends BaseController
         $divisionquery = $this->db->query("SELECT `division_name` FROM tbl_division");
         $divisiondata = $divisionquery->getResultArray();
 
-        $uacsquery = $this->db->query("SELECT * FROM tbl_uacs");
-        $uacsdata = $uacsquery->getResultArray();
+        $psuacsquery = $this->db->query("SELECT * FROM tbl_uacs WHERE uacs_category_id = '1'");
+        $psuacsdata = $psuacsquery->getResultArray();
+
+        $mooeuacsquery = $this->db->query("SELECT * FROM tbl_uacs WHERE uacs_category_id = '2'");
+        $mooeuacsdata = $mooeuacsquery->getResultArray();
 
         //reference/project title lookup
         $projectquery = $this->db->query("
@@ -121,7 +120,8 @@ class MyBudgetAllotment extends BaseController
         return view('budget/budget-allotment-main', [
             'fundclusterdata' => $fundclusterdata,
             'divisiondata' => $divisiondata,
-            'uacsdata' => $uacsdata,
+            'psuacsdata' => $psuacsdata,
+            'mooeuacsdata' => $mooeuacsdata,
             'budgetdtdata' => $budgetdtdata,
             'projectdata' => $projectdata,
         ]);

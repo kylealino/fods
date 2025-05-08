@@ -44,6 +44,90 @@ function __mysys_budget_allotment_ent() {
 		}
 	}
 
+	this.my_add_budget_mooe_line= function () {
+		try {
+			// Get the total number of rows, excluding the footer row
+			var rowCount = jQuery('#budget_mooe_line_items tbody tr').length;
+			var mid = generateRandomID(10) + (rowCount + 1);
+	
+			// Clone the last data row (not the footer)
+			var clonedRow = jQuery('#budget_mooe_line_items tbody tr:eq(' + (rowCount - 1) + ')').clone();
+	
+			jQuery(clonedRow).find('select').eq(0).val('').attr('id', 'col4' + mid);
+			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col2' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
+
+			// Now reset only the debit and credit fields (input[type=number])
+			
+			jQuery(clonedRow).find('select').eq(0).val('');
+			jQuery(clonedRow).find('input[type=text]').eq(0).val('');  // Clear credit value
+			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
+
+	
+			// Insert the cloned row before the last row (footer row)
+			jQuery('#budget_mooe_line_items tbody').append(clonedRow);
+	
+			// Make the new row visible
+			jQuery(clonedRow).css({ 'display': '' });
+	
+			// Set the ID for the new row
+			jQuery(clonedRow).attr('id', 'tr_rec_' + mid);
+	
+			// Focus on the first input field of the cloned row
+			var xobjArtItem = jQuery(clonedRow).find('input[type=text]').eq(0).attr('id');
+			jQuery('#' + xobjArtItem).focus();
+	
+		} catch (err) {
+			var mtxt = 'There was an error on this page.\\n';
+			mtxt += 'Error description: ' + err.message;
+			mtxt += '\\nClick OK to continue.';
+			alert(mtxt);
+			return false;
+		}
+	}
+
+	this.my_add_budget_co_line= function () {
+		try {
+			// Get the total number of rows, excluding the footer row
+			var rowCount = jQuery('#budget_co_line_items tbody tr').length;
+			var mid = generateRandomID(10) + (rowCount + 1);
+	
+			// Clone the last data row (not the footer)
+			var clonedRow = jQuery('#budget_co_line_items tbody tr:eq(' + (rowCount - 1) + ')').clone();
+	
+			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col1' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=text]').eq(1).attr('id', 'col2' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
+
+			// Now reset only the debit and credit fields (input[type=number])
+			
+			jQuery(clonedRow).find('input[type=text]').eq(0).val('');  // Clear credit value
+			jQuery(clonedRow).find('input[type=text]').eq(1).val('');  // Clear credit value
+			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
+
+	
+			// Insert the cloned row before the last row (footer row)
+			jQuery('#budget_co_line_items tbody').append(clonedRow);
+	
+			// Make the new row visible
+			jQuery(clonedRow).css({ 'display': '' });
+	
+			// Set the ID for the new row
+			jQuery(clonedRow).attr('id', 'tr_rec_' + mid);
+	
+			// Focus on the first input field of the cloned row
+			var xobjArtItem = jQuery(clonedRow).find('input[type=text]').eq(0).attr('id');
+			jQuery('#' + xobjArtItem).focus();
+	
+		} catch (err) {
+			var mtxt = 'There was an error on this page.\\n';
+			mtxt += 'Error description: ' + err.message;
+			mtxt += '\\nClick OK to continue.';
+			alert(mtxt);
+			return false;
+		}
+	}
+
 	function generateRandomID(length) {
 		const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 		let result = '';
@@ -89,10 +173,10 @@ function __mysys_budget_allotment_ent() {
 					var collaborating_agencies = document.getElementById("collaborating_agencies");
 					var implementing_agency = document.getElementById("implementing_agency");
 
-					// Prepare data for saving
+					// Prepare PS data
 					var rowcount1 = jQuery('.budgetdata-list tr').length;
 					var budgetdtdata = [];
-					var mdata = '';
+					var psdata = '';
 	
 					for (var aa = 2; aa < rowcount1; aa++) {
 						var clonedRow = jQuery('.budgetdata-list tr:eq(' + aa + ')'); 
@@ -101,8 +185,40 @@ function __mysys_budget_allotment_ent() {
 						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
 						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
 						
-						mdata = particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid;
-						budgetdtdata.push(mdata);
+						psdata = particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid;
+						budgetdtdata.push(psdata);
+					}
+
+					// Prepare MOEE data
+					var rowcount2 = jQuery('.budgetmooedata-list tr').length;
+					var budgetmooedtdata = [];
+					var mooedata = '';
+	
+					for (var aa = 2; aa < rowcount2; aa++) {
+						var clonedRow = jQuery('.budgetmooedata-list tr:eq(' + aa + ')'); 
+						var particulars = clonedRow.find('select.selUacs').val();
+						var uacs = clonedRow.find('input[type=text]').eq(0).val();
+						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
+						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
+						
+						mooedata = particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid;
+						budgetmooedtdata.push(mooedata);
+					}
+
+					// Prepare CO data
+					var rowcount3 = jQuery('.budgetcodata-list tr').length;
+					var budgetcodtdata = [];
+					var codata = '';
+	
+					for (var aa = 2; aa < rowcount3; aa++) {
+						var clonedRow = jQuery('.budgetcodata-list tr:eq(' + aa + ')'); 
+						var particulars = clonedRow.find('input[type=text]').eq(0).val();
+						var uacs = clonedRow.find('input[type=text]').eq(1).val();
+						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
+						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
+						
+						codata = particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid;
+						budgetcodtdata.push(codata);
 					}
 
 					var mparam = { 
@@ -124,6 +240,8 @@ function __mysys_budget_allotment_ent() {
 						collaborating_agencies: collaborating_agencies.value,
 						implementing_agency: implementing_agency.value,
 						budgetdtdata: budgetdtdata,
+						budgetmooedtdata: budgetmooedtdata,
+						budgetcodtdata: budgetcodtdata,
 						meaction: 'MAIN-SAVE'
 					}
 

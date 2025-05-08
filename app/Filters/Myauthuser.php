@@ -9,7 +9,7 @@ class Myauthuser implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         if (!session('__xsys_myuserzicas_is_logged__')) 
-        {
+        { 
             return redirect()
                 ->to('/mydashboard');
         }        

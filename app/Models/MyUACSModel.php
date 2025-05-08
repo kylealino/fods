@@ -19,6 +19,7 @@ class MyUACSModel extends Model
 	public function uacs_save() { 
 		$recid = $this->request->getPostGet('recid');
 		$object_of_expenditures = $this->request->getPostGet('object_of_expenditures');
+		$parent_category = $this->request->getPostGet('parent_category');
 		$expenditure_category = $this->request->getPostGet('expenditure_category');
 		$uacs_category_id = $this->request->getPostGet('uacs_category_id');
 		$code = $this->request->getPostGet('code');
@@ -28,6 +29,18 @@ class MyUACSModel extends Model
 			echo "
 			<script>
 			toastr.error('Object of expenditure is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($parent_category)) {
+			echo "
+			<script>
+			toastr.error('Parent expenditure is required!', 'Oops!', {
 					progressBar: true,
 					closeButton: true,
 					timeOut:2000,
@@ -69,7 +82,8 @@ class MyUACSModel extends Model
 					`code`,
 					`added_on`,
 					`added_by`,
-					`active_status`
+					`active_status`,
+					`parent_category`
 				)
 				VALUES(
 					'$uacs_category_id',
@@ -77,7 +91,8 @@ class MyUACSModel extends Model
 					'$code',
 					NOW(),
 					'{$this->cuser}',
-					'1'
+					'1',
+					'$parent_category'
 				)
 			");
 			$status = "UACS Saved successfully";
@@ -89,7 +104,8 @@ class MyUACSModel extends Model
 				SET
 					`uacs_category_id` = '$uacs_category_id',
 					`object_of_expenditures` = '$object_of_expenditures',
-					`code` = '$code'
+					`code` = '$code',
+					`parent_category` = '$parent_category'
 				WHERE `recid` = '$recid'
 			");
 			$status = "UACS Updated successfully";
