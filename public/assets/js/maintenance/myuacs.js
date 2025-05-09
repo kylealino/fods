@@ -23,6 +23,7 @@ function __mysys_uacs_ent() {
 					var expenditure_category = document.getElementById("selUacsCat");
 					var uacs_category_id = document.getElementById("uacs_category_id");
 					var code = document.getElementById("code");
+					var parent_category = document.getElementById("parent_category");
 
 					var mparam = { 
 						recid: recid.value,
@@ -30,6 +31,7 @@ function __mysys_uacs_ent() {
 						expenditure_category: expenditure_category.value,
 						uacs_category_id: uacs_category_id.value,
 						code: code.value,
+						parent_category: parent_category.value,
 						meaction: 'MAIN-SAVE'
 					}
 
