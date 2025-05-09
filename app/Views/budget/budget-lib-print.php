@@ -40,6 +40,7 @@ $implementing_agency = $data['implementing_agency'];
 
 $pdf = new \FPDF();
 $pdf->AddPage();
+$pdf->SetTitle('Project Line-Item Budget');
 $pdf->SetFont('Arial', 'B', 16);
 
 $pdf->SetXY(8, 10);

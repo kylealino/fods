@@ -33,13 +33,13 @@ class MyBudgetApproval extends BaseController
             a.`responsibility_code`,
             a.`fund_cluster_code`,
             a.`division_name`,
-            SUM(b.`approved_budget`) approved_budget
+            (
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_co_dt` WHERE project_id = a.recid), 0)
+            ) AS approved_budget
         FROM
             tbl_budget_hd a
-        JOIN
-            tbl_budget_dt b
-        on
-            a.`recid` = b.`project_id`
         WHERE
             `is_pending` = '1' AND `is_approved` = '0' AND `is_disapproved` = '0'
         GROUP BY a.`trxno`
@@ -55,15 +55,15 @@ class MyBudgetApproval extends BaseController
             a.`responsibility_code`,
             a.`fund_cluster_code`,
             a.`division_name`,
-            SUM(b.`approved_budget`) approved_budget
+            (
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_co_dt` WHERE project_id = a.recid), 0)
+            ) AS approved_budget
         FROM
             tbl_budget_hd a
-        JOIN
-            tbl_budget_dt b
-        on
-            a.`recid` = b.`project_id`
         WHERE
-            a.`is_approved` = '1' AND `is_disapproved` = '0' AND `is_pending` = '0'
+            a.`is_approved` = '1' AND a.`is_disapproved` = '0' AND a.`is_pending` = '0'
         GROUP BY a.`trxno`
         ");
         $approvedbudgetdata = $approvedbudgetquery->getResultArray();
@@ -76,15 +76,15 @@ class MyBudgetApproval extends BaseController
             a.`responsibility_code`,
             a.`fund_cluster_code`,
             a.`division_name`,
-            SUM(b.`approved_budget`) approved_budget
+            (
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_co_dt` WHERE project_id = a.recid), 0)
+            ) AS approved_budget
         FROM
             tbl_budget_hd a
-        JOIN
-            tbl_budget_dt b
-        on
-            a.`recid` = b.`project_id`
         WHERE
-            a.`is_disapproved` = '1' AND `is_approved` = '0' AND `is_pending` = '0'
+            a.`is_disapproved` = '1' AND a.`is_approved` = '0' AND a.`is_pending` = '0'
         GROUP BY a.`trxno`
         ");
         $disapprovedbudgetdata = $disapprovedbudgetquery->getResultArray();
