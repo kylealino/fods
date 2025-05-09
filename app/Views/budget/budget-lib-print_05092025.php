@@ -2,8 +2,6 @@
 $this->request = \Config\Services::request();
 $this->db = \Config\Database::connect();
 $recid = $this->request->getPostGet('recid');
-$realign_id = $this->request->getPostGet('realign_id');
-$action = $this->request->getPostGet('action');
 $this->session = session();
 $this->cuser = $this->session->get('__xsys_myuserzicas__');
 require APPPATH . 'ThirdParty/fpdf/fpdf.php';
@@ -143,13 +141,26 @@ $pdf->SetXY(165, $Y);
 $pdf->SetFont('Arial', 'B', 7);
 $pdf->Cell(35, 3.5, 'Cooperating Agency', 0, 0, 'C');
 
+$Y+= 3;
+$pdf->SetFont('Arial', '', 7);
+$pdf->SetXY(126, $Y);
+$pdf->Cell(5, 3.5, 'P' , 0, 1, 'L');
+$pdf->SetXY(130, $Y);
+$pdf->Cell(32, 3.5, '' , 'B', 1, 'L');
 
+$pdf->SetXY(163, $Y);
+$pdf->Cell(5, 3.5, 'P' , 0, 1, 'L');
+$pdf->SetXY(168, $Y);
+$pdf->Cell(32, 3.5, '' , 'B', 1, 'L');
 
+$Y-= 3.5;
 
 $pdf->SetXY(10, $Y);
 $pdf->SetFont('Arial', 'B', 7);
 $pdf->Cell(5, 3.5, 'I.', 0, 0, 'L');
 $pdf->Cell(60, 3.5, 'Personal Services' , 0, 1, 'L');
+
+$Y+= 3;
 
 $query = $this->db->query("
 SELECT
@@ -167,40 +178,14 @@ foreach ($data as $row) {
     $approved_budget = $row['approved_budget'];
 
     $pdf->SetFont('Arial', '', 7);
-    $Y+= 3;
-
     $pdf->SetXY(10, $Y);
+    $pdf->Cell(5, 3.5, '', 0, 0, 'L');
+    $pdf->Cell(15, 3.5, 'Direct Cost' , 'B', 1, 'L');
+
     $pdf->SetFont('Arial', 'I', 7);
     $pdf->Cell(5, 3.5, '', 0, 0, 'L');
     $pdf->Cell(15, 3.5, $particulars , 0, 1, 'L');
-
-    $pdf->SetXY(126, $Y);
-    $pdf->Cell(5, 3.5, 'P' , 0, 1, 'L');
-    $pdf->SetXY(130, $Y);
-    $pdf->Cell(32, 3.5, number_format($approved_budget, 2) , 0, 1, 'C');
-
-    $pdf->SetXY(163, $Y);
-    $pdf->Cell(5, 3.5, 'P' , 0, 1, 'L');
-    $pdf->SetXY(168, $Y);
-    $pdf->Cell(32, 3.5, '' , 0, 1, 'L');
 }
-
-$Y+= 3.5;
-
-//P IN HONORARIA
-$pdf->SetFont('Arial', 'B', 7);
-$pdf->SetXY(40, $Y);
-$pdf->Cell(20, 3.5, 'Sub-total for PS' , 0, 1, 'L');
-
-$pdf->SetFont('Arial', '', 7);
-$pdf->SetXY(126, $Y);
-$pdf->Cell(5, 3.5, 'P' , 0, 1, 'L');
-$pdf->SetXY(130, $Y);
-$pdf->Cell(32, 3.5, '' , 'T', 1, 'L');
-$pdf->SetXY(163, $Y);
-$pdf->Cell(5, 3.5, 'P' , 0, 1, 'L');
-$pdf->SetXY(168, $Y);
-$pdf->Cell(32, 3.5, '' , 'T', 1, 'L');
 
 
 $pdf->Output();
