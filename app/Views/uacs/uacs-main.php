@@ -72,7 +72,7 @@ echo view('templates/myheader.php');
         <div class="card-body p-0 px-4 py-2 my-2">
             <form action="<?=site_url();?>myuacs?meaction=MAIN-SAVE" method="post" class="myuacs-validation">
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="row mb-2">
                             <div class="col-sm-4">
                                 <span>Expenditure Category:</span>
@@ -108,7 +108,7 @@ echo view('templates/myheader.php');
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="row mb-2">
                             <div class="col-sm-4">
                                 <span>Code:</span>
@@ -119,7 +119,7 @@ echo view('templates/myheader.php');
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="row mb-2">
                             <div class="col-sm-4">
                                 <span>Parent Expenditure:</span>
@@ -136,12 +136,12 @@ echo view('templates/myheader.php');
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 mb-2">
+                    <div class="col-sm-6 mb-2">
                         <div class="row">
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <span>Object of Expenditure:</span>
                             </div>
-                            <div class="col-sm-10">
+                            <div class="col-sm-8">
                                 <textarea name="object_of_expenditures" id="object_of_expenditures" placeholder="" rows="4" class="form-control form-control-sm"><?=$object_of_expenditures;?></textarea>
                             </div>
                         </div>

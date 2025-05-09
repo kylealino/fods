@@ -74,7 +74,11 @@ class MyBudgetAllotment extends BaseController
             a.`is_pending`,
             a.`is_approved`,
             a.`is_disapproved`,
-            '1111' approved_budget
+            (
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_co_dt` WHERE project_id = a.recid), 0)
+            ) AS approved_budget
         FROM
             tbl_budget_hd a
         GROUP BY a.`trxno`
@@ -88,10 +92,10 @@ class MyBudgetAllotment extends BaseController
         $divisionquery = $this->db->query("SELECT `division_name` FROM tbl_division");
         $divisiondata = $divisionquery->getResultArray();
 
-        $psuacsquery = $this->db->query("SELECT * FROM tbl_uacs WHERE uacs_category_id = '1'");
+        $psuacsquery = $this->db->query("SELECT * FROM tbl_uacs WHERE parent_category = 'Personal Services'");
         $psuacsdata = $psuacsquery->getResultArray();
 
-        $mooeuacsquery = $this->db->query("SELECT * FROM tbl_uacs WHERE uacs_category_id = '2'");
+        $mooeuacsquery = $this->db->query("SELECT * FROM tbl_uacs WHERE parent_category = 'Maintenance and Other Operating Expenses'");
         $mooeuacsdata = $mooeuacsquery->getResultArray();
 
         //reference/project title lookup
