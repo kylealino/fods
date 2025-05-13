@@ -420,7 +420,6 @@ class MyBudgetAllotmentModel extends Model
 					$code = $medata[1]; 
 					$approved_budget = $medata[2]; 
 					$dtid = $medata[3];
-					$ps_category = $medata[4]; 
 
 					if (!empty($dtid)) {
 						$query = $this->db->query("
@@ -441,7 +440,7 @@ class MyBudgetAllotmentModel extends Model
 								`code`,
 								`approved_budget`,
 								`added_at`,
-								`added_by`,
+								`added_by`
 							)
 							VALUES(
 								'$project_id',

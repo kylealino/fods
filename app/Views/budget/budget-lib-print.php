@@ -149,59 +149,86 @@ $pdf->SetXY(10, $Y);
 $pdf->SetFont('Arial', 'B', 7);
 $pdf->Cell(5, 3.5, 'I.', 0, 0, 'L');
 $pdf->Cell(60, 3.5, 'PERSONAL SERVICES (PS)' , 0, 1, 'L');
-$Y+= 3;
-$pdf->SetFont('Arial', 'B', 7);
-$pdf->SetXY(10, $Y);
-$pdf->Cell(5, 3.5, '', 0, 0, 'L');
-$pdf->Cell(15, 3.5, 'Direct Cost:' , 0, 1, 'L');
+
 $query = $this->db->query("
 SELECT
-    `particulars`,
-    `approved_budget`,
-    `ps_category`
+    a.`particulars`,
+    a.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = a.particulars
+     LIMIT 1) AS expenditure_category
 FROM
-    `tbl_budget_ps_dt`
+    `tbl_budget_ps_dt` a
 WHERE 
-    `project_id` = '$recid'"
+    `project_id` = '$recid'
+ORDER BY
+is_direct_cost DESC, is_indirect_cost ASC, expenditure_category DESC, particulars ASC"
 );
 
 $data = $query->getResultArray();
-$grand_total = 0;
-$total_ps =0;
-$last_ps_category = '';
+$total_ps = 0;
+$last_cost_type = '';
+$last_expenditure_category = '';
+
 foreach ($data as $row) {
     $particulars = $row['particulars'];
     $approved_budget = $row['approved_budget'];
-    $ps_category = $row['ps_category'];
+    $is_direct_cost = $row['is_direct_cost'];
+    $is_indirect_cost = $row['is_indirect_cost'];
+    $expenditure_category = $row['expenditure_category'];
 
-    // Print category header only when it changes
-    if ($ps_category != $last_ps_category) {
+    // Prioritize Direct over Indirect
+    if ($is_direct_cost == '1') {
+        $cost_type = 'Direct';
+    } elseif ($is_indirect_cost == '1') {
+        $cost_type = 'Indirect';
+    } else {
+        $cost_type = '';
+    }
+
+    // Print Cost Type Header if it changes
+    if ($cost_type !== $last_cost_type && $cost_type !== '') {
+        $Y += 3;
+        $pdf->SetFont('Arial', 'B', 7);
+        $pdf->SetXY(10, $Y);
+        $pdf->Cell(5, 3.5, '', 0, 0, 'L');
+        $pdf->Cell(60, 3.5, $cost_type . ' Cost:', 0, 1, 'L');
         $Y += 3.5;
+        $last_cost_type = $cost_type;
+        $last_expenditure_category = ''; // Reset category heading
+    }
+
+    // Print Expenditure Category if it changes
+    if ($expenditure_category !== $last_expenditure_category && $expenditure_category !== null) {
         $pdf->SetFont('Arial', '', 7);
         $pdf->SetXY(10, $Y);
         $pdf->Cell(5, 3.5, '', 0, 0, 'L');
-        $pdf->Cell(60, 3.5, $ps_category, 0, 1, 'L');
-        $last_ps_category = $ps_category;
+        $pdf->Cell(60, 3.5, $expenditure_category, 0, 1, 'L');
+        $Y += 3.5;
+        $last_expenditure_category = $expenditure_category;
     }
-    $Y+= 3;
 
-    $pdf->SetXY(10, $Y);
+    // Print Particulars
     $pdf->SetFont('Arial', 'I', 7);
+    $pdf->SetXY(10, $Y);
     $pdf->Cell(5, 3.5, '', 0, 0, 'L');
-    $pdf->Cell(15, 3.5, $particulars , 0, 1, 'L');
+    $pdf->Cell(60, 3.5, $particulars, 0, 1, 'L');
 
-    $pdf->SetXY(126, $Y);
-    $pdf->Cell(5, 3.5, '' , 0, 1, 'L');
+    // Print Budget
     $pdf->SetXY(130, $Y);
-    $pdf->Cell(32, 3.5, number_format($approved_budget, 2) , 0, 1, 'C');
+    $pdf->Cell(32, 3.5, number_format($approved_budget, 2), 0, 1, 'C');
 
-    $pdf->SetXY(163, $Y);
-    $pdf->Cell(5, 3.5, '' , 0, 1, 'L');
     $pdf->SetXY(168, $Y);
-    $pdf->Cell(32, 3.5, '------' , 0, 1, 'C');
+    $pdf->Cell(32, 3.5, '------', 0, 1, 'C');
 
-    $total_ps +=$approved_budget;
+    $total_ps += $approved_budget;
+    $Y += 3.5;
 }
+
 
 $Y+= 3.5;
 
@@ -227,64 +254,84 @@ $pdf->SetXY(10, $Y);
 $pdf->SetFont('Arial', 'B', 7);
 $pdf->Cell(5, 3.5, 'II.', 0, 0, 'L');
 $pdf->Cell(60, 3.5, 'MAINTENANCE AND OTHER OPERATING EXPENSES (MOOE)' , 0, 1, 'L');
-$Y+= 3;
-$pdf->SetFont('Arial', 'B', 7);
-$pdf->SetXY(10, $Y);
-$pdf->Cell(5, 3.5, '', 0, 0, 'L');
-$pdf->Cell(15, 3.5, 'Direct Cost:' , 0, 1, 'L');
 $query = $this->db->query("
-SELECT
-    b.`particulars`,
-    b.`approved_budget`,
-    (SELECT expenditure_category 
-     FROM tbl_uacs_category uc 
-     JOIN tbl_uacs u ON uc.recid = u.uacs_category_id
-     WHERE u.object_of_expenditures = b.particulars 
-     LIMIT 1) AS expenditure_category
-FROM
-    `tbl_budget_mooe_dt` b
-WHERE 
-    `project_id` = '$recid'
-ORDER BY
-    expenditure_category, particulars
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = b.particulars LIMIT 1) AS is_direct_cost,
+        (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = b.particulars LIMIT 1) AS is_indirect_cost,
+        (SELECT expenditure_category 
+         FROM tbl_uacs_category uc 
+         JOIN tbl_uacs u ON uc.recid = u.uacs_category_id
+         WHERE u.object_of_expenditures = b.particulars 
+         LIMIT 1) AS expenditure_category
+    FROM
+        `tbl_budget_mooe_dt` b
+    WHERE 
+        `project_id` = '$recid'
+    ORDER BY
+        is_direct_cost DESC, is_indirect_cost ASC, expenditure_category ASC, particulars ASC
 ");
 
 $data = $query->getResultArray();
 $total_mooe = 0;
-$last_expenditure_category = '';
+$total_mooe = 0;
+
+$last_cost_type = '';
+$printed_categories = [];
 
 foreach ($data as $row) {
     $particulars = $row['particulars'];
     $approved_budget = $row['approved_budget'];
     $expenditure_category = $row['expenditure_category'];
+    $is_direct_cost = $row['is_direct_cost'];
+    $is_indirect_cost = $row['is_indirect_cost'];
 
-    // Print category header only when it changes
-    if ($expenditure_category != $last_expenditure_category) {
+    // Determine cost type
+    $cost_type = $is_direct_cost == '1' ? 'Direct' : ($is_indirect_cost == '1' ? 'Indirect' : '');
+
+    // Show cost type heading only once
+    if ($cost_type !== $last_cost_type) {
+        $Y += 3;
+        $pdf->SetFont('Arial', 'B', 7);
+        $pdf->SetXY(10, $Y);
+        $pdf->Cell(5, 3.5, '', 0, 0, 'L');
+        $pdf->Cell(60, 3.5, $cost_type . ' Cost:', 0, 1, 'L');
         $Y += 3.5;
+
+        $last_cost_type = $cost_type;
+        $printed_categories = []; // reset category tracker on cost type change
+    }
+
+    // Show category only if it hasn't been printed under current cost type
+    if (!in_array($expenditure_category, $printed_categories)) {
         $pdf->SetFont('Arial', '', 7);
         $pdf->SetXY(10, $Y);
         $pdf->Cell(5, 3.5, '', 0, 0, 'L');
         $pdf->Cell(60, 3.5, $expenditure_category, 0, 1, 'L');
-        $last_expenditure_category = $expenditure_category;
+        $Y += 3.5;
+
+        $printed_categories[] = $expenditure_category;
     }
 
-    // Print the item line
-    $Y += 3.5;
+    // Print particulars
     $pdf->SetXY(15, $Y);
     $pdf->SetFont('Arial', 'I', 7);
     $pdf->Cell(5, 3.5, '', 0, 0, 'L');
-    $pdf->Cell(15, 3.5, $particulars , 0, 1, 'L');
+    $pdf->Cell(100, 3.5, $particulars , 0, 0, 'L');
 
     $pdf->SetXY(130, $Y);
-    $pdf->Cell(32, 3.5, number_format($approved_budget, 2) , 0, 1, 'C');
+    $pdf->Cell(32, 3.5, number_format($approved_budget, 2), 0, 0, 'C');
 
     $pdf->SetXY(168, $Y);
-    $pdf->Cell(32, 3.5, '------' , 0, 1, 'C');
+    $pdf->Cell(32, 3.5, '------', 0, 1, 'C');
 
     $total_mooe += $approved_budget;
+    $Y += 3.5;
 }
 
-$Y+= 3.5;
+
+
 
 //P IN HONORARIA
 $pdf->SetFont('Arial', 'B', 7);

@@ -1,0 +1,807 @@
+CRITICAL - 2025-05-13 05:33:47 --> ErrorException: Undefined array key 4
+[Method: POST, Route: mybudgetallotment]
+in APPPATH\Models\MyBudgetAllotmentModel.php on line 423.
+ 1 APPPATH\Models\MyBudgetAllotmentModel.php(423): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 4', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MyBudgetAllotmentModel.php', 423)
+ 2 APPPATH\Controllers\MyBudgetAllotment.php(36): App\Models\MyBudgetAllotmentModel->budget_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-05-13 05:34:17 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+							VALUES(
+								'50',
+								'Basic Salary - Civilian',
+							...' at line 8 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\t\t\tINSERT ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\t\t\tINSERT ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\t\t\tINSERT ...')
+#3 C:\xampp\htdocs\fods\app\Models\MyBudgetAllotmentModel.php(451): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\t\t\tINSERT ...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MyBudgetAllotment.php(36): App\Models\MyBudgetAllotmentModel->budget_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-05-13 05:34:18 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+							VALUES(
+								'50',
+								'Basic Salary - Civilian',
+							...' at line 8
+[Method: POST, Route: mybudgetallotment]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyBudgetAllotmentModel.php(451): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_budget_ps_dt`(
+								`project_id`,
+								`particulars`,
+								`code`,
+								`approved_budget`,
+								`added_at`,
+								`added_by`,
+							)
+							VALUES(
+								\'50\',
+								\'Basic Salary - Civilian\',
+								\'5010101001\',
+								\'100\',
+								NOW(),
+								\'admin\'
+							)
+						')
+ 2 APPPATH\Controllers\MyBudgetAllotment.php(36): App\Models\MyBudgetAllotmentModel->budget_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-13 05:34:18 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+							VALUES(
+								'50',
+								'Basic Salary - Civilian',
+							...' at line 8
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO `tbl_budget_ps_dt`(
+								`project_id`,
+								`particulars`,
+								`code`,
+								`approved_budget`,
+								`added_at`,
+								`added_by`,
+							)
+							VALUES(
+								\'50\',
+								\'Basic Salary - Civilian\',
+								\'5010101001\',
+								\'100\',
+								NOW(),
+								\'admin\'
+							)
+						')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO `tbl_budget_ps_dt`(
+								`project_id`,
+								`particulars`,
+								`code`,
+								`approved_budget`,
+								`added_at`,
+								`added_by`,
+							)
+							VALUES(
+								\'50\',
+								\'Basic Salary - Civilian\',
+								\'5010101001\',
+								\'100\',
+								NOW(),
+								\'admin\'
+							)
+						')
+ 3 APPPATH\Models\MyBudgetAllotmentModel.php(451): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_budget_ps_dt`(
+								`project_id`,
+								`particulars`,
+								`code`,
+								`approved_budget`,
+								`added_at`,
+								`added_by`,
+							)
+							VALUES(
+								\'50\',
+								\'Basic Salary - Civilian\',
+								\'5010101001\',
+								\'100\',
+								NOW(),
+								\'admin\'
+							)
+						')
+ 4 APPPATH\Controllers\MyBudgetAllotment.php(36): App\Models\MyBudgetAllotmentModel->budget_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-13 05:34:18 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+							VALUES(
+								'50',
+								'Basic Salary - Civilian',
+							...' at line 8
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+						INSERT INTO `tbl_budget_ps_dt`(
+								`project_id`,
+								`particulars`,
+								`code`,
+								`approved_budget`,
+								`added_at`,
+								`added_by`,
+							)
+							VALUES(
+								\'50\',
+								\'Basic Salary - Civilian\',
+								\'5010101001\',
+								\'100\',
+								NOW(),
+								\'admin\'
+							)
+						', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO `tbl_budget_ps_dt`(
+								`project_id`,
+								`particulars`,
+								`code`,
+								`approved_budget`,
+								`added_at`,
+								`added_by`,
+							)
+							VALUES(
+								\'50\',
+								\'Basic Salary - Civilian\',
+								\'5010101001\',
+								\'100\',
+								NOW(),
+								\'admin\'
+							)
+						')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO `tbl_budget_ps_dt`(
+								`project_id`,
+								`particulars`,
+								`code`,
+								`approved_budget`,
+								`added_at`,
+								`added_by`,
+							)
+							VALUES(
+								\'50\',
+								\'Basic Salary - Civilian\',
+								\'5010101001\',
+								\'100\',
+								NOW(),
+								\'admin\'
+							)
+						')
+ 4 APPPATH\Models\MyBudgetAllotmentModel.php(451): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_budget_ps_dt`(
+								`project_id`,
+								`particulars`,
+								`code`,
+								`approved_budget`,
+								`added_at`,
+								`added_by`,
+							)
+							VALUES(
+								\'50\',
+								\'Basic Salary - Civilian\',
+								\'5010101001\',
+								\'100\',
+								NOW(),
+								\'admin\'
+							)
+						')
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(36): App\Models\MyBudgetAllotmentModel->budget_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-05-13 05:47:27 --> mysqli_sql_exception: Unknown column 'a.particulars' in 'where clause' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\nSELECT\r\n    b...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\nSELECT\r\n    b...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\nSELECT\r\n    b...')
+#3 C:\xampp\htdocs\fods\app\Views\budget\budget-lib-print.php(271): CodeIgniter\Database\BaseConnection->query('\r\nSELECT\r\n    b...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('budget/budget-l...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyBudgetAllotment.php(56): view('budget/budget-l...')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-05-13 05:47:27 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'a.particulars' in 'where clause'
+[Method: GET, Route: mybudgetallotment]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\budget\budget-lib-print.php(271): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = a.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-13 05:47:27 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'a.particulars' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = a.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = a.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 3 APPPATH\Views\budget\budget-lib-print.php(271): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = a.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 7 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-13 05:47:27 --> [Caused by] mysqli_sql_exception: Unknown column 'a.particulars' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = a.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = a.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = a.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 4 APPPATH\Views\budget\budget-lib-print.php(271): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = a.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 8 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-05-13 05:48:11 --> mysqli_sql_exception: Unknown column 'a.particulars' in 'where clause' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\nSELECT\r\n    b...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\nSELECT\r\n    b...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\nSELECT\r\n    b...')
+#3 C:\xampp\htdocs\fods\app\Views\budget\budget-lib-print.php(271): CodeIgniter\Database\BaseConnection->query('\r\nSELECT\r\n    b...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('budget/budget-l...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyBudgetAllotment.php(56): view('budget/budget-l...')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-05-13 05:48:11 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'a.particulars' in 'where clause'
+[Method: GET, Route: mybudgetallotment]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\budget\budget-lib-print.php(271): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = b.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-13 05:48:11 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'a.particulars' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = b.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = b.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 3 APPPATH\Views\budget\budget-lib-print.php(271): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = b.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 7 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-13 05:48:11 --> [Caused by] mysqli_sql_exception: Unknown column 'a.particulars' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = b.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = b.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = b.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 4 APPPATH\Views\budget\budget-lib-print.php(271): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = b.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 8 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-05-13 05:54:35 --> mysqli_sql_exception: Unknown column 'a.particulars' in 'where clause' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\nSELECT\r\n    b...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\nSELECT\r\n    b...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\nSELECT\r\n    b...')
+#3 C:\xampp\htdocs\fods\app\Views\budget\budget-lib-print.php(271): CodeIgniter\Database\BaseConnection->query('\r\nSELECT\r\n    b...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('budget/budget-l...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyBudgetAllotment.php(56): view('budget/budget-l...')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-05-13 05:54:35 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'a.particulars' in 'where clause'
+[Method: GET, Route: mybudgetallotment]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\budget\budget-lib-print.php(271): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = a.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-13 05:54:35 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'a.particulars' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = a.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = a.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 3 APPPATH\Views\budget\budget-lib-print.php(271): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = a.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 7 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-13 05:54:35 --> [Caused by] mysqli_sql_exception: Unknown column 'a.particulars' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = a.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = a.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = a.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 4 APPPATH\Views\budget\budget-lib-print.php(271): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    b.`particulars`,
+    b.`approved_budget`,
+    (SELECT `is_direct_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_direct_cost,
+    (SELECT `is_indirect_cost` FROM tbl_uacs WHERE `object_of_expenditures` = a.particulars LIMIT 1) AS is_indirect_cost,
+    (SELECT cat.`expenditure_category`
+     FROM tbl_uacs_category cat
+     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
+     WHERE uac.`object_of_expenditures` = a.particulars
+     LIMIT 1) AS expenditure_category
+FROM
+    `tbl_budget_mooe_dt` b
+WHERE 
+    `project_id` = \'50\'
+ORDER BY
+    expenditure_category, particulars
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 8 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
