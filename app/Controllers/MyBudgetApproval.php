@@ -34,9 +34,12 @@ class MyBudgetApproval extends BaseController
             a.`fund_cluster_code`,
             a.`division_name`,
             (
-                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_ps_dt` WHERE project_id = a.recid), 0) +
-                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_mooe_dt` WHERE project_id = a.recid), 0) +
-                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_co_dt` WHERE project_id = a.recid), 0)
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_co_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_co_dt` WHERE project_id = a.recid), 0)
             ) AS approved_budget
         FROM
             tbl_budget_hd a
@@ -56,9 +59,12 @@ class MyBudgetApproval extends BaseController
             a.`fund_cluster_code`,
             a.`division_name`,
             (
-                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_ps_dt` WHERE project_id = a.recid), 0) +
-                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_mooe_dt` WHERE project_id = a.recid), 0) +
-                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_co_dt` WHERE project_id = a.recid), 0)
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_co_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_co_dt` WHERE project_id = a.recid), 0)
             ) AS approved_budget
         FROM
             tbl_budget_hd a
@@ -77,9 +83,12 @@ class MyBudgetApproval extends BaseController
             a.`fund_cluster_code`,
             a.`division_name`,
             (
-                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_ps_dt` WHERE project_id = a.recid), 0) +
-                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_mooe_dt` WHERE project_id = a.recid), 0) +
-                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_co_dt` WHERE project_id = a.recid), 0)
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_co_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_co_dt` WHERE project_id = a.recid), 0)
             ) AS approved_budget
         FROM
             tbl_budget_hd a
