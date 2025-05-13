@@ -24,6 +24,8 @@ function __mysys_uacs_ent() {
 					var uacs_category_id = document.getElementById("uacs_category_id");
 					var code = document.getElementById("code");
 					var parent_category = document.getElementById("parent_category");
+					var is_direct_cost = jQuery('#is_direct_cost').is(':checked') ? 1 : 0;
+					var is_indirect_cost = jQuery('#is_indirect_cost').is(':checked') ? 1 : 0;
 
 					var mparam = { 
 						recid: recid.value,
@@ -32,6 +34,8 @@ function __mysys_uacs_ent() {
 						uacs_category_id: uacs_category_id.value,
 						code: code.value,
 						parent_category: parent_category.value,
+						is_direct_cost: is_direct_cost,
+						is_indirect_cost: is_indirect_cost,
 						meaction: 'MAIN-SAVE'
 					}
 

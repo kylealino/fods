@@ -8,6 +8,8 @@ $expenditure_category = "";
 $object_of_expenditures = "";
 $parent_category = "";
 $code = "";
+$is_direct_cost = "";
+$is_indirect_cost = "";
 $counter = 1;
 
 if(!empty($recid) || !is_null($recid)) { 
@@ -19,7 +21,9 @@ if(!empty($recid) || !is_null($recid)) {
         (select `expenditure_category` FROM `tbl_uacs_category` WHERE `recid` = a.`uacs_category_id`) AS expenditure_category,
         a.`object_of_expenditures`,
         a.`parent_category`,
-        a.`code`
+        a.`code`,
+        a.`is_direct_cost`,
+        a.`is_indirect_cost`
     FROM
         `tbl_uacs` a
     WHERE 
@@ -32,6 +36,8 @@ if(!empty($recid) || !is_null($recid)) {
     $object_of_expenditures = $data['object_of_expenditures'];
     $parent_category = $data['parent_category'];
     $code = $data['code'];
+    $is_direct_cost = $data['is_direct_cost'];
+    $is_indirect_cost = $data['is_indirect_cost'];
 
 }
 echo view('templates/myheader.php');
@@ -138,23 +144,18 @@ echo view('templates/myheader.php');
                     </div>
                     <div class="col-sm-6 mb-2">
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-4">
+                                <span>Cost Category:</span>
+                            </div>
+                            <div class="col-sm-8">
                                 <div class="d-flex gap-4 align-items-center">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="radio"  name="costOption" id="directCost" value="direct">
-                                        <label class="form-check-label" for="directCost">Direct Cost</label>
+                                        <input class="form-check-input" type="radio"  name="costOption" id="is_direct_cost" value="direct" <?= $is_direct_cost === '1' ? 'checked' : '' ?>>
+                                        <label class="form-check-label" for="is_direct_cost">Direct Cost</label>
                                     </div>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="radio"  name="costOption" id="indirectCost" value="indirect">
-                                        <label class="form-check-label" for="indirectCost">Indirect Cost</label>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="radio"  name="costOption2" id="salary" value="direct">
-                                        <label class="form-check-label" for="salary">Salary</label>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="radio"  name="costOption2" id="honoraria" value="indirect">
-                                        <label class="form-check-label" for="honoraria">Honoraria</label>
+                                        <input class="form-check-input" type="radio"  name="costOption" id="is_indirect_cost" value="indirect" <?= $is_indirect_cost === '1' ? 'checked' : '' ?>>
+                                        <label class="form-check-label" for="is_indirect_cost">Indirect Cost</label>
                                     </div>
                                 </div>
                             </div>
@@ -262,11 +263,6 @@ echo view('templates/myheader.php');
             language: {
             search: "Search:"
             }
-        });
-        document.getElementById('parent_category').addEventListener('change', function () {
-            const isMaintenance = this.value === 'Maintenance and Other Operating Expenses';
-            document.getElementById('salary').disabled = isMaintenance;
-            document.getElementById('honoraria').disabled = isMaintenance;
         });
     });
 

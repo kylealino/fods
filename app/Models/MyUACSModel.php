@@ -24,6 +24,9 @@ class MyUACSModel extends Model
 		$uacs_category_id = $this->request->getPostGet('uacs_category_id');
 		$code = $this->request->getPostGet('code');
 
+		$is_direct_cost = $this->request->getPostGet('is_direct_cost');
+		$is_indirect_cost = $this->request->getPostGet('is_indirect_cost');
+		
 
 		if (empty($object_of_expenditures)) {
 			echo "
@@ -83,7 +86,9 @@ class MyUACSModel extends Model
 					`added_on`,
 					`added_by`,
 					`active_status`,
-					`parent_category`
+					`parent_category`,
+					`is_direct_cost`,
+					`is_indirect_cost`,
 				)
 				VALUES(
 					'$uacs_category_id',
@@ -92,7 +97,9 @@ class MyUACSModel extends Model
 					NOW(),
 					'{$this->cuser}',
 					'1',
-					'$parent_category'
+					'$parent_category',
+					'$is_direct_cost',
+					'$is_indirect_cost'
 				)
 			");
 			$status = "UACS Saved successfully";
@@ -105,7 +112,9 @@ class MyUACSModel extends Model
 					`uacs_category_id` = '$uacs_category_id',
 					`object_of_expenditures` = '$object_of_expenditures',
 					`code` = '$code',
-					`parent_category` = '$parent_category'
+					`parent_category` = '$parent_category',
+					`is_direct_cost` = '$is_direct_cost',
+					`is_indirect_cost` = '$is_indirect_cost'
 				WHERE `recid` = '$recid'
 			");
 			$status = "UACS Updated successfully";
