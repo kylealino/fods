@@ -40,6 +40,11 @@ class MyBudgetAllotmentModel extends Model
 		$budgetmooedtdata = $this->request->getPostGet('budgetmooedtdata');
 		$budgetcodtdata = $this->request->getPostGet('budgetcodtdata');
 
+		//PS INDIRECT DATA
+		$budgetdtindirectdata = $this->request->getPostGet('budgetdtindirectdata');
+		$budgetmooeindirectdtdata = $this->request->getPostGet('budgetmooeindirectdtdata');
+		$budgetindirectcodtdata = $this->request->getPostGet('budgetindirectcodtdata');
+
 		$cseqn =  $this->get_ctr_budget('LIB','fods','CTRL_NO01');//TRANSACTION NO
 		$trx = empty($trxno) ? $cseqn : $trxno;
 
@@ -235,12 +240,11 @@ class MyBudgetAllotmentModel extends Model
 					$code = $medata[1]; 
 					$approved_budget = $medata[2]; 
 					$dtid = $medata[3]; 
-					$ps_category = $medata[4];
 
 					if (!empty($dtid)) {
 						$query = $this->db->query("
 						UPDATE
-							`tbl_budget_ps_dt`
+							`tbl_budget_direct_ps_dt`
 						SET
 							`particulars` = '$particulars',
 							`code` = '$code',
@@ -250,7 +254,53 @@ class MyBudgetAllotmentModel extends Model
 						");
 					}else{
 						$query = $this->db->query("
-						INSERT INTO `tbl_budget_ps_dt`(
+						INSERT INTO `tbl_budget_direct_ps_dt`(
+								`project_id`,
+								`particulars`,
+								`code`,
+								`approved_budget`,
+								`added_at`,
+								`added_by`
+							)
+							VALUES(
+								'$project_id',
+								'$particulars',
+								'$code',
+								'$approved_budget',
+								NOW(),
+								'{$this->cuser}'
+							)
+						");
+					}
+
+					
+				}
+			}
+
+			//INSERTING PS DT INDIRECT DATA
+			if (!empty($budgetdtindirectdata)) {
+				//this is for normal saving and updating
+				for($aa = 0; $aa < count($budgetdtindirectdata); $aa++){
+					$medata = explode("x|x",$budgetdtindirectdata[$aa]);
+					$particulars = $medata[0]; 
+					$code = $medata[1]; 
+					$approved_budget = $medata[2]; 
+					$dtid = $medata[3]; 
+
+					if (!empty($dtid)) {
+						$query = $this->db->query("
+						UPDATE
+							`tbl_budget_indirect_ps_dt`
+						SET
+							`particulars` = '$particulars',
+							`code` = '$code',
+							`approved_budget` = '$approved_budget'
+						WHERE
+							`recid` = '$dtid'
+						");
+					}else{
+						$query = $this->db->query("
+						INSERT INTO `tbl_budget_indirect_ps_dt`(
 								`project_id`,
 								`particulars`,
 								`code`,
@@ -287,7 +337,7 @@ class MyBudgetAllotmentModel extends Model
 					if (!empty($dtid)) {
 						$query = $this->db->query("
 						UPDATE
-							`tbl_budget_mooe_dt`
+							`tbl_budget_direct_mooe_dt`
 						SET
 							`particulars` = '$particulars',
 							`code` = '$code',
@@ -297,7 +347,54 @@ class MyBudgetAllotmentModel extends Model
 						");
 					}else{
 						$query = $this->db->query("
-						INSERT INTO `tbl_budget_mooe_dt`(
+						INSERT INTO `tbl_budget_direct_mooe_dt`(
+								`project_id`,
+								`particulars`,
+								`code`,
+								`approved_budget`,
+								`added_at`,
+								`added_by`
+							)
+							VALUES(
+								'$project_id',
+								'$particulars',
+								'$code',
+								'$approved_budget',
+								NOW(),
+								'{$this->cuser}'
+							)
+						");
+					}
+
+					
+				}
+			}
+
+			//INSERTING MOOE DT DATA INDIRECT ---
+			if (!empty($budgetmooeindirectdtdata)) {
+
+				//this is for normal saving and updating
+				for($aa = 0; $aa < count($budgetmooeindirectdtdata); $aa++){
+					$medata = explode("x|x",$budgetmooeindirectdtdata[$aa]);
+					$particulars = $medata[0]; 
+					$code = $medata[1]; 
+					$approved_budget = $medata[2]; 
+					$dtid = $medata[3]; 
+
+					if (!empty($dtid)) {
+						$query = $this->db->query("
+						UPDATE
+							`tbl_budget_indirect_mooe_dt`
+						SET
+							`particulars` = '$particulars',
+							`code` = '$code',
+							`approved_budget` = '$approved_budget'
+						WHERE
+							`recid` = '$dtid'
+						");
+					}else{
+						$query = $this->db->query("
+						INSERT INTO `tbl_budget_indirect_mooe_dt`(
 								`project_id`,
 								`particulars`,
 								`code`,
@@ -334,7 +431,7 @@ class MyBudgetAllotmentModel extends Model
 					if (!empty($dtid)) {
 						$query = $this->db->query("
 						UPDATE
-							`tbl_budget_co_dt`
+							`tbl_budget_direct_co_dt`
 						SET
 							`particulars` = '$particulars',
 							`code` = '$code',
@@ -344,7 +441,54 @@ class MyBudgetAllotmentModel extends Model
 						");
 					}else{
 						$query = $this->db->query("
-						INSERT INTO `tbl_budget_co_dt`(
+						INSERT INTO `tbl_budget_direct_co_dt`(
+								`project_id`,
+								`particulars`,
+								`code`,
+								`approved_budget`,
+								`added_at`,
+								`added_by`
+							)
+							VALUES(
+								'$project_id',
+								'$particulars',
+								'$code',
+								'$approved_budget',
+								NOW(),
+								'{$this->cuser}'
+							)
+						");
+					}
+
+					
+				}
+			}
+
+			//INSERTING CO DT DATA INDIRECT --
+			if (!empty($budgetindirectcodtdata)) {
+
+				//this is for normal saving and updating
+				for($aa = 0; $aa < count($budgetindirectcodtdata); $aa++){
+					$medata = explode("x|x",$budgetindirectcodtdata[$aa]);
+					$particulars = $medata[0]; 
+					$code = $medata[1]; 
+					$approved_budget = $medata[2]; 
+					$dtid = $medata[3]; 
+
+					if (!empty($dtid)) {
+						$query = $this->db->query("
+						UPDATE
+							`tbl_budget_indirect_co_dt`
+						SET
+							`particulars` = '$particulars',
+							`code` = '$code',
+							`approved_budget` = '$approved_budget'
+						WHERE
+							`recid` = '$dtid'
+						");
+					}else{
+						$query = $this->db->query("
+						INSERT INTO `tbl_budget_indirect_co_dt`(
 								`project_id`,
 								`particulars`,
 								`code`,
@@ -424,7 +568,7 @@ class MyBudgetAllotmentModel extends Model
 					if (!empty($dtid)) {
 						$query = $this->db->query("
 						UPDATE
-							`tbl_budget_ps_dt`
+							`tbl_budget_direct_ps_dt`
 						SET
 							`particulars` = '$particulars',
 							`code` = '$code',
@@ -434,7 +578,53 @@ class MyBudgetAllotmentModel extends Model
 						");
 					}else{
 						$query = $this->db->query("
-						INSERT INTO `tbl_budget_ps_dt`(
+						INSERT INTO `tbl_budget_direct_ps_dt`(
+								`project_id`,
+								`particulars`,
+								`code`,
+								`approved_budget`,
+								`added_at`,
+								`added_by`
+							)
+							VALUES(
+								'$project_id',
+								'$particulars',
+								'$code',
+								'$approved_budget',
+								NOW(),
+								'{$this->cuser}'
+							)
+						");
+					}
+
+					
+				}
+			}
+
+			//INSERTING PS DT INDIRECT DATA
+			if (!empty($budgetdtindirectdata)) {
+				//this is for normal saving and updating
+				for($aa = 0; $aa < count($budgetdtindirectdata); $aa++){
+					$medata = explode("x|x",$budgetdtindirectdata[$aa]);
+					$particulars = $medata[0]; 
+					$code = $medata[1]; 
+					$approved_budget = $medata[2]; 
+					$dtid = $medata[3];
+
+					if (!empty($dtid)) {
+						$query = $this->db->query("
+						UPDATE
+							`tbl_budget_indirect_ps_dt`
+						SET
+							`particulars` = '$particulars',
+							`code` = '$code',
+							`approved_budget` = '$approved_budget'
+						WHERE
+							`recid` = '$dtid'
+						");
+					}else{
+						$query = $this->db->query("
+						INSERT INTO `tbl_budget_indirect_ps_dt`(
 								`project_id`,
 								`particulars`,
 								`code`,
@@ -470,7 +660,7 @@ class MyBudgetAllotmentModel extends Model
 					if (!empty($dtid)) {
 						$query = $this->db->query("
 						UPDATE
-							`tbl_budget_mooe_dt`
+							`tbl_budget_direct_mooe_dt`
 						SET
 							`particulars` = '$particulars',
 							`code` = '$code',
@@ -480,7 +670,7 @@ class MyBudgetAllotmentModel extends Model
 						");
 					}else{
 						$query = $this->db->query("
-						INSERT INTO `tbl_budget_mooe_dt`(
+						INSERT INTO `tbl_budget_direct_mooe_dt`(
 								`project_id`,
 								`particulars`,
 								`code`,
@@ -502,12 +692,12 @@ class MyBudgetAllotmentModel extends Model
 				}
 			}
 
-			//INSERTING CO DT DATA
-			if (!empty($budgetcodtdata)) {
+			//INSERTING MOOE DT DATA INDIRECT ---
+			if (!empty($budgetmooeindirectdtdata)) {
 
 				//this is for normal saving and updating
-				for($aa = 0; $aa < count($budgetcodtdata); $aa++){
-					$medata = explode("x|x",$budgetcodtdata[$aa]);
+				for($aa = 0; $aa < count($budgetmooeindirectdtdata); $aa++){
+					$medata = explode("x|x",$budgetmooeindirectdtdata[$aa]);
 					$particulars = $medata[0]; 
 					$code = $medata[1]; 
 					$approved_budget = $medata[2]; 
@@ -516,7 +706,7 @@ class MyBudgetAllotmentModel extends Model
 					if (!empty($dtid)) {
 						$query = $this->db->query("
 						UPDATE
-							`tbl_budget_co_dt`
+							`tbl_budget_indirect_mooe_dt`
 						SET
 							`particulars` = '$particulars',
 							`code` = '$code',
@@ -526,7 +716,7 @@ class MyBudgetAllotmentModel extends Model
 						");
 					}else{
 						$query = $this->db->query("
-						INSERT INTO `tbl_budget_co_dt`(
+						INSERT INTO `tbl_budget_indirect_mooe_dt`(
 								`project_id`,
 								`particulars`,
 								`code`,
@@ -545,6 +735,100 @@ class MyBudgetAllotmentModel extends Model
 						");
 					}
 
+					
+				}
+			}
+
+			//INSERTING CO DT DATA
+			if (!empty($budgetcodtdata)) {
+
+				//this is for normal saving and updating
+				for($aa = 0; $aa < count($budgetcodtdata); $aa++){
+					$medata = explode("x|x",$budgetcodtdata[$aa]);
+					$particulars = $medata[0]; 
+					$code = $medata[1]; 
+					$approved_budget = $medata[2]; 
+					$dtid = $medata[3]; 
+
+					if (!empty($dtid)) {
+						$query = $this->db->query("
+						UPDATE
+							`tbl_budget_direct_co_dt`
+						SET
+							`particulars` = '$particulars',
+							`code` = '$code',
+							`approved_budget` = '$approved_budget'
+						WHERE
+							`recid` = '$dtid'
+						");
+					}else{
+						$query = $this->db->query("
+						INSERT INTO `tbl_budget_direct_co_dt`(
+								`project_id`,
+								`particulars`,
+								`code`,
+								`approved_budget`,
+								`added_at`,
+								`added_by`
+							)
+							VALUES(
+								'$project_id',
+								'$particulars',
+								'$code',
+								'$approved_budget',
+								NOW(),
+								'{$this->cuser}'
+							)
+						");
+					}
+
+				}
+			}
+
+			//INSERTING CO DT DATA INDIRECT --
+			if (!empty($budgetindirectcodtdata)) {
+
+				//this is for normal saving and updating
+				for($aa = 0; $aa < count($budgetindirectcodtdata); $aa++){
+					$medata = explode("x|x",$budgetindirectcodtdata[$aa]);
+					$particulars = $medata[0]; 
+					$code = $medata[1]; 
+					$approved_budget = $medata[2]; 
+					$dtid = $medata[3]; 
+
+					if (!empty($dtid)) {
+						$query = $this->db->query("
+						UPDATE
+							`tbl_budget_indirect_co_dt`
+						SET
+							`particulars` = '$particulars',
+							`code` = '$code',
+							`approved_budget` = '$approved_budget'
+						WHERE
+							`recid` = '$dtid'
+						");
+					}else{
+						$query = $this->db->query("
+						INSERT INTO `tbl_budget_indirect_co_dt`(
+								`project_id`,
+								`particulars`,
+								`code`,
+								`approved_budget`,
+								`added_at`,
+								`added_by`
+							)
+							VALUES(
+								'$project_id',
+								'$particulars',
+								'$code',
+								'$approved_budget',
+								NOW(),
+								'{$this->cuser}'
+							)
+						");
+					}
+
+					
 				}
 			}
 
