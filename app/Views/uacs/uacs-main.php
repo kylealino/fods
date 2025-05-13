@@ -138,10 +138,34 @@ echo view('templates/myheader.php');
                     </div>
                     <div class="col-sm-6 mb-2">
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-12">
+                                <div class="d-flex gap-4 align-items-center">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="radio"  name="costOption" id="directCost" value="direct">
+                                        <label class="form-check-label" for="directCost">Direct Cost</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="radio"  name="costOption" id="indirectCost" value="indirect">
+                                        <label class="form-check-label" for="indirectCost">Indirect Cost</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="radio"  name="costOption2" id="salary" value="direct">
+                                        <label class="form-check-label" for="salary">Salary</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="radio"  name="costOption2" id="honoraria" value="indirect">
+                                        <label class="form-check-label" for="honoraria">Honoraria</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 mb-2">
+                        <div class="row">
+                            <div class="col-sm-2">
                                 <span>Object of Expenditure:</span>
                             </div>
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                                 <textarea name="object_of_expenditures" id="object_of_expenditures" placeholder="" rows="4" class="form-control form-control-sm"><?=$object_of_expenditures;?></textarea>
                             </div>
                         </div>
@@ -238,6 +262,11 @@ echo view('templates/myheader.php');
             language: {
             search: "Search:"
             }
+        });
+        document.getElementById('parent_category').addEventListener('change', function () {
+            const isMaintenance = this.value === 'Maintenance and Other Operating Expenses';
+            document.getElementById('salary').disabled = isMaintenance;
+            document.getElementById('honoraria').disabled = isMaintenance;
         });
     });
 

@@ -40,8 +40,6 @@ class MyBudgetAllotmentModel extends Model
 		$budgetmooedtdata = $this->request->getPostGet('budgetmooedtdata');
 		$budgetcodtdata = $this->request->getPostGet('budgetcodtdata');
 
-
-
 		$cseqn =  $this->get_ctr_budget('LIB','fods','CTRL_NO01');//TRANSACTION NO
 		$trx = empty($trxno) ? $cseqn : $trxno;
 
@@ -246,8 +244,7 @@ class MyBudgetAllotmentModel extends Model
 						SET
 							`particulars` = '$particulars',
 							`code` = '$code',
-							`approved_budget` = '$approved_budget',
-							`ps_category` = '$ps_category'
+							`approved_budget` = '$approved_budget'
 						WHERE
 							`recid` = '$dtid'
 						");
@@ -259,8 +256,7 @@ class MyBudgetAllotmentModel extends Model
 								`code`,
 								`approved_budget`,
 								`added_at`,
-								`added_by`,
-								`ps_category`
+								`added_by`
 							)
 							VALUES(
 								'$project_id',
@@ -268,8 +264,7 @@ class MyBudgetAllotmentModel extends Model
 								'$code',
 								'$approved_budget',
 								NOW(),
-								'{$this->cuser}',
-								'$ps_category'
+								'{$this->cuser}'
 							)
 						");
 					}
@@ -434,8 +429,7 @@ class MyBudgetAllotmentModel extends Model
 						SET
 							`particulars` = '$particulars',
 							`code` = '$code',
-							`approved_budget` = '$approved_budget',
-							`ps_category` = '$ps_category'
+							`approved_budget` = '$approved_budget'
 						WHERE
 							`recid` = '$dtid'
 						");
@@ -448,7 +442,6 @@ class MyBudgetAllotmentModel extends Model
 								`approved_budget`,
 								`added_at`,
 								`added_by`,
-								`ps_category`
 							)
 							VALUES(
 								'$project_id',
@@ -456,8 +449,7 @@ class MyBudgetAllotmentModel extends Model
 								'$code',
 								'$approved_budget',
 								NOW(),
-								'{$this->cuser}',
-								'$ps_category'
+								'{$this->cuser}'
 							)
 						");
 					}

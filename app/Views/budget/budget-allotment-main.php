@@ -460,7 +460,6 @@ echo view('templates/myheader.php');
                                                     <th class="text-center align-middle">PS - Particulars</th>
                                                     <th class="text-center align-middle">UACS.</th>
                                                     <th class="text-center align-middle">Approved Budget</th>
-                                                    <th class="text-center align-middle">Category</th>
                                                 </thead>
                                                 <tbody>
                                                     <tr style="display:none;">
@@ -487,13 +486,6 @@ echo view('templates/myheader.php');
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" class="approved_budget text-center"/>
                                                         </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <select name="selpscat" class="selpscat form text-center" style="width:200px; height:30px;">
-                                                                <option selected value ="">Choose...</option>
-                                                                <option value="Salaries">Salaries</option>
-                                                                <option value="Honoraria">Honoraria</option>
-                                                            </select>
-                                                        </td>
                                                     </tr>
                                                     <?php if(!empty($recid)):
                                                         $query = $this->db->query("
@@ -501,8 +493,7 @@ echo view('templates/myheader.php');
                                                             `recid`,
                                                             `particulars`,
                                                             `code`,
-                                                            `approved_budget`,
-                                                            `ps_category`
+                                                            `approved_budget`
                                                         FROM
                                                             `tbl_budget_ps_dt`
                                                         WHERE 
@@ -514,7 +505,6 @@ echo view('templates/myheader.php');
                                                             $particulars = $data['particulars'];
                                                             $code = $data['code'];
                                                             $approved_budget = $data['approved_budget'];
-                                                            $ps_category = $data['ps_category'];
                                                     ?>
                                                     <tr>
                                                         <td class="text-center align-middle">
@@ -540,13 +530,6 @@ echo view('templates/myheader.php');
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center"/>
                                                         </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <select name="selpscat" class="selpscat form text-center" style="width:200px; height:30px;">
-                                                                <option selected value ="<?=$ps_category;?>"><?=$ps_category;?></option>
-                                                                <option value="Salaries">Salaries</option>
-                                                                <option value="Honoraria">Honoraria</option>
-                                                            </select>
-                                                        </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
                                                     <?php if(!empty($realign_id)):
@@ -555,8 +538,7 @@ echo view('templates/myheader.php');
                                                             `recid`,
                                                             `particulars`,
                                                             `code`,
-                                                            `approved_budget`,
-                                                            `ps_category`
+                                                            `approved_budget`
                                                         FROM
                                                             `tbl_budget_ps_dt`
                                                         WHERE 
@@ -568,7 +550,6 @@ echo view('templates/myheader.php');
                                                             $particulars = $data['particulars'];
                                                             $code = $data['code'];
                                                             $approved_budget = $data['approved_budget'];
-                                                            $ps_category = $data['ps_category'];
                                                     ?>
                                                     <tr>
                                                         <td class="text-center align-middle">
@@ -593,13 +574,6 @@ echo view('templates/myheader.php');
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="" name="approved_budget" class="approved_budget text-center"/>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <select name="selpscat" class="selpscat form text-center" style="width:200px; height:30px;">
-                                                                <option selected value ="<?=$ps_category;?>"><?=$ps_category;?></option>
-                                                                <option value="Salaries">Salaries</option>
-                                                                <option value="Honoraria">Honoraria</option>
-                                                            </select>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>

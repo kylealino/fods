@@ -14,14 +14,11 @@ function __mysys_budget_allotment_ent() {
 			jQuery(clonedRow).find('select').eq(0).val('').attr('id', 'col4' + mid);
 			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col2' + mid); // ID for second text field
 			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
-			jQuery(clonedRow).find('select').eq(1).val('').attr('id', 'col5' + mid);
-
 			// Now reset only the debit and credit fields (input[type=number])
 			
 			jQuery(clonedRow).find('select').eq(0).val('');
 			jQuery(clonedRow).find('input[type=text]').eq(0).val('');  // Clear credit value
 			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
-			jQuery(clonedRow).find('select').eq(1).val('');
 	
 			// Insert the cloned row before the last row (footer row)
 			jQuery('#budget_line_items tbody').append(clonedRow);
@@ -185,9 +182,8 @@ function __mysys_budget_allotment_ent() {
 						var uacs = clonedRow.find('input[type=text]').eq(0).val();
 						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
 						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
-						var ps_category = clonedRow.find('select.selpscat').val();
 						
-						psdata = particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + ps_category;
+						psdata = particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid;
 						budgetdtdata.push(psdata);
 					}
 
