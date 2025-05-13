@@ -8,8 +8,6 @@ $expenditure_category = "";
 $object_of_expenditures = "";
 $parent_category = "";
 $code = "";
-$is_direct_cost = "";
-$is_indirect_cost = "";
 $counter = 1;
 
 if(!empty($recid) || !is_null($recid)) { 
@@ -21,9 +19,7 @@ if(!empty($recid) || !is_null($recid)) {
         (select `expenditure_category` FROM `tbl_uacs_category` WHERE `recid` = a.`uacs_category_id`) AS expenditure_category,
         a.`object_of_expenditures`,
         a.`parent_category`,
-        a.`code`,
-        a.`is_direct_cost`,
-        a.`is_indirect_cost`
+        a.`code`
     FROM
         `tbl_uacs` a
     WHERE 
@@ -36,8 +32,6 @@ if(!empty($recid) || !is_null($recid)) {
     $object_of_expenditures = $data['object_of_expenditures'];
     $parent_category = $data['parent_category'];
     $code = $data['code'];
-    $is_direct_cost = $data['is_direct_cost'];
-    $is_indirect_cost = $data['is_indirect_cost'];
 
 }
 echo view('templates/myheader.php');
@@ -139,25 +133,6 @@ echo view('templates/myheader.php');
                                     <option value="Maintenance and Other Operating Expenses">Maintenance and Other Operating Expenses</option>
                                     <option value="Capital Outlay">Capital Outlay</option>
                                 </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 mb-2">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <span>Cost Category:</span>
-                            </div>
-                            <div class="col-sm-8">
-                                <div class="d-flex gap-4 align-items-center">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="radio"  name="costOption" id="is_direct_cost" value="direct" <?= $is_direct_cost === '1' ? 'checked' : '' ?>>
-                                        <label class="form-check-label" for="is_direct_cost">Direct Cost</label>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="radio"  name="costOption" id="is_indirect_cost" value="indirect" <?= $is_indirect_cost === '1' ? 'checked' : '' ?>>
-                                        <label class="form-check-label" for="is_indirect_cost">Indirect Cost</label>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
