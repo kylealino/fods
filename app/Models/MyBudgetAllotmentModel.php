@@ -237,6 +237,7 @@ class MyBudgetAllotmentModel extends Model
 					$code = $medata[1]; 
 					$approved_budget = $medata[2]; 
 					$dtid = $medata[3]; 
+					$ps_category = $medata[4];
 
 					if (!empty($dtid)) {
 						$query = $this->db->query("
@@ -245,7 +246,8 @@ class MyBudgetAllotmentModel extends Model
 						SET
 							`particulars` = '$particulars',
 							`code` = '$code',
-							`approved_budget` = '$approved_budget'
+							`approved_budget` = '$approved_budget',
+							`ps_category` = '$ps_category'
 						WHERE
 							`recid` = '$dtid'
 						");
@@ -257,7 +259,8 @@ class MyBudgetAllotmentModel extends Model
 								`code`,
 								`approved_budget`,
 								`added_at`,
-								`added_by`
+								`added_by`,
+								`ps_category`
 							)
 							VALUES(
 								'$project_id',
@@ -265,7 +268,8 @@ class MyBudgetAllotmentModel extends Model
 								'$code',
 								'$approved_budget',
 								NOW(),
-								'{$this->cuser}'
+								'{$this->cuser}',
+								'$ps_category'
 							)
 						");
 					}
@@ -420,7 +424,8 @@ class MyBudgetAllotmentModel extends Model
 					$particulars = $medata[0]; 
 					$code = $medata[1]; 
 					$approved_budget = $medata[2]; 
-					$dtid = $medata[3]; 
+					$dtid = $medata[3];
+					$ps_category = $medata[4]; 
 
 					if (!empty($dtid)) {
 						$query = $this->db->query("
@@ -429,7 +434,8 @@ class MyBudgetAllotmentModel extends Model
 						SET
 							`particulars` = '$particulars',
 							`code` = '$code',
-							`approved_budget` = '$approved_budget'
+							`approved_budget` = '$approved_budget',
+							`ps_category` = '$ps_category'
 						WHERE
 							`recid` = '$dtid'
 						");
@@ -441,7 +447,8 @@ class MyBudgetAllotmentModel extends Model
 								`code`,
 								`approved_budget`,
 								`added_at`,
-								`added_by`
+								`added_by`,
+								`ps_category`
 							)
 							VALUES(
 								'$project_id',
@@ -449,7 +456,8 @@ class MyBudgetAllotmentModel extends Model
 								'$code',
 								'$approved_budget',
 								NOW(),
-								'{$this->cuser}'
+								'{$this->cuser}',
+								'$ps_category'
 							)
 						");
 					}

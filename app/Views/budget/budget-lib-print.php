@@ -157,7 +157,8 @@ $pdf->Cell(15, 3.5, 'Direct Cost:' , 0, 1, 'L');
 $query = $this->db->query("
 SELECT
     `particulars`,
-    `approved_budget`
+    `approved_budget`,
+    `ps_category`
 FROM
     `tbl_budget_ps_dt`
 WHERE 
@@ -167,11 +168,21 @@ WHERE
 $data = $query->getResultArray();
 $grand_total = 0;
 $total_ps =0;
+$last_ps_category = '';
 foreach ($data as $row) {
     $particulars = $row['particulars'];
     $approved_budget = $row['approved_budget'];
+    $ps_category = $row['ps_category'];
 
-    $pdf->SetFont('Arial', '', 7);
+    // Print category header only when it changes
+    if ($ps_category != $last_ps_category) {
+        $Y += 3.5;
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->SetXY(10, $Y);
+        $pdf->Cell(5, 3.5, '', 0, 0, 'L');
+        $pdf->Cell(60, 3.5, $ps_category, 0, 1, 'L');
+        $last_ps_category = $ps_category;
+    }
     $Y+= 3;
 
     $pdf->SetXY(10, $Y);
@@ -187,7 +198,7 @@ foreach ($data as $row) {
     $pdf->SetXY(163, $Y);
     $pdf->Cell(5, 3.5, '' , 0, 1, 'L');
     $pdf->SetXY(168, $Y);
-    $pdf->Cell(32, 3.5, '' , 0, 1, 'L');
+    $pdf->Cell(32, 3.5, '------' , 0, 1, 'C');
 
     $total_ps +=$approved_budget;
 }
@@ -268,7 +279,7 @@ foreach ($data as $row) {
     $pdf->Cell(32, 3.5, number_format($approved_budget, 2) , 0, 1, 'C');
 
     $pdf->SetXY(168, $Y);
-    $pdf->Cell(32, 3.5, '' , 0, 1, 'L');
+    $pdf->Cell(32, 3.5, '------' , 0, 1, 'C');
 
     $total_mooe += $approved_budget;
 }
@@ -431,7 +442,7 @@ foreach ($data as $row) {
     $pdf->Cell(32, 3.5, number_format($approved_budget, 2) , 0, 1, 'C');
 
     $pdf->SetXY(168, $Y);
-    $pdf->Cell(32, 3.5, '' , 0, 1, 'L');
+    $pdf->Cell(32, 3.5, '------' , 0, 1, 'C');
 
     $total_co += $approved_budget;
 }
@@ -451,7 +462,7 @@ $pdf->Cell(32, 3.5, number_format($total_co,2) , 'T', 1, 'C');
 $pdf->SetXY(163, $Y);
 $pdf->Cell(5, 3.5, 'P' , 0, 1, 'L');
 $pdf->SetXY(168, $Y);
-$pdf->Cell(32, 3.5, '' , 'T', 1, 'L');
+$pdf->Cell(32, 3.5, '------' , 'T', 1, 'C');
 
 $Y+= 7;
 
