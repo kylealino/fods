@@ -24,3 +24,32 @@ in APPPATH\Views\budget\budget-lib-print.php on line 768.
  8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
  9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
 10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-14 03:02:23 --> ArgumentCountError: Too few arguments to function FPDF::MultiCell(), 2 passed in C:\xampp\htdocs\fods\app\Views\budget\budget-lib-print.php on line 769 and at least 3 expected
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\ThirdParty\fpdf\fpdf.php on line 661.
+ 1 APPPATH\Views\budget\budget-lib-print.php(769): FPDF->MultiCell(3.5, ' - shall be in accordance with the Government Accounting Manual (GAM) and shall be broken down/itemized as follows:')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-14 03:16:01 --> TypeError: Unsupported operand types: float + string
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\ThirdParty\fpdf\fpdf.php on line 584.
+ 1 APPPATH\ThirdParty\fpdf\fpdf.php(772): FPDF->Cell(3.5, ' - shall be in accordance with the Government Accounting Manual (GAM) and shall be broken down/itemized as follows:', '0', 'L', 2, 'J', false)
+ 2 APPPATH\Views\budget\budget-lib-print.php(769): FPDF->MultiCell(3.5, ' - shall be in accordance with the Government Accounting Manual (GAM) and shall be broken down/itemized as follows:', 0, 'L')
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

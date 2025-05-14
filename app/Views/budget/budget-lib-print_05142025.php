@@ -754,137 +754,21 @@ $pdf->Write(3.5, "III. Definitions of Major Expense Items:");
 $Y += 3.5;
 
 $pdf->SetXY(15, $Y);
-$pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "1. Personnel Services (PS) - includes salaries and wages, honoraria, fees, and other compensation to consultants and specialists",0, 'J');
-  
-$Y += 3.5;
-
-$pdf->SetXY(15, $Y);
-$pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "2. Maintenance and Other Operating Expenses (MOOE) - shall be in accordance with the Government Accounting Manual (GAM) and shall be broken down/itemized as follows:",0, 'J');
-  
-
-$Y += 7;
-
-$pdf->SetXY(20, $Y);
-$pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "i. Traveling Expenses- costs of: (1) movement of persons locally and abroad, such as transportation, travel insurance for researchers exposed to hazard/risks, subsistence, lodging and travel allowances, fees for guides or patrol; (2) transportation of personal baggage or household effects; (3) bus, railroad, airline, and ship fares, trips, transfers, etc. of persons while traveling; (4) charter of boats, launches, automobiles, etc. non-commutable transportation allowances, road tolls; and (5) parking fees and similar reasonable expenses. For foreign travel, include the name(s), designation of program/project personnel who will travel, possible country of destination, purpose and duration of the travel.",0, 'J');
-         
-$Y = $pdf->GetY() + 1.5;
-
-$pdf->SetXY(20, $Y);
-$pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "ii. Communication Expenses- include costs of telephone, telegraph, mobile/wireless and tolls, fax transmission, postage and delivery charges, data communication services, internet expenses, cable, satellite, radio and telegraph messenger services, among others;",0, 'J');
-      
-$Y = $pdf->GetY() + 1.5;
-
-$pdf->SetXY(20, $Y);
-$pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "iii. Repair and Maintenance of Facilities- include costs of repair and maintenance of office equipment, furniture and fixtures, machinery and equipment, IT equipment and software, building, office and laboratory facilities, and other S&T structures directly needed by the project;",0, 'J');
-    
-$Y = $pdf->GetY() + 1.5;
-
-$pdf->SetXY(20, $Y);
-$pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "iv. Repair and Maintenance of Vehicles- include costs of repair and maintenance of vehicles directly needed by the project except for cost of spare parts, gasoline and oil that shall fall under Supplies and Materials;",0, 'J');
-      
-$Y = $pdf->GetY() + 1.5;
-
-$pdf->SetXY(20, $Y);
-$pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "v. Transportation and Delivery Services- include the costs of commercial transportation of mail, hauling of equipment or materials, including porterage, if any. Not included in this account are: costs of transportation of equipment, supplies and materials purchased for operation. Instead, these costs shall be included as part of the cost of the equipment/supplies and materials;",0, 'J');
-      
-$Y = $pdf->GetY() + 1.5;
-
-$pdf->SetXY(20, $Y);
-$pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "vi. Supplies and Materials- include costs of items to be used in specialized S&T work (e.g. office supplies, accountable forms, zoological supplies, food supplies, drugs and medicine, laboratory supplies, gasoline, oil and lubricants, agricultural supplies, textbooks/instructional materials, and other supplies). It also includes all expendable commodities (delivery cost included as needed/required) acquired or ordered for use in connection with project implementation such as spare parts, fuel, and oil;",0, 'J');
-      
-$Y = $pdf->GetY() + 1.5;
-
-$pdf->SetXY(20, $Y);
-$pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "vii. Utilities- include costs of water, electricity or cooking fuel consumed by  the implementing agency directly related to the project;",0, 'J');
-      
-$Y = $pdf->GetY() + 1.5;
-
-$pdf->SetXY(20, $Y);
-$pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "viii. Training and Scholarship Expenses- include training fees and other expenses, and scholarship expenses such as tuition fees, stipends, book allowance, and other benefits;",0, 'J');
-      
-$Y = $pdf->GetY() + 1.5;
-
-$pdf->SetXY(20, $Y);
-$pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "ix. Advertising Expenses- include costs of authorized advertising and publication of notices in newspapers and magazines of general circulation, television, radio, and other forms of media necessary for the implementation of the project;",0, 'J');
-  
-$Y = $pdf->GetY() + 1.5;
-
-$pdf->SetXY(20, $Y);
-$pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "x. Printing and Publication Expenses- include costs of producing, printing, and binding materials such as books, reports, catalogues, documents, and other reading materials necessary for the implementation of the project;",0, 'J');
-
-$Y = $pdf->GetY() + 1.5;
-
-$pdf->SetXY(20, $Y);
-$pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "xi. Rent Expenses- rental fees for the use of facilities, equipment, and vehicles directly used in the implementation of the project;",0, 'J');
-  
-$Y = $pdf->GetY() + 1.5;
-
-$pdf->SetXY(20, $Y);
-$pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "xii. Representation Expenses- include costs of meal/food for the conduct of workshops/meetings, conferences, and other official functions related to the project; ",0, 'J');
-
-$Y = $pdf->GetY() + 1.5;
-
-$pdf->SetXY(20, $Y);
-$pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "xiii. Subscription Expenses- include costs of subscription to library materials, such as magazines, periodicals, other reading materials and software (including online software) necessary for the implementation of the project; ",0, 'J');
-  
-$Y = $pdf->GetY() + 1.5;
-
-$pdf->SetXY(20, $Y);
-$pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "xiv. Survey Expenses- include costs incurred in the conduct of survey related to the project;",0, 'J');
-  
-$Y = $pdf->GetY() + 1.5;
-
-$pdf->SetXY(20, $Y);
-$pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "xxv. Professional Services- as defined in GAM, but only those items that are relevant and appropriate to the proposed program/project;",0, 'J');
-  
-$Y = $pdf->GetY() + 1.5;
-
-$pdf->SetXY(20, $Y);
-$pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "xvi. Taxes, Insurance Premiums and other Fees- include costs of accident insurance of the project personnel for the performance of duties that involve hazardous activities during project duration, taxes, duties and licenses, fidelity bond premiums, and  insurance expenses of equipment acquired under the project; and",0, 'J');
-  
-$Y = $pdf->GetY() + 1.5;
-
-$pdf->SetXY(20, $Y);
-$pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "xvii. Other Maintenance and Operating Expenses- additional items not included above such as cost of submission of scientific paper for peer reviewed journals. ",0, 'J');
-  
-
-$Y = $pdf->GetY() + 1.5;
-
-$pdf->SetXY(15, $Y);
-$pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "3. Capital Outlay (CO) - includes all equipment necessary for the implementation of the project, which shall be enumerated in the proposed LIB.  This also includes infrastructure that are integral part of the R&D, which are crucial in the attainment of the project objectives.",0, 'J');
-  
-
-$Y = $pdf->GetY() + 3.5;
-$pdf->SetXY(10, $Y);
 $pdf->SetFont('Arial', 'B', 7);
-$pdf->Write(3.5, "IV. Counterpart Funding");
+$pdf->Write(3.5, "1. Personnel Services (PS):");
+
+$pdf->SetFont('Arial', '', 7);
+$pdf->Write(3.5, " - includes salaries and wages, honoraria, fees, and other compensation to consultants and specialists");
 
 $Y += 3.5;
-
 $pdf->SetXY(15, $Y);
+$pdf->SetFont('Arial', 'B', 7);
+$pdf->Write(3.5, "2. Maintenance and Other Operating Expenses (MOOE)");
+
 $pdf->SetFont('Arial', '', 7);
-$pdf->multicell(182,3.5, "1. A counterpart fund, in kind and/or in cash, shall be required from the Implementing Agency.  Projects must have a minimum of 15% counterpart contribution (except for projects involving public good). \n 2. Indicate the detailed breakdown of the required fund assistance to indicate the counterpart of the Implementing Agency and other agencies cooperating in the project.",0, 'J');
-  
+$pdf->multicell(180,3.5, " - shall be in accordance with the Government Accounting Manual (GAM) and shall be broken down\n/itemized as follows:");
+                                      
+
 $pdf->Output();
 exit;
 ?>
