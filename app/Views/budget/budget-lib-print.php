@@ -38,10 +38,29 @@ $monitoring_agency = $data['monitoring_agency'];
 $collaborating_agencies = $data['collaborating_agencies'];
 $implementing_agency = $data['implementing_agency'];
 
+function DrawDottedLine($pdf, $x1, $y1, $x2, $y2, $dotLength = 1, $gap = 1) {
+    $totalLength = sqrt(pow($x2 - $x1, 2) + pow($y2 - $y1, 2));
+    $dx = ($x2 - $x1) / $totalLength;
+    $dy = ($y2 - $y1) / $totalLength;
+
+    $currentLength = 0;
+    while ($currentLength < $totalLength) {
+        $startX = $x1 + $dx * $currentLength;
+        $startY = $y1 + $dy * $currentLength;
+        $endX = $x1 + $dx * ($currentLength + $dotLength);
+        $endY = $y1 + $dy * ($currentLength + $dotLength);
+
+        $pdf->Line($startX, $startY, $endX, $endY);
+        $currentLength += ($dotLength + $gap);
+    }
+}
+
 $pdf = new \FPDF();
 $pdf->AddPage();
 $pdf->SetTitle('Project Line-Item Budget Print');
 $pdf->SetFont('Arial', 'B', 16);
+
+
 
 $pdf->SetXY(8, 10);
 
@@ -655,7 +674,100 @@ $pdf->Cell(5, 3.5, 'P' , 0, 1, 'L');
 $pdf->SetXY(168, $Y);
 $pdf->Cell(32, 3.5, '' , 'B', 1, 'L');
 
+$Y += 7;
 
+$pdf->SetXY(10, $Y);
+DrawDottedLine($pdf, 10, $Y, 200.5, $Y);
+$pdf->SetFont('Arial', 'IB', 7);
+$pdf->Cell(20, 3.5, '(To be filled up by DOST)' , 0, 1, 'L');
+
+$Y += 10;
+
+$pdf->SetXY(15, $Y);
+$pdf->SetFont('Arial', 'I', 7);
+$pdf->Cell(20, 3.5, '* Chargeable against the CY ____ DOST-GIA ____' , 0, 1, 'L');
+
+$pdf->SetFont('Arial', '', 7);
+$pdf->SetXY(90, $Y);
+
+$pdf->SetXY(126, $Y);
+$pdf->Cell(5, 3.5, 'P' , 0, 1, 'L');
+$pdf->SetXY(130, $Y);
+$pdf->Cell(32, 3.5, '' , 'B', 1, 'C');
+$pdf->SetXY(163, $Y);
+$pdf->Cell(5, 3.5, 'P' , 0, 1, 'L');
+$pdf->SetXY(168, $Y);
+$pdf->Cell(32, 3.5, '' , 'B', 1, 'L');
+
+$Y += 20;
+
+$pdf->SetXY(10, $Y);
+$pdf->Cell(20, 3.5, 'Certified Correct:' , 0, 1, 'L');
+$pdf->SetXY(126, $Y);
+$pdf->Cell(5, 3.5, 'Approved by DOST-EXECOM:' , 0, 1, 'L');
+
+$Y += 20;
+
+$pdf->SetXY(10, $Y);
+$pdf->Cell(20, 3.5, '(Position)' , 0, 1, 'L');
+$pdf->SetXY(126, $Y);
+$pdf->Cell(20, 3.5, '(Position)' , 0, 1, 'L');
+
+$Y += 20;
+
+$pdf->SetXY(10, $Y);
+$pdf->Cell(20, 3.5, 'DOST-EXECOM Approval: _______________________' , 0, 1, 'L');
+
+$Y += 15;
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', '', 7);
+$pdf->Cell(190, 3.5, 'DOST FORM 4' , 0, 1, 'C');
+$Y += 3.5;
+$pdf->SetFont('Arial', 'B', 7);
+$pdf->SetXY(10, $Y);
+$pdf->Cell(190, 3.5, 'PROJECT LINE-ITEM BUDGET' , 0, 1, 'C');
+
+$Y += 10;
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', 'B', 7);
+$pdf->Write(3.5, "I. General Instruction:");
+
+$pdf->SetFont('Arial', '', 7);
+$pdf->Write(3.5, " Submit through the DOST Project Management Information System (DPMIS), http://dpmis.dost.gov.ph, the project line-item budget (LIB) for the component project.  Also, submit four (4) copies of the LIB. Use Arial font, 11 font size.");
+
+$Y += 10;
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', 'B', 7);
+$pdf->Write(3.5, "II. Specific Instructions:");
+
+$pdf->SetFont('Arial', '', 7);
+$pdf->Write(3.5, " 1. Itemize MOOE expense items above P100,000.00.  Expense items under the GAM may be allowed.");
+$Y += 3.5;
+$pdf->SetXY(43, $Y);
+$pdf->Write(3.5, " 2. For Equipment, attach quotations and justification.");
+
+$Y += 7;
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', 'B', 7);
+$pdf->Write(3.5, "III. Definitions of Major Expense Items:");
+
+$Y += 3.5;
+
+$pdf->SetXY(15, $Y);
+$pdf->SetFont('Arial', 'B', 7);
+$pdf->Write(3.5, "1. Personnel Services (PS):");
+
+$pdf->SetFont('Arial', '', 7);
+$pdf->Write(3.5, " - includes salaries and wages, honoraria, fees, and other compensation to consultants and specialists");
+
+$Y += 3.5;
+$pdf->SetXY(15, $Y);
+$pdf->SetFont('Arial', 'B', 7);
+$pdf->Write(3.5, "2. Maintenance and Other Operating Expenses (MOOE)");
+
+$pdf->SetFont('Arial', '', 7);
+$pdf->multicell(180,3.5, " - shall be in accordance with the Government Accounting Manual (GAM) and shall be broken down\n/itemized as follows:");
+                                      
 
 $pdf->Output();
 exit;
