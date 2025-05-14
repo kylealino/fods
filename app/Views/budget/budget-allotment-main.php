@@ -1236,8 +1236,7 @@ echo view('templates/myheader.php');
                         <th>Transaction No.</th>
                         <th>Project Title</th>
                         <th>Responsibility Code</th>
-                        <th>Fund Cluster</th>
-                        <th>Division</th>
+                        <th>Encode Date</th>
                         <th>Budget</th>
                         <th>Status</th>
                         <th>Print LIB</th>
@@ -1257,6 +1256,7 @@ echo view('templates/myheader.php');
                             $is_pending = $data['is_pending'];
                             $is_approved = $data['is_approved'];
                             $is_disapproved = $data['is_disapproved'];
+                            $added_at = $data['added_at'];
 
                             if ($is_approved == '1' && $is_disapproved == '0' && $is_pending == '0') {
                                 $status = "APPROVED";
@@ -1279,8 +1279,7 @@ echo view('templates/myheader.php');
                         <td class="text-center"><?=$hdtrxno;?></td>
                         <td class="text-center"><?=$project_title;?></td>
                         <td class="text-center"><?=$responsibility_code;?></td>
-                        <td class="text-center"><?=$fund_cluster_code;?></td>
-                        <td class="text-center"><?=$division_name;?></td>
+                        <td class="text-center"><?=$added_at;?></td>
                         <td class="text-center"><?=$approved_budget;?></td>
                         <td class="text-center text-<?=$color;?>"><?=$status;?></td>
                         <td class="text-center">
@@ -1504,6 +1503,7 @@ echo view('templates/myheader.php');
         $('#datatablesSimple').DataTable({
             pageLength: 5,
             lengthChange: false,
+            order: [[4, 'desc']],
             language: {
             search: "Search:"
             }

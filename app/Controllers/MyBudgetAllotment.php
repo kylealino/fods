@@ -74,6 +74,7 @@ class MyBudgetAllotment extends BaseController
             a.`is_pending`,
             a.`is_approved`,
             a.`is_disapproved`,
+            a.`added_at`,
             (
                 IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_ps_dt` WHERE project_id = a.recid), 0) +
                 IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_ps_dt` WHERE project_id = a.recid), 0) +
