@@ -40,8 +40,7 @@ echo view('templates/myheader.php');
                             <div class="col-sm-6">
                                 <h5 class="fw-semibold mb-9 fs-5 text-white">Welcome back <?=$full_name;?>!</h5>
                                 <p class="mb-9 opacity-75">
-                                You have earned 54% more than last month
-                                which is great thing.
+                                    Great to see you again — let’s make this month even more productive!
                                 </p>
                                 <button type="button" class="btn btn-danger">View Profile</button>
                             </div>
@@ -83,7 +82,7 @@ echo view('templates/myheader.php');
                             39,354
                             <span class="fs-2 ms-1 text-danger fw-medium">-9%</span>
                         </h3>
-                        <h6 class="text-muted mb-0 fw-normal">Customers</h6>
+                        <h6 class="text-muted mb-0 fw-normal">Total Transactions</h6>
                     </div>
                 </div>
                 <div class="card">
@@ -95,7 +94,7 @@ echo view('templates/myheader.php');
                         4396
                         <span class="fs-2 ms-1 text-success fw-medium">+23%</span>
                     </h3>
-                    <h6 class="text-muted mb-0 fw-normal">Products</h6>
+                    <h6 class="text-muted mb-0 fw-normal">Pending</h6>
                     </div>
                 </div>
                 <div class="card">
@@ -107,7 +106,7 @@ echo view('templates/myheader.php');
                         423,39
                         <span class="fs-2 ms-1 text-success fw-medium">+38%</span>
                     </h3>
-                    <h6 class="text-muted mb-0 fw-normal">Sales</h6>
+                    <h6 class="text-muted mb-0 fw-normal">Approved</h6>
                     </div>
                 </div>
                 <div class="card">
@@ -119,7 +118,7 @@ echo view('templates/myheader.php');
                         835
                         <span class="fs-2 ms-1 text-danger fw-medium">-12%</span>
                     </h3>
-                    <h6 class="text-muted mb-0 fw-normal">Refunds</h6>
+                    <h6 class="text-muted mb-0 fw-normal">Disapproved</h6>
                     </div>
                 </div>
             </div>
@@ -171,7 +170,6 @@ echo view('templates/myheader.php');
             </div>
         </div>
         <div class="col-lg-4">
-            <!-- earnings card -->
             <div class="card bg-warning">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
@@ -184,11 +182,10 @@ echo view('templates/myheader.php');
                     </div>
                     <div class="mt-3">
                         <h2 class="fs-8 text-white mb-0">$10,271,438.78</h2>
-                        <span class="text-white text-opacity-50">Monthly revenue</span>
+                        <span class="text-white text-opacity-50">Year 2025</span>
                     </div>
                 </div>
             </div>
-            <!-- yearly sales -->
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -196,22 +193,22 @@ echo view('templates/myheader.php');
                             <h3 class="fs-7 mb-0">$19,357,332.98</h3>
                             <h6 class="text-muted fw-normal">Yearly Budget</h6>
                             <div class="row mt-4 pt-2 gx-0">
-                            <div class="col-6">
-                                <span class="round-8 text-bg-info rounded-circle me-1 d-inline-block"></span>
-                                2024
-                            </div>
-                            <div class="col-6">
-                                <span class="round-8 text-bg-primary rounded-circle me-1 d-inline-block"></span>
-                                2024
-                            </div>
-                            <div class="col-6 mt-2">
-                                <span class="round-8 text-bg-warning rounded-circle me-1 d-inline-block"></span>
-                                2019
-                            </div>
-                            <div class="col-6 mt-2">
-                                <span class="round-8 text-bg-muted rounded-circle me-1 d-inline-block"></span>
-                                2018
-                            </div>
+                                <div class="col-6">
+                                    <span class="round-8 text-bg-info rounded-circle me-1 d-inline-block"></span>
+                                    2025
+                                </div>
+                                <div class="col-6">
+                                    <span class="round-8 text-bg-primary rounded-circle me-1 d-inline-block"></span>
+                                    2024
+                                </div>
+                                <div class="col-6 mt-2">
+                                    <span class="round-8 text-bg-warning rounded-circle me-1 d-inline-block"></span>
+                                    2023
+                                </div>
+                                <div class="col-6 mt-2">
+                                    <span class="round-8 text-bg-muted rounded-circle me-1 d-inline-block"></span>
+                                    2022
+                                </div>
                             </div>
                         </div>
                         <div class="col-6 col-xl-5 d-flex align-items-center">
