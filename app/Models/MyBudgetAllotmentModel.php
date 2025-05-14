@@ -156,7 +156,7 @@ class MyBudgetAllotmentModel extends Model
 			";
 			die();
 		}
-		if (empty($budgetdtdata) && empty($budgetmooedtdata) && empty($budgetcodtdata)) {
+		if (empty($budgetdtdata) && empty($budgetmooedtdata) && empty($budgetcodtdata) && empty($budgetindirectdtdata) && empty($budgetindirectmooedtdata) && empty($budgetindirectcodtdata)) {
 			echo "
 			<script>
 			toastr.error('No particulars found!', 'Oops!', {
