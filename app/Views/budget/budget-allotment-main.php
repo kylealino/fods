@@ -1042,7 +1042,7 @@ echo view('templates/myheader.php');
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" size="25"  name="particulars" class="particulars text-center">
+                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:500px; height:30px;"  name="particulars" class="particulars text-center">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center">
@@ -1079,7 +1079,7 @@ echo view('templates/myheader.php');
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" size="25"  name="particulars" class="particulars text-center">
+                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:500px; height:30px;"  name="particulars" class="particulars text-center">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center">
@@ -1112,7 +1112,7 @@ echo view('templates/myheader.php');
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="particulars"  value="" size="25"   name="particulars" class="particulars text-center">
+                                                            <input type="text" id="particulars"  value="" style="width:500px; height:30px;"   name="particulars" class="particulars text-center">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center">
@@ -1148,7 +1148,7 @@ echo view('templates/myheader.php');
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" size="25"  name="particulars" class="particulars text-center">
+                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:500px; height:30px;"  name="particulars" class="particulars text-center">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center">
@@ -1185,7 +1185,7 @@ echo view('templates/myheader.php');
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" size="25"  name="particulars" class="particulars text-center">
+                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:500px; height:30px;"  name="particulars" class="particulars text-center">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center">
