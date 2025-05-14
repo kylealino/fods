@@ -58,7 +58,7 @@ echo view('templates/myheader.php');
 ?>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-12 mb-3">
+        <!-- <div class="col-lg-12 mb-3">
             <div class="card-group">
                 <div class="card" style="min-height: 50px;">
                     <div class="card-body">
@@ -117,6 +117,71 @@ echo view('templates/myheader.php');
                         </div>
                         <div class="mt-3 text-center">
                         <h2 class="fs-8 mb-0"><?=$total_disapproved;?></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="col-sm-12 mb-3">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card overflow-hidden">
+                        <div class="d-flex flex-row">
+                            <div class="p-3 bg-info-subtle d-flex align-items-center">
+                                <h3 class="text-info box mb-0">
+                                <i class="ti ti-list"></i>
+                                </h3>
+                            </div>
+                            <div class="p-3">
+                                <h3 class="text-info mb-0 fs-9"><?=$total_transactions;?></h3>
+                                <span>Total Projects</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card overflow-hidden">
+                        <div class="d-flex flex-row">
+                            <div class="p-3 bg-warning-subtle d-flex align-items-center">
+                                <h3 class="text-warning box mb-0">
+                                <i class="ti ti-flag"></i>
+                                </h3>
+                            </div>
+                            <div class="p-3">
+                                <h3 class="text-warning mb-0 fs-9"><?=$total_pending;?></h3>
+                                <span>Pending</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card overflow-hidden">
+                        <div class="d-flex flex-row">
+                            <div class="p-3 bg-success-subtle d-flex align-items-center">
+                                <h3 class="text-success box mb-0">
+                                <i class="ti ti-check"></i>
+                                </h3>
+                            </div>
+                            <div class="p-3">
+                                <h3 class="text-success mb-0 fs-9"><?=$total_approved;?></h3>
+                                <span>Approved</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card overflow-hidden">
+                        <div class="d-flex flex-row">
+                            <div class="p-3 bg-danger-subtle d-flex align-items-center">
+                                <h3 class="text-danger box mb-0">
+                                <i class="ti ti-x"></i>
+                                </h3>
+                            </div>
+                            <div class="p-3">
+                                <h3 class="text-danger mb-0 fs-9"><?=$total_disapproved;?></h3>
+                                <span>Disapproved</span>
+                            </div>
                         </div>
                     </div>
                 </div>
