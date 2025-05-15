@@ -4,17 +4,17 @@ $this->db = \Config\Database::connect();
 $this->session = session();
 $this->cuser = $this->session->get('__xsys_myuserzicas__');
 $query = $this->db->query("
-    SELECT 
-        `full_name`
-      
-    FROM 
-        `myua_user` 
-    WHERE 
-        `username` = '$this->cuser'"
-    );
+SELECT 
+    `full_name`
+    
+FROM 
+    `myua_user` 
+WHERE 
+    `username` = '$this->cuser'"
+);
 
-    $data = $query->getRowArray();
-    $full_name = $data['full_name'];
+$data = $query->getRowArray();
+$full_name = $data['full_name'];
 echo view('templates/myheader.php');
 ?>
 <div class="container-fluid">
