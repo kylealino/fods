@@ -10,7 +10,7 @@ class Home extends BaseController
             return view('MyLogin');
         }
     
-        return view('mydashboard');
+        return view('MyDashboard');
     }
     
 }

@@ -11,7 +11,7 @@ class Myauthuser implements FilterInterface
         if (!session('__xsys_myuserzicas_is_logged__')) 
         { 
             return redirect()
-                ->to('/mydashboard');
+                ->to('/');
         }        
     }
     
