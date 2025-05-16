@@ -144,6 +144,14 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
                 <span class="hide-menu">ORS/BURS</span>
               </a>
             </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link sidebar-link" href="<?=site_url();?>myorsbursapproval?meaction=MAIN" aria-expanded="false">
+                <span class="rounded-3">
+                  <i class="ti ti-pencil"></i>
+                </span>
+                <span class="hide-menu">ORS/BURS Approval</span>
+              </a>
+            </li>
           </ul>
         </nav>
 

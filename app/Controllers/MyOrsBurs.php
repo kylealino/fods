@@ -33,8 +33,8 @@ class MyOrsBurs extends BaseController
                 break;
     
             case 'MAIN-SAVE': 
-                $this->myorsburs->budget_save();
-                return redirect()->to('myorsburs?meaction=MAIN');
+                $this->myorsburs->orsburs_save();
+                // return redirect()->to('myorsburs?meaction=MAIN');
                 break;
 
              case 'MAIN-APPROVE': 

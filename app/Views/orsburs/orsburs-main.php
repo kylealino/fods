@@ -1,12 +1,12 @@
 <?php
 $this->request = \Config\Services::request();
 $this->db = \Config\Database::connect();
-$recid = $this->request->getPostGet('recid');
 $prgmdata = $this->request->getPostGet('prgmdata');
 $action = $this->request->getPostGet('action');
 $this->session = session();
 $this->cuser = $this->session->get('__xsys_myuserzicas__');
 
+$recid = "";
 $trxno = "";
 $project_title = "";
 $responsibility_code = "";
@@ -31,6 +31,7 @@ $counter = 1;
 if (!empty($prgmdata) || !is_null($prgmdata)) {
     $query = $this->db->query("
     SELECT
+        `recid`,
         `project_title`,
         `responsibility_code`,
         `fund_cluster_code`
@@ -41,6 +42,7 @@ if (!empty($prgmdata) || !is_null($prgmdata)) {
     );
 
     $data = $query->getRowArray();
+    $recid = $data['recid'];
     $project_title = $data['project_title'];
     $responsibility_code = $data['responsibility_code'];
     $fund_cluster_code = $data['fund_cluster_code'];
@@ -52,7 +54,7 @@ echo view('templates/myheader.php');
 ?>
 
 <div class="container-fluid">
-    <div class="row me-mybudgetallotment-appr-outp-msg mx-0">
+    <div class="row me-myorsburs-appr-outp-msg mx-0">
     </div>
     
     <input type="hidden" id="__siteurl" data-mesiteurl="<?=site_url();?>" />
@@ -69,7 +71,7 @@ echo view('templates/myheader.php');
         </nav>
     </div>
     <div class="card rounded">
-        <div class="row mybudgetallotment-outp-msg mx-0">
+        <div class="row myorsburs-outp-msg mx-0">
 
         </div>
         <div class="card-header   bg-info p-1">
@@ -85,7 +87,7 @@ echo view('templates/myheader.php');
             </div>
 		</div>						
         <div class="card-body p-0 px-4 py-2 my-2">
-            <form action="<?=site_url();?>mybudgetallotment?meaction=MAIN-SAVE" method="post" class="mybudgetallotment-validation">
+            <form action="<?=site_url();?>myorsburs?meaction=MAIN-SAVE" method="post" class="myorsburs-validation">
                 <div class="row mb-2">
                     <div class="col-sm-12">
                         <div class="row mb-2">
@@ -137,7 +139,7 @@ echo view('templates/myheader.php');
                                 <span>Funding Source:</span>
                             </div>
                             <div class="col-sm-8">
-                                <select name="" id="" class="form-select form-select-sm">
+                                <select name="" id="funding_source" class="form-select form-select-sm">
                                     <option value="">Choose...</option>
                                     <option value="101101">101101</option>
                                     <option value="102101">102101</option>
@@ -168,7 +170,7 @@ echo view('templates/myheader.php');
                                 <span>MFO/PAP:</span>
                             </div>
                             <div class="col-sm-8">
-                                <input type="text" id="funding_source" name="funding_source" value="" class="form-control form-control-sm bg-light" readonly/>
+                                <input type="text" id="mfopap" name="mfopap" value="" class="form-control form-control-sm bg-light" readonly/>
                             </div>
                         </div>
                     </div>
@@ -181,7 +183,7 @@ echo view('templates/myheader.php');
                                 <span class="fw-bold">Payee:</span>
                             </div>
                             <div class="col-sm-8">
-                                <select name="selPayee" id="selPayee" class="form-control select2 form-select-sm show-tick">
+                                <select name="payee_name" id="payee_name" class="form-control select2 form-select-sm show-tick">
                                     <option selected value="">Choose...</option>
                                     <?php foreach($payeedata as $data): ?>
                                         <option 
@@ -247,26 +249,58 @@ echo view('templates/myheader.php');
                                             <table id="budget_line_items" class="table-sm table-striped budgetdata-list">
                                                 <thead>
                                                     <th class="text-center">
-                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" href="javascript:__mysys_budget_allotment_ent.my_add_budget_line();"><i class="ti ti-new-section"></i></a>
+                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" disabled><i class="ti ti-new-section"></i></a>
                                                     </th>
+                                                    <th class="text-center align-middle">PS - Particulars</th>
                                                     <th class="text-center align-middle">UACS.</th>
                                                     <th class="text-center align-middle">Approved Budget</th>
                                                 </thead>
                                                 <tbody>
-                                                    <tr style="display:none;">
+                                                    <?php if(!empty($recid)):
+                                                        $query = $this->db->query("
+                                                        SELECT
+                                                            `recid`,
+                                                            `particulars`,
+                                                            `code`,
+                                                            `approved_budget`
+                                                        FROM
+                                                            `tbl_budget_direct_ps_dt`
+                                                        WHERE 
+                                                            `project_id` = '$recid'"
+                                                        );
+                                                        $result = $query->getResultArray();
+                                                        foreach ($result as $data):
+                                                            $dt_id = $data['recid'];
+                                                            $particulars = $data['particulars'];
+                                                            $code = $data['code'];
+                                                            $approved_budget = $data['approved_budget'];
+                                                    ?>
+                                                    <tr>
                                                         <td class="text-center align-middle">
                                                             <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
+                                                            href="javascript:void(0)">
                                                             <i class="ti ti-trash"></i>
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
+                                                            <select name="selUacs" class="selUacs form"  style="width:500px; height:30px;" disabled>
+                                                                <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
+                                                                <?php foreach($psuacsdata as $data){
+                                                                    $object_of_expenditures = $data['object_of_expenditures'];
+                                                                    $_code = $data['code'];
+                                                                ?>
+                                                                    <option value="<?=$object_of_expenditures?>"  data-uacs="<?=$_code;?>"><?=$object_of_expenditures?></option>
+                                                                <?php }?>
+                                                            </select>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" class="approved_budget text-center"/>
+                                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center" disabled/>
                                                         </td>
                                                     </tr>
+                                                    <?php endforeach; endif;?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -276,7 +310,7 @@ echo view('templates/myheader.php');
                                             <table id="budget_indirect_line_items" class="table-sm table-striped budgetdata-indirect-list">
                                                 <thead>
                                                     <th class="text-center">
-                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" href="javascript:__mysys_budget_allotment_ent.my_add_budget_indirect_line();"><i class="ti ti-new-section"></i></a>
+                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" disabled id="btn_trxjournalitem_add"><i class="ti ti-new-section"></i></a>
                                                     </th>
                                                     <th class="text-center align-middle">PS - Particulars</th>
                                                     <th class="text-center align-middle">UACS.</th>
@@ -305,12 +339,12 @@ echo view('templates/myheader.php');
                                                     <tr>
                                                         <td class="text-center align-middle">
                                                             <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
+                                                            href="javascript:void(0)" >
                                                             <i class="ti ti-trash"></i>
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form"  style="width:500px; height:30px;">
+                                                            <select name="selUacs" class="selUacs form"  style="width:500px; height:30px;" disabled>
                                                                 <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
                                                                 <?php foreach($psuacsdata as $data){
                                                                     $object_of_expenditures = $data['object_of_expenditures'];
@@ -324,7 +358,7 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center"/>
+                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center" disabled/>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
@@ -344,7 +378,7 @@ echo view('templates/myheader.php');
                                             <table id="budget_mooe_line_items" class="table-sm table-striped budgetmooedata-list">
                                                 <thead>
                                                     <th class="text-center">
-                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetmooeitem_add" href="javascript:__mysys_budget_allotment_ent.my_add_budget_mooe_line();"><i class="ti ti-new-section"></i></a>
+                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" disabled id="btn_budgetmooeitem_add" href="javascript:__mysys_budget_allotment_ent.my_add_budget_mooe_line();"><i class="ti ti-new-section"></i></a>
                                                     </th>
                                                     <th class="text-center align-middle">MOOE - Particulars</th>
                                                     <th class="text-center align-middle">UACS.</th>
@@ -354,12 +388,12 @@ echo view('templates/myheader.php');
                                                     <tr style="display:none;">
                                                         <td class="text-center align-middle">
                                                             <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
+                                                            href="javascript:void(0)">
                                                             <i class="ti ti-trash"></i>
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:500px; height:30px;">
+                                                            <select name="selUacs" class="selUacs form" style="width:500px; height:30px;" disabled>
                                                                 <option selected value ="">Choose...</option>
                                                                 <?php foreach($mooeuacsdata as $data){
                                                                     $object_of_expenditures = $data['object_of_expenditures'];
@@ -373,7 +407,7 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" class="approved_budget text-center"/>
+                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" class="approved_budget text-center" disabled/>
                                                         </td>
                                                     </tr>
                                                     <?php if(!empty($recid)):
@@ -398,12 +432,12 @@ echo view('templates/myheader.php');
                                                     <tr>
                                                         <td class="text-center align-middle">
                                                             <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
+                                                            href="javascript:void(0)">
                                                             <i class="ti ti-trash"></i>
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form"  style="width:500px; height:30px;">
+                                                            <select name="selUacs" class="selUacs form"  style="width:500px; height:30px;" disabled>
                                                                 <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
                                                                 <?php foreach($mooeuacsdata as $data){
                                                                     $object_of_expenditures = $data['object_of_expenditures'];
@@ -417,52 +451,7 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center"/>
-                                                        </td>
-                                                    </tr>
-                                                    <?php endforeach; endif;?>
-                                                    <?php if(!empty($realign_id)):
-                                                        $query = $this->db->query("
-                                                        SELECT
-                                                            `recid`,
-                                                            `particulars`,
-                                                            `code`,
-                                                            `approved_budget`
-                                                        FROM
-                                                            `tbl_budget_direct_mooe_dt`
-                                                        WHERE 
-                                                            `project_id` = '$realign_id'"
-                                                        );
-                                                        $result = $query->getResultArray();
-                                                        foreach ($result as $data):
-                                                            $dt_id = $data['recid'];
-                                                            $particulars = $data['particulars'];
-                                                            $code = $data['code'];
-                                                            $approved_budget = $data['approved_budget'];
-                                                    ?>
-                                                    <tr>
-                                                        <td class="text-center align-middle">
-                                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
-                                                            <i class="ti ti-trash"></i>
-                                                            </a>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form"  style="width:500px; height:30px;">
-                                                                <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
-                                                                <?php foreach($mooeuacsdata as $data){
-                                                                    $object_of_expenditures = $data['object_of_expenditures'];
-                                                                    $_code = $data['code'];
-                                                                ?>
-                                                                    <option value="<?=$object_of_expenditures?>"  data-uacs="<?=$_code;?>"><?=$object_of_expenditures?></option>
-                                                                <?php }?>
-                                                            </select>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="" name="approved_budget" class="approved_budget text-center"/>
+                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center" disabled/>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
@@ -474,7 +463,7 @@ echo view('templates/myheader.php');
                                             <table id="budget_mooe_indirect_line_items" class="table-sm table-striped budgetmooedata-indirect-list">
                                                 <thead>
                                                     <th class="text-center">
-                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetmooeitem_add" href="javascript:__mysys_budget_allotment_ent.my_add_budget_indirect_mooe_line();"><i class="ti ti-new-section"></i></a>
+                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetmooeitem_add" disabled href="javascript:__mysys_budget_allotment_ent.my_add_budget_indirect_mooe_line();"><i class="ti ti-new-section"></i></a>
                                                     </th>
                                                     <th class="text-center align-middle">MOOE - Particulars</th>
                                                     <th class="text-center align-middle">UACS.</th>
@@ -484,12 +473,12 @@ echo view('templates/myheader.php');
                                                     <tr style="display:none;">
                                                         <td class="text-center align-middle">
                                                             <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
+                                                            href="javascript:void(0)">
                                                             <i class="ti ti-trash"></i>
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:500px; height:30px;">
+                                                            <select name="selUacs" class="selUacs form" style="width:500px; height:30px;" disabled>
                                                                 <option selected value ="">Choose...</option>
                                                                 <?php foreach($mooeuacsdata as $data){
                                                                     $object_of_expenditures = $data['object_of_expenditures'];
@@ -503,7 +492,7 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" class="approved_budget text-center"/>
+                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" class="approved_budget text-center" disabled/>
                                                         </td>
                                                     </tr>
                                                     <?php if(!empty($recid)):
@@ -528,12 +517,12 @@ echo view('templates/myheader.php');
                                                     <tr>
                                                         <td class="text-center align-middle">
                                                             <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
+                                                            href="javascript:void(0)">
                                                             <i class="ti ti-trash"></i>
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form"  style="width:500px; height:30px;">
+                                                            <select name="selUacs" class="selUacs form"  style="width:500px; height:30px;" disabled>
                                                                 <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
                                                                 <?php foreach($mooeuacsdata as $data){
                                                                     $object_of_expenditures = $data['object_of_expenditures'];
@@ -547,52 +536,7 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center"/>
-                                                        </td>
-                                                    </tr>
-                                                    <?php endforeach; endif;?>
-                                                    <?php if(!empty($realign_id)):
-                                                        $query = $this->db->query("
-                                                        SELECT
-                                                            `recid`,
-                                                            `particulars`,
-                                                            `code`,
-                                                            `approved_budget`
-                                                        FROM
-                                                            `tbl_budget_indirect_mooe_dt`
-                                                        WHERE 
-                                                            `project_id` = '$realign_id'"
-                                                        );
-                                                        $result = $query->getResultArray();
-                                                        foreach ($result as $data):
-                                                            $dt_id = $data['recid'];
-                                                            $particulars = $data['particulars'];
-                                                            $code = $data['code'];
-                                                            $approved_budget = $data['approved_budget'];
-                                                    ?>
-                                                    <tr>
-                                                        <td class="text-center align-middle">
-                                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
-                                                            <i class="ti ti-trash"></i>
-                                                            </a>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form"  style="width:500px; height:30px;">
-                                                                <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
-                                                                <?php foreach($mooeuacsdata as $data){
-                                                                    $object_of_expenditures = $data['object_of_expenditures'];
-                                                                    $_code = $data['code'];
-                                                                ?>
-                                                                    <option value="<?=$object_of_expenditures?>"  data-uacs="<?=$_code;?>"><?=$object_of_expenditures?></option>
-                                                                <?php }?>
-                                                            </select>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="" name="approved_budget" class="approved_budget text-center"/>
+                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center" disabled/>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
@@ -610,30 +554,13 @@ echo view('templates/myheader.php');
                                             <table id="budget_co_line_items" class="table-sm table-striped budgetcodata-list">
                                                 <thead>
                                                     <th class="text-center">
-                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetcoitem_add" href="javascript:__mysys_budget_allotment_ent.my_add_budget_co_line();"><i class="ti ti-new-section"></i></a>
+                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetcoitem_add" disabled href="javascript:__mysys_budget_allotment_ent.my_add_budget_co_line();"><i class="ti ti-new-section"></i></a>
                                                     </th>
                                                     <th class="text-center align-middle">CO - Particulars</th>
                                                     <th class="text-center align-middle">UACS.</th>
                                                     <th class="text-center align-middle">Approved Budget</th>
                                                 </thead>
                                                 <tbody>
-                                                    <tr style="display:none;">
-                                                        <td class="text-center align-middle">
-                                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
-                                                            <i class="ti ti-trash"></i>
-                                                            </a>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="particulars"  value="" style="width:500px; height:30px;"  name="particulars" class="particulars text-center">
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center">
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" class="approved_budget text-center"/>
-                                                        </td>
-                                                    </tr>
                                                     <?php if(!empty($recid)):
                                                         $query = $this->db->query("
                                                         SELECT
@@ -656,55 +583,18 @@ echo view('templates/myheader.php');
                                                     <tr>
                                                         <td class="text-center align-middle">
                                                             <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
+                                                            href="javascript:void(0)">
                                                             <i class="ti ti-trash"></i>
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:500px; height:30px;"  name="particulars" class="particulars text-center">
+                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:500px; height:30px;"  name="particulars" class="particulars text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center">
+                                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center"/>
-                                                        </td>
-                                                    </tr>
-                                                    <?php endforeach; endif;?>
-                                                    <?php if(!empty($realign_id)):
-                                                        $query = $this->db->query("
-                                                        SELECT
-                                                            `recid`,
-                                                            `particulars`,
-                                                            `code`,
-                                                            `approved_budget`
-                                                        FROM
-                                                            `tbl_budget_direct_co_dt`
-                                                        WHERE 
-                                                            `project_id` = '$realign_id'"
-                                                        );
-                                                        $result = $query->getResultArray();
-                                                        foreach ($result as $data):
-                                                            $dt_id = $data['recid'];
-                                                            $particulars = $data['particulars'];
-                                                            $code = $data['code'];
-                                                            $approved_budget = $data['approved_budget'];
-                                                    ?>
-                                                    <tr>
-                                                        <td class="text-center align-middle">
-                                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
-                                                            <i class="ti ti-trash"></i>
-                                                            </a>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:500px; height:30px;"  name="particulars" class="particulars text-center">
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center">
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="" name="approved_budget" class="approved_budget text-center"/>
+                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center" disabled/>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
@@ -716,30 +606,13 @@ echo view('templates/myheader.php');
                                             <table id="budget_indirect_co_line_items" class="table-sm table-striped budgetcodata-indirect-list">
                                                 <thead>
                                                     <th class="text-center">
-                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetcoitem_add" href="javascript:__mysys_budget_allotment_ent.my_add_budget_indirect_co_line();"><i class="ti ti-new-section"></i></a>
+                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetcoitem_add" disabled href="javascript:__mysys_budget_allotment_ent.my_add_budget_indirect_co_line();"><i class="ti ti-new-section"></i></a>
                                                     </th>
                                                     <th class="text-center align-middle">CO - Particulars</th>
                                                     <th class="text-center align-middle">UACS.</th>
                                                     <th class="text-center align-middle">Approved Budget</th>
                                                 </thead>
                                                 <tbody>
-                                                    <tr style="display:none;">
-                                                        <td class="text-center align-middle">
-                                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
-                                                            <i class="ti ti-trash"></i>
-                                                            </a>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="particulars"  value="" style="width:500px; height:30px;"   name="particulars" class="particulars text-center">
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center">
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" class="approved_budget text-center"/>
-                                                        </td>
-                                                    </tr>
                                                     <?php if(!empty($recid)):
                                                         $query = $this->db->query("
                                                         SELECT
@@ -762,55 +635,18 @@ echo view('templates/myheader.php');
                                                     <tr>
                                                         <td class="text-center align-middle">
                                                             <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
+                                                            href="javascript:void(0)">
                                                             <i class="ti ti-trash"></i>
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:500px; height:30px;"  name="particulars" class="particulars text-center">
+                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:500px; height:30px;"  name="particulars" class="particulars text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center">
+                                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center"/>
-                                                        </td>
-                                                    </tr>
-                                                    <?php endforeach; endif;?>
-                                                    <?php if(!empty($realign_id)):
-                                                        $query = $this->db->query("
-                                                        SELECT
-                                                            `recid`,
-                                                            `particulars`,
-                                                            `code`,
-                                                            `approved_budget`
-                                                        FROM
-                                                            `tbl_budget_indirect_co_dt`
-                                                        WHERE 
-                                                            `project_id` = '$realign_id'"
-                                                        );
-                                                        $result = $query->getResultArray();
-                                                        foreach ($result as $data):
-                                                            $dt_id = $data['recid'];
-                                                            $particulars = $data['particulars'];
-                                                            $code = $data['code'];
-                                                            $approved_budget = $data['approved_budget'];
-                                                    ?>
-                                                    <tr>
-                                                        <td class="text-center align-middle">
-                                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
-                                                            <i class="ti ti-trash"></i>
-                                                            </a>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:500px; height:30px;"  name="particulars" class="particulars text-center">
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center">
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="" name="approved_budget" class="approved_budget text-center"/>
+                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center" disabled/>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
@@ -891,7 +727,7 @@ echo view('templates/myheader.php');
                     ?>
                     <tr>
                         <td class="text-center align-middle">
-                            <a class="text-info nav-icon-hover" href="mybudgetallotment?meaction=MAIN&recid=<?= $dt_recid ?>">
+                            <a class="text-info nav-icon-hover" href="myorsburs?meaction=MAIN&recid=<?= $dt_recid ?>">
                                 Review
                             </a>
                         </td>
@@ -902,7 +738,7 @@ echo view('templates/myheader.php');
                         <td class="text-center"><?=$approved_budget;?></td>
                         <td class="text-center text-<?=$color;?>"><?=$status;?></td>
                         <td class="text-center">
-                            <button class="btn btn-sm btn-outline-secondary" onclick="window.open('<?= base_url('mybudgetallotment?meaction=PRINT-LIB&recid='.$dt_recid) ?>', '_blank')">
+                            <button class="btn btn-sm btn-outline-secondary" onclick="window.open('<?= base_url('myorsburs?meaction=PRINT-LIB&recid='.$dt_recid) ?>', '_blank')">
                                 Print
                             </button>
                         </td>
@@ -925,7 +761,7 @@ echo view('templates/myheader.php');
             </div>
 		</div>						
         <div class="card-body p-0 px-4 py-2 my-2">
-            <form id="uploadForm" action="<?=site_url();?>mybudgetallotment" method="post" enctype="multipart/form-data">
+            <form id="uploadForm" action="<?=site_url();?>myorsburs" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-sm-6 mb-2">
                     <label for="formFileSm" class="form-label">Uploading:</label>
@@ -1101,7 +937,7 @@ echo view('templates/myheader.php');
         <?php endif;?>
       </div>
     </div>
-  </div>
+    </div>
 </div>
 
 
@@ -1116,7 +952,7 @@ echo view('templates/myheader.php');
 	echo $MDL_jsscript;
 ?>
 <script>
- 
+    
     $(document).ready(function () {
         $('#datatablesSimple').DataTable({
             pageLength: 5,
@@ -1134,7 +970,7 @@ echo view('templates/myheader.php');
         $(this).closest('tr').find('.uacs').val(selectedCode);
     });
 
-    $(document).on('change', '#selPayee', function() {
+    $(document).on('change', '#payee_name', function() {
         var selected = $(this).find('option:selected');
 
         // Extract data from selected option

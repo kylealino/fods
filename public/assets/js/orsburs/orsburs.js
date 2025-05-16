@@ -1,5 +1,5 @@
-var __mysys_orsburst_ent = new __mysys_orsburst_ent();
-function __mysys_orsburst_ent() {  
+var __mysys_orsburs_ent = new __mysys_orsburs_ent();
+function __mysys_orsburs_ent() {  
 	const mesiteurl = $('#__siteurl').attr('data-mesiteurl');
 
 	this.my_add_budget_line = function () {
@@ -260,10 +260,10 @@ function __mysys_orsburst_ent() {
 	}
 	
 
-	this.__budget_saving = function() { 
+	this.__orsburs_saving = function() { 
 		'use strict' 
 		// Fetch all the forms we want to apply custom Bootstrap validation styles to
-		var forms = document.querySelectorAll('.mybudgetallotment-validation')
+		var forms = document.querySelectorAll('.myorsburs-validation')
 		// Loop over them and prevent submission
 		Array.prototype.slice.call(forms)
 		.forEach(function (form) {
@@ -275,32 +275,25 @@ function __mysys_orsburst_ent() {
 				try {
 					event.preventDefault();
 					event.stopPropagation();
-
-					var recid = document.getElementById("recid");
-					var realign_id = document.getElementById("realign_id");
-					var trxno = document.getElementById("trxno");
-					var project_title = document.getElementById("selProjectTitle");
-					var responsibility_code = document.getElementById("responsibility_code");
-					var fund_cluster_code = document.getElementById("fund_cluster_code");
-					var division_name = document.getElementById("division_name");
-					var project_leader = document.getElementById("project_leader");
-
-					//newly added fields
+		
+					
 					var program_title = document.getElementById("program_title");
-					var total_duration = document.getElementById("total_duration");
-					var duration_from = document.getElementById("duration_from");
-					var duration_to = document.getElementById("duration_to");
-					var program_leader = document.getElementById("program_leader");
-					var monitoring_agency = document.getElementById("monitoring_agency");
-					var collaborating_agencies = document.getElementById("collaborating_agencies");
-					var implementing_agency = document.getElementById("implementing_agency");
+					var project_title = document.getElementById("project_title");
+					var fund_cluster_code = document.getElementById("fund_cluster_code");
+					var funding_source = document.getElementById("funding_source");
+					var responsibility_code = document.getElementById("responsibility_code");
+					var mfopap = document.getElementById("mfopap");
+
+					var payee_name = document.getElementById("payee_name");
+					var payee_office = document.getElementById("payee_office");
+					var payee_address = document.getElementById("payee_address");
 
 					// Prepare PS data DIRECT --
 					var rowcount1 = jQuery('.budgetdata-list tr').length;
 					var budgetdtdata = [];
 					var psdata = '';
 	
-					for (var aa = 2; aa < rowcount1; aa++) {
+					for (var aa = 1; aa < rowcount1; aa++) {
 						var clonedRow = jQuery('.budgetdata-list tr:eq(' + aa + ')'); 
 						var particulars = clonedRow.find('select.selUacs').val();
 						var uacs = clonedRow.find('input[type=text]').eq(0).val();
@@ -316,7 +309,7 @@ function __mysys_orsburst_ent() {
 					var budgetdtindirectdata = [];
 					var psindirectdata = '';
 	
-					for (var aa = 2; aa < rowcount11; aa++) {
+					for (var aa = 1; aa < rowcount11; aa++) {
 						var clonedRow = jQuery('.budgetdata-indirect-list tr:eq(' + aa + ')'); 
 						var particulars = clonedRow.find('select.selUacs').val();
 						var uacs = clonedRow.find('input[type=text]').eq(0).val();
@@ -332,7 +325,7 @@ function __mysys_orsburst_ent() {
 					var budgetmooedtdata = [];
 					var mooedata = '';
 	
-					for (var aa = 2; aa < rowcount2; aa++) {
+					for (var aa = 1; aa < rowcount2; aa++) {
 						var clonedRow = jQuery('.budgetmooedata-list tr:eq(' + aa + ')'); 
 						var particulars = clonedRow.find('select.selUacs').val();
 						var uacs = clonedRow.find('input[type=text]').eq(0).val();
@@ -348,7 +341,7 @@ function __mysys_orsburst_ent() {
 					var budgetmooeindirectdtdata = [];
 					var mooeindirectdata = '';
 	
-					for (var aa = 2; aa < rowcount22; aa++) {
+					for (var aa = 1; aa < rowcount22; aa++) {
 						var clonedRow = jQuery('.budgetmooedata-indirect-list tr:eq(' + aa + ')'); 
 						var particulars = clonedRow.find('select.selUacs').val();
 						var uacs = clonedRow.find('input[type=text]').eq(0).val();
@@ -364,7 +357,7 @@ function __mysys_orsburst_ent() {
 					var budgetcodtdata = [];
 					var codata = '';
 	
-					for (var aa = 2; aa < rowcount3; aa++) {
+					for (var aa = 1; aa < rowcount3; aa++) {
 						var clonedRow = jQuery('.budgetcodata-list tr:eq(' + aa + ')'); 
 						var particulars = clonedRow.find('input[type=text]').eq(0).val();
 						var uacs = clonedRow.find('input[type=text]').eq(1).val();
@@ -380,7 +373,7 @@ function __mysys_orsburst_ent() {
 					var budgetindirectcodtdata = [];
 					var coindirectdata = '';
 	
-					for (var aa = 2; aa < rowcount33; aa++) {
+					for (var aa = 1; aa < rowcount33; aa++) {
 						var clonedRow = jQuery('.budgetcodata-indirect-list tr:eq(' + aa + ')'); 
 						var particulars = clonedRow.find('input[type=text]').eq(0).val();
 						var uacs = clonedRow.find('input[type=text]').eq(1).val();
@@ -392,23 +385,15 @@ function __mysys_orsburst_ent() {
 					}
 
 					var mparam = { 
-						recid: recid.value,
-						realign_id: realign_id.value,
-						trxno: trxno.value,
-						project_title: project_title.value,
-						responsibility_code: responsibility_code.value,
-						fund_cluster_code: fund_cluster_code.value,
-						division_name: division_name.value,
-						project_leader: project_leader.value,
-						//newly added fields
 						program_title: program_title.value,
-						total_duration: total_duration.value,
-						duration_from: duration_from.value,
-						duration_to: duration_to.value,
-						program_leader: program_leader.value,
-						monitoring_agency: monitoring_agency.value,
-						collaborating_agencies: collaborating_agencies.value,
-						implementing_agency: implementing_agency.value,
+						project_title: project_title.value,
+						fund_cluster_code: fund_cluster_code.value,
+						funding_source: funding_source.value,
+						responsibility_code: responsibility_code.value,
+						mfopap: mfopap.value,
+						payee_name: payee_name.value,
+						payee_office: payee_office.value,
+						payee_address: payee_address.value,
 						budgetdtdata: budgetdtdata,
 						budgetdtindirectdata: budgetdtindirectdata,
 						budgetmooedtdata: budgetmooedtdata,
@@ -418,16 +403,15 @@ function __mysys_orsburst_ent() {
 						meaction: 'MAIN-SAVE'
 					}
 
-
 					jQuery.ajax({ // default declaration of ajax parameters
 						type: "POST",
-						url: mesiteurl + 'mybudgetallotment',
+						url: mesiteurl + 'myorsburs',
 						context: document.body,
 						data: eval(mparam),
 						global: false,
 						cache: false,
 						success: function(data) {
-							jQuery('.mybudgetallotment-outp-msg').html(data);
+							jQuery('.myorsburs-outp-msg').html(data);
 							return false;
 						},
 						error: function(xhr, status, error) { // display global error on the menu function
@@ -669,3 +653,4 @@ function __mysys_orsburst_ent() {
 	
 
 }; //end main
+ __mysys_orsburs_ent.__orsburs_saving();
