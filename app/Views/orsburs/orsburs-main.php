@@ -2,7 +2,7 @@
 $this->request = \Config\Services::request();
 $this->db = \Config\Database::connect();
 $recid = $this->request->getPostGet('recid');
-$realign_id = $this->request->getPostGet('realign_id');
+$prgmdata = $this->request->getPostGet('prgmdata');
 $action = $this->request->getPostGet('action');
 $this->session = session();
 $this->cuser = $this->session->get('__xsys_myuserzicas__');
@@ -28,6 +28,25 @@ $implementing_agency = "";
 $MDL_jsscript = "";
 $counter = 1;
 
+if (!empty($prgmdata) || !is_null($prgmdata)) {
+    $query = $this->db->query("
+    SELECT
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_title` = '$prgmdata'"
+    );
+
+    $data = $query->getRowArray();
+    $project_title = $data['project_title'];
+    $responsibility_code = $data['responsibility_code'];
+    $fund_cluster_code = $data['fund_cluster_code'];
+}
+
+
 
 echo view('templates/myheader.php');
 ?>
@@ -35,7 +54,7 @@ echo view('templates/myheader.php');
 <div class="container-fluid">
     <div class="row me-mybudgetallotment-appr-outp-msg mx-0">
     </div>
-
+    
     <input type="hidden" id="__siteurl" data-mesiteurl="<?=site_url();?>" />
     <div class="row mb-2 mt-0">
         <h4 class="fw-semibold mb-8">Obligation Request and Status / Budget Utilization Request and Status</h4>
@@ -67,6 +86,94 @@ echo view('templates/myheader.php');
 		</div>						
         <div class="card-body p-0 px-4 py-2 my-2">
             <form action="<?=site_url();?>mybudgetallotment?meaction=MAIN-SAVE" method="post" class="mybudgetallotment-validation">
+                <div class="row mb-2">
+                    <div class="col-sm-12">
+                        <div class="row mb-2">
+                            <div class="col-sm-2">
+                                <span>Program Title</span>
+                            </div>
+                            <div class="col-sm-10">
+                                <select id="program_title" class=" text-nowrap form-select form-select-sm">
+                                    <?php if(!empty($prgmdata)):?>
+                                        <option selected value="<?=$prgmdata;?>"><?=$prgmdata;?></option>
+                                        <?php foreach($programdata as $data): ?>
+                                            <option value="<?= $data['program_title'] ?>">
+                                                <?= $data['program_title'] ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    <?php else:?>
+                                        <option selected value="">Choose...</option>
+                                        <?php foreach($programdata as $data): ?>
+                                            <option value="<?= $data['program_title'] ?>">
+                                                <?= $data['program_title'] ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    <?php endif;?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-2">
+                                <span>Project Title</span>
+                            </div>
+                            <div class="col-sm-10">
+                                <input type="text" id="project_title" name="project_title" value="<?=$project_title;?>" class="form-control form-control-sm"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span>Fund Cluster:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" id="fund_cluster_code" name="fund_cluster_code" value="<?=$fund_cluster_code;?>" class="form-control form-control-sm"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span>Funding Source:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <select name="" id="" class="form-select form-select-sm">
+                                    <option value="">Choose...</option>
+                                    <option value="101101">101101</option>
+                                    <option value="102101">102101</option>
+                                    <option value="102406">102406</option>
+                                    <option value="102407">102407</option>
+                                    <option value="104102">104102</option>
+                                    <option value="105462">105462</option>
+                                    <option value="308601">308601</option>
+                                    <option value="308602">308602</option>
+                                    <option value="308603">308603</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="col-sm-6">
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span>Responsibility Code:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" id="responsibility_code" name="responsibility_code" value="<?=$responsibility_code;?>" class="form-control form-control-sm"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span>MFO/PAP:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" id="funding_source" name="funding_source" value="" class="form-control form-control-sm bg-light" readonly/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
                 <div class="row">
                     <div class="col-sm-6 mb-2">
                         <div class="row mb-2">
@@ -105,34 +212,6 @@ echo view('templates/myheader.php');
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 mb-2">
-                        <div class="row mb-2">
-                            <div class="col-sm-4">
-                                <span class="fw-bold">Program Title:</span>
-                            </div>
-                            <div class="col-sm-8">
-                                <input type="text" id="program_title" name="program_title" value="" class="form-control form-control-sm"/>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-sm-4">
-                                <span class="fw-bold">Fund Cluster:</span>
-                            </div>
-                            <div class="col-sm-8">
-                                <input type="text" id="fund_cluster" name="fund_cluster" value="" class="form-control form-control-sm"/>
-                            </div>
-                        </div>
-                                          <div class="row mb-2">
-                            <div class="col-sm-4">
-                                <span class="fw-bold">Funding Source:</span>
-                            </div>
-                            <div class="col-sm-8">
-
-                                <input type="text" id="funding_source" name="funding_source" value="" class="form-control form-control-sm"/>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
                 <hr>
 
@@ -188,7 +267,6 @@ echo view('templates/myheader.php');
                                                             <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" class="approved_budget text-center"/>
                                                         </td>
                                                     </tr>
-
                                                 </tbody>
                                             </table>
                                         </div>
@@ -205,31 +283,6 @@ echo view('templates/myheader.php');
                                                     <th class="text-center align-middle">Approved Budget</th>
                                                 </thead>
                                                 <tbody>
-                                                    <tr style="display:none;">
-                                                        <td class="text-center align-middle">
-                                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
-                                                            <i class="ti ti-trash"></i>
-                                                            </a>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:500px; height:30px;">
-                                                                <option selected value ="">Choose...</option>
-                                                                <?php foreach($psuacsdata as $data){
-                                                                    $object_of_expenditures = $data['object_of_expenditures'];
-                                                                    $code = $data['code'];
-                                                                ?>
-                                                                    <option value="<?=$object_of_expenditures?>" data-uacs="<?=$code;?>"><?=$object_of_expenditures?></option>
-                                                                <?php }?>
-                                                            </select>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" class="approved_budget text-center"/>
-                                                        </td>
-                                                    </tr>
                                                     <?php if(!empty($recid)):
                                                         $query = $this->db->query("
                                                         SELECT
@@ -272,51 +325,6 @@ echo view('templates/myheader.php');
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center"/>
-                                                        </td>
-                                                    </tr>
-                                                    <?php endforeach; endif;?>
-                                                    <?php if(!empty($realign_id)):
-                                                        $query = $this->db->query("
-                                                        SELECT
-                                                            `recid`,
-                                                            `particulars`,
-                                                            `code`,
-                                                            `approved_budget`
-                                                        FROM
-                                                            `tbl_budget_indirect_ps_dt`
-                                                        WHERE 
-                                                            `project_id` = '$realign_id'"
-                                                        );
-                                                        $result = $query->getResultArray();
-                                                        foreach ($result as $data):
-                                                            $dt_id = $data['recid'];
-                                                            $particulars = $data['particulars'];
-                                                            $code = $data['code'];
-                                                            $approved_budget = $data['approved_budget'];
-                                                    ?>
-                                                    <tr>
-                                                        <td class="text-center align-middle">
-                                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
-                                                            <i class="ti ti-trash"></i>
-                                                            </a>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form"  style="width:500px; height:30px;">
-                                                                <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
-                                                                <?php foreach($psuacsdata as $data){
-                                                                    $object_of_expenditures = $data['object_of_expenditures'];
-                                                                    $_code = $data['code'];
-                                                                ?>
-                                                                    <option value="<?=$object_of_expenditures?>"  data-uacs="<?=$_code;?>"><?=$object_of_expenditures?></option>
-                                                                <?php }?>
-                                                            </select>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="" name="approved_budget" class="approved_budget text-center"/>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
@@ -1139,6 +1147,27 @@ echo view('templates/myheader.php');
 
     });
 
+    $(document).on('change', '#program_title', function() {
+        var selected = $(this).find('option:selected');
+
+        // Extract data from selected option
+        var projectitle = selected.data('projectitle') || '';
+        var rescode = selected.data('rescode') || '';
+        var fundcode = selected.data('fundcode') || '';
+        
+        // Set the values into inputs
+        $('#project_title').val(projectitle);
+        $('#fund_cluster_code').val(rescode);
+        $('#responsibility_code').val(fundcode);
+
+    });
+
+    document.getElementById('program_title').addEventListener('change', function () {
+        const token = this.value;
+        if (token) {
+            window.location.href = `myorsburs?meaction=MAIN&prgmdata=${token}`;
+        }
+    });
 </script>
 <?php
     echo view('templates/myfooter.php');

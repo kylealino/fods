@@ -252,7 +252,7 @@ echo view('templates/myheader.php');
                             </div>
                             <div class="col-sm-10">
                                 <?php if(!empty($recid)):?>
-                                    <select name="selProjectTitle" id="selProjectTitle" class="form-control select2 form-select-sm show-tick">
+                                    <select name="selProjectTitle" id="selProjectTitle" class="form-select select2 form-select-sm show-tick">
                                         <option selected value="<?=$project_title;?>"><?=$project_title;?></option>
                                         <?php foreach($projectdata as $data): ?>
                                             <option 
@@ -266,7 +266,7 @@ echo view('templates/myheader.php');
                                         <?php endforeach; ?>
                                     </select>
                                 <?php elseif(!empty($realign_id)):?>
-                                    <select name="selProjectTitle" id="selProjectTitle" class="form-control select2 form-select-sm show-tick">
+                                    <select name="selProjectTitle" id="selProjectTitle" class="form-select select2 form-select-sm show-tick">
                                         <option selected value="<?=$project_title;?>"><?=$project_title;?></option>
                                         <?php foreach($projectdata as $data): ?>
                                             <option 
@@ -280,7 +280,7 @@ echo view('templates/myheader.php');
                                         <?php endforeach; ?>
                                     </select>
                                 <?php else:?>
-                                    <select name="selProjectTitle" id="selProjectTitle" class="form-control select2 form-select-sm show-tick">
+                                    <select name="selProjectTitle" id="selProjectTitle" class="form-select select2 form-select-sm show-tick">
                                         <option selected value="">Choose...</option>
                                         <?php foreach($projectdata as $data): ?>
                                             <option 
@@ -983,6 +983,8 @@ echo view('templates/myheader.php');
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- CO TAB CONTENT -->
                             <div class="tab-pane p-3" id="co-pill" role="tabpanel">
                                 <div class="row">
                                     <div class="table-responsive pe-2 ps-0">

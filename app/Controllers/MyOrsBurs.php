@@ -101,6 +101,10 @@ class MyOrsBurs extends BaseController
         $mooeuacsquery = $this->db->query("SELECT * FROM tbl_uacs WHERE parent_category = 'Maintenance and Other Operating Expenses'");
         $mooeuacsdata = $mooeuacsquery->getResultArray();
 
+        //hd lookup data
+        $programquery = $this->db->query("SELECT * FROM tbl_budget_hd order by recid desc");
+        $programdata = $programquery->getResultArray();
+
         //payee lookup
         $payeedata = $this->db->query("
         SELECT
@@ -120,6 +124,7 @@ class MyOrsBurs extends BaseController
             'mooeuacsdata' => $mooeuacsdata,
             'budgetdtdata' => $budgetdtdata,
             'payeedata' => $payeedata,
+            'programdata' => $programdata,
         ]);
     }
     

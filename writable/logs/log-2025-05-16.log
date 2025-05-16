@@ -721,3 +721,383 @@ in APPPATH\Views\orsburs\orsburs-main.php on line 218.
 10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
 11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
 12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-16 05:11:18 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\Views\budget\budget-allotment-main.php on line 62.
+ 1 APPPATH\Views\budget\budget-allotment-main.php(62): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-allotment-main.php', 62)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-allotment-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(134): view('budget/budget-allotment-main', [...])
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(28): App\Controllers\MyBudgetAllotment->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-16 05:16:00 --> ErrorException: Undefined array key "program_title"
+[Method: GET, Route: myorsburs]
+in APPPATH\Views\orsburs\orsburs-main.php on line 142.
+ 1 APPPATH\Views\orsburs\orsburs-main.php(142): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "program_title"', 'C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php', 142)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs-main', [], true)
+ 5 APPPATH\Controllers\MyOrsBurs.php(127): view('orsburs/orsburs-main', [...])
+ 6 APPPATH\Controllers\MyOrsBurs.php(28): App\Controllers\MyOrsBurs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-16 05:58:18 --> ErrorException: Undefined variable $pgrmdata
+[Method: GET, Route: myorsburs]
+in APPPATH\Views\orsburs\orsburs-main.php on line 40.
+ 1 APPPATH\Views\orsburs\orsburs-main.php(40): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $pgrmdata', 'C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php', 40)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs-main', [], true)
+ 5 APPPATH\Controllers\MyOrsBurs.php(127): view('orsburs/orsburs-main', [...])
+ 6 APPPATH\Controllers\MyOrsBurs.php(28): App\Controllers\MyOrsBurs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-05-16 05:58:43 --> mysqli_sql_exception: Unknown column 'program_data' in 'where clause' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT\r\n ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT\r\n ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT\r\n ...')
+#3 C:\xampp\htdocs\fods\app\Views\orsburs\orsburs-main.php(40): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT\r\n ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyOrsBurs.php(127): view('orsburs/orsburs...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyOrsBurs.php(28): App\Controllers\MyOrsBurs->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2025-05-16 05:58:43 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'program_data' in 'where clause'
+[Method: GET, Route: myorsburs]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\orsburs\orsburs-main.php(40): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_data` = \'TOWARDS A SUSTAINABLE PHILIPPINE FOOD SYSTEM: UNDERSTANDING AVAILABILITY, ACCESSIBILITY, LIVED EXPERIENCES AND NUTRITION OUTCOMES THROUGH MAPPING AND MODELLING GEOSPATIAL AND OBSERVATIONAL DATA (PALIGID)\'')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs-main', [], true)
+ 5 APPPATH\Controllers\MyOrsBurs.php(127): view('orsburs/orsburs-main', [...])
+ 6 APPPATH\Controllers\MyOrsBurs.php(28): App\Controllers\MyOrsBurs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-16 05:58:43 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'program_data' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_data` = \'TOWARDS A SUSTAINABLE PHILIPPINE FOOD SYSTEM: UNDERSTANDING AVAILABILITY, ACCESSIBILITY, LIVED EXPERIENCES AND NUTRITION OUTCOMES THROUGH MAPPING AND MODELLING GEOSPATIAL AND OBSERVATIONAL DATA (PALIGID)\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_data` = \'TOWARDS A SUSTAINABLE PHILIPPINE FOOD SYSTEM: UNDERSTANDING AVAILABILITY, ACCESSIBILITY, LIVED EXPERIENCES AND NUTRITION OUTCOMES THROUGH MAPPING AND MODELLING GEOSPATIAL AND OBSERVATIONAL DATA (PALIGID)\'')
+ 3 APPPATH\Views\orsburs\orsburs-main.php(40): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_data` = \'TOWARDS A SUSTAINABLE PHILIPPINE FOOD SYSTEM: UNDERSTANDING AVAILABILITY, ACCESSIBILITY, LIVED EXPERIENCES AND NUTRITION OUTCOMES THROUGH MAPPING AND MODELLING GEOSPATIAL AND OBSERVATIONAL DATA (PALIGID)\'')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs-main', [], true)
+ 7 APPPATH\Controllers\MyOrsBurs.php(127): view('orsburs/orsburs-main', [...])
+ 8 APPPATH\Controllers\MyOrsBurs.php(28): App\Controllers\MyOrsBurs->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-16 05:58:43 --> [Caused by] mysqli_sql_exception: Unknown column 'program_data' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_data` = \'TOWARDS A SUSTAINABLE PHILIPPINE FOOD SYSTEM: UNDERSTANDING AVAILABILITY, ACCESSIBILITY, LIVED EXPERIENCES AND NUTRITION OUTCOMES THROUGH MAPPING AND MODELLING GEOSPATIAL AND OBSERVATIONAL DATA (PALIGID)\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_data` = \'TOWARDS A SUSTAINABLE PHILIPPINE FOOD SYSTEM: UNDERSTANDING AVAILABILITY, ACCESSIBILITY, LIVED EXPERIENCES AND NUTRITION OUTCOMES THROUGH MAPPING AND MODELLING GEOSPATIAL AND OBSERVATIONAL DATA (PALIGID)\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_data` = \'TOWARDS A SUSTAINABLE PHILIPPINE FOOD SYSTEM: UNDERSTANDING AVAILABILITY, ACCESSIBILITY, LIVED EXPERIENCES AND NUTRITION OUTCOMES THROUGH MAPPING AND MODELLING GEOSPATIAL AND OBSERVATIONAL DATA (PALIGID)\'')
+ 4 APPPATH\Views\orsburs\orsburs-main.php(40): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_data` = \'TOWARDS A SUSTAINABLE PHILIPPINE FOOD SYSTEM: UNDERSTANDING AVAILABILITY, ACCESSIBILITY, LIVED EXPERIENCES AND NUTRITION OUTCOMES THROUGH MAPPING AND MODELLING GEOSPATIAL AND OBSERVATIONAL DATA (PALIGID)\'')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs-main', [], true)
+ 8 APPPATH\Controllers\MyOrsBurs.php(127): view('orsburs/orsburs-main', [...])
+ 9 APPPATH\Controllers\MyOrsBurs.php(28): App\Controllers\MyOrsBurs->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-05-16 05:58:48 --> mysqli_sql_exception: Unknown column 'program_data' in 'where clause' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT\r\n ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT\r\n ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT\r\n ...')
+#3 C:\xampp\htdocs\fods\app\Views\orsburs\orsburs-main.php(40): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT\r\n ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyOrsBurs.php(127): view('orsburs/orsburs...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyOrsBurs.php(28): App\Controllers\MyOrsBurs->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2025-05-16 05:58:48 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'program_data' in 'where clause'
+[Method: GET, Route: myorsburs]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\orsburs\orsburs-main.php(40): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_data` = \'TOWARDS A SUSTAINABLE PHILIPPINE FOOD SYSTEM: UNDERSTANDING AVAILABILITY, ACCESSIBILITY, LIVED EXPERIENCES AND NUTRITION OUTCOMES THROUGH MAPPING AND MODELLING GEOSPATIAL AND OBSERVATIONAL DATA (PALIGID)\'')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs-main', [], true)
+ 5 APPPATH\Controllers\MyOrsBurs.php(127): view('orsburs/orsburs-main', [...])
+ 6 APPPATH\Controllers\MyOrsBurs.php(28): App\Controllers\MyOrsBurs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-16 05:58:48 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'program_data' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_data` = \'TOWARDS A SUSTAINABLE PHILIPPINE FOOD SYSTEM: UNDERSTANDING AVAILABILITY, ACCESSIBILITY, LIVED EXPERIENCES AND NUTRITION OUTCOMES THROUGH MAPPING AND MODELLING GEOSPATIAL AND OBSERVATIONAL DATA (PALIGID)\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_data` = \'TOWARDS A SUSTAINABLE PHILIPPINE FOOD SYSTEM: UNDERSTANDING AVAILABILITY, ACCESSIBILITY, LIVED EXPERIENCES AND NUTRITION OUTCOMES THROUGH MAPPING AND MODELLING GEOSPATIAL AND OBSERVATIONAL DATA (PALIGID)\'')
+ 3 APPPATH\Views\orsburs\orsburs-main.php(40): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_data` = \'TOWARDS A SUSTAINABLE PHILIPPINE FOOD SYSTEM: UNDERSTANDING AVAILABILITY, ACCESSIBILITY, LIVED EXPERIENCES AND NUTRITION OUTCOMES THROUGH MAPPING AND MODELLING GEOSPATIAL AND OBSERVATIONAL DATA (PALIGID)\'')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs-main', [], true)
+ 7 APPPATH\Controllers\MyOrsBurs.php(127): view('orsburs/orsburs-main', [...])
+ 8 APPPATH\Controllers\MyOrsBurs.php(28): App\Controllers\MyOrsBurs->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-16 05:58:48 --> [Caused by] mysqli_sql_exception: Unknown column 'program_data' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_data` = \'TOWARDS A SUSTAINABLE PHILIPPINE FOOD SYSTEM: UNDERSTANDING AVAILABILITY, ACCESSIBILITY, LIVED EXPERIENCES AND NUTRITION OUTCOMES THROUGH MAPPING AND MODELLING GEOSPATIAL AND OBSERVATIONAL DATA (PALIGID)\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_data` = \'TOWARDS A SUSTAINABLE PHILIPPINE FOOD SYSTEM: UNDERSTANDING AVAILABILITY, ACCESSIBILITY, LIVED EXPERIENCES AND NUTRITION OUTCOMES THROUGH MAPPING AND MODELLING GEOSPATIAL AND OBSERVATIONAL DATA (PALIGID)\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_data` = \'TOWARDS A SUSTAINABLE PHILIPPINE FOOD SYSTEM: UNDERSTANDING AVAILABILITY, ACCESSIBILITY, LIVED EXPERIENCES AND NUTRITION OUTCOMES THROUGH MAPPING AND MODELLING GEOSPATIAL AND OBSERVATIONAL DATA (PALIGID)\'')
+ 4 APPPATH\Views\orsburs\orsburs-main.php(40): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_data` = \'TOWARDS A SUSTAINABLE PHILIPPINE FOOD SYSTEM: UNDERSTANDING AVAILABILITY, ACCESSIBILITY, LIVED EXPERIENCES AND NUTRITION OUTCOMES THROUGH MAPPING AND MODELLING GEOSPATIAL AND OBSERVATIONAL DATA (PALIGID)\'')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs-main', [], true)
+ 8 APPPATH\Controllers\MyOrsBurs.php(127): view('orsburs/orsburs-main', [...])
+ 9 APPPATH\Controllers\MyOrsBurs.php(28): App\Controllers\MyOrsBurs->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-16 05:59:05 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: myorsburs]
+in APPPATH\Views\orsburs\orsburs-main.php on line 44.
+ 1 APPPATH\Views\orsburs\orsburs-main.php(44): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php', 44)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs-main', [], true)
+ 5 APPPATH\Controllers\MyOrsBurs.php(127): view('orsburs/orsburs-main', [...])
+ 6 APPPATH\Controllers\MyOrsBurs.php(28): App\Controllers\MyOrsBurs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-16 05:59:08 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: myorsburs]
+in APPPATH\Views\orsburs\orsburs-main.php on line 44.
+ 1 APPPATH\Views\orsburs\orsburs-main.php(44): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php', 44)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs-main', [], true)
+ 5 APPPATH\Controllers\MyOrsBurs.php(127): view('orsburs/orsburs-main', [...])
+ 6 APPPATH\Controllers\MyOrsBurs.php(28): App\Controllers\MyOrsBurs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-16 06:00:14 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: myorsburs]
+in APPPATH\Views\orsburs\orsburs-main.php on line 44.
+ 1 APPPATH\Views\orsburs\orsburs-main.php(44): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php', 44)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs-main', [], true)
+ 5 APPPATH\Controllers\MyOrsBurs.php(127): view('orsburs/orsburs-main', [...])
+ 6 APPPATH\Controllers\MyOrsBurs.php(28): App\Controllers\MyOrsBurs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-16 06:00:23 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: myorsburs]
+in APPPATH\Views\orsburs\orsburs-main.php on line 44.
+ 1 APPPATH\Views\orsburs\orsburs-main.php(44): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php', 44)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs-main', [], true)
+ 5 APPPATH\Controllers\MyOrsBurs.php(127): view('orsburs/orsburs-main', [...])
+ 6 APPPATH\Controllers\MyOrsBurs.php(28): App\Controllers\MyOrsBurs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-16 06:01:22 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: myorsburs]
+in APPPATH\Views\orsburs\orsburs-main.php on line 44.
+ 1 APPPATH\Views\orsburs\orsburs-main.php(44): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php', 44)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs-main', [], true)
+ 5 APPPATH\Controllers\MyOrsBurs.php(127): view('orsburs/orsburs-main', [...])
+ 6 APPPATH\Controllers\MyOrsBurs.php(28): App\Controllers\MyOrsBurs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
