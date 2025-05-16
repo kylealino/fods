@@ -44,3 +44,7 @@ $routes->post('mybudgetapproval', 'MyBudgetApproval::index',['filter' => 'myauth
 
 //File uploading
 $routes->post('uploadFile', 'Upload::index',['filter' => 'myauthuser']);
+
+//ORSBURS - ORSBURS module
+$routes->get('myorsburs', 'MyOrsBurs::index',['filter' => 'myauthuser']);
+$routes->post('myorsburs', 'MyOrsBurs::index',['filter' => 'myauthuser']);

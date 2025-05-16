@@ -1,5 +1,5 @@
-var __mysys_budget_allotment_ent = new __mysys_budget_allotment_ent();
-function __mysys_budget_allotment_ent() {  
+var __mysys_orsburst_ent = new __mysys_orsburst_ent();
+function __mysys_orsburst_ent() {  
 	const mesiteurl = $('#__siteurl').attr('data-mesiteurl');
 
 	this.my_add_budget_line = function () {
