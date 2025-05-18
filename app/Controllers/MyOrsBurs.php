@@ -22,7 +22,7 @@ class MyOrsBurs extends BaseController
         switch ($meaction) {
             case 'MAIN': 
                 $accessQuery = $this->db->query("
-                    SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '1001' AND `is_active` = '1'
+                    SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '2001' AND `is_active` = '1'
                 ");
                 if ($accessQuery->getNumRows() > 0) {
                     return $this->loadMainView();

@@ -95,6 +95,7 @@ echo view('templates/myheader.php');
                                 <span>Program Title</span>
                             </div>
                             <div class="col-sm-10">
+                                <input type="hidden" class="form-control form-control-sm" id="recid" name="recid" value="<?=$recid;?>"/>
                                 <select id="program_title" class=" text-nowrap form-select form-select-sm">
                                     <?php if(!empty($prgmdata)):?>
                                         <option selected value="<?=$prgmdata;?>"><?=$prgmdata;?></option>

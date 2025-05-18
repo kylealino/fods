@@ -17,26 +17,18 @@ class MyOrsBursModel extends Model
     }
 
 	public function orsburs_save() { 
-		var_dump('test orsburs saving');
-		die();
-		$trxno = $this->request->getPostGet('trxno');
 		$recid = $this->request->getPostGet('recid');
-		$realign_id = $this->request->getPostGet('realign_id');
-		$project_title = $this->request->getPostGet('project_title');
-		$responsibility_code = $this->request->getPostGet('responsibility_code');
-		$fund_cluster_code = $this->request->getPostGet('fund_cluster_code');
-		$division_name = $this->request->getPostGet('division_name');
-		$project_leader = $this->request->getPostGet('project_leader');
-		$budgetdtdata = $this->request->getPostGet('budgetdtdata');
 		//newly added fields
 		$program_title = $this->request->getPostGet('program_title');
-		$total_duration = $this->request->getPostGet('total_duration');
-		$duration_from = $this->request->getPostGet('duration_from');
-		$duration_to = $this->request->getPostGet('duration_to');
-		$program_leader = $this->request->getPostGet('program_leader');
-		$monitoring_agency = $this->request->getPostGet('monitoring_agency');
-		$collaborating_agencies = $this->request->getPostGet('collaborating_agencies');
-		$implementing_agency = $this->request->getPostGet('implementing_agency');
+		$project_title = $this->request->getPostGet('project_title');
+		$fund_cluster_code = $this->request->getPostGet('fund_cluster_code');
+		$funding_source = $this->request->getPostGet('funding_source');
+		$responsibility_code = $this->request->getPostGet('responsibility_code');
+		$mfopap = $this->request->getPostGet('mfopap');
+		$payee_name = $this->request->getPostGet('payee_name');
+		$payee_office = $this->request->getPostGet('payee_office');
+		$payee_address = $this->request->getPostGet('payee_address');
+		$budgetdtdata = $this->request->getPostGet('budgetdtdata');
 
 		//MOOE DATA
 		$budgetmooedtdata = $this->request->getPostGet('budgetmooedtdata');
@@ -47,117 +39,137 @@ class MyOrsBursModel extends Model
 		$budgetmooeindirectdtdata = $this->request->getPostGet('budgetmooeindirectdtdata');
 		$budgetindirectcodtdata = $this->request->getPostGet('budgetindirectcodtdata');
 
+
+		var_dump(
+			$program_title,
+			$project_title,
+			$fund_cluster_code,
+			$funding_source,
+			$responsibility_code,
+			$mfopap,
+			$payee_name,
+			$payee_office,
+			$payee_address,
+			$budgetdtdata,
+			$budgetmooedtdata,
+			$budgetcodtdata,
+			$budgetdtindirectdata,
+			$budgetmooeindirectdtdata,
+			$budgetindirectcodtdata
+		);
+		die();
+
 		$cseqn =  $this->get_ctr_budget('LIB','fods','CTRL_NO01');//TRANSACTION NO
 		$trx = empty($trxno) ? $cseqn : $trxno;
 
-		if (empty($project_title)) {
-			echo "
-			<script>
-			toastr.error('Project title is required!', 'Oops!', {
-					progressBar: true,
-					closeButton: true,
-					timeOut:2000,
-				});
-			</script>
-			";
-			die();
-		}
-		if (empty($program_title)) {
-			echo "
-			<script>
-			toastr.error('Program title is required!', 'Oops!', {
-					progressBar: true,
-					closeButton: true,
-					timeOut:2000,
-				});
-			</script>
-			";
-			die();
-		}
-		if (empty($total_duration)) {
-			echo "
-			<script>
-			toastr.error('Total duration is required!', 'Oops!', {
-					progressBar: true,
-					closeButton: true,
-					timeOut:2000,
-				});
-			</script>
-			";
-			die();
-		}
-		if (empty($duration_from)) {
-			echo "
-			<script>
-			toastr.error('Duration from is required!', 'Oops!', {
-					progressBar: true,
-					closeButton: true,
-					timeOut:2000,
-				});
-			</script>
-			";
-			die();
-		}
-		if (empty($duration_to)) {
-			echo "
-			<script>
-			toastr.error('Duration to is required!', 'Oops!', {
-					progressBar: true,
-					closeButton: true,
-					timeOut:2000,
-				});
-			</script>
-			";
-			die();
-		}
-		if (empty($program_leader)) {
-			echo "
-			<script>
-			toastr.error('Program leader is required!', 'Oops!', {
-					progressBar: true,
-					closeButton: true,
-					timeOut:2000,
-				});
-			</script>
-			";
-			die();
-		}
-		if (empty($monitoring_agency)) {
-			echo "
-			<script>
-			toastr.error('Monitoring agency is required!', 'Oops!', {
-					progressBar: true,
-					closeButton: true,
-					timeOut:2000,
-				});
-			</script>
-			";
-			die();
-		}
-		if (empty($collaborating_agencies)) {
-			echo "
-			<script>
-			toastr.error('Collaborating agencies is required!', 'Oops!', {
-					progressBar: true,
-					closeButton: true,
-					timeOut:2000,
-				});
-			</script>
-			";
-			die();
-		}
-		if (empty($implementing_agency)) {
-			echo "
-			<script>
-			toastr.error('Implementing agency is required!', 'Oops!', {
-					progressBar: true,
-					closeButton: true,
-					timeOut:2000,
-				});
-			</script>
-			";
-			die();
-		}
+		// if (empty($project_title)) {
+		// 	echo "
+		// 	<script>
+		// 	toastr.error('Project title is required!', 'Oops!', {
+		// 			progressBar: true,
+		// 			closeButton: true,
+		// 			timeOut:2000,
+		// 		});
+		// 	</script>
+		// 	";
+		// 	die();
+		// }
+		// if (empty($program_title)) {
+		// 	echo "
+		// 	<script>
+		// 	toastr.error('Program title is required!', 'Oops!', {
+		// 			progressBar: true,
+		// 			closeButton: true,
+		// 			timeOut:2000,
+		// 		});
+		// 	</script>
+		// 	";
+		// 	die();
+		// }
+		// if (empty($total_duration)) {
+		// 	echo "
+		// 	<script>
+		// 	toastr.error('Total duration is required!', 'Oops!', {
+		// 			progressBar: true,
+		// 			closeButton: true,
+		// 			timeOut:2000,
+		// 		});
+		// 	</script>
+		// 	";
+		// 	die();
+		// }
+		// if (empty($duration_from)) {
+		// 	echo "
+		// 	<script>
+		// 	toastr.error('Duration from is required!', 'Oops!', {
+		// 			progressBar: true,
+		// 			closeButton: true,
+		// 			timeOut:2000,
+		// 		});
+		// 	</script>
+		// 	";
+		// 	die();
+		// }
+		// if (empty($duration_to)) {
+		// 	echo "
+		// 	<script>
+		// 	toastr.error('Duration to is required!', 'Oops!', {
+		// 			progressBar: true,
+		// 			closeButton: true,
+		// 			timeOut:2000,
+		// 		});
+		// 	</script>
+		// 	";
+		// 	die();
+		// }
+		// if (empty($program_leader)) {
+		// 	echo "
+		// 	<script>
+		// 	toastr.error('Program leader is required!', 'Oops!', {
+		// 			progressBar: true,
+		// 			closeButton: true,
+		// 			timeOut:2000,
+		// 		});
+		// 	</script>
+		// 	";
+		// 	die();
+		// }
+		// if (empty($monitoring_agency)) {
+		// 	echo "
+		// 	<script>
+		// 	toastr.error('Monitoring agency is required!', 'Oops!', {
+		// 			progressBar: true,
+		// 			closeButton: true,
+		// 			timeOut:2000,
+		// 		});
+		// 	</script>
+		// 	";
+		// 	die();
+		// }
+		// if (empty($collaborating_agencies)) {
+		// 	echo "
+		// 	<script>
+		// 	toastr.error('Collaborating agencies is required!', 'Oops!', {
+		// 			progressBar: true,
+		// 			closeButton: true,
+		// 			timeOut:2000,
+		// 		});
+		// 	</script>
+		// 	";
+		// 	die();
+		// }
+		// if (empty($implementing_agency)) {
+		// 	echo "
+		// 	<script>
+		// 	toastr.error('Implementing agency is required!', 'Oops!', {
+		// 			progressBar: true,
+		// 			closeButton: true,
+		// 			timeOut:2000,
+		// 		});
+		// 	</script>
+		// 	";
+		// 	die();
+		// }
 		if (empty($budgetdtdata) && empty($budgetmooedtdata) && empty($budgetcodtdata) && empty($budgetindirectdtdata) && empty($budgetindirectmooedtdata) && empty($budgetindirectcodtdata)) {
 			echo "
 			<script>
@@ -172,7 +184,7 @@ class MyOrsBursModel extends Model
 		}
 		if (empty($recid)) {
 			$accessquery = $this->db->query("
-				SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '1002' AND `is_active` = '1'
+				SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '2002' AND `is_active` = '1'
 			");
 			if ($accessquery->getNumRows() == 0) {
 				echo "
