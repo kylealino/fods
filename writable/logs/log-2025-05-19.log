@@ -1,0 +1,132 @@
+ERROR - 2025-05-19 01:17:42 --> mysqli_sql_exception: Unknown column 'trxno' in 'where clause' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\tSELECT `re...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\tSELECT `re...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\tSELECT `re...')
+#3 C:\xampp\htdocs\fods\app\Models\MyOrsBursModel.php(165): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\tSELECT `re...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MyOrsBurs.php(36): App\Models\MyOrsBursModel->orsburs_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-05-19 01:17:42 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'trxno' in 'where clause'
+[Method: POST, Route: myorsburs]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyOrsBursModel.php(165): CodeIgniter\Database\BaseConnection->query('
+			SELECT `recid` FROM tbl_orsburs_hd WHERE `trxno` = \'ORSBURS-00001-0519\'
+			')
+ 2 APPPATH\Controllers\MyOrsBurs.php(36): App\Models\MyOrsBursModel->orsburs_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-19 01:17:42 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'trxno' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+			SELECT `recid` FROM tbl_orsburs_hd WHERE `trxno` = \'ORSBURS-00001-0519\'
+			')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+			SELECT `recid` FROM tbl_orsburs_hd WHERE `trxno` = \'ORSBURS-00001-0519\'
+			')
+ 3 APPPATH\Models\MyOrsBursModel.php(165): CodeIgniter\Database\BaseConnection->query('
+			SELECT `recid` FROM tbl_orsburs_hd WHERE `trxno` = \'ORSBURS-00001-0519\'
+			')
+ 4 APPPATH\Controllers\MyOrsBurs.php(36): App\Models\MyOrsBursModel->orsburs_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-19 01:17:42 --> [Caused by] mysqli_sql_exception: Unknown column 'trxno' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+			SELECT `recid` FROM tbl_orsburs_hd WHERE `trxno` = \'ORSBURS-00001-0519\'
+			', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+			SELECT `recid` FROM tbl_orsburs_hd WHERE `trxno` = \'ORSBURS-00001-0519\'
+			')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+			SELECT `recid` FROM tbl_orsburs_hd WHERE `trxno` = \'ORSBURS-00001-0519\'
+			')
+ 4 APPPATH\Models\MyOrsBursModel.php(165): CodeIgniter\Database\BaseConnection->query('
+			SELECT `recid` FROM tbl_orsburs_hd WHERE `trxno` = \'ORSBURS-00001-0519\'
+			')
+ 5 APPPATH\Controllers\MyOrsBurs.php(36): App\Models\MyOrsBursModel->orsburs_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-19 01:18:51 --> ErrorException: Trying to access array offset on value of type null
+[Method: POST, Route: myorsburs]
+in APPPATH\Models\MyOrsBursModel.php on line 168.
+ 1 APPPATH\Models\MyOrsBursModel.php(168): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MyOrsBursModel.php', 168)
+ 2 APPPATH\Controllers\MyOrsBurs.php(36): App\Models\MyOrsBursModel->orsburs_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-19 01:19:30 --> ErrorException: Trying to access array offset on value of type null
+[Method: POST, Route: myorsburs]
+in APPPATH\Models\MyOrsBursModel.php on line 168.
+ 1 APPPATH\Models\MyOrsBursModel.php(168): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MyOrsBursModel.php', 168)
+ 2 APPPATH\Controllers\MyOrsBurs.php(36): App\Models\MyOrsBursModel->orsburs_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-19 01:23:31 --> ErrorException: Trying to access array offset on value of type null
+[Method: POST, Route: myorsburs]
+in APPPATH\Models\MyOrsBursModel.php on line 170.
+ 1 APPPATH\Models\MyOrsBursModel.php(170): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MyOrsBursModel.php', 170)
+ 2 APPPATH\Controllers\MyOrsBurs.php(36): App\Models\MyOrsBursModel->orsburs_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-19 01:24:18 --> ErrorException: Trying to access array offset on value of type null
+[Method: POST, Route: myorsburs]
+in APPPATH\Models\MyOrsBursModel.php on line 171.
+ 1 APPPATH\Models\MyOrsBursModel.php(171): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MyOrsBursModel.php', 171)
+ 2 APPPATH\Controllers\MyOrsBurs.php(36): App\Models\MyOrsBursModel->orsburs_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-19 01:24:33 --> ErrorException: Trying to access array offset on value of type null
+[Method: POST, Route: myorsburs]
+in APPPATH\Models\MyOrsBursModel.php on line 171.
+ 1 APPPATH\Models\MyOrsBursModel.php(171): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MyOrsBursModel.php', 171)
+ 2 APPPATH\Controllers\MyOrsBurs.php(36): App\Models\MyOrsBursModel->orsburs_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-19 01:24:43 --> ErrorException: Trying to access array offset on value of type null
+[Method: POST, Route: myorsburs]
+in APPPATH\Models\MyOrsBursModel.php on line 171.
+ 1 APPPATH\Models\MyOrsBursModel.php(171): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MyOrsBursModel.php', 171)
+ 2 APPPATH\Controllers\MyOrsBurs.php(36): App\Models\MyOrsBursModel->orsburs_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

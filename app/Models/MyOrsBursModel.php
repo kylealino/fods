@@ -18,6 +18,7 @@ class MyOrsBursModel extends Model
 
 	public function orsburs_save() { 
 		$recid = $this->request->getPostGet('recid');
+		$serial_no = $this->request->getPostGet('serial_no');
 		//newly added fields
 		$program_title = $this->request->getPostGet('program_title');
 		$project_title = $this->request->getPostGet('project_title');
@@ -40,29 +41,20 @@ class MyOrsBursModel extends Model
 		$budgetindirectcodtdata = $this->request->getPostGet('budgetindirectcodtdata');
 
 
-		// var_dump(
-		// 	$program_title,
-		// 	$project_title,
-		// 	$fund_cluster_code,
-		// 	$funding_source,
-		// 	$responsibility_code,
-		// 	$mfopap,
-		// 	$payee_name,
-		// 	$payee_office,
-		// 	$payee_address,
-		// 	$budgetdtdata,
-		// 	$budgetmooedtdata,
-		// 	$budgetcodtdata,
-		// 	$budgetdtindirectdata,
-		// 	$budgetmooeindirectdtdata,
-		// 	$budgetindirectcodtdata
-		// );
-		// die();
-		var_dump($recid);
+		var_dump(
+			$budgetdtdata,
+			$budgetmooedtdata,
+			$budgetcodtdata,
+			$budgetdtindirectdata,
+			$budgetmooeindirectdtdata,
+			$budgetindirectcodtdata
+		);
 		die();
+		// var_dump($recid);
+		// die();
 
-		$cseqn =  $this->get_ctr_budget('LIB','fods','CTRL_NO01');//TRANSACTION NO
-		$trx = empty($trxno) ? $cseqn : $trxno;
+		$cseqn =  $this->get_ctr_orsburs('ORSBURS','fods','CTRL_NO01');//TRANSACTION NO
+		$trx = empty($serial_no) ? $cseqn : $serial_no;
 
 		if (empty($program_title)) {
 			echo "
@@ -112,6 +104,7 @@ class MyOrsBursModel extends Model
 			";
 			die();
 		}
+
 		if (empty($recid)) {
 			$accessquery = $this->db->query("
 				SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '2002' AND `is_active` = '1'
@@ -132,6 +125,7 @@ class MyOrsBursModel extends Model
 			//INSERTING HD DATA
 			$query = $this->db->query("
 				INSERT INTO `tbl_orsburs_hd`(
+					`serial_no`,
 					`program_title`,
 					`project_title`,
 					`fund_cluster_code`,
@@ -145,6 +139,7 @@ class MyOrsBursModel extends Model
 					`added_by`
 				)
 				VALUES(
+					'$trx',
 					'$program_title',
 					'$project_title',
 					'$fund_cluster_code',
@@ -161,7 +156,7 @@ class MyOrsBursModel extends Model
 
 			//PROJECT ID FETCHING
 			$query = $this->db->query("
-			SELECT `recid` FROM tbl_budget_hd WHERE `trxno` = '$trx'
+			SELECT `recid` FROM tbl_orsburs_hd WHERE `serial_no` = '$trx'
 			");
 			$rw = $query->getRowArray();
 			$project_id = $rw['recid'];
@@ -1012,6 +1007,61 @@ class MyOrsBursModel extends Model
 				$xnumb = trim($rctr['XNUMB'],' ');
 				$xnumb = str_pad($xnumb + 0,5,"0",STR_PAD_LEFT);
 				$query = $this->db->query("update myctr_budget set {$xfield} = '{$xnumb}'");
+			}
+		}
+		return  $class . '-' . $xnumb . '-' . $xsysmonth . $xsysday;//.$supp
+	} 
+
+	public function get_ctr_orsburs($class,$supp,$dbname,$mfld='') { 
+		$accessquery = $this->db->query("
+		CREATE TABLE if not exists `myctr_orsburs` (
+		  `CTR_YEAR` varchar(4) DEFAULT '0000',
+		  `CTR_MONTH` varchar(2) DEFAULT '00',
+		  `CTR_DAY` varchar(2) DEFAULT '00',
+		  `CTRL_NO01` varchar(15) DEFAULT '00000000',
+		  `CTRL_NO02` varchar(15) DEFAULT '00000000',
+		  `CTRL_NO03` varchar(15) DEFAULT '00000000',
+		  `CTRL_NO04` varchar(15) DEFAULT '00000000',
+		  `CTRL_NO05` varchar(15) DEFAULT '00000000',
+		  `CTRL_NO06` varchar(15) DEFAULT '00000000',
+		  `CTRL_NO07` varchar(15) DEFAULT '00000000',
+		  `CTRL_NO08` varchar(15) DEFAULT '00000000',
+		  `CTRL_NO09` varchar(15) DEFAULT '00000000',
+		  `CTRL_NO10` varchar(15) DEFAULT '00000000',
+		  `CTRL_NO11` varchar(15) DEFAULT '00000000',
+		  `SS_CTR` varchar(15) DEFAULT '000000',
+		  UNIQUE KEY `ctr01` (`CTR_YEAR`,`CTR_MONTH`,`CTR_DAY`)
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+		");
+
+		$xfield = (empty($mfld) ? 'CTRL_NO01' : $mfld);
+		
+		$q = $this->db->query("select date(now()) XSYSDATE");
+		$rdate = $q->getRowArray();
+		$xsysdate = $rdate['XSYSDATE'];
+		$xsysdate_exp = explode('-', $xsysdate);
+		$xsysyear =  $xsysdate_exp[0];
+		$xsysmonth = $xsysdate_exp[1];
+		$xsysday = $xsysdate_exp[2];
+		
+		$qctr = $this->db->query("select {$xfield} from myctr_orsburs WHERE CTR_YEAR = '$xsysyear' AND CTR_MONTH = '$xsysmonth' AND CTR_DAY = '$xsysday'  limit 1");
+		if($qctr->getNumRows() == 0) {
+			$xnumb = '00001';
+			$query = $this->db->query( "insert into myctr_orsburs (CTR_YEAR,CTR_MONTH,CTR_DAY,{$xfield}) values('$xsysyear','$xsysmonth','$xsysday','$xnumb')");
+			$qctr->freeResult();
+		} else {
+			$qctr->freeResult();
+			$qctr = $this->db->query( "select {$xfield} MYFIELD from myctr_orsburs WHERE CTR_YEAR = '$xsysyear' AND CTR_MONTH = '$xsysmonth' AND CTR_DAY = '$xsysday' limit 1");
+			$rctr = $qctr->getRowArray();
+			if(trim($rctr['MYFIELD'],' ') == '') { 
+				$xnumb = '00001';
+			} else {
+				$xnumb = $rctr['MYFIELD'];
+				$qctr = $this->db->query("select ('{$xnumb}' + 1) XNUMB");
+				$rctr = $qctr->getRowArray();
+				$xnumb = trim($rctr['XNUMB'],' ');
+				$xnumb = str_pad($xnumb + 0,5,"0",STR_PAD_LEFT);
+				$query = $this->db->query("update myctr_orsburs set {$xfield} = '{$xnumb}'");
 			}
 		}
 		return  $class . '-' . $xnumb . '-' . $xsysmonth . $xsysday;//.$supp
