@@ -35,6 +35,7 @@ class MyBudgetAllotmentModel extends Model
 		$monitoring_agency = $this->request->getPostGet('monitoring_agency');
 		$collaborating_agencies = $this->request->getPostGet('collaborating_agencies');
 		$implementing_agency = $this->request->getPostGet('implementing_agency');
+		$tagging = $this->request->getPostGet('tagging');
 
 		//MOOE DATA
 		$budgetmooedtdata = $this->request->getPostGet('budgetmooedtdata');
@@ -203,7 +204,8 @@ class MyBudgetAllotmentModel extends Model
 				`program_leader`,
 				`monitoring_agency`,
 				`collaborating_agencies`,
-				`implementing_agency`) 
+				`implementing_agency`,
+				`tagging`) 
 				VALUES (
 				'$trx',
 				'$project_title',
@@ -220,7 +222,8 @@ class MyBudgetAllotmentModel extends Model
 				'$program_leader',
 				'$monitoring_agency',
 				'$collaborating_agencies',
-				'$implementing_agency'
+				'$implementing_agency',
+				'$tagging',
 				)
 			");
 
@@ -545,7 +548,8 @@ class MyBudgetAllotmentModel extends Model
 					`program_leader` = '$program_leader',
 					`monitoring_agency` = '$monitoring_agency',
 					`collaborating_agencies` = '$collaborating_agencies',
-					`implementing_agency` = '$implementing_agency'
+					`implementing_agency` = '$implementing_agency',
+					`tagging` = '$tagging'
 				WHERE `recid` = '$recid'
 			");
 

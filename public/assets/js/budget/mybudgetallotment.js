@@ -295,6 +295,8 @@ function __mysys_budget_allotment_ent() {
 					var collaborating_agencies = document.getElementById("collaborating_agencies");
 					var implementing_agency = document.getElementById("implementing_agency");
 
+					var tagging = document.getElementById("tagging");
+
 					// Prepare PS data DIRECT --
 					var rowcount1 = jQuery('.budgetdata-list tr').length;
 					var budgetdtdata = [];
@@ -409,6 +411,7 @@ function __mysys_budget_allotment_ent() {
 						monitoring_agency: monitoring_agency.value,
 						collaborating_agencies: collaborating_agencies.value,
 						implementing_agency: implementing_agency.value,
+						tagging: tagging.value,
 						budgetdtdata: budgetdtdata,
 						budgetdtindirectdata: budgetdtindirectdata,
 						budgetmooedtdata: budgetmooedtdata,

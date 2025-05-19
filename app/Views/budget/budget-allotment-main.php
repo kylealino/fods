@@ -25,6 +25,7 @@ $program_leader = "";
 $monitoring_agency = "";
 $collaborating_agencies = "";
 $implementing_agency = "";
+$tagging = "";
 $MDL_jsscript = "";
 $counter = 1;
 
@@ -51,7 +52,8 @@ if(!empty($recid) || !is_null($recid)) {
         `program_leader`,
         `monitoring_agency`,
         `collaborating_agencies`,
-        `implementing_agency`
+        `implementing_agency`,
+        `tagging`
     FROM
         `tbl_budget_hd`
     WHERE 
@@ -77,6 +79,7 @@ if(!empty($recid) || !is_null($recid)) {
     $monitoring_agency = $data['monitoring_agency'];
     $collaborating_agencies = $data['collaborating_agencies'];
     $implementing_agency = $data['implementing_agency'];
+    $tagging = $data['tagging'];
 
 
     if ($action == 'appr_pending') {
@@ -416,7 +419,22 @@ echo view('templates/myheader.php');
                                 <span class="fw-bold">Collaborating Agencies:</span>
                             </div>
                             <div class="col-sm-8">
-                                <textarea name="collaborating_agencies" id="collaborating_agencies" placeholder="" rows="5" class="form-control form-control-sm"><?=$collaborating_agencies;?></textarea>
+                                <textarea name="collaborating_agencies" id="collaborating_agencies" placeholder="" rows="3" class="form-control form-control-sm"><?=$collaborating_agencies;?></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span class="fw-bold">Tagging:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <select name="" id="tagging" class="form-select form-select-sm">
+                                    <?php if(!empty($recid)):?>
+                                        <option value="<?=$tagging;?>"><?=$tagging;?></option>
+                                    <?php endif;?>
+                                    <option value="Save to Draft">Save to Draft</option>
+                                    <option value="Park">Park</option>
+                                    <option value="Posted">Posted</option>
+                                </select>
                             </div>
                         </div>
 
@@ -435,7 +453,7 @@ echo view('templates/myheader.php');
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link rounded-pill px-3 fs-3 fw-semibold" data-bs-toggle="tab" href="#mooe-pill" role="tab">
-                                II. Maintenance
+                                II. Maintenance and Other Operating Expenses
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
@@ -1282,7 +1300,7 @@ echo view('templates/myheader.php');
                         <td class="text-center"><?=$project_title;?></td>
                         <td class="text-center"><?=$responsibility_code;?></td>
                         <td class="text-center"><?=$added_at;?></td>
-                        <td class="text-center"><?=$approved_budget;?></td>
+                        <td class="text-center"><?= '₱'. number_format($approved_budget,2);?></td>
                         <td class="text-center text-<?=$color;?>"><?=$status;?></td>
                         <td class="text-center">
                             <button class="btn btn-sm btn-outline-secondary" onclick="window.open('<?= base_url('mybudgetallotment?meaction=PRINT-LIB&recid='.$dt_recid) ?>', '_blank')">

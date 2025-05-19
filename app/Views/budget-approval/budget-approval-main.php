@@ -217,7 +217,7 @@ echo view('templates/myheader.php');
                                     </a>
                                 </td>
                                 <td class="text-center"><?=$project_title;?></td>
-                                <td class="text-center"><?=$approved_budget;?></td>
+                                <td class="text-center"><?= '₱'. number_format($approved_budget,2);?></td>
                             </tr>
                             <?php endforeach; endif;?>
                         </tbody>
@@ -257,7 +257,7 @@ echo view('templates/myheader.php');
                                             </a>
                                         </td>
                                         <td class="text-center"><?=$project_title;?></td>
-                                        <td class="text-center"><?=$approved_budget;?></td>
+                                        <td class="text-center"><?= '₱'. number_format($approved_budget,2);?></td>
                                     </tr>
                                     <?php endforeach; endif;?>
                                 </tbody>
@@ -294,7 +294,7 @@ echo view('templates/myheader.php');
                                             </a>
                                         </td>
                                         <td class="text-center"><?=$project_title;?></td>
-                                        <td class="text-center"><?=$approved_budget;?></td>
+                                        <td class="text-center"><?= '₱'. number_format($approved_budget,2);?></td>
                                     </tr>
                                     <?php endforeach; endif;?>
                                 </tbody>
