@@ -40,136 +40,66 @@ class MyOrsBursModel extends Model
 		$budgetindirectcodtdata = $this->request->getPostGet('budgetindirectcodtdata');
 
 
-		var_dump(
-			$program_title,
-			$project_title,
-			$fund_cluster_code,
-			$funding_source,
-			$responsibility_code,
-			$mfopap,
-			$payee_name,
-			$payee_office,
-			$payee_address,
-			$budgetdtdata,
-			$budgetmooedtdata,
-			$budgetcodtdata,
-			$budgetdtindirectdata,
-			$budgetmooeindirectdtdata,
-			$budgetindirectcodtdata
-		);
+		// var_dump(
+		// 	$program_title,
+		// 	$project_title,
+		// 	$fund_cluster_code,
+		// 	$funding_source,
+		// 	$responsibility_code,
+		// 	$mfopap,
+		// 	$payee_name,
+		// 	$payee_office,
+		// 	$payee_address,
+		// 	$budgetdtdata,
+		// 	$budgetmooedtdata,
+		// 	$budgetcodtdata,
+		// 	$budgetdtindirectdata,
+		// 	$budgetmooeindirectdtdata,
+		// 	$budgetindirectcodtdata
+		// );
+		// die();
+		var_dump($recid);
 		die();
 
 		$cseqn =  $this->get_ctr_budget('LIB','fods','CTRL_NO01');//TRANSACTION NO
 		$trx = empty($trxno) ? $cseqn : $trxno;
 
-		// if (empty($project_title)) {
-		// 	echo "
-		// 	<script>
-		// 	toastr.error('Project title is required!', 'Oops!', {
-		// 			progressBar: true,
-		// 			closeButton: true,
-		// 			timeOut:2000,
-		// 		});
-		// 	</script>
-		// 	";
-		// 	die();
-		// }
-		// if (empty($program_title)) {
-		// 	echo "
-		// 	<script>
-		// 	toastr.error('Program title is required!', 'Oops!', {
-		// 			progressBar: true,
-		// 			closeButton: true,
-		// 			timeOut:2000,
-		// 		});
-		// 	</script>
-		// 	";
-		// 	die();
-		// }
-		// if (empty($total_duration)) {
-		// 	echo "
-		// 	<script>
-		// 	toastr.error('Total duration is required!', 'Oops!', {
-		// 			progressBar: true,
-		// 			closeButton: true,
-		// 			timeOut:2000,
-		// 		});
-		// 	</script>
-		// 	";
-		// 	die();
-		// }
-		// if (empty($duration_from)) {
-		// 	echo "
-		// 	<script>
-		// 	toastr.error('Duration from is required!', 'Oops!', {
-		// 			progressBar: true,
-		// 			closeButton: true,
-		// 			timeOut:2000,
-		// 		});
-		// 	</script>
-		// 	";
-		// 	die();
-		// }
-		// if (empty($duration_to)) {
-		// 	echo "
-		// 	<script>
-		// 	toastr.error('Duration to is required!', 'Oops!', {
-		// 			progressBar: true,
-		// 			closeButton: true,
-		// 			timeOut:2000,
-		// 		});
-		// 	</script>
-		// 	";
-		// 	die();
-		// }
-		// if (empty($program_leader)) {
-		// 	echo "
-		// 	<script>
-		// 	toastr.error('Program leader is required!', 'Oops!', {
-		// 			progressBar: true,
-		// 			closeButton: true,
-		// 			timeOut:2000,
-		// 		});
-		// 	</script>
-		// 	";
-		// 	die();
-		// }
-		// if (empty($monitoring_agency)) {
-		// 	echo "
-		// 	<script>
-		// 	toastr.error('Monitoring agency is required!', 'Oops!', {
-		// 			progressBar: true,
-		// 			closeButton: true,
-		// 			timeOut:2000,
-		// 		});
-		// 	</script>
-		// 	";
-		// 	die();
-		// }
-		// if (empty($collaborating_agencies)) {
-		// 	echo "
-		// 	<script>
-		// 	toastr.error('Collaborating agencies is required!', 'Oops!', {
-		// 			progressBar: true,
-		// 			closeButton: true,
-		// 			timeOut:2000,
-		// 		});
-		// 	</script>
-		// 	";
-		// 	die();
-		// }
-		// if (empty($implementing_agency)) {
-		// 	echo "
-		// 	<script>
-		// 	toastr.error('Implementing agency is required!', 'Oops!', {
-		// 			progressBar: true,
-		// 			closeButton: true,
-		// 			timeOut:2000,
-		// 		});
-		// 	</script>
-		// 	";
-		// 	die();
-		// }
+		if (empty($program_title)) {
+			echo "
+			<script>
+			toastr.error('Program title is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($funding_source)) {
+			echo "
+			<script>
+			toastr.error('Funding source is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($payee_name)) {
+			echo "
+			<script>
+			toastr.error('Payee name is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
 		if (empty($budgetdtdata) && empty($budgetmooedtdata) && empty($budgetcodtdata) && empty($budgetindirectdtdata) && empty($budgetindirectmooedtdata) && empty($budgetindirectcodtdata)) {
 			echo "
 			<script>
@@ -201,40 +131,31 @@ class MyOrsBursModel extends Model
 
 			//INSERTING HD DATA
 			$query = $this->db->query("
-				INSERT INTO `tbl_budget_hd`(
-				`trxno`,
-				`project_title`, 
-				`responsibility_code`,
-				`fund_cluster_code`, 
-				`division_name`,
-				`project_leader`, 
-				`added_at`, 
-				`added_by`,
-				`program_title`,
-				`total_duration`,
-				`duration_from`,
-				`duration_to`,
-				`program_leader`,
-				`monitoring_agency`,
-				`collaborating_agencies`,
-				`implementing_agency`) 
-				VALUES (
-				'$trx',
-				'$project_title',
-				'$responsibility_code',
-				'$fund_cluster_code',
-				'$division_name',
-				'$project_leader',
-				NOW(),
-				'{$this->cuser}',
-				'$program_title',
-				'$total_duration',
-				'$duration_from',
-				'$duration_to',
-				'$program_leader',
-				'$monitoring_agency',
-				'$collaborating_agencies',
-				'$implementing_agency'
+				INSERT INTO `tbl_orsburs_hd`(
+					`program_title`,
+					`project_title`,
+					`fund_cluster_code`,
+					`funding_source`,
+					`responsibility_code`,
+					`mfopap`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`added_at`,
+					`added_by`
+				)
+				VALUES(
+					'$program_title',
+					'$project_title',
+					'$fund_cluster_code',
+					'$funding_source',
+					'$responsibility_code',
+					'$mfopap',
+					'$payee_name',
+					'$payee_office',
+					'$payee_address',
+					NOW(),
+					'{$this->cuser}'
 				)
 			");
 
@@ -246,290 +167,290 @@ class MyOrsBursModel extends Model
 			$project_id = $rw['recid'];
 
 			//INSERTING PS DT DATA
-			if (!empty($budgetdtdata)) {
-				//this is for normal saving and updating
-				for($aa = 0; $aa < count($budgetdtdata); $aa++){
-					$medata = explode("x|x",$budgetdtdata[$aa]);
-					$particulars = $medata[0]; 
-					$code = $medata[1]; 
-					$approved_budget = $medata[2]; 
-					$dtid = $medata[3]; 
+			// if (!empty($budgetdtdata)) {
+			// 	//this is for normal saving and updating
+			// 	for($aa = 0; $aa < count($budgetdtdata); $aa++){
+			// 		$medata = explode("x|x",$budgetdtdata[$aa]);
+			// 		$particulars = $medata[0]; 
+			// 		$code = $medata[1]; 
+			// 		$approved_budget = $medata[2]; 
+			// 		$dtid = $medata[3]; 
 
-					if (!empty($dtid)) {
-						$query = $this->db->query("
-						UPDATE
-							`tbl_budget_direct_ps_dt`
-						SET
-							`particulars` = '$particulars',
-							`code` = '$code',
-							`approved_budget` = '$approved_budget'
-						WHERE
-							`recid` = '$dtid'
-						");
-					}else{
-						$query = $this->db->query("
-						INSERT INTO `tbl_budget_direct_ps_dt`(
-								`project_id`,
-								`particulars`,
-								`code`,
-								`approved_budget`,
-								`added_at`,
-								`added_by`
-							)
-							VALUES(
-								'$project_id',
-								'$particulars',
-								'$code',
-								'$approved_budget',
-								NOW(),
-								'{$this->cuser}'
-							)
-						");
-					}
-
-					
-				}
-			}
-
-			//INSERTING PS DT INDIRECT DATA
-			if (!empty($budgetdtindirectdata)) {
-				//this is for normal saving and updating
-				for($aa = 0; $aa < count($budgetdtindirectdata); $aa++){
-					$medata = explode("x|x",$budgetdtindirectdata[$aa]);
-					$particulars = $medata[0]; 
-					$code = $medata[1]; 
-					$approved_budget = $medata[2]; 
-					$dtid = $medata[3]; 
-
-					if (!empty($dtid)) {
-						$query = $this->db->query("
-						UPDATE
-							`tbl_budget_indirect_ps_dt`
-						SET
-							`particulars` = '$particulars',
-							`code` = '$code',
-							`approved_budget` = '$approved_budget'
-						WHERE
-							`recid` = '$dtid'
-						");
-					}else{
-						$query = $this->db->query("
-						INSERT INTO `tbl_budget_indirect_ps_dt`(
-								`project_id`,
-								`particulars`,
-								`code`,
-								`approved_budget`,
-								`added_at`,
-								`added_by`
-							)
-							VALUES(
-								'$project_id',
-								'$particulars',
-								'$code',
-								'$approved_budget',
-								NOW(),
-								'{$this->cuser}'
-							)
-						");
-					}
+			// 		if (!empty($dtid)) {
+			// 			$query = $this->db->query("
+			// 			UPDATE
+			// 				`tbl_budget_direct_ps_dt`
+			// 			SET
+			// 				`particulars` = '$particulars',
+			// 				`code` = '$code',
+			// 				`approved_budget` = '$approved_budget'
+			// 			WHERE
+			// 				`recid` = '$dtid'
+			// 			");
+			// 		}else{
+			// 			$query = $this->db->query("
+			// 			INSERT INTO `tbl_budget_direct_ps_dt`(
+			// 					`project_id`,
+			// 					`particulars`,
+			// 					`code`,
+			// 					`approved_budget`,
+			// 					`added_at`,
+			// 					`added_by`
+			// 				)
+			// 				VALUES(
+			// 					'$project_id',
+			// 					'$particulars',
+			// 					'$code',
+			// 					'$approved_budget',
+			// 					NOW(),
+			// 					'{$this->cuser}'
+			// 				)
+			// 			");
+			// 		}
 
 					
-				}
-			}
+			// 	}
+			// }
+
+			// //INSERTING PS DT INDIRECT DATA
+			// if (!empty($budgetdtindirectdata)) {
+			// 	//this is for normal saving and updating
+			// 	for($aa = 0; $aa < count($budgetdtindirectdata); $aa++){
+			// 		$medata = explode("x|x",$budgetdtindirectdata[$aa]);
+			// 		$particulars = $medata[0]; 
+			// 		$code = $medata[1]; 
+			// 		$approved_budget = $medata[2]; 
+			// 		$dtid = $medata[3]; 
+
+			// 		if (!empty($dtid)) {
+			// 			$query = $this->db->query("
+			// 			UPDATE
+			// 				`tbl_budget_indirect_ps_dt`
+			// 			SET
+			// 				`particulars` = '$particulars',
+			// 				`code` = '$code',
+			// 				`approved_budget` = '$approved_budget'
+			// 			WHERE
+			// 				`recid` = '$dtid'
+			// 			");
+			// 		}else{
+			// 			$query = $this->db->query("
+			// 			INSERT INTO `tbl_budget_indirect_ps_dt`(
+			// 					`project_id`,
+			// 					`particulars`,
+			// 					`code`,
+			// 					`approved_budget`,
+			// 					`added_at`,
+			// 					`added_by`
+			// 				)
+			// 				VALUES(
+			// 					'$project_id',
+			// 					'$particulars',
+			// 					'$code',
+			// 					'$approved_budget',
+			// 					NOW(),
+			// 					'{$this->cuser}'
+			// 				)
+			// 			");
+			// 		}
+
+					
+			// 	}
+			// }
 	
-			//INSERTING MOOE DT DATA
-			if (!empty($budgetmooedtdata)) {
+			// //INSERTING MOOE DT DATA
+			// if (!empty($budgetmooedtdata)) {
 
-				//this is for normal saving and updating
-				for($aa = 0; $aa < count($budgetmooedtdata); $aa++){
-					$medata = explode("x|x",$budgetmooedtdata[$aa]);
-					$particulars = $medata[0]; 
-					$code = $medata[1]; 
-					$approved_budget = $medata[2]; 
-					$dtid = $medata[3]; 
+			// 	//this is for normal saving and updating
+			// 	for($aa = 0; $aa < count($budgetmooedtdata); $aa++){
+			// 		$medata = explode("x|x",$budgetmooedtdata[$aa]);
+			// 		$particulars = $medata[0]; 
+			// 		$code = $medata[1]; 
+			// 		$approved_budget = $medata[2]; 
+			// 		$dtid = $medata[3]; 
 
-					if (!empty($dtid)) {
-						$query = $this->db->query("
-						UPDATE
-							`tbl_budget_direct_mooe_dt`
-						SET
-							`particulars` = '$particulars',
-							`code` = '$code',
-							`approved_budget` = '$approved_budget'
-						WHERE
-							`recid` = '$dtid'
-						");
-					}else{
-						$query = $this->db->query("
-						INSERT INTO `tbl_budget_direct_mooe_dt`(
-								`project_id`,
-								`particulars`,
-								`code`,
-								`approved_budget`,
-								`added_at`,
-								`added_by`
-							)
-							VALUES(
-								'$project_id',
-								'$particulars',
-								'$code',
-								'$approved_budget',
-								NOW(),
-								'{$this->cuser}'
-							)
-						");
-					}
-
-					
-				}
-			}
-
-			//INSERTING MOOE DT DATA INDIRECT ---
-			if (!empty($budgetmooeindirectdtdata)) {
-
-				//this is for normal saving and updating
-				for($aa = 0; $aa < count($budgetmooeindirectdtdata); $aa++){
-					$medata = explode("x|x",$budgetmooeindirectdtdata[$aa]);
-					$particulars = $medata[0]; 
-					$code = $medata[1]; 
-					$approved_budget = $medata[2]; 
-					$dtid = $medata[3]; 
-
-					if (!empty($dtid)) {
-						$query = $this->db->query("
-						UPDATE
-							`tbl_budget_indirect_mooe_dt`
-						SET
-							`particulars` = '$particulars',
-							`code` = '$code',
-							`approved_budget` = '$approved_budget'
-						WHERE
-							`recid` = '$dtid'
-						");
-					}else{
-						$query = $this->db->query("
-						INSERT INTO `tbl_budget_indirect_mooe_dt`(
-								`project_id`,
-								`particulars`,
-								`code`,
-								`approved_budget`,
-								`added_at`,
-								`added_by`
-							)
-							VALUES(
-								'$project_id',
-								'$particulars',
-								'$code',
-								'$approved_budget',
-								NOW(),
-								'{$this->cuser}'
-							)
-						");
-					}
+			// 		if (!empty($dtid)) {
+			// 			$query = $this->db->query("
+			// 			UPDATE
+			// 				`tbl_budget_direct_mooe_dt`
+			// 			SET
+			// 				`particulars` = '$particulars',
+			// 				`code` = '$code',
+			// 				`approved_budget` = '$approved_budget'
+			// 			WHERE
+			// 				`recid` = '$dtid'
+			// 			");
+			// 		}else{
+			// 			$query = $this->db->query("
+			// 			INSERT INTO `tbl_budget_direct_mooe_dt`(
+			// 					`project_id`,
+			// 					`particulars`,
+			// 					`code`,
+			// 					`approved_budget`,
+			// 					`added_at`,
+			// 					`added_by`
+			// 				)
+			// 				VALUES(
+			// 					'$project_id',
+			// 					'$particulars',
+			// 					'$code',
+			// 					'$approved_budget',
+			// 					NOW(),
+			// 					'{$this->cuser}'
+			// 				)
+			// 			");
+			// 		}
 
 					
-				}
-			}
+			// 	}
+			// }
 
-			//INSERTING CO DT DATA
-			if (!empty($budgetcodtdata)) {
+			// //INSERTING MOOE DT DATA INDIRECT ---
+			// if (!empty($budgetmooeindirectdtdata)) {
 
-				//this is for normal saving and updating
-				for($aa = 0; $aa < count($budgetcodtdata); $aa++){
-					$medata = explode("x|x",$budgetcodtdata[$aa]);
-					$particulars = $medata[0]; 
-					$code = $medata[1]; 
-					$approved_budget = $medata[2]; 
-					$dtid = $medata[3]; 
+			// 	//this is for normal saving and updating
+			// 	for($aa = 0; $aa < count($budgetmooeindirectdtdata); $aa++){
+			// 		$medata = explode("x|x",$budgetmooeindirectdtdata[$aa]);
+			// 		$particulars = $medata[0]; 
+			// 		$code = $medata[1]; 
+			// 		$approved_budget = $medata[2]; 
+			// 		$dtid = $medata[3]; 
 
-					if (!empty($dtid)) {
-						$query = $this->db->query("
-						UPDATE
-							`tbl_budget_direct_co_dt`
-						SET
-							`particulars` = '$particulars',
-							`code` = '$code',
-							`approved_budget` = '$approved_budget'
-						WHERE
-							`recid` = '$dtid'
-						");
-					}else{
-						$query = $this->db->query("
-						INSERT INTO `tbl_budget_direct_co_dt`(
-								`project_id`,
-								`particulars`,
-								`code`,
-								`approved_budget`,
-								`added_at`,
-								`added_by`
-							)
-							VALUES(
-								'$project_id',
-								'$particulars',
-								'$code',
-								'$approved_budget',
-								NOW(),
-								'{$this->cuser}'
-							)
-						");
-					}
-
-					
-				}
-			}
-
-			//INSERTING CO DT DATA INDIRECT --
-			if (!empty($budgetindirectcodtdata)) {
-
-				//this is for normal saving and updating
-				for($aa = 0; $aa < count($budgetindirectcodtdata); $aa++){
-					$medata = explode("x|x",$budgetindirectcodtdata[$aa]);
-					$particulars = $medata[0]; 
-					$code = $medata[1]; 
-					$approved_budget = $medata[2]; 
-					$dtid = $medata[3]; 
-
-					if (!empty($dtid)) {
-						$query = $this->db->query("
-						UPDATE
-							`tbl_budget_indirect_co_dt`
-						SET
-							`particulars` = '$particulars',
-							`code` = '$code',
-							`approved_budget` = '$approved_budget'
-						WHERE
-							`recid` = '$dtid'
-						");
-					}else{
-						$query = $this->db->query("
-						INSERT INTO `tbl_budget_indirect_co_dt`(
-								`project_id`,
-								`particulars`,
-								`code`,
-								`approved_budget`,
-								`added_at`,
-								`added_by`
-							)
-							VALUES(
-								'$project_id',
-								'$particulars',
-								'$code',
-								'$approved_budget',
-								NOW(),
-								'{$this->cuser}'
-							)
-						");
-					}
+			// 		if (!empty($dtid)) {
+			// 			$query = $this->db->query("
+			// 			UPDATE
+			// 				`tbl_budget_indirect_mooe_dt`
+			// 			SET
+			// 				`particulars` = '$particulars',
+			// 				`code` = '$code',
+			// 				`approved_budget` = '$approved_budget'
+			// 			WHERE
+			// 				`recid` = '$dtid'
+			// 			");
+			// 		}else{
+			// 			$query = $this->db->query("
+			// 			INSERT INTO `tbl_budget_indirect_mooe_dt`(
+			// 					`project_id`,
+			// 					`particulars`,
+			// 					`code`,
+			// 					`approved_budget`,
+			// 					`added_at`,
+			// 					`added_by`
+			// 				)
+			// 				VALUES(
+			// 					'$project_id',
+			// 					'$particulars',
+			// 					'$code',
+			// 					'$approved_budget',
+			// 					NOW(),
+			// 					'{$this->cuser}'
+			// 				)
+			// 			");
+			// 		}
 
 					
-				}
-			}
+			// 	}
+			// }
 
-			$status = "Project Budget Allotment Saved Successfully!";
+			// //INSERTING CO DT DATA
+			// if (!empty($budgetcodtdata)) {
+
+			// 	//this is for normal saving and updating
+			// 	for($aa = 0; $aa < count($budgetcodtdata); $aa++){
+			// 		$medata = explode("x|x",$budgetcodtdata[$aa]);
+			// 		$particulars = $medata[0]; 
+			// 		$code = $medata[1]; 
+			// 		$approved_budget = $medata[2]; 
+			// 		$dtid = $medata[3]; 
+
+			// 		if (!empty($dtid)) {
+			// 			$query = $this->db->query("
+			// 			UPDATE
+			// 				`tbl_budget_direct_co_dt`
+			// 			SET
+			// 				`particulars` = '$particulars',
+			// 				`code` = '$code',
+			// 				`approved_budget` = '$approved_budget'
+			// 			WHERE
+			// 				`recid` = '$dtid'
+			// 			");
+			// 		}else{
+			// 			$query = $this->db->query("
+			// 			INSERT INTO `tbl_budget_direct_co_dt`(
+			// 					`project_id`,
+			// 					`particulars`,
+			// 					`code`,
+			// 					`approved_budget`,
+			// 					`added_at`,
+			// 					`added_by`
+			// 				)
+			// 				VALUES(
+			// 					'$project_id',
+			// 					'$particulars',
+			// 					'$code',
+			// 					'$approved_budget',
+			// 					NOW(),
+			// 					'{$this->cuser}'
+			// 				)
+			// 			");
+			// 		}
+
+					
+			// 	}
+			// }
+
+			// //INSERTING CO DT DATA INDIRECT --
+			// if (!empty($budgetindirectcodtdata)) {
+
+			// 	//this is for normal saving and updating
+			// 	for($aa = 0; $aa < count($budgetindirectcodtdata); $aa++){
+			// 		$medata = explode("x|x",$budgetindirectcodtdata[$aa]);
+			// 		$particulars = $medata[0]; 
+			// 		$code = $medata[1]; 
+			// 		$approved_budget = $medata[2]; 
+			// 		$dtid = $medata[3]; 
+
+			// 		if (!empty($dtid)) {
+			// 			$query = $this->db->query("
+			// 			UPDATE
+			// 				`tbl_budget_indirect_co_dt`
+			// 			SET
+			// 				`particulars` = '$particulars',
+			// 				`code` = '$code',
+			// 				`approved_budget` = '$approved_budget'
+			// 			WHERE
+			// 				`recid` = '$dtid'
+			// 			");
+			// 		}else{
+			// 			$query = $this->db->query("
+			// 			INSERT INTO `tbl_budget_indirect_co_dt`(
+			// 					`project_id`,
+			// 					`particulars`,
+			// 					`code`,
+			// 					`approved_budget`,
+			// 					`added_at`,
+			// 					`added_by`
+			// 				)
+			// 				VALUES(
+			// 					'$project_id',
+			// 					'$particulars',
+			// 					'$code',
+			// 					'$approved_budget',
+			// 					NOW(),
+			// 					'{$this->cuser}'
+			// 				)
+			// 			");
+			// 		}
+
+					
+			// 	}
+			// }
+
+			$status = "ORS / BURS Saved Successfully!";
 			$color = "success";
 		}else{
 			$accessquery = $this->db->query("
-				SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '1003' AND `is_active` = '1'
+				SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '2003' AND `is_active` = '1'
 			");
 			if ($accessquery->getNumRows() == 0) {
 				echo "
@@ -565,288 +486,288 @@ class MyOrsBursModel extends Model
 
 			//PROJECT ID FETCHING
 			$query = $this->db->query("
-			SELECT `recid` FROM tbl_budget_hd WHERE `trxno` = '$trx'
+			SELECT `recid` FROM tbl_orsburs_hd WHERE `trxno` = '$trx'
 			");
 			$rw = $query->getRowArray();
 			$project_id = $rw['recid'];
 
-			//UPDATE OR INSERT OF NEW ROW DATA
-			if (!empty($budgetdtdata)) {
-				for($aa = 0; $aa < count($budgetdtdata); $aa++){
-					$medata = explode("x|x",$budgetdtdata[$aa]);
-					$particulars = $medata[0]; 
-					$code = $medata[1]; 
-					$approved_budget = $medata[2]; 
-					$dtid = $medata[3];
+			// //UPDATE OR INSERT OF NEW ROW DATA
+			// if (!empty($budgetdtdata)) {
+			// 	for($aa = 0; $aa < count($budgetdtdata); $aa++){
+			// 		$medata = explode("x|x",$budgetdtdata[$aa]);
+			// 		$particulars = $medata[0]; 
+			// 		$code = $medata[1]; 
+			// 		$approved_budget = $medata[2]; 
+			// 		$dtid = $medata[3];
 
-					if (!empty($dtid)) {
-						$query = $this->db->query("
-						UPDATE
-							`tbl_budget_direct_ps_dt`
-						SET
-							`particulars` = '$particulars',
-							`code` = '$code',
-							`approved_budget` = '$approved_budget'
-						WHERE
-							`recid` = '$dtid'
-						");
-					}else{
-						$query = $this->db->query("
-						INSERT INTO `tbl_budget_direct_ps_dt`(
-								`project_id`,
-								`particulars`,
-								`code`,
-								`approved_budget`,
-								`added_at`,
-								`added_by`
-							)
-							VALUES(
-								'$project_id',
-								'$particulars',
-								'$code',
-								'$approved_budget',
-								NOW(),
-								'{$this->cuser}'
-							)
-						");
-					}
-
-					
-				}
-			}
-
-			//INSERTING PS DT INDIRECT DATA
-			if (!empty($budgetdtindirectdata)) {
-				//this is for normal saving and updating
-				for($aa = 0; $aa < count($budgetdtindirectdata); $aa++){
-					$medata = explode("x|x",$budgetdtindirectdata[$aa]);
-					$particulars = $medata[0]; 
-					$code = $medata[1]; 
-					$approved_budget = $medata[2]; 
-					$dtid = $medata[3];
-
-					if (!empty($dtid)) {
-						$query = $this->db->query("
-						UPDATE
-							`tbl_budget_indirect_ps_dt`
-						SET
-							`particulars` = '$particulars',
-							`code` = '$code',
-							`approved_budget` = '$approved_budget'
-						WHERE
-							`recid` = '$dtid'
-						");
-					}else{
-						$query = $this->db->query("
-						INSERT INTO `tbl_budget_indirect_ps_dt`(
-								`project_id`,
-								`particulars`,
-								`code`,
-								`approved_budget`,
-								`added_at`,
-								`added_by`
-							)
-							VALUES(
-								'$project_id',
-								'$particulars',
-								'$code',
-								'$approved_budget',
-								NOW(),
-								'{$this->cuser}'
-							)
-						");
-					}
+			// 		if (!empty($dtid)) {
+			// 			$query = $this->db->query("
+			// 			UPDATE
+			// 				`tbl_budget_direct_ps_dt`
+			// 			SET
+			// 				`particulars` = '$particulars',
+			// 				`code` = '$code',
+			// 				`approved_budget` = '$approved_budget'
+			// 			WHERE
+			// 				`recid` = '$dtid'
+			// 			");
+			// 		}else{
+			// 			$query = $this->db->query("
+			// 			INSERT INTO `tbl_budget_direct_ps_dt`(
+			// 					`project_id`,
+			// 					`particulars`,
+			// 					`code`,
+			// 					`approved_budget`,
+			// 					`added_at`,
+			// 					`added_by`
+			// 				)
+			// 				VALUES(
+			// 					'$project_id',
+			// 					'$particulars',
+			// 					'$code',
+			// 					'$approved_budget',
+			// 					NOW(),
+			// 					'{$this->cuser}'
+			// 				)
+			// 			");
+			// 		}
 
 					
-				}
-			}
-			//INSERTING MOOE DT DATA
-			if (!empty($budgetmooedtdata)) {
+			// 	}
+			// }
 
-				//this is for normal saving and updating
-				for($aa = 0; $aa < count($budgetmooedtdata); $aa++){
-					$medata = explode("x|x",$budgetmooedtdata[$aa]);
-					$particulars = $medata[0]; 
-					$code = $medata[1]; 
-					$approved_budget = $medata[2]; 
-					$dtid = $medata[3]; 
+			// //INSERTING PS DT INDIRECT DATA
+			// if (!empty($budgetdtindirectdata)) {
+			// 	//this is for normal saving and updating
+			// 	for($aa = 0; $aa < count($budgetdtindirectdata); $aa++){
+			// 		$medata = explode("x|x",$budgetdtindirectdata[$aa]);
+			// 		$particulars = $medata[0]; 
+			// 		$code = $medata[1]; 
+			// 		$approved_budget = $medata[2]; 
+			// 		$dtid = $medata[3];
 
-					if (!empty($dtid)) {
-						$query = $this->db->query("
-						UPDATE
-							`tbl_budget_direct_mooe_dt`
-						SET
-							`particulars` = '$particulars',
-							`code` = '$code',
-							`approved_budget` = '$approved_budget'
-						WHERE
-							`recid` = '$dtid'
-						");
-					}else{
-						$query = $this->db->query("
-						INSERT INTO `tbl_budget_direct_mooe_dt`(
-								`project_id`,
-								`particulars`,
-								`code`,
-								`approved_budget`,
-								`added_at`,
-								`added_by`
-							)
-							VALUES(
-								'$project_id',
-								'$particulars',
-								'$code',
-								'$approved_budget',
-								NOW(),
-								'{$this->cuser}'
-							)
-						");
-					}
-
-				}
-			}
-
-			//INSERTING MOOE DT DATA INDIRECT ---
-			if (!empty($budgetmooeindirectdtdata)) {
-
-				//this is for normal saving and updating
-				for($aa = 0; $aa < count($budgetmooeindirectdtdata); $aa++){
-					$medata = explode("x|x",$budgetmooeindirectdtdata[$aa]);
-					$particulars = $medata[0]; 
-					$code = $medata[1]; 
-					$approved_budget = $medata[2]; 
-					$dtid = $medata[3]; 
-
-					if (!empty($dtid)) {
-						$query = $this->db->query("
-						UPDATE
-							`tbl_budget_indirect_mooe_dt`
-						SET
-							`particulars` = '$particulars',
-							`code` = '$code',
-							`approved_budget` = '$approved_budget'
-						WHERE
-							`recid` = '$dtid'
-						");
-					}else{
-						$query = $this->db->query("
-						INSERT INTO `tbl_budget_indirect_mooe_dt`(
-								`project_id`,
-								`particulars`,
-								`code`,
-								`approved_budget`,
-								`added_at`,
-								`added_by`
-							)
-							VALUES(
-								'$project_id',
-								'$particulars',
-								'$code',
-								'$approved_budget',
-								NOW(),
-								'{$this->cuser}'
-							)
-						");
-					}
+			// 		if (!empty($dtid)) {
+			// 			$query = $this->db->query("
+			// 			UPDATE
+			// 				`tbl_budget_indirect_ps_dt`
+			// 			SET
+			// 				`particulars` = '$particulars',
+			// 				`code` = '$code',
+			// 				`approved_budget` = '$approved_budget'
+			// 			WHERE
+			// 				`recid` = '$dtid'
+			// 			");
+			// 		}else{
+			// 			$query = $this->db->query("
+			// 			INSERT INTO `tbl_budget_indirect_ps_dt`(
+			// 					`project_id`,
+			// 					`particulars`,
+			// 					`code`,
+			// 					`approved_budget`,
+			// 					`added_at`,
+			// 					`added_by`
+			// 				)
+			// 				VALUES(
+			// 					'$project_id',
+			// 					'$particulars',
+			// 					'$code',
+			// 					'$approved_budget',
+			// 					NOW(),
+			// 					'{$this->cuser}'
+			// 				)
+			// 			");
+			// 		}
 
 					
-				}
-			}
+			// 	}
+			// }
+			// //INSERTING MOOE DT DATA
+			// if (!empty($budgetmooedtdata)) {
 
-			//INSERTING CO DT DATA
-			if (!empty($budgetcodtdata)) {
+			// 	//this is for normal saving and updating
+			// 	for($aa = 0; $aa < count($budgetmooedtdata); $aa++){
+			// 		$medata = explode("x|x",$budgetmooedtdata[$aa]);
+			// 		$particulars = $medata[0]; 
+			// 		$code = $medata[1]; 
+			// 		$approved_budget = $medata[2]; 
+			// 		$dtid = $medata[3]; 
 
-				//this is for normal saving and updating
-				for($aa = 0; $aa < count($budgetcodtdata); $aa++){
-					$medata = explode("x|x",$budgetcodtdata[$aa]);
-					$particulars = $medata[0]; 
-					$code = $medata[1]; 
-					$approved_budget = $medata[2]; 
-					$dtid = $medata[3]; 
+			// 		if (!empty($dtid)) {
+			// 			$query = $this->db->query("
+			// 			UPDATE
+			// 				`tbl_budget_direct_mooe_dt`
+			// 			SET
+			// 				`particulars` = '$particulars',
+			// 				`code` = '$code',
+			// 				`approved_budget` = '$approved_budget'
+			// 			WHERE
+			// 				`recid` = '$dtid'
+			// 			");
+			// 		}else{
+			// 			$query = $this->db->query("
+			// 			INSERT INTO `tbl_budget_direct_mooe_dt`(
+			// 					`project_id`,
+			// 					`particulars`,
+			// 					`code`,
+			// 					`approved_budget`,
+			// 					`added_at`,
+			// 					`added_by`
+			// 				)
+			// 				VALUES(
+			// 					'$project_id',
+			// 					'$particulars',
+			// 					'$code',
+			// 					'$approved_budget',
+			// 					NOW(),
+			// 					'{$this->cuser}'
+			// 				)
+			// 			");
+			// 		}
 
-					if (!empty($dtid)) {
-						$query = $this->db->query("
-						UPDATE
-							`tbl_budget_direct_co_dt`
-						SET
-							`particulars` = '$particulars',
-							`code` = '$code',
-							`approved_budget` = '$approved_budget'
-						WHERE
-							`recid` = '$dtid'
-						");
-					}else{
-						$query = $this->db->query("
-						INSERT INTO `tbl_budget_direct_co_dt`(
-								`project_id`,
-								`particulars`,
-								`code`,
-								`approved_budget`,
-								`added_at`,
-								`added_by`
-							)
-							VALUES(
-								'$project_id',
-								'$particulars',
-								'$code',
-								'$approved_budget',
-								NOW(),
-								'{$this->cuser}'
-							)
-						");
-					}
+			// 	}
+			// }
 
-				}
-			}
+			// //INSERTING MOOE DT DATA INDIRECT ---
+			// if (!empty($budgetmooeindirectdtdata)) {
 
-			//INSERTING CO DT DATA INDIRECT --
-			if (!empty($budgetindirectcodtdata)) {
+			// 	//this is for normal saving and updating
+			// 	for($aa = 0; $aa < count($budgetmooeindirectdtdata); $aa++){
+			// 		$medata = explode("x|x",$budgetmooeindirectdtdata[$aa]);
+			// 		$particulars = $medata[0]; 
+			// 		$code = $medata[1]; 
+			// 		$approved_budget = $medata[2]; 
+			// 		$dtid = $medata[3]; 
 
-				//this is for normal saving and updating
-				for($aa = 0; $aa < count($budgetindirectcodtdata); $aa++){
-					$medata = explode("x|x",$budgetindirectcodtdata[$aa]);
-					$particulars = $medata[0]; 
-					$code = $medata[1]; 
-					$approved_budget = $medata[2]; 
-					$dtid = $medata[3]; 
-
-					if (!empty($dtid)) {
-						$query = $this->db->query("
-						UPDATE
-							`tbl_budget_indirect_co_dt`
-						SET
-							`particulars` = '$particulars',
-							`code` = '$code',
-							`approved_budget` = '$approved_budget'
-						WHERE
-							`recid` = '$dtid'
-						");
-					}else{
-						$query = $this->db->query("
-						INSERT INTO `tbl_budget_indirect_co_dt`(
-								`project_id`,
-								`particulars`,
-								`code`,
-								`approved_budget`,
-								`added_at`,
-								`added_by`
-							)
-							VALUES(
-								'$project_id',
-								'$particulars',
-								'$code',
-								'$approved_budget',
-								NOW(),
-								'{$this->cuser}'
-							)
-						");
-					}
+			// 		if (!empty($dtid)) {
+			// 			$query = $this->db->query("
+			// 			UPDATE
+			// 				`tbl_budget_indirect_mooe_dt`
+			// 			SET
+			// 				`particulars` = '$particulars',
+			// 				`code` = '$code',
+			// 				`approved_budget` = '$approved_budget'
+			// 			WHERE
+			// 				`recid` = '$dtid'
+			// 			");
+			// 		}else{
+			// 			$query = $this->db->query("
+			// 			INSERT INTO `tbl_budget_indirect_mooe_dt`(
+			// 					`project_id`,
+			// 					`particulars`,
+			// 					`code`,
+			// 					`approved_budget`,
+			// 					`added_at`,
+			// 					`added_by`
+			// 				)
+			// 				VALUES(
+			// 					'$project_id',
+			// 					'$particulars',
+			// 					'$code',
+			// 					'$approved_budget',
+			// 					NOW(),
+			// 					'{$this->cuser}'
+			// 				)
+			// 			");
+			// 		}
 
 					
-				}
-			}
+			// 	}
+			// }
 
-			$status = "Project Budget Allotment Updated Successfully!";
+			// //INSERTING CO DT DATA
+			// if (!empty($budgetcodtdata)) {
+
+			// 	//this is for normal saving and updating
+			// 	for($aa = 0; $aa < count($budgetcodtdata); $aa++){
+			// 		$medata = explode("x|x",$budgetcodtdata[$aa]);
+			// 		$particulars = $medata[0]; 
+			// 		$code = $medata[1]; 
+			// 		$approved_budget = $medata[2]; 
+			// 		$dtid = $medata[3]; 
+
+			// 		if (!empty($dtid)) {
+			// 			$query = $this->db->query("
+			// 			UPDATE
+			// 				`tbl_budget_direct_co_dt`
+			// 			SET
+			// 				`particulars` = '$particulars',
+			// 				`code` = '$code',
+			// 				`approved_budget` = '$approved_budget'
+			// 			WHERE
+			// 				`recid` = '$dtid'
+			// 			");
+			// 		}else{
+			// 			$query = $this->db->query("
+			// 			INSERT INTO `tbl_budget_direct_co_dt`(
+			// 					`project_id`,
+			// 					`particulars`,
+			// 					`code`,
+			// 					`approved_budget`,
+			// 					`added_at`,
+			// 					`added_by`
+			// 				)
+			// 				VALUES(
+			// 					'$project_id',
+			// 					'$particulars',
+			// 					'$code',
+			// 					'$approved_budget',
+			// 					NOW(),
+			// 					'{$this->cuser}'
+			// 				)
+			// 			");
+			// 		}
+
+			// 	}
+			// }
+
+			// //INSERTING CO DT DATA INDIRECT --
+			// if (!empty($budgetindirectcodtdata)) {
+
+			// 	//this is for normal saving and updating
+			// 	for($aa = 0; $aa < count($budgetindirectcodtdata); $aa++){
+			// 		$medata = explode("x|x",$budgetindirectcodtdata[$aa]);
+			// 		$particulars = $medata[0]; 
+			// 		$code = $medata[1]; 
+			// 		$approved_budget = $medata[2]; 
+			// 		$dtid = $medata[3]; 
+
+			// 		if (!empty($dtid)) {
+			// 			$query = $this->db->query("
+			// 			UPDATE
+			// 				`tbl_budget_indirect_co_dt`
+			// 			SET
+			// 				`particulars` = '$particulars',
+			// 				`code` = '$code',
+			// 				`approved_budget` = '$approved_budget'
+			// 			WHERE
+			// 				`recid` = '$dtid'
+			// 			");
+			// 		}else{
+			// 			$query = $this->db->query("
+			// 			INSERT INTO `tbl_budget_indirect_co_dt`(
+			// 					`project_id`,
+			// 					`particulars`,
+			// 					`code`,
+			// 					`approved_budget`,
+			// 					`added_at`,
+			// 					`added_by`
+			// 				)
+			// 				VALUES(
+			// 					'$project_id',
+			// 					'$particulars',
+			// 					'$code',
+			// 					'$approved_budget',
+			// 					NOW(),
+			// 					'{$this->cuser}'
+			// 				)
+			// 			");
+			// 		}
+
+					
+			// 	}
+			// }
+
+			$status = "ORS / BURS Updated Successfully!";
 			$color = "info";
 		}
 
@@ -860,7 +781,7 @@ class MyOrsBursModel extends Model
 						timeOut:2500,
 					});
 				setTimeout(function() {
-						window.location.href = 'mybudgetallotment?meaction=MAIN&recid=$project_id'; // Redirect to MAIN view
+						window.location.href = 'myorsburs?meaction=MAIN&recid=$project_id'; // Redirect to MAIN view
 					}, 2500); // 2-second delay for user to see the toast
 			</script>
 			";

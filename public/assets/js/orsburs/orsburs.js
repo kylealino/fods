@@ -277,6 +277,7 @@ function __mysys_orsburs_ent() {
 					event.stopPropagation();
 		
 					var recid = document.getElementById("recid");
+					var serial_no = document.getElementById("serial_no");
 					var program_title = document.getElementById("program_title");
 					var project_title = document.getElementById("project_title");
 					var fund_cluster_code = document.getElementById("fund_cluster_code");
@@ -386,6 +387,7 @@ function __mysys_orsburs_ent() {
 
 					var mparam = { 
 						recid: recid.value,
+						serial_no: serial_no.value,
 						program_title: program_title.value,
 						project_title: project_title.value,
 						fund_cluster_code: fund_cluster_code.value,

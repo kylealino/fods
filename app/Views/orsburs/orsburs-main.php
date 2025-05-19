@@ -7,6 +7,8 @@ $this->session = session();
 $this->cuser = $this->session->get('__xsys_myuserzicas__');
 
 $recid = "";
+$budget_recid = "";
+$serial_no ="";
 $trxno = "";
 $project_title = "";
 $responsibility_code = "";
@@ -32,6 +34,7 @@ if (!empty($prgmdata) || !is_null($prgmdata)) {
     $query = $this->db->query("
     SELECT
         `recid`,
+        `recid` budget_recid,
         `project_title`,
         `responsibility_code`,
         `fund_cluster_code`
@@ -42,10 +45,10 @@ if (!empty($prgmdata) || !is_null($prgmdata)) {
     );
 
     $data = $query->getRowArray();
-    $recid = $data['recid'];
     $project_title = $data['project_title'];
     $responsibility_code = $data['responsibility_code'];
     $fund_cluster_code = $data['fund_cluster_code'];
+    $budget_recid = $data['budget_recid'];
 }
 
 
@@ -96,6 +99,7 @@ echo view('templates/myheader.php');
                             </div>
                             <div class="col-sm-10">
                                 <input type="hidden" class="form-control form-control-sm" id="recid" name="recid" value="<?=$recid;?>"/>
+                                <input type="hidden" class="form-control form-control-sm" id="serial_no" name="serial_no" value="<?=$serial_no;?>"/>
                                 <select id="program_title" class=" text-nowrap form-select form-select-sm">
                                     <?php if(!empty($prgmdata)):?>
                                         <option selected value="<?=$prgmdata;?>"><?=$prgmdata;?></option>
@@ -257,7 +261,7 @@ echo view('templates/myheader.php');
                                                     <th class="text-center align-middle">Approved Budget</th>
                                                 </thead>
                                                 <tbody>
-                                                    <?php if(!empty($recid)):
+                                                    <?php if(!empty($budget_recid)):
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
@@ -267,7 +271,7 @@ echo view('templates/myheader.php');
                                                         FROM
                                                             `tbl_budget_direct_ps_dt`
                                                         WHERE 
-                                                            `project_id` = '$recid'"
+                                                            `project_id` = '$budget_recid'"
                                                         );
                                                         $result = $query->getResultArray();
                                                         foreach ($result as $data):
@@ -318,7 +322,7 @@ echo view('templates/myheader.php');
                                                     <th class="text-center align-middle">Approved Budget</th>
                                                 </thead>
                                                 <tbody>
-                                                    <?php if(!empty($recid)):
+                                                    <?php if(!empty($budget_recid)):
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
@@ -328,7 +332,7 @@ echo view('templates/myheader.php');
                                                         FROM
                                                             `tbl_budget_indirect_ps_dt`
                                                         WHERE 
-                                                            `project_id` = '$recid'"
+                                                            `project_id` = '$budget_recid'"
                                                         );
                                                         $result = $query->getResultArray();
                                                         foreach ($result as $data):
@@ -411,7 +415,7 @@ echo view('templates/myheader.php');
                                                             <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" class="approved_budget text-center" disabled/>
                                                         </td>
                                                     </tr>
-                                                    <?php if(!empty($recid)):
+                                                    <?php if(!empty($budget_recid)):
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
@@ -421,7 +425,7 @@ echo view('templates/myheader.php');
                                                         FROM
                                                             `tbl_budget_direct_mooe_dt`
                                                         WHERE 
-                                                            `project_id` = '$recid'"
+                                                            `project_id` = '$budget_recid'"
                                                         );
                                                         $result = $query->getResultArray();
                                                         foreach ($result as $data):
@@ -496,7 +500,7 @@ echo view('templates/myheader.php');
                                                             <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" class="approved_budget text-center" disabled/>
                                                         </td>
                                                     </tr>
-                                                    <?php if(!empty($recid)):
+                                                    <?php if(!empty($budget_recid)):
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
@@ -506,7 +510,7 @@ echo view('templates/myheader.php');
                                                         FROM
                                                             `tbl_budget_indirect_mooe_dt`
                                                         WHERE 
-                                                            `project_id` = '$recid'"
+                                                            `project_id` = '$budget_recid'"
                                                         );
                                                         $result = $query->getResultArray();
                                                         foreach ($result as $data):
@@ -562,7 +566,7 @@ echo view('templates/myheader.php');
                                                     <th class="text-center align-middle">Approved Budget</th>
                                                 </thead>
                                                 <tbody>
-                                                    <?php if(!empty($recid)):
+                                                    <?php if(!empty($budget_recid)):
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
@@ -572,7 +576,7 @@ echo view('templates/myheader.php');
                                                         FROM
                                                             `tbl_budget_direct_co_dt`
                                                         WHERE 
-                                                            `project_id` = '$recid'"
+                                                            `project_id` = '$budget_recid'"
                                                         );
                                                         $result = $query->getResultArray();
                                                         foreach ($result as $data):
@@ -614,7 +618,7 @@ echo view('templates/myheader.php');
                                                     <th class="text-center align-middle">Approved Budget</th>
                                                 </thead>
                                                 <tbody>
-                                                    <?php if(!empty($recid)):
+                                                    <?php if(!empty($budget_recid)):
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
@@ -624,7 +628,7 @@ echo view('templates/myheader.php');
                                                         FROM
                                                             `tbl_budget_indirect_co_dt`
                                                         WHERE 
-                                                            `project_id` = '$recid'"
+                                                            `project_id` = '$budget_recid'"
                                                         );
                                                         $result = $query->getResultArray();
                                                         foreach ($result as $data):
@@ -632,7 +636,7 @@ echo view('templates/myheader.php');
                                                             $particulars = $data['particulars'];
                                                             $code = $data['code'];
                                                             $approved_budget = $data['approved_budget'];
-                                                    ?>
+                                                        ?>
                                                     <tr>
                                                         <td class="text-center align-middle">
                                                             <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
@@ -749,78 +753,6 @@ echo view('templates/myheader.php');
             </table>
         </div>
     </div>
-
-    <div class="card">
-        <div class="card-header bg-info p-1">
-            <div class="row">
-                <div class="col-sm-6 d-flex align-items-center text-start">
-                    <h6 class="mb-0 lh-base px-3 text-white fw-semibold d-flex align-items-center">
-                        <i class="ti ti-files fs-5 me-1"></i>
-                        <span class="pt-1">Project Attachments</span>
-                    </h6>
-                </div>
-            </div>
-		</div>						
-        <div class="card-body p-0 px-4 py-2 my-2">
-            <form id="uploadForm" action="<?=site_url();?>myorsburs" method="post" enctype="multipart/form-data">
-            <div class="row">
-                <div class="col-sm-6 mb-2">
-                    <label for="formFileSm" class="form-label">Uploading:</label>
-                    <div class="d-flex gap-2">
-                        <input class="form-control form-control-sm" name="userfile" type="file" />
-                        <input type="hidden" name="hd_trxno" value="<?=$trxno;?>">
-                        <input type="hidden" name="meaction"  value="MAIN-UPLOAD">
-                        
-                        <?php if(!empty($recid)):?>
-                            <button type="submit" class="btn btn-sm btn-primary">Upload</button>
-                        <?php else:?>
-                            <button type="submit" class="btn btn-sm btn-primary" disabled>Upload</button>
-                        <?php endif;?>
-                    </div>
-                </div>
-                
-                <div class="col-sm-12">
-                    <label for="formFileSm" class="form-label">List of uploaded files:</label>
-                    <table class="table table-bordered table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th class="text-center">No.</th>
-                                <th class="text-center">File Name</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if(!empty($trxno)):
-                                $query = $this->db->query("
-                                SELECT
-                                    `recid`,
-                                    `file_name`
-                                FROM
-                                    `tbl_budget_attachments`
-                                WHERE 
-                                    `trxno` = '$trxno'"
-                                );
-                                $result = $query->getResultArray();
-                                foreach ($result as $data):
-                                    $recid = $data['recid'];
-                                    $file_name = $data['file_name'];
-                            ?>
-                            <tr>
-                                <td class="text-center"><?=$counter++;?></td>
-                                <td class="text-center">
-                                    <a href="<?= base_url('uploads/' . urlencode($file_name)) ?>" target="_blank">
-                                        <?=$file_name;?>
-                                    </a>
-                                </td>
-                            </tr>
-                            <?php endforeach; endif;?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            </form>
-        </div>
-    </div>
-
 </div>
 <!-- Delete Confirmation Modal -->
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
