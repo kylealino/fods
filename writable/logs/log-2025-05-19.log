@@ -130,3 +130,18 @@ in APPPATH\Models\MyOrsBursModel.php on line 171.
  6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
  7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
  8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-19 07:41:53 --> ErrorException: Undefined variable $color
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\Views\budget\budget-allotment-main.php on line 444.
+ 1 APPPATH\Views\budget\budget-allotment-main.php(444): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $color', 'C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-allotment-main.php', 444)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-allotment-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(134): view('budget/budget-allotment-main', [...])
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(28): App\Controllers\MyBudgetAllotment->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

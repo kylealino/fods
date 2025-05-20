@@ -431,9 +431,9 @@ echo view('templates/myheader.php');
                                     <?php if(!empty($recid)):?>
                                         <option value="<?=$tagging;?>"><?=$tagging;?></option>
                                     <?php endif;?>
-                                    <option value="Save to Draft">Save to Draft</option>
-                                    <option value="Park">Park</option>
-                                    <option value="Posted">Posted</option>
+                                    <option value="Save to Draft" class="text-success">Save to Draft</option>
+                                    <option value="For Approval" class="text-info">For Approval</option>
+                                    <option value="Posted" class="text-primary">Posted</option>
                                 </select>
                             </div>
                         </div>
