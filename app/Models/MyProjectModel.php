@@ -116,6 +116,7 @@ class MyProjectModel extends Model
 			// Echo JavaScript to show the toast and then redirect
 			echo "
 			<script>
+				document.getElementById('submitBtn').disabled = true;
 				toastr.$color('{$status}!', 'Well Done!', {
 						progressBar: true,
 						closeButton: true,

@@ -433,11 +433,48 @@ echo view('templates/myheader.php');
                                     <?php endif;?>
                                     <option value="Save to Draft" class="text-success">Save to Draft</option>
                                     <option value="For Approval" class="text-info">For Approval</option>
-                                    <option value="Posted" class="text-primary">Posted</option>
                                 </select>
                             </div>
                         </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span class="fw-bold">Realignment:</span>
+                            </div>
+                            <div class="col-sm-8">
 
+                                <?php if(!empty($recid)):?>
+                                <div class="d-flex gap-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="chk_1strealign">
+                                        <label class="form-check-label" for="chk_1strealign">1st</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="chk_2ndrealign">
+                                        <label class="form-check-label" for="chk_2ndrealign">2nd</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="chk_3rdrealign">
+                                        <label class="form-check-label" for="chk_3rdrealign">3rd</label>
+                                    </div>
+                                </div>
+                                <?php else:?>
+                                <div class="d-flex gap-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="chk_1strealign" disabled>
+                                        <label class="form-check-label" for="chk_1strealign">1st</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="chk_2ndrealign" disabled>
+                                        <label class="form-check-label" for="chk_2ndrealign">2nd</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="chk_3rdrealign" disabled>
+                                        <label class="form-check-label" for="chk_3rdrealign">3rd</label>
+                                    </div>
+                                </div>
+                                <?php endif;?>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <hr>
@@ -476,9 +513,14 @@ echo view('templates/myheader.php');
                                                     <th class="text-center">
                                                         <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" href="javascript:__mysys_budget_allotment_ent.my_add_budget_line();"><i class="ti ti-new-section"></i></a>
                                                     </th>
+                                                    <th class="text-center align-middle">Expense Item</th>
                                                     <th class="text-center align-middle">PS - Particulars</th>
                                                     <th class="text-center align-middle">UACS.</th>
                                                     <th class="text-center align-middle">Approved Budget</th>
+                                                    <th class="text-center align-middle">1st Realignment</th>
+                                                    <th class="text-center align-middle">2nd Realignment</th>
+                                                    <th class="text-center align-middle">3rd Realignment</th>
+                                                    <th class="text-center align-middle">Proposed Realignment</th>
                                                 </thead>
                                                 <tbody>
                                                     <tr style="display:none;">
@@ -489,7 +531,10 @@ echo view('templates/myheader.php');
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:500px; height:30px;">
+                                                            <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
                                                                 <option selected value ="">Choose...</option>
                                                                 <?php foreach($psuacsdata as $data){
                                                                     $object_of_expenditures = $data['object_of_expenditures'];
@@ -503,7 +548,19 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" class="approved_budget text-center"/>
+                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" class="approved_budget text-center" onchange="__mysys_budget_allotment_ent.__pack_totals();"/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="r1_approved_budget"  value="" size="25" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_budget_allotment_ent.__pack_totals();"/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="r2_approved_budget"  value="" size="25" name="r2_approved_budget" data-dtid="" class="r2_approved_budget text-center" onchange="__mysys_budget_allotment_ent.__pack_totals();"/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="r3_approved_budget"  value="" size="25" name="r3_approved_budget" data-dtid="" class="r3_approved_budget text-center" onchange="__mysys_budget_allotment_ent.__pack_totals();"/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="proposed_realignment"  value="" size="25" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
                                                         </td>
                                                     </tr>
                                                     <?php if(!empty($recid)):
@@ -533,7 +590,10 @@ echo view('templates/myheader.php');
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form"  style="width:500px; height:30px;">
+                                                            <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
                                                                 <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
                                                                 <?php foreach($psuacsdata as $data){
                                                                     $object_of_expenditures = $data['object_of_expenditures'];
@@ -547,52 +607,19 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center"/>
-                                                        </td>
-                                                    </tr>
-                                                    <?php endforeach; endif;?>
-                                                    <?php if(!empty($realign_id)):
-                                                        $query = $this->db->query("
-                                                        SELECT
-                                                            `recid`,
-                                                            `particulars`,
-                                                            `code`,
-                                                            `approved_budget`
-                                                        FROM
-                                                            `tbl_budget_direct_ps_dt`
-                                                        WHERE 
-                                                            `project_id` = '$realign_id'"
-                                                        );
-                                                        $result = $query->getResultArray();
-                                                        foreach ($result as $data):
-                                                            $dt_id = $data['recid'];
-                                                            $particulars = $data['particulars'];
-                                                            $code = $data['code'];
-                                                            $approved_budget = $data['approved_budget'];
-                                                    ?>
-                                                    <tr>
-                                                        <td class="text-center align-middle">
-                                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
-                                                            <i class="ti ti-trash"></i>
-                                                            </a>
+                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center" onchange="__mysys_budget_allotment_ent.__pack_totals();"/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form"  style="width:500px; height:30px;">
-                                                                <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
-                                                                <?php foreach($psuacsdata as $data){
-                                                                    $object_of_expenditures = $data['object_of_expenditures'];
-                                                                    $_code = $data['code'];
-                                                                ?>
-                                                                    <option value="<?=$object_of_expenditures?>"  data-uacs="<?=$_code;?>"><?=$object_of_expenditures?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="number" id="r1_approved_budget"  value="" size="25" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__pack_totals();"/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
+                                                            <input type="number" id="r2_approved_budget"  value="" size="25" name="r2_approved_budget" data-dtid="" class="r2_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__pack_totals();"/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="" name="approved_budget" class="approved_budget text-center"/>
+                                                            <input type="number" id="r3_approved_budget"  value="" size="25" name="r3_approved_budget" data-dtid="" class="r3_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__pack_totals();"/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="proposed_realignment"  value="" size="25" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
@@ -607,6 +634,7 @@ echo view('templates/myheader.php');
                                                     <th class="text-center">
                                                         <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" href="javascript:__mysys_budget_allotment_ent.my_add_budget_indirect_line();"><i class="ti ti-new-section"></i></a>
                                                     </th>
+                                                    <th class="text-center align-middle">Expense Item</th>
                                                     <th class="text-center align-middle">PS - Particulars</th>
                                                     <th class="text-center align-middle">UACS.</th>
                                                     <th class="text-center align-middle">Approved Budget</th>
@@ -620,7 +648,10 @@ echo view('templates/myheader.php');
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:500px; height:30px;">
+                                                            <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
                                                                 <option selected value ="">Choose...</option>
                                                                 <?php foreach($psuacsdata as $data){
                                                                     $object_of_expenditures = $data['object_of_expenditures'];
@@ -635,6 +666,18 @@ echo view('templates/myheader.php');
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" class="approved_budget text-center"/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="r1_approved_budget"  value="" size="25" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="r2_approved_budget"  value="" size="25" name="r2_approved_budget" data-dtid="" class="r2_approved_budget text-center" disabled/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="r3_approved_budget"  value="" size="25" name="r3_approved_budget" data-dtid="" class="r3_approved_budget text-center" disabled/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="proposed_realignment"  value="" size="25" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
                                                         </td>
                                                     </tr>
                                                     <?php if(!empty($recid)):
@@ -664,7 +707,10 @@ echo view('templates/myheader.php');
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form"  style="width:500px; height:30px;">
+                                                            <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
                                                                 <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
                                                                 <?php foreach($psuacsdata as $data){
                                                                     $object_of_expenditures = $data['object_of_expenditures'];
@@ -680,50 +726,17 @@ echo view('templates/myheader.php');
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center"/>
                                                         </td>
-                                                    </tr>
-                                                    <?php endforeach; endif;?>
-                                                    <?php if(!empty($realign_id)):
-                                                        $query = $this->db->query("
-                                                        SELECT
-                                                            `recid`,
-                                                            `particulars`,
-                                                            `code`,
-                                                            `approved_budget`
-                                                        FROM
-                                                            `tbl_budget_indirect_ps_dt`
-                                                        WHERE 
-                                                            `project_id` = '$realign_id'"
-                                                        );
-                                                        $result = $query->getResultArray();
-                                                        foreach ($result as $data):
-                                                            $dt_id = $data['recid'];
-                                                            $particulars = $data['particulars'];
-                                                            $code = $data['code'];
-                                                            $approved_budget = $data['approved_budget'];
-                                                    ?>
-                                                    <tr>
-                                                        <td class="text-center align-middle">
-                                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
-                                                            <i class="ti ti-trash"></i>
-                                                            </a>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="r1_approved_budget"  value="" size="25" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form"  style="width:500px; height:30px;">
-                                                                <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
-                                                                <?php foreach($psuacsdata as $data){
-                                                                    $object_of_expenditures = $data['object_of_expenditures'];
-                                                                    $_code = $data['code'];
-                                                                ?>
-                                                                    <option value="<?=$object_of_expenditures?>"  data-uacs="<?=$_code;?>"><?=$object_of_expenditures?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="number" id="r2_approved_budget"  value="" size="25" name="r2_approved_budget" data-dtid="" class="r2_approved_budget text-center" disabled/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
+                                                            <input type="number" id="r3_approved_budget"  value="" size="25" name="r3_approved_budget" data-dtid="" class="r3_approved_budget text-center" disabled/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="" name="approved_budget" class="approved_budget text-center"/>
+                                                            <input type="number" id="proposed_realignment"  value="" size="25" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
@@ -1518,7 +1531,7 @@ echo view('templates/myheader.php');
 ?>
 <script>
     __mysys_budget_allotment_ent.__budget_saving();
- 
+    __mysys_budget_allotment_ent.__pack_totals();
     $(document).ready(function () {
         $('#datatablesSimple').DataTable({
             pageLength: 5,
@@ -1527,6 +1540,27 @@ echo view('templates/myheader.php');
             language: {
             search: "Search:"
             }
+        });
+
+        $('.r1_approved_budget').prop('disabled', true);
+        $('.r2_approved_budget').prop('disabled', true);
+        $('.r3_approved_budget').prop('disabled', true);
+
+        // Toggle all based on the checkbox
+        $('#chk_1strealign').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.r1_approved_budget').prop('disabled', !isChecked);
+            $('.approved_budget').prop('disabled', isChecked);
+        });
+        $('#chk_2ndrealign').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.r2_approved_budget').prop('disabled', !isChecked);
+            $('.r1_approved_budget').prop('disabled', isChecked);
+        });
+        $('#chk_3rdrealign').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.r3_approved_budget').prop('disabled', !isChecked);
+            $('.r2_approved_budget').prop('disabled', isChecked);
         });
     
     });
@@ -1549,6 +1583,7 @@ echo view('templates/myheader.php');
         $('#division_name').val(division);
         $('#responsibility_code').val(responsibility);
     });
+
 
 </script>
 <?php

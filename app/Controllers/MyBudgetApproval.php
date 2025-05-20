@@ -44,7 +44,7 @@ class MyBudgetApproval extends BaseController
         FROM
             tbl_budget_hd a
         WHERE
-            `is_pending` = '1' AND `is_approved` = '0' AND `is_disapproved` = '0'
+            `is_pending` = '1' AND `is_approved` = '0' AND `is_disapproved` = '0' AND tagging = 'For Approval'
         GROUP BY a.`trxno`
         ORDER BY a.`recid` DESC
         ");
@@ -69,7 +69,7 @@ class MyBudgetApproval extends BaseController
         FROM
             tbl_budget_hd a
         WHERE
-            a.`is_approved` = '1' AND a.`is_disapproved` = '0' AND a.`is_pending` = '0'
+            a.`is_approved` = '1' AND a.`is_disapproved` = '0' AND a.`is_pending` = '0' AND tagging = 'For Approval'
         GROUP BY a.`trxno`
         ");
         $approvedbudgetdata = $approvedbudgetquery->getResultArray();
@@ -93,7 +93,7 @@ class MyBudgetApproval extends BaseController
         FROM
             tbl_budget_hd a
         WHERE
-            a.`is_disapproved` = '1' AND a.`is_approved` = '0' AND a.`is_pending` = '0'
+            a.`is_disapproved` = '1' AND a.`is_approved` = '0' AND a.`is_pending` = '0' AND tagging = 'For Approval'
         GROUP BY a.`trxno`
         ");
         $disapprovedbudgetdata = $disapprovedbudgetquery->getResultArray();

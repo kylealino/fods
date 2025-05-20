@@ -223,7 +223,7 @@ class MyBudgetAllotmentModel extends Model
 				'$monitoring_agency',
 				'$collaborating_agencies',
 				'$implementing_agency',
-				'$tagging',
+				'$tagging'
 				)
 			");
 

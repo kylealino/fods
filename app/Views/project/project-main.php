@@ -177,7 +177,7 @@ echo view('templates/myheader.php');
                 </div>
                 <div class="row mb-2">  
                     <div class="col-sm-12 text-end">
-                        <button type="submit" class="btn bg-<?= empty($recid) ? 'success' : 'info' ?>-subtle text-<?= empty($recid) ? 'success' : 'info' ?> btn-sm rounded-pill "><i class="ti ti-brand-doctrine mt-1 fs-4 me-1"></i>
+                        <button type="submit" id="submitBtn" class="btn bg-<?= empty($recid) ? 'success' : 'info' ?>-subtle text-<?= empty($recid) ? 'success' : 'info' ?> btn-sm rounded-pill "><i class="ti ti-brand-doctrine mt-1 fs-4 me-1"></i>
                             <?= empty($recid) ? 'Save' : 'Update' ?>
                         </button>
                     </div>

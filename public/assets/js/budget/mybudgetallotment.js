@@ -12,16 +12,28 @@ function __mysys_budget_allotment_ent() {
 			var clonedRow = jQuery('#budget_line_items tbody tr:eq(' + (rowCount - 1) + ')').clone();
 	
 			jQuery(clonedRow).find('select').eq(0).val('').attr('id', 'col4' + mid);
-			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col2' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col1' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=text]').eq(1).attr('id', 'col2' + mid); // ID for second text field
 			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(1).attr('id', 'col4' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(2).attr('id', 'col5' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(3).attr('id', 'col6' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(4).attr('id', 'col7' + mid); // ID for date field
 			// Now reset only the debit and credit fields (input[type=number])
 			
 			jQuery(clonedRow).find('select').eq(0).val('');
 			jQuery(clonedRow).find('input[type=text]').eq(0).val('');  // Clear credit value
+			jQuery(clonedRow).find('input[type=text]').eq(1).val('');  // Clear credit value
 			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
+			jQuery(clonedRow).find('input[type=number]').eq(1).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(2).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(3).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(4).val('');
 	
 			// Insert the cloned row before the last row (footer row)
 			jQuery('#budget_line_items tbody').append(clonedRow);
+
+			this.__pack_totals();
 	
 			// Make the new row visible
 			jQuery(clonedRow).css({ 'display': '' });
@@ -447,97 +459,6 @@ function __mysys_budget_allotment_ent() {
 		}); //end forEach		
 	}; //
 
-	// this.__delete_payee = function() {
-	// 	const deleteBtn = document.getElementById('btn_delete');
-	// 	const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-	
-	// 	let recid = null; // store recid for use after confirmation
-	
-	// 	deleteBtn.addEventListener('click', function () {
-	// 		recid = document.getElementById("recid").value;
-	
-	// 		// Show the modal
-	// 		const deleteModal = new bootstrap.Modal(document.getElementById('confirmApproveModal'));
-	// 		deleteModal.show();
-	// 	});
-	
-	// 	confirmDeleteBtn.addEventListener('click', function () {
-	// 		if (!recid) return;
-	
-	// 		const mparam = {
-	// 			recid: recid,
-	// 			meaction: 'MAIN-DELETE'
-	// 		};
-	
-	// 		jQuery.ajax({
-	// 			type: "POST",
-	// 			url: mesiteurl + 'mypayee',
-	// 			context: document.body,
-	// 			data: mparam,
-	// 			global: false,
-	// 			cache: false,
-	// 			success: function(data) {
-	// 				jQuery('.me-mypayee-outp-msg').html(data);
-	// 			},
-	// 			error: function(xhr, status, error) {
-	// 				toastr.error('[MYPAYEE-ENT', "Hello, Error Loading Page..." + error, {
-	// 					closeButton: true,
-	// 				});
-	// 			}
-	// 		});
-	
-	// 		// Close the modal
-	// 		const deleteModal = bootstrap.Modal.getInstance(document.getElementById('confirmApproveModal'));
-	// 		deleteModal.hide();
-	// 	});
-	// };
-	
-	// this.__delete_payee = function() {
-    //     document.getElementById('btn_delete').addEventListener('click', function (event) { 
-	// 		try { 
-	// 			var recid = document.getElementById("recid");
-	// 			var fname = document.getElementById("fname");
-	// 			var lname = document.getElementById("lname");
-				
-	// 			var mparam = { 
-	// 				recid: recid.value,
-	// 				fname: fname.value,
-	// 				lname: lname.value,
-	// 				meaction: 'MAIN-DELETE'
-	// 			}
-
-	// 			jQuery.ajax({ // default declaration of ajax parameters
-	// 				type: "POST",
-	// 				url: mesiteurl + 'mycrud',
-	// 				context: document.body,
-	// 				data: eval(mparam),
-	// 				global: false,
-	// 				cache: false,
-	// 				success: function(data) { //display html using divID
-	// 					jQuery('.me-mycrud-outp-msg').html(data);
-	// 					return false;
-	// 				},
-	// 				error: function(xhr, status, error) { // display global error on the menu function
-	// 					//__mysys_apps.mybs_simple_toast('memsgtoastcont','metoastmsglang','align-items-center text-bg-danger border-0','Hello, Error Loading Page [TRXMGT-AP-ITEM-TAXDED-ENT]' + error);
-	// 					toastr.error('[MYCRUD-ENT', "Hello, Error Loading Page..." + error, {
-	// 					closeButton: true,
-	// 					});
-	// 					return false;
-	// 				} 
-	// 			});  
-                            
-    //             } catch(err) {
-    //                 var mtxt = 'There was an error on this page.\n';
-    //                 mtxt += 'Error description: ' + err.message;
-    //                 mtxt += '\nClick OK to continue.';
-    //                 alert(mtxt);
-                    
-    //                 return false;
-        
-    //             }  //end try	
-	// 	}); 
-    // }
-
 	this.__approve_budget = function() {
 		const approveBtn = document.getElementById('btn_approve');
 		const confirmApproveBtn = document.getElementById('confirmApproveBtn');
@@ -667,6 +588,21 @@ function __mysys_budget_allotment_ent() {
 			}
 		});
 	});
+
+	this.__pack_totals = function () {
+        jQuery('.budgetdata-list tr').each(function () {
+            var row = jQuery(this);
+
+            var approved = parseFloat(row.find('.approved_budget').val()) || 0;
+            var r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+            var r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+            var r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+            var total = approved + r1 + r2 + r3;
+
+            row.find('.proposed_realignment').val(total.toFixed(2));
+        });
+    };
 
 	
 	

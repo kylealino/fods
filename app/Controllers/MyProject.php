@@ -57,6 +57,7 @@ class MyProject extends BaseController
             `tbl_division` c
         ON
             a.`division_id` = c.recid
+        ORDER BY a.`recid` DESC
         ");
         $projectdata = $projectquery->getResultArray();
 
