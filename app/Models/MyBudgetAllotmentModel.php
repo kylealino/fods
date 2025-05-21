@@ -382,37 +382,57 @@ class MyBudgetAllotmentModel extends Model
 				//this is for normal saving and updating
 				for($aa = 0; $aa < count($budgetmooedtdata); $aa++){
 					$medata = explode("x|x",$budgetmooedtdata[$aa]);
-					$particulars = $medata[0]; 
-					$code = $medata[1]; 
-					$approved_budget = $medata[2]; 
-					$dtid = $medata[3]; 
+					$expense_item = $medata[0]; 
+					$particulars = $medata[1]; 
+					$code = $medata[2]; 
+					$approved_budget = $medata[3]; 
+					$dtid = $medata[4];
+					$r1_approved_budget = $medata[5];  
+					$r2_approved_budget = $medata[6]; 
+					$r3_approved_budget = $medata[7]; 
+					$proposed_realignment = $medata[8]; 
 
 					if (!empty($dtid)) {
 						$query = $this->db->query("
 						UPDATE
 							`tbl_budget_direct_mooe_dt`
 						SET
+							`expense_item` = '$expense_item',
 							`particulars` = '$particulars',
 							`code` = '$code',
-							`approved_budget` = '$approved_budget'
+							`approved_budget` = '$approved_budget',
+							`r1_approved_budget` = '$r1_approved_budget',
+							`r2_approved_budget` = '$r2_approved_budget',
+							`r3_approved_budget` = '$r3_approved_budget',
+							`proposed_realignment` = '$approved_budget'
 						WHERE
 							`recid` = '$dtid'
 						");
 					}else{
 						$query = $this->db->query("
 						INSERT INTO `tbl_budget_direct_mooe_dt`(
+								`expense_item`,
 								`project_id`,
 								`particulars`,
 								`code`,
 								`approved_budget`,
+								`r1_approved_budget`,
+								`r2_approved_budget`,
+								`r3_approved_budget`,
+								`proposed_realignment`,
 								`added_at`,
 								`added_by`
 							)
 							VALUES(
+								'$expense_item',
 								'$project_id',
 								'$particulars',
 								'$code',
 								'$approved_budget',
+								'$r1_approved_budget',
+								'$r2_approved_budget',
+								'$r3_approved_budget',
+								'$proposed_realignment',
 								NOW(),
 								'{$this->cuser}'
 							)
@@ -429,44 +449,62 @@ class MyBudgetAllotmentModel extends Model
 				//this is for normal saving and updating
 				for($aa = 0; $aa < count($budgetmooeindirectdtdata); $aa++){
 					$medata = explode("x|x",$budgetmooeindirectdtdata[$aa]);
-					$particulars = $medata[0]; 
-					$code = $medata[1]; 
-					$approved_budget = $medata[2]; 
-					$dtid = $medata[3]; 
+					$expense_item = $medata[0]; 
+					$particulars = $medata[1]; 
+					$code = $medata[2]; 
+					$approved_budget = $medata[3]; 
+					$dtid = $medata[4];
+					$r1_approved_budget = $medata[5];  
+					$r2_approved_budget = $medata[6]; 
+					$r3_approved_budget = $medata[7]; 
+					$proposed_realignment = $medata[8]; 
 
 					if (!empty($dtid)) {
 						$query = $this->db->query("
 						UPDATE
 							`tbl_budget_indirect_mooe_dt`
 						SET
+							`expense_item` = '$expense_item',
 							`particulars` = '$particulars',
 							`code` = '$code',
-							`approved_budget` = '$approved_budget'
+							`approved_budget` = '$approved_budget',
+							`r1_approved_budget` = '$r1_approved_budget',
+							`r2_approved_budget` = '$r2_approved_budget',
+							`r3_approved_budget` = '$r3_approved_budget',
+							`proposed_realignment` = '$approved_budget'
 						WHERE
 							`recid` = '$dtid'
 						");
 					}else{
 						$query = $this->db->query("
 						INSERT INTO `tbl_budget_indirect_mooe_dt`(
+								`expense_item`,
 								`project_id`,
 								`particulars`,
 								`code`,
 								`approved_budget`,
+								`r1_approved_budget`,
+								`r2_approved_budget`,
+								`r3_approved_budget`,
+								`proposed_realignment`,
 								`added_at`,
 								`added_by`
 							)
 							VALUES(
+								'$expense_item',
 								'$project_id',
 								'$particulars',
 								'$code',
 								'$approved_budget',
+								'$r1_approved_budget',
+								'$r2_approved_budget',
+								'$r3_approved_budget',
+								'$proposed_realignment',
 								NOW(),
 								'{$this->cuser}'
 							)
 						");
 					}
-
-					
 				}
 			}
 
