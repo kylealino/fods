@@ -456,10 +456,10 @@ echo view('templates/myheader.php');
                         </ul>
 
                         <!-- Tab panes -->
-                        <div class="tab-content border">
+                        <div class="tab-content border mb-0">
                             <!-- PS TAB CONTENT -->
-                            <div class="tab-pane active p-3" id="ps-pill" role="tabpanel">
-                                <div class="row">
+                            <div class="tab-pane active p-3 pb-0" id="ps-pill" role="tabpanel">
+                                <div class="row mb-2">
                                     <div class="table-responsive pe-2 ps-0">
                                         <div class="col-md-12 mb-2">
                                             <span class="ms-3 fw-bold">Direct Cost:</span>
@@ -503,16 +503,16 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" <?= ($tagging == 'For Approval') ? 'disabled' : ''; ?>  class="approved_budget text-center" onchange="__mysys_budget_allotment_ent.__direct_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals();" />
+                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" <?= ($tagging == 'For Approval') ? 'disabled' : ''; ?>  class="approved_budget text-center" onchange="__mysys_budget_allotment_ent.__direct_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" />
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r1_approved_budget"  value="" size="25" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_budget_allotment_ent.__direct_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals();" />
+                                                            <input type="number" id="r1_approved_budget"  value="" size="25" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_budget_allotment_ent.__direct_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" />
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r2_approved_budget"  value="" size="25" name="r2_approved_budget" data-dtid="" class="r2_approved_budget text-center" onchange="__mysys_budget_allotment_ent.__direct_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals();" />
+                                                            <input type="number" id="r2_approved_budget"  value="" size="25" name="r2_approved_budget" data-dtid="" class="r2_approved_budget text-center" onchange="__mysys_budget_allotment_ent.__direct_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" />
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r3_approved_budget"  value="" size="25" name="r3_approved_budget" data-dtid="" class="r3_approved_budget text-center" onchange="__mysys_budget_allotment_ent.__direct_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals();" />
+                                                            <input type="number" id="r3_approved_budget"  value="" size="25" name="r3_approved_budget" data-dtid="" class="r3_approved_budget text-center" onchange="__mysys_budget_allotment_ent.__direct_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" />
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="number" id="proposed_realignment"  value="" size="25" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
@@ -572,16 +572,16 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" <?= ($tagging == 'For Approval') ? 'disabled' : ''; ?> name="approved_budget" class="approved_budget text-center" onchange="__mysys_budget_allotment_ent.__direct_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals();" />
+                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" <?= ($tagging == 'For Approval') ? 'disabled' : ''; ?> name="approved_budget" class="approved_budget text-center" onchange="__mysys_budget_allotment_ent.__direct_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" />
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r1_approved_budget"  value="<?=$r1_approved_budget;?>" size="25" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__direct_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals();" />
+                                                            <input type="number" id="r1_approved_budget"  value="<?=$r1_approved_budget;?>" size="25" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__direct_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" />
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r2_approved_budget"  value="<?=$r2_approved_budget;?>" size="25" name="r2_approved_budget" data-dtid="" class="r2_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__direct_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals();" />
+                                                            <input type="number" id="r2_approved_budget"  value="<?=$r2_approved_budget;?>" size="25" name="r2_approved_budget" data-dtid="" class="r2_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__direct_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" />
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r3_approved_budget"  value="<?=$r3_approved_budget;?>" size="25" name="r3_approved_budget" data-dtid="" class="r3_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__direct_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals();" />
+                                                            <input type="number" id="r3_approved_budget"  value="<?=$r3_approved_budget;?>" size="25" name="r3_approved_budget" data-dtid="" class="r3_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__direct_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" />
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="number" id="proposed_realignment"  value="<?=$proposed_realignment;?>" size="25" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
@@ -634,16 +634,16 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" <?= ($tagging == 'For Approval') ? 'disabled' : ''; ?> data-dtid="" class="approved_budget text-center" onchange="__mysys_budget_allotment_ent.__indirect_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals();"/>
+                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" <?= ($tagging == 'For Approval') ? 'disabled' : ''; ?> data-dtid="" class="approved_budget text-center" onchange="__mysys_budget_allotment_ent.__indirect_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();"/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r1_approved_budget"  value="" size="25" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__indirect_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals();"/>
+                                                            <input type="number" id="r1_approved_budget"  value="" size="25" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__indirect_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();"/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r2_approved_budget"  value="" size="25" name="r2_approved_budget" data-dtid="" class="r2_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__indirect_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals();"/>
+                                                            <input type="number" id="r2_approved_budget"  value="" size="25" name="r2_approved_budget" data-dtid="" class="r2_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__indirect_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();"/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r3_approved_budget"  value="" size="25" name="r3_approved_budget" data-dtid="" class="r3_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__indirect_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals();"/>
+                                                            <input type="number" id="r3_approved_budget"  value="" size="25" name="r3_approved_budget" data-dtid="" class="r3_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__indirect_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();"/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="number" id="proposed_realignment"  value="" size="25" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
@@ -703,16 +703,16 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" <?= ($tagging == 'For Approval') ? 'disabled' : ''; ?> name="approved_budget" class="approved_budget text-center" onchange="__mysys_budget_allotment_ent.__indirect_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals();"/>
+                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" <?= ($tagging == 'For Approval') ? 'disabled' : ''; ?> name="approved_budget" class="approved_budget text-center" onchange="__mysys_budget_allotment_ent.__indirect_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();"/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r1_approved_budget"  value="<?=$r1_approved_budget;?>" size="25" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__indirect_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals();"/>
+                                                            <input type="number" id="r1_approved_budget"  value="<?=$r1_approved_budget;?>" size="25" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__indirect_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();"/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r2_approved_budget"  value="<?=$r2_approved_budget;?>" size="25" name="r2_approved_budget" data-dtid="" class="r2_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__indirect_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals();"/>
+                                                            <input type="number" id="r2_approved_budget"  value="<?=$r2_approved_budget;?>" size="25" name="r2_approved_budget" data-dtid="" class="r2_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__indirect_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();"/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r3_approved_budget"  value="<?=$r3_approved_budget;?>" size="25" name="r3_approved_budget" data-dtid="" class="r3_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__indirect_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals();"/>
+                                                            <input type="number" id="r3_approved_budget"  value="<?=$r3_approved_budget;?>" size="25" name="r3_approved_budget" data-dtid="" class="r3_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__indirect_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals(); __mysys_budget_allotment_ent.__combined_totals();"/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="number" id="proposed_realignment"  value="<?=$proposed_realignment;?>" size="25" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
@@ -724,10 +724,12 @@ echo view('templates/myheader.php');
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
+ 
                             </div>
 
                             <!-- MOOE TAB CONTENT -->
-                            <div class="tab-pane p-3" id="mooe-pill" role="tabpanel">
+                            <div class="tab-pane p-3 pb-0" id="mooe-pill" role="tabpanel">
                                 <div class="row">
                                     <div class="table-responsive pe-2 ps-0">
                                         <div class="col-md-12 mb-2">
@@ -737,9 +739,14 @@ echo view('templates/myheader.php');
                                                     <th class="text-center">
                                                         <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetmooeitem_add" href="javascript:__mysys_budget_allotment_ent.my_add_budget_mooe_line();"><i class="ti ti-new-section"></i></a>
                                                     </th>
+                                                    <th class="text-center align-middle">Expense Item</th>
                                                     <th class="text-center align-middle">MOOE - Particulars</th>
                                                     <th class="text-center align-middle">UACS.</th>
                                                     <th class="text-center align-middle">Approved Budget</th>
+                                                    <th class="text-center align-middle">1st Realignment</th>
+                                                    <th class="text-center align-middle">2nd Realignment</th>
+                                                    <th class="text-center align-middle">3rd Realignment</th>
+                                                    <th class="text-center align-middle">Proposed Realignment</th>
                                                 </thead>
                                                 <tbody>
                                                     <tr style="display:none;">
@@ -764,7 +771,7 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" class="approved_budget text-center"/>
+                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" <?= ($tagging == 'For Approval') ? 'disabled' : ''; ?> class="approved_budget text-center"/>
                                                         </td>
                                                     </tr>
                                                     <?php if(!empty($recid)):
@@ -808,7 +815,7 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center"/>
+                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" <?= ($tagging == 'For Approval') ? 'disabled' : ''; ?> name="approved_budget" class="approved_budget text-center"/>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
@@ -905,7 +912,7 @@ echo view('templates/myheader.php');
                             </div>
 
                             <!-- CO TAB CONTENT -->
-                            <div class="tab-pane p-3" id="co-pill" role="tabpanel">
+                            <div class="tab-pane p-3 pb-0" id="co-pill" role="tabpanel">
                                 <div class="row">
                                     <div class="table-responsive pe-2 ps-0">
                                         <div class="col-md-12 mb-2">
@@ -1045,6 +1052,26 @@ echo view('templates/myheader.php');
                                                     <?php endforeach; endif;?>
                                                 </tbody>
                                             </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="row mb-3">
+                                <div class="col-sm-6">
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <span class="fw-bolder">Total Approved Budget:</span>
+                                            <input type="number" id="total_approved_combined" name="total_approved_combined" value="" class="form-control form-control-sm text-center fw-bold" style="border-bottom: 2px solid #000;"  readonly/>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <span class="fw-bolder">Total Proposed Realignment:</span>
+                                            <input type="number" id="total_proposed_combined" name="total_proposed_combined" value="" class="form-control form-control-sm text-center fw-bold" style="border-bottom: 2px solid #000;"  readonly/>
                                         </div>
                                     </div>
                                 </div>
@@ -1348,6 +1375,7 @@ echo view('templates/myheader.php');
     __mysys_budget_allotment_ent.__budget_saving();
     __mysys_budget_allotment_ent.__direct_ps_totals();
     __mysys_budget_allotment_ent.__indirect_ps_totals();
+        __mysys_budget_allotment_ent.__combined_totals();
     $(document).ready(function () {
         $('#datatablesSimple').DataTable({
             pageLength: 5,

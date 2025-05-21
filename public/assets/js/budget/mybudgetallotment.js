@@ -646,6 +646,50 @@ function __mysys_budget_allotment_ent() {
         });
     };
 
+	this.__combined_totals = function () {
+		let totalApprovedCombined = 0;
+		let totalProposedCombined = 0;
+
+		// DIRECT COST TABLE
+		jQuery('.budgetdata-list tr').each(function () {
+			let row = jQuery(this);
+
+			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			let r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+			let r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+			let r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+			let total = approved + r1 + r2 + r3;
+
+			row.find('.proposed_realignment').val(total.toFixed(2));
+
+			totalApprovedCombined += approved;
+			totalProposedCombined += total;
+		});
+
+		// INDIRECT COST TABLE
+		jQuery('.budgetdata-indirect-list tr').each(function () {
+			let row = jQuery(this);
+
+			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			let r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+			let r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+			let r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+			let total = approved + r1 + r2 + r3;
+
+			row.find('.proposed_realignment').val(total.toFixed(2));
+
+			totalApprovedCombined += approved;
+			totalProposedCombined += total;
+		});
+
+		// SET VALUES TO INPUT FIELDS
+		jQuery('#total_approved_combined').val(totalApprovedCombined.toFixed(2));
+		jQuery('#total_proposed_combined').val(totalProposedCombined.toFixed(2));
+	};
+
+
 	
 	
 
