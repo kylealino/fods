@@ -344,6 +344,10 @@ function __mysys_budget_allotment_ent() {
 					let is_realign2 = document.getElementById("is_realign2").checked ? 1 : 0;
 					let is_realign3 = document.getElementById("is_realign3").checked ? 1 : 0;
 
+					//total of ps,mooe & co 
+					var total_approved_combined = document.getElementById("total_approved_combined");
+					var total_proposed_combined = document.getElementById("total_proposed_combined");
+
 					var tagging = document.getElementById("tagging");
 
 					// Prepare PS data DIRECT --
@@ -489,6 +493,9 @@ function __mysys_budget_allotment_ent() {
 						is_realign1: is_realign1,
 						is_realign2: is_realign2,
 						is_realign3: is_realign3,
+						//total
+						total_approved_combined:total_approved_combined,
+						total_proposed_combined: total_proposed_combined,
 						meaction: 'MAIN-SAVE'
 					}
 
@@ -715,7 +722,7 @@ function __mysys_budget_allotment_ent() {
 		let totalApprovedCombined = 0;
 		let totalProposedCombined = 0;
 
-		// DIRECT COST TABLE
+		// PS DIRECT COST TABLE
 		jQuery('.budgetdata-list tr').each(function () {
 			let row = jQuery(this);
 
@@ -732,8 +739,42 @@ function __mysys_budget_allotment_ent() {
 			totalProposedCombined += total;
 		});
 
-		// INDIRECT COST TABLE
+		// PS INDIRECT COST TABLE
 		jQuery('.budgetdata-indirect-list tr').each(function () {
+			let row = jQuery(this);
+
+			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			let r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+			let r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+			let r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+			let total = approved + r1 + r2 + r3;
+
+			row.find('.proposed_realignment').val(total.toFixed(2));
+
+			totalApprovedCombined += approved;
+			totalProposedCombined += total;
+		});
+
+		// MOOE DIRECT COST TABLE
+		jQuery('.budgetmooedata-list tr').each(function () {
+			let row = jQuery(this);
+
+			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			let r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+			let r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+			let r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+			let total = approved + r1 + r2 + r3;
+
+			row.find('.proposed_realignment').val(total.toFixed(2));
+
+			totalApprovedCombined += approved;
+			totalProposedCombined += total;
+		});
+
+		// MOOE INDIRECT COST TABLE
+		jQuery('.budgetmooedata-indirect-list tr').each(function () {
 			let row = jQuery(this);
 
 			let approved = parseFloat(row.find('.approved_budget').val()) || 0;

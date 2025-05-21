@@ -760,7 +760,7 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:500px; height:30px;">
+                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
                                                                 <option selected value ="">Choose...</option>
                                                                 <?php foreach($mooeuacsdata as $data){
                                                                     $object_of_expenditures = $data['object_of_expenditures'];
@@ -829,7 +829,7 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form"  style="width:500px; height:30px;">
+                                                            <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
                                                                 <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
                                                                 <?php foreach($mooeuacsdata as $data){
                                                                     $object_of_expenditures = $data['object_of_expenditures'];
@@ -890,7 +890,7 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:500px; height:30px;">
+                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
                                                                 <option selected value ="">Choose...</option>
                                                                 <?php foreach($mooeuacsdata as $data){
                                                                     $object_of_expenditures = $data['object_of_expenditures'];
@@ -959,7 +959,7 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form"  style="width:500px; height:30px;">
+                                                            <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
                                                                 <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
                                                                 <?php foreach($mooeuacsdata as $data){
                                                                     $object_of_expenditures = $data['object_of_expenditures'];
@@ -1020,7 +1020,7 @@ echo view('templates/myheader.php');
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="particulars"  value="" style="width:500px; height:30px;"  name="particulars" class="particulars text-center">
+                                                            <input type="text" id="particulars"  value="" style="width:300px; height:30px;"  name="particulars" class="particulars text-center">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center">
@@ -1056,7 +1056,7 @@ echo view('templates/myheader.php');
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:500px; height:30px;"  name="particulars" class="particulars text-center">
+                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:300px; height:30px;"  name="particulars" class="particulars text-center">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center">
@@ -1089,7 +1089,7 @@ echo view('templates/myheader.php');
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="particulars"  value="" style="width:500px; height:30px;"   name="particulars" class="particulars text-center">
+                                                            <input type="text" id="particulars"  value="" style="width:300px; height:30px;"   name="particulars" class="particulars text-center">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center">
@@ -1125,7 +1125,7 @@ echo view('templates/myheader.php');
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:500px; height:30px;"  name="particulars" class="particulars text-center">
+                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:300px; height:30px;"  name="particulars" class="particulars text-center">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center">
