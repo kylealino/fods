@@ -33,7 +33,7 @@ function __mysys_budget_allotment_ent() {
 			// Insert the cloned row before the last row (footer row)
 			jQuery('#budget_line_items tbody').append(clonedRow);
 
-			this.__pack_totals();
+			this.__direct_ps_totals();
 	
 			// Make the new row visible
 			jQuery(clonedRow).css({ 'display': '' });
@@ -64,17 +64,29 @@ function __mysys_budget_allotment_ent() {
 			var clonedRow = jQuery('#budget_indirect_line_items tbody tr:eq(' + (rowCount - 1) + ')').clone();
 	
 			jQuery(clonedRow).find('select').eq(0).val('').attr('id', 'col4' + mid);
-			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col2' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col1' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=text]').eq(1).attr('id', 'col2' + mid); // ID for second text field
 			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(1).attr('id', 'col4' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(2).attr('id', 'col5' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(3).attr('id', 'col6' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(4).attr('id', 'col7' + mid); // ID for date field
 			// Now reset only the debit and credit fields (input[type=number])
 			
 			jQuery(clonedRow).find('select').eq(0).val('');
 			jQuery(clonedRow).find('input[type=text]').eq(0).val('');  // Clear credit value
+			jQuery(clonedRow).find('input[type=text]').eq(1).val('');  // Clear credit value
 			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
+			jQuery(clonedRow).find('input[type=number]').eq(1).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(2).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(3).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(4).val('');
 	
 			// Insert the cloned row before the last row (footer row)
 			jQuery('#budget_indirect_line_items tbody').append(clonedRow);
 	
+			this.__indirect_ps_totals();
+
 			// Make the new row visible
 			jQuery(clonedRow).css({ 'display': '' });
 	
@@ -288,7 +300,6 @@ function __mysys_budget_allotment_ent() {
 					event.stopPropagation();
 
 					var recid = document.getElementById("recid");
-					var realign_id = document.getElementById("realign_id");
 					var trxno = document.getElementById("trxno");
 					var project_title = document.getElementById("selProjectTitle");
 					var responsibility_code = document.getElementById("responsibility_code");
@@ -306,6 +317,11 @@ function __mysys_budget_allotment_ent() {
 					var collaborating_agencies = document.getElementById("collaborating_agencies");
 					var implementing_agency = document.getElementById("implementing_agency");
 
+					//new checkbox fields
+					let is_realign1 = document.getElementById("is_realign1").checked ? 1 : 0;
+					let is_realign2 = document.getElementById("is_realign2").checked ? 1 : 0;
+					let is_realign3 = document.getElementById("is_realign3").checked ? 1 : 0;
+
 					var tagging = document.getElementById("tagging");
 
 					// Prepare PS data DIRECT --
@@ -315,12 +331,16 @@ function __mysys_budget_allotment_ent() {
 	
 					for (var aa = 2; aa < rowcount1; aa++) {
 						var clonedRow = jQuery('.budgetdata-list tr:eq(' + aa + ')'); 
+						var expense_item = clonedRow.find('input[type=text]').eq(0).val();
 						var particulars = clonedRow.find('select.selUacs').val();
-						var uacs = clonedRow.find('input[type=text]').eq(0).val();
+						var uacs = clonedRow.find('input[type=text]').eq(1).val();
 						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
 						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
-						
-						psdata = particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid;
+						var r1_approved_budget = clonedRow.find('input[type=number]').eq(1).val();  
+						var r2_approved_budget = clonedRow.find('input[type=number]').eq(2).val();  
+						var r3_approved_budget = clonedRow.find('input[type=number]').eq(3).val();  
+						var proposed_realignment = clonedRow.find('input[type=number]').eq(4).val();  
+						psdata = expense_item + 'x|x' + particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + r1_approved_budget + 'x|x' + r2_approved_budget + 'x|x' + r3_approved_budget + 'x|x' + proposed_realignment;
 						budgetdtdata.push(psdata);
 					}
 
@@ -331,12 +351,17 @@ function __mysys_budget_allotment_ent() {
 	
 					for (var aa = 2; aa < rowcount11; aa++) {
 						var clonedRow = jQuery('.budgetdata-indirect-list tr:eq(' + aa + ')'); 
+						var expense_item = clonedRow.find('input[type=text]').eq(0).val();
 						var particulars = clonedRow.find('select.selUacs').val();
-						var uacs = clonedRow.find('input[type=text]').eq(0).val();
+						var uacs = clonedRow.find('input[type=text]').eq(1).val();
 						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
 						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
+						var r1_approved_budget = clonedRow.find('input[type=number]').eq(1).val();  
+						var r2_approved_budget = clonedRow.find('input[type=number]').eq(2).val();  
+						var r3_approved_budget = clonedRow.find('input[type=number]').eq(3).val();  
+						var proposed_realignment = clonedRow.find('input[type=number]').eq(4).val();
 						
-						psindirectdata = particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid;
+						psindirectdata = expense_item + 'x|x' + particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + r1_approved_budget + 'x|x' + r2_approved_budget + 'x|x' + r3_approved_budget + 'x|x' + proposed_realignment;
 						budgetdtindirectdata.push(psindirectdata);
 					}
 
@@ -406,7 +431,6 @@ function __mysys_budget_allotment_ent() {
 
 					var mparam = { 
 						recid: recid.value,
-						realign_id: realign_id.value,
 						trxno: trxno.value,
 						project_title: project_title.value,
 						responsibility_code: responsibility_code.value,
@@ -429,6 +453,10 @@ function __mysys_budget_allotment_ent() {
 						budgetmooeindirectdtdata: budgetmooeindirectdtdata,
 						budgetcodtdata: budgetcodtdata,
 						budgetindirectcodtdata: budgetindirectcodtdata,
+						//checkboxes
+						is_realign1: is_realign1,
+						is_realign2: is_realign2,
+						is_realign3: is_realign3,
 						meaction: 'MAIN-SAVE'
 					}
 
@@ -588,8 +616,23 @@ function __mysys_budget_allotment_ent() {
 		});
 	});
 
-	this.__pack_totals = function () {
+	this.__direct_ps_totals = function () {
         jQuery('.budgetdata-list tr').each(function () {
+            var row = jQuery(this);
+
+            var approved = parseFloat(row.find('.approved_budget').val()) || 0;
+            var r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+            var r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+            var r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+            var total = approved + r1 + r2 + r3;
+
+            row.find('.proposed_realignment').val(total.toFixed(2));
+        });
+    };
+
+	this.__indirect_ps_totals = function () {
+        jQuery('.budgetdata-indirect-list tr').each(function () {
             var row = jQuery(this);
 
             var approved = parseFloat(row.find('.approved_budget').val()) || 0;

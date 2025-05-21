@@ -26,6 +26,9 @@ $monitoring_agency = "";
 $collaborating_agencies = "";
 $implementing_agency = "";
 $tagging = "";
+$is_realign1 = "";
+$is_realign2 = "";
+$is_realign3 = "";
 $MDL_jsscript = "";
 $counter = 1;
 
@@ -53,7 +56,10 @@ if(!empty($recid) || !is_null($recid)) {
         `monitoring_agency`,
         `collaborating_agencies`,
         `implementing_agency`,
-        `tagging`
+        `tagging`,
+        `is_realign1`,
+        `is_realign2`,
+        `is_realign3`
     FROM
         `tbl_budget_hd`
     WHERE 
@@ -80,6 +86,9 @@ if(!empty($recid) || !is_null($recid)) {
     $collaborating_agencies = $data['collaborating_agencies'];
     $implementing_agency = $data['implementing_agency'];
     $tagging = $data['tagging'];
+    $is_realign1 = $data['is_realign1'];
+    $is_realign2 = $data['is_realign2'];
+    $is_realign3 = $data['is_realign3'];
 
 
     if ($action == 'appr_pending') {
@@ -108,80 +117,6 @@ if(!empty($recid) || !is_null($recid)) {
     }
 }
 
-if(!empty($realign_id) || !is_null($realign_id)) { 
-
-    $query = $this->db->query("
-    SELECT
-        `trxno`,
-        `project_title`,
-        `responsibility_code`,
-        `fund_cluster_code`,
-        `division_name`,
-        `added_at`,
-        `added_by`,
-        `is_approved`,
-        `is_disapproved`,
-        `is_pending`,
-        `approver`,
-        `remarks`,
-        `program_title`,
-        `total_duration`,
-        `duration_from`,
-        `duration_to`,
-        `program_leader`,
-        `monitoring_agency`,
-        `collaborating_agencies`,
-        `implementing_agency`
-    FROM
-        `tbl_budget_hd`
-    WHERE 
-        `recid` = '$realign_id'"
-    );
-
-    $data = $query->getRowArray();
-    $project_title = $data['project_title'];
-    $responsibility_code = $data['responsibility_code'];
-    $fund_cluster_code = $data['fund_cluster_code'];
-    $division_name = $data['division_name'];
-    $is_pending = $data['is_pending'];
-    $is_approved = $data['is_approved'];
-    $is_disapproved = $data['is_disapproved'];
-    $approver = $data['approver'];
-    $remarks = $data['remarks'];
-    $program_title = $data['program_title'];
-    $total_duration = $data['total_duration'];
-    $duration_from = $data['duration_from'];
-    $duration_to = $data['duration_to'];
-    $program_leader = $data['program_leader'];
-    $monitoring_agency = $data['monitoring_agency'];
-    $collaborating_agencies = $data['collaborating_agencies'];
-    $implementing_agency = $data['implementing_agency'];
-
-    if ($action == 'appr_pending') {
-        $MDL_jsscript = "
-        <script>
-           __mysys_budget_allotment_ent.__approve_budget();
-           __mysys_budget_allotment_ent.__disapprove_budget();
-        </script>
-       ";	
-    }elseif ($action == 'appr_disapproved') {
-        $MDL_jsscript = "
-        <script>
-           __mysys_budget_allotment_ent.__disapprove_budget();
-        </script>
-       ";	
-    }elseif ($action == 'appr_approved') {
-        $MDL_jsscript = "
-        <script>
-           __mysys_budget_allotment_ent.__approve_budget();
-        </script>
-       ";	
-    }else{
-        $MDL_jsscript = "
-
-       ";	
-    }
-}
 echo view('templates/myheader.php');
 ?>
 
@@ -231,9 +166,6 @@ echo view('templates/myheader.php');
                             Dispproved
                         </button>
                     <?php endif;?>
-                    <?php if(!empty($recid)):?>
-                        <a class="text-white me-4 h6" href="<?= site_url('mybudgetallotment?meaction=MAIN&realign_id=' .$recid) ?>"> <i class="ti ti-brand-doctrine mt-1 fs-6 me-1"></i> Realign</a>
-                    <?php endif;?>
                 </div>
             </div>
 		</div>						
@@ -255,20 +187,6 @@ echo view('templates/myheader.php');
                             </div>
                             <div class="col-sm-10">
                                 <?php if(!empty($recid)):?>
-                                    <select name="selProjectTitle" id="selProjectTitle" class="form-select select2 form-select-sm show-tick">
-                                        <option selected value="<?=$project_title;?>"><?=$project_title;?></option>
-                                        <?php foreach($projectdata as $data): ?>
-                                            <option 
-                                                value="<?= $data['project_title'] ?>"
-                                                data-fund="<?= $data['fund_cluster_code'] ?>"
-                                                data-division="<?= $data['division_name'] ?>"
-                                                data-responsibility="<?= $data['responsibility_code'] ?>"
-                                            >
-                                                <?= $data['project_title'] ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                <?php elseif(!empty($realign_id)):?>
                                     <select name="selProjectTitle" id="selProjectTitle" class="form-select select2 form-select-sm show-tick">
                                         <option selected value="<?=$project_title;?>"><?=$project_title;?></option>
                                         <?php foreach($projectdata as $data): ?>
@@ -329,13 +247,6 @@ echo view('templates/myheader.php');
                                         <option value="Two (2) Years">Two (2) Years</option>
                                         <option value="Three (3) Years">Three (3) Years</option>
                                     </select>
-                                <?php elseif(!empty($realign_id)):?>
-                                    <select id="total_duration" name="total_duration" class="form-select form-select-sm">
-                                        <option selected value="<?=$total_duration;?>"><?=$total_duration;?></option>
-                                        <option value="One (1) Year">One (1) Year</option>
-                                        <option value="Two (2) Years">Two (2) Years</option>
-                                        <option value="Three (3) Years">Three (3) Years</option>
-                                    </select>
                                 <?php else:?>
                                     <select id="total_duration" name="total_duration" class="form-select form-select-sm">
                                         <option selected value="">Choose...</option>
@@ -386,7 +297,6 @@ echo view('templates/myheader.php');
                             </div>
                             <div class="col-sm-8">
                                 <input type="hidden" class="form-control form-control-sm" id="recid" name="recid" value="<?=$recid;?>"/>
-                                <input type="hidden" class="form-control form-control-sm" id="realign_id" name="realign_id" value="<?=$realign_id;?>"/>
                                 <input type="text" id="responsibility_code" name="responsibility_code" value="<?=$responsibility_code;?>" class="form-control form-control-sm" readonly />
                             </div>
                         </div>
@@ -442,34 +352,79 @@ echo view('templates/myheader.php');
                             </div>
                             <div class="col-sm-8">
 
-                                <?php if(!empty($recid)):?>
+                                <?php if(!empty($recid) && $is_approved == '1' && $tagging == 'For Approval' && $is_realign1 == '0' && $is_realign2 == '0' && $is_realign3 == '0'):?>
                                 <div class="d-flex gap-3">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="chk_1strealign">
-                                        <label class="form-check-label" for="chk_1strealign">1st</label>
+                                        <input class="form-check-input" type="checkbox" id="is_realign1">
+                                        <label class="form-check-label" for="is_realign1">1st</label>
                                     </div>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="chk_2ndrealign">
-                                        <label class="form-check-label" for="chk_2ndrealign">2nd</label>
+                                        <input class="form-check-input" type="checkbox" id="is_realign2">
+                                        <label class="form-check-label" for="is_realign2">2nd</label>
                                     </div>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="chk_3rdrealign">
-                                        <label class="form-check-label" for="chk_3rdrealign">3rd</label>
+                                        <input class="form-check-input" type="checkbox" id="is_realign3">
+                                        <label class="form-check-label" for="is_realign3">3rd</label>
+                                    </div>
+                                </div>
+                                <?php elseif(!empty($recid) && $is_approved == '1' && $tagging == 'For Approval' && $tagging == 'For Approval' && $is_realign1 == '1' && $is_realign2 == '0' && $is_realign3 == '0'):?>
+                                <div class="d-flex gap-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="is_realign1" checked disabled>
+                                        <label class="form-check-label" for="is_realign1">1st</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="is_realign2">
+                                        <label class="form-check-label" for="is_realign2">2nd</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="is_realign3">
+                                        <label class="form-check-label" for="is_realign3">3rd</label>
+                                    </div>
+                                </div>
+                                <?php elseif(!empty($recid) && $is_approved == '1' && $tagging == 'For Approval' && $is_realign1 == '1' && $is_realign2 == '1' && $is_realign3 == '0'):?>
+                                <div class="d-flex gap-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="is_realign1" checked disabled>
+                                        <label class="form-check-label" for="is_realign1">1st</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="is_realign2" checked disabled>
+                                        <label class="form-check-label" for="is_realign2">2nd</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="is_realign3">
+                                        <label class="form-check-label" for="is_realign3">3rd</label>
+                                    </div>
+                                </div>
+                                <?php elseif(!empty($recid) && $is_approved == '1' && $tagging == 'For Approval' && $is_realign1 == '1' && $is_realign2 == '1' && $is_realign3 == '1'):?>
+                                <div class="d-flex gap-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="is_realign1" checked disabled>
+                                        <label class="form-check-label" for="is_realign1">1st</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="is_realign2" checked disabled>
+                                        <label class="form-check-label" for="is_realign2">2nd</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="is_realign3" checked disabled>
+                                        <label class="form-check-label" for="is_realign3">3rd</label>
                                     </div>
                                 </div>
                                 <?php else:?>
                                 <div class="d-flex gap-3">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="chk_1strealign" disabled>
-                                        <label class="form-check-label" for="chk_1strealign">1st</label>
+                                        <input class="form-check-input" type="checkbox" id="is_realign1" disabled>
+                                        <label class="form-check-label" for="is_realign1">1st</label>
                                     </div>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="chk_2ndrealign" disabled>
-                                        <label class="form-check-label" for="chk_2ndrealign">2nd</label>
+                                        <input class="form-check-input" type="checkbox" id="is_realign2" disabled>
+                                        <label class="form-check-label" for="is_realign2">2nd</label>
                                     </div>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="chk_3rdrealign" disabled>
-                                        <label class="form-check-label" for="chk_3rdrealign">3rd</label>
+                                        <input class="form-check-input" type="checkbox" id="is_realign3" disabled>
+                                        <label class="form-check-label" for="is_realign3">3rd</label>
                                     </div>
                                 </div>
                                 <?php endif;?>
@@ -548,16 +503,16 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" class="approved_budget text-center" onchange="__mysys_budget_allotment_ent.__pack_totals();"/>
+                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" <?= ($tagging == 'For Approval') ? 'disabled' : ''; ?>  class="approved_budget text-center" onchange="__mysys_budget_allotment_ent.__direct_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals();" />
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r1_approved_budget"  value="" size="25" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_budget_allotment_ent.__pack_totals();"/>
+                                                            <input type="number" id="r1_approved_budget"  value="" size="25" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_budget_allotment_ent.__direct_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals();" />
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r2_approved_budget"  value="" size="25" name="r2_approved_budget" data-dtid="" class="r2_approved_budget text-center" onchange="__mysys_budget_allotment_ent.__pack_totals();"/>
+                                                            <input type="number" id="r2_approved_budget"  value="" size="25" name="r2_approved_budget" data-dtid="" class="r2_approved_budget text-center" onchange="__mysys_budget_allotment_ent.__direct_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals();" />
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r3_approved_budget"  value="" size="25" name="r3_approved_budget" data-dtid="" class="r3_approved_budget text-center" onchange="__mysys_budget_allotment_ent.__pack_totals();"/>
+                                                            <input type="number" id="r3_approved_budget"  value="" size="25" name="r3_approved_budget" data-dtid="" class="r3_approved_budget text-center" onchange="__mysys_budget_allotment_ent.__direct_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals();" />
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="number" id="proposed_realignment"  value="" size="25" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
@@ -567,9 +522,14 @@ echo view('templates/myheader.php');
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
+                                                            `expense_item`,
                                                             `particulars`,
                                                             `code`,
-                                                            `approved_budget`
+                                                            `approved_budget`,
+                                                            `r1_approved_budget`,
+                                                            `r2_approved_budget`,
+                                                            `r3_approved_budget`,
+                                                            `proposed_realignment`
                                                         FROM
                                                             `tbl_budget_direct_ps_dt`
                                                         WHERE 
@@ -578,9 +538,14 @@ echo view('templates/myheader.php');
                                                         $result = $query->getResultArray();
                                                         foreach ($result as $data):
                                                             $dt_id = $data['recid'];
+                                                            $expense_item = $data['expense_item'];
                                                             $particulars = $data['particulars'];
                                                             $code = $data['code'];
                                                             $approved_budget = $data['approved_budget'];
+                                                            $r1_approved_budget = $data['r1_approved_budget'];
+                                                            $r2_approved_budget = $data['r2_approved_budget'];
+                                                            $r3_approved_budget = $data['r3_approved_budget'];
+                                                            $proposed_realignment = $data['proposed_realignment'];
                                                     ?>
                                                     <tr>
                                                         <td class="text-center align-middle">
@@ -590,7 +555,7 @@ echo view('templates/myheader.php');
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
+                                                            <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
@@ -607,19 +572,19 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center" onchange="__mysys_budget_allotment_ent.__pack_totals();"/>
+                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" <?= ($tagging == 'For Approval') ? 'disabled' : ''; ?> name="approved_budget" class="approved_budget text-center" onchange="__mysys_budget_allotment_ent.__direct_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals();" />
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r1_approved_budget"  value="" size="25" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__pack_totals();"/>
+                                                            <input type="number" id="r1_approved_budget"  value="<?=$r1_approved_budget;?>" size="25" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__direct_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals();" />
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r2_approved_budget"  value="" size="25" name="r2_approved_budget" data-dtid="" class="r2_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__pack_totals();"/>
+                                                            <input type="number" id="r2_approved_budget"  value="<?=$r2_approved_budget;?>" size="25" name="r2_approved_budget" data-dtid="" class="r2_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__direct_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals();" />
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r3_approved_budget"  value="" size="25" name="r3_approved_budget" data-dtid="" class="r3_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__pack_totals();"/>
+                                                            <input type="number" id="r3_approved_budget"  value="<?=$r3_approved_budget;?>" size="25" name="r3_approved_budget" data-dtid="" class="r3_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__direct_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__direct_ps_totals();" />
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="proposed_realignment"  value="" size="25" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
+                                                            <input type="number" id="proposed_realignment"  value="<?=$proposed_realignment;?>" size="25" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
@@ -638,6 +603,10 @@ echo view('templates/myheader.php');
                                                     <th class="text-center align-middle">PS - Particulars</th>
                                                     <th class="text-center align-middle">UACS.</th>
                                                     <th class="text-center align-middle">Approved Budget</th>
+                                                    <th class="text-center align-middle">1st Realignment</th>
+                                                    <th class="text-center align-middle">2nd Realignment</th>
+                                                    <th class="text-center align-middle">3rd Realignment</th>
+                                                    <th class="text-center align-middle">Proposed Realignment</th>
                                                 </thead>
                                                 <tbody>
                                                     <tr style="display:none;">
@@ -665,16 +634,16 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" data-dtid="" class="approved_budget text-center"/>
+                                                            <input type="number" id="approved_budget"  value="" size="25" name="approved_budget" <?= ($tagging == 'For Approval') ? 'disabled' : ''; ?> data-dtid="" class="approved_budget text-center" onchange="__mysys_budget_allotment_ent.__indirect_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals();"/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r1_approved_budget"  value="" size="25" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled/>
+                                                            <input type="number" id="r1_approved_budget"  value="" size="25" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__indirect_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals();"/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r2_approved_budget"  value="" size="25" name="r2_approved_budget" data-dtid="" class="r2_approved_budget text-center" disabled/>
+                                                            <input type="number" id="r2_approved_budget"  value="" size="25" name="r2_approved_budget" data-dtid="" class="r2_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__indirect_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals();"/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r3_approved_budget"  value="" size="25" name="r3_approved_budget" data-dtid="" class="r3_approved_budget text-center" disabled/>
+                                                            <input type="number" id="r3_approved_budget"  value="" size="25" name="r3_approved_budget" data-dtid="" class="r3_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__indirect_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals();"/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="number" id="proposed_realignment"  value="" size="25" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
@@ -684,9 +653,14 @@ echo view('templates/myheader.php');
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
+                                                            `expense_item`,
                                                             `particulars`,
                                                             `code`,
-                                                            `approved_budget`
+                                                            `approved_budget`,
+                                                            `r1_approved_budget`,
+                                                            `r2_approved_budget`,
+                                                            `r3_approved_budget`,
+                                                            `proposed_realignment`
                                                         FROM
                                                             `tbl_budget_indirect_ps_dt`
                                                         WHERE 
@@ -695,9 +669,14 @@ echo view('templates/myheader.php');
                                                         $result = $query->getResultArray();
                                                         foreach ($result as $data):
                                                             $dt_id = $data['recid'];
+                                                            $expense_item = $data['expense_item'];
                                                             $particulars = $data['particulars'];
                                                             $code = $data['code'];
                                                             $approved_budget = $data['approved_budget'];
+                                                            $r1_approved_budget = $data['r1_approved_budget'];
+                                                            $r2_approved_budget = $data['r2_approved_budget'];
+                                                            $r3_approved_budget = $data['r3_approved_budget'];
+                                                            $proposed_realignment = $data['proposed_realignment'];
                                                     ?>
                                                     <tr>
                                                         <td class="text-center align-middle">
@@ -707,7 +686,7 @@ echo view('templates/myheader.php');
                                                             </a>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
+                                                            <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
@@ -724,19 +703,19 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center"/>
+                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" <?= ($tagging == 'For Approval') ? 'disabled' : ''; ?> name="approved_budget" class="approved_budget text-center" onchange="__mysys_budget_allotment_ent.__indirect_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals();"/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r1_approved_budget"  value="" size="25" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled/>
+                                                            <input type="number" id="r1_approved_budget"  value="<?=$r1_approved_budget;?>" size="25" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__indirect_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals();"/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r2_approved_budget"  value="" size="25" name="r2_approved_budget" data-dtid="" class="r2_approved_budget text-center" disabled/>
+                                                            <input type="number" id="r2_approved_budget"  value="<?=$r2_approved_budget;?>" size="25" name="r2_approved_budget" data-dtid="" class="r2_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__indirect_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals();"/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="r3_approved_budget"  value="" size="25" name="r3_approved_budget" data-dtid="" class="r3_approved_budget text-center" disabled/>
+                                                            <input type="number" id="r3_approved_budget"  value="<?=$r3_approved_budget;?>" size="25" name="r3_approved_budget" data-dtid="" class="r3_approved_budget text-center" disabled onchange="__mysys_budget_allotment_ent.__indirect_ps_totals();" onmouseout="__mysys_budget_allotment_ent.__indirect_ps_totals();"/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="proposed_realignment"  value="" size="25" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
+                                                            <input type="number" id="proposed_realignment"  value="<?=$proposed_realignment;?>" size="25" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
@@ -833,51 +812,6 @@ echo view('templates/myheader.php');
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
-                                                    <?php if(!empty($realign_id)):
-                                                        $query = $this->db->query("
-                                                        SELECT
-                                                            `recid`,
-                                                            `particulars`,
-                                                            `code`,
-                                                            `approved_budget`
-                                                        FROM
-                                                            `tbl_budget_direct_mooe_dt`
-                                                        WHERE 
-                                                            `project_id` = '$realign_id'"
-                                                        );
-                                                        $result = $query->getResultArray();
-                                                        foreach ($result as $data):
-                                                            $dt_id = $data['recid'];
-                                                            $particulars = $data['particulars'];
-                                                            $code = $data['code'];
-                                                            $approved_budget = $data['approved_budget'];
-                                                    ?>
-                                                    <tr>
-                                                        <td class="text-center align-middle">
-                                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
-                                                            <i class="ti ti-trash"></i>
-                                                            </a>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form"  style="width:500px; height:30px;">
-                                                                <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
-                                                                <?php foreach($mooeuacsdata as $data){
-                                                                    $object_of_expenditures = $data['object_of_expenditures'];
-                                                                    $_code = $data['code'];
-                                                                ?>
-                                                                    <option value="<?=$object_of_expenditures?>"  data-uacs="<?=$_code;?>"><?=$object_of_expenditures?></option>
-                                                                <?php }?>
-                                                            </select>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="" name="approved_budget" class="approved_budget text-center"/>
-                                                        </td>
-                                                    </tr>
-                                                    <?php endforeach; endif;?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -963,51 +897,6 @@ echo view('templates/myheader.php');
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
-                                                    <?php if(!empty($realign_id)):
-                                                        $query = $this->db->query("
-                                                        SELECT
-                                                            `recid`,
-                                                            `particulars`,
-                                                            `code`,
-                                                            `approved_budget`
-                                                        FROM
-                                                            `tbl_budget_indirect_mooe_dt`
-                                                        WHERE 
-                                                            `project_id` = '$realign_id'"
-                                                        );
-                                                        $result = $query->getResultArray();
-                                                        foreach ($result as $data):
-                                                            $dt_id = $data['recid'];
-                                                            $particulars = $data['particulars'];
-                                                            $code = $data['code'];
-                                                            $approved_budget = $data['approved_budget'];
-                                                    ?>
-                                                    <tr>
-                                                        <td class="text-center align-middle">
-                                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
-                                                            <i class="ti ti-trash"></i>
-                                                            </a>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form"  style="width:500px; height:30px;">
-                                                                <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
-                                                                <?php foreach($mooeuacsdata as $data){
-                                                                    $object_of_expenditures = $data['object_of_expenditures'];
-                                                                    $_code = $data['code'];
-                                                                ?>
-                                                                    <option value="<?=$object_of_expenditures?>"  data-uacs="<?=$_code;?>"><?=$object_of_expenditures?></option>
-                                                                <?php }?>
-                                                            </select>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="" name="approved_budget" class="approved_budget text-center"/>
-                                                        </td>
-                                                    </tr>
-                                                    <?php endforeach; endif;?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -1085,43 +974,6 @@ echo view('templates/myheader.php');
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
-                                                    <?php if(!empty($realign_id)):
-                                                        $query = $this->db->query("
-                                                        SELECT
-                                                            `recid`,
-                                                            `particulars`,
-                                                            `code`,
-                                                            `approved_budget`
-                                                        FROM
-                                                            `tbl_budget_direct_co_dt`
-                                                        WHERE 
-                                                            `project_id` = '$realign_id'"
-                                                        );
-                                                        $result = $query->getResultArray();
-                                                        foreach ($result as $data):
-                                                            $dt_id = $data['recid'];
-                                                            $particulars = $data['particulars'];
-                                                            $code = $data['code'];
-                                                            $approved_budget = $data['approved_budget'];
-                                                    ?>
-                                                    <tr>
-                                                        <td class="text-center align-middle">
-                                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
-                                                            <i class="ti ti-trash"></i>
-                                                            </a>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:500px; height:30px;"  name="particulars" class="particulars text-center">
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center">
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="" name="approved_budget" class="approved_budget text-center"/>
-                                                        </td>
-                                                    </tr>
-                                                    <?php endforeach; endif;?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -1188,43 +1040,6 @@ echo view('templates/myheader.php');
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center"/>
-                                                        </td>
-                                                    </tr>
-                                                    <?php endforeach; endif;?>
-                                                    <?php if(!empty($realign_id)):
-                                                        $query = $this->db->query("
-                                                        SELECT
-                                                            `recid`,
-                                                            `particulars`,
-                                                            `code`,
-                                                            `approved_budget`
-                                                        FROM
-                                                            `tbl_budget_indirect_co_dt`
-                                                        WHERE 
-                                                            `project_id` = '$realign_id'"
-                                                        );
-                                                        $result = $query->getResultArray();
-                                                        foreach ($result as $data):
-                                                            $dt_id = $data['recid'];
-                                                            $particulars = $data['particulars'];
-                                                            $code = $data['code'];
-                                                            $approved_budget = $data['approved_budget'];
-                                                    ?>
-                                                    <tr>
-                                                        <td class="text-center align-middle">
-                                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
-                                                            <i class="ti ti-trash"></i>
-                                                            </a>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:500px; height:30px;"  name="particulars" class="particulars text-center">
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center">
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="" name="approved_budget" class="approved_budget text-center"/>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
@@ -1531,7 +1346,8 @@ echo view('templates/myheader.php');
 ?>
 <script>
     __mysys_budget_allotment_ent.__budget_saving();
-    __mysys_budget_allotment_ent.__pack_totals();
+    __mysys_budget_allotment_ent.__direct_ps_totals();
+    __mysys_budget_allotment_ent.__indirect_ps_totals();
     $(document).ready(function () {
         $('#datatablesSimple').DataTable({
             pageLength: 5,
@@ -1547,17 +1363,17 @@ echo view('templates/myheader.php');
         $('.r3_approved_budget').prop('disabled', true);
 
         // Toggle all based on the checkbox
-        $('#chk_1strealign').on('change', function () {
+        $('#is_realign1').on('change', function () {
             const isChecked = $(this).is(':checked');
             $('.r1_approved_budget').prop('disabled', !isChecked);
             $('.approved_budget').prop('disabled', isChecked);
         });
-        $('#chk_2ndrealign').on('change', function () {
+        $('#is_realign2').on('change', function () {
             const isChecked = $(this).is(':checked');
             $('.r2_approved_budget').prop('disabled', !isChecked);
             $('.r1_approved_budget').prop('disabled', isChecked);
         });
-        $('#chk_3rdrealign').on('change', function () {
+        $('#is_realign3').on('change', function () {
             const isChecked = $(this).is(':checked');
             $('.r3_approved_budget').prop('disabled', !isChecked);
             $('.r2_approved_budget').prop('disabled', isChecked);
