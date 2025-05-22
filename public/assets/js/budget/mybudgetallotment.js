@@ -224,17 +224,26 @@ function __mysys_budget_allotment_ent() {
 			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col1' + mid); // ID for second text field
 			jQuery(clonedRow).find('input[type=text]').eq(1).attr('id', 'col2' + mid); // ID for second text field
 			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(1).attr('id', 'col4' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(2).attr('id', 'col5' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(3).attr('id', 'col6' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(4).attr('id', 'col7' + mid); // ID for date field
 
 			// Now reset only the debit and credit fields (input[type=number])
 			
 			jQuery(clonedRow).find('input[type=text]').eq(0).val('');  // Clear credit value
 			jQuery(clonedRow).find('input[type=text]').eq(1).val('');  // Clear credit value
 			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
-
+			jQuery(clonedRow).find('input[type=number]').eq(1).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(2).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(3).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(4).val('');
 	
 			// Insert the cloned row before the last row (footer row)
 			jQuery('#budget_co_line_items tbody').append(clonedRow);
-	
+
+			this.__direct_co_totals();
+
 			// Make the new row visible
 			jQuery(clonedRow).css({ 'display': '' });
 	
@@ -266,16 +275,26 @@ function __mysys_budget_allotment_ent() {
 			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col1' + mid); // ID for second text field
 			jQuery(clonedRow).find('input[type=text]').eq(1).attr('id', 'col2' + mid); // ID for second text field
 			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(1).attr('id', 'col4' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(2).attr('id', 'col5' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(3).attr('id', 'col6' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(4).attr('id', 'col7' + mid); // ID for date field
 
 			// Now reset only the debit and credit fields (input[type=number])
 			
 			jQuery(clonedRow).find('input[type=text]').eq(0).val('');  // Clear credit value
 			jQuery(clonedRow).find('input[type=text]').eq(1).val('');  // Clear credit value
 			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
+			jQuery(clonedRow).find('input[type=number]').eq(1).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(2).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(3).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(4).val('');
 
 	
 			// Insert the cloned row before the last row (footer row)
 			jQuery('#budget_indirect_co_line_items tbody').append(clonedRow);
+
+			this.__indirect_co_totals();
 	
 			// Make the new row visible
 			jQuery(clonedRow).css({ 'display': '' });
@@ -444,8 +463,12 @@ function __mysys_budget_allotment_ent() {
 						var uacs = clonedRow.find('input[type=text]').eq(1).val();
 						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
 						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
+						var r1_approved_budget = clonedRow.find('input[type=number]').eq(1).val();  
+						var r2_approved_budget = clonedRow.find('input[type=number]').eq(2).val();  
+						var r3_approved_budget = clonedRow.find('input[type=number]').eq(3).val();  
+						var proposed_realignment = clonedRow.find('input[type=number]').eq(4).val();  
 						
-						codata = particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid;
+						codata = particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + r1_approved_budget + 'x|x' + r2_approved_budget + 'x|x' + r3_approved_budget + 'x|x' + proposed_realignment;
 						budgetcodtdata.push(codata);
 					}
 
@@ -460,8 +483,12 @@ function __mysys_budget_allotment_ent() {
 						var uacs = clonedRow.find('input[type=text]').eq(1).val();
 						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
 						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
+						var r1_approved_budget = clonedRow.find('input[type=number]').eq(1).val();  
+						var r2_approved_budget = clonedRow.find('input[type=number]').eq(2).val();  
+						var r3_approved_budget = clonedRow.find('input[type=number]').eq(3).val();  
+						var proposed_realignment = clonedRow.find('input[type=number]').eq(4).val();  
 						
-						coindirectdata = particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid;
+						coindirectdata = particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + r1_approved_budget + 'x|x' + r2_approved_budget + 'x|x' + r3_approved_budget + 'x|x' + proposed_realignment;
 						budgetindirectcodtdata.push(coindirectdata);
 					}
 
@@ -494,8 +521,8 @@ function __mysys_budget_allotment_ent() {
 						is_realign2: is_realign2,
 						is_realign3: is_realign3,
 						//total
-						total_approved_combined:total_approved_combined,
-						total_proposed_combined: total_proposed_combined,
+						total_approved_combined:total_approved_combined.value,
+						total_proposed_combined: total_proposed_combined.value,
 						meaction: 'MAIN-SAVE'
 					}
 
@@ -523,7 +550,7 @@ function __mysys_budget_allotment_ent() {
 				} //end try 
 			}, false)
 		}); //end forEach		
-	}; //
+	};
 
 	this.__approve_budget = function() {
 		const approveBtn = document.getElementById('btn_approve');
@@ -718,6 +745,38 @@ function __mysys_budget_allotment_ent() {
         });
     };
 
+	//CO - TOTAL PER LINE - DIRECT
+	this.__direct_co_totals = function () {
+        jQuery('.budgetcodata-list tr').each(function () {
+            var row = jQuery(this);
+
+            var approved = parseFloat(row.find('.approved_budget').val()) || 0;
+            var r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+            var r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+            var r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+            var total = approved + r1 + r2 + r3;
+
+            row.find('.proposed_realignment').val(total.toFixed(2));
+        });
+    };
+
+	//CO - TOTAL PER LINE - INDIRECT
+	this.__indirect_co_totals = function () {
+        jQuery('.budgetcodata-indirect-list tr').each(function () {
+            var row = jQuery(this);
+
+            var approved = parseFloat(row.find('.approved_budget').val()) || 0;
+            var r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+            var r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+            var r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+            var total = approved + r1 + r2 + r3;
+
+            row.find('.proposed_realignment').val(total.toFixed(2));
+        });
+    };
+
 	this.__combined_totals = function () {
 		let totalApprovedCombined = 0;
 		let totalProposedCombined = 0;
@@ -775,6 +834,40 @@ function __mysys_budget_allotment_ent() {
 
 		// MOOE INDIRECT COST TABLE
 		jQuery('.budgetmooedata-indirect-list tr').each(function () {
+			let row = jQuery(this);
+
+			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			let r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+			let r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+			let r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+			let total = approved + r1 + r2 + r3;
+
+			row.find('.proposed_realignment').val(total.toFixed(2));
+
+			totalApprovedCombined += approved;
+			totalProposedCombined += total;
+		});
+
+		// CO DIRECT COST TABLE
+		jQuery('.budgetcodata-list tr').each(function () {
+			let row = jQuery(this);
+
+			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			let r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+			let r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+			let r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+			let total = approved + r1 + r2 + r3;
+
+			row.find('.proposed_realignment').val(total.toFixed(2));
+
+			totalApprovedCombined += approved;
+			totalProposedCombined += total;
+		});
+
+		// CO INDIRECT COST TABLE
+		jQuery('.budgetcodata-indirect-list tr').each(function () {
 			let row = jQuery(this);
 
 			let approved = parseFloat(row.find('.approved_budget').val()) || 0;

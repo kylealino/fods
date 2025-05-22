@@ -518,6 +518,10 @@ class MyBudgetAllotmentModel extends Model
 					$code = $medata[1]; 
 					$approved_budget = $medata[2]; 
 					$dtid = $medata[3]; 
+					$r1_approved_budget = $medata[4];  
+					$r2_approved_budget = $medata[5]; 
+					$r3_approved_budget = $medata[6]; 
+					$proposed_realignment = $medata[7]; 
 
 					if (!empty($dtid)) {
 						$query = $this->db->query("
@@ -526,7 +530,11 @@ class MyBudgetAllotmentModel extends Model
 						SET
 							`particulars` = '$particulars',
 							`code` = '$code',
-							`approved_budget` = '$approved_budget'
+							`approved_budget` = '$approved_budget',
+							`r1_approved_budget` = '$r1_approved_budget',
+							`r2_approved_budget` = '$r2_approved_budget',
+							`r3_approved_budget` = '$r3_approved_budget',
+							`proposed_realignment` = '$approved_budget'
 						WHERE
 							`recid` = '$dtid'
 						");
@@ -537,6 +545,10 @@ class MyBudgetAllotmentModel extends Model
 								`particulars`,
 								`code`,
 								`approved_budget`,
+								`r1_approved_budget`,
+								`r2_approved_budget`,
+								`r3_approved_budget`,
+								`proposed_realignment`,
 								`added_at`,
 								`added_by`
 							)
@@ -545,6 +557,10 @@ class MyBudgetAllotmentModel extends Model
 								'$particulars',
 								'$code',
 								'$approved_budget',
+								'$r1_approved_budget',
+								'$r2_approved_budget',
+								'$r3_approved_budget',
+								'$proposed_realignment',
 								NOW(),
 								'{$this->cuser}'
 							)
@@ -565,6 +581,10 @@ class MyBudgetAllotmentModel extends Model
 					$code = $medata[1]; 
 					$approved_budget = $medata[2]; 
 					$dtid = $medata[3]; 
+					$r1_approved_budget = $medata[4];  
+					$r2_approved_budget = $medata[5]; 
+					$r3_approved_budget = $medata[6]; 
+					$proposed_realignment = $medata[7]; 
 
 					if (!empty($dtid)) {
 						$query = $this->db->query("
@@ -573,7 +593,11 @@ class MyBudgetAllotmentModel extends Model
 						SET
 							`particulars` = '$particulars',
 							`code` = '$code',
-							`approved_budget` = '$approved_budget'
+							`approved_budget` = '$approved_budget',
+							`r1_approved_budget` = '$r1_approved_budget',
+							`r2_approved_budget` = '$r2_approved_budget',
+							`r3_approved_budget` = '$r3_approved_budget',
+							`proposed_realignment` = '$approved_budget'
 						WHERE
 							`recid` = '$dtid'
 						");
@@ -584,6 +608,10 @@ class MyBudgetAllotmentModel extends Model
 								`particulars`,
 								`code`,
 								`approved_budget`,
+								`r1_approved_budget`,
+								`r2_approved_budget`,
+								`r3_approved_budget`,
+								`proposed_realignment`,
 								`added_at`,
 								`added_by`
 							)
@@ -592,6 +620,10 @@ class MyBudgetAllotmentModel extends Model
 								'$particulars',
 								'$code',
 								'$approved_budget',
+								'$r1_approved_budget',
+								'$r2_approved_budget',
+								'$r3_approved_budget',
+								'$proposed_realignment',
 								NOW(),
 								'{$this->cuser}'
 							)
@@ -924,6 +956,10 @@ class MyBudgetAllotmentModel extends Model
 					$code = $medata[1]; 
 					$approved_budget = $medata[2]; 
 					$dtid = $medata[3]; 
+					$r1_approved_budget = $medata[4];  
+					$r2_approved_budget = $medata[5]; 
+					$r3_approved_budget = $medata[6]; 
+					$proposed_realignment = $medata[7]; 
 
 					if (!empty($dtid)) {
 						$query = $this->db->query("
@@ -932,7 +968,11 @@ class MyBudgetAllotmentModel extends Model
 						SET
 							`particulars` = '$particulars',
 							`code` = '$code',
-							`approved_budget` = '$approved_budget'
+							`approved_budget` = '$approved_budget',
+							`r1_approved_budget` = '$r1_approved_budget',
+							`r2_approved_budget` = '$r2_approved_budget',
+							`r3_approved_budget` = '$r3_approved_budget',
+							`proposed_realignment` = '$approved_budget'
 						WHERE
 							`recid` = '$dtid'
 						");
@@ -943,6 +983,10 @@ class MyBudgetAllotmentModel extends Model
 								`particulars`,
 								`code`,
 								`approved_budget`,
+								`r1_approved_budget`,
+								`r2_approved_budget`,
+								`r3_approved_budget`,
+								`proposed_realignment`,
 								`added_at`,
 								`added_by`
 							)
@@ -951,6 +995,10 @@ class MyBudgetAllotmentModel extends Model
 								'$particulars',
 								'$code',
 								'$approved_budget',
+								'$r1_approved_budget',
+								'$r2_approved_budget',
+								'$r3_approved_budget',
+								'$proposed_realignment',
 								NOW(),
 								'{$this->cuser}'
 							)
@@ -970,6 +1018,10 @@ class MyBudgetAllotmentModel extends Model
 					$code = $medata[1]; 
 					$approved_budget = $medata[2]; 
 					$dtid = $medata[3]; 
+					$r1_approved_budget = $medata[4];  
+					$r2_approved_budget = $medata[5]; 
+					$r3_approved_budget = $medata[6]; 
+					$proposed_realignment = $medata[7]; 
 
 					if (!empty($dtid)) {
 						$query = $this->db->query("
@@ -978,7 +1030,11 @@ class MyBudgetAllotmentModel extends Model
 						SET
 							`particulars` = '$particulars',
 							`code` = '$code',
-							`approved_budget` = '$approved_budget'
+							`approved_budget` = '$approved_budget',
+							`r1_approved_budget` = '$r1_approved_budget',
+							`r2_approved_budget` = '$r2_approved_budget',
+							`r3_approved_budget` = '$r3_approved_budget',
+							`proposed_realignment` = '$approved_budget'
 						WHERE
 							`recid` = '$dtid'
 						");
@@ -989,6 +1045,10 @@ class MyBudgetAllotmentModel extends Model
 								`particulars`,
 								`code`,
 								`approved_budget`,
+								`r1_approved_budget`,
+								`r2_approved_budget`,
+								`r3_approved_budget`,
+								`proposed_realignment`,
 								`added_at`,
 								`added_by`
 							)
@@ -997,6 +1057,10 @@ class MyBudgetAllotmentModel extends Model
 								'$particulars',
 								'$code',
 								'$approved_budget',
+								'$r1_approved_budget',
+								'$r2_approved_budget',
+								'$r3_approved_budget',
+								'$proposed_realignment',
 								NOW(),
 								'{$this->cuser}'
 							)
