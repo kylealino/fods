@@ -149,35 +149,23 @@ $pdf->Cell(60, 3.5, $monitoring_agency, 0, 1, 'L');
 $X = $pdf->GetX(); // Save current X
 $Y = $pdf->GetY(); // Save current Y
 
-$pdf->SetXY(100, $Y);
-$pdf->SetFont('Arial', 'B', 6);
-$pdf->Cell(100, 3.5, $implementing_agency, 'B', 0, 'C');
+$pdf->SetXY(130, $Y);
+$pdf->SetFont('Arial', 'B', 7);
+$pdf->Cell(70, 3.5, 'Counterpart Funding', 'B', 0, 'C');
 
 $Y+= 3.5;
 
-$pdf->SetXY(100, $Y);
-$pdf->SetFont('Arial', 'B', 5.5);
-$pdf->Cell(20, 3.5, 'As Approved', 'B', 0, 'C');
+$pdf->SetXY(130, $Y);
+$pdf->SetFont('Arial', 'B', 7);
+$pdf->Cell(35, 3.5, $implementing_agency, 'B', 0, 'C');
 
-$pdf->SetXY(120, $Y);
-$pdf->SetFont('Arial', 'B', 5.5);
-$pdf->Cell(20, 3.5, '1st reprogramming', 'B', 0, 'C');
-
-$pdf->SetXY(140, $Y);
-$pdf->SetFont('Arial', 'B', 5.5);
-$pdf->Cell(20, 3.5, '2nd reprogramming', 'B', 0, 'C');
-
-$pdf->SetXY(160, $Y);
-$pdf->SetFont('Arial', 'B', 5.5);
-$pdf->Cell(20, 3.5, '3rd reprogramming', 'B', 0, 'C');
-
-$pdf->SetXY(180, $Y);
-$pdf->SetFont('Arial', 'B', 5.5);
-$pdf->Cell(20, 3.5, 'Proposed Realignment', 'B', 0, 'C');
+$pdf->SetXY(165, $Y);
+$pdf->SetFont('Arial', 'B', 7);
+$pdf->Cell(35, 3.5, 'Cooperating Agency', 'B', 0, 'C');
 
 //START OF PS LOGIC
 $pdf->SetXY(10, $Y);
-$pdf->SetFont('Arial', 'B', 5.5);
+$pdf->SetFont('Arial', 'B', 7);
 $pdf->Cell(5, 3.5, 'I.', 0, 0, 'L');
 $pdf->Cell(60, 3.5, 'PERSONAL SERVICES (PS)' , 0, 1, 'L');
 $Y += 3;
@@ -194,11 +182,7 @@ SELECT
      FROM tbl_uacs_category cat
      JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
      WHERE uac.`object_of_expenditures` = a.particulars
-     LIMIT 1) AS expenditure_category,
-    r1_approved_budget,
-     r2_approved_budget,
-     r3_approved_budget,
-     proposed_realignment
+     LIMIT 1) AS expenditure_category
 FROM
     `tbl_budget_direct_ps_dt` a
 WHERE 
@@ -215,10 +199,7 @@ foreach ($data as $row) {
     $particulars = $row['particulars'];
     $approved_budget = $row['approved_budget'];
     $expenditure_category = $row['expenditure_category'];
-    $r1_approved_budget = $row['r1_approved_budget'];
-    $r2_approved_budget = $row['r2_approved_budget'];
-    $r3_approved_budget = $row['r3_approved_budget'];
-    $proposed_realignment = $row['proposed_realignment'];
+
 
     // Print Expenditure Category if it changes
     if ($expenditure_category !== $last_expenditure_category && $expenditure_category !== null) {
@@ -232,31 +213,19 @@ foreach ($data as $row) {
 
     // Print Particulars
     $pdf->SetFont('Arial', 'I', 7);
-    $particulars = str_replace(["\r", "\n"], '', $particulars);
-    $pdf->SetFont('Arial', 'I', 7);
-    $pdf->SetXY(20, $Y);
-    $pdf->MultiCell(80, 2.5, $particulars, 0, 'L'); // full width usage
-
+    $pdf->SetXY(15, $Y);
+    $pdf->Cell(5, 3.5, '', 0, 0, 'L');
+    $pdf->Cell(60, 3.5, $particulars, 0, 1, 'L');
 
     // Print Budget
-    $pdf->SetXY(100, $Y);
-    $pdf->Cell(20, 2, ($approved_budget == 0.00 || !is_numeric($approved_budget)) ? '---' : number_format((float)$approved_budget, 2), 0, 1, 'C');
+    $pdf->SetXY(130, $Y);
+    $pdf->Cell(32, 3.5, number_format($approved_budget, 2), 0, 1, 'C');
 
-    $pdf->SetXY(120, $Y);
-    $pdf->Cell(20, 2, ($r1_approved_budget == 0.00 || !is_numeric($r1_approved_budget)) ? '---' : number_format((float)$r1_approved_budget, 2), 0, 1, 'C');
-    
-    $pdf->SetXY(140, $Y);
-    $pdf->Cell(20, 2, ($r2_approved_budget == 0.00 || !is_numeric($r2_approved_budget)) ? '---' : number_format((float)$r2_approved_budget, 2), 0, 1, 'C');
-    
-    $pdf->SetXY(160, $Y);
-    $pdf->Cell(20, 2, ($r3_approved_budget == 0.00 || !is_numeric($r3_approved_budget)) ? '---' : number_format((float)$r3_approved_budget, 2), 0, 1, 'C');
-
-    $pdf->SetXY(180, $Y);
-    $pdf->Cell(20, 2, number_format($proposed_realignment, 2), 0, 1, 'C');
+    $pdf->SetXY(168, $Y);
+    $pdf->Cell(32, 3.5, '------', 0, 1, 'C');
 
     $total_direct_ps += $approved_budget;
-    $Y = $pdf->GetY();
-    $Y += 3;
+    $Y += 3.5;
 }
 //INDIRECT COST
 $pdf->SetFont('Arial', 'B', 7);
@@ -272,11 +241,7 @@ SELECT
      FROM tbl_uacs_category cat
      JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
      WHERE uac.`object_of_expenditures` = a.particulars
-     LIMIT 1) AS expenditure_category,
-     r1_approved_budget,
-     r2_approved_budget,
-     r3_approved_budget,
-     proposed_realignment
+     LIMIT 1) AS expenditure_category
 FROM
     `tbl_budget_indirect_ps_dt` a
 WHERE 
@@ -293,10 +258,7 @@ foreach ($data as $row) {
     $particulars = $row['particulars'];
     $approved_budget = $row['approved_budget'];
     $expenditure_category = $row['expenditure_category'];
-    $r1_approved_budget = $row['r1_approved_budget'];
-    $r2_approved_budget = $row['r2_approved_budget'];
-    $r3_approved_budget = $row['r3_approved_budget'];
-    $proposed_realignment = $row['proposed_realignment'];
+
 
     // Print Expenditure Category if it changes
     if ($expenditure_category !== $last_expenditure_category && $expenditure_category !== null) {
@@ -310,30 +272,18 @@ foreach ($data as $row) {
 
     // Print Particulars
     $pdf->SetFont('Arial', 'I', 7);
-    $particulars = str_replace(["\r", "\n"], '', $particulars);
-    $pdf->SetFont('Arial', 'I', 7);
-    $pdf->SetXY(20, $Y);
-    $pdf->MultiCell(80, 2.5, $particulars, 0, 'L'); // full width usage
-
+    $pdf->SetXY(15, $Y);
+    $pdf->Cell(5, 3.5, '', 0, 0, 'L');
+    $pdf->Cell(60, 3.5, $particulars, 0, 1, 'L');
 
     // Print Budget
-    $pdf->SetXY(100, $Y);
-    $pdf->Cell(20, 2, ($approved_budget == 0.00 || !is_numeric($approved_budget)) ? '---' : number_format((float)$approved_budget, 2), 0, 1, 'C');
+    $pdf->SetXY(130, $Y);
+    $pdf->Cell(32, 3.5, number_format($approved_budget, 2), 0, 1, 'C');
 
-    $pdf->SetXY(120, $Y);
-    $pdf->Cell(20, 2, ($r1_approved_budget == 0.00 || !is_numeric($r1_approved_budget)) ? '---' : number_format((float)$r1_approved_budget, 2), 0, 1, 'C');
-    
-    $pdf->SetXY(140, $Y);
-    $pdf->Cell(20, 2, ($r2_approved_budget == 0.00 || !is_numeric($r2_approved_budget)) ? '---' : number_format((float)$r2_approved_budget, 2), 0, 1, 'C');
-    
-    $pdf->SetXY(160, $Y);
-    $pdf->Cell(20, 2, ($r3_approved_budget == 0.00 || !is_numeric($r3_approved_budget)) ? '---' : number_format((float)$r3_approved_budget, 2), 0, 1, 'C');
-
-    $pdf->SetXY(180, $Y);
-    $pdf->Cell(20, 2, number_format($proposed_realignment, 2), 0, 1, 'C');
+    $pdf->SetXY(168, $Y);
+    $pdf->Cell(32, 3.5, '------', 0, 1, 'C');
 
     $total_indirect_ps += $approved_budget;
-    $Y = $pdf->GetY();
     $Y += 3.5;
 }
 
@@ -342,20 +292,18 @@ $Y+= 3.5;
 
 //P IN HONORARIA
 $pdf->SetFont('Arial', 'B', 7);
-$pdf->SetXY(75, $Y);
-$pdf->Cell(20, 3.5, 'Sub-total for PS' , 0, 1, 'L');
+$pdf->SetXY(90, $Y);
+$pdf->Cell(20, 3.5, 'TOTAL PS' , 0, 1, 'L');
 
 $pdf->SetFont('Arial', 'B', 7);
-$pdf->SetXY(97, $Y);
+$pdf->SetXY(126, $Y);
 $pdf->Cell(5, 3.5, 'P' , 0, 1, 'L');
-$pdf->SetXY(100, $Y);
-$pdf->Cell(20, 3.5, number_format($total_ps,2) , 'T', 1, 'C');
-$pdf->SetXY(177, $Y);
+$pdf->SetXY(130, $Y);
+$pdf->Cell(32, 3.5, number_format($total_ps,2) , 'T', 1, 'C');
+$pdf->SetXY(163, $Y);
 $pdf->Cell(5, 3.5, 'P' , 0, 1, 'L');
-$pdf->SetXY(180, $Y);
-$pdf->Cell(20, 3.5, '' , 'T', 1, 'L');
-$pdf->SetXY(180, $Y);
-$pdf->Cell(20, 3.5, number_format($proposed_realignment,2) , 'T', 1, 'C');
+$pdf->SetXY(168, $Y);
+$pdf->Cell(32, 3.5, '' , 'T', 1, 'L');
 
 $Y+= 3.5;
 
@@ -600,9 +548,9 @@ $pdf->Cell(70, 3.5, 'Counterpart Funding', 'B', 0, 'C');
 
 $Y+= 3.5;
 
-$pdf->SetXY(130, $Y);
+$pdf->SetXY(110, $Y);
 $pdf->SetFont('Arial', 'B', 7);
-$pdf->Cell(35, 3.5, $implementing_agency, 'B', 0, 'C');
+$pdf->Cell(60, 3.5, $implementing_agency, 1, 0, 'C');
 
 $pdf->SetXY(165, $Y);
 $pdf->SetFont('Arial', 'B', 7);
