@@ -50,6 +50,9 @@ class MyBudgetAllotmentModel extends Model
 		$is_realign2 = $this->request->getPostGet('is_realign2');
 		$is_realign3 = $this->request->getPostGet('is_realign3');
 
+		$total_proposed_combined = $this->request->getPostGet('total_proposed_combined');
+		$total_approved_combined = $this->request->getPostGet('total_approved_combined');
+
 		// var_dump($budgetdtdata);
 		// var_dump('TTTTTTTTTTTTTTTTTTTTT');
 		// var_dump($budgetdtindirectdata);
@@ -173,6 +176,18 @@ class MyBudgetAllotmentModel extends Model
 			echo "
 			<script>
 			toastr.error('No particulars found!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if ($total_approved_combined !== $total_proposed_combined) {
+			echo "
+			<script>
+			toastr.error('Approved budget must be equal to Proposed Realignment!', 'Oops!', {
 					progressBar: true,
 					closeButton: true,
 					timeOut:2000,
