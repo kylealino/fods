@@ -888,8 +888,10 @@ function __mysys_budget_allotment_ent() {
 		jQuery('#total_proposed_combined').val(totalProposedCombined.toFixed(2));
 	};
 
-
-	
+	this.__toggleExtensionFields = function(checkbox) {
+        var extFields = document.getElementById("extension_fields");
+        extFields.style.display = checkbox.checked ? "block" : "none";
+    }
 	
 
 }; //end main

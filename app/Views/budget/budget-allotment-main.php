@@ -237,9 +237,9 @@ echo view('templates/myheader.php');
                         </div>
                         <div class="row mb-2">
                             <div class="col-sm-4">
-                                <span class="fw-bold">Total Duration:</span>
+                                <span class="fw-bold">Project Duration:</span>
                             </div>
-                            <div class="col-sm-8">
+                            <div class="col-sm-5">
                                 <?php if(!empty($recid)):?>
                                     <select id="total_duration" name="total_duration" class="form-select form-select-sm">
                                         <option selected value="<?=$total_duration;?>"><?=$total_duration;?></option>
@@ -256,6 +256,14 @@ echo view('templates/myheader.php');
                                     </select>
                                 <?php endif;?>
                             </div>
+                            <div class="col-sm-3 d-flex align-items-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" onchange="__mysys_budget_allotment_ent.__toggleExtensionFields(this)" id="with_extension"/>
+                                    <label class="form-check-label small" for="with_extension">
+                                        With Extension
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-sm-4">
@@ -271,6 +279,33 @@ echo view('templates/myheader.php');
                             </div>
                             <div class="col-sm-8">
                                 <input type="date" id="duration_to" name="duration_to" value="<?=$duration_to;?>" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                        <div id="extension_fields" style="display: none;">
+                            <h6 class="fw-bold text-success">Extended Duration</h6>
+                            <div class="row mb-2">
+                                <div class="col-sm-4">
+                                    <label class="fw-bold">From:</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="date" id="extended_from" name="extended_from" class="form-control form-control-sm" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-sm-4">
+                                    <label class="fw-bold">To:</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="date" id="extended_to" name="extended_to" class="form-control form-control-sm" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span class="fw-bold text-nowrap">LDDAP-ADA Reference No.:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" id="lddap_refno" name="lddap_refno" value="" class="form-control form-control-sm"/>
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -1588,6 +1623,13 @@ echo view('templates/myheader.php');
         $('#division_name').val(division);
         $('#responsibility_code').val(responsibility);
     });
+
+   
+    function toggleExtensionFields(checkbox) {
+        var extFields = document.getElementById("extension_fields");
+        extFields.style.display = checkbox.checked ? "block" : "none";
+    }
+
 
 
 </script>
