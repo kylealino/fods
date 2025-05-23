@@ -53,6 +53,13 @@ class MyBudgetAllotmentModel extends Model
 		$total_proposed_combined = $this->request->getPostGet('total_proposed_combined');
 		$total_approved_combined = $this->request->getPostGet('total_approved_combined');
 
+		$with_extension = $this->request->getPostGet('with_extension');
+		$extended_from = $this->request->getPostGet('extended_from');
+		$extended_to = $this->request->getPostGet('extended_to');
+		$lddap_refno = $this->request->getPostGet('lddap_refno');
+
+	
+
 		// var_dump($budgetdtdata);
 		// var_dump('TTTTTTTTTTTTTTTTTTTTT');
 		// var_dump($budgetdtindirectdata);

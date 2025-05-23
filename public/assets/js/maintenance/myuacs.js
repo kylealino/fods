@@ -19,19 +19,17 @@ function __mysys_uacs_ent() {
 					event.stopPropagation();
 
 					var recid = document.getElementById("recid");
-					var object_of_expenditures = document.getElementById("object_of_expenditures");
-					var expenditure_category = document.getElementById("selUacsCat");
-					var uacs_category_id = document.getElementById("uacs_category_id");
-					var code = document.getElementById("code");
-					var parent_category = document.getElementById("parent_category");
+					var allotment_class = document.getElementById("allotment_class");
+					var object_code = document.getElementById("object_code");
+					var sub_object_code = document.getElementById("sub_object_code");
+					var uacs_code = document.getElementById("uacs_code");
 
 					var mparam = { 
 						recid: recid.value,
-						object_of_expenditures: object_of_expenditures.value,
-						expenditure_category: expenditure_category.value,
-						uacs_category_id: uacs_category_id.value,
-						code: code.value,
-						parent_category: parent_category.value,
+						allotment_class: allotment_class.value,
+						object_code: object_code.value,
+						sub_object_code: sub_object_code.value,
+						uacs_code: uacs_code.value,
 						meaction: 'MAIN-SAVE'
 					}
 

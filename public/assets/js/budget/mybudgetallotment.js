@@ -369,6 +369,11 @@ function __mysys_budget_allotment_ent() {
 
 					var tagging = document.getElementById("tagging");
 
+					var with_extension = document.getElementById("with_extension").checked ? 1 : 0;
+					var extended_from = document.getElementById("extended_from");
+					var extended_to = document.getElementById("extended_to");
+					var lddap_refno = document.getElementById("lddap_refno");
+
 					// Prepare PS data DIRECT --
 					var rowcount1 = jQuery('.budgetdata-list tr').length;
 					var budgetdtdata = [];
@@ -523,6 +528,11 @@ function __mysys_budget_allotment_ent() {
 						//total
 						total_approved_combined:total_approved_combined.value,
 						total_proposed_combined: total_proposed_combined.value,
+						//extended duration
+						with_extension: with_extension,
+						extended_from:extended_from.value,
+						extended_to:extended_to.value,
+						lddap_refno:lddap_refno.value,
 						meaction: 'MAIN-SAVE'
 					}
 
@@ -888,10 +898,9 @@ function __mysys_budget_allotment_ent() {
 		jQuery('#total_proposed_combined').val(totalProposedCombined.toFixed(2));
 	};
 
-	this.__toggleExtensionFields = function(checkbox) {
-        var extFields = document.getElementById("extension_fields");
+	this.__toggleExtensionFields = function(checkbox){
+		var extFields = document.getElementById("extension_fields");
         extFields.style.display = checkbox.checked ? "block" : "none";
-    }
-	
+	}
 
 }; //end main

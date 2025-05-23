@@ -1,0 +1,26 @@
+CRITICAL - 2025-05-23 10:11:16 --> ErrorException: Undefined array key "allotment_class"
+[Method: GET, Route: myuacs]
+in APPPATH\Views\uacs\uacs-main.php on line 161.
+ 1 APPPATH\Views\uacs\uacs-main.php(161): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "allotment_class"', 'C:\\xampp\\htdocs\\fods\\app\\Views\\uacs\\uacs-main.php', 161)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\uacs\\uacs-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('uacs/uacs-main', [], true)
+ 5 APPPATH\Controllers\MyUACS.php(67): view('uacs/uacs-main', [...])
+ 6 APPPATH\Controllers\MyUACS.php(22): App\Controllers\MyUACS->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUACS->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUACS))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-23 10:12:31 --> ErrorException: Undefined variable $uacscategorydata
+[Method: GET, Route: myuacs]
+in APPPATH\Controllers\MyUACS.php on line 57.
+ 1 APPPATH\Controllers\MyUACS.php(57): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $uacscategorydata', 'C:\\xampp\\htdocs\\fods\\app\\Controllers\\MyUACS.php', 57)
+ 2 APPPATH\Controllers\MyUACS.php(22): App\Controllers\MyUACS->loadMainView()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUACS->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUACS))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

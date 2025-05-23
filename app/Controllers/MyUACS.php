@@ -38,33 +38,23 @@ class MyUACS extends BaseController
     private function loadMainView() {
 
         $uacsquery = $this->db->query("
-            SELECT
-                a.`recid`,
-                a.`uacs_category_id` ,
-                (select `expenditure_category` FROM `tbl_uacs_category` WHERE `recid` = a.`uacs_category_id`) AS expenditure_category,
-                a.`object_of_expenditures`,
-                a.`code`,
-                a.`added_on`,
-                a.`added_by`,
-                a.`active_status`
-            FROM
-                `tbl_uacs` a
+        SELECT
+            `recid`,
+            `allotment_class`,
+            `object_code`,
+            `sub_object_code`,
+            `uacs_code`,
+            `added_at`,
+            `added_by`
+        FROM
+            `mst_uacs`
+        ORDER BY recid DESC
         ");
         $uacsdata = $uacsquery->getResultArray();
 
-        //fundcluster data lookup
-        $uacscategoryquery = $this->db->query("
-        SELECT
-            `recid` AS `uacs_category_id`,
-            `expenditure_category`
-        FROM
-            `tbl_uacs_category` 
-        ");
-        $uacscategorydata = $uacscategoryquery->getResultArray();
     
         return view('uacs/uacs-main', [
             'uacsdata' => $uacsdata,
-            'uacscategorydata' => $uacscategorydata,
         ]);
     }
     

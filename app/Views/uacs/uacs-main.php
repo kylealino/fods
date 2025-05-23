@@ -3,35 +3,34 @@ $this->request = \Config\Services::request();
 $this->db = \Config\Database::connect();
 $recid = $this->request->getPostGet('recid');
 
-$uacs_category_id = "";
-$expenditure_category = "";
-$object_of_expenditures = "";
-$parent_category = "";
-$code = "";
+$allotment_class = "";
+$object_code = "";
+$sub_object_code = "";
+$uacs_code = "";
 $counter = 1;
 
 if(!empty($recid) || !is_null($recid)) { 
 
     $query = $this->db->query("
     SELECT
-        a.`recid`,
-        a.`uacs_category_id` ,
-        (select `expenditure_category` FROM `tbl_uacs_category` WHERE `recid` = a.`uacs_category_id`) AS expenditure_category,
-        a.`object_of_expenditures`,
-        a.`parent_category`,
-        a.`code`
+        `recid`,
+        `allotment_class`,
+        `object_code`,
+        `sub_object_code`,
+        `uacs_code`,
+        `added_at`
     FROM
-        `tbl_uacs` a
+        `mst_uacs` 
     WHERE 
-        a.`recid` = '$recid'"
+        `recid` = '$recid'"
     );
 
     $data = $query->getRowArray();
-    $uacs_category_id = $data['uacs_category_id'];
-    $expenditure_category = $data['expenditure_category'];
-    $object_of_expenditures = $data['object_of_expenditures'];
-    $parent_category = $data['parent_category'];
-    $code = $data['code'];
+    $allotment_class = $data['allotment_class'];
+    $object_code = $data['object_code'];
+    $sub_object_code = $data['sub_object_code'];
+    $uacs_code = $data['uacs_code'];
+
 
 }
 echo view('templates/myheader.php');
@@ -75,59 +74,12 @@ echo view('templates/myheader.php');
                     <div class="col-sm-6">
                         <div class="row mb-2">
                             <div class="col-sm-4">
-                                <span>Expenditure Category:</span>
+                                <span>Allotment Class:</span>
                             </div>
                             <div class="col-sm-8">
-                                <?php if(!empty($recid)):?>
-                                    <select name="selUacsCat" id="selUacsCat" class="form-control select2 form-select-sm show-tick">
-                                        <option selected value="<?=$expenditure_category;?>"><?=$expenditure_category;?></option>
-                                        <?php foreach($uacscategorydata as $data): ?>
-                                            <option 
-                                                value="<?= $data['expenditure_category'] ?>"
-                                                data-uacsid="<?= $data['uacs_category_id'] ?>"
-                                            >
-                                                <?= $data['expenditure_category'] ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                    <input type="hidden" id="uacs_category_id" name="uacs_category_id" value="<?=$uacs_category_id;?>" class="form-control form-control-sm" readonly />
-                                <?php else:?>
-                                    <select name="selUacsCat" id="selUacsCat" class="form-control select2 form-select-sm show-tick">
-                                        <option selected value="">Choose...</option>
-                                        <?php foreach($uacscategorydata as $data): ?>
-                                            <option 
-                                                value="<?= $data['expenditure_category'] ?>"
-                                                data-uacsid="<?= $data['uacs_category_id'] ?>"
-                                            >
-                                                <?= $data['expenditure_category'] ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                    <input type="hidden" id="uacs_category_id" name="uacs_category_id" value="" class="form-control form-control-sm" readonly />
-                                <?php endif;?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="row mb-2">
-                            <div class="col-sm-4">
-                                <span>Code:</span>
-                            </div>
-                            <div class="col-sm-8">
-                                <input type="hidden" class="form-control form-control-sm" id="recid" name="recid" value="<?=$recid;?>"/>
-                                <input type="text" id="code" name="code" value="<?=$code;?>" class="form-control form-control-sm" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="row mb-2">
-                            <div class="col-sm-4">
-                                <span>Parent Expenditure:</span>
-                            </div>
-                            <div class="col-sm-8">
-                                <select id="parent_category" name="parent_category" class="form-select form-select-sm">
+                                <select id="allotment_class" name="allotment_class" class="form-select form-select-sm">
                                     <?php if(!empty($recid)):?>
-                                    <option value="<?=$parent_category;?>"><?=$parent_category;?></option>
+                                    <option value="<?=$allotment_class;?>"><?=$allotment_class;?></option>
                                     <?php endif;?>
                                     <option value="Personal Services">Personal Services</option>
                                     <option value="Maintenance and Other Operating Expenses">Maintenance and Other Operating Expenses</option>
@@ -136,13 +88,34 @@ echo view('templates/myheader.php');
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-6">
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span>UACS Code:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" id="uacs_code" name="uacs_code" value="<?=$uacs_code;?>" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span>Object Code:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="hidden" class="form-control form-control-sm" id="recid" name="recid" value="<?=$recid;?>"/>
+                                <input type="text" id="object_code" name="object_code" value="<?=$object_code;?>" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-sm-12 mb-2">
                         <div class="row">
                             <div class="col-sm-2">
-                                <span>Object of Expenditure:</span>
+                                <span>Sub-object Code:</span>
                             </div>
                             <div class="col-sm-10">
-                                <textarea name="object_of_expenditures" id="object_of_expenditures" placeholder="" rows="4" class="form-control form-control-sm"><?=$object_of_expenditures;?></textarea>
+                                <textarea name="sub_object_code" id="sub_object_code" placeholder="" rows="4" class="form-control form-control-sm"><?=$sub_object_code;?></textarea>
                             </div>
                         </div>
                     </div>
@@ -174,19 +147,22 @@ echo view('templates/myheader.php');
                 <thead>
                     <tr>
                         <th>Action</th>
-                        <th>Expenditure Category</th>
-                        <th>Object of Expenditures</th>
-                        <th>Code</th>
+                        <th>Allotment Class</th>
+                        <th>Object Code</th>
+                        <th>Sub-object Code</th>
+                        <th>UACS Code</th>
+                        <th>Encode Date</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php if(!empty($uacsdata)):
-                        
                         foreach ($uacsdata as $data):
                             $recid = $data['recid'];
-                            $expenditure_category = $data['expenditure_category'];
-                            $object_of_expenditures = $data['object_of_expenditures'];
-                            $code = $data['code'];
+                            $allotment_class = $data['allotment_class'];
+                            $object_code = $data['object_code'];
+                            $sub_object_code = $data['sub_object_code'];
+                            $uacs_code = $data['uacs_code'];
+                            $added_at = $data['added_at'];
                     ?>
                     <tr>
                         <td class="text-center align-middle">
@@ -194,9 +170,11 @@ echo view('templates/myheader.php');
                                 Review
                             </a>
                         </td>
-                        <td class="text-center"><?=$expenditure_category;?></td>
-                        <td class="text-center"><?=$object_of_expenditures;?></td>
-                        <td class="text-center"><?=$code;?></td>
+                        <td class="text-center"><?=$allotment_class;?></td>
+                        <td class="text-center"><?=$object_code;?></td>
+                        <td class="text-center"><?=$sub_object_code;?></td>
+                        <td class="text-center"><?=$uacs_code;?></td>
+                        <td class="text-center"><?=$added_at;?></td>
                     </tr>
                     <?php endforeach; endif;?>
                 </tbody>

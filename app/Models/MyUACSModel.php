@@ -18,16 +18,15 @@ class MyUACSModel extends Model
 
 	public function uacs_save() { 
 		$recid = $this->request->getPostGet('recid');
-		$object_of_expenditures = $this->request->getPostGet('object_of_expenditures');
-		$parent_category = $this->request->getPostGet('parent_category');
-		$expenditure_category = $this->request->getPostGet('expenditure_category');
-		$uacs_category_id = $this->request->getPostGet('uacs_category_id');
-		$code = $this->request->getPostGet('code');
+		$allotment_class = $this->request->getPostGet('allotment_class');
+		$object_code = $this->request->getPostGet('object_code');
+		$sub_object_code = $this->request->getPostGet('sub_object_code');
+		$uacs_code = $this->request->getPostGet('uacs_code');
 
-		if (empty($object_of_expenditures)) {
+		if (empty($allotment_class)) {
 			echo "
 			<script>
-			toastr.error('Object of expenditure is required!', 'Oops!', {
+			toastr.error('Allotment Class is required!', 'Oops!', {
 					progressBar: true,
 					closeButton: true,
 					timeOut:2000,
@@ -36,10 +35,10 @@ class MyUACSModel extends Model
 			";
 			die();
 		}
-		if (empty($parent_category)) {
+		if (empty($object_code)) {
 			echo "
 			<script>
-			toastr.error('Parent expenditure is required!', 'Oops!', {
+			toastr.error('Object code is required!', 'Oops!', {
 					progressBar: true,
 					closeButton: true,
 					timeOut:2000,
@@ -48,10 +47,10 @@ class MyUACSModel extends Model
 			";
 			die();
 		}
-		if (empty($expenditure_category)) {
+		if (empty($sub_object_code)) {
 			echo "
 			<script>
-			toastr.error('Expenditure category is required!', 'Oops!', {
+			toastr.error('Sub-object Code is required!', 'Oops!', {
 					progressBar: true,
 					closeButton: true,
 					timeOut:2000,
@@ -60,7 +59,7 @@ class MyUACSModel extends Model
 			";
 			die();
 		}
-		if (empty($code)) {
+		if (empty($uacs_code)) {
 			echo "
 			<script>
 			toastr.error('Code is required!', 'Oops!', {
@@ -75,23 +74,21 @@ class MyUACSModel extends Model
 
 		if (empty($recid)) {
 			$query = $this->db->query("
-				INSERT INTO `tbl_uacs`(
-					`uacs_category_id`,
-					`object_of_expenditures`,
-					`code`,
-					`added_on`,
-					`added_by`,
-					`active_status`,
-					`parent_category`
+				INSERT INTO `mst_uacs`(
+					`allotment_class`,
+					`object_code`,
+					`sub_object_code`,
+					`uacs_code`,
+					`added_at`,
+					`added_by`
 				)
 				VALUES(
-					'$uacs_category_id',
-					'$object_of_expenditures',
-					'$code',
+					'$allotment_class',
+					'$object_code',
+					'$sub_object_code',
+					'$uacs_code',
 					NOW(),
-					'{$this->cuser}',
-					'1',
-					'$parent_category'
+					'{$this->cuser}'
 				)
 			");
 			$status = "UACS Saved successfully";
@@ -99,12 +96,12 @@ class MyUACSModel extends Model
 		}else{
 			$query = $this->db->query("
 				UPDATE
-					`tbl_uacs`
+					`mst_uacs`
 				SET
-					`uacs_category_id` = '$uacs_category_id',
-					`object_of_expenditures` = '$object_of_expenditures',
-					`code` = '$code',
-					`parent_category` = '$parent_category'
+					`allotment_class` = '$allotment_class',
+					`object_code` = '$object_code',
+					`sub_object_code` = '$sub_object_code',
+					`uacs_code` = '$uacs_code'
 				WHERE `recid` = '$recid'
 			");
 			$status = "UACS Updated successfully";
@@ -134,37 +131,7 @@ class MyUACSModel extends Model
 			exit;
 		}
 	}
-	
-	public function payee_delete() { 
-		$recid = $this->request->getPostGet('recid');
 
-		$query = $this->db->query("
-			DELETE FROM `tbl_payee` WHERE `recid` = '$recid'
-		");
-		$status = "Payee deleted successfully";
-		
-
-		if ($query) {
-			// Echo JavaScript to show the toast and then redirect
-			echo "
-			<div class=\"alert alert-danger\" role=\"alert\"><strong>Info: </strong> $status </div>
-				<script type='text/javascript'>
-
-					// Redirect after a short delay (e.g., 2 seconds)
-					setTimeout(function() {
-						window.location.href = 'mypayee?meaction=MAIN'; // Redirect to MAIN view
-					}, 2000); // 2-second delay for user to see the toast
-				</script>
-			";
-			exit; // Stop further PHP execution after the toast
-		} else {
-			// If there's an error, show an alert message
-			echo "<script type='text/javascript'>
-					alert('An error occurred while executing the query.');
-				  </script>";
-			exit;
-		}
-	}
 	
 } //end main class
 ?>
