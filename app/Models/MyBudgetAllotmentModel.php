@@ -58,7 +58,6 @@ class MyBudgetAllotmentModel extends Model
 		$extended_to = $this->request->getPostGet('extended_to');
 		$lddap_refno = $this->request->getPostGet('lddap_refno');
 
-	
 
 		// var_dump($budgetdtdata);
 		// var_dump('TTTTTTTTTTTTTTTTTTTTT');
@@ -179,6 +178,18 @@ class MyBudgetAllotmentModel extends Model
 			";
 			die();
 		}
+		if (empty($lddap_refno)) {
+			echo "
+			<script>
+			toastr.error('LDDAP-ADA Reference No. is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
 		if (empty($budgetdtdata) && empty($budgetmooedtdata) && empty($budgetcodtdata) && empty($budgetindirectdtdata) && empty($budgetindirectmooedtdata) && empty($budgetindirectcodtdata)) {
 			echo "
 			<script>
@@ -239,7 +250,12 @@ class MyBudgetAllotmentModel extends Model
 				`monitoring_agency`,
 				`collaborating_agencies`,
 				`implementing_agency`,
-				`tagging`) 
+				`tagging`,
+				`with_extension`,
+				`extended_from`,
+				`extended_to`,
+				`lddap_refno`
+				) 
 				VALUES (
 				'$trx',
 				'$project_title',
@@ -257,7 +273,10 @@ class MyBudgetAllotmentModel extends Model
 				'$monitoring_agency',
 				'$collaborating_agencies',
 				'$implementing_agency',
-				'$tagging'
+				'$with_extension',
+				'$extended_from',
+				'$extended_to',
+				'$lddap_refno'
 				)
 			");
 
@@ -694,7 +713,11 @@ class MyBudgetAllotmentModel extends Model
 					`tagging` = '$tagging',
 					`is_realign1` = '$is_realign1',
 					`is_realign2` = '$is_realign2',
-					`is_realign3` = '$is_realign3'
+					`is_realign3` = '$is_realign3',
+					`with_extension` = '$with_extension',
+					`extended_from` = '$extended_from',
+					`extended_to` = '$extended_to',
+					`lddap_refno` = '$lddap_refno'
 				WHERE `recid` = '$recid'
 			");
 

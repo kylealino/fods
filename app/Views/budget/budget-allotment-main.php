@@ -29,6 +29,10 @@ $tagging = "";
 $is_realign1 = "";
 $is_realign2 = "";
 $is_realign3 = "";
+$with_extension = "";
+$extended_from = "";
+$extended_to = "";
+$lddap_refno = "";
 $MDL_jsscript = "";
 $counter = 1;
 
@@ -59,7 +63,11 @@ if(!empty($recid) || !is_null($recid)) {
         `tagging`,
         `is_realign1`,
         `is_realign2`,
-        `is_realign3`
+        `is_realign3`,
+        `with_extension`,
+        `extended_from`,
+        `extended_to`,
+        `lddap_refno`
     FROM
         `tbl_budget_hd`
     WHERE 
@@ -89,6 +97,10 @@ if(!empty($recid) || !is_null($recid)) {
     $is_realign1 = $data['is_realign1'];
     $is_realign2 = $data['is_realign2'];
     $is_realign3 = $data['is_realign3'];
+    $with_extension = $data['with_extension'];
+    $extended_from = $data['extended_from'];
+    $extended_to = $data['extended_to'];
+    $lddap_refno = $data['lddap_refno'];
 
 
     if ($action == 'appr_pending') {
@@ -258,7 +270,7 @@ echo view('templates/myheader.php');
                             </div>
                             <div class="col-sm-3 d-flex align-items-center">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" onchange="__mysys_budget_allotment_ent.__toggleExtensionFields(this)" id="with_extension"/>
+                                    <input class="form-check-input" type="checkbox" onchange="__mysys_budget_allotment_ent.__toggleExtensionFields(this)" id="with_extension" <?= ($with_extension == 1) ? 'checked': '';?>/>
                                     <label class="form-check-label small" for="with_extension">
                                         With Extension
                                     </label>
@@ -288,7 +300,7 @@ echo view('templates/myheader.php');
                                     <label class="fw-bold">From:</label>
                                 </div>
                                 <div class="col-sm-8">
-                                    <input type="date" id="extended_from" name="extended_from" class="form-control form-control-sm" />
+                                    <input type="date" id="extended_from" name="extended_from" value="<?=$extended_from;?>" class="form-control form-control-sm" />
                                 </div>
                             </div>
                             <div class="row mb-2">
@@ -296,7 +308,7 @@ echo view('templates/myheader.php');
                                     <label class="fw-bold">To:</label>
                                 </div>
                                 <div class="col-sm-8">
-                                    <input type="date" id="extended_to" name="extended_to" class="form-control form-control-sm" />
+                                    <input type="date" id="extended_to" name="extended_to" value="<?=$extended_to;?>" class="form-control form-control-sm" />
                                 </div>
                             </div>
                         </div>
@@ -305,7 +317,7 @@ echo view('templates/myheader.php');
                                 <span class="fw-bold text-nowrap">LDDAP-ADA Reference No.:</span>
                             </div>
                             <div class="col-sm-8">
-                                <input type="text" id="lddap_refno" name="lddap_refno" value="" class="form-control form-control-sm"/>
+                                <input type="text" id="lddap_refno" name="lddap_refno" value="<?=$lddap_refno;?>" class="form-control form-control-sm"/>
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -1624,11 +1636,10 @@ echo view('templates/myheader.php');
         $('#responsibility_code').val(responsibility);
     });
 
-   
-    function toggleExtensionFields(checkbox) {
-        var extFields = document.getElementById("extension_fields");
-        extFields.style.display = checkbox.checked ? "block" : "none";
-    }
+   document.addEventListener("DOMContentLoaded", function() {
+        var checkbox = document.getElementById("with_extension");
+        __mysys_budget_allotment_ent.__toggleExtensionFields(checkbox);
+    });
 
 
 
