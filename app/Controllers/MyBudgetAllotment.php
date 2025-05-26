@@ -85,7 +85,6 @@ class MyBudgetAllotment extends BaseController
             ) AS approved_budget
         FROM
             tbl_budget_hd a
-        GROUP BY a.`trxno`
         ");
         $budgetdtdata = $budgetdtquery->getResultArray();
 

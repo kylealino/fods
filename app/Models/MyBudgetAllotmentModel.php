@@ -273,6 +273,7 @@ class MyBudgetAllotmentModel extends Model
 				'$monitoring_agency',
 				'$collaborating_agencies',
 				'$implementing_agency',
+				'$tagging',
 				'$with_extension',
 				'$extended_from',
 				'$extended_to',
