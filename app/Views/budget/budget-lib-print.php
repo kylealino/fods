@@ -190,53 +190,49 @@ $query = $this->db->query("
 SELECT
     a.`particulars`,
     a.`approved_budget`,
-    (SELECT cat.`expenditure_category`
-     FROM tbl_uacs_category cat
-     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
-     WHERE uac.`object_of_expenditures` = a.particulars
-     LIMIT 1) AS expenditure_category,
+    a.`expense_item`,
     r1_approved_budget,
-     r2_approved_budget,
-     r3_approved_budget,
-     proposed_realignment
+    r2_approved_budget,
+    r3_approved_budget,
+    proposed_realignment
 FROM
     `tbl_budget_direct_ps_dt` a
 WHERE 
     `project_id` = '$recid'
 ORDER BY
-expenditure_category DESC, particulars ASC"
+particulars ASC"
 );
 
 $data = $query->getResultArray();
 $total_direct_ps = 0;
 $total_direct_proposed_ps = 0;
-$last_expenditure_category = '';
+$last_particulars = '';
 
 foreach ($data as $row) {
-    $particulars = $row['particulars'];
+    $expense_item = $row['expense_item'];
     $approved_budget = $row['approved_budget'];
-    $expenditure_category = $row['expenditure_category'];
+    $particulars = $row['particulars'];
     $r1_approved_budget = $row['r1_approved_budget'];
     $r2_approved_budget = $row['r2_approved_budget'];
     $r3_approved_budget = $row['r3_approved_budget'];
     $proposed_realignment = $row['proposed_realignment'];
 
     // Print Expenditure Category if it changes
-    if ($expenditure_category !== $last_expenditure_category && $expenditure_category !== null) {
+    if ($particulars !== $last_particulars && $particulars !== null) {
         $pdf->SetFont('Arial', '', 7);
         $pdf->SetXY(10, $Y);
         $pdf->Cell(5, 3.5, '', 0, 0, 'L');
-        $pdf->Cell(60, 3.5, $expenditure_category, 0, 1, 'L');
+        $pdf->MultiCell(80, 2.5, $particulars, 0, 'L'); // full width usage
         $Y += 3.5;
-        $last_expenditure_category = $expenditure_category;
+        $last_particulars = $particulars;
     }
-
+    $Y = $pdf->GetY();
     // Print Particulars
     $pdf->SetFont('Arial', 'I', 7);
-    $particulars = str_replace(["\r", "\n"], '', $particulars);
+    $expense_item = str_replace(["\r", "\n"], '', $expense_item);
     $pdf->SetFont('Arial', 'I', 7);
     $pdf->SetXY(20, $Y);
-    $pdf->MultiCell(80, 2.5, $particulars, 0, 'L'); // full width usage
+    $pdf->MultiCell(80, 2.5, $expense_item, 0, 'L'); // full width usage
 
 
     // Print Budget
@@ -269,12 +265,8 @@ $Y += 3.5;
 $query = $this->db->query("
 SELECT
     a.`particulars`,
+    a.`expense_item`,
     a.`approved_budget`,
-    (SELECT cat.`expenditure_category`
-     FROM tbl_uacs_category cat
-     JOIN tbl_uacs uac ON cat.recid = uac.uacs_category_id
-     WHERE uac.`object_of_expenditures` = a.particulars
-     LIMIT 1) AS expenditure_category,
      r1_approved_budget,
      r2_approved_budget,
      r3_approved_budget,
@@ -284,39 +276,39 @@ FROM
 WHERE 
     `project_id` = '$recid'
 ORDER BY
-expenditure_category DESC, particulars ASC"
+particulars ASC"
 );
 
 $data = $query->getResultArray();
 $total_indirect_ps = 0;
 $total_indirect_proposed_ps = 0;
-$last_expenditure_category = '';
+$last_particulars = '';
 
 foreach ($data as $row) {
-    $particulars = $row['particulars'];
+    $expense_item = $row['expense_item'];
     $approved_budget = $row['approved_budget'];
-    $expenditure_category = $row['expenditure_category'];
+    $particulars = $row['particulars'];
     $r1_approved_budget = $row['r1_approved_budget'];
     $r2_approved_budget = $row['r2_approved_budget'];
     $r3_approved_budget = $row['r3_approved_budget'];
     $proposed_realignment = $row['proposed_realignment'];
 
     // Print Expenditure Category if it changes
-    if ($expenditure_category !== $last_expenditure_category && $expenditure_category !== null) {
+    if ($particulars !== $last_particulars && $particulars !== null) {
         $pdf->SetFont('Arial', '', 7);
         $pdf->SetXY(10, $Y);
         $pdf->Cell(5, 3.5, '', 0, 0, 'L');
-        $pdf->Cell(60, 3.5, $expenditure_category, 0, 1, 'L');
+        $pdf->Cell(60, 3.5, $particulars, 0, 1, 'L');
         $Y += 3.5;
-        $last_expenditure_category = $expenditure_category;
+        $last_particulars = $particulars;
     }
 
     // Print Particulars
     $pdf->SetFont('Arial', 'I', 7);
-    $particulars = str_replace(["\r", "\n"], '', $particulars);
+    $expense_item = str_replace(["\r", "\n"], '', $expense_item);
     $pdf->SetFont('Arial', 'I', 7);
     $pdf->SetXY(20, $Y);
-    $pdf->MultiCell(80, 2.5, $particulars, 0, 'L'); // full width usage
+    $pdf->MultiCell(80, 2.5, $expense_item, 0, 'L'); // full width usage
 
 
     // Print Budget

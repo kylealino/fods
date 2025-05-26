@@ -394,11 +394,11 @@ echo view('templates/myheader.php');
                                         <label class="form-check-label" for="is_realign1">1st</label>
                                     </div>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="is_realign2">
+                                        <input class="form-check-input" type="checkbox" id="is_realign2" disabled>
                                         <label class="form-check-label" for="is_realign2">2nd</label>
                                     </div>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="is_realign3">
+                                        <input class="form-check-input" type="checkbox" id="is_realign3" disabled>
                                         <label class="form-check-label" for="is_realign3">3rd</label>
                                     </div>
                                 </div>
@@ -413,7 +413,7 @@ echo view('templates/myheader.php');
                                         <label class="form-check-label" for="is_realign2">2nd</label>
                                     </div>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="is_realign3">
+                                        <input class="form-check-input" type="checkbox" id="is_realign3" disabled>
                                         <label class="form-check-label" for="is_realign3">3rd</label>
                                     </div>
                                 </div>
@@ -475,7 +475,7 @@ echo view('templates/myheader.php');
                         <ul class="nav nav-pills mb-3 gap-2" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link active rounded-pill px-3 fs-3 fw-semibold" data-bs-toggle="tab" href="#ps-pill" role="tab">
-                                I. Personal Services
+                                I. Personnel Services
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
@@ -527,10 +527,10 @@ echo view('templates/myheader.php');
                                                             <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
                                                                 <option selected value ="">Choose...</option>
                                                                 <?php foreach($psuacsdata as $data){
-                                                                    $object_of_expenditures = $data['object_of_expenditures'];
-                                                                    $code = $data['code'];
+                                                                    $sub_object_code = $data['sub_object_code'];
+                                                                    $uacs_code = $data['uacs_code'];
                                                                 ?>
-                                                                    <option value="<?=$object_of_expenditures?>" data-uacs="<?=$code;?>"><?=$object_of_expenditures?></option>
+                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
                                                                 <?php }?>
                                                             </select>
                                                         </td>
@@ -596,10 +596,10 @@ echo view('templates/myheader.php');
                                                             <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
                                                                 <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
                                                                 <?php foreach($psuacsdata as $data){
-                                                                    $object_of_expenditures = $data['object_of_expenditures'];
-                                                                    $_code = $data['code'];
+                                                                    $sub_object_code = $data['sub_object_code'];
+                                                                    $uacs_code = $data['uacs_code'];
                                                                 ?>
-                                                                    <option value="<?=$object_of_expenditures?>"  data-uacs="<?=$_code;?>"><?=$object_of_expenditures?></option>
+                                                                    <option value="<?=$sub_object_code?>"  data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
                                                                 <?php }?>
                                                             </select>
                                                         </td>
@@ -658,10 +658,10 @@ echo view('templates/myheader.php');
                                                             <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
                                                                 <option selected value ="">Choose...</option>
                                                                 <?php foreach($psuacsdata as $data){
-                                                                    $object_of_expenditures = $data['object_of_expenditures'];
-                                                                    $code = $data['code'];
+                                                                    $sub_object_code = $data['sub_object_code'];
+                                                                    $uacs_code = $data['uacs_code'];
                                                                 ?>
-                                                                    <option value="<?=$object_of_expenditures?>" data-uacs="<?=$code;?>"><?=$object_of_expenditures?></option>
+                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
                                                                 <?php }?>
                                                             </select>
                                                         </td>
@@ -727,10 +727,10 @@ echo view('templates/myheader.php');
                                                             <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
                                                                 <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
                                                                 <?php foreach($psuacsdata as $data){
-                                                                    $object_of_expenditures = $data['object_of_expenditures'];
-                                                                    $_code = $data['code'];
+                                                                    $sub_object_code = $data['sub_object_code'];
+                                                                    $uacs_code = $data['uacs_code'];
                                                                 ?>
-                                                                    <option value="<?=$object_of_expenditures?>"  data-uacs="<?=$_code;?>"><?=$object_of_expenditures?></option>
+                                                                    <option value="<?=$sub_object_code?>"  data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
                                                                 <?php }?>
                                                             </select>
                                                         </td>
@@ -798,10 +798,10 @@ echo view('templates/myheader.php');
                                                             <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
                                                                 <option selected value ="">Choose...</option>
                                                                 <?php foreach($mooeuacsdata as $data){
-                                                                    $object_of_expenditures = $data['object_of_expenditures'];
-                                                                    $code = $data['code'];
+                                                                    $sub_object_code = $data['sub_object_code'];
+                                                                    $uacs_code = $data['uacs_code'];
                                                                 ?>
-                                                                    <option value="<?=$object_of_expenditures?>" data-uacs="<?=$code;?>"><?=$object_of_expenditures?></option>
+                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
                                                                 <?php }?>
                                                             </select>
                                                         </td>
@@ -867,10 +867,10 @@ echo view('templates/myheader.php');
                                                             <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
                                                                 <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
                                                                 <?php foreach($mooeuacsdata as $data){
-                                                                    $object_of_expenditures = $data['object_of_expenditures'];
-                                                                    $_code = $data['code'];
+                                                                    $sub_object_code = $data['sub_object_code'];
+                                                                    $uacs_code = $data['uacs_code'];
                                                                 ?>
-                                                                    <option value="<?=$object_of_expenditures?>"  data-uacs="<?=$_code;?>"><?=$object_of_expenditures?></option>
+                                                                    <option value="<?=$sub_object_code?>"  data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
                                                                 <?php }?>
                                                             </select>
                                                         </td>
@@ -928,10 +928,10 @@ echo view('templates/myheader.php');
                                                             <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
                                                                 <option selected value ="">Choose...</option>
                                                                 <?php foreach($mooeuacsdata as $data){
-                                                                    $object_of_expenditures = $data['object_of_expenditures'];
-                                                                    $code = $data['code'];
+                                                                    $sub_object_code = $data['sub_object_code'];
+                                                                    $uacs_code = $data['uacs_code'];
                                                                 ?>
-                                                                    <option value="<?=$object_of_expenditures?>" data-uacs="<?=$code;?>"><?=$object_of_expenditures?></option>
+                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
                                                                 <?php }?>
                                                             </select>
                                                         </td>
@@ -997,10 +997,10 @@ echo view('templates/myheader.php');
                                                             <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
                                                                 <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
                                                                 <?php foreach($mooeuacsdata as $data){
-                                                                    $object_of_expenditures = $data['object_of_expenditures'];
-                                                                    $_code = $data['code'];
+                                                                    $sub_object_code = $data['sub_object_code'];
+                                                                    $uacs_code = $data['uacs_code'];
                                                                 ?>
-                                                                    <option value="<?=$object_of_expenditures?>"  data-uacs="<?=$_code;?>"><?=$object_of_expenditures?></option>
+                                                                    <option value="<?=$sub_object_code?>"  data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
                                                                 <?php }?>
                                                             </select>
                                                         </td>

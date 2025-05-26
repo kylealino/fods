@@ -81,7 +81,7 @@ echo view('templates/myheader.php');
                                     <?php if(!empty($recid)):?>
                                     <option value="<?=$allotment_class;?>"><?=$allotment_class;?></option>
                                     <?php endif;?>
-                                    <option value="Personal Services">Personal Services</option>
+                                    <option value="Personnel Services">Personnel Services</option>
                                     <option value="Maintenance and Other Operating Expenses">Maintenance and Other Operating Expenses</option>
                                     <option value="Capital Outlay">Capital Outlay</option>
                                 </select>
