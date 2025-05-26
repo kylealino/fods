@@ -10,6 +10,7 @@ SELECT
     COALESCE(COUNT(recid), 0) AS total_transactions
 FROM
     `tbl_budget_hd`
+WHERE `tagging` = 'For Approval'
 ");
 
 $totaldata = $totalquery->getRowArray();
@@ -21,7 +22,7 @@ SELECT
 FROM
     `tbl_budget_hd`
 WHERE 
-    `is_pending` = '1'
+    `is_pending` = '1' and `tagging` = 'For Approval'
 ");
 
 $pendingdata = $pendingquery->getRowArray();
