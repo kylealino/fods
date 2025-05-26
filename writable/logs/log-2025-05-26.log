@@ -38,3 +38,133 @@ in SYSTEMPATH\Database\BaseConnection.php on line 467.
  6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
  7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
  8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-05-26 08:53:44 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', 'root', '', 'fods', 3306, '', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\fods\app\Views\budget\budget-lib-print.php(26): CodeIgniter\Database\BaseConnection->query('\r\nSELECT\r\n    `...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('budget/budget-l...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyBudgetAllotment.php(56): view('budget/budget-l...')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\fods\app\Views\budget\budget-lib-print.php(26): CodeIgniter\Database\BaseConnection->query('\r\nSELECT\r\n    `...')
+#3 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#5 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('budget/budget-l...', Array, true)
+#6 C:\xampp\htdocs\fods\app\Controllers\MyBudgetAllotment.php(56): view('budget/budget-l...')
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2025-05-26 08:53:44 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: GET, Route: mybudgetallotment]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Views\budget\budget-lib-print.php(26): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    `project_title`,
+    `project_leader`,
+    `program_title`,
+    `total_duration`,
+    `duration_from`,
+    `duration_to`,
+    `program_leader`,
+    `monitoring_agency`,
+    `collaborating_agencies`,
+    `implementing_agency`
+FROM
+    `tbl_budget_hd`
+WHERE 
+    `recid` = \'74\'')
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-05-26 08:54:07 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', 'root', '', 'fods', 3306, '', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\fods\app\Views\budget\budget-lib-print.php(26): CodeIgniter\Database\BaseConnection->query('\r\nSELECT\r\n    `...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('budget/budget-l...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyBudgetAllotment.php(56): view('budget/budget-l...')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\fods\app\Views\budget\budget-lib-print.php(26): CodeIgniter\Database\BaseConnection->query('\r\nSELECT\r\n    `...')
+#3 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#5 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('budget/budget-l...', Array, true)
+#6 C:\xampp\htdocs\fods\app\Controllers\MyBudgetAllotment.php(56): view('budget/budget-l...')
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2025-05-26 08:54:07 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: GET, Route: mybudgetallotment]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Views\budget\budget-lib-print.php(26): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    `project_title`,
+    `project_leader`,
+    `program_title`,
+    `total_duration`,
+    `duration_from`,
+    `duration_to`,
+    `program_leader`,
+    `monitoring_agency`,
+    `collaborating_agencies`,
+    `implementing_agency`
+FROM
+    `tbl_budget_hd`
+WHERE 
+    `recid` = \'74\'')
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

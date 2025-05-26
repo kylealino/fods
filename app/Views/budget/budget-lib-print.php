@@ -234,6 +234,9 @@ foreach ($data as $row) {
     $pdf->SetXY(20, $Y);
     $pdf->MultiCell(80, 2.5, $expense_item, 0, 'L'); // full width usage
 
+    if (empty($expense_item)) {
+        $Y = $pdf->GetY() -5;
+    }
 
     // Print Budget
     $pdf->SetXY(100, $Y);
@@ -298,18 +301,17 @@ foreach ($data as $row) {
         $pdf->SetFont('Arial', '', 7);
         $pdf->SetXY(10, $Y);
         $pdf->Cell(5, 3.5, '', 0, 0, 'L');
-        $pdf->Cell(60, 3.5, $particulars, 0, 1, 'L');
+        $pdf->MultiCell(80, 2.5, $particulars, 0, 'L'); // full width usage
         $Y += 3.5;
         $last_particulars = $particulars;
     }
-
+    $Y = $pdf->GetY();
     // Print Particulars
     $pdf->SetFont('Arial', 'I', 7);
     $expense_item = str_replace(["\r", "\n"], '', $expense_item);
     $pdf->SetFont('Arial', 'I', 7);
     $pdf->SetXY(20, $Y);
     $pdf->MultiCell(80, 2.5, $expense_item, 0, 'L'); // full width usage
-
 
     // Print Budget
     $pdf->SetXY(100, $Y);
