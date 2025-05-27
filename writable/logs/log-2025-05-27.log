@@ -1,0 +1,1007 @@
+ERROR - 2025-05-27 09:16:30 --> mysqli_sql_exception: Unknown column 'a.particulars' in 'where clause' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT\r\n ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT\r\n ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT\r\n ...')
+#3 C:\xampp\htdocs\fods\app\Views\budget\budget-lib-print.php(450): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT\r\n ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('budget/budget-l...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyBudgetAllotment.php(56): view('budget/budget-l...')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-05-27 09:16:30 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'a.particulars' in 'where clause'
+[Method: GET, Route: mybudgetallotment]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\budget\budget-lib-print.php(450): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'77\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-27 09:16:30 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'a.particulars' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'77\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'77\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 3 APPPATH\Views\budget\budget-lib-print.php(450): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'77\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 7 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-27 09:16:30 --> [Caused by] mysqli_sql_exception: Unknown column 'a.particulars' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'77\'
+    ORDER BY
+       b.`recid` ASC
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'77\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'77\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 4 APPPATH\Views\budget\budget-lib-print.php(450): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'77\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 8 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-05-27 10:18:05 --> mysqli_sql_exception: Subquery returns more than 1 row in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT\r\n ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT\r\n ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT\r\n ...')
+#3 C:\xampp\htdocs\fods\app\Views\budget\budget-lib-print.php(452): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT\r\n ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('budget/budget-l...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyBudgetAllotment.php(56): view('budget/budget-l...')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-05-27 10:18:05 --> CodeIgniter\Database\Exceptions\DatabaseException: Subquery returns more than 1 row
+[Method: GET, Route: mybudgetallotment]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\budget\budget-lib-print.php(452): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-27 10:18:05 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Subquery returns more than 1 row
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 3 APPPATH\Views\budget\budget-lib-print.php(452): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 7 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-27 10:18:05 --> [Caused by] mysqli_sql_exception: Subquery returns more than 1 row
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 4 APPPATH\Views\budget\budget-lib-print.php(452): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 8 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-05-27 10:18:57 --> mysqli_sql_exception: Subquery returns more than 1 row in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT\r\n ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT\r\n ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT\r\n ...')
+#3 C:\xampp\htdocs\fods\app\Views\budget\budget-lib-print.php(452): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT\r\n ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('budget/budget-l...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyBudgetAllotment.php(56): view('budget/budget-l...')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-05-27 10:18:57 --> CodeIgniter\Database\Exceptions\DatabaseException: Subquery returns more than 1 row
+[Method: GET, Route: mybudgetallotment]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\budget\budget-lib-print.php(452): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-27 10:18:57 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Subquery returns more than 1 row
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 3 APPPATH\Views\budget\budget-lib-print.php(452): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 7 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-27 10:18:57 --> [Caused by] mysqli_sql_exception: Subquery returns more than 1 row
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 4 APPPATH\Views\budget\budget-lib-print.php(452): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 8 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-05-27 10:19:32 --> mysqli_sql_exception: Subquery returns more than 1 row in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT\r\n ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT\r\n ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT\r\n ...')
+#3 C:\xampp\htdocs\fods\app\Views\budget\budget-lib-print.php(452): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT\r\n ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('budget/budget-l...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyBudgetAllotment.php(56): view('budget/budget-l...')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-05-27 10:19:32 --> CodeIgniter\Database\Exceptions\DatabaseException: Subquery returns more than 1 row
+[Method: GET, Route: mybudgetallotment]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\budget\budget-lib-print.php(452): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-27 10:19:32 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Subquery returns more than 1 row
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 3 APPPATH\Views\budget\budget-lib-print.php(452): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 7 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-27 10:19:32 --> [Caused by] mysqli_sql_exception: Subquery returns more than 1 row
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 4 APPPATH\Views\budget\budget-lib-print.php(452): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        b.`particulars`,
+        b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars`) object_code,
+        b.`expense_item`,
+        r1_approved_budget,
+        r2_approved_budget,
+        r3_approved_budget,
+        proposed_realignment
+         
+    FROM
+        `tbl_budget_direct_mooe_dt` b
+    WHERE 
+        `project_id` = \'78\'
+    ORDER BY
+       b.`recid` ASC
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 8 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-05-27 13:52:27 --> mysqli_sql_exception: Unknown column 'a.username' in 'where clause' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n            S...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n            S...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n            S...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MyUserManagement.php(69): CodeIgniter\Database\BaseConnection->query('\r\n            S...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-05-27 13:52:27 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'a.username' in 'where clause'
+[Method: GET, Route: myua]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MyUserManagement.php(69): CodeIgniter\Database\BaseConnection->query('
+            SELECT a.access_code,COALESCE((select `is_active` FROM tbl_user_access WHERE access_code = a.access_code limit 1),0) is_active FROM `tbl_access_modules` a
+            WHERE
+                a.`username` = \'CDS-KYLE\'
+            ')
+ 2 APPPATH\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-27 13:52:27 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'a.username' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+            SELECT a.access_code,COALESCE((select `is_active` FROM tbl_user_access WHERE access_code = a.access_code limit 1),0) is_active FROM `tbl_access_modules` a
+            WHERE
+                a.`username` = \'CDS-KYLE\'
+            ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+            SELECT a.access_code,COALESCE((select `is_active` FROM tbl_user_access WHERE access_code = a.access_code limit 1),0) is_active FROM `tbl_access_modules` a
+            WHERE
+                a.`username` = \'CDS-KYLE\'
+            ')
+ 3 APPPATH\Controllers\MyUserManagement.php(69): CodeIgniter\Database\BaseConnection->query('
+            SELECT a.access_code,COALESCE((select `is_active` FROM tbl_user_access WHERE access_code = a.access_code limit 1),0) is_active FROM `tbl_access_modules` a
+            WHERE
+                a.`username` = \'CDS-KYLE\'
+            ')
+ 4 APPPATH\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-27 13:52:27 --> [Caused by] mysqli_sql_exception: Unknown column 'a.username' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+            SELECT a.access_code,COALESCE((select `is_active` FROM tbl_user_access WHERE access_code = a.access_code limit 1),0) is_active FROM `tbl_access_modules` a
+            WHERE
+                a.`username` = \'CDS-KYLE\'
+            ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+            SELECT a.access_code,COALESCE((select `is_active` FROM tbl_user_access WHERE access_code = a.access_code limit 1),0) is_active FROM `tbl_access_modules` a
+            WHERE
+                a.`username` = \'CDS-KYLE\'
+            ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+            SELECT a.access_code,COALESCE((select `is_active` FROM tbl_user_access WHERE access_code = a.access_code limit 1),0) is_active FROM `tbl_access_modules` a
+            WHERE
+                a.`username` = \'CDS-KYLE\'
+            ')
+ 4 APPPATH\Controllers\MyUserManagement.php(69): CodeIgniter\Database\BaseConnection->query('
+            SELECT a.access_code,COALESCE((select `is_active` FROM tbl_user_access WHERE access_code = a.access_code limit 1),0) is_active FROM `tbl_access_modules` a
+            WHERE
+                a.`username` = \'CDS-KYLE\'
+            ')
+ 5 APPPATH\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-05-27 13:53:22 --> mysqli_sql_exception: Unknown column 'username' in 'where clause' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n            S...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n            S...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n            S...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MyUserManagement.php(69): CodeIgniter\Database\BaseConnection->query('\r\n            S...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-05-27 13:53:22 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'username' in 'where clause'
+[Method: GET, Route: myua]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MyUserManagement.php(69): CodeIgniter\Database\BaseConnection->query('
+            SELECT a.access_code,COALESCE((select `is_active` FROM tbl_user_access WHERE access_code = a.access_code limit 1),0) is_active FROM `tbl_access_modules` a
+            WHERE
+                `username` = \'CDS-KYLE\'
+            ')
+ 2 APPPATH\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-27 13:53:22 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'username' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+            SELECT a.access_code,COALESCE((select `is_active` FROM tbl_user_access WHERE access_code = a.access_code limit 1),0) is_active FROM `tbl_access_modules` a
+            WHERE
+                `username` = \'CDS-KYLE\'
+            ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+            SELECT a.access_code,COALESCE((select `is_active` FROM tbl_user_access WHERE access_code = a.access_code limit 1),0) is_active FROM `tbl_access_modules` a
+            WHERE
+                `username` = \'CDS-KYLE\'
+            ')
+ 3 APPPATH\Controllers\MyUserManagement.php(69): CodeIgniter\Database\BaseConnection->query('
+            SELECT a.access_code,COALESCE((select `is_active` FROM tbl_user_access WHERE access_code = a.access_code limit 1),0) is_active FROM `tbl_access_modules` a
+            WHERE
+                `username` = \'CDS-KYLE\'
+            ')
+ 4 APPPATH\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-27 13:53:22 --> [Caused by] mysqli_sql_exception: Unknown column 'username' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+            SELECT a.access_code,COALESCE((select `is_active` FROM tbl_user_access WHERE access_code = a.access_code limit 1),0) is_active FROM `tbl_access_modules` a
+            WHERE
+                `username` = \'CDS-KYLE\'
+            ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+            SELECT a.access_code,COALESCE((select `is_active` FROM tbl_user_access WHERE access_code = a.access_code limit 1),0) is_active FROM `tbl_access_modules` a
+            WHERE
+                `username` = \'CDS-KYLE\'
+            ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+            SELECT a.access_code,COALESCE((select `is_active` FROM tbl_user_access WHERE access_code = a.access_code limit 1),0) is_active FROM `tbl_access_modules` a
+            WHERE
+                `username` = \'CDS-KYLE\'
+            ')
+ 4 APPPATH\Controllers\MyUserManagement.php(69): CodeIgniter\Database\BaseConnection->query('
+            SELECT a.access_code,COALESCE((select `is_active` FROM tbl_user_access WHERE access_code = a.access_code limit 1),0) is_active FROM `tbl_access_modules` a
+            WHERE
+                `username` = \'CDS-KYLE\'
+            ')
+ 5 APPPATH\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-27 13:54:27 --> ErrorException: Undefined array key "recid"
+[Method: GET, Route: myua]
+in APPPATH\Views\user-management\ua-main.php on line 228.
+ 1 APPPATH\Views\user-management\ua-main.php(228): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "recid"', 'C:\\xampp\\htdocs\\fods\\app\\Views\\user-management\\ua-main.php', 228)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\user-management\\ua-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user-management/ua-main', [], true)
+ 5 APPPATH\Controllers\MyUserManagement.php(83): view('user-management/ua-main', [...])
+ 6 APPPATH\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-27 13:54:54 --> ErrorException: Undefined array key "access_name"
+[Method: GET, Route: myua]
+in APPPATH\Views\user-management\ua-main.php on line 229.
+ 1 APPPATH\Views\user-management\ua-main.php(229): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "access_name"', 'C:\\xampp\\htdocs\\fods\\app\\Views\\user-management\\ua-main.php', 229)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\user-management\\ua-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user-management/ua-main', [], true)
+ 5 APPPATH\Controllers\MyUserManagement.php(84): view('user-management/ua-main', [...])
+ 6 APPPATH\Controllers\MyUserManagement.php(22): App\Controllers\MyUserManagement->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-27 14:00:36 --> Error: Undefined constant "App\Models\db"
+[Method: POST, Route: myua]
+in APPPATH\Models\MyUserManagementModel.php on line 144.
+ 1 APPPATH\Controllers\MyUserManagement.php(31): App\Models\MyUserManagementModel->user_access_save()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-27 14:01:24 --> ErrorException: Undefined variable $is_active
+[Method: POST, Route: myua]
+in APPPATH\Models\MyUserManagementModel.php on line 163.
+ 1 APPPATH\Models\MyUserManagementModel.php(163): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $is_active', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MyUserManagementModel.php', 163)
+ 2 APPPATH\Controllers\MyUserManagement.php(31): App\Models\MyUserManagementModel->user_access_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyUserManagement->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyUserManagement))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

@@ -34,6 +34,7 @@ class MyBudgetAllotmentModel extends Model
 		$monitoring_agency = $this->request->getPostGet('monitoring_agency');
 		$collaborating_agencies = $this->request->getPostGet('collaborating_agencies');
 		$implementing_agency = $this->request->getPostGet('implementing_agency');
+		$funding_agency = $this->request->getPostGet('funding_agency');
 		$tagging = $this->request->getPostGet('tagging');
 
 		//MOOE DATA
@@ -190,6 +191,18 @@ class MyBudgetAllotmentModel extends Model
 			";
 			die();
 		}
+		if (empty($funding_agency)) {
+			echo "
+			<script>
+			toastr.error('Funding agency is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
 		if (empty($budgetdtdata) && empty($budgetmooedtdata) && empty($budgetcodtdata) && empty($budgetindirectdtdata) && empty($budgetindirectmooedtdata) && empty($budgetindirectcodtdata)) {
 			echo "
 			<script>
@@ -250,6 +263,7 @@ class MyBudgetAllotmentModel extends Model
 				`monitoring_agency`,
 				`collaborating_agencies`,
 				`implementing_agency`,
+				`funding_agency`,
 				`tagging`,
 				`with_extension`,
 				`extended_from`,
@@ -273,6 +287,7 @@ class MyBudgetAllotmentModel extends Model
 				'$monitoring_agency',
 				'$collaborating_agencies',
 				'$implementing_agency',
+				'$funding_agency',
 				'$tagging',
 				'$with_extension',
 				'$extended_from',
@@ -711,6 +726,7 @@ class MyBudgetAllotmentModel extends Model
 					`monitoring_agency` = '$monitoring_agency',
 					`collaborating_agencies` = '$collaborating_agencies',
 					`implementing_agency` = '$implementing_agency',
+					`funding_agency` = '$funding_agency',
 					`tagging` = '$tagging',
 					`is_realign1` = '$is_realign1',
 					`is_realign2` = '$is_realign2',
@@ -1125,6 +1141,7 @@ class MyBudgetAllotmentModel extends Model
 			// Echo JavaScript to show the toast and then redirect
 			echo "
 			<script>
+				document.getElementById('submitBtn').disabled = true;
 				toastr.$color('{$status}!', 'Well Done!', {
 						progressBar: true,
 						closeButton: true,

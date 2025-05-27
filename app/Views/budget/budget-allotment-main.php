@@ -22,9 +22,11 @@ $total_duration = "";
 $duration_from = "";
 $duration_to = "";
 $program_leader = "";
+$project_leader = "";
 $monitoring_agency = "";
 $collaborating_agencies = "";
 $implementing_agency = "";
+$funding_agency = "";
 $tagging = "";
 $is_realign1 = "";
 $is_realign2 = "";
@@ -57,9 +59,11 @@ if(!empty($recid) || !is_null($recid)) {
         `duration_from`,
         `duration_to`,
         `program_leader`,
+        `project_leader`,
         `monitoring_agency`,
         `collaborating_agencies`,
         `implementing_agency`,
+        `funding_agency`,
         `tagging`,
         `is_realign1`,
         `is_realign2`,
@@ -90,9 +94,11 @@ if(!empty($recid) || !is_null($recid)) {
     $duration_from = $data['duration_from'];
     $duration_to = $data['duration_to'];
     $program_leader = $data['program_leader'];
+    $project_leader = $data['project_leader'];
     $monitoring_agency = $data['monitoring_agency'];
     $collaborating_agencies = $data['collaborating_agencies'];
     $implementing_agency = $data['implementing_agency'];
+    $funding_agency = $data['funding_agency'];
     $tagging = $data['tagging'];
     $is_realign1 = $data['is_realign1'];
     $is_realign2 = $data['is_realign2'];
@@ -325,7 +331,7 @@ echo view('templates/myheader.php');
                                 <span class="fw-bold">Project Leader:</span>
                             </div>
                             <div class="col-sm-8">
-                                <input type="text" id="project_leader" name="project_leader" value="<?=$this->cuser;?>" class="form-control form-control-sm" disabled />
+                                <input type="text" id="project_leader" name="project_leader" value="<?=$project_leader;?>" class="form-control form-control-sm"/>
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -377,6 +383,14 @@ echo view('templates/myheader.php');
                             </div>
                             <div class="col-sm-8">
                                 <textarea name="collaborating_agencies" id="collaborating_agencies" placeholder="" rows="3" class="form-control form-control-sm"><?=$collaborating_agencies;?></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span class="fw-bold">Funding Agency:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" id="funding_agency" name="funding_agency" value="<?=$funding_agency;?>" class="form-control form-control-sm"/>
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -1287,7 +1301,7 @@ echo view('templates/myheader.php');
 
                 <div class="row mb-2">  
                     <div class="col-sm-12 text-end">
-                        <button type="submit" class="btn bg-<?= empty($recid) ? 'success' : 'info' ?>-subtle text-<?= empty($recid) ? 'success' : 'info' ?> btn-sm"><i class="ti ti-brand-doctrine mt-1 fs-4 me-1"></i>
+                        <button type="submit" id="submitBtn" class="btn bg-<?= empty($recid) ? 'success' : 'info' ?>-subtle text-<?= empty($recid) ? 'success' : 'info' ?> btn-sm"><i class="ti ti-brand-doctrine mt-1 fs-4 me-1"></i>
                             <?= empty($recid) ? 'Save' : 'Update' ?>
                         </button>
                     </div>
@@ -1567,7 +1581,7 @@ echo view('templates/myheader.php');
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="<?=base_url('assets/js/budget/mybudgetallotment.js');?>"></script>
+<script src="<?=base_url('assets/js/budget/mybudgetallotment.js?v=1');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 
 <!-- Bootstrap JS (and Popper.js) -->

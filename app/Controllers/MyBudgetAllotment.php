@@ -95,10 +95,10 @@ class MyBudgetAllotment extends BaseController
         $divisionquery = $this->db->query("SELECT `division_name` FROM tbl_division");
         $divisiondata = $divisionquery->getResultArray();
 
-        $psuacsquery = $this->db->query("SELECT * FROM mst_uacs WHERE allotment_class = 'Personnel Services'");
+        $psuacsquery = $this->db->query("SELECT * FROM mst_uacs WHERE allotment_class = 'Personnel Services' ORDER BY TRIM(sub_object_code) ASC");
         $psuacsdata = $psuacsquery->getResultArray();
 
-        $mooeuacsquery = $this->db->query("SELECT * FROM mst_uacs WHERE allotment_class = 'Maintenance and Other Operating Expenses'");
+        $mooeuacsquery = $this->db->query("SELECT * FROM mst_uacs WHERE allotment_class = 'Maintenance and Other Operating Expenses' ORDER BY TRIM(sub_object_code) ASC");
         $mooeuacsdata = $mooeuacsquery->getResultArray();
 
         //reference/project title lookup

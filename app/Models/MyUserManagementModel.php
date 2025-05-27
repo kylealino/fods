@@ -141,6 +141,7 @@ class MyUserManagementModel extends Model
 		$username = $this->request->getPostGet('username');
 		$accessdata = $this->request->getPostGet('accessdata');
 
+		$query = $this->db->query("DELETE FROM tbl_user_access WHERE username = '$username'");
 		if (!empty($accessdata)) {
 			for($aa = 0; $aa < count($accessdata); $aa++){
 				$medata = explode("x|x",$accessdata[$aa]);
@@ -148,38 +149,26 @@ class MyUserManagementModel extends Model
 				$access_code = $medata[1]; 
 				$is_checked = $medata[2]; 
 				$dtid = $medata[3]; 
-
 				if ($is_checked == 'true') {
 					$is_active = '1';
 				}else{
 					$is_active = '0';
 				}
+				$query = $this->db->query("
+					INSERT INTO `tbl_user_access`(
+						`username`,
+						`access_code`,
+						`is_active`,
+						`added_by`
+					)
+					VALUES(
+						'$username',
+						'$access_code',
+						'$is_active',
+						'{$this->cuser}'
+					)
+				");
 
-				if (!empty($dtid)) {
-					$query = $this->db->query("
-						UPDATE
-							`tbl_user_access`
-						SET
-							`is_active` = '$is_active'
-						WHERE
-							`recid` = '$dtid'
-					");
-				}else{
-					$query = $this->db->query("
-						INSERT INTO `tbl_user_access`(
-							`username`,
-							`access_code`,
-							`is_active`,
-							`added_by`
-						)
-						VALUES(
-							'$username',
-							'$access_code',
-							'$is_active',
-							'{$this->cuser}'
-						)
-					");
-				}
 			}
 
 			$status = "Access updated successfully!";

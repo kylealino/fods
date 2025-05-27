@@ -357,6 +357,7 @@ function __mysys_budget_allotment_ent() {
 					var monitoring_agency = document.getElementById("monitoring_agency");
 					var collaborating_agencies = document.getElementById("collaborating_agencies");
 					var implementing_agency = document.getElementById("implementing_agency");
+					var funding_agency = document.getElementById("funding_agency");
 
 					//new checkbox fields
 					let is_realign1 = document.getElementById("is_realign1").checked ? 1 : 0;
@@ -514,6 +515,7 @@ function __mysys_budget_allotment_ent() {
 						monitoring_agency: monitoring_agency.value,
 						collaborating_agencies: collaborating_agencies.value,
 						implementing_agency: implementing_agency.value,
+						funding_agency: funding_agency.value,
 						tagging: tagging.value,
 						budgetdtdata: budgetdtdata,
 						budgetdtindirectdata: budgetdtindirectdata,

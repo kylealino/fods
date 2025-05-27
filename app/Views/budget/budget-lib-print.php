@@ -205,7 +205,7 @@ $pdf->SetFont('Arial', 'B', 7);
 $pdf->SetXY(10, $Y);
 $pdf->Cell(5, 3.5, '', 0, 0, 'L');
 $pdf->Cell(60, 3.5, 'Direct Cost:', 0, 1, 'L');
-$Y += 3.5;
+$Y += 2;
 $query = $this->db->query("
 SELECT
     a.`particulars`,
@@ -221,7 +221,7 @@ FROM
 WHERE 
     `project_id` = '$recid'
 ORDER BY
-particulars ASC, object_code ASC"
+a.`recid` ASC"
 );
 
 $data = $query->getResultArray();
@@ -251,7 +251,6 @@ foreach ($data as $row) {
         $last_object_code = $object_code;
     }
     
-
     // Print Expenditure Category if it changes
     if ($particulars !== $last_particulars && $particulars !== null) {
         $pdf->SetFont('Arial', '', 7);
@@ -269,9 +268,13 @@ foreach ($data as $row) {
     $expense_item = str_replace(["\r", "\n"], '', $expense_item);
     $pdf->SetFont('Arial', 'I', 7);
     $pdf->SetXY(25, $Y);
-    $pdf->MultiCell(80, 2.5, $expense_item, 0, 'L'); // full width usage
+    $pdf->MultiCell(75, 2.5, $expense_item, 0, 'L'); // full width usage
+    $Y += 3;
+ 
     if (empty($expense_item)) {
         $Y = $pdf->GetY() -5;
+    }else{
+        $Y = $pdf->GetY() -2.5;
     }
 
     // Print Budget
@@ -295,12 +298,13 @@ foreach ($data as $row) {
     $Y = $pdf->GetY();
 
 }
+$Y += 2;
 //INDIRECT COST
 $pdf->SetFont('Arial', 'B', 7);
 $pdf->SetXY(10, $Y);
 $pdf->Cell(5, 3.5, '', 0, 0, 'L');
 $pdf->Cell(60, 3.5, 'Indirect Cost:', 0, 1, 'L');
-$Y += 3.5;
+$Y += 2;
 $query = $this->db->query("
 SELECT
     a.`particulars`,
@@ -323,9 +327,10 @@ $data = $query->getResultArray();
 $total_indirect_ps = 0;
 $total_indirect_proposed_ps = 0;
 $last_particulars = '';
-
+$last_object_code = '';
 foreach ($data as $row) {
     $expense_item = $row['expense_item'];
+    $object_code = $row['object_code'];
     $approved_budget = $row['approved_budget'];
     $particulars = $row['particulars'];
     $r1_approved_budget = $row['r1_approved_budget'];
@@ -333,6 +338,7 @@ foreach ($data as $row) {
     $r3_approved_budget = $row['r3_approved_budget'];
     $proposed_realignment = $row['proposed_realignment'];
 
+    $Y += 2.5;
     if ($object_code !== $last_object_code && $object_code !== null) {
         $pdf->SetFont('Arial', '', 7);
         $pdf->SetXY(10, $Y);
@@ -341,25 +347,30 @@ foreach ($data as $row) {
         $Y += 3.5;
         $last_object_code = $object_code;
     }
+
     // Print Expenditure Category if it changes
     if ($particulars !== $last_particulars && $particulars !== null) {
         $pdf->SetFont('Arial', '', 7);
-        $pdf->SetXY(10, $Y);
+        $pdf->SetXY(15, $Y);
         $pdf->Cell(5, 3.5, '', 0, 0, 'L');
         $pdf->MultiCell(80, 2.5, $particulars, 0, 'L'); // full width usage
-        $Y += 3.5;
+        $Y += 2.5;
         $last_particulars = $particulars;
     }
     $Y = $pdf->GetY();
-    // Print Particulars
+    $Y += 1;
+
     $pdf->SetFont('Arial', 'I', 7);
     $expense_item = str_replace(["\r", "\n"], '', $expense_item);
     $pdf->SetFont('Arial', 'I', 7);
-    $pdf->SetXY(20, $Y);
+    $pdf->SetXY(25, $Y);
     $pdf->MultiCell(80, 2.5, $expense_item, 0, 'L'); // full width usage
-
+    $Y += 3;
+ 
     if (empty($expense_item)) {
         $Y = $pdf->GetY() -5;
+    }else{
+        $Y = $pdf->GetY() -2.5;
     }
     // Print Budget
     $pdf->SetXY(100, $Y);
@@ -380,7 +391,6 @@ foreach ($data as $row) {
     $total_indirect_ps += $approved_budget;
     $total_indirect_proposed_ps += $proposed_realignment;
     $Y = $pdf->GetY();
-    $Y += 3.5;
 }
 
 $total_ps = $total_direct_ps + $total_indirect_ps;
@@ -435,6 +445,7 @@ $query = $this->db->query("
     SELECT
         b.`particulars`,
         b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars` LIMIT 1) object_code,
         b.`expense_item`,
         r1_approved_budget,
         r2_approved_budget,
@@ -446,7 +457,7 @@ $query = $this->db->query("
     WHERE 
         `project_id` = '$recid'
     ORDER BY
-       particulars ASC
+       b.`recid` ASC
 ");
 
 $data = $query->getResultArray();
@@ -454,8 +465,9 @@ $total_direct_mooe = 0;
 $total_direct_proposed_mooe = 0;
 
 $last_particulars = '';
-
+$last_object_code = '';
 foreach ($data as $row) {
+    $object_code = $row['object_code'];
     $expense_item = $row['expense_item'];
     $particulars = $row['particulars'];
     $approved_budget = $row['approved_budget'];
@@ -464,25 +476,43 @@ foreach ($data as $row) {
     $r3_approved_budget = $row['r3_approved_budget'];
     $proposed_realignment = $row['proposed_realignment'];
 
+    if ($Y > 270) {
+        $pdf->AddPage();
+        $Y = $pdf->GetY(); // or set manually, e.g., $Y = 10;
+    }
+
+    $Y += 2.5;
+    if ($object_code !== $last_object_code && $object_code !== null) {
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->SetXY(10, $Y);
+        $pdf->Cell(5, 3.5, '', 0, 0, 'L');
+        $pdf->MultiCell(80, 2.5, $object_code, 0, 'L'); // full width usage
+        $Y += 3.5;
+        $last_object_code = $object_code;
+    }
     // Print Expenditure Category if it changes
     if ($particulars !== $last_particulars && $particulars !== null) {
         $pdf->SetFont('Arial', '', 7);
-        $pdf->SetXY(10, $Y);
+        $pdf->SetXY(15, $Y);
         $pdf->Cell(5, 3.5, '', 0, 0, 'L');
         $pdf->MultiCell(80, 2.5, $particulars, 0, 'L'); // full width usage
         $Y += 3.5;
         $last_particulars = $particulars;
     }
     $Y = $pdf->GetY();
+    $Y += 1;
     // Print Particulars
     $pdf->SetFont('Arial', 'I', 7);
     $expense_item = str_replace(["\r", "\n"], '', $expense_item);
     $pdf->SetFont('Arial', 'I', 7);
-    $pdf->SetXY(20, $Y);
+    $pdf->SetXY(25, $Y);
     $pdf->MultiCell(80, 2.5, $expense_item, 0, 'L'); // full width usage
-
+    $Y += 3;
+ 
     if (empty($expense_item)) {
         $Y = $pdf->GetY() -5;
+    }else{
+        $Y = $pdf->GetY() -2.5;
     }
 
     // Print Budget
@@ -504,9 +534,13 @@ foreach ($data as $row) {
     $total_direct_mooe += $approved_budget;
     $total_direct_proposed_mooe += $proposed_realignment;
     $Y = $pdf->GetY();
-    $Y += 3.5;
 }
 
+$Y += 2;
+if ($Y > 270) {
+    $pdf->AddPage();
+    $Y = $pdf->GetY(); // or set manually, e.g., $Y = 10;
+}
 $pdf->SetFont('Arial', 'B', 7);
 $pdf->SetXY(10, $Y);
 $pdf->Cell(5, 3.5, '', 0, 0, 'L');
@@ -516,6 +550,7 @@ $query = $this->db->query("
     SELECT
         b.`particulars`,
         b.`approved_budget`,
+        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars` LIMIT 1) object_code,
         b.`expense_item`,
         r1_approved_budget,
         r2_approved_budget,
@@ -526,15 +561,16 @@ $query = $this->db->query("
     WHERE 
         `project_id` = '$recid'
     ORDER BY
-        particulars ASC
+        b.`recid` ASC
 ");
 
 $data = $query->getResultArray();
 $total_indirect_mooe = 0;
 $total_indirect_proposed_mooe = 0;
 $last_particulars = '';
-
+$last_object_code = '';
 foreach ($data as $row) {
+    $object_code = $row['object_code'];
     $expense_item = $row['expense_item'];
     $particulars = $row['particulars'];
     $approved_budget = $row['approved_budget'];
@@ -543,27 +579,44 @@ foreach ($data as $row) {
     $r3_approved_budget = $row['r3_approved_budget'];
     $proposed_realignment = $row['proposed_realignment'];
 
+    if ($Y > 270) {
+        $pdf->AddPage();
+        $Y = $pdf->GetY(); // or set manually, e.g., $Y = 10;
+    }
+
+    $Y += 2.5;
+    if ($object_code !== $last_object_code && $object_code !== null) {
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->SetXY(10, $Y);
+        $pdf->Cell(5, 3.5, '', 0, 0, 'L');
+        $pdf->MultiCell(80, 2.5, $object_code, 0, 'L'); // full width usage
+        $Y += 3.5;
+        $last_object_code = $object_code;
+    }
    // Print Expenditure Category if it changes
     if ($particulars !== $last_particulars && $particulars !== null) {
         $pdf->SetFont('Arial', '', 7);
-        $pdf->SetXY(10, $Y);
+        $pdf->SetXY(15, $Y);
         $pdf->Cell(5, 3.5, '', 0, 0, 'L');
         $pdf->MultiCell(80, 2.5, $particulars, 0, 'L'); // full width usage
         $Y += 3.5;
         $last_particulars = $particulars;
     }
     $Y = $pdf->GetY();
+    $Y += 1;
     // Print Particulars
     $pdf->SetFont('Arial', 'I', 7);
     $expense_item = str_replace(["\r", "\n"], '', $expense_item);
     $pdf->SetFont('Arial', 'I', 7);
-    $pdf->SetXY(20, $Y);
+    $pdf->SetXY(25, $Y);
     $pdf->MultiCell(80, 2.5, $expense_item, 0, 'L'); // full width usage
-
+    $Y += 3;
+ 
     if (empty($expense_item)) {
         $Y = $pdf->GetY() -5;
+    }else{
+        $Y = $pdf->GetY() -2.5;
     }
-
 
     // Print Budget
     $pdf->SetXY(100, $Y);
@@ -584,7 +637,6 @@ foreach ($data as $row) {
     $total_indirect_mooe += $approved_budget;
     $total_indirect_proposed_mooe += $proposed_realignment;
     $Y = $pdf->GetY();
-    $Y += 3.5;
 }
 
 $total_mooe = $total_direct_mooe + $total_indirect_mooe;
@@ -765,6 +817,10 @@ foreach ($data as $row) {
     $r3_approved_budget = $row['r3_approved_budget'];
     $proposed_realignment = $row['proposed_realignment'];
 
+    if ($Y > 270) {
+        $pdf->AddPage();
+        $Y = $pdf->GetY(); // or set manually, e.g., $Y = 10;
+    }
     // Print the item line
     $Y += 3.5;
     // Print Particulars
@@ -828,6 +884,10 @@ foreach ($data as $row) {
     $r3_approved_budget = $row['r3_approved_budget'];
     $proposed_realignment = $row['proposed_realignment'];
 
+    if ($Y > 270) {
+        $pdf->AddPage();
+        $Y = $pdf->GetY(); // or set manually, e.g., $Y = 10;
+    }
     // Print the item line
     $Y += 3.5;
 
@@ -963,16 +1023,29 @@ $Y += 20;
 $pdf->SetXY(10, $Y);
 $pdf->Cell(20, 3.5, 'DOST-EXECOM Approval: _______________________' , 0, 1, 'L');
 
-$Y += 15;
-$pdf->SetXY(10, $Y);
+$pdf->AddPage();
+$pdf->SetFont('Arial', 'B', 16);
+
+$pdf->SetXY(8, 10);
+
+// Add image
+$x = 10; // X position
+$y = 12;   // Y position
+$width = 16; // Width of the image
+$height = 16; // Height of the image (you can adjust this based on your needs)
+
+$X = 0;
+$Y = 8;
 $pdf->SetFont('Arial', '', 7);
-$pdf->Cell(190, 3.5, 'DOST FORM 4' , 0, 1, 'C');
-$Y += 3.5;
+$pdf->Cell($X,$Y,'DOST Form 4',0,1,'C');
+
+$pdf->SetFont('Arial', 'B', 7.5);
+$Y += 7;
 $pdf->SetFont('Arial', 'B', 7);
 $pdf->SetXY(10, $Y);
 $pdf->Cell(190, 3.5, 'PROJECT LINE-ITEM BUDGET' , 0, 1, 'C');
 
-$Y += 10;
+$Y += 7;
 $pdf->SetXY(10, $Y);
 $pdf->SetFont('Arial', 'B', 7);
 $pdf->Write(3.5, "I. General Instruction:");
