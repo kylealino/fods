@@ -44,6 +44,14 @@ $with_extension = $data['with_extension'];
 $extended_from = $data['extended_from'];
 $extended_to = $data['extended_to'];
 
+if ($with_extension == '1') {
+    $toYear = date('Y', strtotime($data['extended_to']));
+    $cy_range = "CY ". "{$toYear}";
+}else{
+    $toYear = date('Y', strtotime($data['duration_to']));
+    $cy_range = "CY "."{$toYear}";
+}
+
 function DrawDottedLine($pdf, $x1, $y1, $x2, $y2, $dotLength = 1, $gap = 1) {
     $totalLength = sqrt(pow($x2 - $x1, 2) + pow($y2 - $y1, 2));
     $dx = ($x2 - $x1) / $totalLength;
@@ -87,7 +95,7 @@ $pdf->SetFont('Arial', 'B', 7.5);
 $Y = 4;
 $pdf->Cell($X,$Y,'DEPARTMENT OF SCIENCE AND TECHNOLOGY',0,1,'C');
 $pdf->Cell($X,$Y,'Project Line-Item Budget',0,1,'C');
-$pdf->Cell($X,$Y,'CY _____',0,1,'C');
+$pdf->Cell(0, $Y, utf8_decode($cy_range), 0, 1,'C');
 
 //spacer
 $pdf->Cell($X,4,'',0,1,'L');
@@ -202,6 +210,7 @@ $query = $this->db->query("
 SELECT
     a.`particulars`,
     a.`approved_budget`,
+    (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars`) object_code,
     a.`expense_item`,
     r1_approved_budget,
     r2_approved_budget,
@@ -212,7 +221,7 @@ FROM
 WHERE 
     `project_id` = '$recid'
 ORDER BY
-particulars ASC"
+particulars ASC, object_code ASC"
 );
 
 $data = $query->getResultArray();
@@ -220,7 +229,10 @@ $total_direct_ps = 0;
 $total_direct_proposed_ps = 0;
 $last_particulars = '';
 
+$last_object_code = '';
+
 foreach ($data as $row) {
+    $object_code = $row['object_code'];
     $expense_item = $row['expense_item'];
     $approved_budget = $row['approved_budget'];
     $particulars = $row['particulars'];
@@ -229,23 +241,35 @@ foreach ($data as $row) {
     $r3_approved_budget = $row['r3_approved_budget'];
     $proposed_realignment = $row['proposed_realignment'];
 
+    $Y += 2.5;
+    if ($object_code !== $last_object_code && $object_code !== null) {
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->SetXY(10, $Y);
+        $pdf->Cell(5, 3.5, '', 0, 0, 'L');
+        $pdf->MultiCell(80, 2.5, $object_code, 0, 'L'); // full width usage
+        $Y += 3.5;
+        $last_object_code = $object_code;
+    }
+    
+
     // Print Expenditure Category if it changes
     if ($particulars !== $last_particulars && $particulars !== null) {
         $pdf->SetFont('Arial', '', 7);
-        $pdf->SetXY(10, $Y);
+        $pdf->SetXY(15, $Y);
         $pdf->Cell(5, 3.5, '', 0, 0, 'L');
         $pdf->MultiCell(80, 2.5, $particulars, 0, 'L'); // full width usage
         $Y += 3.5;
         $last_particulars = $particulars;
     }
+
     $Y = $pdf->GetY();
+    $Y += 1;
     // Print Particulars
     $pdf->SetFont('Arial', 'I', 7);
     $expense_item = str_replace(["\r", "\n"], '', $expense_item);
     $pdf->SetFont('Arial', 'I', 7);
-    $pdf->SetXY(20, $Y);
+    $pdf->SetXY(25, $Y);
     $pdf->MultiCell(80, 2.5, $expense_item, 0, 'L'); // full width usage
-
     if (empty($expense_item)) {
         $Y = $pdf->GetY() -5;
     }
@@ -269,7 +293,7 @@ foreach ($data as $row) {
     $total_direct_ps += $approved_budget;
     $total_direct_proposed_ps += $proposed_realignment;
     $Y = $pdf->GetY();
-    $Y += 3;
+
 }
 //INDIRECT COST
 $pdf->SetFont('Arial', 'B', 7);
@@ -281,6 +305,7 @@ $query = $this->db->query("
 SELECT
     a.`particulars`,
     a.`expense_item`,
+    (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars`) object_code,
     a.`approved_budget`,
      r1_approved_budget,
      r2_approved_budget,
@@ -308,6 +333,14 @@ foreach ($data as $row) {
     $r3_approved_budget = $row['r3_approved_budget'];
     $proposed_realignment = $row['proposed_realignment'];
 
+    if ($object_code !== $last_object_code && $object_code !== null) {
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->SetXY(10, $Y);
+        $pdf->Cell(5, 3.5, '', 0, 0, 'L');
+        $pdf->MultiCell(80, 2.5, $object_code, 0, 'L'); // full width usage
+        $Y += 3.5;
+        $last_object_code = $object_code;
+    }
     // Print Expenditure Category if it changes
     if ($particulars !== $last_particulars && $particulars !== null) {
         $pdf->SetFont('Arial', '', 7);
