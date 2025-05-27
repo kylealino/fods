@@ -17,7 +17,9 @@ SELECT
     `duration_from`,
     `duration_to`,
     `program_leader`,
+    `project_leader`,
     `monitoring_agency`,
+    `funding_agency`,
     `collaborating_agencies`,
     `implementing_agency`,
     `with_extension`,
@@ -37,7 +39,9 @@ $total_duration = $data['total_duration'];
 $duration_from = $data['duration_from'];
 $duration_to = $data['duration_to'];
 $program_leader = $data['program_leader'];
+$project_leader = $data['project_leader'];
 $monitoring_agency = $data['monitoring_agency'];
+$funding_agency = $data['funding_agency'];
 $collaborating_agencies = $data['collaborating_agencies'];
 $implementing_agency = $data['implementing_agency'];
 $with_extension = $data['with_extension'];
@@ -162,9 +166,15 @@ $pdf->Cell(40, 3.5, 'Program Leader', 0, 0, 'L');
 $pdf->Cell(5, 3.5, ':', 0, 0, 'L');
 $pdf->Cell(60, 3.5, $program_leader, 0, 1, 'L');
 
-$pdf->Cell(40, 3.5, 'Monitoring Agency', 0, 0, 'L');
+$X = $pdf->GetX(); // Save current X
+$Y = $pdf->GetY(); // Save current Y
+$pdf->Cell(40, 3.5, 'Project Leader', 0, 0, 'L');
 $pdf->Cell(5, 3.5, ':', 0, 0, 'L');
-$pdf->Cell(60, 3.5, $monitoring_agency, 0, 1, 'L');
+$pdf->Cell(60, 3.5, $project_leader, 0, 1, 'L');
+
+$pdf->Cell(40, 3.5, 'Funding Agency', 0, 0, 'L');
+$pdf->Cell(5, 3.5, ':', 0, 0, 'L');
+$pdf->Cell(60, 3.5, $funding_agency, 0, 1, 'L');
 
 $X = $pdf->GetX(); // Save current X
 $Y = $pdf->GetY(); // Save current Y
