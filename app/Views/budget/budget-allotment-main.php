@@ -253,26 +253,12 @@ echo view('templates/myheader.php');
                                 <input type="text" id="division_name" name="division_name" value="<?=$division_name;?>" class="form-control form-control-sm" readonly />
                             </div>
                         </div>
-                        <div class="row mb-2">
+                       <div class="row mb-2">
                             <div class="col-sm-4">
-                                <span class="fw-bold">Project Duration:</span>
+                                <span class="fw-bold">Duration:</span>
                             </div>
                             <div class="col-sm-5">
-                                <?php if(!empty($recid)):?>
-                                    <select id="total_duration" name="total_duration" class="form-select form-select-sm">
-                                        <option selected value="<?=$total_duration;?>"><?=$total_duration;?></option>
-                                        <option value="One (1) Year">One (1) Year</option>
-                                        <option value="Two (2) Years">Two (2) Years</option>
-                                        <option value="Three (3) Years">Three (3) Years</option>
-                                    </select>
-                                <?php else:?>
-                                    <select id="total_duration" name="total_duration" class="form-select form-select-sm">
-                                        <option selected value="">Choose...</option>
-                                        <option value="One (1) Year">One (1) Year</option>
-                                        <option value="Two (2) Years">Two (2) Years</option>
-                                        <option value="Three (3) Years">Three (3) Years</option>
-                                    </select>
-                                <?php endif;?>
+                                <input type="text" id="project_duration" name="project_duration" readonly class="form-control form-control-sm" />
                             </div>
                             <div class="col-sm-3 d-flex align-items-center">
                                 <div class="form-check">
@@ -1581,7 +1567,7 @@ echo view('templates/myheader.php');
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="<?=base_url('assets/js/budget/mybudgetallotment.js?v=1');?>"></script>
+<script src="<?=base_url('assets/js/budget/mybudgetallotment.js?v=2');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 
 <!-- Bootstrap JS (and Popper.js) -->
@@ -1628,6 +1614,60 @@ echo view('templates/myheader.php');
             $('.r3_approved_budget').prop('disabled', !isChecked);
             $('.r2_approved_budget').prop('disabled', isChecked);
         });
+
+        function computeDuration() {
+            const from = document.getElementById("duration_from").value;
+            const to = document.getElementById("duration_to").value;
+            const extendedTo = document.getElementById("extended_to")?.value;
+
+            if (!from || (!to && !extendedTo)) {
+                document.getElementById("project_duration").value = '';
+                return;
+            }
+
+            const fromDate = new Date(from);
+            let endDate = new Date(to); // default to original
+
+            if (extendedTo) {
+                const extDate = new Date(extendedTo);
+                if (!isNaN(extDate) && extDate > fromDate) {
+                    endDate = extDate; // override with extended if valid
+                }
+            }
+
+            if (endDate < fromDate) {
+                document.getElementById("project_duration").value = 'Invalid range';
+                return;
+            }
+
+            let years = endDate.getFullYear() - fromDate.getFullYear();
+            let months = endDate.getMonth() - fromDate.getMonth();
+
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            let result = '';
+            if (years > 0) result += years + (years === 1 ? ' year' : ' years');
+            if (months > 0) {
+                if (result !== '') result += ' and ';
+                result += months + (months === 1 ? ' month' : ' months');
+            }
+
+            if (result === '') result = '0 months';
+
+            document.getElementById("project_duration").value = result;
+        }
+
+        document.getElementById("duration_from").addEventListener("change", computeDuration);
+        document.getElementById("duration_to").addEventListener("change", computeDuration);
+        document.getElementById("extended_from").addEventListener("change", computeDuration);
+        document.getElementById("extended_to").addEventListener("change", computeDuration);
+
+        // Trigger on load
+        computeDuration();
+
     
     });
 

@@ -13,7 +13,7 @@ SELECT
     `project_title`,
     `project_leader`,
     `program_title`,
-    `total_duration`,
+    `project_duration`,
     `duration_from`,
     `duration_to`,
     `program_leader`,
@@ -35,7 +35,7 @@ $data = $query->getRowArray();
 $project_title = $data['project_title'];
 $project_leader = $data['project_leader'];
 $program_title = $data['program_title'];
-$total_duration = $data['total_duration'];
+$project_duration = $data['project_duration'];
 $duration_from = $data['duration_from'];
 $duration_to = $data['duration_to'];
 $program_leader = $data['program_leader'];
@@ -139,7 +139,7 @@ $pdf->Cell(60, 3.5, $implementing_agency, 0, 1, 'L');
 
 $pdf->Cell(40, 3.5, 'Total Duration', 0, 0, 'L');
 $pdf->Cell(5, 3.5, ':', 0, 0, 'L');
-$pdf->Cell(60, 3.5, $total_duration, 0, 1, 'L');
+$pdf->Cell(60, 3.5, $project_duration, 0, 1, 'L');
 
 $pdf->Cell(40, 3.5, 'Project Duration', 0, 0, 'L');
 $pdf->Cell(5, 3.5, ':', 0, 0, 'L');
@@ -747,7 +747,7 @@ $pdf->Cell(60, 3.5, $implementing_agency, 0, 1, 'L');
 
 $pdf->Cell(40, 3.5, 'Total Duration', 0, 0, 'L');
 $pdf->Cell(5, 3.5, ':', 0, 0, 'L');
-$pdf->Cell(60, 3.5, $total_duration, 0, 1, 'L');
+$pdf->Cell(60, 3.5, $project_duration, 0, 1, 'L');
 
 $pdf->Cell(40, 3.5, 'Current Duration', 0, 0, 'L');
 $pdf->Cell(5, 3.5, ':', 0, 0, 'L');

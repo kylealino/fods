@@ -28,6 +28,7 @@ class MyBudgetAllotmentModel extends Model
 		//newly added fields
 		$program_title = $this->request->getPostGet('program_title');
 		$total_duration = $this->request->getPostGet('total_duration');
+		$project_duration = $this->request->getPostGet('project_duration');
 		$duration_from = $this->request->getPostGet('duration_from');
 		$duration_to = $this->request->getPostGet('duration_to');
 		$program_leader = $this->request->getPostGet('program_leader');
@@ -87,18 +88,6 @@ class MyBudgetAllotmentModel extends Model
 			echo "
 			<script>
 			toastr.error('Program title is required!', 'Oops!', {
-					progressBar: true,
-					closeButton: true,
-					timeOut:2000,
-				});
-			</script>
-			";
-			die();
-		}
-		if (empty($total_duration)) {
-			echo "
-			<script>
-			toastr.error('Total duration is required!', 'Oops!', {
 					progressBar: true,
 					closeButton: true,
 					timeOut:2000,
@@ -252,11 +241,11 @@ class MyBudgetAllotmentModel extends Model
 				`responsibility_code`,
 				`fund_cluster_code`, 
 				`division_name`,
+				`project_duration`,
 				`project_leader`, 
 				`added_at`, 
 				`added_by`,
 				`program_title`,
-				`total_duration`,
 				`duration_from`,
 				`duration_to`,
 				`program_leader`,
@@ -276,11 +265,11 @@ class MyBudgetAllotmentModel extends Model
 				'$responsibility_code',
 				'$fund_cluster_code',
 				'$division_name',
+				'$project_duration',
 				'$project_leader',
 				NOW(),
 				'{$this->cuser}',
 				'$program_title',
-				'$total_duration',
 				'$duration_from',
 				'$duration_to',
 				'$program_leader',
@@ -717,9 +706,9 @@ class MyBudgetAllotmentModel extends Model
 					`responsibility_code` = '$responsibility_code',
 					`fund_cluster_code` = '$fund_cluster_code',
 					`division_name` = '$division_name',
+					`project_duration` = '$project_duration',
 					`project_leader` = '$project_leader',
 					`program_title` = '$program_title',
-					`total_duration` = '$total_duration',
 					`duration_from` = '$duration_from',
 					`duration_to` = '$duration_to',
 					`program_leader` = '$program_leader',

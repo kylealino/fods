@@ -350,7 +350,7 @@ function __mysys_budget_allotment_ent() {
 
 					//newly added fields
 					var program_title = document.getElementById("program_title");
-					var total_duration = document.getElementById("total_duration");
+					var project_duration = document.getElementById("project_duration");
 					var duration_from = document.getElementById("duration_from");
 					var duration_to = document.getElementById("duration_to");
 					var program_leader = document.getElementById("program_leader");
@@ -508,7 +508,7 @@ function __mysys_budget_allotment_ent() {
 						project_leader: project_leader.value,
 						//newly added fields
 						program_title: program_title.value,
-						total_duration: total_duration.value,
+						project_duration: project_duration.value,
 						duration_from: duration_from.value,
 						duration_to: duration_to.value,
 						program_leader: program_leader.value,
