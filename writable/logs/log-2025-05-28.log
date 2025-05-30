@@ -12,3 +12,185 @@ in APPPATH\Views\budget\budget-lib-print.php on line 750.
  9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
 10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
 11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-05-28 13:52:57 --> mysqli_sql_exception: Subquery returns more than 1 row in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\nSELECT\r\n    a...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\nSELECT\r\n    a...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\nSELECT\r\n    a...')
+#3 C:\xampp\htdocs\fods\app\Views\budget\budget-lib-print.php(232): CodeIgniter\Database\BaseConnection->query('\r\nSELECT\r\n    a...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('budget/budget-l...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyBudgetAllotment.php(56): view('budget/budget-l...')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-05-28 13:52:57 --> CodeIgniter\Database\Exceptions\DatabaseException: Subquery returns more than 1 row
+[Method: GET, Route: mybudgetallotment]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\budget\budget-lib-print.php(232): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    a.`particulars`,
+    a.`approved_budget`,
+    (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars`) object_code,
+    a.`expense_item`,
+    r1_approved_budget,
+    r2_approved_budget,
+    r3_approved_budget,
+    proposed_realignment
+FROM
+    `tbl_budget_direct_ps_dt` a
+WHERE 
+    `project_id` = \'97\'
+ORDER BY
+a.`recid` ASC')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-28 13:52:57 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Subquery returns more than 1 row
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+SELECT
+    a.`particulars`,
+    a.`approved_budget`,
+    (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars`) object_code,
+    a.`expense_item`,
+    r1_approved_budget,
+    r2_approved_budget,
+    r3_approved_budget,
+    proposed_realignment
+FROM
+    `tbl_budget_direct_ps_dt` a
+WHERE 
+    `project_id` = \'97\'
+ORDER BY
+a.`recid` ASC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+SELECT
+    a.`particulars`,
+    a.`approved_budget`,
+    (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars`) object_code,
+    a.`expense_item`,
+    r1_approved_budget,
+    r2_approved_budget,
+    r3_approved_budget,
+    proposed_realignment
+FROM
+    `tbl_budget_direct_ps_dt` a
+WHERE 
+    `project_id` = \'97\'
+ORDER BY
+a.`recid` ASC')
+ 3 APPPATH\Views\budget\budget-lib-print.php(232): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    a.`particulars`,
+    a.`approved_budget`,
+    (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars`) object_code,
+    a.`expense_item`,
+    r1_approved_budget,
+    r2_approved_budget,
+    r3_approved_budget,
+    proposed_realignment
+FROM
+    `tbl_budget_direct_ps_dt` a
+WHERE 
+    `project_id` = \'97\'
+ORDER BY
+a.`recid` ASC')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 7 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-28 13:52:57 --> [Caused by] mysqli_sql_exception: Subquery returns more than 1 row
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+SELECT
+    a.`particulars`,
+    a.`approved_budget`,
+    (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars`) object_code,
+    a.`expense_item`,
+    r1_approved_budget,
+    r2_approved_budget,
+    r3_approved_budget,
+    proposed_realignment
+FROM
+    `tbl_budget_direct_ps_dt` a
+WHERE 
+    `project_id` = \'97\'
+ORDER BY
+a.`recid` ASC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+SELECT
+    a.`particulars`,
+    a.`approved_budget`,
+    (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars`) object_code,
+    a.`expense_item`,
+    r1_approved_budget,
+    r2_approved_budget,
+    r3_approved_budget,
+    proposed_realignment
+FROM
+    `tbl_budget_direct_ps_dt` a
+WHERE 
+    `project_id` = \'97\'
+ORDER BY
+a.`recid` ASC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+SELECT
+    a.`particulars`,
+    a.`approved_budget`,
+    (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars`) object_code,
+    a.`expense_item`,
+    r1_approved_budget,
+    r2_approved_budget,
+    r3_approved_budget,
+    proposed_realignment
+FROM
+    `tbl_budget_direct_ps_dt` a
+WHERE 
+    `project_id` = \'97\'
+ORDER BY
+a.`recid` ASC')
+ 4 APPPATH\Views\budget\budget-lib-print.php(232): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    a.`particulars`,
+    a.`approved_budget`,
+    (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars`) object_code,
+    a.`expense_item`,
+    r1_approved_budget,
+    r2_approved_budget,
+    r3_approved_budget,
+    proposed_realignment
+FROM
+    `tbl_budget_direct_ps_dt` a
+WHERE 
+    `project_id` = \'97\'
+ORDER BY
+a.`recid` ASC')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-lib-print.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-lib-print', [], true)
+ 8 APPPATH\Controllers\MyBudgetAllotment.php(56): view('budget/budget-lib-print')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

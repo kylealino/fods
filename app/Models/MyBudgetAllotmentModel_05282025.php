@@ -61,8 +61,8 @@ class MyBudgetAllotmentModel extends Model
 		$lddap_refno = $this->request->getPostGet('lddap_refno');
 
 
-		// var_dump($budgetdtdata);
-		// die();
+		var_dump($budgetdtdata);
+		die();
 		// var_dump('TTTTTTTTTTTTTTTTTTTTT');
 		// var_dump($budgetdtindirectdata);
 		// die();
@@ -295,7 +295,7 @@ class MyBudgetAllotmentModel extends Model
 
 			//INSERTING PS DT DATA
 			if (!empty($budgetdtdata)) {
-				$query = $this->db->query("DELETE FROM tbl_budget_direct_ps_dt WHERE `project_id` = '$project_id'");
+				//this is for normal saving and updating
 				for($aa = 0; $aa < count($budgetdtdata); $aa++){
 					$medata = explode("x|x",$budgetdtdata[$aa]);
 					$expense_item = $medata[0]; 
@@ -308,35 +308,52 @@ class MyBudgetAllotmentModel extends Model
 					$r3_approved_budget = $medata[7]; 
 					$proposed_realignment = $medata[8]; 
 
-					$query = $this->db->query("
-					INSERT INTO `tbl_budget_direct_ps_dt`(
-							`expense_item`,
-							`project_id`,
-							`particulars`,
-							`code`,
-							`approved_budget`,
-							`r1_approved_budget`,
-							`r2_approved_budget`,
-							`r3_approved_budget`,
-							`proposed_realignment`,
-							`added_at`,
-							`added_by`
-						)
-						VALUES(
-							'$expense_item',
-							'$project_id',
-							'$particulars',
-							'$code',
-							'$approved_budget',
-							'$r1_approved_budget',
-							'$r2_approved_budget',
-							'$r3_approved_budget',
-							'$proposed_realignment',
-							NOW(),
-							'{$this->cuser}'
-						)
-					");
-					
+					if (!empty($dtid)) {
+						$query = $this->db->query("
+						UPDATE
+							`tbl_budget_direct_ps_dt`
+						SET
+							`expense_item` = '$expense_item',
+							`particulars` = '$particulars',
+							`code` = '$code',
+							`approved_budget` = '$approved_budget',
+							`r1_approved_budget` = '$r1_approved_budget',
+							`r2_approved_budget` = '$r2_approved_budget',
+							`r3_approved_budget` = '$r3_approved_budget',
+							`proposed_realignment` = '$proposed_realignment'
+						WHERE
+							`recid` = '$dtid'
+						");
+					}else{
+						$query = $this->db->query("
+						INSERT INTO `tbl_budget_direct_ps_dt`(
+								`expense_item`,
+								`project_id`,
+								`particulars`,
+								`code`,
+								`approved_budget`,
+								`r1_approved_budget`,
+								`r2_approved_budget`,
+								`r3_approved_budget`,
+								`proposed_realignment`,
+								`added_at`,
+								`added_by`
+							)
+							VALUES(
+								'$expense_item',
+								'$project_id',
+								'$particulars',
+								'$code',
+								'$approved_budget',
+								'$r1_approved_budget',
+								'$r2_approved_budget',
+								'$r3_approved_budget',
+								'$proposed_realignment',
+								NOW(),
+								'{$this->cuser}'
+							)
+						");
+					}
 				}
 			}
 
@@ -720,7 +737,6 @@ class MyBudgetAllotmentModel extends Model
 
 			//UPDATE OR INSERT OF NEW ROW DATA
 			if (!empty($budgetdtdata)) {
-				$query = $this->db->query("DELETE FROM tbl_budget_direct_ps_dt WHERE `project_id` = '$project_id'");
 				for($aa = 0; $aa < count($budgetdtdata); $aa++){
 					$medata = explode("x|x",$budgetdtdata[$aa]);
 					$expense_item = $medata[0]; 
@@ -733,34 +749,54 @@ class MyBudgetAllotmentModel extends Model
 					$r3_approved_budget = $medata[7]; 
 					$proposed_realignment = $medata[8]; 
 
-					$query = $this->db->query("
-						INSERT INTO `tbl_budget_direct_ps_dt`(
-							`expense_item`,
-							`project_id`,
-							`particulars`,
-							`code`,
-							`approved_budget`,
-							`r1_approved_budget`,
-							`r2_approved_budget`,
-							`r3_approved_budget`,
-							`proposed_realignment`,
-							`added_at`,
-							`added_by`
-						)
-						VALUES(
-							'$expense_item',
-							'$project_id',
-							'$particulars',
-							'$code',
-							'$approved_budget',
-							'$r1_approved_budget',
-							'$r2_approved_budget',
-							'$r3_approved_budget',
-							'$proposed_realignment',
-							NOW(),
-							'{$this->cuser}'
-						)
-					");
+					if (!empty($dtid)) {
+						$query = $this->db->query("
+						UPDATE
+							`tbl_budget_direct_ps_dt`
+						SET
+							`expense_item` = '$expense_item',
+							`particulars` = '$particulars',
+							`code` = '$code',
+							`approved_budget` = '$approved_budget',
+							`r1_approved_budget` = '$r1_approved_budget',
+							`r2_approved_budget` = '$r2_approved_budget',
+							`r3_approved_budget` = '$r3_approved_budget',
+							`proposed_realignment` = '$proposed_realignment'
+						WHERE
+							`recid` = '$dtid'
+						");
+					}else{
+						$query = $this->db->query("
+							INSERT INTO `tbl_budget_direct_ps_dt`(
+								`expense_item`,
+								`project_id`,
+								`particulars`,
+								`code`,
+								`approved_budget`,
+								`r1_approved_budget`,
+								`r2_approved_budget`,
+								`r3_approved_budget`,
+								`proposed_realignment`,
+								`added_at`,
+								`added_by`
+							)
+							VALUES(
+								'$expense_item',
+								'$project_id',
+								'$particulars',
+								'$code',
+								'$approved_budget',
+								'$r1_approved_budget',
+								'$r2_approved_budget',
+								'$r3_approved_budget',
+								'$proposed_realignment',
+								NOW(),
+								'{$this->cuser}'
+							)
+						");
+					}
+
+					
 				}
 			}
 

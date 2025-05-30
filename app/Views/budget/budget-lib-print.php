@@ -207,7 +207,7 @@ $pdf->Cell(20, 3.5, 'Proposed Realignment', 'B', 0, 'C');
 
 //START OF PS LOGIC
 $pdf->SetXY(10, $Y);
-$pdf->SetFont('Arial', 'B', 5.5);
+$pdf->SetFont('Arial', 'B', 7);
 $pdf->Cell(5, 3.5, 'I.', 0, 0, 'L');
 $pdf->Cell(60, 3.5, 'PERSONAL SERVICES (PS)' , 0, 1, 'L');
 $Y += 3;
@@ -220,7 +220,7 @@ $query = $this->db->query("
 SELECT
     a.`particulars`,
     a.`approved_budget`,
-    (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars`) object_code,
+    (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars` LIMIT 1) object_code,
     a.`expense_item`,
     r1_approved_budget,
     r2_approved_budget,
@@ -319,7 +319,7 @@ $query = $this->db->query("
 SELECT
     a.`particulars`,
     a.`expense_item`,
-    (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars`) object_code,
+    (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars` LIMIT 1) object_code,
     a.`approved_budget`,
      r1_approved_budget,
      r2_approved_budget,

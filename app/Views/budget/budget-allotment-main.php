@@ -527,10 +527,19 @@ echo view('templates/myheader.php');
                                                 <tbody>
                                                     <tr style="display:none;">
                                                         <td class="text-center align-middle">
-                                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
-                                                            <i class="ti ti-trash"></i>
-                                                            </a>
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                onclick="$(this).closest('tr').remove();">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </a>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                title="Add rows above"
+                                                                onclick="__mysys_budget_allotment_ent.my_add_budget_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
@@ -596,10 +605,26 @@ echo view('templates/myheader.php');
                                                     ?>
                                                     <tr>
                                                         <td class="text-center align-middle">
-                                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)" onclick="$(this).closest('tr').remove();">
-                                                            <i class="ti ti-trash"></i>
-                                                            </a>
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <?php if(!empty($is_approved == '1')):?>
+                                                                    <a class="text-muted fs-5 bg-hover-danger nav-icon-hover"
+                                                                        href="javascript:void(0)">
+                                                                        <i class="ti ti-trash"></i>
+                                                                    </a>
+                                                                <?php else:?>
+                                                                    <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                        href="javascript:void(0)"
+                                                                        onclick="$(this).closest('tr').remove();">
+                                                                        <i class="ti ti-trash"></i>
+                                                                    </a>
+                                                                <?php endif;?>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                title="Add rows above"
+                                                                onclick="__mysys_budget_allotment_ent.my_add_budget_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
@@ -1359,7 +1384,7 @@ echo view('templates/myheader.php');
                         <td class="text-center"><?=$project_title;?></td>
                         <td class="text-center"><?=$responsibility_code;?></td>
                         <td class="text-center"><?=$added_at;?></td>
-                        <td class="text-center"><?= '₱'. number_format($approved_budget,2);?></td>
+                        <td class="text-center"><?= 'P'. number_format($approved_budget,2);?></td>
                         <td class="text-center text-<?=$color;?>"><?=$status;?></td>
                         <td class="text-center">
                             <button class="btn btn-sm btn-outline-secondary" onclick="window.open('<?= base_url('mybudgetallotment?meaction=PRINT-LIB&recid='.$dt_recid) ?>', '_blank')">
@@ -1567,7 +1592,7 @@ echo view('templates/myheader.php');
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="<?=base_url('assets/js/budget/mybudgetallotment.js?v=2');?>"></script>
+<script src="<?=base_url('assets/js/budget/mybudgetallotment.js?v=3');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 
 <!-- Bootstrap JS (and Popper.js) -->
@@ -1602,7 +1627,7 @@ echo view('templates/myheader.php');
         $('#is_realign1').on('change', function () {
             const isChecked = $(this).is(':checked');
             $('.r1_approved_budget').prop('disabled', !isChecked);
-            $('.approved_budget').prop('disabled', isChecked);
+       
         });
         $('#is_realign2').on('change', function () {
             const isChecked = $(this).is(':checked');
@@ -1639,6 +1664,9 @@ echo view('templates/myheader.php');
                 document.getElementById("project_duration").value = 'Invalid range';
                 return;
             }
+
+            // âœ… Add 1 day to endDate to include the last day
+            endDate.setDate(endDate.getDate() + 1);
 
             let years = endDate.getFullYear() - fromDate.getFullYear();
             let months = endDate.getMonth() - fromDate.getMonth();

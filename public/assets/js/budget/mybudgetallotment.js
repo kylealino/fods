@@ -10,7 +10,11 @@ function __mysys_budget_allotment_ent() {
 	
 			// Clone the last data row (not the footer)
 			var clonedRow = jQuery('#budget_line_items tbody tr:eq(' + (rowCount - 1) + ')').clone();
-	
+				// Enable the delete icon for the new row
+			jQuery(clonedRow).find('.text-danger').removeClass('text-muted').off('click').on('click', function () {
+				jQuery(this).closest('tr').remove();
+			});
+
 			jQuery(clonedRow).find('select').eq(0).val('').attr('id', 'col4' + mid);
 			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col1' + mid); // ID for second text field
 			jQuery(clonedRow).find('input[type=text]').eq(1).attr('id', 'col2' + mid); // ID for second text field
@@ -53,6 +57,39 @@ function __mysys_budget_allotment_ent() {
 			return false;
 		}
 	}
+
+	this.my_add_budget_line_above = function (elem) {
+		try {
+			var rowCount = jQuery('#budget_line_items tbody tr').length;
+			var mid = generateRandomID(10) + (rowCount + 1);
+
+			// Clone the hidden template row
+			var templateRow = jQuery('#budget_line_items tbody tr:hidden:first').clone();
+
+			// Set new IDs and clear values
+			jQuery(templateRow).find('select').eq(0).val('').attr('id', 'col4' + mid);
+			jQuery(templateRow).find('input[type=text]').eq(0).val('').attr('id', 'col1' + mid);
+			jQuery(templateRow).find('input[type=text]').eq(1).val('').attr('id', 'col2' + mid);
+			jQuery(templateRow).find('input[type=number]').each(function (i) {
+				jQuery(this).val('').attr('id', 'col' + (3 + i) + mid).attr('data-dtid', '');
+			});
+
+			// Insert above the clicked row
+			var currentRow = jQuery(elem).closest('tr');
+			templateRow.css('display', '').attr('id', 'tr_rec_' + mid);
+			templateRow.insertBefore(currentRow);
+
+			// Optional: focus the first input field
+			jQuery(templateRow).find('input[type=text]').eq(0).focus();
+
+			// Recalculate if needed
+			this.__direct_ps_totals();
+
+		} catch (err) {
+			alert('Error: ' + err.message);
+		}
+	}
+
 
 	this.my_add_budget_indirect_line = function () {
 		try {
