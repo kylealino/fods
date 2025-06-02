@@ -11,6 +11,7 @@ class MyBudgetAllotmentModel extends Model
         parent::__construct();
         $this->session = session();
         $this->request = \Config\Services::request();
+		$this->mylibzsys = model('App\Models\MyLibzSysModel');
 		$this->db = \Config\Database::connect();
 		$this->cuser = $this->session->get('__xsys_myuserzicas__');
         

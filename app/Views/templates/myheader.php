@@ -152,6 +152,18 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
                 <span class="hide-menu">ORS/BURS Approval</span>
               </a>
             </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Reports</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link sidebar-link" href="<?=site_url();?>mysaobrpt?meaction=MAIN" aria-expanded="false">
+                <span class="rounded-3">
+                  <i class="ti ti-file"></i>
+                </span>
+                <span class="hide-menu">SAOB</span>
+              </a>
+            </li>
           </ul>
         </nav>
 

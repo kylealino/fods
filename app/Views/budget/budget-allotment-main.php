@@ -1470,7 +1470,7 @@ echo view('templates/myheader.php');
                         <td class="text-center"><?= 'P'. number_format($approved_budget,2);?></td>
                         <td class="text-center text-<?=$color;?>"><?=$status;?></td>
                         <td class="text-center">
-                            <button class="btn btn-sm btn-outline-secondary" onclick="window.open('<?= base_url('mybudgetallotment?meaction=PRINT-LIB&recid='.$dt_recid) ?>', '_blank')">
+                            <button class="btn btn-sm btn-outline-secondary" onclick="__mysys_budget_allotment_ent.__showPdfInModal('<?= base_url('mybudgetallotment?meaction=PRINT-LIB&recid='.$dt_recid) ?>')">
                                 Print
                             </button>
                         </td>
@@ -1671,11 +1671,28 @@ echo view('templates/myheader.php');
     </div>
   </div>
 </div>
+<!-- PDF Modal -->
+<div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Printing Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe id="pdfFrame" src="" style="width: 100%; height: 80vh;" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="<?=base_url('assets/js/budget/mybudgetallotment.js?v=4');?>"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+<script src="<?=base_url('assets/js/budget/mybudgetallotment.js?v=6');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 
 <!-- Bootstrap JS (and Popper.js) -->
@@ -1692,6 +1709,7 @@ echo view('templates/myheader.php');
     __mysys_budget_allotment_ent.__direct_co_totals();
     __mysys_budget_allotment_ent.__indirect_co_totals();
     __mysys_budget_allotment_ent.__combined_totals();
+
     $(document).ready(function () {
         $('#datatablesSimple').DataTable({
             pageLength: 5,

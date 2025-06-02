@@ -161,7 +161,7 @@ function __mysys_budget_allotment_ent() {
 			// Insert above the clicked row
 			var currentRow = jQuery(elem).closest('tr');
 			templateRow.css('display', '').attr('id', 'tr_rec_' + mid);
-			templateRow.insertBefore(currentRow);
+			templateRow.insertAfter(currentRow);
 
 			// Optional: focus the first input field
 			jQuery(templateRow).find('input[type=text]').eq(0).focus();
@@ -1097,5 +1097,14 @@ function __mysys_budget_allotment_ent() {
 		var extFields = document.getElementById("extension_fields");
         extFields.style.display = checkbox.checked ? "block" : "none";
 	}
+
+	this.__showPdfInModal = function(pdfUrl) {
+		var pdfFrame = document.getElementById("pdfFrame");
+		var pdfModal = new bootstrap.Modal(document.getElementById("pdfModal"));
+
+		pdfFrame.src = pdfUrl;
+		pdfModal.show();
+	};
+
 
 }; //end main

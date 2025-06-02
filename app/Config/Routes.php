@@ -48,3 +48,7 @@ $routes->post('uploadFile', 'Upload::index',['filter' => 'myauthuser']);
 //ORSBURS - ORSBURS module
 $routes->get('myorsburs', 'MyOrsBurs::index',['filter' => 'myauthuser']);
 $routes->post('myorsburs', 'MyOrsBurs::index',['filter' => 'myauthuser']);
+
+//SAOB - SAOB module
+$routes->get('mysaobrpt', 'MySaobReport::index',['filter' => 'myauthuser']);
+$routes->post('mysaobrpt', 'MySaobReport::index',['filter' => 'myauthuser']);
