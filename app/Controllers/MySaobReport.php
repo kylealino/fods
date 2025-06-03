@@ -81,6 +81,9 @@ class MySaobReport extends BaseController
         $mooeuacsquery = $this->db->query("SELECT * FROM mst_uacs WHERE allotment_class = 'Maintenance and Other Operating Expenses' ORDER BY TRIM(sub_object_code) ASC");
         $mooeuacsdata = $mooeuacsquery->getResultArray();
 
+        $programtitlequery = $this->db->query("SELECT * FROM tbl_budget_hd WHERE fund_cluster_code = '01' ORDER BY recid ASC");
+        $programtitledata = $programtitlequery->getResultArray();
+
         //reference/project title lookup
         $projectquery = $this->db->query("
         SELECT
@@ -111,6 +114,7 @@ class MySaobReport extends BaseController
             'mooeuacsdata' => $mooeuacsdata,
             'budgetdtdata' => $budgetdtdata,
             'projectdata' => $projectdata,
+            'programtitledata' => $programtitledata,
         ]);
     }
     
