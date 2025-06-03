@@ -4,6 +4,522 @@ function __mysys_saob_rpt_ent() {
 
 
 	
+	this.my_add_budget_line = function () {
+		try {
+			// Get the total number of rows, excluding the footer row
+			var rowCount = jQuery('#budget_line_items tbody tr').length;
+			var mid = generateRandomID(10) + (rowCount + 1);
+	
+			// Clone the last data row (not the footer)
+			var clonedRow = jQuery('#budget_line_items tbody tr:eq(' + (rowCount - 1) + ')').clone();
+				// Enable the delete icon for the new row
+			jQuery(clonedRow).find('.text-danger').removeClass('text-muted').off('click').on('click', function () {
+				jQuery(this).closest('tr').remove();
+			});
+
+			jQuery(clonedRow).find('select').eq(0).val('').attr('id', 'col4' + mid);
+			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col1' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=text]').eq(1).attr('id', 'col2' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(1).attr('id', 'col4' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(2).attr('id', 'col5' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(3).attr('id', 'col6' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(4).attr('id', 'col7' + mid); // ID for date field
+			// Now reset only the debit and credit fields (input[type=number])
+			
+			jQuery(clonedRow).find('select').eq(0).val('');
+			jQuery(clonedRow).find('input[type=text]').eq(0).val('');  // Clear credit value
+			jQuery(clonedRow).find('input[type=text]').eq(1).val('');  // Clear credit value
+			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
+			jQuery(clonedRow).find('input[type=number]').eq(1).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(2).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(3).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(4).val('');
+	
+			// Insert the cloned row before the last row (footer row)
+			jQuery('#budget_line_items tbody').append(clonedRow);
+
+			this.__direct_ps_totals();
+	
+			// Make the new row visible
+			jQuery(clonedRow).css({ 'display': '' });
+	
+			// Set the ID for the new row
+			jQuery(clonedRow).attr('id', 'tr_rec_' + mid);
+	
+			// Focus on the first input field of the cloned row
+			var xobjArtItem = jQuery(clonedRow).find('input[type=text]').eq(0).attr('id');
+			jQuery('#' + xobjArtItem).focus();
+	
+		} catch (err) {
+			var mtxt = 'There was an error on this page.\\n';
+			mtxt += 'Error description: ' + err.message;
+			mtxt += '\\nClick OK to continue.';
+			alert(mtxt);
+			return false;
+		}
+	}
+
+	this.my_add_budget_line_above = function (elem) {
+		try {
+			var rowCount = jQuery('#budget_line_items tbody tr').length;
+			var mid = generateRandomID(10) + (rowCount + 1);
+
+			// Clone the hidden template row
+			var templateRow = jQuery('#budget_line_items tbody tr:hidden:first').clone();
+
+			// Set new IDs and clear values
+			jQuery(templateRow).find('select').eq(0).val('').attr('id', 'col4' + mid);
+			jQuery(templateRow).find('input[type=text]').eq(0).val('').attr('id', 'col1' + mid);
+			jQuery(templateRow).find('input[type=text]').eq(1).val('').attr('id', 'col2' + mid);
+			jQuery(templateRow).find('input[type=number]').each(function (i) {
+				jQuery(this).val('').attr('id', 'col' + (3 + i) + mid).attr('data-dtid', '');
+			});
+
+			// Insert above the clicked row
+			var currentRow = jQuery(elem).closest('tr');
+			templateRow.css('display', '').attr('id', 'tr_rec_' + mid);
+			templateRow.insertAfter(currentRow);
+
+			// Optional: focus the first input field
+			jQuery(templateRow).find('input[type=text]').eq(0).focus();
+
+			// Recalculate if needed
+			this.__direct_ps_totals();
+
+		} catch (err) {
+			alert('Error: ' + err.message);
+		}
+	}
+
+	this.my_add_budget_indirect_line = function () {
+		try {
+			// Get the total number of rows, excluding the footer row
+			var rowCount = jQuery('#budget_indirect_line_items tbody tr').length;
+			var mid = generateRandomID(10) + (rowCount + 1);
+	
+			// Clone the last data row (not the footer)
+			var clonedRow = jQuery('#budget_indirect_line_items tbody tr:eq(' + (rowCount - 1) + ')').clone();
+	
+			jQuery(clonedRow).find('select').eq(0).val('').attr('id', 'col4' + mid);
+			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col1' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=text]').eq(1).attr('id', 'col2' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(1).attr('id', 'col4' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(2).attr('id', 'col5' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(3).attr('id', 'col6' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(4).attr('id', 'col7' + mid); // ID for date field
+			// Now reset only the debit and credit fields (input[type=number])
+			
+			jQuery(clonedRow).find('select').eq(0).val('');
+			jQuery(clonedRow).find('input[type=text]').eq(0).val('');  // Clear credit value
+			jQuery(clonedRow).find('input[type=text]').eq(1).val('');  // Clear credit value
+			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
+			jQuery(clonedRow).find('input[type=number]').eq(1).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(2).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(3).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(4).val('');
+	
+			// Insert the cloned row before the last row (footer row)
+			jQuery('#budget_indirect_line_items tbody').append(clonedRow);
+	
+			this.__indirect_ps_totals();
+
+			// Make the new row visible
+			jQuery(clonedRow).css({ 'display': '' });
+	
+			// Set the ID for the new row
+			jQuery(clonedRow).attr('id', 'tr_rec_' + mid);
+	
+			// Focus on the first input field of the cloned row
+			var xobjArtItem = jQuery(clonedRow).find('input[type=text]').eq(0).attr('id');
+			jQuery('#' + xobjArtItem).focus();
+	
+		} catch (err) {
+			var mtxt = 'There was an error on this page.\\n';
+			mtxt += 'Error description: ' + err.message;
+			mtxt += '\\nClick OK to continue.';
+			alert(mtxt);
+			return false;
+		}
+	}
+
+	this.my_add_budget_indirect_line_above = function (elem) {
+		try {
+			var rowCount = jQuery('#budget_indirect_line_items tbody tr').length;
+			var mid = generateRandomID(10) + (rowCount + 1);
+
+			// Clone the hidden template row
+			var templateRow = jQuery('#budget_indirect_line_items tbody tr:hidden:first').clone();
+
+			// Set new IDs and clear values
+			jQuery(templateRow).find('select').eq(0).val('').attr('id', 'col4' + mid);
+			jQuery(templateRow).find('input[type=text]').eq(0).val('').attr('id', 'col1' + mid);
+			jQuery(templateRow).find('input[type=text]').eq(1).val('').attr('id', 'col2' + mid);
+			jQuery(templateRow).find('input[type=number]').each(function (i) {
+				jQuery(this).val('').attr('id', 'col' + (3 + i) + mid).attr('data-dtid', '');
+			});
+
+			// Insert above the clicked row
+			var currentRow = jQuery(elem).closest('tr');
+			templateRow.css('display', '').attr('id', 'tr_rec_' + mid);
+			templateRow.insertAfter(currentRow);
+
+			// Optional: focus the first input field
+			jQuery(templateRow).find('input[type=text]').eq(0).focus();
+
+			// Recalculate if needed
+			this.__indirect_ps_totals();
+
+		} catch (err) {
+			alert('Error: ' + err.message);
+		}
+	}
+
+	this.my_add_budget_mooe_line= function () {
+		try {
+			// Get the total number of rows, excluding the footer row
+			var rowCount = jQuery('#budget_mooe_line_items tbody tr').length;
+			var mid = generateRandomID(10) + (rowCount + 1);
+	
+			// Clone the last data row (not the footer)
+			var clonedRow = jQuery('#budget_mooe_line_items tbody tr:eq(' + (rowCount - 1) + ')').clone();
+	
+			jQuery(clonedRow).find('select').eq(0).val('').attr('id', 'col4' + mid);
+			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col1' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=text]').eq(1).attr('id', 'col2' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(1).attr('id', 'col4' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(2).attr('id', 'col5' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(3).attr('id', 'col6' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(4).attr('id', 'col7' + mid); // ID for date field
+			// Now reset only the debit and credit fields (input[type=number])
+			
+			jQuery(clonedRow).find('select').eq(0).val('');
+			jQuery(clonedRow).find('input[type=text]').eq(0).val('');  // Clear credit value
+			jQuery(clonedRow).find('input[type=text]').eq(1).val('');  // Clear credit value
+			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
+			jQuery(clonedRow).find('input[type=number]').eq(1).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(2).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(3).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(4).val('');
+
+	
+			// Insert the cloned row before the last row (footer row)
+			jQuery('#budget_mooe_line_items tbody').append(clonedRow);
+
+			this.__direct_mooe_totals();
+	
+			// Make the new row visible
+			jQuery(clonedRow).css({ 'display': '' });
+	
+			// Set the ID for the new row
+			jQuery(clonedRow).attr('id', 'tr_rec_' + mid);
+	
+			// Focus on the first input field of the cloned row
+			var xobjArtItem = jQuery(clonedRow).find('input[type=text]').eq(0).attr('id');
+			jQuery('#' + xobjArtItem).focus();
+	
+		} catch (err) {
+			var mtxt = 'There was an error on this page.\\n';
+			mtxt += 'Error description: ' + err.message;
+			mtxt += '\\nClick OK to continue.';
+			alert(mtxt);
+			return false;
+		}
+	}
+
+	this.my_add_budget_mooe_line_above = function (elem) {
+		try {
+			var rowCount = jQuery('#budget_mooe_line_items tbody tr').length;
+			var mid = generateRandomID(10) + (rowCount + 1);
+
+			// Clone the hidden template row
+			var templateRow = jQuery('#budget_mooe_line_items tbody tr:hidden:first').clone();
+
+			// Set new IDs and clear values
+			jQuery(templateRow).find('select').eq(0).val('').attr('id', 'col4' + mid);
+			jQuery(templateRow).find('input[type=text]').eq(0).val('').attr('id', 'col1' + mid);
+			jQuery(templateRow).find('input[type=text]').eq(1).val('').attr('id', 'col2' + mid);
+			jQuery(templateRow).find('input[type=number]').each(function (i) {
+				jQuery(this).val('').attr('id', 'col' + (3 + i) + mid).attr('data-dtid', '');
+			});
+
+			// Insert above the clicked row
+			var currentRow = jQuery(elem).closest('tr');
+			templateRow.css('display', '').attr('id', 'tr_rec_' + mid);
+			templateRow.insertAfter(currentRow);
+
+			// Optional: focus the first input field
+			jQuery(templateRow).find('input[type=text]').eq(0).focus();
+
+			// Recalculate if needed
+			this.__direct_mooe_totals();
+
+		} catch (err) {
+			alert('Error: ' + err.message);
+		}
+	}
+
+	this.my_add_budget_indirect_mooe_line= function () {
+		try {
+			// Get the total number of rows, excluding the footer row
+			var rowCount = jQuery('#budget_mooe_indirect_line_items tbody tr').length;
+			var mid = generateRandomID(10) + (rowCount + 1);
+	
+			// Clone the last data row (not the footer)
+			var clonedRow = jQuery('#budget_mooe_indirect_line_items tbody tr:eq(' + (rowCount - 1) + ')').clone();
+	
+			jQuery(clonedRow).find('select').eq(0).val('').attr('id', 'col4' + mid);
+			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col1' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=text]').eq(1).attr('id', 'col2' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(1).attr('id', 'col4' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(2).attr('id', 'col5' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(3).attr('id', 'col6' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(4).attr('id', 'col7' + mid); // ID for date field
+			// Now reset only the debit and credit fields (input[type=number])
+			
+			jQuery(clonedRow).find('select').eq(0).val('');
+			jQuery(clonedRow).find('input[type=text]').eq(0).val('');  // Clear credit value
+			jQuery(clonedRow).find('input[type=text]').eq(1).val('');  // Clear credit value
+			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
+			jQuery(clonedRow).find('input[type=number]').eq(1).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(2).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(3).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(4).val('');
+
+	
+			// Insert the cloned row before the last row (footer row)
+			jQuery('#budget_mooe_indirect_line_items tbody').append(clonedRow);
+
+			this.__indirect_mooe_totals();
+
+			// Make the new row visible
+			jQuery(clonedRow).css({ 'display': '' });
+	
+			// Set the ID for the new row
+			jQuery(clonedRow).attr('id', 'tr_rec_' + mid);
+	
+			// Focus on the first input field of the cloned row
+			var xobjArtItem = jQuery(clonedRow).find('input[type=text]').eq(0).attr('id');
+			jQuery('#' + xobjArtItem).focus();
+	
+		} catch (err) {
+			var mtxt = 'There was an error on this page.\\n';
+			mtxt += 'Error description: ' + err.message;
+			mtxt += '\\nClick OK to continue.';
+			alert(mtxt);
+			return false;
+		}
+	}
+
+	this.my_add_budget_indirect_mooe_line_above = function (elem) {
+		try {
+			var rowCount = jQuery('#budget_mooe_line_items tbody tr').length;
+			var mid = generateRandomID(10) + (rowCount + 1);
+
+			// Clone the hidden template row
+			var templateRow = jQuery('#budget_mooe_line_items tbody tr:hidden:first').clone();
+
+			// Set new IDs and clear values
+			jQuery(templateRow).find('select').eq(0).val('').attr('id', 'col4' + mid);
+			jQuery(templateRow).find('input[type=text]').eq(0).val('').attr('id', 'col1' + mid);
+			jQuery(templateRow).find('input[type=text]').eq(1).val('').attr('id', 'col2' + mid);
+			jQuery(templateRow).find('input[type=number]').each(function (i) {
+				jQuery(this).val('').attr('id', 'col' + (3 + i) + mid).attr('data-dtid', '');
+			});
+
+			// Insert above the clicked row
+			var currentRow = jQuery(elem).closest('tr');
+			templateRow.css('display', '').attr('id', 'tr_rec_' + mid);
+			templateRow.insertAfter(currentRow);
+
+			// Optional: focus the first input field
+			jQuery(templateRow).find('input[type=text]').eq(0).focus();
+
+			// Recalculate if needed
+			this.__direct_mooe_totals();
+
+		} catch (err) {
+			alert('Error: ' + err.message);
+		}
+	}
+
+	this.my_add_budget_co_line= function () {
+		try {
+			// Get the total number of rows, excluding the footer row
+			var rowCount = jQuery('#budget_co_line_items tbody tr').length;
+			var mid = generateRandomID(10) + (rowCount + 1);
+	
+			// Clone the last data row (not the footer)
+			var clonedRow = jQuery('#budget_co_line_items tbody tr:eq(' + (rowCount - 1) + ')').clone();
+	
+			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col1' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=text]').eq(1).attr('id', 'col2' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(1).attr('id', 'col4' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(2).attr('id', 'col5' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(3).attr('id', 'col6' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(4).attr('id', 'col7' + mid); // ID for date field
+
+			// Now reset only the debit and credit fields (input[type=number])
+			
+			jQuery(clonedRow).find('input[type=text]').eq(0).val('');  // Clear credit value
+			jQuery(clonedRow).find('input[type=text]').eq(1).val('');  // Clear credit value
+			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
+			jQuery(clonedRow).find('input[type=number]').eq(1).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(2).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(3).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(4).val('');
+	
+			// Insert the cloned row before the last row (footer row)
+			jQuery('#budget_co_line_items tbody').append(clonedRow);
+
+			this.__direct_co_totals();
+
+			// Make the new row visible
+			jQuery(clonedRow).css({ 'display': '' });
+	
+			// Set the ID for the new row
+			jQuery(clonedRow).attr('id', 'tr_rec_' + mid);
+	
+			// Focus on the first input field of the cloned row
+			var xobjArtItem = jQuery(clonedRow).find('input[type=text]').eq(0).attr('id');
+			jQuery('#' + xobjArtItem).focus();
+	
+		} catch (err) {
+			var mtxt = 'There was an error on this page.\\n';
+			mtxt += 'Error description: ' + err.message;
+			mtxt += '\\nClick OK to continue.';
+			alert(mtxt);
+			return false;
+		}
+	}
+
+	this.my_add_budget_co_line_above = function (elem) {
+		try {
+			var rowCount = jQuery('#budget_co_line_items tbody tr').length;
+			var mid = generateRandomID(10) + (rowCount + 1);
+
+			// Clone the hidden template row
+			var templateRow = jQuery('#budget_co_line_items tbody tr:hidden:first').clone();
+
+			// Set new IDs and clear values
+			jQuery(templateRow).find('input[type=text]').eq(0).val('').attr('id', 'col1' + mid);
+			jQuery(templateRow).find('input[type=text]').eq(1).val('').attr('id', 'col2' + mid);
+			jQuery(templateRow).find('input[type=number]').each(function (i) {
+				jQuery(this).val('').attr('id', 'col' + (3 + i) + mid).attr('data-dtid', '');
+			});
+
+			// Insert above the clicked row
+			var currentRow = jQuery(elem).closest('tr');
+			templateRow.css('display', '').attr('id', 'tr_rec_' + mid);
+			templateRow.insertAfter(currentRow);
+
+			// Optional: focus the first input field
+			jQuery(templateRow).find('input[type=text]').eq(0).focus();
+
+			// Recalculate if needed
+			this.__direct_co_totals();
+
+		} catch (err) {
+			alert('Error: ' + err.message);
+		}
+	}
+
+	this.my_add_budget_indirect_co_line= function () {
+		try {
+			// Get the total number of rows, excluding the footer row
+			var rowCount = jQuery('#budget_indirect_co_line_items tbody tr').length;
+			var mid = generateRandomID(10) + (rowCount + 1);
+	
+			// Clone the last data row (not the footer)
+			var clonedRow = jQuery('#budget_indirect_co_line_items tbody tr:eq(' + (rowCount - 1) + ')').clone();
+	
+			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col1' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=text]').eq(1).attr('id', 'col2' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(1).attr('id', 'col4' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(2).attr('id', 'col5' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(3).attr('id', 'col6' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(4).attr('id', 'col7' + mid); // ID for date field
+
+			// Now reset only the debit and credit fields (input[type=number])
+			
+			jQuery(clonedRow).find('input[type=text]').eq(0).val('');  // Clear credit value
+			jQuery(clonedRow).find('input[type=text]').eq(1).val('');  // Clear credit value
+			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
+			jQuery(clonedRow).find('input[type=number]').eq(1).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(2).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(3).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(4).val('');
+
+	
+			// Insert the cloned row before the last row (footer row)
+			jQuery('#budget_indirect_co_line_items tbody').append(clonedRow);
+
+			this.__indirect_co_totals();
+	
+			// Make the new row visible
+			jQuery(clonedRow).css({ 'display': '' });
+	
+			// Set the ID for the new row
+			jQuery(clonedRow).attr('id', 'tr_rec_' + mid);
+	
+			// Focus on the first input field of the cloned row
+			var xobjArtItem = jQuery(clonedRow).find('input[type=text]').eq(0).attr('id');
+			jQuery('#' + xobjArtItem).focus();
+	
+		} catch (err) {
+			var mtxt = 'There was an error on this page.\\n';
+			mtxt += 'Error description: ' + err.message;
+			mtxt += '\\nClick OK to continue.';
+			alert(mtxt);
+			return false;
+		}
+	}
+
+	this.my_add_budget_indirect_co_line_above = function (elem) {
+		try {
+			var rowCount = jQuery('#budget_indirect_co_line_items tbody tr').length;
+			var mid = generateRandomID(10) + (rowCount + 1);
+
+			// Clone the hidden template row
+			var templateRow = jQuery('#budget_indirect_co_line_items tbody tr:hidden:first').clone();
+
+			// Set new IDs and clear values
+			jQuery(templateRow).find('input[type=text]').eq(0).val('').attr('id', 'col1' + mid);
+			jQuery(templateRow).find('input[type=text]').eq(1).val('').attr('id', 'col2' + mid);
+			jQuery(templateRow).find('input[type=number]').each(function (i) {
+				jQuery(this).val('').attr('id', 'col' + (3 + i) + mid).attr('data-dtid', '');
+			});
+
+			// Insert above the clicked row
+			var currentRow = jQuery(elem).closest('tr');
+			templateRow.css('display', '').attr('id', 'tr_rec_' + mid);
+			templateRow.insertAfter(currentRow);
+
+			// Optional: focus the first input field
+			jQuery(templateRow).find('input[type=text]').eq(0).focus();
+
+			// Recalculate if needed
+			this.__indirect_co_totals();
+
+		} catch (err) {
+			alert('Error: ' + err.message);
+		}
+	}
+
+	function generateRandomID(length) {
+		const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+		let result = '';
+		for (let i = 0; i < length; i++) {
+			result += chars.charAt(Math.floor(Math.random() * chars.length));
+		}
+		return result;
+	}
+	
 	this.__budget_saving = function() { 
 		'use strict' 
 		// Fetch all the forms we want to apply custom Bootstrap validation styles to
@@ -244,37 +760,372 @@ function __mysys_saob_rpt_ent() {
 		}); //end forEach		
 	};
 
-	this.me_apvtrx_pdfprint = function(mtknractr,memdl) { 
-		try { 
-			var mparam = { 
-				mtknractr: mtknractr,
-				meaction: memdl
-			}
-			
-			jQuery.ajax({ // default declaration of ajax parameters
+	this.__approve_budget = function() {
+		const approveBtn = document.getElementById('btn_approve');
+		const confirmApproveBtn = document.getElementById('confirmApproveBtn');
+
+		console.log('button approve is clicked...');
+	
+		let recid = null; // store recid for use after confirmation
+	
+		approveBtn.addEventListener('click', function () {
+			recid = document.getElementById("recid");
+			approver = document.getElementById("approved_by");
+			remarks = document.getElementById("approved_remarks");
+	
+			// Show the modal
+			const approveModal = new bootstrap.Modal(document.getElementById('confirmApproveModal'));
+			approveModal.show();
+		});
+	
+		confirmApproveBtn.addEventListener('click', function () {
+			if (!recid) return;
+	
+			const mparam = {
+				recid: recid.value,
+				approver: approver.value,
+				remarks: remarks.value,
+				meaction: 'MAIN-APPROVE'
+			};
+	
+			jQuery.ajax({
 				type: "POST",
-				url: mesiteurl + 'mysaobrpt',
+				url: mesiteurl + 'mybudgetallotment',
+				context: document.body,
+				data: eval(mparam),
+				global: false,
+				cache: false,
+				success: function(data) {
+					jQuery('.mybudgetallotment-outp-msg').html(data);
+
+					// Close the approve modal after successful approval
+					const approveModal = bootstrap.Modal.getInstance(document.getElementById('confirmApproveModal'));
+					approveModal.hide();
+				},
+				error: function(xhr, status, error) {
+					alert('Error: ' + error);
+				}
+			});
+	
+			// Close the modal
+			const approveModal = bootstrap.Modal.getInstance(document.getElementById('confirmApproveModal'));
+			approveModal.hide();
+		});
+	};
+
+	this.__disapprove_budget = function() {
+		const disapproveBtn = document.getElementById('btn_disapprove');
+		console.log('Disapprove Button Clicked');
+		const confirmDisapproveBtn = document.getElementById('confirmDisapproveBtn');
+	
+		let recid = null; // store recid for use after confirmation
+	
+		disapproveBtn.addEventListener('click', function () {
+			recid = document.getElementById("recid");
+			approver = document.getElementById("disapproved_by");
+			remarks = document.getElementById("disapproved_remarks");
+	
+			// Show the modal
+			const disapproveModal = new bootstrap.Modal(document.getElementById('confirmDisapproveModal'));
+			disapproveModal.show();
+		});
+	
+		confirmDisapproveBtn.addEventListener('click', function () {
+			if (!recid) return;
+	
+			const mparam = {
+				recid: recid.value,
+				approver: approver.value,
+				remarks: remarks.value,
+				meaction: 'MAIN-DISAPPROVE'
+			};
+	
+			jQuery.ajax({
+				type: "POST",
+				url: mesiteurl + 'mybudgetallotment',
 				context: document.body,
 				data: mparam,
 				global: false,
 				cache: false,
-				success: function(data) { //display html using divID
+				success: function(data) {
+					jQuery('.mybudgetallotment-outp-msg').html(data);
 
-					const myModal = new window.bootstrap.Modal('#mybudgetallotment_print');
-					myModal.show();
-					return false;
+					// Close the approve modal after successful approval
+					const approveModal = bootstrap.Modal.getInstance(document.getElementById('confirmDisapproveModal'));
+					approveModal.hide();
 				},
-				error: function(xhr, status, error) { // display global error on the menu function
-					alert('Error sa ajax saob print');
-					return false;
-				} 
-			}); 
-			
-		} catch(err) { 
-			alert('Error sa try catch saob print');
-			return false;
-		}  //end try			
-	}; //end me_apvtrx_pdfprint
+				error: function(xhr, status, error) {
+					alert('Error: ' + error);
+				}
+			});
+	
+			// Close the modal
+			const disapproveModal = bootstrap.Modal.getInstance(document.getElementById('confirmDisapproveBtn'));
+			disapproveModal.hide();
+		});
+	};
 
+	$('#uploadForm').on('submit', function(e) {
+		e.preventDefault(); // Prevent default form submission
+
+		// Create a FormData object to hold the form data
+		var formData = new FormData(this);
+
+		$.ajax({
+			url: mesiteurl + 'mybudgetallotment',
+			method: 'POST',
+			data: formData,
+			contentType: false, // Don't set content type for FormData
+			processData: false, // Prevent jQuery from processing the data
+			success: function(data) {
+				// Insert the response message (success or error) into the placeholder div
+				$('.mybudgetallotment-outp-msg').html(data);
+				return false;
+			},
+			error: function(xhr, status, error) {
+				// Handle errors (if any)
+				$('.mybudgetallotment-outp-msg').html('<div class="alert alert-danger">An error occurred while uploading the file.</div>');
+			}
+		});
+	});
+
+	//PS - TOTAL PER LINE - DIRECT
+	this.__direct_ps_totals = function () {
+        jQuery('.budgetdata-list tr').each(function () {
+            var row = jQuery(this);
+
+            var approved = parseFloat(row.find('.approved_budget').val()) || 0;
+            var r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+            var r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+            var r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+            var total = approved + r1 + r2 + r3;
+
+            row.find('.proposed_realignment').val(total.toFixed(2));
+        });
+    };
+	//PS - TOTAL PER LINE - INDIRECT
+	this.__indirect_ps_totals = function () {
+        jQuery('.budgetdata-indirect-list tr').each(function () {
+            var row = jQuery(this);
+
+            var approved = parseFloat(row.find('.approved_budget').val()) || 0;
+            var r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+            var r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+            var r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+            var total = approved + r1 + r2 + r3;
+
+            row.find('.proposed_realignment').val(total.toFixed(2));
+        });
+    };
+
+	//MOOE - TOTAL PER LINE - DIRECT
+	this.__direct_mooe_totals = function () {
+        jQuery('.budgetmooedata-list tr').each(function () {
+            var row = jQuery(this);
+
+            var approved = parseFloat(row.find('.approved_budget').val()) || 0;
+            var r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+            var r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+            var r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+            var total = approved + r1 + r2 + r3;
+
+            row.find('.proposed_realignment').val(total.toFixed(2));
+        });
+    };
+
+	//MOOE - TOTAL PER LINE - INDIRECT
+	this.__indirect_mooe_totals = function () {
+        jQuery('.budgetmooedata-indirect-list tr').each(function () {
+            var row = jQuery(this);
+
+            var approved = parseFloat(row.find('.approved_budget').val()) || 0;
+            var r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+            var r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+            var r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+            var total = approved + r1 + r2 + r3;
+
+            row.find('.proposed_realignment').val(total.toFixed(2));
+        });
+    };
+
+	//CO - TOTAL PER LINE - DIRECT
+	this.__direct_co_totals = function () {
+        jQuery('.budgetcodata-list tr').each(function () {
+            var row = jQuery(this);
+
+            var approved = parseFloat(row.find('.approved_budget').val()) || 0;
+            var r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+            var r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+            var r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+            var total = approved + r1 + r2 + r3;
+
+            row.find('.proposed_realignment').val(total.toFixed(2));
+        });
+    };
+
+	//CO - TOTAL PER LINE - INDIRECT
+	this.__indirect_co_totals = function () {
+        jQuery('.budgetcodata-indirect-list tr').each(function () {
+            var row = jQuery(this);
+
+            var approved = parseFloat(row.find('.approved_budget').val()) || 0;
+            var r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+            var r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+            var r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+            var total = approved + r1 + r2 + r3;
+
+            row.find('.proposed_realignment').val(total.toFixed(2));
+        });
+    };
+
+	this.__combined_totals = function () {
+		let totalApprovedCombined = 0;
+		let totalProposedCombined = 0;
+
+		// PS DIRECT COST TABLE
+		jQuery('.budgetdata-list tr').each(function () {
+			let row = jQuery(this);
+
+			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			let r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+			let r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+			let r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+			let total = approved + r1 + r2 + r3;
+
+			row.find('.proposed_realignment').val(total.toFixed(2));
+
+			totalApprovedCombined += approved;
+			totalProposedCombined += total;
+		});
+
+		// PS INDIRECT COST TABLE
+		jQuery('.budgetdata-indirect-list tr').each(function () {
+			let row = jQuery(this);
+
+			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			let r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+			let r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+			let r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+			let total = approved + r1 + r2 + r3;
+
+			row.find('.proposed_realignment').val(total.toFixed(2));
+
+			totalApprovedCombined += approved;
+			totalProposedCombined += total;
+		});
+
+		// MOOE DIRECT COST TABLE
+		jQuery('.budgetmooedata-list tr').each(function () {
+			let row = jQuery(this);
+
+			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			let r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+			let r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+			let r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+			let total = approved + r1 + r2 + r3;
+
+			row.find('.proposed_realignment').val(total.toFixed(2));
+
+			totalApprovedCombined += approved;
+			totalProposedCombined += total;
+		});
+
+		// MOOE INDIRECT COST TABLE
+		jQuery('.budgetmooedata-indirect-list tr').each(function () {
+			let row = jQuery(this);
+
+			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			let r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+			let r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+			let r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+			let total = approved + r1 + r2 + r3;
+
+			row.find('.proposed_realignment').val(total.toFixed(2));
+
+			totalApprovedCombined += approved;
+			totalProposedCombined += total;
+		});
+
+		// CO DIRECT COST TABLE
+		jQuery('.budgetcodata-list tr').each(function () {
+			let row = jQuery(this);
+
+			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			let r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+			let r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+			let r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+			let total = approved + r1 + r2 + r3;
+
+			row.find('.proposed_realignment').val(total.toFixed(2));
+
+			totalApprovedCombined += approved;
+			totalProposedCombined += total;
+		});
+
+		// CO INDIRECT COST TABLE
+		jQuery('.budgetcodata-indirect-list tr').each(function () {
+			let row = jQuery(this);
+
+			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			let r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
+			let r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
+			let r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+
+			let total = approved + r1 + r2 + r3;
+
+			row.find('.proposed_realignment').val(total.toFixed(2));
+
+			totalApprovedCombined += approved;
+			totalProposedCombined += total;
+		});
+
+		// SET VALUES TO INPUT FIELDS
+		jQuery('#total_approved_combined').val(totalApprovedCombined.toFixed(2));
+		jQuery('#total_proposed_combined').val(totalProposedCombined.toFixed(2));
+	};
+
+	this.__toggleExtensionFields = function(checkbox){
+		var extFields = document.getElementById("extension_fields");
+        extFields.style.display = checkbox.checked ? "block" : "none";
+	}
+
+	this.__saob_print = function(pdfUrl) {
+		var pdfFrame = document.getElementById("pdfFrame");
+		var placeholder = document.getElementById("pdfPlaceholder");
+
+		const month = document.getElementById("month").value;
+		const year = document.getElementById("year").value;
+
+		if (!month || !year) {
+			toastr.error('Please select both month and year.', 'Oops!', {
+				progressBar: true,
+				closeButton: true,
+				timeOut: 2000,
+			});
+			return;
+		}
+
+		let url = new URL(pdfUrl, window.location.origin);
+		url.searchParams.set('month', month);
+		url.searchParams.set('year', year);
+
+		// Set iframe src and show iframe
+		pdfFrame.src = url.toString();
+		pdfFrame.style.display = "block";
+
+		// Hide the placeholder
+		placeholder.style.display = "none";
+	};
 
 }; //end main

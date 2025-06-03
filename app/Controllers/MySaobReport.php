@@ -19,7 +19,7 @@ class MySaobReport extends BaseController
     
         switch ($meaction) {
             case 'MAIN': 
-                return view('report/saob-main');
+                return $this->loadMainView();
                 break;
     
 			case 'SAOB-PDF':
@@ -41,46 +41,76 @@ class MySaobReport extends BaseController
     
 
     private function loadMainView() {
-        $recid = $this->request->getPostGet('recid');
-        $myuaquery = $this->db->query("SELECT * FROM myua_user");
-        $myuadata = $myuaquery->getResultArray();
 
-        $myuserquery = $this->db->query("SELECT `username` FROM myua_user WHERE recid ='$recid' ");
-        if ($myuserquery->getNumRows()>0) {
-            $rw = $myuserquery->getRowArray();
-            $username = $rw['username'];
-        }else{
-            $username ="";
-        }
-        
-        $validateaccessquery = $this->db->query("SELECT * FROM tbl_user_access WHERE `username` = '$username'");
-        if ($validateaccessquery->getNumRows()>0) {
+        //budget table dt fetching
+        $budgetdtquery = $this->db->query("
+        SELECT 
+            a.`recid`,
+            a.`trxno`,
+            a.`project_title`,
+            a.`responsibility_code`,
+            a.`fund_cluster_code`,
+            a.`division_name`,
+            a.`is_pending`,
+            a.`is_approved`,
+            a.`is_disapproved`,
+            a.`added_at`,
+            (
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_co_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_co_dt` WHERE project_id = a.recid), 0)
+            ) AS approved_budget
+        FROM
+            tbl_budget_hd a
+        ");
+        $budgetdtdata = $budgetdtquery->getResultArray();
 
-            $accessquery = $this->db->query("
-            SELECT 
-                a.`recid`,
-                a.`access_code`,
-                b.`access_name`,
-                a.`is_active`,
-                1 AS `with_ua`
-            FROM 
-                tbl_user_access a
-            LEFT JOIN
-                tbl_access_modules b
-            ON
-                a.`access_code` = b.`access_code`
-            WHERE
-                a.`username` = '$username'
-            ");
-            $accessdata = $accessquery->getResultArray();
-        }else{
-            $accessquery = $this->db->query("SELECT *, 0 AS `is_active`,'0' AS `with_ua` FROM tbl_access_modules");
-            $accessdata = $accessquery->getResultArray();
-        }
+        //hd lookup data
+        $fundclusterquery = $this->db->query("SELECT `fund_cluster_code` FROM tbl_fundcluster");
+        $fundclusterdata = $fundclusterquery->getResultArray();
 
-        return view('user-management/ua-main', [
-            'myuadata' => $myuadata,
-            'accessdata' => $accessdata,
+        $divisionquery = $this->db->query("SELECT `division_name` FROM tbl_division");
+        $divisiondata = $divisionquery->getResultArray();
+
+        $psuacsquery = $this->db->query("SELECT * FROM mst_uacs WHERE allotment_class = 'Personnel Services' ORDER BY TRIM(sub_object_code) ASC");
+        $psuacsdata = $psuacsquery->getResultArray();
+
+        $mooeuacsquery = $this->db->query("SELECT * FROM mst_uacs WHERE allotment_class = 'Maintenance and Other Operating Expenses' ORDER BY TRIM(sub_object_code) ASC");
+        $mooeuacsdata = $mooeuacsquery->getResultArray();
+
+        //reference/project title lookup
+        $projectquery = $this->db->query("
+        SELECT
+            a.`fundcluster_id`,
+            b.`fund_cluster_code`,
+            a.`division_id`,
+            c.`division_name`,
+            a.`responsibility_code`,
+            a.`project_title`
+        FROM
+            `tbl_reference_project` a
+        JOIN
+            `tbl_fundcluster`b
+        ON 
+            a.fundcluster_id = b.`recid`
+        JOIN
+            `tbl_division` c
+        ON
+            a.`division_id` = c.recid
+        ORDER BY a.`project_title` ASC
+        ");
+        $projectdata = $projectquery->getResultArray();
+
+        return view('report/saob-main', [
+            'fundclusterdata' => $fundclusterdata,
+            'divisiondata' => $divisiondata,
+            'psuacsdata' => $psuacsdata,
+            'mooeuacsdata' => $mooeuacsdata,
+            'budgetdtdata' => $budgetdtdata,
+            'projectdata' => $projectdata,
         ]);
     }
     
