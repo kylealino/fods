@@ -520,10 +520,10 @@ function __mysys_saob_rpt_ent() {
 		return result;
 	}
 	
-	this.__budget_saving = function() { 
+	this.__saob_saving = function() { 
 		'use strict' 
 		// Fetch all the forms we want to apply custom Bootstrap validation styles to
-		var forms = document.querySelectorAll('.mybudgetallotment-validation')
+		var forms = document.querySelectorAll('.mysaob-validation')
 		// Loop over them and prevent submission
 		Array.prototype.slice.call(forms)
 		.forEach(function (form) {
@@ -536,40 +536,24 @@ function __mysys_saob_rpt_ent() {
 					event.preventDefault();
 					event.stopPropagation();
 
-					var recid = document.getElementById("recid");
-					var trxno = document.getElementById("trxno");
-					var project_title = document.getElementById("selProjectTitle");
-					var responsibility_code = document.getElementById("responsibility_code");
-					var fund_cluster_code = document.getElementById("fund_cluster_code");
-					var division_name = document.getElementById("division_name");
-					var project_leader = document.getElementById("project_leader");
-
-					//newly added fields
 					var program_title = document.getElementById("program_title");
-					var project_duration = document.getElementById("project_duration");
-					var duration_from = document.getElementById("duration_from");
-					var duration_to = document.getElementById("duration_to");
-					var program_leader = document.getElementById("program_leader");
-					var monitoring_agency = document.getElementById("monitoring_agency");
-					var collaborating_agencies = document.getElementById("collaborating_agencies");
-					var implementing_agency = document.getElementById("implementing_agency");
-					var funding_agency = document.getElementById("funding_agency");
-
+					var department = document.getElementById("department");
+					var agency = document.getElementById("agency");
+					var current_year = document.getElementById("current_year");
+					
 					//new checkbox fields
-					let is_realign1 = document.getElementById("is_realign1").checked ? 1 : 0;
-					let is_realign2 = document.getElementById("is_realign2").checked ? 1 : 0;
-					let is_realign3 = document.getElementById("is_realign3").checked ? 1 : 0;
-
-					//total of ps,mooe & co 
-					var total_approved_combined = document.getElementById("total_approved_combined");
-					var total_proposed_combined = document.getElementById("total_proposed_combined");
-
-					var tagging = document.getElementById("tagging");
-
-					var with_extension = document.getElementById("with_extension").checked ? 1 : 0;
-					var extended_from = document.getElementById("extended_from");
-					var extended_to = document.getElementById("extended_to");
-					var lddap_refno = document.getElementById("lddap_refno");
+					let is_jan = document.getElementById("is_jan").checked ? 1 : 0;
+					let is_feb = document.getElementById("is_feb").checked ? 1 : 0;
+					let is_mar = document.getElementById("is_mar").checked ? 1 : 0;
+					let is_apr = document.getElementById("is_apr").checked ? 1 : 0;
+					let is_may = document.getElementById("is_may").checked ? 1 : 0;
+					let is_jun = document.getElementById("is_jun").checked ? 1 : 0;
+					let is_jul = document.getElementById("is_jul").checked ? 1 : 0;
+					let is_aug = document.getElementById("is_aug").checked ? 1 : 0;
+					let is_sep = document.getElementById("is_sep").checked ? 1 : 0;
+					let is_oct = document.getElementById("is_oct").checked ? 1 : 0;
+					let is_nov = document.getElementById("is_nov").checked ? 1 : 0;
+					let is_dec = document.getElementById("is_dec").checked ? 1 : 0;
 
 					// Prepare PS data DIRECT --
 					var rowcount1 = jQuery('.budgetdata-list tr').length;
@@ -583,11 +567,9 @@ function __mysys_saob_rpt_ent() {
 						var uacs = clonedRow.find('input[type=text]').eq(1).val();
 						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
 						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
-						var r1_approved_budget = clonedRow.find('input[type=number]').eq(1).val();  
-						var r2_approved_budget = clonedRow.find('input[type=number]').eq(2).val();  
-						var r3_approved_budget = clonedRow.find('input[type=number]').eq(3).val();  
-						var proposed_realignment = clonedRow.find('input[type=number]').eq(4).val();  
-						psdata = expense_item + 'x|x' + particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + r1_approved_budget + 'x|x' + r2_approved_budget + 'x|x' + r3_approved_budget + 'x|x' + proposed_realignment;
+						var revision = clonedRow.find('input[type=number]').eq(1).val();  
+						var proposed_revision = clonedRow.find('input[type=number]').eq(2).val();  
+						psdata = expense_item + 'x|x' + particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + revision + 'x|x' + proposed_revision;
 						budgetdtdata.push(psdata);
 					}
 
@@ -603,147 +585,44 @@ function __mysys_saob_rpt_ent() {
 						var uacs = clonedRow.find('input[type=text]').eq(1).val();
 						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
 						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
-						var r1_approved_budget = clonedRow.find('input[type=number]').eq(1).val();  
-						var r2_approved_budget = clonedRow.find('input[type=number]').eq(2).val();  
-						var r3_approved_budget = clonedRow.find('input[type=number]').eq(3).val();  
-						var proposed_realignment = clonedRow.find('input[type=number]').eq(4).val();
+						var revision = clonedRow.find('input[type=number]').eq(1).val();  
+						var proposed_revision = clonedRow.find('input[type=number]').eq(2).val();  
 						
-						psindirectdata = expense_item + 'x|x' + particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + r1_approved_budget + 'x|x' + r2_approved_budget + 'x|x' + r3_approved_budget + 'x|x' + proposed_realignment;
+						psindirectdata = expense_item + 'x|x' + particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + revision + 'x|x' + proposed_revision;
 						budgetdtindirectdata.push(psindirectdata);
 					}
 
-					// Prepare MOEE data
-					var rowcount2 = jQuery('.budgetmooedata-list tr').length;
-					var budgetmooedtdata = [];
-					var mooedata = '';
-	
-					for (var aa = 2; aa < rowcount2; aa++) {
-						var clonedRow = jQuery('.budgetmooedata-list tr:eq(' + aa + ')'); 
-						var expense_item = clonedRow.find('input[type=text]').eq(0).val();
-						var particulars = clonedRow.find('select.selUacs').val();
-						var uacs = clonedRow.find('input[type=text]').eq(1).val();
-						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
-						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
-						var r1_approved_budget = clonedRow.find('input[type=number]').eq(1).val();  
-						var r2_approved_budget = clonedRow.find('input[type=number]').eq(2).val();  
-						var r3_approved_budget = clonedRow.find('input[type=number]').eq(3).val();  
-						var proposed_realignment = clonedRow.find('input[type=number]').eq(4).val();
-						
-						mooedata = expense_item + 'x|x' + particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + r1_approved_budget + 'x|x' + r2_approved_budget + 'x|x' + r3_approved_budget + 'x|x' + proposed_realignment;
-						budgetmooedtdata.push(mooedata);
-					}
-
-					// Prepare MOEE data
-					var rowcount22 = jQuery('.budgetmooedata-indirect-list tr').length;
-					var budgetmooeindirectdtdata = [];
-					var mooeindirectdata = '';
-	
-					for (var aa = 2; aa < rowcount22; aa++) {
-						var clonedRow = jQuery('.budgetmooedata-indirect-list tr:eq(' + aa + ')'); 
-						var expense_item = clonedRow.find('input[type=text]').eq(0).val();
-						var particulars = clonedRow.find('select.selUacs').val();
-						var uacs = clonedRow.find('input[type=text]').eq(1).val();
-						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
-						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
-						var r1_approved_budget = clonedRow.find('input[type=number]').eq(1).val();  
-						var r2_approved_budget = clonedRow.find('input[type=number]').eq(2).val();  
-						var r3_approved_budget = clonedRow.find('input[type=number]').eq(3).val();  
-						var proposed_realignment = clonedRow.find('input[type=number]').eq(4).val();
-						
-						mooeindirectdata = expense_item + 'x|x' + particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + r1_approved_budget + 'x|x' + r2_approved_budget + 'x|x' + r3_approved_budget + 'x|x' + proposed_realignment;
-						budgetmooeindirectdtdata.push(mooeindirectdata);
-					}
-
-					// Prepare CO data
-					var rowcount3 = jQuery('.budgetcodata-list tr').length;
-					var budgetcodtdata = [];
-					var codata = '';
-	
-					for (var aa = 2; aa < rowcount3; aa++) {
-						var clonedRow = jQuery('.budgetcodata-list tr:eq(' + aa + ')'); 
-						var particulars = clonedRow.find('input[type=text]').eq(0).val();
-						var uacs = clonedRow.find('input[type=text]').eq(1).val();
-						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
-						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
-						var r1_approved_budget = clonedRow.find('input[type=number]').eq(1).val();  
-						var r2_approved_budget = clonedRow.find('input[type=number]').eq(2).val();  
-						var r3_approved_budget = clonedRow.find('input[type=number]').eq(3).val();  
-						var proposed_realignment = clonedRow.find('input[type=number]').eq(4).val();  
-						
-						codata = particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + r1_approved_budget + 'x|x' + r2_approved_budget + 'x|x' + r3_approved_budget + 'x|x' + proposed_realignment;
-						budgetcodtdata.push(codata);
-					}
-
-					// Prepare CO data
-					var rowcount33 = jQuery('.budgetcodata-indirect-list tr').length;
-					var budgetindirectcodtdata = [];
-					var coindirectdata = '';
-	
-					for (var aa = 2; aa < rowcount33; aa++) {
-						var clonedRow = jQuery('.budgetcodata-indirect-list tr:eq(' + aa + ')'); 
-						var particulars = clonedRow.find('input[type=text]').eq(0).val();
-						var uacs = clonedRow.find('input[type=text]').eq(1).val();
-						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
-						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
-						var r1_approved_budget = clonedRow.find('input[type=number]').eq(1).val();  
-						var r2_approved_budget = clonedRow.find('input[type=number]').eq(2).val();  
-						var r3_approved_budget = clonedRow.find('input[type=number]').eq(3).val();  
-						var proposed_realignment = clonedRow.find('input[type=number]').eq(4).val();  
-						
-						coindirectdata = particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + r1_approved_budget + 'x|x' + r2_approved_budget + 'x|x' + r3_approved_budget + 'x|x' + proposed_realignment;
-						budgetindirectcodtdata.push(coindirectdata);
-					}
-
 					var mparam = { 
-						recid: recid.value,
-						trxno: trxno.value,
-						project_title: project_title.value,
-						responsibility_code: responsibility_code.value,
-						fund_cluster_code: fund_cluster_code.value,
-						division_name: division_name.value,
-						project_leader: project_leader.value,
-						//newly added fields
 						program_title: program_title.value,
-						project_duration: project_duration.value,
-						duration_from: duration_from.value,
-						duration_to: duration_to.value,
-						program_leader: program_leader.value,
-						monitoring_agency: monitoring_agency.value,
-						collaborating_agencies: collaborating_agencies.value,
-						implementing_agency: implementing_agency.value,
-						funding_agency: funding_agency.value,
-						tagging: tagging.value,
+						department: department.value,
+						agency: agency.value,
+						current_year: current_year.value,
 						budgetdtdata: budgetdtdata,
 						budgetdtindirectdata: budgetdtindirectdata,
-						budgetmooedtdata: budgetmooedtdata,
-						budgetmooeindirectdtdata: budgetmooeindirectdtdata,
-						budgetcodtdata: budgetcodtdata,
-						budgetindirectcodtdata: budgetindirectcodtdata,
-						//checkboxes
-						is_realign1: is_realign1,
-						is_realign2: is_realign2,
-						is_realign3: is_realign3,
-						//total
-						total_approved_combined:total_approved_combined.value,
-						total_proposed_combined: total_proposed_combined.value,
-						//extended duration
-						with_extension: with_extension,
-						extended_from:extended_from.value,
-						extended_to:extended_to.value,
-						lddap_refno:lddap_refno.value,
+						is_jan: is_jan,
+						is_feb: is_feb,
+						is_mar: is_mar,
+						is_apr: is_apr,
+						is_may: is_may,
+						is_jun: is_jun,
+						is_jul: is_jul,
+						is_aug: is_aug,
+						is_sep: is_sep,
+						is_oct: is_oct,
+						is_nov: is_nov,
+						is_dec: is_dec,
 						meaction: 'MAIN-SAVE'
 					}
 
-
 					jQuery.ajax({ // default declaration of ajax parameters
 						type: "POST",
-						url: mesiteurl + 'mybudgetallotment',
+						url: mesiteurl + 'mysaobrpt',
 						context: document.body,
 						data: eval(mparam),
 						global: false,
 						cache: false,
 						success: function(data) {
-							jQuery('.mybudgetallotment-outp-msg').html(data);
+							jQuery('.mysaob-outp-msg').html(data);
 							return false;
 						},
 						error: function(xhr, status, error) { // display global error on the menu function
@@ -895,13 +774,11 @@ function __mysys_saob_rpt_ent() {
             var row = jQuery(this);
 
             var approved = parseFloat(row.find('.approved_budget').val()) || 0;
-            var r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
-            var r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
-            var r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+            var revision = parseFloat(row.find('.revision').val()) || 0;
 
-            var total = approved + r1 + r2 + r3;
+            var total = approved + revision;
 
-            row.find('.proposed_realignment').val(total.toFixed(2));
+            row.find('.proposed_revision').val(total.toFixed(2));
         });
     };
 	//PS - TOTAL PER LINE - INDIRECT
@@ -909,14 +786,12 @@ function __mysys_saob_rpt_ent() {
         jQuery('.budgetdata-indirect-list tr').each(function () {
             var row = jQuery(this);
 
-            var approved = parseFloat(row.find('.approved_budget').val()) || 0;
-            var r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
-            var r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
-            var r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+  			var approved = parseFloat(row.find('.approved_budget').val()) || 0;
+            var revision = parseFloat(row.find('.revision').val()) || 0;
 
-            var total = approved + r1 + r2 + r3;
+            var total = approved + revision;
 
-            row.find('.proposed_realignment').val(total.toFixed(2));
+            row.find('.proposed_revision').val(total.toFixed(2));
         });
     };
 
@@ -926,13 +801,11 @@ function __mysys_saob_rpt_ent() {
             var row = jQuery(this);
 
             var approved = parseFloat(row.find('.approved_budget').val()) || 0;
-            var r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
-            var r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
-            var r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+            var revision = parseFloat(row.find('.revision').val()) || 0;
 
-            var total = approved + r1 + r2 + r3;
+            var total = approved + revision;
 
-            row.find('.proposed_realignment').val(total.toFixed(2));
+            row.find('.proposed_revision').val(total.toFixed(2));
         });
     };
 
@@ -942,13 +815,11 @@ function __mysys_saob_rpt_ent() {
             var row = jQuery(this);
 
             var approved = parseFloat(row.find('.approved_budget').val()) || 0;
-            var r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
-            var r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
-            var r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+            var revision = parseFloat(row.find('.revision').val()) || 0;
 
-            var total = approved + r1 + r2 + r3;
+            var total = approved + revision;
 
-            row.find('.proposed_realignment').val(total.toFixed(2));
+            row.find('.proposed_revision').val(total.toFixed(2));
         });
     };
 
@@ -958,13 +829,11 @@ function __mysys_saob_rpt_ent() {
             var row = jQuery(this);
 
             var approved = parseFloat(row.find('.approved_budget').val()) || 0;
-            var r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
-            var r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
-            var r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+            var revision = parseFloat(row.find('.revision').val()) || 0;
 
-            var total = approved + r1 + r2 + r3;
+            var total = approved + revision;
 
-            row.find('.proposed_realignment').val(total.toFixed(2));
+            row.find('.proposed_revision').val(total.toFixed(2));
         });
     };
 
@@ -974,13 +843,11 @@ function __mysys_saob_rpt_ent() {
             var row = jQuery(this);
 
             var approved = parseFloat(row.find('.approved_budget').val()) || 0;
-            var r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
-            var r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
-            var r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+            var revision = parseFloat(row.find('.revision').val()) || 0;
 
-            var total = approved + r1 + r2 + r3;
+            var total = approved + revision;
 
-            row.find('.proposed_realignment').val(total.toFixed(2));
+            row.find('.proposed_revision').val(total.toFixed(2));
         });
     };
 
@@ -993,13 +860,11 @@ function __mysys_saob_rpt_ent() {
 			let row = jQuery(this);
 
 			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
-			let r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
-			let r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
-			let r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+			let revision = parseFloat(row.find('.revision').val()) || 0;
 
-			let total = approved + r1 + r2 + r3;
+			let total = approved + revision;
 
-			row.find('.proposed_realignment').val(total.toFixed(2));
+			row.find('.proposed_revision').val(total.toFixed(2));
 
 			totalApprovedCombined += approved;
 			totalProposedCombined += total;
@@ -1010,13 +875,11 @@ function __mysys_saob_rpt_ent() {
 			let row = jQuery(this);
 
 			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
-			let r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
-			let r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
-			let r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+			let revision = parseFloat(row.find('.revision').val()) || 0;
 
-			let total = approved + r1 + r2 + r3;
+			let total = approved + revision;
 
-			row.find('.proposed_realignment').val(total.toFixed(2));
+			row.find('.proposed_revision').val(total.toFixed(2));
 
 			totalApprovedCombined += approved;
 			totalProposedCombined += total;
@@ -1027,13 +890,11 @@ function __mysys_saob_rpt_ent() {
 			let row = jQuery(this);
 
 			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
-			let r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
-			let r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
-			let r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+			let revision = parseFloat(row.find('.revision').val()) || 0;
 
-			let total = approved + r1 + r2 + r3;
+			let total = approved + revision;
 
-			row.find('.proposed_realignment').val(total.toFixed(2));
+			row.find('.proposed_revision').val(total.toFixed(2));
 
 			totalApprovedCombined += approved;
 			totalProposedCombined += total;
@@ -1044,13 +905,11 @@ function __mysys_saob_rpt_ent() {
 			let row = jQuery(this);
 
 			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
-			let r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
-			let r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
-			let r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+			let revision = parseFloat(row.find('.revision').val()) || 0;
 
-			let total = approved + r1 + r2 + r3;
+			let total = approved + revision;
 
-			row.find('.proposed_realignment').val(total.toFixed(2));
+			row.find('.proposed_revision').val(total.toFixed(2));
 
 			totalApprovedCombined += approved;
 			totalProposedCombined += total;
@@ -1061,13 +920,11 @@ function __mysys_saob_rpt_ent() {
 			let row = jQuery(this);
 
 			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
-			let r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
-			let r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
-			let r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+			let revision = parseFloat(row.find('.revision').val()) || 0;
 
-			let total = approved + r1 + r2 + r3;
+			let total = approved + revision;
 
-			row.find('.proposed_realignment').val(total.toFixed(2));
+			row.find('.proposed_revision').val(total.toFixed(2));
 
 			totalApprovedCombined += approved;
 			totalProposedCombined += total;
@@ -1078,13 +935,11 @@ function __mysys_saob_rpt_ent() {
 			let row = jQuery(this);
 
 			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
-			let r1 = parseFloat(row.find('.r1_approved_budget').val()) || 0;
-			let r2 = parseFloat(row.find('.r2_approved_budget').val()) || 0;
-			let r3 = parseFloat(row.find('.r3_approved_budget').val()) || 0;
+			let revision = parseFloat(row.find('.revision').val()) || 0;
 
-			let total = approved + r1 + r2 + r3;
+			let total = approved + revision;
 
-			row.find('.proposed_realignment').val(total.toFixed(2));
+			row.find('.proposed_revision').val(total.toFixed(2));
 
 			totalApprovedCombined += approved;
 			totalProposedCombined += total;

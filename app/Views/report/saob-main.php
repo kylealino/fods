@@ -38,6 +38,9 @@ echo view('templates/myheader.php');
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
+                <div class="row mysaob-outp-msg mx-0">
+
+                </div>
                 <div class="card-header bg-info p-1">
                     <div class="row">
                         <div class="col-sm-6 d-flex align-items-center text-start">
@@ -52,949 +55,734 @@ echo view('templates/myheader.php');
                     </div>
                 </div>						
                 <div class="card-body p-0 px-4 py-2 my-2">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="row mb-2">
-                                <div class="col-sm-2">
-                                    <span class="fw-bold">Program Title:</span>
-                                </div>
-                                <div class="col-sm-10">
-                                    <select name="program_tile" id="program_tile" class="form-select select2 form-select-sm show-tick">
-                                        <option selected value="">Choose...</option>
-                                        <?php foreach($programtitledata as $data): ?>
-                                            <option value="<?= $data['project_title'] ?>">
-                                                <?= $data['project_title'] ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="row mb-2">
-                                <div class="col-sm-4">
-                                    <span class="fw-bold">Department:</span>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" id="Department" name="Department" value="" class="form-control form-control-sm"/>
+                    <form action="<?=site_url();?>mysaobrpt?meaction=MAIN-SAVE" method="post" class="mysaob-validation">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="row mb-2">
+                                    <div class="col-sm-2">
+                                        <span class="fw-bold">Program Title:</span>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <select name="program_title" id="program_title" class="form-select select2 form-select-sm show-tick">
+                                            <option selected value="">Choose...</option>
+                                            <?php foreach($programtitledata as $data): ?>
+                                                <option value="<?= $data['program_title'] ?>">
+                                                    <?= $data['program_title'] ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row mb-2">
-                                <div class="col-sm-4">
-                                    <span class="fw-bold">Agency:</span>
+                            <div class="col-sm-6">
+                                <div class="row mb-2">
+                                    <div class="col-sm-4">
+                                        <span class="fw-bold">Department:</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="department" name="department" value="" class="form-control form-control-sm"/>
+                                    </div>
                                 </div>
-                                <div class="col-sm-8">
-                                    <input type="text" id="Agency" name="Agency" value="" class="form-control form-control-sm"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="row mb-2">
-                                <div class="col-sm-4">
-                                    <span class="fw-bold">Year:</span>
-                                </div>
-                                <div class="col-sm-8">
-                                    <select name="yearr" id="yearr" class="form-select form-select-sm">
-                                        <option value="">-- Select Year --</option>
-                                        <option value="2025">2025</option>
-                                    </select>
+                                <div class="row mb-2">
+                                    <div class="col-sm-4">
+                                        <span class="fw-bold">Agency:</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="agency" name="agency" value="" class="form-control form-control-sm"/>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <span class="fw-bold">Revision:</span>
+                            <div class="col-sm-6">
+                                <div class="row mb-2">
+                                    <div class="col-sm-4">
+                                        <span class="fw-bold">Year:</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <select name="current_year" id="current_year" class="form-select form-select-sm">
+                                            <option value="">-- Select Year --</option>
+                                            <option value="2025">2025</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="col-sm-8">
-                                    <div class="d-flex gap-3">
-                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="">
-                                            <label class="form-check-label" for="Jan">Jan</label>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <span class="fw-bold">Revision:</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="d-flex gap-3">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="is_jan">
+                                                <label class="form-check-label" for="is_jan">Jan</label>
+                                            </div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="is_feb">
+                                                <label class="form-check-label" for="is_feb">Feb</label>
+                                            </div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="is_mar">
+                                                <label class="form-check-label" for="is_mar">Mar</label>
+                                            </div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="is_apr">
+                                                <label class="form-check-label" for="is_apr">Apr</label>
+                                            </div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="is_may">
+                                                <label class="form-check-label" for="is_may">May</label>
+                                            </div>
                                         </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="">
-                                            <label class="form-check-label" for="Feb">Feb</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <span class="fw-bold"></span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="d-flex gap-3">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="is_jun">
+                                                <label class="form-check-label" for="is_jun">Jun</label>
+                                            </div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="is_jul">
+                                                <label class="form-check-label" for="is_jul">Jul</label>
+                                            </div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="is_aug">
+                                                <label class="form-check-label" for="is_aug">Aug</label>
+                                            </div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="is_sep">
+                                                <label class="form-check-label" for="is_sep">Sep</label>
+                                            </div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="is_oct">
+                                                <label class="form-check-label" for="is_oct">Oct</label>
+                                            </div>
                                         </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="">
-                                            <label class="form-check-label" for="Mar">Mar</label>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="">
-                                            <label class="form-check-label" for="Apr">Apr</label>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="">
-                                            <label class="form-check-label" for="May">May</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <span class="fw-bold"></span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="d-flex gap-3">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="is_nov">
+                                                <label class="form-check-label" for="is_nov">Nov</label>
+                                            </div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="is_dec">
+                                                <label class="form-check-label" for="is_dec">Dec</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <span class="fw-bold"></span>
-                                </div>
-                                <div class="col-sm-8">
-                                    <div class="d-flex gap-3">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="">
-                                            <label class="form-check-label" for="Jun">Jun</label>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="">
-                                            <label class="form-check-label" for="Jul">Jul</label>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="">
-                                            <label class="form-check-label" for="Aug">Aug</label>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="">
-                                            <label class="form-check-label" for="Sep">Sep</label>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="">
-                                            <label class="form-check-label" for="Oct">Oct</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <span class="fw-bold"></span>
-                                </div>
-                                <div class="col-sm-8">
-                                    <div class="d-flex gap-3">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="">
-                                            <label class="form-check-label" for="Nov">Nov</label>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="is_realign3">
-                                            <label class="form-check-label" for="Dec">Dec</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="col-sm-12">
-                            <ul class="nav nav-pills mb-3 gap-2" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <a class="nav-link active rounded-pill px-3 fs-3 fw-semibold" data-bs-toggle="tab" href="#ps-pill" role="tab">
-                                    I. Personnel Services
-                                    </a>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <a class="nav-link rounded-pill px-3 fs-3 fw-semibold" data-bs-toggle="tab" href="#mooe-pill" role="tab">
-                                    II. Maintenance and Other Operating Expenses
-                                    </a>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <a class="nav-link rounded-pill px-3 fs-3 fw-semibold" data-bs-toggle="tab" href="#co-pill" role="tab">
-                                    III. Capital Outlay
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="tab-content border mb-0">
-                                <!-- PS TAB CONTENT -->
-                                <div class="tab-pane active p-3 pb-0" id="ps-pill" role="tabpanel">
-                                    <div class="row mb-2">
-                                        <div class="table-responsive pe-2 ps-0">
-                                            <div class="col-md-12 mb-2">
-                                                <span class="ms-3 fw-bold">Direct Cost:</span>
-                                                <table id="budget_line_items" class="table-sm table-striped budgetdata-list">
-                                                    <thead>
-                                                        <th class="text-center">
-                                                            <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" href="javascript:__mysys_saob_rpt_ent.my_add_budget_line();"><i class="ti ti-new-section"></i></a>
-                                                        </th>
-                                                        <th class="text-center align-middle">Expense Item</th>
-                                                        <th class="text-center align-middle">PS - Particulars</th>
-                                                        <th class="text-center align-middle">UACS.</th>
-                                                        <th class="text-center align-middle">Approved Budget</th>
-                                                        <th class="text-center align-middle">Revision</th>
-                                                        <th class="text-center align-middle">Revised Allotment</th>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr style="display:none;">
-                                                            <td class="text-center align-middle">
-                                                                <div class="d-inline-flex gap-1 justify-content-center">
-                                                                    <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
-                                                                    href="javascript:void(0)"
-                                                                    onclick="$(this).closest('tr').remove();">
-                                                                        <i class="ti ti-trash"></i>
-                                                                    </a>
-                                                                    <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
-                                                                    href="javascript:void(0)"
-                                                                    title="Add rows above"
-                                                                    onclick="__mysys_saob_rpt_ent.my_add_budget_line_above(this);">
-                                                                        <i class="ti ti-plus"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                                    <option selected value ="">Choose...</option>
-                                                                    <?php foreach($psuacsdata as $data){
-                                                                        $sub_object_code = $data['sub_object_code'];
-                                                                        $uacs_code = $data['uacs_code'];
-                                                                    ?>
-                                                                        <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                    <?php }?>
-                                                                </select>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="approved_budget"  value="" size="25" step="any" name="approved_budget" data-dtid=""  class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="r1_approved_budget"  value="" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
-                                                            </td>
-                                                        </tr>
-                                                        <?php if(!empty($recid)):
-                                                            $query = $this->db->query("
-                                                            SELECT
-                                                                `recid`,
-                                                                `expense_item`,
-                                                                `particulars`,
-                                                                `code`,
-                                                                `approved_budget`,
-                                                                `r1_approved_budget`,
-                                                                `r2_approved_budget`,
-                                                                `r3_approved_budget`,
-                                                                `proposed_realignment`
-                                                            FROM
-                                                                `tbl_budget_direct_ps_dt`
-                                                            WHERE 
-                                                                `project_id` = '$recid'"
-                                                            );
-                                                            $result = $query->getResultArray();
-                                                            foreach ($result as $data):
-                                                                $dt_id = $data['recid'];
-                                                                $expense_item = $data['expense_item'];
-                                                                $particulars = $data['particulars'];
-                                                                $code = $data['code'];
-                                                                $approved_budget = $data['approved_budget'];
-                                                                $r1_approved_budget = $data['r1_approved_budget'];
-                                                                $r2_approved_budget = $data['r2_approved_budget'];
-                                                                $r3_approved_budget = $data['r3_approved_budget'];
-                                                                $proposed_realignment = $data['proposed_realignment'];
-                                                        ?>
-                                                        <tr>
-                                                            <td class="text-center align-middle">
-                                                                <div class="d-inline-flex gap-1 justify-content-center">
-                                                                    <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                            <hr>
+                            <div class="col-sm-12">
+                                <ul class="nav nav-pills mb-3 gap-2" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link active rounded-pill px-3 fs-3 fw-semibold" data-bs-toggle="tab" href="#ps-pill" role="tab">
+                                        I. Personnel Services
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link rounded-pill px-3 fs-3 fw-semibold" data-bs-toggle="tab" href="#mooe-pill" role="tab">
+                                        II. Maintenance and Other Operating Expenses
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link rounded-pill px-3 fs-3 fw-semibold" data-bs-toggle="tab" href="#co-pill" role="tab">
+                                        III. Capital Outlay
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content border mb-0">
+                                    <!-- PS TAB CONTENT -->
+                                    <div class="tab-pane active p-3 pb-0" id="ps-pill" role="tabpanel">
+                                        <div class="row mb-2">
+                                            <div class="table-responsive pe-2 ps-0">
+                                                <div class="col-md-12 mb-2">
+                                                    <span class="ms-3 fw-bold">Direct Cost:</span>
+                                                    <table id="budget_line_items" class="table-sm table-striped budgetdata-list">
+                                                        <thead>
+                                                            <th class="text-center">
+                                                                <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" href="javascript:__mysys_saob_rpt_ent.my_add_budget_line();"><i class="ti ti-new-section"></i></a>
+                                                            </th>
+                                                            <th class="text-center align-middle">Expense Item</th>
+                                                            <th class="text-center align-middle">PS - Particulars</th>
+                                                            <th class="text-center align-middle">UACS.</th>
+                                                            <th class="text-center align-middle">Approved Budget</th>
+                                                            <th class="text-center align-middle">Revision</th>
+                                                            <th class="text-center align-middle">Revised Allotment</th>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr style="display:none;">
+                                                                <td class="text-center align-middle">
+                                                                    <div class="d-inline-flex gap-1 justify-content-center">
+                                                                        <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
                                                                         href="javascript:void(0)"
                                                                         onclick="$(this).closest('tr').remove();">
-                                                                        <i class="ti ti-trash"></i>
-                                                                    </a>
-                                                                    <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                            <i class="ti ti-trash"></i>
+                                                                        </a>
+                                                                        <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
                                                                         href="javascript:void(0)"
                                                                         title="Add rows above"
                                                                         onclick="__mysys_saob_rpt_ent.my_add_budget_line_above(this);">
-                                                                        <i class="ti ti-plus"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
-                                                                    <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
-                                                                    <?php foreach($psuacsdata as $data){
-                                                                        $sub_object_code = $data['sub_object_code'];
-                                                                        $uacs_code = $data['uacs_code'];
-                                                                    ?>
-                                                                        <option value="<?=$sub_object_code?>"  data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                    <?php }?>
-                                                                </select>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" step="any" data-dtid="<?=$dt_id;?>"  name="approved_budget" class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="r1_approved_budget"  value="<?=$r1_approved_budget;?>" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled onchange="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
-                                                            </td>
-                                                        </tr>
-                                                        <?php endforeach; endif;?>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <hr>
-                                            <div class="col-sm-12">
-                                                <span class="ms-3 fw-bold">Indirect Cost:</span>
-                                                <table id="budget_indirect_line_items" class="table-sm table-striped budgetdata-indirect-list">
-                                                    <thead>
-                                                        <th class="text-center">
-                                                            <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" href="javascript:__mysys_saob_rpt_ent.my_add_budget_indirect_line();"><i class="ti ti-new-section"></i></a>
-                                                        </th>
-                                                        <th class="text-center align-middle">Expense Item</th>
-                                                        <th class="text-center align-middle">PS - Particulars</th>
-                                                        <th class="text-center align-middle">UACS.</th>
-                                                        <th class="text-center align-middle">Approved Budget</th>
-                                                        <th class="text-center align-middle">Revision</th>
-                                                        <th class="text-center align-middle">Revised Allotment</th>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr style="display:none;">
-                                                            <td class="text-center align-middle">
-                                                                <div class="d-inline-flex gap-1 justify-content-center">
-                                                                    <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
-                                                                        href="javascript:void(0)"
-                                                                        onclick="$(this).closest('tr').remove();">
-                                                                        <i class="ti ti-trash"></i>
-                                                                    </a>
-                                                                    <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
-                                                                        href="javascript:void(0)"
-                                                                        title="Add rows above"
-                                                                        onclick="__mysys_saob_rpt_ent.my_add_budget_indirect_line_above(this);">
-                                                                        <i class="ti ti-plus"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                                    <option selected value ="">Choose...</option>
-                                                                    <?php foreach($psuacsdata as $data){
-                                                                        $sub_object_code = $data['sub_object_code'];
-                                                                        $uacs_code = $data['uacs_code'];
-                                                                    ?>
-                                                                        <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                    <?php }?>
-                                                                </select>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="approved_budget"  value="" size="25" step="any" name="approved_budget" data-dtid="" class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__indirect_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="r1_approved_budget"  value="" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_saob_rpt_ent.__indirect_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
-                                                            </td>
-                                                        </tr>
-                                                        <?php if(!empty($recid)):
-                                                            $query = $this->db->query("
-                                                            SELECT
-                                                                `recid`,
-                                                                `expense_item`,
-                                                                `particulars`,
-                                                                `code`,
-                                                                `approved_budget`,
-                                                                `r1_approved_budget`,
-                                                                `r2_approved_budget`,
-                                                                `r3_approved_budget`,
-                                                                `proposed_realignment`
-                                                            FROM
-                                                                `tbl_budget_indirect_ps_dt`
-                                                            WHERE 
-                                                                `project_id` = '$recid'"
-                                                            );
-                                                            $result = $query->getResultArray();
-                                                            foreach ($result as $data):
-                                                                $dt_id = $data['recid'];
-                                                                $expense_item = $data['expense_item'];
-                                                                $particulars = $data['particulars'];
-                                                                $code = $data['code'];
-                                                                $approved_budget = $data['approved_budget'];
-                                                                $r1_approved_budget = $data['r1_approved_budget'];
-                                                                $r2_approved_budget = $data['r2_approved_budget'];
-                                                                $r3_approved_budget = $data['r3_approved_budget'];
-                                                                $proposed_realignment = $data['proposed_realignment'];
-                                                        ?>
-                                                        <tr>
-                                                            <td class="text-center align-middle">
-                                                                <div class="d-inline-flex gap-1 justify-content-center">
-                                                                    <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
-                                                                        href="javascript:void(0)"
-                                                                        onclick="$(this).closest('tr').remove();">
-                                                                        <i class="ti ti-trash"></i>
-                                                                    </a>
-                                                                    <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
-                                                                        href="javascript:void(0)"
-                                                                        title="Add rows above"
-                                                                        onclick="__mysys_saob_rpt_ent.my_add_budget_indirect_line_above(this);">
-                                                                        <i class="ti ti-plus"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
-                                                                    <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
-                                                                    <?php foreach($psuacsdata as $data){
-                                                                        $sub_object_code = $data['sub_object_code'];
-                                                                        $uacs_code = $data['uacs_code'];
-                                                                    ?>
-                                                                        <option value="<?=$sub_object_code?>"  data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                    <?php }?>
-                                                                </select>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" step="any" data-dtid="<?=$dt_id;?>"  name="approved_budget" class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__indirect_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="r1_approved_budget"  value="<?=$r1_approved_budget;?>" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled onchange="__mysys_saob_rpt_ent.__indirect_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
-                                                            </td>
-                                                        </tr>
-                                                        <?php endforeach; endif;?>
-                                                    </tbody>
-                                                </table>                  
+                                                                            <i class="ti ti-plus"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
+                                                                        <option selected value ="">Choose...</option>
+                                                                        <?php foreach($psuacsdata as $data){
+                                                                            $sub_object_code = $data['sub_object_code'];
+                                                                            $uacs_code = $data['uacs_code'];
+                                                                        ?>
+                                                                            <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
+                                                                        <?php }?>
+                                                                    </select>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="approved_budget"  value="" size="25" step="any" name="approved_budget" data-dtid=""  class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="revision"  value="" size="25" step="any" name="revision" data-dtid="" class="revision text-center" onchange="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="proposed_revision"  value="" size="25" step="any" name="proposed_revision" data-dtid="" class="proposed_revision text-center" disabled/>
+                                                                </td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <hr>
+                                                <div class="col-sm-12">
+                                                    <span class="ms-3 fw-bold">Indirect Cost:</span>
+                                                    <table id="budget_indirect_line_items" class="table-sm table-striped budgetdata-indirect-list">
+                                                        <thead>
+                                                            <th class="text-center">
+                                                                <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" href="javascript:__mysys_saob_rpt_ent.my_add_budget_indirect_line();"><i class="ti ti-new-section"></i></a>
+                                                            </th>
+                                                            <th class="text-center align-middle">Expense Item</th>
+                                                            <th class="text-center align-middle">PS - Particulars</th>
+                                                            <th class="text-center align-middle">UACS.</th>
+                                                            <th class="text-center align-middle">Approved Budget</th>
+                                                            <th class="text-center align-middle">Revision</th>
+                                                            <th class="text-center align-middle">Revised Allotment</th>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr style="display:none;">
+                                                                <td class="text-center align-middle">
+                                                                    <div class="d-inline-flex gap-1 justify-content-center">
+                                                                        <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                            href="javascript:void(0)"
+                                                                            onclick="$(this).closest('tr').remove();">
+                                                                            <i class="ti ti-trash"></i>
+                                                                        </a>
+                                                                        <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                            href="javascript:void(0)"
+                                                                            title="Add rows above"
+                                                                            onclick="__mysys_saob_rpt_ent.my_add_budget_indirect_line_above(this);">
+                                                                            <i class="ti ti-plus"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
+                                                                        <option selected value ="">Choose...</option>
+                                                                        <?php foreach($psuacsdata as $data){
+                                                                            $sub_object_code = $data['sub_object_code'];
+                                                                            $uacs_code = $data['uacs_code'];
+                                                                        ?>
+                                                                            <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
+                                                                        <?php }?>
+                                                                    </select>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="approved_budget"  value="" size="25" step="any" name="approved_budget" data-dtid="" class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__indirect_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="revision"  value="" size="25" step="any" name="revision" data-dtid="" class="revision text-center" onchange="__mysys_saob_rpt_ent.__indirect_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="proposed_revision"  value="" size="25" step="any" name="proposed_revision" data-dtid="" class="proposed_revision text-center" disabled/>
+                                                                </td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>                  
+                                                </div>
                                             </div>
                                         </div>
+                                        <hr>
                                     </div>
-                                    <hr>
-                                </div>
 
-                                <!-- MOOE TAB CONTENT -->
-                                <div class="tab-pane p-3 pb-0" id="mooe-pill" role="tabpanel">
-                                    <div class="row">
-                                        <div class="table-responsive pe-2 ps-0">
-                                            <div class="col-md-12 mb-2">
-                                                <span class="ms-3 fw-bold">Direct Cost:</span>
-                                                <table id="budget_mooe_line_items" class="table-sm table-striped budgetmooedata-list">
-                                                    <thead>
-                                                        <th class="text-center">
-                                                            <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetmooeitem_add" href="javascript:__mysys_saob_rpt_ent.my_add_budget_mooe_line();"><i class="ti ti-new-section"></i></a>
-                                                        </th>
-                                                        <th class="text-center align-middle">Expense Item</th>
-                                                        <th class="text-center align-middle">MOOE - Particulars</th>
-                                                        <th class="text-center align-middle">UACS.</th>
-                                                        <th class="text-center align-middle">Approved Budget</th>
-                                                        <th class="text-center align-middle">Revision</th>
-                                                        <th class="text-center align-middle">Revised Allotment</th>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr style="display:none;">
-                                                            <td class="text-center align-middle">
-                                                                <div class="d-inline-flex gap-1 justify-content-center">
-                                                                    <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
-                                                                    href="javascript:void(0)"
-                                                                    onclick="$(this).closest('tr').remove();">
-                                                                        <i class="ti ti-trash"></i>
-                                                                    </a>
-                                                                    <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
-                                                                    href="javascript:void(0)"
-                                                                    title="Add rows above"
-                                                                    onclick="__mysys_saob_rpt_ent.my_add_budget_mooe_line_above(this);">
-                                                                        <i class="ti ti-plus"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                                    <option selected value ="">Choose...</option>
-                                                                    <?php foreach($mooeuacsdata as $data){
-                                                                        $sub_object_code = $data['sub_object_code'];
-                                                                        $uacs_code = $data['uacs_code'];
-                                                                    ?>
-                                                                        <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                    <?php }?>
-                                                                </select>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="approved_budget"  value="" size="25" step="any" name="approved_budget" data-dtid="" class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="r1_approved_budget"  value="" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
-                                                            </td>
-                                                        </tr>
-                                                        <?php if(!empty($recid)):
-                                                            $query = $this->db->query("
-                                                            SELECT
-                                                                `recid`,
-                                                                `expense_item`,
-                                                                `particulars`,
-                                                                `code`,
-                                                                `approved_budget`,
-                                                                `r1_approved_budget`,
-                                                                `r2_approved_budget`,
-                                                                `r3_approved_budget`,
-                                                                `proposed_realignment`
-                                                            FROM
-                                                                `tbl_budget_direct_mooe_dt`
-                                                            WHERE 
-                                                                `project_id` = '$recid'"
-                                                            );
-                                                            $result = $query->getResultArray();
-                                                            foreach ($result as $data):
-                                                                $dt_id = $data['recid'];
-                                                                $expense_item = $data['expense_item'];
-                                                                $particulars = $data['particulars'];
-                                                                $code = $data['code'];
-                                                                $approved_budget = $data['approved_budget'];
-                                                                $r1_approved_budget = $data['r1_approved_budget'];
-                                                                $r2_approved_budget = $data['r2_approved_budget'];
-                                                                $r3_approved_budget = $data['r3_approved_budget'];
-                                                                $proposed_realignment = $data['proposed_realignment'];
-                                                        ?>
-                                                        <tr>
-                                                            <td class="text-center align-middle">
-                                                                <div class="d-inline-flex gap-1 justify-content-center">
-                                                                    <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
-                                                                    href="javascript:void(0)"
-                                                                    onclick="$(this).closest('tr').remove();">
-                                                                        <i class="ti ti-trash"></i>
-                                                                    </a>
-                                                                    <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
-                                                                    href="javascript:void(0)"
-                                                                    title="Add rows above"
-                                                                    onclick="__mysys_saob_rpt_ent.my_add_budget_mooe_line_above(this);">
-                                                                        <i class="ti ti-plus"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
-                                                                    <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
-                                                                    <?php foreach($mooeuacsdata as $data){
-                                                                        $sub_object_code = $data['sub_object_code'];
-                                                                        $uacs_code = $data['uacs_code'];
-                                                                    ?>
-                                                                        <option value="<?=$sub_object_code?>"  data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                    <?php }?>
-                                                                </select>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" step="any" name="approved_budget" data-dtid="<?=$dt_id;?>"  class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="r1_approved_budget"  value="<?=$r1_approved_budget;?>" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
-                                                            </td>
-                                                        </tr>
-                                                        <?php endforeach; endif;?>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <span class="ms-3 fw-bold">Indirect Cost:</span>
-                                                <table id="budget_mooe_indirect_line_items" class="table-sm table-striped budgetmooedata-indirect-list">
-                                                    <thead>
-                                                        <th class="text-center">
-                                                            <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetmooeitem_add" href="javascript:__mysys_saob_rpt_ent.my_add_budget_indirect_mooe_line();"><i class="ti ti-new-section"></i></a>
-                                                        </th>
-                                                        <th class="text-center align-middle">Expense Item</th>
-                                                        <th class="text-center align-middle">MOOE - Particulars</th>
-                                                        <th class="text-center align-middle">UACS.</th>
-                                                        <th class="text-center align-middle">Approved Budget</th>
-                                                        <th class="text-center align-middle">Revision</th>
-                                                        <th class="text-center align-middle">Revised Allotment</th>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr style="display:none;">
-                                                            <td class="text-center align-middle">
-                                                                <div class="d-inline-flex gap-1 justify-content-center">
-                                                                    <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
-                                                                    href="javascript:void(0)"
-                                                                    onclick="$(this).closest('tr').remove();">
-                                                                        <i class="ti ti-trash"></i>
-                                                                    </a>
-                                                                    <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
-                                                                    href="javascript:void(0)"
-                                                                    title="Add rows above"
-                                                                    onclick="__mysys_saob_rpt_ent.my_add_budget_indirect_mooe_line_above(this);">
-                                                                        <i class="ti ti-plus"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                                    <option selected value ="">Choose...</option>
-                                                                    <?php foreach($mooeuacsdata as $data){
-                                                                        $sub_object_code = $data['sub_object_code'];
-                                                                        $uacs_code = $data['uacs_code'];
-                                                                    ?>
-                                                                        <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                    <?php }?>
-                                                                </select>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="approved_budget"  value="" size="25" step="any" name="approved_budget" data-dtid=""  class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__indirect_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="r1_approved_budget"  value="" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_saob_rpt_ent.__indirect_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
-                                                            </td>
-                                                        </tr>
-                                                        <?php if(!empty($recid)):
-                                                            $query = $this->db->query("
-                                                            SELECT
-                                                                `recid`,
-                                                                `expense_item`,
-                                                                `particulars`,
-                                                                `code`,
-                                                                `approved_budget`,
-                                                                `r1_approved_budget`,
-                                                                `r2_approved_budget`,
-                                                                `r3_approved_budget`,
-                                                                `proposed_realignment`
-                                                            FROM
-                                                                `tbl_budget_indirect_mooe_dt`
-                                                            WHERE 
-                                                                `project_id` = '$recid'"
-                                                            );
-                                                            $result = $query->getResultArray();
-                                                            foreach ($result as $data):
-                                                                $dt_id = $data['recid'];
-                                                                $expense_item = $data['expense_item'];
-                                                                $particulars = $data['particulars'];
-                                                                $code = $data['code'];
-                                                                $approved_budget = $data['approved_budget'];
-                                                                $r1_approved_budget = $data['r1_approved_budget'];
-                                                                $r2_approved_budget = $data['r2_approved_budget'];
-                                                                $r3_approved_budget = $data['r3_approved_budget'];
-                                                                $proposed_realignment = $data['proposed_realignment'];
-                                                        ?>
-                                                        <tr>
-                                                            <td class="text-center align-middle">
-                                                                <div class="d-inline-flex gap-1 justify-content-center">
-                                                                    <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                    <!-- MOOE TAB CONTENT -->
+                                    <div class="tab-pane p-3 pb-0" id="mooe-pill" role="tabpanel">
+                                        <div class="row">
+                                            <div class="table-responsive pe-2 ps-0">
+                                                <div class="col-md-12 mb-2">
+                                                    <span class="ms-3 fw-bold">Direct Cost:</span>
+                                                    <table id="budget_mooe_line_items" class="table-sm table-striped budgetmooedata-list">
+                                                        <thead>
+                                                            <th class="text-center">
+                                                                <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetmooeitem_add" href="javascript:__mysys_saob_rpt_ent.my_add_budget_mooe_line();"><i class="ti ti-new-section"></i></a>
+                                                            </th>
+                                                            <th class="text-center align-middle">Expense Item</th>
+                                                            <th class="text-center align-middle">MOOE - Particulars</th>
+                                                            <th class="text-center align-middle">UACS.</th>
+                                                            <th class="text-center align-middle">Approved Budget</th>
+                                                            <th class="text-center align-middle">Revision</th>
+                                                            <th class="text-center align-middle">Revised Allotment</th>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr style="display:none;">
+                                                                <td class="text-center align-middle">
+                                                                    <div class="d-inline-flex gap-1 justify-content-center">
+                                                                        <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
                                                                         href="javascript:void(0)"
                                                                         onclick="$(this).closest('tr').remove();">
-                                                                        <i class="ti ti-trash"></i>
-                                                                    </a>
-                                                                    <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                            <i class="ti ti-trash"></i>
+                                                                        </a>
+                                                                        <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                        href="javascript:void(0)"
+                                                                        title="Add rows above"
+                                                                        onclick="__mysys_saob_rpt_ent.my_add_budget_mooe_line_above(this);">
+                                                                            <i class="ti ti-plus"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
+                                                                        <option selected value ="">Choose...</option>
+                                                                        <?php foreach($mooeuacsdata as $data){
+                                                                            $sub_object_code = $data['sub_object_code'];
+                                                                            $uacs_code = $data['uacs_code'];
+                                                                        ?>
+                                                                            <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
+                                                                        <?php }?>
+                                                                    </select>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="approved_budget"  value="" size="25" step="any" name="approved_budget" data-dtid="" class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="r1_approved_budget"  value="" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
+                                                                </td>
+                                                            </tr>
+                                                            <?php if(!empty($recid)):
+                                                                $query = $this->db->query("
+                                                                SELECT
+                                                                    `recid`,
+                                                                    `expense_item`,
+                                                                    `particulars`,
+                                                                    `code`,
+                                                                    `approved_budget`,
+                                                                    `r1_approved_budget`,
+                                                                    `r2_approved_budget`,
+                                                                    `r3_approved_budget`,
+                                                                    `proposed_realignment`
+                                                                FROM
+                                                                    `tbl_budget_direct_mooe_dt`
+                                                                WHERE 
+                                                                    `project_id` = '$recid'"
+                                                                );
+                                                                $result = $query->getResultArray();
+                                                                foreach ($result as $data):
+                                                                    $dt_id = $data['recid'];
+                                                                    $expense_item = $data['expense_item'];
+                                                                    $particulars = $data['particulars'];
+                                                                    $code = $data['code'];
+                                                                    $approved_budget = $data['approved_budget'];
+                                                                    $r1_approved_budget = $data['r1_approved_budget'];
+                                                                    $r2_approved_budget = $data['r2_approved_budget'];
+                                                                    $r3_approved_budget = $data['r3_approved_budget'];
+                                                                    $proposed_realignment = $data['proposed_realignment'];
+                                                            ?>
+                                                            <tr>
+                                                                <td class="text-center align-middle">
+                                                                    <div class="d-inline-flex gap-1 justify-content-center">
+                                                                        <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                        href="javascript:void(0)"
+                                                                        onclick="$(this).closest('tr').remove();">
+                                                                            <i class="ti ti-trash"></i>
+                                                                        </a>
+                                                                        <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                        href="javascript:void(0)"
+                                                                        title="Add rows above"
+                                                                        onclick="__mysys_saob_rpt_ent.my_add_budget_mooe_line_above(this);">
+                                                                            <i class="ti ti-plus"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
+                                                                        <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
+                                                                        <?php foreach($mooeuacsdata as $data){
+                                                                            $sub_object_code = $data['sub_object_code'];
+                                                                            $uacs_code = $data['uacs_code'];
+                                                                        ?>
+                                                                            <option value="<?=$sub_object_code?>"  data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
+                                                                        <?php }?>
+                                                                    </select>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" step="any" name="approved_budget" data-dtid="<?=$dt_id;?>"  class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="r1_approved_budget"  value="<?=$r1_approved_budget;?>" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
+                                                                </td>
+                                                            </tr>
+                                                            <?php endforeach; endif;?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <span class="ms-3 fw-bold">Indirect Cost:</span>
+                                                    <table id="budget_mooe_indirect_line_items" class="table-sm table-striped budgetmooedata-indirect-list">
+                                                        <thead>
+                                                            <th class="text-center">
+                                                                <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetmooeitem_add" href="javascript:__mysys_saob_rpt_ent.my_add_budget_indirect_mooe_line();"><i class="ti ti-new-section"></i></a>
+                                                            </th>
+                                                            <th class="text-center align-middle">Expense Item</th>
+                                                            <th class="text-center align-middle">MOOE - Particulars</th>
+                                                            <th class="text-center align-middle">UACS.</th>
+                                                            <th class="text-center align-middle">Approved Budget</th>
+                                                            <th class="text-center align-middle">Revision</th>
+                                                            <th class="text-center align-middle">Revised Allotment</th>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr style="display:none;">
+                                                                <td class="text-center align-middle">
+                                                                    <div class="d-inline-flex gap-1 justify-content-center">
+                                                                        <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                        href="javascript:void(0)"
+                                                                        onclick="$(this).closest('tr').remove();">
+                                                                            <i class="ti ti-trash"></i>
+                                                                        </a>
+                                                                        <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
                                                                         href="javascript:void(0)"
                                                                         title="Add rows above"
                                                                         onclick="__mysys_saob_rpt_ent.my_add_budget_indirect_mooe_line_above(this);">
-                                                                        <i class="ti ti-plus"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
-                                                                    <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
-                                                                    <?php foreach($mooeuacsdata as $data){
-                                                                        $sub_object_code = $data['sub_object_code'];
-                                                                        $uacs_code = $data['uacs_code'];
-                                                                    ?>
-                                                                        <option value="<?=$sub_object_code?>"  data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                    <?php }?>
-                                                                </select>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" step="any" name="approved_budget" data-dtid="<?=$dt_id;?>"  class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__indirect_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="r1_approved_budget"  value="<?=$r1_approved_budget;?>" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_saob_rpt_ent.__indirect_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
-                                                            </td>
-                                                        </tr>
-                                                        <?php endforeach; endif;?>
-                                                    </tbody>
-                                                </table>
+                                                                            <i class="ti ti-plus"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
+                                                                        <option selected value ="">Choose...</option>
+                                                                        <?php foreach($mooeuacsdata as $data){
+                                                                            $sub_object_code = $data['sub_object_code'];
+                                                                            $uacs_code = $data['uacs_code'];
+                                                                        ?>
+                                                                            <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
+                                                                        <?php }?>
+                                                                    </select>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="approved_budget"  value="" size="25" step="any" name="approved_budget" data-dtid=""  class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__indirect_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="revision"  value="" size="25" step="any" name="revision" data-dtid="" class="revision text-center" onchange="__mysys_saob_rpt_ent.__indirect_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="proposed_revision"  value="" size="25" step="any" name="proposed_revision" data-dtid="" class="proposed_revision text-center" disabled/>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <!-- CO TAB CONTENT -->
-                                <div class="tab-pane p-3 pb-0" id="co-pill" role="tabpanel">
-                                    <div class="row">
-                                        <div class="table-responsive pe-2 ps-0">
-                                            <div class="col-md-12 mb-2">
-                                                <span class="ms-3 fw-bold">Direct Cost:</span>
-                                                <table id="budget_co_line_items" class="table-sm table-striped budgetcodata-list">
-                                                    <thead>
-                                                        <th class="text-center">
-                                                            <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetcoitem_add" href="javascript:__mysys_saob_rpt_ent.my_add_budget_co_line();"><i class="ti ti-new-section"></i></a>
-                                                        </th>
-                                                        <th class="text-center align-middle">CO - Expense Item</th>
-                                                        <th class="text-center align-middle">UACS.</th>
-                                                        <th class="text-center align-middle">Approved Budget</th>
-                                                        <th class="text-center align-middle">Revision</th>
-                                                        <th class="text-center align-middle">Revised Allotment</th>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr style="display:none;">
-                                                            <td class="text-center align-middle">
-                                                                <div class="d-inline-flex gap-1 justify-content-center">
-                                                                    <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
-                                                                        href="javascript:void(0)"
-                                                                        onclick="$(this).closest('tr').remove();">
-                                                                        <i class="ti ti-trash"></i>
-                                                                    </a>
-                                                                    <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
-                                                                        href="javascript:void(0)"
-                                                                        title="Add rows above"
-                                                                        onclick="__mysys_saob_rpt_ent.my_add_budget_co_line_above(this);">
-                                                                        <i class="ti ti-plus"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="particulars"  value="" style="width:300px; height:30px;"  name="particulars" class="particulars text-center">
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center">
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="approved_budget"  value="" size="25" step="any" name="approved_budget" data-dtid=""   class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="r1_approved_budget"  value="" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
-                                                            </td>
-                                                        </tr>
-                                                        <?php if(!empty($recid)):
-                                                            $query = $this->db->query("
-                                                            SELECT
-                                                                `recid`,
-                                                                `particulars`,
-                                                                `code`,
-                                                                `approved_budget`,
-                                                                `r1_approved_budget`,
-                                                                `r2_approved_budget`,
-                                                                `r3_approved_budget`,
-                                                                `proposed_realignment`
-                                                            FROM
-                                                                `tbl_budget_direct_co_dt`
-                                                            WHERE 
-                                                                `project_id` = '$recid'"
-                                                            );
-                                                            $result = $query->getResultArray();
-                                                            foreach ($result as $data):
-                                                                $dt_id = $data['recid'];
-                                                                $particulars = $data['particulars'];
-                                                                $code = $data['code'];
-                                                                $approved_budget = $data['approved_budget'];
-                                                                $r1_approved_budget = $data['r1_approved_budget'];
-                                                                $r2_approved_budget = $data['r2_approved_budget'];
-                                                                $r3_approved_budget = $data['r3_approved_budget'];
-                                                                $proposed_realignment = $data['proposed_realignment'];
-                                                        ?>
-                                                        <tr>
-                                                            <td class="text-center align-middle">
-                                                                <div class="d-inline-flex gap-1 justify-content-center">
-                                                                    <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
-                                                                        href="javascript:void(0)"
-                                                                        onclick="$(this).closest('tr').remove();">
-                                                                        <i class="ti ti-trash"></i>
-                                                                    </a>
-                                                                    <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
-                                                                        href="javascript:void(0)"
-                                                                        title="Add rows above"
-                                                                        onclick="__mysys_saob_rpt_ent.my_add_budget_co_line_above(this);">
-                                                                        <i class="ti ti-plus"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:300px; height:30px;"  name="particulars" class="particulars text-center">
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center">
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" step="any" data-dtid="<?=$dt_id;?>"  name="approved_budget" class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="r1_approved_budget"  value="<?=$r1_approved_budget;?>" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled onchange="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
-                                                            </td>
-                                                        </tr>
-                                                        <?php endforeach; endif;?>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <span class="ms-3 fw-bold">Indirect Cost:</span>
-                                                <table id="budget_indirect_co_line_items" class="table-sm table-striped budgetcodata-indirect-list">
-                                                    <thead>
-                                                        <th class="text-center">
-                                                            <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetcoitem_add" href="javascript:__mysys_saob_rpt_ent.my_add_budget_indirect_co_line();"><i class="ti ti-new-section"></i></a>
-                                                        </th>
-                                                        <th class="text-center align-middle">CO - Expense Item</th>
-                                                        <th class="text-center align-middle">UACS.</th>
-                                                        <th class="text-center align-middle">Approved Budget</th>
-                                                        <th class="text-center align-middle">Revision</th>
-                                                        <th class="text-center align-middle">Revised Allotment</th>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr style="display:none;">
-                                                            <td class="text-center align-middle">
-                                                                <div class="d-inline-flex gap-1 justify-content-center">
-                                                                    <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
-                                                                        href="javascript:void(0)"
-                                                                        onclick="$(this).closest('tr').remove();">
-                                                                        <i class="ti ti-trash"></i>
-                                                                    </a>
-                                                                    <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
-                                                                        href="javascript:void(0)"
-                                                                        title="Add rows above"
-                                                                        onclick="__mysys_saob_rpt_ent.my_add_budget_indirect_co_line_above(this);">
-                                                                        <i class="ti ti-plus"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="particulars"  value="" style="width:300px; height:30px;"   name="particulars" class="particulars text-center">
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center">
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="approved_budget"  value="" size="25" step="any" name="approved_budget" data-dtid=""   class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="r1_approved_budget"  value="" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
-                                                            </td>
-                                                        </tr>
-                                                        <?php if(!empty($recid)):
-                                                            $query = $this->db->query("
-                                                            SELECT
-                                                                `recid`,
-                                                                `particulars`,
-                                                                `code`,
-                                                                `approved_budget`,
-                                                                `r1_approved_budget`,
-                                                                `r2_approved_budget`,
-                                                                `r3_approved_budget`,
-                                                                `proposed_realignment`
-                                                            FROM
-                                                                `tbl_budget_indirect_co_dt`
-                                                            WHERE 
-                                                                `project_id` = '$recid'"
-                                                            );
-                                                            $result = $query->getResultArray();
-                                                            foreach ($result as $data):
-                                                                $dt_id = $data['recid'];
-                                                                $particulars = $data['particulars'];
-                                                                $code = $data['code'];
-                                                                $approved_budget = $data['approved_budget'];
-                                                                $r1_approved_budget = $data['r1_approved_budget'];
-                                                                $r2_approved_budget = $data['r2_approved_budget'];
-                                                                $r3_approved_budget = $data['r3_approved_budget'];
-                                                                $proposed_realignment = $data['proposed_realignment'];
-                                                        ?>
-                                                        <tr>
-                                                            <td class="text-center align-middle">
-                                                                <div class="d-inline-flex gap-1 justify-content-center">
-                                                                    <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
-                                                                        href="javascript:void(0)"
-                                                                        onclick="$(this).closest('tr').remove();">
-                                                                        <i class="ti ti-trash"></i>
-                                                                    </a>
-                                                                    <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
-                                                                        href="javascript:void(0)"
-                                                                        title="Add rows above"
-                                                                        onclick="__mysys_saob_rpt_ent.my_add_budget_indirect_co_line_above(this);">
-                                                                        <i class="ti ti-plus"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:300px; height:30px;"  name="particulars" class="particulars text-center">
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center">
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" step="any" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="r1_approved_budget"  value="<?=$r1_approved_budget;?>" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled onchange="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
-                                                            </td>
-                                                            <td class="text-center align-middle" nowrap>
-                                                                <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
-                                                            </td>
-                                                        </tr>
-                                                        <?php endforeach; endif;?>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <div class="row mb-3">
-                                    <div class="col-sm-6">
-
-                                    </div>
-                                    <div class="col-sm-6">
+                                    <!-- CO TAB CONTENT -->
+                                    <div class="tab-pane p-3 pb-0" id="co-pill" role="tabpanel">
                                         <div class="row">
-                                            <div class="col-sm-6">
-                                                <span class="fw-bolder">Total Approved Budget:</span>
-                                                <input type="number" id="total_approved_combined" name="total_approved_combined" value="" class="form-control form-control-sm text-center fw-bold" style="border-bottom: 2px solid #000;"  readonly/>
+                                            <div class="table-responsive pe-2 ps-0">
+                                                <div class="col-md-12 mb-2">
+                                                    <span class="ms-3 fw-bold">Direct Cost:</span>
+                                                    <table id="budget_co_line_items" class="table-sm table-striped budgetcodata-list">
+                                                        <thead>
+                                                            <th class="text-center">
+                                                                <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetcoitem_add" href="javascript:__mysys_saob_rpt_ent.my_add_budget_co_line();"><i class="ti ti-new-section"></i></a>
+                                                            </th>
+                                                            <th class="text-center align-middle">CO - Expense Item</th>
+                                                            <th class="text-center align-middle">UACS.</th>
+                                                            <th class="text-center align-middle">Approved Budget</th>
+                                                            <th class="text-center align-middle">Revision</th>
+                                                            <th class="text-center align-middle">Revised Allotment</th>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr style="display:none;">
+                                                                <td class="text-center align-middle">
+                                                                    <div class="d-inline-flex gap-1 justify-content-center">
+                                                                        <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                            href="javascript:void(0)"
+                                                                            onclick="$(this).closest('tr').remove();">
+                                                                            <i class="ti ti-trash"></i>
+                                                                        </a>
+                                                                        <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                            href="javascript:void(0)"
+                                                                            title="Add rows above"
+                                                                            onclick="__mysys_saob_rpt_ent.my_add_budget_co_line_above(this);">
+                                                                            <i class="ti ti-plus"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="particulars"  value="" style="width:300px; height:30px;"  name="particulars" class="particulars text-center">
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center">
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="approved_budget"  value="" size="25" step="any" name="approved_budget" data-dtid=""   class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="r1_approved_budget"  value="" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                            </tr>
+                                                            <?php if(!empty($recid)):
+                                                                $query = $this->db->query("
+                                                                SELECT
+                                                                    `recid`,
+                                                                    `particulars`,
+                                                                    `code`,
+                                                                    `approved_budget`,
+                                                                    `r1_approved_budget`,
+                                                                    `r2_approved_budget`,
+                                                                    `r3_approved_budget`,
+                                                                    `proposed_realignment`
+                                                                FROM
+                                                                    `tbl_budget_direct_co_dt`
+                                                                WHERE 
+                                                                    `project_id` = '$recid'"
+                                                                );
+                                                                $result = $query->getResultArray();
+                                                                foreach ($result as $data):
+                                                                    $dt_id = $data['recid'];
+                                                                    $particulars = $data['particulars'];
+                                                                    $code = $data['code'];
+                                                                    $approved_budget = $data['approved_budget'];
+                                                                    $r1_approved_budget = $data['r1_approved_budget'];
+                                                                    $r2_approved_budget = $data['r2_approved_budget'];
+                                                                    $r3_approved_budget = $data['r3_approved_budget'];
+                                                                    $proposed_realignment = $data['proposed_realignment'];
+                                                            ?>
+                                                            <tr>
+                                                                <td class="text-center align-middle">
+                                                                    <div class="d-inline-flex gap-1 justify-content-center">
+                                                                        <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                            href="javascript:void(0)"
+                                                                            onclick="$(this).closest('tr').remove();">
+                                                                            <i class="ti ti-trash"></i>
+                                                                        </a>
+                                                                        <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                            href="javascript:void(0)"
+                                                                            title="Add rows above"
+                                                                            onclick="__mysys_saob_rpt_ent.my_add_budget_co_line_above(this);">
+                                                                            <i class="ti ti-plus"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:300px; height:30px;"  name="particulars" class="particulars text-center">
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center">
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" step="any" data-dtid="<?=$dt_id;?>"  name="approved_budget" class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="r1_approved_budget"  value="<?=$r1_approved_budget;?>" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled onchange="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
+                                                                </td>
+                                                            </tr>
+                                                            <?php endforeach; endif;?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <span class="ms-3 fw-bold">Indirect Cost:</span>
+                                                    <table id="budget_indirect_co_line_items" class="table-sm table-striped budgetcodata-indirect-list">
+                                                        <thead>
+                                                            <th class="text-center">
+                                                                <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetcoitem_add" href="javascript:__mysys_saob_rpt_ent.my_add_budget_indirect_co_line();"><i class="ti ti-new-section"></i></a>
+                                                            </th>
+                                                            <th class="text-center align-middle">CO - Expense Item</th>
+                                                            <th class="text-center align-middle">UACS.</th>
+                                                            <th class="text-center align-middle">Approved Budget</th>
+                                                            <th class="text-center align-middle">Revision</th>
+                                                            <th class="text-center align-middle">Revised Allotment</th>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr style="display:none;">
+                                                                <td class="text-center align-middle">
+                                                                    <div class="d-inline-flex gap-1 justify-content-center">
+                                                                        <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                            href="javascript:void(0)"
+                                                                            onclick="$(this).closest('tr').remove();">
+                                                                            <i class="ti ti-trash"></i>
+                                                                        </a>
+                                                                        <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                            href="javascript:void(0)"
+                                                                            title="Add rows above"
+                                                                            onclick="__mysys_saob_rpt_ent.my_add_budget_indirect_co_line_above(this);">
+                                                                            <i class="ti ti-plus"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="particulars"  value="" style="width:300px; height:30px;"   name="particulars" class="particulars text-center">
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center">
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="approved_budget"  value="" size="25" step="any" name="approved_budget" data-dtid=""   class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="r1_approved_budget"  value="" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
+                                                                </td>
+                                                            </tr>
+                                                            <?php if(!empty($recid)):
+                                                                $query = $this->db->query("
+                                                                SELECT
+                                                                    `recid`,
+                                                                    `particulars`,
+                                                                    `code`,
+                                                                    `approved_budget`,
+                                                                    `r1_approved_budget`,
+                                                                    `r2_approved_budget`,
+                                                                    `r3_approved_budget`,
+                                                                    `proposed_realignment`
+                                                                FROM
+                                                                    `tbl_budget_indirect_co_dt`
+                                                                WHERE 
+                                                                    `project_id` = '$recid'"
+                                                                );
+                                                                $result = $query->getResultArray();
+                                                                foreach ($result as $data):
+                                                                    $dt_id = $data['recid'];
+                                                                    $particulars = $data['particulars'];
+                                                                    $code = $data['code'];
+                                                                    $approved_budget = $data['approved_budget'];
+                                                                    $r1_approved_budget = $data['r1_approved_budget'];
+                                                                    $r2_approved_budget = $data['r2_approved_budget'];
+                                                                    $r3_approved_budget = $data['r3_approved_budget'];
+                                                                    $proposed_realignment = $data['proposed_realignment'];
+                                                            ?>
+                                                            <tr>
+                                                                <td class="text-center align-middle">
+                                                                    <div class="d-inline-flex gap-1 justify-content-center">
+                                                                        <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                            href="javascript:void(0)"
+                                                                            onclick="$(this).closest('tr').remove();">
+                                                                            <i class="ti ti-trash"></i>
+                                                                        </a>
+                                                                        <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                            href="javascript:void(0)"
+                                                                            title="Add rows above"
+                                                                            onclick="__mysys_saob_rpt_ent.my_add_budget_indirect_co_line_above(this);">
+                                                                            <i class="ti ti-plus"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:300px; height:30px;"  name="particulars" class="particulars text-center">
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center">
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" step="any" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="r1_approved_budget"  value="<?=$r1_approved_budget;?>" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled onchange="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
+                                                                </td>
+                                                            </tr>
+                                                            <?php endforeach; endif;?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <span class="fw-bolder">Total Proposed Realignment:</span>
-                                                <input type="number" id="total_proposed_combined" name="total_proposed_combined" value="" class="form-control form-control-sm text-center fw-bold" style="border-bottom: 2px solid #000;"  readonly/>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="row mb-3">
+                                        <div class="col-sm-6">
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <span class="fw-bolder">Total Approved Budget:</span>
+                                                    <input type="number" id="total_approved_combined" name="total_approved_combined" value="" class="form-control form-control-sm text-center fw-bold" style="border-bottom: 2px solid #000;"  readonly/>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <span class="fw-bolder">Total Proposed Realignment:</span>
+                                                    <input type="number" id="total_proposed_combined" name="total_proposed_combined" value="" class="form-control form-control-sm text-center fw-bold" style="border-bottom: 2px solid #000;"  readonly/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -1103,6 +891,7 @@ echo $this->mybudgetallotment->mylibzsys->memsgbox2('mybudgetallotment_print','S
 <script src="<?=base_url('assets/js/report/mysaobreport.js?v=1');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 <script>
+    __mysys_saob_rpt_ent.__saob_saving();
     $(document).on('change', '.selUacs', function() {
         var selectedCode = $(this).find('option:selected').data('uacs');
         $(this).closest('tr').find('.uacs').val(selectedCode);
