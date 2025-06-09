@@ -4,6 +4,66 @@ $this->mybudgetallotment = model('App\Models\MyBudgetAllotmentModel');
 $this->db = \Config\Database::connect();
 $recid = $this->request->getPostGet('recid');
 
+$program_title = '';
+$department = '';
+$agency = '';
+$current_year = '';
+$is_jan = '';
+$is_feb = '';
+$is_mar = '';
+$is_apr = '';
+$is_may = '';
+$is_jun = '';
+$is_jul = '';
+$is_aug = '';
+$is_sep = '';
+$is_oct = '';
+$is_nov = '';
+$is_dec = '';
+if(!empty($recid) || !is_null($recid)) { 
+
+    $query = $this->db->query("
+    SELECT
+        `program_title`,
+        `department`,
+        `agency`,
+        `current_year`,
+        `is_jan`,
+        `is_feb`,
+        `is_mar`,
+        `is_apr`,
+        `is_may`,
+        `is_jun`,
+        `is_jul`,
+        `is_aug`,
+        `is_sep`,
+        `is_oct`,
+        `is_nov`,
+        `is_dec`
+    FROM
+        `tbl_saob_hd`
+    WHERE 
+        `recid` = '$recid'"
+    );
+
+    $data = $query->getRowArray();
+    $program_title = $data['program_title'];
+    $department = $data['department'];
+    $agency = $data['agency'];
+    $current_year = $data['current_year'];
+    $is_jan = $data['is_jan'];
+    $is_feb = $data['is_feb'];
+    $is_mar = $data['is_mar'];
+    $is_apr = $data['is_apr'];
+    $is_may = $data['is_may'];
+    $is_jun = $data['is_jun'];
+    $is_jul = $data['is_jul'];
+    $is_aug = $data['is_aug'];
+    $is_sep = $data['is_sep'];
+    $is_oct = $data['is_oct'];
+    $is_nov = $data['is_nov'];
+    $is_dec = $data['is_dec'];
+}
 
 echo view('templates/myheader.php');
 ?>
@@ -56,21 +116,32 @@ echo view('templates/myheader.php');
                 </div>						
                 <div class="card-body p-0 px-4 py-2 my-2">
                     <form action="<?=site_url();?>mysaobrpt?meaction=MAIN-SAVE" method="post" class="mysaob-validation">
-                        <div class="row">
+                        <div class="row mb-2">
                             <div class="col-sm-12">
                                 <div class="row mb-2">
                                     <div class="col-sm-2">
                                         <span class="fw-bold">Program Title:</span>
                                     </div>
                                     <div class="col-sm-10">
-                                        <select name="program_title" id="program_title" class="form-select select2 form-select-sm show-tick">
-                                            <option selected value="">Choose...</option>
-                                            <?php foreach($programtitledata as $data): ?>
-                                                <option value="<?= $data['program_title'] ?>">
-                                                    <?= $data['program_title'] ?>
-                                                </option>
-                                            <?php endforeach; ?>
-                                        </select>
+                                        <?php if(!empty($recid)):?>
+                                            <select name="program_title" id="program_title" class="form-select select2 form-select-sm show-tick">
+                                                <option selected value="<?=$program_title;?>"><?=$program_title;?></option>
+                                                <?php foreach($programtitledata as $data): ?>
+                                                    <option value="<?= $data['program_title'] ?>">
+                                                        <?= $data['program_title'] ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        <?php else:?>
+                                            <select name="program_title" id="program_title" class="form-select select2 form-select-sm show-tick">
+                                                <option selected value="">Choose...</option>
+                                                <?php foreach($programtitledata as $data): ?>
+                                                    <option value="<?= $data['program_title'] ?>">
+                                                        <?= $data['program_title'] ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        <?php endif;?>
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +151,8 @@ echo view('templates/myheader.php');
                                         <span class="fw-bold">Department:</span>
                                     </div>
                                     <div class="col-sm-8">
-                                        <input type="text" id="department" name="department" value="" class="form-control form-control-sm"/>
+                                        <input type="hidden" id="recid" name="recid" value="<?=$recid;?>" class="form-control form-control-sm"/>
+                                        <input type="text" id="department" name="department" value="<?=$department;?>" class="form-control form-control-sm"/>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -88,7 +160,7 @@ echo view('templates/myheader.php');
                                         <span class="fw-bold">Agency:</span>
                                     </div>
                                     <div class="col-sm-8">
-                                        <input type="text" id="agency" name="agency" value="" class="form-control form-control-sm"/>
+                                        <input type="text" id="agency" name="agency" value="<?=$agency;?>" class="form-control form-control-sm"/>
                                     </div>
                                 </div>
                             </div>
@@ -98,10 +170,17 @@ echo view('templates/myheader.php');
                                         <span class="fw-bold">Year:</span>
                                     </div>
                                     <div class="col-sm-8">
-                                        <select name="current_year" id="current_year" class="form-select form-select-sm">
-                                            <option value="">-- Select Year --</option>
-                                            <option value="2025">2025</option>
-                                        </select>
+                                        <?php if(!empty($recid)):?>
+                                            <select name="current_year" id="current_year" class="form-select form-select-sm">
+                                                <option value="<?=$current_year;?>"><?=$current_year;?></option>
+                                                <option value="2025">2025</option>
+                                            </select>
+                                        <?php else:?>
+                                            <select name="current_year" id="current_year" class="form-select form-select-sm">
+                                                <option value="">-- Select Year --</option>
+                                                <option value="2025">2025</option>
+                                            </select>
+                                        <?php endif;?>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -111,23 +190,23 @@ echo view('templates/myheader.php');
                                     <div class="col-sm-8">
                                         <div class="d-flex gap-3">
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="is_jan">
+                                                <input class="form-check-input" type="checkbox" id="is_jan" <?= $is_jan == '1' ? 'checked disabled': '';?>>
                                                 <label class="form-check-label" for="is_jan">Jan</label>
                                             </div>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="is_feb">
+                                                <input class="form-check-input" type="checkbox" id="is_feb" <?= $is_feb == '1' ? 'checked disabled': '';?>>
                                                 <label class="form-check-label" for="is_feb">Feb</label>
                                             </div>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="is_mar">
+                                                <input class="form-check-input" type="checkbox" id="is_mar" <?= $is_mar == '1' ? 'checked disabled': '';?>>
                                                 <label class="form-check-label" for="is_mar">Mar</label>
                                             </div>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="is_apr">
+                                                <input class="form-check-input" type="checkbox" id="is_apr" <?= $is_apr == '1' ? 'checked disabled': '';?>>
                                                 <label class="form-check-label" for="is_apr">Apr</label>
                                             </div>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="is_may">
+                                                <input class="form-check-input" type="checkbox" id="is_may" <?= $is_may == '1' ? 'checked disabled': '';?>>
                                                 <label class="form-check-label" for="is_may">May</label>
                                             </div>
                                         </div>
@@ -140,23 +219,23 @@ echo view('templates/myheader.php');
                                     <div class="col-sm-8">
                                         <div class="d-flex gap-3">
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="is_jun">
+                                                <input class="form-check-input" type="checkbox" id="is_jun" <?= $is_jun == '1' ? 'checked': '';?>>
                                                 <label class="form-check-label" for="is_jun">Jun</label>
                                             </div>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="is_jul">
+                                                <input class="form-check-input" type="checkbox" id="is_jul" <?= $is_jul == '1' ? 'checked': '';?>>
                                                 <label class="form-check-label" for="is_jul">Jul</label>
                                             </div>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="is_aug">
+                                                <input class="form-check-input" type="checkbox" id="is_aug" <?= $is_aug == '1' ? 'checked': '';?>>
                                                 <label class="form-check-label" for="is_aug">Aug</label>
                                             </div>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="is_sep">
+                                                <input class="form-check-input" type="checkbox" id="is_sep" <?= $is_sep == '1' ? 'checked': '';?>>
                                                 <label class="form-check-label" for="is_sep">Sep</label>
                                             </div>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="is_oct">
+                                                <input class="form-check-input" type="checkbox" id="is_oct" <?= $is_oct == '1' ? 'checked': '';?>>
                                                 <label class="form-check-label" for="is_oct">Oct</label>
                                             </div>
                                         </div>
@@ -169,11 +248,11 @@ echo view('templates/myheader.php');
                                     <div class="col-sm-8">
                                         <div class="d-flex gap-3">
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="is_nov">
+                                                <input class="form-check-input" type="checkbox" id="is_nov" <?= $is_nov == '1' ? 'checked': '';?>>
                                                 <label class="form-check-label" for="is_nov">Nov</label>
                                             </div>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="is_dec">
+                                                <input class="form-check-input" type="checkbox" id="is_dec" <?= $is_dec == '1' ? 'checked': '';?>>
                                                 <label class="form-check-label" for="is_dec">Dec</label>
                                             </div>
                                         </div>
@@ -216,7 +295,7 @@ echo view('templates/myheader.php');
                                                             <th class="text-center align-middle">UACS.</th>
                                                             <th class="text-center align-middle">Approved Budget</th>
                                                             <th class="text-center align-middle">Revision</th>
-                                                            <th class="text-center align-middle">Revised Allotment</th>
+                                                            <th class="text-center align-middle">+- Revised Allotment</th>
                                                         </thead>
                                                         <tbody>
                                                             <tr style="display:none;">
@@ -262,7 +341,77 @@ echo view('templates/myheader.php');
                                                                     <input type="number" id="proposed_revision"  value="" size="25" step="any" name="proposed_revision" data-dtid="" class="proposed_revision text-center" disabled/>
                                                                 </td>
                                                             </tr>
-
+                                                            <?php if(!empty($recid)):
+                                                                $query = $this->db->query("
+                                                                SELECT
+                                                                    `recid`,
+                                                                    `expense_item`,
+                                                                    `particulars`,
+                                                                    `code`,
+                                                                    `approved_budget`,
+                                                                    `revision`,
+                                                                    `proposed_revision`,
+                                                                    `january_revision`
+                                                                FROM
+                                                                    `tbl_saob_direct_ps_dt`
+                                                                WHERE 
+                                                                    `project_id` = '$recid'"
+                                                                );
+                                                                $result = $query->getResultArray();
+                                                                foreach ($result as $data):
+                                                                    $dt_id = $data['recid'];
+                                                                    $expense_item = $data['expense_item'];
+                                                                    $particulars = $data['particulars'];
+                                                                    $code = $data['code'];
+                                                                    $approved_budget = $data['approved_budget'];
+                                                                    $revision = $data['revision'];
+                                                                    $proposed_revision = $data['proposed_revision'];
+                                                                    $january_revision = $data['january_revision'];
+                                                            ?>
+                                                            <tr>
+                                                                <td class="text-center align-middle">
+                                                                    <div class="d-inline-flex gap-1 justify-content-center">
+                                                                        <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                            href="javascript:void(0)"
+                                                                            onclick="$(this).closest('tr').remove();">
+                                                                            <i class="ti ti-trash"></i>
+                                                                        </a>
+                                                                        <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                            href="javascript:void(0)"
+                                                                            title="Add rows above"
+                                                                            onclick="__mysys_saob_rpt_ent.my_add_budget_line_above(this);">
+                                                                            <i class="ti ti-plus"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
+                                                                        <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
+                                                                        <?php foreach($psuacsdata as $data){
+                                                                            $sub_object_code = $data['sub_object_code'];
+                                                                            $uacs_code = $data['uacs_code'];
+                                                                        ?>
+                                                                            <option value="<?=$sub_object_code?>"  data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
+                                                                        <?php }?>
+                                                                    </select>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="approved_budget"  value="<?= $is_jan == '1' ? $january_revision : $approved_budget;?>" size="25" step="any" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="revision"  value="<?=$revision;?>" size="25" step="any" name="revision" data-dtid="" class="revision text-center" disabled onchange="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="proposed_revision"  value="" size="25" step="any" name="proposed_revision" data-dtid="" class="proposed_revision text-center" disabled/>
+                                                                </td>
+                                                            </tr>
+                                                            <?php endforeach; endif;?>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -279,7 +428,7 @@ echo view('templates/myheader.php');
                                                             <th class="text-center align-middle">UACS.</th>
                                                             <th class="text-center align-middle">Approved Budget</th>
                                                             <th class="text-center align-middle">Revision</th>
-                                                            <th class="text-center align-middle">Revised Allotment</th>
+                                                            <th class="text-center align-middle">+- Revised Allotment</th>
                                                         </thead>
                                                         <tbody>
                                                             <tr style="display:none;">
@@ -325,7 +474,75 @@ echo view('templates/myheader.php');
                                                                     <input type="number" id="proposed_revision"  value="" size="25" step="any" name="proposed_revision" data-dtid="" class="proposed_revision text-center" disabled/>
                                                                 </td>
                                                             </tr>
-
+                                                            <?php if(!empty($recid)):
+                                                                $query = $this->db->query("
+                                                                SELECT
+                                                                    `recid`,
+                                                                    `expense_item`,
+                                                                    `particulars`,
+                                                                    `code`,
+                                                                    `approved_budget`,
+                                                                    `revision`,
+                                                                    `proposed_revision`
+                                                                FROM
+                                                                    `tbl_saob_indirect_ps_dt`
+                                                                WHERE 
+                                                                    `project_id` = '$recid'"
+                                                                );
+                                                                $result = $query->getResultArray();
+                                                                foreach ($result as $data):
+                                                                    $dt_id = $data['recid'];
+                                                                    $expense_item = $data['expense_item'];
+                                                                    $particulars = $data['particulars'];
+                                                                    $code = $data['code'];
+                                                                    $approved_budget = $data['approved_budget'];
+                                                                    $revision = $data['revision'];
+                                                                    $proposed_revision = $data['proposed_revision'];
+                                                            ?>
+                                                            <tr>
+                                                                <td class="text-center align-middle">
+                                                                    <div class="d-inline-flex gap-1 justify-content-center">
+                                                                        <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                            href="javascript:void(0)"
+                                                                            onclick="$(this).closest('tr').remove();">
+                                                                            <i class="ti ti-trash"></i>
+                                                                        </a>
+                                                                        <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                            href="javascript:void(0)"
+                                                                            title="Add rows above"
+                                                                            onclick="__mysys_saob_rpt_ent.my_add_budget_indirect_line_above(this);">
+                                                                            <i class="ti ti-plus"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
+                                                                        <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
+                                                                        <?php foreach($psuacsdata as $data){
+                                                                            $sub_object_code = $data['sub_object_code'];
+                                                                            $uacs_code = $data['uacs_code'];
+                                                                        ?>
+                                                                            <option value="<?=$sub_object_code?>"  data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
+                                                                        <?php }?>
+                                                                    </select>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" step="any" data-dtid="<?=$dt_id;?>"  name="approved_budget" class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="revision"  value="<?=$revision;?>" size="25" step="any" name="revision" data-dtid="" class="revision text-center" disabled onchange="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="proposed_revision"  value="<?=$proposed_revision;?>" size="25" step="any" name="proposed_revision" data-dtid="" class="proposed_revision text-center" disabled/>
+                                                                </td>
+                                                            </tr>
+                                                            <?php endforeach; endif;?>
                                                         </tbody>
                                                     </table>                  
                                                 </div>
@@ -782,6 +999,13 @@ echo view('templates/myheader.php');
                                 </div>
                             </div>
                         </div>
+                        <div class="row mb-2">  
+                            <div class="col-sm-12 text-end">
+                                <button type="submit" id="submitBtn" class="btn bg-<?= empty($recid) ? 'success' : 'info' ?>-subtle text-<?= empty($recid) ? 'success' : 'info' ?> btn-sm"><i class="ti ti-brand-doctrine mt-1 fs-4 me-1"></i>
+                                    <?= empty($recid) ? 'Save' : 'Update' ?>
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -892,6 +1116,73 @@ echo $this->mybudgetallotment->mylibzsys->memsgbox2('mybudgetallotment_print','S
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 <script>
     __mysys_saob_rpt_ent.__saob_saving();
+    __mysys_saob_rpt_ent.__combined_totals();
+        $(document).ready(function () {
+        $('#datatablesSimple').DataTable({
+            pageLength: 5,
+            lengthChange: false,
+            order: [[4, 'desc']],
+            language: {
+            search: "Search:"
+            }
+        });
+
+        $('.revision').prop('disabled', true);
+
+        // Toggle all based on the checkbox
+        $('#is_jan').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_feb').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_mar').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_apr').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_may').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_jun').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_jul').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_aug').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_sep').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_oct').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_nov').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_dec').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        
+
+
+    });
+
     $(document).on('change', '.selUacs', function() {
         var selectedCode = $(this).find('option:selected').data('uacs');
         $(this).closest('tr').find('.uacs').val(selectedCode);

@@ -26,6 +26,10 @@ class MySaobReport extends BaseController
 				return view('report/saob-pdf');
 				break;
 
+            case 'MAIN-SAVE': 
+                $this->mysaob->saob_save();
+                return redirect()->to('mysaobrpt?meaction=MAIN');
+                break;
 
             //  case 'MAIN-APPROVE': 
             //     $this->mysaob->budget_approve();

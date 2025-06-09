@@ -220,7 +220,7 @@ $query = $this->db->query("
 SELECT
     a.`particulars`,
     a.`approved_budget`,
-    (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars` LIMIT 1) object_code,
+    (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = a.`code` LIMIT 1) object_code,
     a.`expense_item`,
     r1_approved_budget,
     r2_approved_budget,
@@ -319,7 +319,7 @@ $query = $this->db->query("
 SELECT
     a.`particulars`,
     a.`expense_item`,
-    (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = a.`particulars` LIMIT 1) object_code,
+    (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = a.`code` LIMIT 1) object_code,
     a.`approved_budget`,
      r1_approved_budget,
      r2_approved_budget,
@@ -455,7 +455,7 @@ $query = $this->db->query("
     SELECT
         b.`particulars`,
         b.`approved_budget`,
-        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars` LIMIT 1) object_code,
+        (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code` LIMIT 1) object_code,
         b.`expense_item`,
         r1_approved_budget,
         r2_approved_budget,
@@ -560,7 +560,7 @@ $query = $this->db->query("
     SELECT
         b.`particulars`,
         b.`approved_budget`,
-        (SELECT `object_code` FROM mst_uacs WHERE `sub_object_code` = b.`particulars` LIMIT 1) object_code,
+        (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code` LIMIT 1) object_code,
         b.`expense_item`,
         r1_approved_budget,
         r2_approved_budget,

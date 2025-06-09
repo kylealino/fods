@@ -2,8 +2,6 @@ var __mysys_saob_rpt_ent = new __mysys_saob_rpt_ent();
 function __mysys_saob_rpt_ent() {  
 	const mesiteurl = $('#__siteurl').attr('data-mesiteurl');
 
-
-	
 	this.my_add_budget_line = function () {
 		try {
 			// Get the total number of rows, excluding the footer row
@@ -73,7 +71,7 @@ function __mysys_saob_rpt_ent() {
 			jQuery(templateRow).find('input[type=text]').eq(0).val('').attr('id', 'col1' + mid);
 			jQuery(templateRow).find('input[type=text]').eq(1).val('').attr('id', 'col2' + mid);
 			jQuery(templateRow).find('input[type=number]').each(function (i) {
-				jQuery(this).val('').attr('id', 'col' + (3 + i) + mid).attr('data-dtid', '');
+				jQuery(this).val('').attr('id', 'col' + (2 + i) + mid).attr('data-dtid', '');
 			});
 
 			// Insert above the clicked row
@@ -157,7 +155,7 @@ function __mysys_saob_rpt_ent() {
 			jQuery(templateRow).find('input[type=text]').eq(0).val('').attr('id', 'col1' + mid);
 			jQuery(templateRow).find('input[type=text]').eq(1).val('').attr('id', 'col2' + mid);
 			jQuery(templateRow).find('input[type=number]').each(function (i) {
-				jQuery(this).val('').attr('id', 'col' + (3 + i) + mid).attr('data-dtid', '');
+				jQuery(this).val('').attr('id', 'col' + (2 + i) + mid).attr('data-dtid', '');
 			});
 
 			// Insert above the clicked row
@@ -536,6 +534,7 @@ function __mysys_saob_rpt_ent() {
 					event.preventDefault();
 					event.stopPropagation();
 
+					var recid = document.getElementById("recid");
 					var program_title = document.getElementById("program_title");
 					var department = document.getElementById("department");
 					var agency = document.getElementById("agency");
@@ -554,6 +553,9 @@ function __mysys_saob_rpt_ent() {
 					let is_oct = document.getElementById("is_oct").checked ? 1 : 0;
 					let is_nov = document.getElementById("is_nov").checked ? 1 : 0;
 					let is_dec = document.getElementById("is_dec").checked ? 1 : 0;
+
+					var total_approved_combined = document.getElementById("total_approved_combined");
+					var total_proposed_combined = document.getElementById("total_proposed_combined");
 
 					// Prepare PS data DIRECT --
 					var rowcount1 = jQuery('.budgetdata-list tr').length;
@@ -593,6 +595,7 @@ function __mysys_saob_rpt_ent() {
 					}
 
 					var mparam = { 
+						recid: recid.value,
 						program_title: program_title.value,
 						department: department.value,
 						agency: agency.value,
@@ -611,6 +614,8 @@ function __mysys_saob_rpt_ent() {
 						is_oct: is_oct,
 						is_nov: is_nov,
 						is_dec: is_dec,
+						total_approved_combined:total_approved_combined.value,
+						total_proposed_combined: total_proposed_combined.value,
 						meaction: 'MAIN-SAVE'
 					}
 
