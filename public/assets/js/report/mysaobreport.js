@@ -21,8 +21,6 @@ function __mysys_saob_rpt_ent() {
 			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=number]').eq(1).attr('id', 'col4' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=number]').eq(2).attr('id', 'col5' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=number]').eq(3).attr('id', 'col6' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=number]').eq(4).attr('id', 'col7' + mid); // ID for date field
 			// Now reset only the debit and credit fields (input[type=number])
 			
 			jQuery(clonedRow).find('select').eq(0).val('');
@@ -31,8 +29,6 @@ function __mysys_saob_rpt_ent() {
 			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
 			jQuery(clonedRow).find('input[type=number]').eq(1).val('');
 			jQuery(clonedRow).find('input[type=number]').eq(2).val('');
-			jQuery(clonedRow).find('input[type=number]').eq(3).val('');
-			jQuery(clonedRow).find('input[type=number]').eq(4).val('');
 	
 			// Insert the cloned row before the last row (footer row)
 			jQuery('#budget_line_items tbody').append(clonedRow);
@@ -105,8 +101,6 @@ function __mysys_saob_rpt_ent() {
 			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=number]').eq(1).attr('id', 'col4' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=number]').eq(2).attr('id', 'col5' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=number]').eq(3).attr('id', 'col6' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=number]').eq(4).attr('id', 'col7' + mid); // ID for date field
 			// Now reset only the debit and credit fields (input[type=number])
 			
 			jQuery(clonedRow).find('select').eq(0).val('');
@@ -115,8 +109,7 @@ function __mysys_saob_rpt_ent() {
 			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
 			jQuery(clonedRow).find('input[type=number]').eq(1).val('');
 			jQuery(clonedRow).find('input[type=number]').eq(2).val('');
-			jQuery(clonedRow).find('input[type=number]').eq(3).val('');
-			jQuery(clonedRow).find('input[type=number]').eq(4).val('');
+
 	
 			// Insert the cloned row before the last row (footer row)
 			jQuery('#budget_indirect_line_items tbody').append(clonedRow);
@@ -189,8 +182,6 @@ function __mysys_saob_rpt_ent() {
 			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=number]').eq(1).attr('id', 'col4' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=number]').eq(2).attr('id', 'col5' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=number]').eq(3).attr('id', 'col6' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=number]').eq(4).attr('id', 'col7' + mid); // ID for date field
 			// Now reset only the debit and credit fields (input[type=number])
 			
 			jQuery(clonedRow).find('select').eq(0).val('');
@@ -199,9 +190,6 @@ function __mysys_saob_rpt_ent() {
 			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
 			jQuery(clonedRow).find('input[type=number]').eq(1).val('');
 			jQuery(clonedRow).find('input[type=number]').eq(2).val('');
-			jQuery(clonedRow).find('input[type=number]').eq(3).val('');
-			jQuery(clonedRow).find('input[type=number]').eq(4).val('');
-
 	
 			// Insert the cloned row before the last row (footer row)
 			jQuery('#budget_mooe_line_items tbody').append(clonedRow);
@@ -240,7 +228,7 @@ function __mysys_saob_rpt_ent() {
 			jQuery(templateRow).find('input[type=text]').eq(0).val('').attr('id', 'col1' + mid);
 			jQuery(templateRow).find('input[type=text]').eq(1).val('').attr('id', 'col2' + mid);
 			jQuery(templateRow).find('input[type=number]').each(function (i) {
-				jQuery(this).val('').attr('id', 'col' + (3 + i) + mid).attr('data-dtid', '');
+				jQuery(this).val('').attr('id', 'col' + (2 + i) + mid).attr('data-dtid', '');
 			});
 
 			// Insert above the clicked row
@@ -274,8 +262,6 @@ function __mysys_saob_rpt_ent() {
 			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=number]').eq(1).attr('id', 'col4' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=number]').eq(2).attr('id', 'col5' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=number]').eq(3).attr('id', 'col6' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=number]').eq(4).attr('id', 'col7' + mid); // ID for date field
 			// Now reset only the debit and credit fields (input[type=number])
 			
 			jQuery(clonedRow).find('select').eq(0).val('');
@@ -284,8 +270,7 @@ function __mysys_saob_rpt_ent() {
 			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
 			jQuery(clonedRow).find('input[type=number]').eq(1).val('');
 			jQuery(clonedRow).find('input[type=number]').eq(2).val('');
-			jQuery(clonedRow).find('input[type=number]').eq(3).val('');
-			jQuery(clonedRow).find('input[type=number]').eq(4).val('');
+
 
 	
 			// Insert the cloned row before the last row (footer row)
@@ -325,7 +310,7 @@ function __mysys_saob_rpt_ent() {
 			jQuery(templateRow).find('input[type=text]').eq(0).val('').attr('id', 'col1' + mid);
 			jQuery(templateRow).find('input[type=text]').eq(1).val('').attr('id', 'col2' + mid);
 			jQuery(templateRow).find('input[type=number]').each(function (i) {
-				jQuery(this).val('').attr('id', 'col' + (3 + i) + mid).attr('data-dtid', '');
+				jQuery(this).val('').attr('id', 'col' + (2 + i) + mid).attr('data-dtid', '');
 			});
 
 			// Insert above the clicked row
@@ -358,8 +343,6 @@ function __mysys_saob_rpt_ent() {
 			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=number]').eq(1).attr('id', 'col4' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=number]').eq(2).attr('id', 'col5' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=number]').eq(3).attr('id', 'col6' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=number]').eq(4).attr('id', 'col7' + mid); // ID for date field
 
 			// Now reset only the debit and credit fields (input[type=number])
 			
@@ -368,8 +351,6 @@ function __mysys_saob_rpt_ent() {
 			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
 			jQuery(clonedRow).find('input[type=number]').eq(1).val('');
 			jQuery(clonedRow).find('input[type=number]').eq(2).val('');
-			jQuery(clonedRow).find('input[type=number]').eq(3).val('');
-			jQuery(clonedRow).find('input[type=number]').eq(4).val('');
 	
 			// Insert the cloned row before the last row (footer row)
 			jQuery('#budget_co_line_items tbody').append(clonedRow);
@@ -407,7 +388,7 @@ function __mysys_saob_rpt_ent() {
 			jQuery(templateRow).find('input[type=text]').eq(0).val('').attr('id', 'col1' + mid);
 			jQuery(templateRow).find('input[type=text]').eq(1).val('').attr('id', 'col2' + mid);
 			jQuery(templateRow).find('input[type=number]').each(function (i) {
-				jQuery(this).val('').attr('id', 'col' + (3 + i) + mid).attr('data-dtid', '');
+				jQuery(this).val('').attr('id', 'col' + (2 + i) + mid).attr('data-dtid', '');
 			});
 
 			// Insert above the clicked row
@@ -440,8 +421,6 @@ function __mysys_saob_rpt_ent() {
 			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=number]').eq(1).attr('id', 'col4' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=number]').eq(2).attr('id', 'col5' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=number]').eq(3).attr('id', 'col6' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=number]').eq(4).attr('id', 'col7' + mid); // ID for date field
 
 			// Now reset only the debit and credit fields (input[type=number])
 			
@@ -450,8 +429,6 @@ function __mysys_saob_rpt_ent() {
 			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
 			jQuery(clonedRow).find('input[type=number]').eq(1).val('');
 			jQuery(clonedRow).find('input[type=number]').eq(2).val('');
-			jQuery(clonedRow).find('input[type=number]').eq(3).val('');
-			jQuery(clonedRow).find('input[type=number]').eq(4).val('');
 
 	
 			// Insert the cloned row before the last row (footer row)
@@ -490,7 +467,7 @@ function __mysys_saob_rpt_ent() {
 			jQuery(templateRow).find('input[type=text]').eq(0).val('').attr('id', 'col1' + mid);
 			jQuery(templateRow).find('input[type=text]').eq(1).val('').attr('id', 'col2' + mid);
 			jQuery(templateRow).find('input[type=number]').each(function (i) {
-				jQuery(this).val('').attr('id', 'col' + (3 + i) + mid).attr('data-dtid', '');
+				jQuery(this).val('').attr('id', 'col' + (2 + i) + mid).attr('data-dtid', '');
 			});
 
 			// Insert above the clicked row
@@ -535,6 +512,7 @@ function __mysys_saob_rpt_ent() {
 					event.stopPropagation();
 
 					var recid = document.getElementById("recid");
+					var trxno = document.getElementById("trxno");
 					var program_title = document.getElementById("program_title");
 					var department = document.getElementById("department");
 					var agency = document.getElementById("agency");
@@ -594,14 +572,93 @@ function __mysys_saob_rpt_ent() {
 						budgetdtindirectdata.push(psindirectdata);
 					}
 
+					// Prepare MOEE data
+					var rowcount2 = jQuery('.budgetmooedata-list tr').length;
+					var budgetmooedtdata = [];
+					var mooedata = '';
+	
+					for (var aa = 2; aa < rowcount2; aa++) {
+						var clonedRow = jQuery('.budgetmooedata-list tr:eq(' + aa + ')'); 
+						var expense_item = clonedRow.find('input[type=text]').eq(0).val();
+						var particulars = clonedRow.find('select.selUacs').val();
+						var uacs = clonedRow.find('input[type=text]').eq(1).val();
+						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
+						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
+						var revision = clonedRow.find('input[type=number]').eq(1).val();  
+						var proposed_revision = clonedRow.find('input[type=number]').eq(2).val();
+						
+						mooedata = expense_item + 'x|x' + particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + revision + 'x|x' + proposed_revision;
+						budgetmooedtdata.push(mooedata);
+					}
+
+					// Prepare MOEE data
+					var rowcount22 = jQuery('.budgetmooedata-indirect-list tr').length;
+					var budgetmooeindirectdtdata = [];
+					var mooeindirectdata = '';
+	
+					for (var aa = 2; aa < rowcount22; aa++) {
+						var clonedRow = jQuery('.budgetmooedata-indirect-list tr:eq(' + aa + ')'); 
+						var expense_item = clonedRow.find('input[type=text]').eq(0).val();
+						var particulars = clonedRow.find('select.selUacs').val();
+						var uacs = clonedRow.find('input[type=text]').eq(1).val();
+						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
+						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
+						var revision = clonedRow.find('input[type=number]').eq(1).val();  
+						var proposed_revision = clonedRow.find('input[type=number]').eq(2).val();
+						
+						mooeindirectdata = expense_item + 'x|x' + particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + revision + 'x|x' + proposed_revision;
+						budgetmooeindirectdtdata.push(mooeindirectdata);
+					}
+
+					// Prepare CO data
+					var rowcount3 = jQuery('.budgetcodata-list tr').length;
+					var budgetcodtdata = [];
+					var codata = '';
+	
+					for (var aa = 2; aa < rowcount3; aa++) {
+						var clonedRow = jQuery('.budgetcodata-list tr:eq(' + aa + ')'); 
+						var expense_item = clonedRow.find('input[type=text]').eq(0).val();
+						var uacs = clonedRow.find('input[type=text]').eq(1).val();
+						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
+						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
+						var revision = clonedRow.find('input[type=number]').eq(1).val();  
+						var proposed_revision = clonedRow.find('input[type=number]').eq(2).val();  
+						
+						codata = expense_item + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + revision + 'x|x' + proposed_revision;
+						budgetcodtdata.push(codata);
+					}
+
+					// Prepare CO data
+					var rowcount33 = jQuery('.budgetcodata-indirect-list tr').length;
+					var budgetindirectcodtdata = [];
+					var coindirectdata = '';
+	
+					for (var aa = 2; aa < rowcount33; aa++) {
+						var clonedRow = jQuery('.budgetcodata-indirect-list tr:eq(' + aa + ')'); 
+						var expense_item = clonedRow.find('input[type=text]').eq(0).val();
+						var uacs = clonedRow.find('input[type=text]').eq(1).val();
+						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
+						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
+						var revision = clonedRow.find('input[type=number]').eq(1).val();  
+						var proposed_revision = clonedRow.find('input[type=number]').eq(2).val();  		
+						
+						coindirectdata = expense_item + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + revision + 'x|x' + proposed_revision;
+						budgetindirectcodtdata.push(coindirectdata);
+					}
+
 					var mparam = { 
 						recid: recid.value,
+						trxno: trxno.value,
 						program_title: program_title.value,
 						department: department.value,
 						agency: agency.value,
 						current_year: current_year.value,
 						budgetdtdata: budgetdtdata,
 						budgetdtindirectdata: budgetdtindirectdata,
+						budgetmooedtdata: budgetmooedtdata,
+						budgetmooeindirectdtdata: budgetmooeindirectdtdata,
+						budgetcodtdata: budgetcodtdata,
+						budgetindirectcodtdata: budgetindirectcodtdata,
 						is_jan: is_jan,
 						is_feb: is_feb,
 						is_mar: is_mar,
@@ -987,5 +1044,88 @@ function __mysys_saob_rpt_ent() {
 		// Hide the placeholder
 		placeholder.style.display = "none";
 	};
+
+	$(document).ready(function () {
+        $('#datatablesSimple').DataTable({
+            pageLength: 5,
+            lengthChange: false,
+            order: [[2, 'desc']],
+            language: {
+            search: "Search:"
+            }
+        });
+
+        $('.revision').prop('disabled', true);
+
+        // Toggle all based on the checkbox
+        $('#is_jan').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_feb').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_mar').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_apr').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_may').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_jun').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_jul').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_aug').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_sep').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_oct').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_nov').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        $('#is_dec').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.revision').prop('disabled', !isChecked);
+        });
+        
+    });
+
+    $(document).on('change', '.selUacs', function() {
+        var selectedCode = $(this).find('option:selected').data('uacs');
+        $(this).closest('tr').find('.uacs').val(selectedCode);
+    });
+
+    $(document).on('change', '#selProjectTitle', function() {
+        var selected = $(this).find('option:selected');
+
+        // Extract data from selected option
+        var fund = selected.data('fund') || '';
+        var division = selected.data('division') || '';
+        var responsibility = selected.data('responsibility') || '';
+
+        // Set the values into inputs
+        $('#fund_cluster_code').val(fund);
+        $('#division_name').val(division);
+        $('#responsibility_code').val(responsibility);
+    });
 
 }; //end main

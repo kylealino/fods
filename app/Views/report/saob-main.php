@@ -6,6 +6,7 @@ $recid = $this->request->getPostGet('recid');
 
 $program_title = '';
 $department = '';
+$trxno = '';
 $agency = '';
 $current_year = '';
 $is_jan = '';
@@ -24,6 +25,7 @@ if(!empty($recid) || !is_null($recid)) {
 
     $query = $this->db->query("
     SELECT
+        `trxno`,
         `program_title`,
         `department`,
         `agency`,
@@ -47,6 +49,7 @@ if(!empty($recid) || !is_null($recid)) {
     );
 
     $data = $query->getRowArray();
+    $trxno = $data['trxno'];
     $program_title = $data['program_title'];
     $department = $data['department'];
     $agency = $data['agency'];
@@ -152,6 +155,7 @@ echo view('templates/myheader.php');
                                     </div>
                                     <div class="col-sm-8">
                                         <input type="hidden" id="recid" name="recid" value="<?=$recid;?>" class="form-control form-control-sm"/>
+                                        <input type="hidden" id="trxno" name="trxno" value="<?=$trxno;?>" class="form-control form-control-sm"/>
                                         <input type="text" id="department" name="department" value="<?=$department;?>" class="form-control form-control-sm"/>
                                     </div>
                                 </div>
@@ -607,10 +611,10 @@ echo view('templates/myheader.php');
                                                                     <input type="number" id="approved_budget"  value="" size="25" step="any" name="approved_budget" data-dtid="" class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
-                                                                    <input type="number" id="r1_approved_budget"  value="" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                    <input type="number" id="revision"  value="" size="25" step="any" name="revision" data-dtid="" class="revision text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
-                                                                    <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
+                                                                    <input type="number" id="proposed_revision"  value="" size="25" step="any" name="proposed_revision" data-dtid="" class="proposed_revision text-center" disabled/>
                                                                 </td>
                                                             </tr>
                                                             <?php if(!empty($recid)):
@@ -621,12 +625,10 @@ echo view('templates/myheader.php');
                                                                     `particulars`,
                                                                     `code`,
                                                                     `approved_budget`,
-                                                                    `r1_approved_budget`,
-                                                                    `r2_approved_budget`,
-                                                                    `r3_approved_budget`,
-                                                                    `proposed_realignment`
+                                                                    `revision`,
+                                                                    `proposed_revision`
                                                                 FROM
-                                                                    `tbl_budget_direct_mooe_dt`
+                                                                    `tbl_saob_direct_mooe_dt`
                                                                 WHERE 
                                                                     `project_id` = '$recid'"
                                                                 );
@@ -637,10 +639,8 @@ echo view('templates/myheader.php');
                                                                     $particulars = $data['particulars'];
                                                                     $code = $data['code'];
                                                                     $approved_budget = $data['approved_budget'];
-                                                                    $r1_approved_budget = $data['r1_approved_budget'];
-                                                                    $r2_approved_budget = $data['r2_approved_budget'];
-                                                                    $r3_approved_budget = $data['r3_approved_budget'];
-                                                                    $proposed_realignment = $data['proposed_realignment'];
+                                                                    $revision = $data['revision'];
+                                                                    $proposed_revision = $data['proposed_revision'];
                                                             ?>
                                                             <tr>
                                                                 <td class="text-center align-middle">
@@ -679,10 +679,10 @@ echo view('templates/myheader.php');
                                                                     <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" step="any" name="approved_budget" data-dtid="<?=$dt_id;?>"  class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
-                                                                    <input type="number" id="r1_approved_budget"  value="<?=$r1_approved_budget;?>" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                    <input type="number" id="revision"  value="<?=$revision;?>" size="25" step="any" name="revision" data-dtid="" class="revision text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
-                                                                    <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
+                                                                    <input type="number" id="proposed_revision"  value="" size="25" step="any" name="proposed_revision" data-dtid="" class="proposed_revision text-center" disabled/>
                                                                 </td>
                                                             </tr>
                                                             <?php endforeach; endif;?>
@@ -747,6 +747,75 @@ echo view('templates/myheader.php');
                                                                     <input type="number" id="proposed_revision"  value="" size="25" step="any" name="proposed_revision" data-dtid="" class="proposed_revision text-center" disabled/>
                                                                 </td>
                                                             </tr>
+                                                            <?php if(!empty($recid)):
+                                                                $query = $this->db->query("
+                                                                SELECT
+                                                                    `recid`,
+                                                                    `expense_item`,
+                                                                    `particulars`,
+                                                                    `code`,
+                                                                    `approved_budget`,
+                                                                    `revision`,
+                                                                    `proposed_revision`
+                                                                FROM
+                                                                    `tbl_saob_indirect_mooe_dt`
+                                                                WHERE 
+                                                                    `project_id` = '$recid'"
+                                                                );
+                                                                $result = $query->getResultArray();
+                                                                foreach ($result as $data):
+                                                                    $dt_id = $data['recid'];
+                                                                    $expense_item = $data['expense_item'];
+                                                                    $particulars = $data['particulars'];
+                                                                    $code = $data['code'];
+                                                                    $approved_budget = $data['approved_budget'];
+                                                                    $revision = $data['revision'];
+                                                                    $proposed_revision = $data['proposed_revision'];
+                                                            ?>
+                                                            <tr>
+                                                                <td class="text-center align-middle">
+                                                                    <div class="d-inline-flex gap-1 justify-content-center">
+                                                                        <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                            href="javascript:void(0)"
+                                                                            onclick="$(this).closest('tr').remove();">
+                                                                            <i class="ti ti-trash"></i>
+                                                                        </a>
+                                                                        <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                            href="javascript:void(0)"
+                                                                            title="Add rows above"
+                                                                            onclick="__mysys_saob_rpt_ent.my_add_budget_indirect_mooe_line_above(this);">
+                                                                            <i class="ti ti-plus"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
+                                                                        <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
+                                                                        <?php foreach($mooeuacsdata as $data){
+                                                                            $sub_object_code = $data['sub_object_code'];
+                                                                            $uacs_code = $data['uacs_code'];
+                                                                        ?>
+                                                                            <option value="<?=$sub_object_code?>"  data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
+                                                                        <?php }?>
+                                                                    </select>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" step="any" name="approved_budget" data-dtid="<?=$dt_id;?>" class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__indirect_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="revision"  value="<?=$revision;?>" size="25" step="any" name="revision" data-dtid="" class="revision text-center" onchange="__mysys_saob_rpt_ent.__indirect_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="proposed_revision"  value="<?=$proposed_revision;?>" size="25" step="any" name="proposed_revision" data-dtid="" class="proposed_revision text-center" disabled/>
+                                                                </td>
+                                                            </tr>
+                                                            <?php endforeach; endif;?>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -769,7 +838,7 @@ echo view('templates/myheader.php');
                                                             <th class="text-center align-middle">UACS.</th>
                                                             <th class="text-center align-middle">Approved Budget</th>
                                                             <th class="text-center align-middle">Revision</th>
-                                                            <th class="text-center align-middle">Revised Allotment</th>
+                                                            <th class="text-center align-middle">+- Revised Allotment</th>
                                                         </thead>
                                                         <tbody>
                                                             <tr style="display:none;">
@@ -795,10 +864,13 @@ echo view('templates/myheader.php');
                                                                     <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center">
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
-                                                                    <input type="number" id="approved_budget"  value="" size="25" step="any" name="approved_budget" data-dtid=""   class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                    <input type="number" id="approved_budget"  value="" size="25" step="any" data-dtid=""  name="approved_budget" class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
-                                                                    <input type="number" id="r1_approved_budget"  value="" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                    <input type="number" id="revision"  value="" size="25" step="any" name="revision" data-dtid=""   class="revision text-center" onchange="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="proposed_revision"  value="" size="25" step="any" name="proposed_revision" data-dtid="" class="proposed_revision text-center" disabled/>
                                                                 </td>
                                                             </tr>
                                                             <?php if(!empty($recid)):
@@ -808,12 +880,10 @@ echo view('templates/myheader.php');
                                                                     `particulars`,
                                                                     `code`,
                                                                     `approved_budget`,
-                                                                    `r1_approved_budget`,
-                                                                    `r2_approved_budget`,
-                                                                    `r3_approved_budget`,
-                                                                    `proposed_realignment`
+                                                                    `revision`,
+                                                                    `proposed_revision`
                                                                 FROM
-                                                                    `tbl_budget_direct_co_dt`
+                                                                    `tbl_saob_direct_co_dt`
                                                                 WHERE 
                                                                     `project_id` = '$recid'"
                                                                 );
@@ -823,10 +893,8 @@ echo view('templates/myheader.php');
                                                                     $particulars = $data['particulars'];
                                                                     $code = $data['code'];
                                                                     $approved_budget = $data['approved_budget'];
-                                                                    $r1_approved_budget = $data['r1_approved_budget'];
-                                                                    $r2_approved_budget = $data['r2_approved_budget'];
-                                                                    $r3_approved_budget = $data['r3_approved_budget'];
-                                                                    $proposed_realignment = $data['proposed_realignment'];
+                                                                    $revision = $data['revision'];
+                                                                    $proposed_revision = $data['proposed_revision'];
                                                             ?>
                                                             <tr>
                                                                 <td class="text-center align-middle">
@@ -854,10 +922,10 @@ echo view('templates/myheader.php');
                                                                     <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" step="any" data-dtid="<?=$dt_id;?>"  name="approved_budget" class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
-                                                                    <input type="number" id="r1_approved_budget"  value="<?=$r1_approved_budget;?>" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled onchange="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                    <input type="number" id="revision"  value="<?=$revision;?>" size="25" step="any" name="revision" data-dtid="" class="revision text-center" disabled onchange="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
-                                                                    <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
+                                                                    <input type="number" id="proposed_revision"  value="" size="25" step="any" name="proposed_revision" data-dtid="" class="proposed_revision text-center" disabled/>
                                                                 </td>
                                                             </tr>
                                                             <?php endforeach; endif;?>
@@ -875,7 +943,7 @@ echo view('templates/myheader.php');
                                                             <th class="text-center align-middle">UACS.</th>
                                                             <th class="text-center align-middle">Approved Budget</th>
                                                             <th class="text-center align-middle">Revision</th>
-                                                            <th class="text-center align-middle">Revised Allotment</th>
+                                                            <th class="text-center align-middle">+- Revised Allotment</th>
                                                         </thead>
                                                         <tbody>
                                                             <tr style="display:none;">
@@ -904,10 +972,10 @@ echo view('templates/myheader.php');
                                                                     <input type="number" id="approved_budget"  value="" size="25" step="any" name="approved_budget" data-dtid=""   class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
-                                                                    <input type="number" id="r1_approved_budget"  value="" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" onchange="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                    <input type="number" id="revision"  value="" size="25" step="any" name="revision" data-dtid="" class="revision text-center" onchange="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
-                                                                    <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
+                                                                    <input type="number" id="proposed_revision"  value="" size="25" step="any" name="proposed_revision" data-dtid="" class="proposed_revision text-center" disabled/>
                                                                 </td>
                                                             </tr>
                                                             <?php if(!empty($recid)):
@@ -917,12 +985,10 @@ echo view('templates/myheader.php');
                                                                     `particulars`,
                                                                     `code`,
                                                                     `approved_budget`,
-                                                                    `r1_approved_budget`,
-                                                                    `r2_approved_budget`,
-                                                                    `r3_approved_budget`,
-                                                                    `proposed_realignment`
+                                                                    `revision`,
+                                                                    `proposed_revision`
                                                                 FROM
-                                                                    `tbl_budget_indirect_co_dt`
+                                                                    `tbl_saob_indirect_co_dt`
                                                                 WHERE 
                                                                     `project_id` = '$recid'"
                                                                 );
@@ -932,10 +998,8 @@ echo view('templates/myheader.php');
                                                                     $particulars = $data['particulars'];
                                                                     $code = $data['code'];
                                                                     $approved_budget = $data['approved_budget'];
-                                                                    $r1_approved_budget = $data['r1_approved_budget'];
-                                                                    $r2_approved_budget = $data['r2_approved_budget'];
-                                                                    $r3_approved_budget = $data['r3_approved_budget'];
-                                                                    $proposed_realignment = $data['proposed_realignment'];
+                                                                    $revision = $data['revision'];
+                                                                    $proposed_revision = $data['proposed_revision'];
                                                             ?>
                                                             <tr>
                                                                 <td class="text-center align-middle">
@@ -963,10 +1027,10 @@ echo view('templates/myheader.php');
                                                                     <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" step="any" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
-                                                                    <input type="number" id="r1_approved_budget"  value="<?=$r1_approved_budget;?>" size="25" step="any" name="r1_approved_budget" data-dtid="" class="r1_approved_budget text-center" disabled onchange="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                    <input type="number" id="revision"  value="<?=$revision;?>" size="25" step="any" name="revision" data-dtid="" class="r1_approved_budget text-center" disabled onchange="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__indirect_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
-                                                                    <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled/>
+                                                                    <input type="number" id="proposed_revision"  value="" size="25" step="any" name="proposed_revision" data-dtid="" class="proposed_revision text-center" disabled/>
                                                                 </td>
                                                             </tr>
                                                             <?php endforeach; endif;?>
@@ -1012,7 +1076,54 @@ echo view('templates/myheader.php');
         </div>
     </div>
 
-    <div class="ro mb-2">
+    <div class="row mb-2">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header bg-info p-1">
+                    <div class="row">
+                        <div class="col-sm-6 d-flex align-items-center text-start">
+                            <h6 class="mb-0 lh-base px-3 text-white fw-semibold d-flex align-items-center">
+                                <i class="ti ti-list fs-5 me-1"></i>
+                                <span class="pt-1">List</span>
+                            </h6>
+                        </div>
+                    </div>
+                </div>						
+                <div class="card-body p-0 px-4 py-2 my-2">
+                    <table id="datatablesSimple" class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Program Title</th>
+                                <th>Year</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if(!empty($saobhddata)):
+                                foreach ($saobhddata as $data):
+                                    $dt_recid = $data['recid'];
+                                    $hdtrxno = $data['trxno'];
+                                    $program_title = $data['program_title'];
+                                    $current_year = $data['current_year'];
+                            ?>
+                            <tr>
+                                <td class="text-center align-middle">
+                                    <a class="text-info nav-icon-hover" href="mysaobrpt?meaction=MAIN&recid=<?= $dt_recid ?>">
+                                        Review
+                                    </a>
+                                </td>
+                                <td class="text-center"><?=$program_title;?></td>
+                                <td class="text-center"><?=$current_year;?></td>
+                            </tr>
+                            <?php endforeach; endif;?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header bg-info p-1">
@@ -1112,95 +1223,11 @@ echo $this->mybudgetallotment->mylibzsys->memsgbox2('mybudgetallotment_print','S
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="<?=base_url('assets/js/report/mysaobreport.js?v=1');?>"></script>
+<script src="<?=base_url('assets/js/report/mysaobreport.js?v=2');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 <script>
     __mysys_saob_rpt_ent.__saob_saving();
     __mysys_saob_rpt_ent.__combined_totals();
-        $(document).ready(function () {
-        $('#datatablesSimple').DataTable({
-            pageLength: 5,
-            lengthChange: false,
-            order: [[4, 'desc']],
-            language: {
-            search: "Search:"
-            }
-        });
-
-        $('.revision').prop('disabled', true);
-
-        // Toggle all based on the checkbox
-        $('#is_jan').on('change', function () {
-            const isChecked = $(this).is(':checked');
-            $('.revision').prop('disabled', !isChecked);
-        });
-        $('#is_feb').on('change', function () {
-            const isChecked = $(this).is(':checked');
-            $('.revision').prop('disabled', !isChecked);
-        });
-        $('#is_mar').on('change', function () {
-            const isChecked = $(this).is(':checked');
-            $('.revision').prop('disabled', !isChecked);
-        });
-        $('#is_apr').on('change', function () {
-            const isChecked = $(this).is(':checked');
-            $('.revision').prop('disabled', !isChecked);
-        });
-        $('#is_may').on('change', function () {
-            const isChecked = $(this).is(':checked');
-            $('.revision').prop('disabled', !isChecked);
-        });
-        $('#is_jun').on('change', function () {
-            const isChecked = $(this).is(':checked');
-            $('.revision').prop('disabled', !isChecked);
-        });
-        $('#is_jul').on('change', function () {
-            const isChecked = $(this).is(':checked');
-            $('.revision').prop('disabled', !isChecked);
-        });
-        $('#is_aug').on('change', function () {
-            const isChecked = $(this).is(':checked');
-            $('.revision').prop('disabled', !isChecked);
-        });
-        $('#is_sep').on('change', function () {
-            const isChecked = $(this).is(':checked');
-            $('.revision').prop('disabled', !isChecked);
-        });
-        $('#is_oct').on('change', function () {
-            const isChecked = $(this).is(':checked');
-            $('.revision').prop('disabled', !isChecked);
-        });
-        $('#is_nov').on('change', function () {
-            const isChecked = $(this).is(':checked');
-            $('.revision').prop('disabled', !isChecked);
-        });
-        $('#is_dec').on('change', function () {
-            const isChecked = $(this).is(':checked');
-            $('.revision').prop('disabled', !isChecked);
-        });
-        
-
-
-    });
-
-    $(document).on('change', '.selUacs', function() {
-        var selectedCode = $(this).find('option:selected').data('uacs');
-        $(this).closest('tr').find('.uacs').val(selectedCode);
-    });
-
-    $(document).on('change', '#selProjectTitle', function() {
-        var selected = $(this).find('option:selected');
-
-        // Extract data from selected option
-        var fund = selected.data('fund') || '';
-        var division = selected.data('division') || '';
-        var responsibility = selected.data('responsibility') || '';
-
-        // Set the values into inputs
-        $('#fund_cluster_code').val(fund);
-        $('#division_name').val(division);
-        $('#responsibility_code').val(responsibility);
-    });
 </script>
 
 <?php

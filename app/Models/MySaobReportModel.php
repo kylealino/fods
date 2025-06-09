@@ -19,6 +19,7 @@ class MySaobReportModel extends Model
 
 	public function saob_save() { 
 		$recid = $this->request->getPostGet('recid');
+		$trxno = $this->request->getPostGet('trxno');
 		$program_title = $this->request->getPostGet('program_title');
 		$department = $this->request->getPostGet('department');
 		$agency = $this->request->getPostGet('agency');
@@ -43,12 +44,15 @@ class MySaobReportModel extends Model
 		
 		$budgetdtdata = $this->request->getPostGet('budgetdtdata');
 		$budgetdtindirectdata = $this->request->getPostGet('budgetdtindirectdata');
-		
-		// var_dump($budgetdtdata);
-		// die();
 
-		// $cseqn =  $this->get_ctr_budget('LIB','fods','CTRL_NO01');//TRANSACTION NO
-		// $trx = empty($trxno) ? $cseqn : $trxno;
+		$budgetmooedtdata = $this->request->getPostGet('budgetmooedtdata');
+		$budgetmooeindirectdtdata = $this->request->getPostGet('budgetmooeindirectdtdata');
+
+		$budgetcodtdata = $this->request->getPostGet('budgetcodtdata');
+		$budgetindirectcodtdata = $this->request->getPostGet('budgetindirectcodtdata');
+
+		$cseqn =  $this->get_ctr_saob('LIB','fods','CTRL_NO01');//TRANSACTION NO
+		$trx = empty($trxno) ? $cseqn : $trxno;
 
 		if (empty($program_title)) {
 			echo "
@@ -143,6 +147,7 @@ class MySaobReportModel extends Model
 			//INSERTING HD DATA
 			$query = $this->db->query("
 				INSERT INTO `tbl_saob_hd`(
+					`trxno`,
 					`program_title`,
 					`department`,
 					`agency`,
@@ -163,6 +168,7 @@ class MySaobReportModel extends Model
 					`added_by`
 				)
 				VALUES(
+					'$trx',
 					'$program_title',
 					'$department',
 					'$agency',
@@ -186,7 +192,7 @@ class MySaobReportModel extends Model
 
 			//PROJECT ID FETCHING
 			$query = $this->db->query("
-			SELECT `recid` FROM tbl_saob_hd WHERE `program_title` = '$program_title'
+			SELECT `recid` FROM tbl_saob_hd WHERE `trxno` = '$trx'
 			");
 			$rw = $query->getRowArray();
 			$project_id = $rw['recid'];
@@ -269,6 +275,161 @@ class MySaobReportModel extends Model
 					");
 				}
 			}
+
+			//INSERTING MOOE DT DATA
+			if (!empty($budgetmooedtdata)) {
+				//this is for normal saving and updating
+				for($aa = 0; $aa < count($budgetmooedtdata); $aa++){
+					$medata = explode("x|x",$budgetmooedtdata[$aa]);
+					$expense_item = $medata[0]; 
+					$particulars = $medata[1]; 
+					$code = $medata[2]; 
+					$approved_budget = $medata[3]; 
+					$dtid = $medata[4];
+					$revision = $medata[5];  
+					$proposed_revision = $medata[6]; 
+
+					$query = $this->db->query("
+					INSERT INTO `tbl_saob_direct_mooe_dt`(
+							`expense_item`,
+							`project_id`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revision`,
+							`proposed_revision`,
+							`added_at`,
+							`added_by`
+						)
+						VALUES(
+							'$expense_item',
+							'$project_id',
+							'$particulars',
+							'$code',
+							'$approved_budget',
+							'$revision',
+							'$proposed_revision',
+							NOW(),
+							'{$this->cuser}'
+						)
+					");
+				}
+			}
+
+			//INSERTING MOOE DT DATA INDIRECT ---
+			if (!empty($budgetmooeindirectdtdata)) {
+				//this is for normal saving and updating
+				for($aa = 0; $aa < count($budgetmooeindirectdtdata); $aa++){
+					$medata = explode("x|x",$budgetmooeindirectdtdata[$aa]);
+					$expense_item = $medata[0]; 
+					$particulars = $medata[1]; 
+					$code = $medata[2]; 
+					$approved_budget = $medata[3]; 
+					$dtid = $medata[4];
+					$revision = $medata[5];  
+					$proposed_revision = $medata[6]; 
+
+					$query = $this->db->query("
+					INSERT INTO `tbl_saob_indirect_mooe_dt`(
+							`expense_item`,
+							`project_id`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revision`,
+							`proposed_revision`,
+							`added_at`,
+							`added_by`
+						)
+						VALUES(
+							'$expense_item',
+							'$project_id',
+							'$particulars',
+							'$code',
+							'$approved_budget',
+							'$revision',
+							'$proposed_revision',
+							NOW(),
+							'{$this->cuser}'
+						)
+					");
+					
+				}
+			}
+
+			//INSERTING CO DT DATA
+			if (!empty($budgetcodtdata)) {
+				//this is for normal saving and updating
+				for($aa = 0; $aa < count($budgetcodtdata); $aa++){
+					$medata = explode("x|x",$budgetcodtdata[$aa]);
+					$particulars = $medata[0]; 
+					$code = $medata[1]; 
+					$approved_budget = $medata[2]; 
+					$dtid = $medata[3]; 
+					$revision = $medata[4];  
+					$proposed_revision = $medata[5]; 
+
+					$query = $this->db->query("
+					INSERT INTO `tbl_saob_direct_co_dt`(
+							`project_id`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revision`,
+							`proposed_revision`,
+							`added_at`,
+							`added_by`
+						)
+						VALUES(
+							'$project_id',
+							'$particulars',
+							'$code',
+							'$approved_budget',
+							'$revision',
+							'$proposed_revision',
+							NOW(),
+							'{$this->cuser}'
+						)
+					");
+				}
+			}
+
+			//INSERTING CO DT DATA INDIRECT --
+			if (!empty($budgetindirectcodtdata)) {
+				//this is for normal saving and updating
+				for($aa = 0; $aa < count($budgetindirectcodtdata); $aa++){
+					$medata = explode("x|x",$budgetindirectcodtdata[$aa]);
+					$particulars = $medata[0]; 
+					$code = $medata[1]; 
+					$approved_budget = $medata[2]; 
+					$dtid = $medata[3]; 
+					$revision = $medata[4];  
+					$proposed_revision = $medata[5]; 
+
+					$query = $this->db->query("
+					INSERT INTO `tbl_saob_indirect_co_dt`(
+							`project_id`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revision`,
+							`proposed_revision`,
+							`added_at`,
+							`added_by`
+						)
+						VALUES(
+							'$project_id',
+							'$particulars',
+							'$code',
+							'$approved_budget',
+							'$revision',
+							'$proposed_revision',
+							NOW(),
+							'{$this->cuser}'
+						)
+					");
+				}
+			}
 	
 			$status = "SAOB Saved Successfully!";
 			$color = "success";
@@ -298,7 +459,7 @@ class MySaobReportModel extends Model
 
 			//PROJECT ID FETCHING
 			$query = $this->db->query("
-			SELECT `recid` FROM tbl_saob_hd WHERE `program_title` = '$program_title'
+			SELECT `recid` FROM tbl_saob_hd WHERE `trxno` = '$trx'
 			");
 			$rw = $query->getRowArray();
 			$project_id = $rw['recid'];
@@ -439,7 +600,170 @@ class MySaobReportModel extends Model
 				$query = $this->db->query("DELETE FROM tbl_saob_indirect_ps_dt WHERE `project_id` = '$project_id'");
 			}
 
-			$status = "Project Budget Allotment Updated Successfully!";
+			//INSERTING MOOE DT DATA
+			if (!empty($budgetmooedtdata)) {
+				$query = $this->db->query("DELETE FROM tbl_saob_direct_mooe_dt WHERE `project_id` = '$project_id'");
+				for($aa = 0; $aa < count($budgetmooedtdata); $aa++){
+					$medata = explode("x|x",$budgetmooedtdata[$aa]);
+					$expense_item = $medata[0]; 
+					$particulars = $medata[1]; 
+					$code = $medata[2]; 
+					$approved_budget = $medata[3]; 
+					$dtid = $medata[4];
+					$revision = $medata[5];  
+					$proposed_revision = $medata[6]; 
+
+					$query = $this->db->query("
+					INSERT INTO `tbl_saob_direct_mooe_dt`(
+							`expense_item`,
+							`project_id`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revision`,
+							`proposed_revision`,
+							`added_at`,
+							`added_by`
+						)
+						VALUES(
+							'$expense_item',
+							'$project_id',
+							'$particulars',
+							'$code',
+							'$proposed_revision',
+							'0.0000',
+							'$proposed_revision',
+							NOW(),
+							'{$this->cuser}'
+						)
+					");
+				}
+			}else{
+				$query = $this->db->query("DELETE FROM tbl_saob_direct_mooe_dt WHERE `project_id` = '$project_id'");
+			}
+
+			//INSERTING MOOE DT DATA INDIRECT ---
+			if (!empty($budgetmooeindirectdtdata)) {
+				$query = $this->db->query("DELETE FROM tbl_saob_indirect_mooe_dt WHERE `project_id` = '$project_id'");
+				for($aa = 0; $aa < count($budgetmooeindirectdtdata); $aa++){
+					$medata = explode("x|x",$budgetmooeindirectdtdata[$aa]);
+					$expense_item = $medata[0]; 
+					$particulars = $medata[1]; 
+					$code = $medata[2]; 
+					$approved_budget = $medata[3]; 
+					$dtid = $medata[4];
+					$revision = $medata[5];  
+					$proposed_revision = $medata[6]; 
+
+					$query = $this->db->query("
+					INSERT INTO `tbl_saob_indirect_mooe_dt`(
+							`expense_item`,
+							`project_id`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revision`,
+							`proposed_revision`,
+							`added_at`,
+							`added_by`
+						)
+						VALUES(
+							'$expense_item',
+							'$project_id',
+							'$particulars',
+							'$code',
+							'$proposed_revision',
+							'0.0000',
+							'$proposed_revision',
+							NOW(),
+							'{$this->cuser}'
+						)
+					");
+					
+				}
+			}else{
+				$query = $this->db->query("DELETE FROM tbl_saob_indirect_mooe_dt WHERE `project_id` = '$project_id'");
+			}
+
+			//INSERTING CO DT DATA
+			if (!empty($budgetcodtdata)) {
+				$query = $this->db->query("DELETE FROM tbl_saob_direct_co_dt WHERE `project_id` = '$project_id'");
+				for($aa = 0; $aa < count($budgetcodtdata); $aa++){
+					$medata = explode("x|x",$budgetcodtdata[$aa]);
+					$particulars = $medata[0]; 
+					$code = $medata[1]; 
+					$approved_budget = $medata[2]; 
+					$dtid = $medata[3]; 
+					$revision = $medata[4];  
+					$proposed_revision = $medata[5]; 
+
+					$query = $this->db->query("
+					INSERT INTO `tbl_saob_direct_co_dt`(
+							`project_id`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revision`,
+							`proposed_revision`,
+							`added_at`,
+							`added_by`
+						)
+						VALUES(
+							'$project_id',
+							'$particulars',
+							'$code',
+							'$proposed_revision',
+							'0.0000',
+							'$proposed_revision',
+							NOW(),
+							'{$this->cuser}'
+						)
+					");
+				}
+			}else{
+				$query = $this->db->query("DELETE FROM tbl_saob_direct_co_dt WHERE `project_id` = '$project_id'");
+			}
+
+			//INSERTING CO DT DATA INDIRECT --
+			if (!empty($budgetindirectcodtdata)) {
+				$query = $this->db->query("DELETE FROM tbl_saob_indirect_co_dt WHERE `project_id` = '$project_id'");
+				for($aa = 0; $aa < count($budgetindirectcodtdata); $aa++){
+					$medata = explode("x|x",$budgetindirectcodtdata[$aa]);
+					$particulars = $medata[0]; 
+					$code = $medata[1]; 
+					$approved_budget = $medata[2]; 
+					$dtid = $medata[3]; 
+					$revision = $medata[4];  
+					$proposed_revision = $medata[5]; 
+
+					$query = $this->db->query("
+					INSERT INTO `tbl_saob_indirect_co_dt`(
+							`project_id`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revision`,
+							`proposed_revision`,
+							`added_at`,
+							`added_by`
+						)
+						VALUES(
+							'$project_id',
+							'$particulars',
+							'$code',
+							'$proposed_revision',
+							'0.0000',
+							'$proposed_revision',
+							NOW(),
+							'{$this->cuser}'
+						)
+					");
+				}
+			}else{
+				$query = $this->db->query("DELETE FROM tbl_saob_indirect_co_dt WHERE `project_id` = '$project_id'");
+			}
+
+			$status = "SAOB Updated Successfully!";
 			$color = "info";
 		}
 
@@ -685,6 +1009,61 @@ class MySaobReportModel extends Model
 				$xnumb = trim($rctr['XNUMB'],' ');
 				$xnumb = str_pad($xnumb + 0,5,"0",STR_PAD_LEFT);
 				$query = $this->db->query("update myctr_budget set {$xfield} = '{$xnumb}'");
+			}
+		}
+		return  $class . '-' . $xnumb . '-' . $xsysmonth . $xsysday;//.$supp
+	} 
+
+	public function get_ctr_saob($class,$supp,$dbname,$mfld='') { 
+		$accessquery = $this->db->query("
+		CREATE TABLE if not exists `myctr_saob` (
+		  `CTR_YEAR` varchar(4) DEFAULT '0000',
+		  `CTR_MONTH` varchar(2) DEFAULT '00',
+		  `CTR_DAY` varchar(2) DEFAULT '00',
+		  `CTRL_NO01` varchar(15) DEFAULT '00000000',
+		  `CTRL_NO02` varchar(15) DEFAULT '00000000',
+		  `CTRL_NO03` varchar(15) DEFAULT '00000000',
+		  `CTRL_NO04` varchar(15) DEFAULT '00000000',
+		  `CTRL_NO05` varchar(15) DEFAULT '00000000',
+		  `CTRL_NO06` varchar(15) DEFAULT '00000000',
+		  `CTRL_NO07` varchar(15) DEFAULT '00000000',
+		  `CTRL_NO08` varchar(15) DEFAULT '00000000',
+		  `CTRL_NO09` varchar(15) DEFAULT '00000000',
+		  `CTRL_NO10` varchar(15) DEFAULT '00000000',
+		  `CTRL_NO11` varchar(15) DEFAULT '00000000',
+		  `SS_CTR` varchar(15) DEFAULT '000000',
+		  UNIQUE KEY `ctr01` (`CTR_YEAR`,`CTR_MONTH`,`CTR_DAY`)
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+		");
+
+		$xfield = (empty($mfld) ? 'CTRL_NO01' : $mfld);
+		
+		$q = $this->db->query("select date(now()) XSYSDATE");
+		$rdate = $q->getRowArray();
+		$xsysdate = $rdate['XSYSDATE'];
+		$xsysdate_exp = explode('-', $xsysdate);
+		$xsysyear =  $xsysdate_exp[0];
+		$xsysmonth = $xsysdate_exp[1];
+		$xsysday = $xsysdate_exp[2];
+		
+		$qctr = $this->db->query("select {$xfield} from myctr_saob WHERE CTR_YEAR = '$xsysyear' AND CTR_MONTH = '$xsysmonth' AND CTR_DAY = '$xsysday'  limit 1");
+		if($qctr->getNumRows() == 0) {
+			$xnumb = '00001';
+			$query = $this->db->query( "insert into myctr_saob (CTR_YEAR,CTR_MONTH,CTR_DAY,{$xfield}) values('$xsysyear','$xsysmonth','$xsysday','$xnumb')");
+			$qctr->freeResult();
+		} else {
+			$qctr->freeResult();
+			$qctr = $this->db->query( "select {$xfield} MYFIELD from myctr_saob WHERE CTR_YEAR = '$xsysyear' AND CTR_MONTH = '$xsysmonth' AND CTR_DAY = '$xsysday' limit 1");
+			$rctr = $qctr->getRowArray();
+			if(trim($rctr['MYFIELD'],' ') == '') { 
+				$xnumb = '00001';
+			} else {
+				$xnumb = $rctr['MYFIELD'];
+				$qctr = $this->db->query("select ('{$xnumb}' + 1) XNUMB");
+				$rctr = $qctr->getRowArray();
+				$xnumb = trim($rctr['XNUMB'],' ');
+				$xnumb = str_pad($xnumb + 0,5,"0",STR_PAD_LEFT);
+				$query = $this->db->query("update myctr_saob set {$xfield} = '{$xnumb}'");
 			}
 		}
 		return  $class . '-' . $xnumb . '-' . $xsysmonth . $xsysday;//.$supp
