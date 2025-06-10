@@ -294,7 +294,6 @@ echo view('templates/myheader.php');
                                                             <th class="text-center">
                                                                 <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" href="javascript:__mysys_saob_rpt_ent.my_add_budget_line();"><i class="ti ti-new-section"></i></a>
                                                             </th>
-                                                            <th class="text-center align-middle">Expense Item</th>
                                                             <th class="text-center align-middle">PS - Particulars</th>
                                                             <th class="text-center align-middle">UACS.</th>
                                                             <th class="text-center align-middle">Approved Budget</th>
@@ -317,9 +316,6 @@ echo view('templates/myheader.php');
                                                                             <i class="ti ti-plus"></i>
                                                                         </a>
                                                                     </div>
-                                                                </td>
-                                                                <td class="text-center align-middle" nowrap>
-                                                                    <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
                                                                     <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
@@ -349,7 +345,6 @@ echo view('templates/myheader.php');
                                                                 $query = $this->db->query("
                                                                 SELECT
                                                                     `recid`,
-                                                                    `expense_item`,
                                                                     `particulars`,
                                                                     `code`,
                                                                     `approved_budget`,
@@ -364,7 +359,6 @@ echo view('templates/myheader.php');
                                                                 $result = $query->getResultArray();
                                                                 foreach ($result as $data):
                                                                     $dt_id = $data['recid'];
-                                                                    $expense_item = $data['expense_item'];
                                                                     $particulars = $data['particulars'];
                                                                     $code = $data['code'];
                                                                     $approved_budget = $data['approved_budget'];
@@ -387,9 +381,6 @@ echo view('templates/myheader.php');
                                                                             <i class="ti ti-plus"></i>
                                                                         </a>
                                                                     </div>
-                                                                </td>
-                                                                <td class="text-center align-middle" nowrap>
-                                                                    <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
                                                                     <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
@@ -427,7 +418,6 @@ echo view('templates/myheader.php');
                                                             <th class="text-center">
                                                                 <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" href="javascript:__mysys_saob_rpt_ent.my_add_budget_indirect_line();"><i class="ti ti-new-section"></i></a>
                                                             </th>
-                                                            <th class="text-center align-middle">Expense Item</th>
                                                             <th class="text-center align-middle">PS - Particulars</th>
                                                             <th class="text-center align-middle">UACS.</th>
                                                             <th class="text-center align-middle">Approved Budget</th>
@@ -450,9 +440,6 @@ echo view('templates/myheader.php');
                                                                             <i class="ti ti-plus"></i>
                                                                         </a>
                                                                     </div>
-                                                                </td>
-                                                                <td class="text-center align-middle" nowrap>
-                                                                    <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
                                                                     <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
@@ -482,7 +469,6 @@ echo view('templates/myheader.php');
                                                                 $query = $this->db->query("
                                                                 SELECT
                                                                     `recid`,
-                                                                    `expense_item`,
                                                                     `particulars`,
                                                                     `code`,
                                                                     `approved_budget`,
@@ -496,7 +482,6 @@ echo view('templates/myheader.php');
                                                                 $result = $query->getResultArray();
                                                                 foreach ($result as $data):
                                                                     $dt_id = $data['recid'];
-                                                                    $expense_item = $data['expense_item'];
                                                                     $particulars = $data['particulars'];
                                                                     $code = $data['code'];
                                                                     $approved_budget = $data['approved_budget'];
@@ -518,9 +503,6 @@ echo view('templates/myheader.php');
                                                                             <i class="ti ti-plus"></i>
                                                                         </a>
                                                                     </div>
-                                                                </td>
-                                                                <td class="text-center align-middle" nowrap>
-                                                                    <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
                                                                     <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
@@ -566,7 +548,6 @@ echo view('templates/myheader.php');
                                                             <th class="text-center">
                                                                 <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetmooeitem_add" href="javascript:__mysys_saob_rpt_ent.my_add_budget_mooe_line();"><i class="ti ti-new-section"></i></a>
                                                             </th>
-                                                            <th class="text-center align-middle">Expense Item</th>
                                                             <th class="text-center align-middle">MOOE - Particulars</th>
                                                             <th class="text-center align-middle">UACS.</th>
                                                             <th class="text-center align-middle">Approved Budget</th>
@@ -589,9 +570,6 @@ echo view('templates/myheader.php');
                                                                             <i class="ti ti-plus"></i>
                                                                         </a>
                                                                     </div>
-                                                                </td>
-                                                                <td class="text-center align-middle" nowrap>
-                                                                    <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
                                                                     <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
@@ -621,7 +599,6 @@ echo view('templates/myheader.php');
                                                                 $query = $this->db->query("
                                                                 SELECT
                                                                     `recid`,
-                                                                    `expense_item`,
                                                                     `particulars`,
                                                                     `code`,
                                                                     `approved_budget`,
@@ -635,7 +612,6 @@ echo view('templates/myheader.php');
                                                                 $result = $query->getResultArray();
                                                                 foreach ($result as $data):
                                                                     $dt_id = $data['recid'];
-                                                                    $expense_item = $data['expense_item'];
                                                                     $particulars = $data['particulars'];
                                                                     $code = $data['code'];
                                                                     $approved_budget = $data['approved_budget'];
@@ -657,9 +633,6 @@ echo view('templates/myheader.php');
                                                                             <i class="ti ti-plus"></i>
                                                                         </a>
                                                                     </div>
-                                                                </td>
-                                                                <td class="text-center align-middle" nowrap>
-                                                                    <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
                                                                     <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
@@ -696,7 +669,6 @@ echo view('templates/myheader.php');
                                                             <th class="text-center">
                                                                 <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetmooeitem_add" href="javascript:__mysys_saob_rpt_ent.my_add_budget_indirect_mooe_line();"><i class="ti ti-new-section"></i></a>
                                                             </th>
-                                                            <th class="text-center align-middle">Expense Item</th>
                                                             <th class="text-center align-middle">MOOE - Particulars</th>
                                                             <th class="text-center align-middle">UACS.</th>
                                                             <th class="text-center align-middle">Approved Budget</th>
@@ -719,9 +691,6 @@ echo view('templates/myheader.php');
                                                                             <i class="ti ti-plus"></i>
                                                                         </a>
                                                                     </div>
-                                                                </td>
-                                                                <td class="text-center align-middle" nowrap>
-                                                                    <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
                                                                     <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
@@ -751,7 +720,6 @@ echo view('templates/myheader.php');
                                                                 $query = $this->db->query("
                                                                 SELECT
                                                                     `recid`,
-                                                                    `expense_item`,
                                                                     `particulars`,
                                                                     `code`,
                                                                     `approved_budget`,
@@ -765,7 +733,6 @@ echo view('templates/myheader.php');
                                                                 $result = $query->getResultArray();
                                                                 foreach ($result as $data):
                                                                     $dt_id = $data['recid'];
-                                                                    $expense_item = $data['expense_item'];
                                                                     $particulars = $data['particulars'];
                                                                     $code = $data['code'];
                                                                     $approved_budget = $data['approved_budget'];
@@ -787,9 +754,6 @@ echo view('templates/myheader.php');
                                                                             <i class="ti ti-plus"></i>
                                                                         </a>
                                                                     </div>
-                                                                </td>
-                                                                <td class="text-center align-middle" nowrap>
-                                                                    <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
                                                                     <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">

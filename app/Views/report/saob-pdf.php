@@ -220,13 +220,14 @@ $pdf->Cell(5, 5, 'Personnel Services', 0, 0, 'L');
 $Y += 7;
 $query = $this->db->query("
     SELECT
-        b.`object_code`,
-        b.`sub_object_code`,
-        b.`uacs_code`
+        (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+        b.`particulars` AS `sub_object_code`,
+        b.`code` AS `uacs_code`
     FROM
-        `mst_uacs` b
-    WHERE allotment_class = 'Personnel Services'
-
+        `tbl_saob_direct_ps_dt` b
+    WHERE
+        b.`project_id` = '13'
+    ORDER BY object_code, sub_object_code
 ");
 
 $data = $query->getResultArray();
@@ -286,20 +287,7 @@ foreach ($data as $row) {
     
 }
 
-$pdf->SetXY(10, 10);
-$pdf->Cell(64, 211, '', 1, 1); //col 1 border
-$pdf->SetXY(74, 10);
-$pdf->Cell(22, 211, '', 1, 1); //col 1 border
-$pdf->SetXY(96, 10);
-$pdf->Cell(22, 211, '', 1, 1); //col 1 border
-$pdf->SetXY(118, 10);
-$pdf->Cell(22, 211, '', 1, 1); //col 1 border
-$pdf->SetXY(140, 10);
-$pdf->Cell(22, 211, '', 1, 1); //col 1 border
-$pdf->SetXY(162, 10);
-$pdf->Cell(22, 211, '', 1, 1); //col 1 border
-$pdf->SetXY(184, 10);
-$pdf->Cell(17, 211, '', 1, 1); //col 1 border
+
 
 
 
