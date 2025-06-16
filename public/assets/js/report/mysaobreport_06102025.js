@@ -576,6 +576,7 @@ function __mysys_saob_rpt_ent() {
 						budgetcodtdata.push(codata);
 					}
 
+
 					var mparam = { 
 						recid: recid.value,
 						trxno: trxno.value,
@@ -770,6 +771,19 @@ function __mysys_saob_rpt_ent() {
             row.find('.proposed_revision').val(total.toFixed(2));
         });
     };
+	//PS - TOTAL PER LINE - INDIRECT
+	this.__indirect_ps_totals = function () {
+        jQuery('.budgetdata-indirect-list tr').each(function () {
+            var row = jQuery(this);
+
+  			var approved = parseFloat(row.find('.approved_budget').val()) || 0;
+            var revision = parseFloat(row.find('.revision').val()) || 0;
+
+            var total = approved + revision;
+
+            row.find('.proposed_revision').val(total.toFixed(2));
+        });
+    };
 
 	//MOOE - TOTAL PER LINE - DIRECT
 	this.__direct_mooe_totals = function () {
@@ -785,9 +799,37 @@ function __mysys_saob_rpt_ent() {
         });
     };
 
+	//MOOE - TOTAL PER LINE - INDIRECT
+	this.__indirect_mooe_totals = function () {
+        jQuery('.budgetmooedata-indirect-list tr').each(function () {
+            var row = jQuery(this);
+
+            var approved = parseFloat(row.find('.approved_budget').val()) || 0;
+            var revision = parseFloat(row.find('.revision').val()) || 0;
+
+            var total = approved + revision;
+
+            row.find('.proposed_revision').val(total.toFixed(2));
+        });
+    };
+
 	//CO - TOTAL PER LINE - DIRECT
 	this.__direct_co_totals = function () {
         jQuery('.budgetcodata-list tr').each(function () {
+            var row = jQuery(this);
+
+            var approved = parseFloat(row.find('.approved_budget').val()) || 0;
+            var revision = parseFloat(row.find('.revision').val()) || 0;
+
+            var total = approved + revision;
+
+            row.find('.proposed_revision').val(total.toFixed(2));
+        });
+    };
+
+	//CO - TOTAL PER LINE - INDIRECT
+	this.__indirect_co_totals = function () {
+        jQuery('.budgetcodata-indirect-list tr').each(function () {
             var row = jQuery(this);
 
             var approved = parseFloat(row.find('.approved_budget').val()) || 0;
@@ -818,6 +860,21 @@ function __mysys_saob_rpt_ent() {
 			totalProposedCombined += total;
 		});
 
+		// PS INDIRECT COST TABLE
+		jQuery('.budgetdata-indirect-list tr').each(function () {
+			let row = jQuery(this);
+
+			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			let revision = parseFloat(row.find('.revision').val()) || 0;
+
+			let total = approved + revision;
+
+			row.find('.proposed_revision').val(total.toFixed(2));
+
+			totalApprovedCombined += approved;
+			totalProposedCombined += total;
+		});
+
 		// MOOE DIRECT COST TABLE
 		jQuery('.budgetmooedata-list tr').each(function () {
 			let row = jQuery(this);
@@ -833,8 +890,38 @@ function __mysys_saob_rpt_ent() {
 			totalProposedCombined += total;
 		});
 
+		// MOOE INDIRECT COST TABLE
+		jQuery('.budgetmooedata-indirect-list tr').each(function () {
+			let row = jQuery(this);
+
+			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			let revision = parseFloat(row.find('.revision').val()) || 0;
+
+			let total = approved + revision;
+
+			row.find('.proposed_revision').val(total.toFixed(2));
+
+			totalApprovedCombined += approved;
+			totalProposedCombined += total;
+		});
+
 		// CO DIRECT COST TABLE
 		jQuery('.budgetcodata-list tr').each(function () {
+			let row = jQuery(this);
+
+			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			let revision = parseFloat(row.find('.revision').val()) || 0;
+
+			let total = approved + revision;
+
+			row.find('.proposed_revision').val(total.toFixed(2));
+
+			totalApprovedCombined += approved;
+			totalProposedCombined += total;
+		});
+
+		// CO INDIRECT COST TABLE
+		jQuery('.budgetcodata-indirect-list tr').each(function () {
 			let row = jQuery(this);
 
 			let approved = parseFloat(row.find('.approved_budget').val()) || 0;

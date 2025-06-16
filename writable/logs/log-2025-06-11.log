@@ -1,0 +1,1170 @@
+CRITICAL - 2025-06-11 09:00:05 --> ErrorException: Undefined variable $ps_data
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-pdf.php on line 223.
+ 1 APPPATH\Views\report\saob-pdf.php(223): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $ps_data', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php', 223)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-06-11 09:44:08 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a...' at line 6 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT\r\n ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT\r\n ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT\r\n ...')
+#3 C:\xampp\htdocs\fods\app\Views\report\saob-pdf.php(223): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT\r\n ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-06-11 09:44:08 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a...' at line 6
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\report\saob-pdf.php(223): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select SUM(select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) )) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-11 09:44:08 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a...' at line 6
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select SUM(select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) )) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select SUM(select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) )) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 3 APPPATH\Views\report\saob-pdf.php(223): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select SUM(select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) )) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 7 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-11 09:44:08 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a...' at line 6
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select SUM(select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) )) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select SUM(select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) )) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select SUM(select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) )) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 4 APPPATH\Views\report\saob-pdf.php(223): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select SUM(select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) )) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 8 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-06-11 09:44:41 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 12 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT\r\n ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT\r\n ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT\r\n ...')
+#3 C:\xampp\htdocs\fods\app\Views\report\saob-pdf.php(223): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT\r\n ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-06-11 09:44:41 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 12
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\report\saob-pdf.php(223): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+        (select SUM((select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) )) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-11 09:44:41 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 12
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+        (select SUM((select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) )) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+        (select SUM((select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) )) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 3 APPPATH\Views\report\saob-pdf.php(223): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+        (select SUM((select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) )) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 7 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-11 09:44:41 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 12
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+        (select SUM((select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) )) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+        (select SUM((select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) )) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+        (select SUM((select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) )) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 4 APPPATH\Views\report\saob-pdf.php(223): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+        (select SUM((select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) )) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 8 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-06-11 09:45:14 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 13 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT\r\n ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT\r\n ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT\r\n ...')
+#3 C:\xampp\htdocs\fods\app\Views\report\saob-pdf.php(223): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT\r\n ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-06-11 09:45:14 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 13
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\report\saob-pdf.php(223): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+        (select SUM(
+            (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-11 09:45:14 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 13
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+        (select SUM(
+            (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+        (select SUM(
+            (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 3 APPPATH\Views\report\saob-pdf.php(223): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+        (select SUM(
+            (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 7 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-11 09:45:14 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 13
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+        (select SUM(
+            (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+        (select SUM(
+            (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+        (select SUM(
+            (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 4 APPPATH\Views\report\saob-pdf.php(223): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`program_title`,
+        a.`recid`,
+        (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) total_ps,
+        (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) total_mooe,
+        (select sum(approved_budget) total_co FROM tbl_saob_co_dt WHERE project_id = a.`recid`) total_co,
+        (select SUM(
+            (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_mooe FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`)+
+            (select sum(approved_budget) total_ps FROM tbl_saob_ps_dt WHERE project_id = a.`recid`)) AS total_approved_budget
+    FROM
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 8 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-11 11:33:20 --> ErrorException: Undefined variable $Y
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-pdf.php on line 79.
+ 1 APPPATH\Views\report\saob-pdf.php(79): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $Y', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php', 79)
+ 2 APPPATH\Views\report\saob-pdf.php(223): drawTableHeader(Object(PDF), 'September')
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 6 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-06-11 13:08:24 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippine...' at line 10 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT\r\n ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT\r\n ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT\r\n ...')
+#3 C:\xampp\htdocs\fods\app\Views\orsburs\orsburs-main.php(44): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT\r\n ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyOrsBurs.php(127): view('orsburs/orsburs...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyOrsBurs.php(28): App\Controllers\MyOrsBurs->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2025-06-11 13:08:24 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippine...' at line 10
+[Method: GET, Route: myorsburs]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\orsburs\orsburs-main.php(44): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `recid`,
+        `recid` budget_recid,
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_title` = \'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'s\'s\'s\'s\'s\'s\'')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs-main', [], true)
+ 5 APPPATH\Controllers\MyOrsBurs.php(127): view('orsburs/orsburs-main', [...])
+ 6 APPPATH\Controllers\MyOrsBurs.php(28): App\Controllers\MyOrsBurs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-11 13:08:24 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippine...' at line 10
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        `recid`,
+        `recid` budget_recid,
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_title` = \'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'s\'s\'s\'s\'s\'s\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        `recid`,
+        `recid` budget_recid,
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_title` = \'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'s\'s\'s\'s\'s\'s\'')
+ 3 APPPATH\Views\orsburs\orsburs-main.php(44): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `recid`,
+        `recid` budget_recid,
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_title` = \'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'s\'s\'s\'s\'s\'s\'')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs-main', [], true)
+ 7 APPPATH\Controllers\MyOrsBurs.php(127): view('orsburs/orsburs-main', [...])
+ 8 APPPATH\Controllers\MyOrsBurs.php(28): App\Controllers\MyOrsBurs->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-11 13:08:24 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippine...' at line 10
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT
+        `recid`,
+        `recid` budget_recid,
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_title` = \'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'s\'s\'s\'s\'s\'s\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        `recid`,
+        `recid` budget_recid,
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_title` = \'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'s\'s\'s\'s\'s\'s\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        `recid`,
+        `recid` budget_recid,
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_title` = \'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'s\'s\'s\'s\'s\'s\'')
+ 4 APPPATH\Views\orsburs\orsburs-main.php(44): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `recid`,
+        `recid` budget_recid,
+        `project_title`,
+        `responsibility_code`,
+        `fund_cluster_code`
+    FROM
+        `tbl_budget_hd`
+    WHERE 
+        `program_title` = \'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'s\'s\'s\'s\'s\'s\'')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs-main', [], true)
+ 8 APPPATH\Controllers\MyOrsBurs.php(127): view('orsburs/orsburs-main', [...])
+ 9 APPPATH\Controllers\MyOrsBurs.php(28): App\Controllers\MyOrsBurs->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-11 13:12:37 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: myorsburs]
+in APPPATH\Views\orsburs\orsburs-main.php on line 48.
+ 1 APPPATH\Views\orsburs\orsburs-main.php(48): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php', 48)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\orsburs\\orsburs-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs-main', [], true)
+ 5 APPPATH\Controllers\MyOrsBurs.php(127): view('orsburs/orsburs-main', [...])
+ 6 APPPATH\Controllers\MyOrsBurs.php(28): App\Controllers\MyOrsBurs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsBurs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsBurs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-06-11 13:48:40 --> mysqli_sql_exception: Unknown column 'b.object_code' in 'order clause' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\report\saob-pdf.php(268): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-06-11 13:48:40 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'b.object_code' in 'order clause'
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\report\saob-pdf.php(268): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`object_code`, b.`sub_object_code`
+    ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-11 13:48:40 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'b.object_code' in 'order clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`object_code`, b.`sub_object_code`
+    ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`object_code`, b.`sub_object_code`
+    ')
+ 3 APPPATH\Views\report\saob-pdf.php(268): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`object_code`, b.`sub_object_code`
+    ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 7 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-11 13:48:40 --> [Caused by] mysqli_sql_exception: Unknown column 'b.object_code' in 'order clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`object_code`, b.`sub_object_code`
+    ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`object_code`, b.`sub_object_code`
+    ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`object_code`, b.`sub_object_code`
+    ')
+ 4 APPPATH\Views\report\saob-pdf.php(268): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`object_code`, b.`sub_object_code`
+    ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 8 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-06-11 13:49:41 --> mysqli_sql_exception: Unknown column 'b.sub_object_code' in 'order clause' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\report\saob-pdf.php(268): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-06-11 13:49:41 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'b.sub_object_code' in 'order clause'
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\report\saob-pdf.php(268): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`sub_object_code`
+    ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-11 13:49:41 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'b.sub_object_code' in 'order clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`sub_object_code`
+    ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`sub_object_code`
+    ')
+ 3 APPPATH\Views\report\saob-pdf.php(268): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`sub_object_code`
+    ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 7 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-11 13:49:41 --> [Caused by] mysqli_sql_exception: Unknown column 'b.sub_object_code' in 'order clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`sub_object_code`
+    ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`sub_object_code`
+    ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`sub_object_code`
+    ')
+ 4 APPPATH\Views\report\saob-pdf.php(268): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`sub_object_code`
+    ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 8 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-06-11 13:49:42 --> mysqli_sql_exception: Unknown column 'b.sub_object_code' in 'order clause' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\report\saob-pdf.php(268): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-06-11 13:49:42 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'b.sub_object_code' in 'order clause'
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\report\saob-pdf.php(268): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`sub_object_code`
+    ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-11 13:49:42 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'b.sub_object_code' in 'order clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`sub_object_code`
+    ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`sub_object_code`
+    ')
+ 3 APPPATH\Views\report\saob-pdf.php(268): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`sub_object_code`
+    ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 7 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-11 13:49:42 --> [Caused by] mysqli_sql_exception: Unknown column 'b.sub_object_code' in 'order clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`sub_object_code`
+    ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`sub_object_code`
+    ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`sub_object_code`
+    ')
+ 4 APPPATH\Views\report\saob-pdf.php(268): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = \'17\'
+        ORDER BY b.`recid`, b.`sub_object_code`
+    ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 8 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

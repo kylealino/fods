@@ -1,0 +1,665 @@
+CRITICAL - 2025-06-10 09:13:56 --> ErrorException: Undefined array key "allotment_class"
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-pdf.php on line 342.
+ 1 APPPATH\Views\report\saob-pdf.php(342): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "allotment_class"', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php', 342)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-10 11:47:29 --> ErrorException: Undefined variable $db
+[Method: POST, Route: mysaobrpt]
+in APPPATH\Models\MySaobReportModel.php on line 28.
+ 1 APPPATH\Models\MySaobReportModel.php(28): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $db', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MySaobReportModel.php', 28)
+ 2 APPPATH\Controllers\MySaobReport.php(30): App\Models\MySaobReportModel->saob_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-06-10 11:47:55 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'test\'s kyle'',
+					'test',
+					'2025',
+					'0',
+					'0',
+					'0',...' at line 25 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\tINSERT IN...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\tINSERT IN...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\tINSERT IN...')
+#3 C:\xampp\htdocs\fods\app\Models\MySaobReportModel.php(191): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\tINSERT IN...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(30): App\Models\MySaobReportModel->saob_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-06-10 11:47:55 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'test\'s kyle'',
+					'test',
+					'2025',
+					'0',
+					'0',
+					'0',...' at line 25
+[Method: POST, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MySaobReportModel.php(191): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `tbl_saob_hd`(
+					`trxno`,
+					`program_title`,
+					`department`,
+					`agency`,
+					`current_year`,
+					`is_jan`,
+					`is_feb`,
+					`is_mar`,
+					`is_apr`,
+					`is_may`,
+					`is_jun`,
+					`is_jul`,
+					`is_aug`,
+					`is_sep`,
+					`is_oct`,
+					`is_nov`,
+					`is_dec`,
+					`added_at`,
+					`added_by`
+				)
+				VALUES(
+					\'LIB-00002-0610\',
+					\'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition\',
+					\'\'test\\\'s kyle\'\',
+					\'test\',
+					\'2025\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					NOW(),
+					\'admin\'
+				)
+			')
+ 2 APPPATH\Controllers\MySaobReport.php(30): App\Models\MySaobReportModel->saob_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-10 11:47:55 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'test\'s kyle'',
+					'test',
+					'2025',
+					'0',
+					'0',
+					'0',...' at line 25
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				INSERT INTO `tbl_saob_hd`(
+					`trxno`,
+					`program_title`,
+					`department`,
+					`agency`,
+					`current_year`,
+					`is_jan`,
+					`is_feb`,
+					`is_mar`,
+					`is_apr`,
+					`is_may`,
+					`is_jun`,
+					`is_jul`,
+					`is_aug`,
+					`is_sep`,
+					`is_oct`,
+					`is_nov`,
+					`is_dec`,
+					`added_at`,
+					`added_by`
+				)
+				VALUES(
+					\'LIB-00002-0610\',
+					\'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition\',
+					\'\'test\\\'s kyle\'\',
+					\'test\',
+					\'2025\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					NOW(),
+					\'admin\'
+				)
+			')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				INSERT INTO `tbl_saob_hd`(
+					`trxno`,
+					`program_title`,
+					`department`,
+					`agency`,
+					`current_year`,
+					`is_jan`,
+					`is_feb`,
+					`is_mar`,
+					`is_apr`,
+					`is_may`,
+					`is_jun`,
+					`is_jul`,
+					`is_aug`,
+					`is_sep`,
+					`is_oct`,
+					`is_nov`,
+					`is_dec`,
+					`added_at`,
+					`added_by`
+				)
+				VALUES(
+					\'LIB-00002-0610\',
+					\'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition\',
+					\'\'test\\\'s kyle\'\',
+					\'test\',
+					\'2025\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					NOW(),
+					\'admin\'
+				)
+			')
+ 3 APPPATH\Models\MySaobReportModel.php(191): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `tbl_saob_hd`(
+					`trxno`,
+					`program_title`,
+					`department`,
+					`agency`,
+					`current_year`,
+					`is_jan`,
+					`is_feb`,
+					`is_mar`,
+					`is_apr`,
+					`is_may`,
+					`is_jun`,
+					`is_jul`,
+					`is_aug`,
+					`is_sep`,
+					`is_oct`,
+					`is_nov`,
+					`is_dec`,
+					`added_at`,
+					`added_by`
+				)
+				VALUES(
+					\'LIB-00002-0610\',
+					\'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition\',
+					\'\'test\\\'s kyle\'\',
+					\'test\',
+					\'2025\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					NOW(),
+					\'admin\'
+				)
+			')
+ 4 APPPATH\Controllers\MySaobReport.php(30): App\Models\MySaobReportModel->saob_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-10 11:47:55 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'test\'s kyle'',
+					'test',
+					'2025',
+					'0',
+					'0',
+					'0',...' at line 25
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+				INSERT INTO `tbl_saob_hd`(
+					`trxno`,
+					`program_title`,
+					`department`,
+					`agency`,
+					`current_year`,
+					`is_jan`,
+					`is_feb`,
+					`is_mar`,
+					`is_apr`,
+					`is_may`,
+					`is_jun`,
+					`is_jul`,
+					`is_aug`,
+					`is_sep`,
+					`is_oct`,
+					`is_nov`,
+					`is_dec`,
+					`added_at`,
+					`added_by`
+				)
+				VALUES(
+					\'LIB-00002-0610\',
+					\'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition\',
+					\'\'test\\\'s kyle\'\',
+					\'test\',
+					\'2025\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					NOW(),
+					\'admin\'
+				)
+			', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				INSERT INTO `tbl_saob_hd`(
+					`trxno`,
+					`program_title`,
+					`department`,
+					`agency`,
+					`current_year`,
+					`is_jan`,
+					`is_feb`,
+					`is_mar`,
+					`is_apr`,
+					`is_may`,
+					`is_jun`,
+					`is_jul`,
+					`is_aug`,
+					`is_sep`,
+					`is_oct`,
+					`is_nov`,
+					`is_dec`,
+					`added_at`,
+					`added_by`
+				)
+				VALUES(
+					\'LIB-00002-0610\',
+					\'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition\',
+					\'\'test\\\'s kyle\'\',
+					\'test\',
+					\'2025\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					NOW(),
+					\'admin\'
+				)
+			')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				INSERT INTO `tbl_saob_hd`(
+					`trxno`,
+					`program_title`,
+					`department`,
+					`agency`,
+					`current_year`,
+					`is_jan`,
+					`is_feb`,
+					`is_mar`,
+					`is_apr`,
+					`is_may`,
+					`is_jun`,
+					`is_jul`,
+					`is_aug`,
+					`is_sep`,
+					`is_oct`,
+					`is_nov`,
+					`is_dec`,
+					`added_at`,
+					`added_by`
+				)
+				VALUES(
+					\'LIB-00002-0610\',
+					\'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition\',
+					\'\'test\\\'s kyle\'\',
+					\'test\',
+					\'2025\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					NOW(),
+					\'admin\'
+				)
+			')
+ 4 APPPATH\Models\MySaobReportModel.php(191): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `tbl_saob_hd`(
+					`trxno`,
+					`program_title`,
+					`department`,
+					`agency`,
+					`current_year`,
+					`is_jan`,
+					`is_feb`,
+					`is_mar`,
+					`is_apr`,
+					`is_may`,
+					`is_jun`,
+					`is_jul`,
+					`is_aug`,
+					`is_sep`,
+					`is_oct`,
+					`is_nov`,
+					`is_dec`,
+					`added_at`,
+					`added_by`
+				)
+				VALUES(
+					\'LIB-00002-0610\',
+					\'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition\',
+					\'\'test\\\'s kyle\'\',
+					\'test\',
+					\'2025\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					\'0\',
+					NOW(),
+					\'admin\'
+				)
+			')
+ 5 APPPATH\Controllers\MySaobReport.php(30): App\Models\MySaobReportModel->saob_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-06-10 13:19:52 --> mysqli_sql_exception: Table 'fods.tbl_budget_hd' doesn't exist in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(50): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(22): App\Controllers\MySaobReport->loadMainView()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-06-10 13:19:52 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'fods.tbl_budget_hd' doesn't exist
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MySaobReport.php(50): CodeIgniter\Database\BaseConnection->query('
+        SELECT 
+            a.`recid`,
+            a.`trxno`,
+            a.`project_title`,
+            a.`responsibility_code`,
+            a.`fund_cluster_code`,
+            a.`division_name`,
+            a.`is_pending`,
+            a.`is_approved`,
+            a.`is_disapproved`,
+            a.`added_at`,
+            (
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_co_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_co_dt` WHERE project_id = a.recid), 0)
+            ) AS approved_budget
+        FROM
+            tbl_budget_hd a
+        ')
+ 2 APPPATH\Controllers\MySaobReport.php(22): App\Controllers\MySaobReport->loadMainView()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-10 13:19:52 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'fods.tbl_budget_hd' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT 
+            a.`recid`,
+            a.`trxno`,
+            a.`project_title`,
+            a.`responsibility_code`,
+            a.`fund_cluster_code`,
+            a.`division_name`,
+            a.`is_pending`,
+            a.`is_approved`,
+            a.`is_disapproved`,
+            a.`added_at`,
+            (
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_co_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_co_dt` WHERE project_id = a.recid), 0)
+            ) AS approved_budget
+        FROM
+            tbl_budget_hd a
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT 
+            a.`recid`,
+            a.`trxno`,
+            a.`project_title`,
+            a.`responsibility_code`,
+            a.`fund_cluster_code`,
+            a.`division_name`,
+            a.`is_pending`,
+            a.`is_approved`,
+            a.`is_disapproved`,
+            a.`added_at`,
+            (
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_co_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_co_dt` WHERE project_id = a.recid), 0)
+            ) AS approved_budget
+        FROM
+            tbl_budget_hd a
+        ')
+ 3 APPPATH\Controllers\MySaobReport.php(50): CodeIgniter\Database\BaseConnection->query('
+        SELECT 
+            a.`recid`,
+            a.`trxno`,
+            a.`project_title`,
+            a.`responsibility_code`,
+            a.`fund_cluster_code`,
+            a.`division_name`,
+            a.`is_pending`,
+            a.`is_approved`,
+            a.`is_disapproved`,
+            a.`added_at`,
+            (
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_co_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_co_dt` WHERE project_id = a.recid), 0)
+            ) AS approved_budget
+        FROM
+            tbl_budget_hd a
+        ')
+ 4 APPPATH\Controllers\MySaobReport.php(22): App\Controllers\MySaobReport->loadMainView()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-10 13:19:52 --> [Caused by] mysqli_sql_exception: Table 'fods.tbl_budget_hd' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT 
+            a.`recid`,
+            a.`trxno`,
+            a.`project_title`,
+            a.`responsibility_code`,
+            a.`fund_cluster_code`,
+            a.`division_name`,
+            a.`is_pending`,
+            a.`is_approved`,
+            a.`is_disapproved`,
+            a.`added_at`,
+            (
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_co_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_co_dt` WHERE project_id = a.recid), 0)
+            ) AS approved_budget
+        FROM
+            tbl_budget_hd a
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT 
+            a.`recid`,
+            a.`trxno`,
+            a.`project_title`,
+            a.`responsibility_code`,
+            a.`fund_cluster_code`,
+            a.`division_name`,
+            a.`is_pending`,
+            a.`is_approved`,
+            a.`is_disapproved`,
+            a.`added_at`,
+            (
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_co_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_co_dt` WHERE project_id = a.recid), 0)
+            ) AS approved_budget
+        FROM
+            tbl_budget_hd a
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT 
+            a.`recid`,
+            a.`trxno`,
+            a.`project_title`,
+            a.`responsibility_code`,
+            a.`fund_cluster_code`,
+            a.`division_name`,
+            a.`is_pending`,
+            a.`is_approved`,
+            a.`is_disapproved`,
+            a.`added_at`,
+            (
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_co_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_co_dt` WHERE project_id = a.recid), 0)
+            ) AS approved_budget
+        FROM
+            tbl_budget_hd a
+        ')
+ 4 APPPATH\Controllers\MySaobReport.php(50): CodeIgniter\Database\BaseConnection->query('
+        SELECT 
+            a.`recid`,
+            a.`trxno`,
+            a.`project_title`,
+            a.`responsibility_code`,
+            a.`fund_cluster_code`,
+            a.`division_name`,
+            a.`is_pending`,
+            a.`is_approved`,
+            a.`is_disapproved`,
+            a.`added_at`,
+            (
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_co_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_co_dt` WHERE project_id = a.recid), 0)
+            ) AS approved_budget
+        FROM
+            tbl_budget_hd a
+        ')
+ 5 APPPATH\Controllers\MySaobReport.php(22): App\Controllers\MySaobReport->loadMainView()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

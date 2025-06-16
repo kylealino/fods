@@ -197,98 +197,412 @@ $pdf->Cell(22, 7, '', 'BRL', 0, 'C');//ROW 5
 $pdf->Cell(17, 7, '', 'BRL', 0, 'C');//ROW 5
 
 $pdf->SetXY(10, 62);
-$pdf->Cell(64, 211, '', 1, 1); //col 1 border
+$pdf->Cell(64, 211.5, '', 1, 1); //col 1 border
 $pdf->SetXY(74, 62);
-$pdf->Cell(22, 211, '', 1, 1); //col 1 border
+$pdf->Cell(22, 211.5, '', 1, 1); //col 1 border
 $pdf->SetXY(96, 62);
-$pdf->Cell(22, 211, '', 1, 1); //col 1 border
+$pdf->Cell(22, 211.5, '', 1, 1); //col 1 border
 $pdf->SetXY(118, 62);
-$pdf->Cell(22, 211, '', 1, 1); //col 1 border
+$pdf->Cell(22, 211.5, '', 1, 1); //col 1 border
 $pdf->SetXY(140, 62);
-$pdf->Cell(22, 211, '', 1, 1); //col 1 border
+$pdf->Cell(22, 211.5, '', 1, 1); //col 1 border
 $pdf->SetXY(162, 62);
-$pdf->Cell(22, 211, '', 1, 1); //col 1 border
+$pdf->Cell(22, 211.5, '', 1, 1); //col 1 border
 $pdf->SetXY(184, 62);
-$pdf->Cell(17, 211, '', 1, 1); //col 1 border
+$pdf->Cell(17, 211.5, '', 1, 1); //col 1 border
 
 
+$Y += 9;
 
-$Y += 7;
 $pdf->SetXY(10, $Y);
 $pdf->SetFont('Arial', '', 8);
-$pdf->Cell(5, 5, 'Personnel Services', 0, 0, 'L');
+$pdf->Cell(5, 5, 'A. PROGRAMS', 0, 0, 'L');
+
+$total_curryear_budget = 0;
+$total_year_ps = 0;
+$total_year_mooe = 0;
+$total_year_co = 0;
 $Y += 7;
 $query = $this->db->query("
     SELECT
-        (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
-        b.`particulars` AS `sub_object_code`,
-        b.`code` AS `uacs_code`
+        a.`program_title`,
+        a.`recid`,
+        (SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) AS total_ps,
+        (SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) AS total_mooe,
+        (SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`) AS total_co,
+        (
+            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid`), 0) +
+            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`), 0) +
+            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`), 0)
+        ) AS total_approved_budget
     FROM
-        `tbl_saob_direct_ps_dt` b
-    WHERE
-        b.`project_id` = '13'
-    ORDER BY object_code, sub_object_code
+        `tbl_saob_hd` a
+    ORDER BY a.`recid` DESC;
 ");
+$hd_data = $query->getResultArray();
+foreach ($hd_data as $hd_row) {
+    $program_title = $hd_row['program_title'];
+    $recid = $hd_row['recid'];
+    $total_ps = $hd_row['total_ps'];
+    $total_mooe = $hd_row['total_mooe'];
+    $total_co = $hd_row['total_co'];
+    $total_approved_budget = $hd_row['total_approved_budget'];
 
-$data = $query->getResultArray();
-$last_sub_object_code = '';
-$last_object_code = '';
+    
 
-$Y = $pdf->SetY(65);
-foreach ($data as $row) {
-    $object_code = $row['object_code'];
-    $sub_object_code = $row['sub_object_code'];
-    $uacs_code = $row['uacs_code'];
-
-    $Y = $pdf->GetY() + 2.5;
-    if ($Y > 270) {
-        $pdf->AddPage();
-        $Y = $pdf->GetY(); // or set manually, e.g., $Y = 10;
-    }
-    if ($object_code !== $last_object_code && $object_code !== null) {
-        $pdf->SetFont('Arial', '', 8);
-        $pdf->SetXY(10, $Y);
-        $pdf->Cell(5, 3.5, '', 0, 0, 'L');
-        $pdf->MultiCell(59, 3.5, $object_code, 0, 'L'); // full width usage
-        $pdf->SetXY(184, $Y);
-        $pdf->Cell(17, 3.5, '%', 0, 1, 'C');
-        $Y += 5.5;
-        $last_object_code = $object_code;
-
-   
-    }
-    // Print Expenditure Category if it changes
-    if ($sub_object_code !== $last_sub_object_code && $sub_object_code !== null) {
-        $pdf->SetFont('Arial', '', 8);
-        $pdf->SetXY(15, $Y);
-        $pdf->Cell(5, 3.5, '', 0, 0, 'L');
-        $pdf->MultiCell(54, 3.5, $sub_object_code, 0, 'L'); // full width usage
-        $Y += 5.5;
-        $last_sub_object_code = $sub_object_code;
-    }
-
+    $pdf->SetXY(15, $Y);
+    $pdf->SetFont('Arial', 'B', 8);
+    $pdf->MultiCell(59, 3.5, $program_title, 0, 'L'); // full width usage
     $Y = $pdf->GetY() - 3.5;
-    $pdf->SetXY(76, $Y);
-    $pdf->Cell(20, 3.5, $uacs_code, 0, 1, 'C');
-
-    $pdf->SetXY(97, $Y);
-    $pdf->Cell(20, 3.5, '111111', 0, 1, 'C');
-
-    $pdf->SetXY(119, $Y);
-    $pdf->Cell(20, 3.5, '111111', 0, 1, 'C');
-    
-    $pdf->SetXY(142, $Y);
-    $pdf->Cell(20, 3.5, '111111', 0, 1, 'C');
-    
-    $pdf->SetXY(164, $Y);
-    $pdf->Cell(20, 3.5, '111111', 0, 1, 'C');
-
+    $pdf->SetXY(96, $Y);
+    $pdf->SetFont('Arial', '', 8);
+    $pdf->Cell(21.8, 3.5, $total_approved_budget, 'B', 1, 'C');
     $Y = $pdf->GetY() + 3.5;
-    
+
+
+    $query = $this->db->query("
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_ps_dt` b
+        WHERE
+            b.`project_id` = '$recid'
+        ORDER BY b.`recid`, b.`particulars`
+    ");
+    $ps_data = $query->getResultArray();
+    //total ps object code fetching
+    $ps_object_code_totals = [];
+    foreach ($ps_data as $ps_row) {
+        $object_code = $ps_row['object_code'];
+        $approved_budget = floatval($ps_row['approved_budget']);
+
+        if (!isset($ps_object_code_totals[$object_code])) {
+            $ps_object_code_totals[$object_code] = 0;
+        }
+        $ps_object_code_totals[$object_code] += $approved_budget;
+    }
+
+    $last_allotment_class = '';
+    $last_sub_object_code = '';
+    $last_object_code = '';
+    $Y = $pdf->GetY() + 9;;
+    foreach ($ps_data as $ps_row) {
+        $allotment_class = $ps_row['allotment_class'];
+        $object_code = $ps_row['object_code'];
+        $sub_object_code = $ps_row['sub_object_code'];
+        $uacs_code = $ps_row['uacs_code'];
+        $approved_budget = $ps_row['approved_budget'];
+
+        $Y = $pdf->GetY() + 2.5;
+        if ($Y > 270) {
+            $pdf->AddPage();
+            $Y = $pdf->GetY(); // or set manually, e.g., $Y = 10;
+        }
+
+        if ($allotment_class !== $last_allotment_class && $allotment_class !== null) {
+            $pdf->SetFont('Arial', '', 8);
+            $pdf->SetXY(5, $Y);
+            $pdf->Cell(5, 3.5, '', 0, 0, 'L');
+            $pdf->MultiCell(59, 3.5, $allotment_class, 0, 'L'); // full width usage
+            $pdf->SetXY(96, $Y);
+            $pdf->Cell(21.8, 3.5, $total_ps, 'B', 1, 'C');
+            $pdf->SetXY(184, $Y);
+            $pdf->Cell(17, 3.5, '%', 0, 1, 'C');
+            $Y += 5.5;
+            $last_allotment_class = $allotment_class;
+        }
+
+        if ($object_code !== $last_object_code && $object_code !== null) {
+            $pdf->SetFont('Arial', '', 8);
+            $pdf->SetXY(10, $Y);
+            $pdf->Cell(5, 3.5, '', 0, 0, 'L');
+            $pdf->MultiCell(59, 3.5, $object_code, 0, 'L'); // full width usage
+            $total_for_object_code = $ps_object_code_totals[$object_code] ?? 0;
+            $pdf->SetXY(96, $Y);
+            $pdf->Cell(21.8, 3.5, number_format($total_for_object_code, 2), 'B', 1, 'C');
+            $pdf->SetXY(184, $Y);
+            $pdf->Cell(17, 3.5, '%', 0, 1, 'C');
+            $Y += 5.5;
+            $last_object_code = $object_code;
+        }
+        // Print Expenditure Category if it changes
+        if ($sub_object_code !== $last_sub_object_code && $sub_object_code !== null) {
+            $pdf->SetFont('Arial', '', 8);
+            $pdf->SetXY(15, $Y);
+            $pdf->Cell(5, 3.5, '', 0, 0, 'L');
+            $pdf->MultiCell(54, 3.5, $sub_object_code, 0, 'L'); // full width usage
+            $Y += 5.5;
+            $last_sub_object_code = $sub_object_code;
+        }
+
+        $Y = $pdf->GetY() - 3.5;
+        $pdf->SetXY(76, $Y);
+        $pdf->Cell(20, 3.5, $uacs_code, 0, 1, 'C');
+
+        $pdf->SetXY(97, $Y);
+        $pdf->Cell(20, 3.5, ($approved_budget == 0.00 || !is_numeric($approved_budget)) ? '---' : number_format((float)$approved_budget, 2), 0, 1, 'C');
+
+        $pdf->SetXY(119, $Y);
+        $pdf->Cell(20, 3.5, '----', 0, 1, 'C');
+
+        $pdf->SetXY(142, $Y);
+        $pdf->Cell(20, 3.5, '----', 0, 1, 'C');
+
+        $pdf->SetXY(164, $Y);
+        $pdf->Cell(20, 3.5, '----', 0, 1, 'C');
+
+        $Y = $pdf->GetY() + 3.5;
+
+    }
+
+    $query = $this->db->query("
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_mooe_dt` b
+        WHERE
+            b.`project_id` = '$recid'
+        ORDER BY b.`recid`, b.`particulars`
+    ");
+    $mooe_data = $query->getResultArray();
+    $mooe_object_code_totals = [];
+    foreach ($mooe_data as $mooe_row) {
+        $object_code = $mooe_row['object_code'];
+        $approved_budget = floatval($mooe_row['approved_budget']);
+
+        if (!isset($mooe_object_code_totals[$object_code])) {
+            $mooe_object_code_totals[$object_code] = 0;
+        }
+        $mooe_object_code_totals[$object_code] += $approved_budget;
+    }
+    $last_allotment_class = '';
+    $last_sub_object_code = '';
+    $last_object_code = '';
+
+    $Y = $pdf->GetY() + 9;;
+    foreach ($mooe_data as $mooe_row) {
+        $allotment_class = $mooe_row['allotment_class'];
+        $object_code = $mooe_row['object_code'];
+        $sub_object_code = $mooe_row['sub_object_code'];
+        $uacs_code = $mooe_row['uacs_code'];
+        $approved_budget = $mooe_row['approved_budget'];
+
+        $Y = $pdf->GetY() + 2.5;
+
+        if ($allotment_class !== $last_allotment_class && $allotment_class !== null) {
+            $pdf->SetFont('Arial', '', 8);
+            $pdf->SetXY(5, $Y);
+            $pdf->Cell(5, 3.5, '', 0, 0, 'L');
+            $pdf->MultiCell(59, 3.5, $allotment_class, 0, 'L'); // full width usage
+            $pdf->SetXY(96, $Y);
+            $pdf->Cell(21.8, 3.5, $total_mooe, 'B', 1, 'C');
+            $pdf->SetXY(184, $Y);
+            $pdf->Cell(17, 3.5, '%', 0, 1, 'C');
+            $Y += 5.5;
+            $last_allotment_class = $allotment_class;
+        }
+
+        if ($object_code !== $last_object_code && $object_code !== null) {
+            $pdf->SetFont('Arial', '', 8);
+            $pdf->SetXY(10, $Y);
+            $pdf->Cell(5, 3.5, '', 0, 0, 'L');
+            $pdf->MultiCell(59, 3.5, $object_code, 0, 'L'); // full width usage
+            $total_for_object_code = $mooe_object_code_totals[$object_code] ?? 0;
+            $pdf->SetXY(96, $Y);
+            $pdf->Cell(21.8, 3.5, number_format($total_for_object_code, 2), 'B', 1, 'C');
+            $pdf->SetXY(184, $Y);
+            $pdf->Cell(17, 3.5, '%', 0, 1, 'C');
+            $Y += 5.5;
+            $last_object_code = $object_code;
+        }
+        // Print Expenditure Category if it changes
+        if ($sub_object_code !== $last_sub_object_code && $sub_object_code !== null) {
+            $pdf->SetFont('Arial', '', 8);
+            $pdf->SetXY(15, $Y);
+            $pdf->Cell(5, 3.5, '', 0, 0, 'L');
+            $pdf->MultiCell(54, 3.5, $sub_object_code, 0, 'L'); // full width usage
+            $Y += 5.5;
+            $last_sub_object_code = $sub_object_code;
+        }
+
+        $Y = $pdf->GetY() - 3.5;
+        $pdf->SetXY(76, $Y);
+        $pdf->Cell(20, 3.5, $uacs_code, 0, 1, 'C');
+
+        $pdf->SetXY(97, $Y);
+        $pdf->Cell(20, 3.5, ($approved_budget == 0.00 || !is_numeric($approved_budget)) ? '---' : number_format((float)$approved_budget, 2), 0, 1, 'C');
+
+        $pdf->SetXY(119, $Y);
+        $pdf->Cell(20, 3.5, '----', 0, 1, 'C');
+
+        $pdf->SetXY(142, $Y);
+        $pdf->Cell(20, 3.5, '----', 0, 1, 'C');
+
+        $pdf->SetXY(164, $Y);
+        $pdf->Cell(20, 3.5, '----', 0, 1, 'C');
+
+        $Y = $pdf->GetY() + 3.5;
+
+    }
+
+    $pdf->SetFont('Arial', '', 8);
+    $pdf->SetXY(5, $Y);
+    $pdf->Cell(5, 3.5, '', 0, 0, 'L');
+    $pdf->MultiCell(59, 3.5, 'Capital Outlay', 0, 'L'); // full width usage
+    $pdf->SetXY(96, $Y);
+    $pdf->Cell(21.8, 3.5, $total_co, 'B', 1, 'C');
+    $Y += 5.5;
+    $query = $this->db->query("
+        SELECT
+            (SELECT `allotment_class` FROM mst_uacs WHERE `uacs_code` = b.`code`) allotment_class,
+            (SELECT `object_code` FROM mst_uacs WHERE `uacs_code` = b.`code`) object_code,
+            b.`particulars` AS `sub_object_code`,
+            b.`code` AS `uacs_code`,
+            b.`approved_budget`
+        FROM
+            `tbl_saob_co_dt` b
+        WHERE
+            b.`project_id` = '$recid'
+        ORDER BY b.`recid`, b.`particulars`
+    ");
+    $co_data = $query->getResultArray();
+    $co_object_code_totals = [];
+    foreach ($co_data as $co_row) {
+        $object_code = $co_row['object_code'];
+        $approved_budget = floatval($co_row['approved_budget']);
+
+        if (!isset($co_object_code_totals[$object_code])) {
+            $co_object_code_totals[$object_code] = 0;
+        }
+        $co_object_code_totals[$object_code] += $approved_budget;
+    }
+    $last_allotment_class = '';
+    $last_sub_object_code = '';
+    $last_object_code = '';
+
+    $Y = $pdf->GetY() + 9;;
+    foreach ($co_data as $co_row) {
+        $allotment_class = $co_row['allotment_class'];
+        $object_code = $co_row['object_code'];
+        $sub_object_code = $co_row['sub_object_code'];
+        $uacs_code = $co_row['uacs_code'];
+        $approved_budget = $co_row['approved_budget'];
+
+        $Y = $pdf->GetY() + 2.5;
+
+        if ($object_code !== $last_object_code && $object_code !== null) {
+            $pdf->SetFont('Arial', '', 8);
+            $pdf->SetXY(10, $Y);
+            $pdf->Cell(5, 3.5, '', 0, 0, 'L');
+            $pdf->MultiCell(59, 3.5, $object_code, 0, 'L'); // full width usage
+            $total_for_object_code = $co_object_code_totals[$object_code] ?? 0;
+            $pdf->SetXY(96, $Y);
+            $pdf->Cell(21.8, 3.5, number_format($total_for_object_code, 2), 'B', 1, 'C');
+            $pdf->SetXY(184, $Y);
+            $pdf->Cell(17, 3.5, '%', 0, 1, 'C');
+            $Y += 5.5;
+            $last_object_code = $object_code;
+        }
+        // Print Expenditure Category if it changes
+        if ($sub_object_code !== $last_sub_object_code && $sub_object_code !== null) {
+            $pdf->SetFont('Arial', '', 8);
+            $pdf->SetXY(15, $Y);
+            $pdf->Cell(5, 3.5, '', 0, 0, 'L');
+            $pdf->MultiCell(54, 3.5, $sub_object_code, 0, 'L'); // full width usage
+            $Y += 5.5;
+            $last_sub_object_code = $sub_object_code;
+        }
+
+        $Y = $pdf->GetY() - 3.5;
+        $pdf->SetXY(76, $Y);
+        $pdf->Cell(20, 3.5, $uacs_code, 0, 1, 'C');
+
+        $pdf->SetXY(97, $Y);
+        $pdf->Cell(20, 3.5, ($approved_budget == 0.00 || !is_numeric($approved_budget)) ? '---' : number_format((float)$approved_budget, 2), 0, 1, 'C');
+
+        $pdf->SetXY(119, $Y);
+        $pdf->Cell(20, 3.5, '----', 0, 1, 'C');
+
+        $pdf->SetXY(142, $Y);
+        $pdf->Cell(20, 3.5, '----', 0, 1, 'C');
+
+        $pdf->SetXY(164, $Y);
+        $pdf->Cell(20, 3.5, '----', 0, 1, 'C');
+
+        $Y = $pdf->GetY() + 3.5;
+
+    }
+
+    //total current year budget
+
+    $total_year_ps += $total_ps;
+    $total_year_mooe += $total_mooe;
+    $total_year_co += $total_co;
 }
 
+$total_curryear_budget = $total_year_ps + $total_year_mooe + $total_year_co;
+$Y = $pdf->GetY() + 2.5;
+$pdf->SetFont('Arial', 'B', 8);
+$pdf->SetXY(10, $Y);
+$pdf->Cell(191, 3.5, 'TOTAL CURRENT YEAR BUDGET', 1, 1, 'L');
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, ($total_curryear_budget == 0.00 || !is_numeric($total_curryear_budget)) ? '---' : number_format((float)$total_curryear_budget, 2), 0, 1, 'C');
+
+$Y = 10;
+$YY = $pdf->GetY() +30;
+
+$pdf->SetXY(10, $Y);
+$pdf->Cell(64, $YY, '', 1, 1); //col 1 border
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, $YY, '', 1, 1); //col 1 border
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, $YY, '', 1, 1); //col 1 border
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, $YY, '', 1, 1); //col 1 border
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, $YY, '', 1, 1); //col 1 border
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, $YY, '', 1, 1); //col 1 border
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, $YY, '', 1, 1); //col 1 border
 
 
+$Y = $pdf->GetY() - 3.5;
+$pdf->SetFont('Arial', 'B', 8);
+$pdf->SetXY(10, $Y);
+$pdf->Cell(191, 3.5, 'GRAND TOTAL, CURRENT YEAR APPRO.', 1, 1, 'L');
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, ($total_curryear_budget == 0.00 || !is_numeric($total_curryear_budget)) ? '---' : number_format((float)$total_curryear_budget, 2), 0, 1, 'C');
+
+
+$Y = $pdf->GetY() +7;
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(10, $Y);
+$pdf->Cell(64, 3.5, 'Certified Correct:', 0, 1, 'C');
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, 'Approved By:', 0, 1, 'C');
+
+$Y = $pdf->GetY() +14;
+$pdf->SetFont('Arial', 'B', 9);
+$pdf->SetXY(31, $Y);
+$pdf->Cell(62, 3.5, 'ROMANA L. LLAMAS', 0, 1, 'L');
+$pdf->SetXY(97, $Y);
+$pdf->Cell(22, 3.5, 'ATTY. LUCIEDEN G. RAZ', 0, 1, 'L');
+
+$Y = $pdf->GetY();
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(31, $Y);
+$pdf->Cell(62, 3.5, 'Administrative Office V', 0, 1, 'L');
+$pdf->SetXY(97, $Y);
+$pdf->Cell(22, 3.5, 'Director III', 0, 1, 'L');
 
 
 

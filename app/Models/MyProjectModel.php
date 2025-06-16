@@ -76,41 +76,48 @@ class MyProjectModel extends Model
 
 		if (empty($recid)) {
 			$query = $this->db->query("
-				INSERT INTO `tbl_reference_project`(
-					`fundcluster_id`,
-					`division_id`,
-					`responsibility_code`,
-					`project_title`,
-					`added_on`,
-					`added_by`,
-					`active_status`
+				INSERT INTO tbl_reference_project (
+					fundcluster_id,
+					division_id,
+					responsibility_code,
+					project_title,
+					added_on,
+					added_by,
+					active_status
+				) VALUES (
+					?, ?, ?, ?, NOW(), ?, '1'
 				)
-				VALUES(
-					'$fundcluster_id',
-					'$division_id',
-					'$responsibility_code',
-					'$project_title',
-					NOW(),
-					'{$this->cuser}',
-					'1'
-				)
-			");
+			", [
+				$fundcluster_id,
+				$division_id,
+				$responsibility_code,
+				$project_title,
+				$this->cuser
+			]);
+
 			$status = "Project Saved successfully";
 			$color = "success";
-		}else{
+		} else {
 			$query = $this->db->query("
-				UPDATE
-					`tbl_reference_project`
+				UPDATE tbl_reference_project
 				SET
-					`fundcluster_id` = '$fundcluster_id',
-					`division_id` = '$division_id',
-					`responsibility_code` = '$responsibility_code',
-					`project_title` = '$project_title'
-				WHERE `recid` = '$recid'
-			");
+					fundcluster_id = ?,
+					division_id = ?,
+					responsibility_code = ?,
+					project_title = ?
+				WHERE recid = ?
+			", [
+				$fundcluster_id,
+				$division_id,
+				$responsibility_code,
+				$project_title,
+				$recid
+			]);
+
 			$status = "Project Updated successfully";
 			$color = "info";
 		}
+
 
 		if ($query) {
 			// Echo JavaScript to show the toast and then redirect
