@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 
-class MyOrsBurs extends BaseController
+class MyBurs extends BaseController
 {
     public function __construct()
 	{

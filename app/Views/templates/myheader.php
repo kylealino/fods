@@ -137,19 +137,35 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
               <span class="hide-menu">Functions</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link sidebar-link" href="<?=site_url();?>myorsburs?meaction=MAIN" aria-expanded="false">
+              <a class="sidebar-link sidebar-link" href="<?=site_url();?>myors?meaction=MAIN" aria-expanded="false">
                 <span class="rounded-3">
                   <i class="ti ti-pencil"></i>
                 </span>
-                <span class="hide-menu">ORS/BURS</span>
+                <span class="hide-menu">ORS</span>
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link sidebar-link" href="<?=site_url();?>myorsbursapproval?meaction=MAIN" aria-expanded="false">
+              <a class="sidebar-link sidebar-link" href="<?=site_url();?>myorsapproval?meaction=MAIN" aria-expanded="false">
                 <span class="rounded-3">
                   <i class="ti ti-pencil"></i>
                 </span>
-                <span class="hide-menu">ORS/BURS Approval</span>
+                <span class="hide-menu">ORS Approval</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link sidebar-link" href="<?=site_url();?>myburs?meaction=MAIN" aria-expanded="false">
+                <span class="rounded-3">
+                  <i class="ti ti-pencil"></i>
+                </span>
+                <span class="hide-menu">BURS</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link sidebar-link" href="<?=site_url();?>mybursapproval?meaction=MAIN" aria-expanded="false">
+                <span class="rounded-3">
+                  <i class="ti ti-pencil"></i>
+                </span>
+                <span class="hide-menu">BURS Approval</span>
               </a>
             </li>
             <li class="nav-small-cap">

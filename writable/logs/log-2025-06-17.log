@@ -1,0 +1,105 @@
+CRITICAL - 2025-06-17 14:04:05 --> ErrorException: Undefined variable $programdata
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 120.
+ 1 APPPATH\Views\ors\ors-main.php(120): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $programdata', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 120)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(127): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(28): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-17 14:04:53 --> ErrorException: Undefined variable $programdata
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 121.
+ 1 APPPATH\Views\ors\ors-main.php(121): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $programdata', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 121)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(127): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(28): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-17 14:06:39 --> ErrorException: foreach() argument must be of type array|object, null given
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 123.
+ 1 APPPATH\Views\ors\ors-main.php(123): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argument must be of type array|object, null given', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 123)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(127): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(28): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-17 14:10:28 --> ErrorException: foreach() argument must be of type array|object, null given
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 123.
+ 1 APPPATH\Views\ors\ors-main.php(123): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argument must be of type array|object, null given', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 123)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(127): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(28): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-17 14:12:27 --> ErrorException: Array to string conversion
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 115.
+ 1 APPPATH\Views\ors\ors-main.php(115): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 115)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(127): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(28): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-17 14:15:17 --> ErrorException: Array to string conversion
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 115.
+ 1 APPPATH\Views\ors\ors-main.php(115): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 115)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(127): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(28): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-17 14:19:04 --> ErrorException: Undefined array key "program_title"
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 49.
+ 1 APPPATH\Views\ors\ors-main.php(49): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "program_title"', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 49)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(127): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(28): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
