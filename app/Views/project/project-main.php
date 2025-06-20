@@ -5,6 +5,7 @@ $recid = $this->request->getPostGet('recid');
 
 $project_title = "";
 $responsibility_code = "";
+$mfopaps_code = "";
 $fund_cluster_code = "";
 $fundcluster_id = "";
 $division_name = "";
@@ -21,7 +22,8 @@ if(!empty($recid) || !is_null($recid)) {
         a.`division_id`,
         c.`division_name`,
         a.`responsibility_code`,
-        a.`project_title`
+        a.`project_title`,
+        a.`mfopaps_code`
     FROM
         `tbl_reference_project` a
     JOIN
@@ -43,6 +45,7 @@ if(!empty($recid) || !is_null($recid)) {
     $division_name = $data['division_name'];
     $division_id = $data['division_id'];
     $responsibility_code = $data['responsibility_code'];
+    $mfopaps_code = $data['mfopaps_code'];
 
 }
 echo view('templates/myheader.php');
@@ -173,6 +176,36 @@ echo view('templates/myheader.php');
                                 <input type="text" id="responsibility_code" name="responsibility_code" value="<?=$responsibility_code;?>" class="form-control form-control-sm" />
                             </div>
                         </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span>MFO/PAPS:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <?php if(!empty($recid)):?>
+                                    <select name="mfopaps_code" id="mfopaps_code" class="form-control select2 form-select-sm show-tick">
+                                        <option selected value="<?=$mfopaps_code;?>"><?=$mfopaps_code;?></option>
+                                        <?php foreach($mfopapsdata as $data): ?>
+                                            <option 
+                                                value="<?= $data['mfopaps_code'] ?>"
+                                            >
+                                                <?= $data['mfopaps_code'] ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                <?php else:?>
+                                    <select name="mfopaps_code" id="mfopaps_code" class="form-control select2 form-select-sm show-tick">
+                                        <option selected value="">Choose...</option>
+                                        <?php foreach($mfopapsdata as $data): ?>
+                                            <option 
+                                                value="<?= $data['mfopaps_code'] ?>"
+                                            >
+                                                <?= $data['mfopaps_code'] ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                <?php endif;?>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row mb-2">  
@@ -258,7 +291,7 @@ echo view('templates/myheader.php');
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="<?=base_url('assets/js/maintenance/myproject.js');?>"></script>
+<script src="<?=base_url('assets/js/maintenance/myproject.js?v=1');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 <script>
     __mysys_project_ent.__project_saving();

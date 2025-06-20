@@ -24,6 +24,7 @@ class MyProjectModel extends Model
 		$division_name = $this->request->getPostGet('division_name');
 		$division_id = $this->request->getPostGet('division_id');
 		$responsibility_code = $this->request->getPostGet('responsibility_code');
+		$mfopaps_code = $this->request->getPostGet('mfopaps_code');
 
 		if (empty($project_title)) {
 			echo "
@@ -74,23 +75,26 @@ class MyProjectModel extends Model
 			die();
 		}
 
+
 		if (empty($recid)) {
 			$query = $this->db->query("
 				INSERT INTO tbl_reference_project (
 					fundcluster_id,
 					division_id,
 					responsibility_code,
+					mfopaps_code,
 					project_title,
 					added_on,
 					added_by,
 					active_status
 				) VALUES (
-					?, ?, ?, ?, NOW(), ?, '1'
+					?, ?, ?, ?, ?, NOW(), ?, '1'
 				)
 			", [
 				$fundcluster_id,
 				$division_id,
 				$responsibility_code,
+				$mfopaps_code,
 				$project_title,
 				$this->cuser
 			]);
@@ -104,12 +108,14 @@ class MyProjectModel extends Model
 					fundcluster_id = ?,
 					division_id = ?,
 					responsibility_code = ?,
+					mfopaps_code = ?,
 					project_title = ?
 				WHERE recid = ?
 			", [
 				$fundcluster_id,
 				$division_id,
 				$responsibility_code,
+				$mfopaps_code,
 				$project_title,
 				$recid
 			]);

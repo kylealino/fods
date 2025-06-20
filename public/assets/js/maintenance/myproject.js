@@ -25,6 +25,7 @@ function __mysys_project_ent() {
 					var division_name = document.getElementById("selDivision");
 					var division_id = document.getElementById("division_id");
 					var responsibility_code = document.getElementById("responsibility_code");
+					var mfopaps_code = document.getElementById("mfopaps_code");
 
 					
 					var mparam = { 
@@ -35,6 +36,7 @@ function __mysys_project_ent() {
 						division_name: division_name.value,
 						division_id: division_id.value,
 						responsibility_code: responsibility_code.value,
+						mfopaps_code: mfopaps_code.value,
 						meaction: 'MAIN-SAVE'
 					}
 

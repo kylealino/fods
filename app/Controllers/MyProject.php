@@ -80,11 +80,20 @@ class MyProject extends BaseController
             `tbl_fundcluster` 
         ");
         $fundclusterdata = $fundclusterquery->getResultArray();
+
+        $mfopapsquery = $this->db->query("
+        SELECT
+            `mfopaps_code`
+        FROM
+            `tbl_mfopaps` 
+        ");
+        $mfopapsdata = $mfopapsquery->getResultArray();
     
         return view('project/project-main', [
             'projectdata' => $projectdata,
             'divisiondata' => $divisiondata,
             'fundclusterdata' => $fundclusterdata,
+            'mfopapsdata' => $mfopapsdata,
         ]);
     }
     
