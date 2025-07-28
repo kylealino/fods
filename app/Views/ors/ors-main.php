@@ -24,6 +24,10 @@ $is_disapproved_certb = '';
 $certa_remarks = '';
 $certb_remarks = '';
 $MDL_jsscript = "";
+$status_color= "";
+$status_msg = "";
+$status_color_b= "";
+$status_msg_b = "";
 
 if(!empty($recid) || !is_null($recid)) { 
     $query = $this->db->query("
@@ -45,7 +49,9 @@ if(!empty($recid) || !is_null($recid)) {
         `is_approved_certb`,
         `is_disapproved_certb`,
         `certa_remarks`,
-        `certb_remarks`
+        `certb_remarks`,
+        `certa_approver`,
+        `certb_approver`
     FROM
         `tbl_ors_hd`
     WHERE 
@@ -71,6 +77,8 @@ if(!empty($recid) || !is_null($recid)) {
     $is_disapproved_certb = $data['is_disapproved_certb'];
     $certa_remarks = $data['certa_remarks'];
     $certb_remarks = $data['certb_remarks'];
+    $certa_approver = $data['certa_approver'];
+    $certb_approver = $data['certb_approver'];
 
     if ($action == 'certifya_appr_pending') {
         $MDL_jsscript = "
@@ -91,6 +99,13 @@ if(!empty($recid) || !is_null($recid)) {
            __mysys_ors_ent.__approve_certa();
         </script>
        ";	
+    }elseif ($action == 'certifyb_appr_pending') {
+        $MDL_jsscript = "
+        <script>
+           __mysys_ors_ent.__approve_certb();
+           __mysys_ors_ent.__disapprove_certb();
+        </script>
+       ";
     }elseif ($action == 'is_disapproved_certb') {
         $MDL_jsscript = "
         <script>
@@ -109,6 +124,56 @@ if(!empty($recid) || !is_null($recid)) {
        ";	
     }
 
+}
+
+if ($action == 'certifya_appr_pending') {
+    $status_color = 'text-warning';
+    $status_msg = 'For Approval';
+    $status_color_b = 'text-warning';
+    $status_msg_b = 'For Approval';
+}elseif ($action == 'certifyb_appr_pending'){
+    if ($is_approved_certa == '1' && $is_disapproved_certa == '0'&& $is_approved_certb == '0' && $is_disapproved_certb == '0') {
+        $status_color = 'text-success';
+        $status_msg = 'Approved by ' . $certa_approver;
+        $status_color_b = 'text-warning';
+        $status_msg_b = 'For Approval';
+    }elseif($is_approved_certa == '1' && $is_disapproved_certa == '0'&& $is_approved_certb == '0' && $is_disapproved_certb == '1'){
+        $status_color = 'text-success';
+        $status_msg = 'Approved by ' . $certa_approver;
+        $status_color_b = 'text-danger';
+        $status_msg_b = 'Disapproved';
+    }else{
+        $status_color = 'text-warning';
+        $status_msg = 'For Approval';
+        $status_color_b = 'text-warning';
+        $status_msg_b = 'For Approval';
+    }
+
+}elseif ($action == 'transaction_viewing') {
+    if ($is_approved_certa == '1' && $is_approved_certb == '0' && $is_disapproved_certb == '0') {
+        $status_color = 'text-success';
+        $status_msg = 'Approved by ' . $certa_approver;
+        $status_color_b = 'text-warning';
+        $status_msg_b = 'For Approval';
+    }elseif ($is_approved_certa == '1' && $is_approved_certb == '1') {
+        $status_color_b = 'text-success';
+        $status_msg_b = 'Approved by ' . $certb_approver;
+        $status_color = 'text-success';
+        $status_msg = 'Approved by ' . $certa_approver;
+    }elseif($is_approved_certa == '1' && $is_disapproved_certb == '1'){
+        $status_color = 'text-success';
+        $status_msg = 'Approved by ' . $certa_approver;
+        $status_color_b = 'text-danger';
+        $status_msg_b = 'Disapproved';
+    }else{
+        $status_color = 'text-warning';
+        $status_msg = 'For Approval';
+        $status_color_b = 'text-warning';
+        $status_msg_b = 'For Approval';
+    }
+}else{
+    $status_color_b = 'text-info';
+    $status_msg_b = '';
 }
 
 
@@ -146,7 +211,7 @@ echo view('templates/myheader.php');
                     </h6>
                 </div>
                 <div class="col-sm-6 text-end">
-                    <?php if ($action == 'certifya_appr_pending'):?>
+                    <?php if($action == 'certifya_appr_pending' || $action == 'certifyb_appr_pending'):?>
                         <button type="button" id="btn_approve" name="btn_approve" class="btn_approve btn btn-sm btn-success">
                             Approve
                         </button>
@@ -1264,6 +1329,18 @@ echo view('templates/myheader.php');
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-sm-12">
+                                <div class="row mb-2">
+                                    <?php if(!empty($action)):?>
+                                        <div class="col-sm-4">
+                                            <span class="fw-bold">Status:</span>
+                                        </div>
+                                        <div class="col-sm-8 <?=$status_color;?> fs-3 fw-bold">
+                                            <span><i class="ti ti-flag"></i> <?=$status_msg;?></span>
+                                        </div>
+                                    <?php endif;?>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -1309,6 +1386,18 @@ echo view('templates/myheader.php');
                                         <input type="text" id="position_b" name="position_b" value="<?=$position_b;?>" class="form-control form-control-sm" disabled/>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row mb-2">
+                                <?php if(!empty($action)):?>
+                                    <div class="col-sm-4">
+                                        <span class="fw-bold">Status:</span>
+                                    </div>
+                                    <div class="col-sm-8 <?=$status_color_b;?> fs-3 fw-bold">
+                                        <span><i class="ti ti-flag"></i> <?=$status_msg_b;?></span>
+                                    </div>
+                                <?php endif;?>
                             </div>
                         </div>
                     </div>

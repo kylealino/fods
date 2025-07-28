@@ -9,8 +9,7 @@ $totalquery = $this->db->query("
 SELECT
     COALESCE(COUNT(recid), 0) AS total_transactions
 FROM
-    `tbl_budget_hd`
-WHERE `tagging` = 'For Approval'
+    `tbl_ors_hd`
 ");
 
 $totaldata = $totalquery->getRowArray();
@@ -20,9 +19,9 @@ $pendingquery = $this->db->query("
 SELECT
     COALESCE(COUNT(recid), 0) AS total_pending
 FROM
-    `tbl_budget_hd`
+    `tbl_ors_hd`
 WHERE 
-    `is_pending` = '1' and `tagging` = 'For Approval'
+    `is_pending` = '1'
 ");
 
 $pendingdata = $pendingquery->getRowArray();
@@ -30,27 +29,27 @@ $total_pending = $pendingdata['total_pending'];
 
 $approvedquery = $this->db->query("
 SELECT
-    COALESCE(COUNT(recid), 0) AS total_approved
+    COALESCE(COUNT(recid), 0) AS total_approved_certa
 FROM
-    `tbl_budget_hd`
+    `tbl_ors_hd`
 WHERE 
-    `is_approved` = '1'
+    `is_approved_certa` = '1'
 ");
 
 $approveddata = $approvedquery->getRowArray();
-$total_approved = $approveddata['total_approved'];
+$total_approved_certa = $approveddata['total_approved_certa'];
 
 $disapprovedquery = $this->db->query("
 SELECT
-    COALESCE(COUNT(recid), 0) AS total_disapproved
+    COALESCE(COUNT(recid), 0) AS total_disapproved_certa
 FROM
-    `tbl_budget_hd`
+    `tbl_ors_hd`
 WHERE 
-    `is_disapproved` = '1'
+    `is_disapproved_certa` = '1'
 ");
 
 $disapproveddata = $disapprovedquery->getRowArray();
-$total_disapproved = $disapproveddata['total_disapproved'];
+$total_disapproved_certa = $disapproveddata['total_disapproved_certa'];
 
 
 
@@ -100,7 +99,7 @@ echo view('templates/myheader.php');
                                 </h3>
                             </div>
                             <div class="p-3">
-                                <h3 class="text-success mb-0 fs-9"><?=$total_approved;?></h3>
+                                <h3 class="text-success mb-0 fs-9"><?=$total_approved_certa;?></h3>
                                 <span>Approved</span>
                             </div>
                         </div>
@@ -115,7 +114,7 @@ echo view('templates/myheader.php');
                                 </h3>
                             </div>
                             <div class="p-3">
-                                <h3 class="text-danger mb-0 fs-9"><?=$total_disapproved;?></h3>
+                                <h3 class="text-danger mb-0 fs-9"><?=$total_disapproved_certa;?></h3>
                                 <span>Disapproved</span>
                             </div>
                         </div>
@@ -187,8 +186,8 @@ echo view('templates/myheader.php');
                                 <td class="text-center"><?=$particulars;?></td>
                                 <td class="text-center"><?= '₱'. number_format($amount,2);?></td>
                                 <td class="text-center align-middle">
-                                    <a class="text-info nav-icon-hover" href="myors?meaction=MAIN&recid=<?= $recid?>&action=certifyb_appr_pending">
-                                        View
+                                    <a class="text-info nav-icon-hover fs-7" title="View Transaction" href="myors?meaction=MAIN&recid=<?= $recid?>&action=certifyb_appr_pending">
+                                        <i class="ti ti-eye"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -207,47 +206,67 @@ echo view('templates/myheader.php');
                         <thead>
                             <tr>
                                 <th>Particulars</th>
-                                <th>Remarks</th>
                                 <th>Amount</th>
-                                <th>Approver</th>
-                                <th>Status</th>
+                                <th>Requesting Office Approval</th>
+                                <th>Budget Division Approval</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody class="align-middle">
                             <?php if(!empty($transactiondata)):
-                                $status="";
+                                $office_status="";
+                                $budget_status="";
                                 $remarks="";
                                 $approver="";
                                 $color="";
                                 foreach ($transactiondata as $data):
+                                    $recid = $data['recid'];
                                     $particulars = $data['particulars'];
                                     $amount = $data['amount'];
                                     $is_approved_certa = $data['is_approved_certa'];
                                     $is_disapproved_certa = $data['is_disapproved_certa'];
+                                    $is_approved_certb = $data['is_approved_certb'];
+                                    $is_disapproved_certb = $data['is_disapproved_certb'];
                                     $certa_remarks = $data['certa_remarks'];
                                     $certa_approver = $data['certa_approver'];
                                     $certb_remarks = $data['certb_remarks'];
                                     $certb_approver = $data['certb_approver'];
 
                                     if ($is_approved_certa == '1' && $is_disapproved_certa == '0') {
-                                        $status="Approved";
+                                        $office_status = '<i class="ti ti-flag"></i>&nbsp;' . 'Approved';
                                         $color="text-success";
-                                        $remarks = $certa_remarks;
-                                        $approver = $certa_approver;
                                     }elseif($is_approved_certa == '0' && $is_disapproved_certa == '1'){
-                                        $status="Disapproved";
+                                        $office_status = '<i class="ti ti-flag"></i>&nbsp;' . 'Disapproved';
                                         $color="text-danger";
-                                        $remarks = $certa_remarks;
-                                        $approver = $certa_approver;
+                                    }else{
+                                        $office_status = '<i class="ti ti-flag"></i>&nbsp;' . 'Pending';
+                                        $color="text-primary";
+                                    }
+
+                                    if($is_approved_certa == '1' && $is_disapproved_certa == '0' && $is_approved_certb == '1' && $is_disapproved_certb == '0'){
+                                        $budget_status = '<i class="ti ti-flag"></i>&nbsp;' . 'Approved';
+                                        $budget_color="text-success";
+                                    }elseif($is_approved_certa == '1' && $is_disapproved_certa == '0' && $is_approved_certb == '0' && $is_disapproved_certb == '1'){
+                                        $budget_status = '<i class="ti ti-flag"></i>&nbsp;' . 'Disapproved';
+                                        $budget_color="text-danger";
+                                    }else{
+                                        $budget_status = '<i class="ti ti-flag"></i>&nbsp;' . 'Pending';
+                                        $budget_color="text-primary";
                                     }
                             ?>
                             <tr>
                                 <td class="text-center"><?=$particulars;?></td>
-                                <td class="text-center"><?=$remarks;?></td>
                                 <td class="text-center"><?= '₱'. number_format($amount,2);?></td>
-                                <td class="text-center"><?=$approver;?></td>
                                 <td class="text-center <?=$color;?>">
-                                    <i class="ti ti-flag"></i>&nbsp;<?=$status;?>
+                                    <?=$office_status;?>
+                                </td>
+                                <td class="text-center <?=$budget_color;?>">
+                                    <?=$budget_status;?>
+                                </td>
+                                <td class="text-center align-middle">
+                                    <a class="text-info nav-icon-hover" href="myors?meaction=MAIN&recid=<?= $recid?>&action=transaction_viewing">
+                                        View
+                                    </a>
                                 </td>
                             </tr>
                             <?php endforeach; endif;?>

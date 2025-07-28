@@ -36,8 +36,8 @@ class MyOrsModel extends Model
 		$budgetcodtdata = $this->request->getPostGet('budgetcodtdata');
 		$budgetindirectcodtdata = $this->request->getPostGet('budgetindirectcodtdata');
 		
-		$cseqn =  $this->get_ctr_ors('01',$funding_source,'CTRL_NO01');//TRANSACTION NO
-		$trx = empty($serialno) ? $cseqn : $serialno;
+		// $cseqn =  $this->get_ctr_ors('01',$funding_source,'CTRL_NO01');//TRANSACTION NO
+		// $trx = empty($serialno) ? $cseqn : $serialno;
 
 		// var_dump(
 		// 	$certified_a,
@@ -128,9 +128,9 @@ class MyOrsModel extends Model
 				die();
 			}
 			//INSERTING HD DATA
+			//ORS SERIALNO
 			$query = $this->db->query("
 				INSERT INTO tbl_ors_hd (
-					`serialno`,
 					`program_title`,
 					`particulars`,
 					`funding_source`,
@@ -143,9 +143,8 @@ class MyOrsModel extends Model
 					`position_b`,
 					`added_by`
 				)
-				VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
 				[
-					$trx,
 					$program_title,
 					$particulars,
 					$funding_source,
@@ -689,7 +688,6 @@ class MyOrsModel extends Model
 			echo "
 			<script>
 				document.getElementById('submitBtn').disabled = true;
-				document.getElementById('serialno').value = '{$trx}';
 				toastr.$color('{$status}!', 'Well Done!', {
 						progressBar: true,
 						closeButton: true,
@@ -711,10 +709,16 @@ class MyOrsModel extends Model
 		
 	}
 	
+	//CERTIFIED A APPROVAL/DISAPPROVAL
 	public function ors_certifya_approve() { 
 		$recid = $this->request->getPostGet('recid');
 		$approver = $this->request->getPostGet('approver');
 		$remarks = $this->request->getPostGet('remarks');
+		$serialno = $this->request->getPostGet('serialno');
+		$funding_source = $this->request->getPostGet('funding_source');
+
+		$cseqn =  $this->get_ctr_ors('01',$funding_source,'CTRL_NO01');//TRANSACTION NO
+		$trx = empty($serialno) ? $cseqn : $serialno;
 
 		$accessquery = $this->db->query("
 			SELECT `recid` FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '2005' AND `is_active` = '1'
@@ -733,7 +737,15 @@ class MyOrsModel extends Model
 		}
 
 		$query = $this->db->query("
-			UPDATE tbl_ors_hd SET `is_pending` = '0', `is_approved_certa` = '1',`certa_approver` = '$approver', `certa_remarks` = '$remarks' WHERE `recid` = '$recid'
+			UPDATE tbl_ors_hd 
+			SET 
+				`is_pending` = '0', 
+				`is_approved_certa` = '1',
+				`is_disapproved_certa` = '0',
+				`certa_approver` = '$approver', 
+				`certa_remarks` = '$remarks',
+				`serialno` = '$trx'
+			WHERE `recid` = '$recid'
 		");
 		$status = "ORS approved!";
 		
@@ -741,6 +753,7 @@ class MyOrsModel extends Model
 			// Echo JavaScript to show the toast and then redirect
 			echo "
 			<script>
+				document.getElementById('serialno').value = '{$trx}';
 				toastr.success('{$status}!', 'Well Done!', {
 						progressBar: true,
 						closeButton: true,
@@ -811,13 +824,14 @@ class MyOrsModel extends Model
 		}
 	}
 
+	// CERTIFIED B APPROVAL/DISAPPROVAL
 	public function ors_certifyb_approve() { 
 		$recid = $this->request->getPostGet('recid');
 		$approver = $this->request->getPostGet('approver');
 		$remarks = $this->request->getPostGet('remarks');
 
 		$accessquery = $this->db->query("
-			SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '1005' AND `is_active` = '1'
+			SELECT `recid` FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '2006' AND `is_active` = '1'
 		");
 		if ($accessquery->getNumRows() == 0) {
 			echo "
@@ -833,9 +847,9 @@ class MyOrsModel extends Model
 		}
 
 		$query = $this->db->query("
-			UPDATE tbl_budget_hd SET `is_pending` = '0', `is_approved` = '1',`approver` = '$approver', `remarks` = '$remarks' WHERE `recid` = '$recid'
+			UPDATE tbl_ors_hd SET `is_pending` = '0', `is_approved_certb` = '1', `is_disapproved_certb` = '0',`certb_approver` = '$approver', `certb_remarks` = '$remarks' WHERE `recid` = '$recid'
 		");
-		$status = "Project budget approved!";
+		$status = "ORS approved!";
 		
 		if ($query) {
 			// Echo JavaScript to show the toast and then redirect
@@ -847,7 +861,7 @@ class MyOrsModel extends Model
 						timeOut:2500,
 					});
 				setTimeout(function() {
-						window.location.href = 'mybudgetallotment?meaction=MAIN'; // Redirect to MAIN view
+						window.location.href = 'myorsapproval?meaction=MAIN'; // Redirect to MAIN view
 					}, 2500); // 2-second delay for user to see the toast
 			</script>
 			";
@@ -867,7 +881,7 @@ class MyOrsModel extends Model
 		$remarks = $this->request->getPostGet('remarks');
 
 		$accessquery = $this->db->query("
-			SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '1005' AND `is_active` = '1'
+			SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '2006' AND `is_active` = '1'
 		");
 		if ($accessquery->getNumRows() == 0) {
 			echo "
@@ -883,9 +897,9 @@ class MyOrsModel extends Model
 		}
 
 		$query = $this->db->query("
-			UPDATE tbl_budget_hd SET `is_pending` = '0', `is_approved` = '0',`is_disapproved` = '1',`approver` = '$approver', `remarks` = '$remarks' WHERE `recid` = '$recid'
+			UPDATE tbl_ors_hd SET `is_pending` = '0', `is_approved_certb` = '0',`is_disapproved_certb` = '1',`certb_approver` = '$approver', `certb_remarks` = '$remarks' WHERE `recid` = '$recid'
 		");
-		$status = "Project budget disapproved!";
+		$status = "ORS disapproved!";
 		
 		if ($query) {
 			// Echo JavaScript to show the toast and then redirect
@@ -897,7 +911,7 @@ class MyOrsModel extends Model
 						timeOut:2500,
 					});
 				setTimeout(function() {
-						window.location.href = 'mybudgetallotment?meaction=MAIN'; // Redirect to MAIN view
+						window.location.href = 'myorsapproval?meaction=MAIN'; // Redirect to MAIN view
 					}, 2500); // 2-second delay for user to see the toast
 			</script>
 			";

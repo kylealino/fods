@@ -763,6 +763,8 @@ function __mysys_ors_ent() {
 	this.__approve_certa = function() {
 		const approveBtn = document.getElementById('btn_approve');
 		const confirmApproveBtn = document.getElementById('confirmApproveBtn');
+		var serialno = document.getElementById("serialno");
+		var funding_source = document.getElementById("funding_source");
 
 		console.log('button approve is clicked...');
 	
@@ -785,6 +787,8 @@ function __mysys_ors_ent() {
 				recid: recid.value,
 				approver: approver.value,
 				remarks: remarks.value,
+				serialno: serialno.value,
+				funding_source: funding_source.value,
 				meaction: 'MAIN-APPROVE-A'
 			};
 	
@@ -838,6 +842,111 @@ function __mysys_ors_ent() {
 				approver: approver.value,
 				remarks: remarks.value,
 				meaction: 'MAIN-DISAPPROVE-A'
+			};
+	
+			jQuery.ajax({
+				type: "POST",
+				url: mesiteurl + 'myors',
+				context: document.body,
+				data: mparam,
+				global: false,
+				cache: false,
+				success: function(data) {
+					jQuery('.myors-outp-msg').html(data);
+
+					// Close the approve modal after successful approval
+					const approveModal = bootstrap.Modal.getInstance(document.getElementById('confirmDisapproveModal'));
+					approveModal.hide();
+				},
+				error: function(xhr, status, error) {
+					alert('Error: ' + error);
+				}
+			});
+	
+			// Close the modal
+			const disapproveModal = bootstrap.Modal.getInstance(document.getElementById('confirmDisapproveBtn'));
+			disapproveModal.hide();
+		});
+	};
+
+	this.__approve_certb = function() {
+		const approveBtn = document.getElementById('btn_approve');
+		const confirmApproveBtn = document.getElementById('confirmApproveBtn');
+
+		console.log('button approve is clicked...');
+	
+		let recid = null; // store recid for use after confirmation
+	
+		approveBtn.addEventListener('click', function () {
+			recid = document.getElementById("recid");
+			approver = document.getElementById("approved_by");
+			remarks = document.getElementById("approved_remarks");
+	
+			// Show the modal
+			const approveModal = new bootstrap.Modal(document.getElementById('confirmApproveModal'));
+			approveModal.show();
+		});
+	
+		confirmApproveBtn.addEventListener('click', function () {
+			if (!recid) return;
+	
+			const mparam = {
+				recid: recid.value,
+				approver: approver.value,
+				remarks: remarks.value,
+				meaction: 'MAIN-APPROVE-B'
+			};
+	
+			jQuery.ajax({
+				type: "POST",
+				url: mesiteurl + 'myors',
+				context: document.body,
+				data: eval(mparam),
+				global: false,
+				cache: false,
+				success: function(data) {
+					jQuery('.myors-outp-msg').html(data);
+
+					// Close the approve modal after successful approval
+					const approveModal = bootstrap.Modal.getInstance(document.getElementById('confirmApproveModal'));
+					approveModal.hide();
+				},
+				error: function(xhr, status, error) {
+					alert('Error: ' + error);
+				}
+			});
+	
+			// Close the modal
+			const approveModal = bootstrap.Modal.getInstance(document.getElementById('confirmApproveModal'));
+			approveModal.hide();
+		});
+	};
+
+	this.__disapprove_certb = function() {
+		const disapproveBtn = document.getElementById('btn_disapprove');
+		console.log('Disapprove Button Clicked');
+		const confirmDisapproveBtn = document.getElementById('confirmDisapproveBtn');
+	
+		let recid = null; // store recid for use after confirmation
+	
+		disapproveBtn.addEventListener('click', function () {
+			recid = document.getElementById("recid");
+			approver = document.getElementById("disapproved_by");
+			remarks = document.getElementById("disapproved_remarks");
+	
+			// Show the modal
+			const disapproveModal = new bootstrap.Modal(document.getElementById('confirmDisapproveModal'));
+			disapproveModal.show();
+		});
+	
+		confirmDisapproveBtn.addEventListener('click', function () {
+			if (!recid) return;
+	
+			const mparam = {
+				recid: recid.value,
+				approver: approver.value,
+				remarks: remarks.value,
+				meaction: 'MAIN-DISAPPROVE-B'
 			};
 	
 			jQuery.ajax({

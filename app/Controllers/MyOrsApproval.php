@@ -66,7 +66,7 @@ class MyOrsApproval extends BaseController
         FROM
             tbl_ors_hd a
         WHERE
-            is_approved_certa = '1'
+            is_approved_certa = '1' AND is_approved_certb = '0'
         ORDER BY a.`recid` DESC
         ");
         $certifybdata = $certifybquery->getResultArray();

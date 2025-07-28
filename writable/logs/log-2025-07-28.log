@@ -139,3 +139,237 @@ in SYSTEMPATH\Database\BaseConnection.php on line 467.
  7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
  8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
  9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-07-28 09:26:05 --> mysqli_sql_exception: Unknown column 'is_approved_certa' in 'where clause' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\nSELECT\r\n    C...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\nSELECT\r\n    C...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\nSELECT\r\n    C...')
+#3 C:\xampp\htdocs\fods\app\Views\ors-approval\ors-approval-main.php(30): CodeIgniter\Database\BaseConnection->query('\r\nSELECT\r\n    C...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('ors-approval/or...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyOrsApproval.php(107): view('ors-approval/or...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyOrsApproval.php(23): App\Controllers\MyOrsApproval->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyOrsApproval->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsApproval))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2025-07-28 09:26:05 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'is_approved_certa' in 'where clause'
+[Method: GET, Route: myorsapproval]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\ors-approval\ors-approval-main.php(30): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    COALESCE(COUNT(recid), 0) AS total_approved_certa
+FROM
+    `tbl_budget_hd`
+WHERE 
+    `is_approved_certa` = \'1\'
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors-approval\\ors-approval-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors-approval/ors-approval-main', [], true)
+ 5 APPPATH\Controllers\MyOrsApproval.php(107): view('ors-approval/ors-approval-main', [...])
+ 6 APPPATH\Controllers\MyOrsApproval.php(23): App\Controllers\MyOrsApproval->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsApproval->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsApproval))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-28 09:26:05 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'is_approved_certa' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+SELECT
+    COALESCE(COUNT(recid), 0) AS total_approved_certa
+FROM
+    `tbl_budget_hd`
+WHERE 
+    `is_approved_certa` = \'1\'
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+SELECT
+    COALESCE(COUNT(recid), 0) AS total_approved_certa
+FROM
+    `tbl_budget_hd`
+WHERE 
+    `is_approved_certa` = \'1\'
+')
+ 3 APPPATH\Views\ors-approval\ors-approval-main.php(30): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    COALESCE(COUNT(recid), 0) AS total_approved_certa
+FROM
+    `tbl_budget_hd`
+WHERE 
+    `is_approved_certa` = \'1\'
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors-approval\\ors-approval-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors-approval/ors-approval-main', [], true)
+ 7 APPPATH\Controllers\MyOrsApproval.php(107): view('ors-approval/ors-approval-main', [...])
+ 8 APPPATH\Controllers\MyOrsApproval.php(23): App\Controllers\MyOrsApproval->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsApproval->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsApproval))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-28 09:26:05 --> [Caused by] mysqli_sql_exception: Unknown column 'is_approved_certa' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+SELECT
+    COALESCE(COUNT(recid), 0) AS total_approved_certa
+FROM
+    `tbl_budget_hd`
+WHERE 
+    `is_approved_certa` = \'1\'
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+SELECT
+    COALESCE(COUNT(recid), 0) AS total_approved_certa
+FROM
+    `tbl_budget_hd`
+WHERE 
+    `is_approved_certa` = \'1\'
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+SELECT
+    COALESCE(COUNT(recid), 0) AS total_approved_certa
+FROM
+    `tbl_budget_hd`
+WHERE 
+    `is_approved_certa` = \'1\'
+')
+ 4 APPPATH\Views\ors-approval\ors-approval-main.php(30): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    COALESCE(COUNT(recid), 0) AS total_approved_certa
+FROM
+    `tbl_budget_hd`
+WHERE 
+    `is_approved_certa` = \'1\'
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors-approval\\ors-approval-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors-approval/ors-approval-main', [], true)
+ 8 APPPATH\Controllers\MyOrsApproval.php(107): view('ors-approval/ors-approval-main', [...])
+ 9 APPPATH\Controllers\MyOrsApproval.php(23): App\Controllers\MyOrsApproval->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsApproval->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsApproval))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-28 09:52:43 --> ErrorException: Undefined variable $status_color
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 1286.
+ 1 APPPATH\Views\ors\ors-main.php(1286): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $status_color', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 1286)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(147): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-28 10:16:08 --> ErrorException: Undefined variable $budget_status
+[Method: GET, Route: myorsapproval]
+in APPPATH\Views\ors-approval\ors-approval-main.php on line 264.
+ 1 APPPATH\Views\ors-approval\ors-approval-main.php(264): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $budget_status', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors-approval\\ors-approval-main.php', 264)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors-approval\\ors-approval-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors-approval/ors-approval-main', [], true)
+ 5 APPPATH\Controllers\MyOrsApproval.php(107): view('ors-approval/ors-approval-main', [...])
+ 6 APPPATH\Controllers\MyOrsApproval.php(23): App\Controllers\MyOrsApproval->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsApproval->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsApproval))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-28 13:39:22 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 60.
+ 1 APPPATH\Views\ors\ors-main.php(60): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 60)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(147): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-28 13:39:38 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 60.
+ 1 APPPATH\Views\ors\ors-main.php(60): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 60)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(147): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-28 13:40:02 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 60.
+ 1 APPPATH\Views\ors\ors-main.php(60): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 60)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(147): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-28 14:07:27 --> ErrorException: Undefined variable $trx
+[Method: POST, Route: myors]
+in APPPATH\Models\MyOrsModel.php on line 745.
+ 1 APPPATH\Models\MyOrsModel.php(745): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $trx', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MyOrsModel.php', 745)
+ 2 APPPATH\Controllers\MyOrs.php(33): App\Models\MyOrsModel->ors_certifya_approve()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-28 14:35:05 --> ErrorException: Undefined variable $trx
+[Method: POST, Route: myors]
+in APPPATH\Models\MyOrsModel.php on line 691.
+ 1 APPPATH\Models\MyOrsModel.php(691): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $trx', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MyOrsModel.php', 691)
+ 2 APPPATH\Controllers\MyOrs.php(28): App\Models\MyOrsModel->ors_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-28 14:36:21 --> ErrorException: Undefined variable $status_color_b
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 1376.
+ 1 APPPATH\Views\ors\ors-main.php(1376): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $status_color_b', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 1376)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(147): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
