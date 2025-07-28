@@ -1,0 +1,274 @@
+ERROR - 2025-06-30 13:48:07 --> mysqli_sql_exception: Table 'fods.tbl_certfier' doesn't exist in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT * FROM t...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM t...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM t...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MyOrs.php(121): CodeIgniter\Database\BaseConnection->query('SELECT * FROM t...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-06-30 13:48:07 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'fods.tbl_certfier' doesn't exist
+[Method: GET, Route: myors]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MyOrs.php(121): CodeIgniter\Database\BaseConnection->query('SELECT * FROM tbl_certfier WHERE cert_tag = \'A\' ORDER BY recid DESC')
+ 2 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-30 13:48:07 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'fods.tbl_certfier' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM tbl_certfier WHERE cert_tag = \'A\' ORDER BY recid DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM tbl_certfier WHERE cert_tag = \'A\' ORDER BY recid DESC')
+ 3 APPPATH\Controllers\MyOrs.php(121): CodeIgniter\Database\BaseConnection->query('SELECT * FROM tbl_certfier WHERE cert_tag = \'A\' ORDER BY recid DESC')
+ 4 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-30 13:48:07 --> [Caused by] mysqli_sql_exception: Table 'fods.tbl_certfier' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT * FROM tbl_certfier WHERE cert_tag = \'A\' ORDER BY recid DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM tbl_certfier WHERE cert_tag = \'A\' ORDER BY recid DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM tbl_certfier WHERE cert_tag = \'A\' ORDER BY recid DESC')
+ 4 APPPATH\Controllers\MyOrs.php(121): CodeIgniter\Database\BaseConnection->query('SELECT * FROM tbl_certfier WHERE cert_tag = \'A\' ORDER BY recid DESC')
+ 5 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-30 15:41:12 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "myors/ors-pdf.php"
+[Method: GET, Route: myors]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('myors/ors-pdf.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('myors/ors-pdf', [], true)
+ 3 APPPATH\Controllers\MyOrs.php(48): view('myors/ors-pdf')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-30 15:41:42 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "myors/ors-pdf.php"
+[Method: GET, Route: myors]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('myors/ors-pdf.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('myors/ors-pdf', [], true)
+ 3 APPPATH\Controllers\MyOrs.php(48): view('myors/ors-pdf')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-06-30 15:46:40 --> mysqli_sql_exception: Operand should contain 1 column(s) in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MyOrs.php(81): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-06-30 15:46:40 --> CodeIgniter\Database\Exceptions\DatabaseException: Operand should contain 1 column(s)
+[Method: GET, Route: myors]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MyOrs.php(81): CodeIgniter\Database\BaseConnection->query('
+        SELECT 
+        a.`recid`,
+        a.`program_title`,
+        a.`particulars`,
+        a.`funding_source`,
+        a.`payee_name`,
+        a.`payee_office`,
+        a.`payee_address`,
+        (
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0), +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_co_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_co_dt` WHERE project_id = a.recid), 0)
+        ) AS amount        
+         FROM tbl_ors_hd a ORDER BY a.`recid` DESC')
+ 2 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-30 15:46:40 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Operand should contain 1 column(s)
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT 
+        a.`recid`,
+        a.`program_title`,
+        a.`particulars`,
+        a.`funding_source`,
+        a.`payee_name`,
+        a.`payee_office`,
+        a.`payee_address`,
+        (
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0), +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_co_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_co_dt` WHERE project_id = a.recid), 0)
+        ) AS amount        
+         FROM tbl_ors_hd a ORDER BY a.`recid` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT 
+        a.`recid`,
+        a.`program_title`,
+        a.`particulars`,
+        a.`funding_source`,
+        a.`payee_name`,
+        a.`payee_office`,
+        a.`payee_address`,
+        (
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0), +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_co_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_co_dt` WHERE project_id = a.recid), 0)
+        ) AS amount        
+         FROM tbl_ors_hd a ORDER BY a.`recid` DESC')
+ 3 APPPATH\Controllers\MyOrs.php(81): CodeIgniter\Database\BaseConnection->query('
+        SELECT 
+        a.`recid`,
+        a.`program_title`,
+        a.`particulars`,
+        a.`funding_source`,
+        a.`payee_name`,
+        a.`payee_office`,
+        a.`payee_address`,
+        (
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0), +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_co_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_co_dt` WHERE project_id = a.recid), 0)
+        ) AS amount        
+         FROM tbl_ors_hd a ORDER BY a.`recid` DESC')
+ 4 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-30 15:46:40 --> [Caused by] mysqli_sql_exception: Operand should contain 1 column(s)
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT 
+        a.`recid`,
+        a.`program_title`,
+        a.`particulars`,
+        a.`funding_source`,
+        a.`payee_name`,
+        a.`payee_office`,
+        a.`payee_address`,
+        (
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0), +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_co_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_co_dt` WHERE project_id = a.recid), 0)
+        ) AS amount        
+         FROM tbl_ors_hd a ORDER BY a.`recid` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT 
+        a.`recid`,
+        a.`program_title`,
+        a.`particulars`,
+        a.`funding_source`,
+        a.`payee_name`,
+        a.`payee_office`,
+        a.`payee_address`,
+        (
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0), +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_co_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_co_dt` WHERE project_id = a.recid), 0)
+        ) AS amount        
+         FROM tbl_ors_hd a ORDER BY a.`recid` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT 
+        a.`recid`,
+        a.`program_title`,
+        a.`particulars`,
+        a.`funding_source`,
+        a.`payee_name`,
+        a.`payee_office`,
+        a.`payee_address`,
+        (
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0), +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_co_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_co_dt` WHERE project_id = a.recid), 0)
+        ) AS amount        
+         FROM tbl_ors_hd a ORDER BY a.`recid` DESC')
+ 4 APPPATH\Controllers\MyOrs.php(81): CodeIgniter\Database\BaseConnection->query('
+        SELECT 
+        a.`recid`,
+        a.`program_title`,
+        a.`particulars`,
+        a.`funding_source`,
+        a.`payee_name`,
+        a.`payee_office`,
+        a.`payee_address`,
+        (
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0), +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_co_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_co_dt` WHERE project_id = a.recid), 0)
+        ) AS amount        
+         FROM tbl_ors_hd a ORDER BY a.`recid` DESC')
+ 5 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-30 16:27:16 --> ErrorException: Undefined variable $YY
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-pdf.php on line 229.
+ 1 APPPATH\Views\ors\ors-pdf.php(229): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $YY', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php', 229)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-pdf', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(48): view('ors/ors-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

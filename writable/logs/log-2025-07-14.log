@@ -1,0 +1,133 @@
+ERROR - 2025-07-14 08:49:50 --> mysqli_sql_exception: MySQL server has gone away in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('select `usernam...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select `usernam...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select `usernam...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MyLogIn.php(56): CodeIgniter\Database\BaseConnection->query('select `usernam...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('admin')
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-07-14 08:49:50 --> CodeIgniter\Database\Exceptions\DatabaseException: MySQL server has gone away
+[Method: POST, Route: mylogin-auth]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MyLogIn.php(56): CodeIgniter\Database\BaseConnection->query('select `username`,`hash_password` FROM myua_user where username = \'admin\' limit 1 ')
+ 2 APPPATH\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('admin')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-14 08:49:50 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: MySQL server has gone away
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select `username`,`hash_password` FROM myua_user where username = \'admin\' limit 1 ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select `username`,`hash_password` FROM myua_user where username = \'admin\' limit 1 ')
+ 3 APPPATH\Controllers\MyLogIn.php(56): CodeIgniter\Database\BaseConnection->query('select `username`,`hash_password` FROM myua_user where username = \'admin\' limit 1 ')
+ 4 APPPATH\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('admin')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-14 08:49:50 --> [Caused by] mysqli_sql_exception: MySQL server has gone away
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('select `username`,`hash_password` FROM myua_user where username = \'admin\' limit 1 ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select `username`,`hash_password` FROM myua_user where username = \'admin\' limit 1 ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select `username`,`hash_password` FROM myua_user where username = \'admin\' limit 1 ')
+ 4 APPPATH\Controllers\MyLogIn.php(56): CodeIgniter\Database\BaseConnection->query('select `username`,`hash_password` FROM myua_user where username = \'admin\' limit 1 ')
+ 5 APPPATH\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('admin')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-14 09:11:54 --> ErrorException: Maximum execution time of 120 seconds exceeded
+[Method: POST, Route: myors]
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 328.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2025-07-14 09:11:54 --> ErrorException: Maximum execution time of 120 seconds exceeded
+[Method: POST, Route: myors]
+in SYSTEMPATH\Session\Handlers\FileHandler.php on line 136.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2025-07-14 09:11:54 --> ErrorException: Maximum execution time of 120 seconds exceeded
+[Method: POST, Route: myors]
+in SYSTEMPATH\Session\Handlers\FileHandler.php on line 136.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2025-07-14 09:11:54 --> ErrorException: Maximum execution time of 120 seconds exceeded
+[Method: POST, Route: myors]
+in SYSTEMPATH\Session\Handlers\FileHandler.php on line 136.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2025-07-14 09:11:54 --> ErrorException: Maximum execution time of 120 seconds exceeded
+[Method: GET, Route: myors]
+in SYSTEMPATH\Session\Handlers\FileHandler.php on line 136.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2025-07-14 14:01:21 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "orsburs/orsburs-main.php"
+[Method: GET, Route: myburs]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('orsburs/orsburs-main.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('orsburs/orsburs-main', [], true)
+ 3 APPPATH\Controllers\MyBurs.php(127): view('orsburs/orsburs-main', [...])
+ 4 APPPATH\Controllers\MyBurs.php(28): App\Controllers\MyBurs->loadMainView()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBurs->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBurs))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-07-14 14:11:19 --> mysqli_sql_exception: Table 'fods.myua_users' doesn't exist in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT * FROM m...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM m...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM m...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MyOrs.php(126): CodeIgniter\Database\BaseConnection->query('SELECT * FROM m...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-07-14 14:11:19 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'fods.myua_users' doesn't exist
+[Method: GET, Route: myors]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MyOrs.php(126): CodeIgniter\Database\BaseConnection->query('SELECT * FROM myua_users ORDER BY recid DESC')
+ 2 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-14 14:11:19 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'fods.myua_users' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM myua_users ORDER BY recid DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM myua_users ORDER BY recid DESC')
+ 3 APPPATH\Controllers\MyOrs.php(126): CodeIgniter\Database\BaseConnection->query('SELECT * FROM myua_users ORDER BY recid DESC')
+ 4 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-14 14:11:19 --> [Caused by] mysqli_sql_exception: Table 'fods.myua_users' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT * FROM myua_users ORDER BY recid DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT * FROM myua_users ORDER BY recid DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT * FROM myua_users ORDER BY recid DESC')
+ 4 APPPATH\Controllers\MyOrs.php(126): CodeIgniter\Database\BaseConnection->query('SELECT * FROM myua_users ORDER BY recid DESC')
+ 5 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

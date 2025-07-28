@@ -1,0 +1,394 @@
+CRITICAL - 2025-06-23 13:53:43 --> ErrorException: Undefined array key "particulars"
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 474.
+ 1 APPPATH\Views\ors\ors-main.php(474): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "particulars"', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 474)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(111): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-06-23 13:58:08 --> mysqli_sql_exception: Unknown column 'approved_budget' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MyOrs.php(78): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-06-23 13:58:08 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'approved_budget' in 'field list'
+[Method: GET, Route: myors]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MyOrs.php(78): CodeIgniter\Database\BaseConnection->query('
+        SELECT 
+        a.`program_title`,
+        a.`particulars`,
+        a.`funding_source`,
+        a.`payee_name`,
+        a.`payee_office`,
+        a.`payee_address`,
+        (
+            IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0)
+        ) AS amount        
+         FROM tbl_ors_hd a ORDER BY a.`recid` DESC')
+ 2 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-23 13:58:08 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'approved_budget' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT 
+        a.`program_title`,
+        a.`particulars`,
+        a.`funding_source`,
+        a.`payee_name`,
+        a.`payee_office`,
+        a.`payee_address`,
+        (
+            IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0)
+        ) AS amount        
+         FROM tbl_ors_hd a ORDER BY a.`recid` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT 
+        a.`program_title`,
+        a.`particulars`,
+        a.`funding_source`,
+        a.`payee_name`,
+        a.`payee_office`,
+        a.`payee_address`,
+        (
+            IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0)
+        ) AS amount        
+         FROM tbl_ors_hd a ORDER BY a.`recid` DESC')
+ 3 APPPATH\Controllers\MyOrs.php(78): CodeIgniter\Database\BaseConnection->query('
+        SELECT 
+        a.`program_title`,
+        a.`particulars`,
+        a.`funding_source`,
+        a.`payee_name`,
+        a.`payee_office`,
+        a.`payee_address`,
+        (
+            IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0)
+        ) AS amount        
+         FROM tbl_ors_hd a ORDER BY a.`recid` DESC')
+ 4 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-23 13:58:08 --> [Caused by] mysqli_sql_exception: Unknown column 'approved_budget' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT 
+        a.`program_title`,
+        a.`particulars`,
+        a.`funding_source`,
+        a.`payee_name`,
+        a.`payee_office`,
+        a.`payee_address`,
+        (
+            IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0)
+        ) AS amount        
+         FROM tbl_ors_hd a ORDER BY a.`recid` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT 
+        a.`program_title`,
+        a.`particulars`,
+        a.`funding_source`,
+        a.`payee_name`,
+        a.`payee_office`,
+        a.`payee_address`,
+        (
+            IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0)
+        ) AS amount        
+         FROM tbl_ors_hd a ORDER BY a.`recid` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT 
+        a.`program_title`,
+        a.`particulars`,
+        a.`funding_source`,
+        a.`payee_name`,
+        a.`payee_office`,
+        a.`payee_address`,
+        (
+            IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0)
+        ) AS amount        
+         FROM tbl_ors_hd a ORDER BY a.`recid` DESC')
+ 4 APPPATH\Controllers\MyOrs.php(78): CodeIgniter\Database\BaseConnection->query('
+        SELECT 
+        a.`program_title`,
+        a.`particulars`,
+        a.`funding_source`,
+        a.`payee_name`,
+        a.`payee_office`,
+        a.`payee_address`,
+        (
+            IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0)
+        ) AS amount        
+         FROM tbl_ors_hd a ORDER BY a.`recid` DESC')
+ 5 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-23 13:58:30 --> ErrorException: Undefined array key "recid"
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 472.
+ 1 APPPATH\Views\ors\ors-main.php(472): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "recid"', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 472)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(122): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-23 14:16:55 --> ErrorException: Undefined variable $action
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 540.
+ 1 APPPATH\Views\ors\ors-main.php(540): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $action', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 540)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(123): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-23 14:18:08 --> ErrorException: Undefined variable $action
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 540.
+ 1 APPPATH\Views\ors\ors-main.php(540): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $action', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 540)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(123): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-23 14:18:41 --> ErrorException: Undefined variable $tagging
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 114.
+ 1 APPPATH\Views\ors\ors-main.php(114): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $tagging', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 114)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(123): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-06-23 14:28:49 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM
+                                                                `tbl_or...' at line 9 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n             ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n             ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n             ...')
+#3 C:\xampp\htdocs\fods\app\Views\ors\ors-main.php(295): CodeIgniter\Database\BaseConnection->query('\r\n             ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyOrs.php(123): view('ors/ors-main', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2025-06-23 14:28:49 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM
+                                                                `tbl_or...' at line 9
+[Method: GET, Route: myors]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\ors\ors-main.php(295): CodeIgniter\Database\BaseConnection->query('
+                                                            SELECT
+                                                                `recid`,
+                                                                `project_title`,
+                                                                `responsibility_code`,
+                                                                `mfopaps_code`,
+                                                                `sub_object_code`,
+                                                                `uacs_code`,
+                                                                `amount`,
+                                                            FROM
+                                                                `tbl_ors_direct_ps_dt`
+                                                            WHERE 
+                                                                `project_id` = \'1\'')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(123): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-23 14:28:49 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM
+                                                                `tbl_or...' at line 9
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+                                                            SELECT
+                                                                `recid`,
+                                                                `project_title`,
+                                                                `responsibility_code`,
+                                                                `mfopaps_code`,
+                                                                `sub_object_code`,
+                                                                `uacs_code`,
+                                                                `amount`,
+                                                            FROM
+                                                                `tbl_ors_direct_ps_dt`
+                                                            WHERE 
+                                                                `project_id` = \'1\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+                                                            SELECT
+                                                                `recid`,
+                                                                `project_title`,
+                                                                `responsibility_code`,
+                                                                `mfopaps_code`,
+                                                                `sub_object_code`,
+                                                                `uacs_code`,
+                                                                `amount`,
+                                                            FROM
+                                                                `tbl_ors_direct_ps_dt`
+                                                            WHERE 
+                                                                `project_id` = \'1\'')
+ 3 APPPATH\Views\ors\ors-main.php(295): CodeIgniter\Database\BaseConnection->query('
+                                                            SELECT
+                                                                `recid`,
+                                                                `project_title`,
+                                                                `responsibility_code`,
+                                                                `mfopaps_code`,
+                                                                `sub_object_code`,
+                                                                `uacs_code`,
+                                                                `amount`,
+                                                            FROM
+                                                                `tbl_ors_direct_ps_dt`
+                                                            WHERE 
+                                                                `project_id` = \'1\'')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 7 APPPATH\Controllers\MyOrs.php(123): view('ors/ors-main', [...])
+ 8 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-23 14:28:49 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM
+                                                                `tbl_or...' at line 9
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+                                                            SELECT
+                                                                `recid`,
+                                                                `project_title`,
+                                                                `responsibility_code`,
+                                                                `mfopaps_code`,
+                                                                `sub_object_code`,
+                                                                `uacs_code`,
+                                                                `amount`,
+                                                            FROM
+                                                                `tbl_ors_direct_ps_dt`
+                                                            WHERE 
+                                                                `project_id` = \'1\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+                                                            SELECT
+                                                                `recid`,
+                                                                `project_title`,
+                                                                `responsibility_code`,
+                                                                `mfopaps_code`,
+                                                                `sub_object_code`,
+                                                                `uacs_code`,
+                                                                `amount`,
+                                                            FROM
+                                                                `tbl_ors_direct_ps_dt`
+                                                            WHERE 
+                                                                `project_id` = \'1\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+                                                            SELECT
+                                                                `recid`,
+                                                                `project_title`,
+                                                                `responsibility_code`,
+                                                                `mfopaps_code`,
+                                                                `sub_object_code`,
+                                                                `uacs_code`,
+                                                                `amount`,
+                                                            FROM
+                                                                `tbl_ors_direct_ps_dt`
+                                                            WHERE 
+                                                                `project_id` = \'1\'')
+ 4 APPPATH\Views\ors\ors-main.php(295): CodeIgniter\Database\BaseConnection->query('
+                                                            SELECT
+                                                                `recid`,
+                                                                `project_title`,
+                                                                `responsibility_code`,
+                                                                `mfopaps_code`,
+                                                                `sub_object_code`,
+                                                                `uacs_code`,
+                                                                `amount`,
+                                                            FROM
+                                                                `tbl_ors_direct_ps_dt`
+                                                            WHERE 
+                                                                `project_id` = \'1\'')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 8 APPPATH\Controllers\MyOrs.php(123): view('ors/ors-main', [...])
+ 9 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-23 15:35:44 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 30.
+ 1 APPPATH\Views\ors\ors-main.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 30)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(123): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

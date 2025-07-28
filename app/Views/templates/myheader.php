@@ -22,8 +22,13 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
   <link rel="stylesheet" href="<?=base_url('assets/css/styles.css')?>" />
 
   <title>FODS</title>
+  <style>
+    .left-sidebar.with-vertical {
+      overflow-y: auto;
+      max-height: 100vh;
+    }
+  </style>
 </head>
-
 <body>
   <!-- Preloader -->
   <div class="preloader">
@@ -99,14 +104,14 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
                 <span class="hide-menu">User Management</span>
               </a>
             </li>
-            <li class="sidebar-item">
+            <!-- <li class="sidebar-item">
               <a class="sidebar-link" href="<?=site_url();?>myaccount?meaction=MAIN" aria-expanded="false">
                 <span>
                   <i class="ti ti-user"></i>
                 </span>
                 <span class="hide-menu">Account Settings</span>
               </a>
-            </li>
+            </li> -->
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">BUDGET</span>
@@ -124,7 +129,7 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
             <li class="sidebar-item">
               <a class="sidebar-link sidebar-link" href="<?=site_url();?>mybudgetapproval?meaction=MAIN" aria-expanded="false">
                 <span class="rounded-3">
-                  <i class="ti ti-cash"></i>
+                  <i class="ti ti-checklist"></i>
                 </span>
                 <span class="hide-menu">Budget Approval</span>
               </a>
@@ -139,7 +144,7 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
             <li class="sidebar-item">
               <a class="sidebar-link sidebar-link" href="<?=site_url();?>myors?meaction=MAIN" aria-expanded="false">
                 <span class="rounded-3">
-                  <i class="ti ti-pencil"></i>
+                  <i class="ti ti-clipboard-text"></i>
                 </span>
                 <span class="hide-menu">ORS</span>
               </a>
@@ -147,12 +152,12 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
             <li class="sidebar-item">
               <a class="sidebar-link sidebar-link" href="<?=site_url();?>myorsapproval?meaction=MAIN" aria-expanded="false">
                 <span class="rounded-3">
-                  <i class="ti ti-pencil"></i>
+                  <i class="ti ti-clipboard-check"></i>
                 </span>
                 <span class="hide-menu">ORS Approval</span>
               </a>
             </li>
-            <li class="sidebar-item">
+            <!-- <li class="sidebar-item">
               <a class="sidebar-link sidebar-link" href="<?=site_url();?>myburs?meaction=MAIN" aria-expanded="false">
                 <span class="rounded-3">
                   <i class="ti ti-pencil"></i>
@@ -167,7 +172,7 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
                 </span>
                 <span class="hide-menu">BURS Approval</span>
               </a>
-            </li>
+            </li> -->
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">Reports</span>
@@ -179,7 +184,7 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
                 </span>
                 <span class="hide-menu">SAOB</span>
               </a>
-            </li>
+            </li> 
           </ul>
         </nav>
 

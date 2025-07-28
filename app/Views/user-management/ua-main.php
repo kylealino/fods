@@ -5,6 +5,8 @@ $recid = $this->request->getPostGet('recid');
 
 $full_name = "";
 $division = "";
+$section = "";
+$position = "";
 $username = "";
 $hash_password = "";
 $hash_value = "";
@@ -15,7 +17,9 @@ if(!empty($recid) || !is_null($recid)) {
     $query = $this->db->query("
     SELECT 
         `full_name`, 
-        `division`, 
+        `division`,
+        `section`, 
+        `position`,
         `username`, 
         `hash_password`,
         `hash_value`
@@ -28,6 +32,8 @@ if(!empty($recid) || !is_null($recid)) {
     $data = $query->getRowArray();
     $full_name = $data['full_name'];
     $division = $data['division'];
+    $section = $data['section'];
+    $position = $data['position'];
     $username = $data['username'];
     $hash_password = $data['hash_password'];
     $hash_value = $data['hash_value'];
@@ -85,7 +91,7 @@ echo view('templates/myheader.php');
                 <div class="card-body p-0 px-4 py-2 my-2">
                     <form action="<?=site_url();?>myua?meaction=MAIN-SAVE" method="post" class="myua-validation">
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                                 <div class="row mb-2 mt-2">
                                     <div class="col-sm-4">
                                         <span>Full Name:</span>
@@ -105,6 +111,24 @@ echo view('templates/myheader.php');
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-sm-4">
+                                        <span>Section:</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="section" name="section" value="<?=$section;?>" class="form-control form-control-sm"/>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-sm-4">
+                                        <span>Position:</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="position" name="position" value="<?=$position;?>" class="form-control form-control-sm"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="row mb-2">
+                                    <div class="col-sm-4">
                                         <span>Username:</span>
                                     </div>
                                     <div class="col-sm-8">
@@ -116,7 +140,12 @@ echo view('templates/myheader.php');
                                         <span>Password:</span>
                                     </div>
                                     <div class="col-sm-8">
-                                        <input type="text" id="hash_value" name="hash_value" value="<?=$hash_value;?>" class="form-control form-control-sm"/>
+                                        <div class="input-group input-group-sm">
+                                        <input type="password" id="hash_value" name="hash_value" value="<?=$hash_value;?>" class="form-control"/>
+                                        <button class="btn btn-light" type="button" id="togglePassword">
+                                            <i class="ti ti-eye" id="toggleIcon"></i>
+                                        </button>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -124,7 +153,7 @@ echo view('templates/myheader.php');
                                         <span>Encrypted Password:</span>
                                     </div>
                                     <div class="col-sm-8">
-                                        <textarea name="hash_password" id="hash_password" placeholder="-system-generated-" rows="4" class="form-control form-control-sm bg-light" readonly><?=$hash_password;?></textarea>
+                                        <textarea name="hash_password" id="hash_password" placeholder="-system-generated-" rows="2" class="form-control form-control-sm bg-light" readonly><?=$hash_password;?></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -153,14 +182,15 @@ echo view('templates/myheader.php');
                     </div>
                 </div>						
                 <div class="card-body p-0 px-4 py-2 my-2">
-                    <table id="datatablesSimple" class="table table-bordered table-hover">
+                    <table id="datatablesSimple" class="table table-bordered table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>Action</th>
                                 <th>Full Name</th>
                                 <th>Division</th>
+                                <th>Section</th>
+                                <th>Position</th>
                                 <th>Username</th>
-                                <th>Password</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -170,8 +200,9 @@ echo view('templates/myheader.php');
                                     $list_recid = $data['recid'];
                                     $full_name = $data['full_name'];
                                     $division = $data['division'];
+                                    $section = $data['section'];
+                                    $position = $data['position'];
                                     $username = $data['username'];
-                                    $hash_password = $data['hash_password'];
                             ?>
                             <tr>
                                 <td class="text-center align-middle">
@@ -181,8 +212,9 @@ echo view('templates/myheader.php');
                                 </td>
                                 <td class="text-center"><?=$full_name;?></td>
                                 <td class="text-center"><?=$division;?></td>
+                                <td class="text-center"><?=$section;?></td>
+                                <td class="text-center"><?=$position;?></td>
                                 <td class="text-center"><?=$username;?></td>
-                                <td class="text-center"><?=$hash_password;?></td>
                             </tr>
                             <?php endforeach; endif;?>
                         </tbody>
@@ -292,6 +324,21 @@ echo view('templates/myheader.php');
         ]
     });
 
+    });
+
+    document.getElementById('togglePassword').addEventListener('click', function () {
+        const input = document.getElementById('hash_value');
+        const icon = document.getElementById('toggleIcon');
+
+        if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('ti-eye');
+        icon.classList.add('ti-eye-off');
+        } else {
+        input.type = 'password';
+        icon.classList.remove('ti-eye-off');
+        icon.classList.add('ti-eye');
+        }
     });
 </script>
 <?php

@@ -1,0 +1,84 @@
+CRITICAL - 2025-07-07 16:06:01 --> ErrorException: Undefined array key "responsibility_center"
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-pdf.php on line 204.
+ 1 APPPATH\Views\ors\ors-pdf.php(204): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "responsibility_center"', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php', 204)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-pdf', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(48): view('ors/ors-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-07 16:06:40 --> ErrorException: Undefined array key "responsibility_center"
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-pdf.php on line 204.
+ 1 APPPATH\Views\ors\ors-pdf.php(204): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "responsibility_center"', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php', 204)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-pdf', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(48): view('ors/ors-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-07 16:08:08 --> ErrorException: Undefined variable $object_code
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-pdf.php on line 209.
+ 1 APPPATH\Views\ors\ors-pdf.php(209): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $object_code', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php', 209)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-pdf', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(48): view('ors/ors-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-07 16:08:10 --> ErrorException: Undefined variable $object_code
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-pdf.php on line 209.
+ 1 APPPATH\Views\ors\ors-pdf.php(209): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $object_code', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php', 209)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-pdf', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(48): view('ors/ors-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-07 16:12:54 --> ErrorException: Undefined variable $object_code
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-pdf.php on line 209.
+ 1 APPPATH\Views\ors\ors-pdf.php(209): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $object_code', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php', 209)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-pdf', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(48): view('ors/ors-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-07 16:13:22 --> ErrorException: Undefined variable $object_code
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-pdf.php on line 209.
+ 1 APPPATH\Views\ors\ors-pdf.php(209): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $object_code', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php', 209)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-pdf', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(48): view('ors/ors-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

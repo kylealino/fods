@@ -21,29 +21,31 @@ class MyOrs extends BaseController
     
         switch ($meaction) {
             case 'MAIN': 
-                $accessQuery = $this->db->query("
-                    SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '2001' AND `is_active` = '1'
-                ");
-                if ($accessQuery->getNumRows() > 0) {
-                    return $this->loadMainView();
-                }else {
-                    return view('errors/html/access-restricted');
-                }
-                
+                return $this->loadMainView();
                 break;
     
             case 'MAIN-SAVE': 
-                $this->myors->orsburs_save();
-                // return redirect()->to('myors?meaction=MAIN');
-                break;
-
-             case 'MAIN-APPROVE': 
-                $this->myors->budget_approve();
+                $this->myors->ors_save();
                 return redirect()->to('myors?meaction=MAIN');
                 break;
 
-            case 'MAIN-DISAPPROVE': 
-                $this->myors->budget_disapprove();
+             case 'MAIN-APPROVE-A': 
+                $this->myors->ors_certifya_approve();
+                return redirect()->to('myors?meaction=MAIN');
+                break;
+
+            case 'MAIN-DISAPPROVE-A': 
+                $this->myors->ors_certifya_disapprove();
+                return redirect()->to('myors?meaction=MAIN');
+                break;
+
+            case 'MAIN-APPROVE-B': 
+                $this->myors->ors_certifyb_approve();
+                return redirect()->to('myors?meaction=MAIN');
+                break;
+
+            case 'MAIN-DISAPPROVE-B': 
+                $this->myors->ors_certifyb_disapprove();
                 return redirect()->to('myors?meaction=MAIN');
                 break;
             
@@ -52,8 +54,8 @@ class MyOrs extends BaseController
                 return redirect()->to('myors?meaction=MAIN');
                 break;
             
-            case 'PRINT-LIB': 
-                return view('budget/budget-lib-print');
+            case 'PRINT-ORS': 
+                return view('ors/ors-pdf');
                 break;
             
         }
@@ -80,11 +82,31 @@ class MyOrs extends BaseController
         $mooeuacsquery = $this->db->query("SELECT * FROM mst_uacs WHERE allotment_class = 'Maintenance and Other Operating Expenses' ORDER BY TRIM(sub_object_code) ASC");
         $mooeuacsdata = $mooeuacsquery->getResultArray();
 
+        $couacsquery = $this->db->query("SELECT * FROM mst_uacs WHERE allotment_class = 'Capital Outlay' ORDER BY TRIM(sub_object_code) ASC");
+        $couacsdata = $couacsquery->getResultArray();
+
         $projecttitlequery = $this->db->query("SELECT * FROM tbl_budget_hd WHERE fund_cluster_code = '01'  GROUP BY program_title ORDER BY recid DESC");
         $projecttitledata = $projecttitlequery->getResultArray();
 
-        $saobhdquery = $this->db->query("SELECT * FROM tbl_saob_hd ORDER BY recid DESC");
-        $saobhddata = $saobhdquery->getResultArray();
+        $orshdquery = $this->db->query("
+        SELECT 
+        a.`recid`,
+        a.`program_title`,
+        a.`particulars`,
+        a.`funding_source`,
+        a.`payee_name`,
+        a.`payee_office`,
+        a.`payee_address`,
+        (
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_co_dt` WHERE project_id = a.recid), 0) +
+            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_co_dt` WHERE project_id = a.recid), 0)
+        ) AS amount        
+         FROM tbl_ors_hd a ORDER BY a.`recid` DESC");
+        $orshddata = $orshdquery->getResultArray();
 
         //reference/project title lookup
         $projectquery = $this->db->query("
@@ -94,7 +116,8 @@ class MyOrs extends BaseController
             a.`division_id`,
             c.`division_name`,
             a.`responsibility_code`,
-            a.`project_title`
+            a.`project_title`,
+            a.`mfopaps_code`
         FROM
             `tbl_reference_project` a
         JOIN
@@ -105,15 +128,23 @@ class MyOrs extends BaseController
             `tbl_division` c
         ON
             a.`division_id` = c.recid
+        WHERE a.`fundcluster_id` = '1'
         ORDER BY a.`project_title` ASC
         ");
         $projectdata = $projectquery->getResultArray();
 
+        $certifyquery = $this->db->query("SELECT * FROM myua_user ORDER BY recid DESC");
+        $certifydata = $certifyquery->getResultArray();
+
+
         return view('ors/ors-main', [
             'psuacsdata' => $psuacsdata,
             'mooeuacsdata' => $mooeuacsdata,
+            'couacsdata' => $couacsdata,
             'payeedata' => $payeedata,
             'projectdata' => $projectdata,
+            'orshddata' => $orshddata,
+            'certifydata' => $certifydata,
         ]);
     }
     

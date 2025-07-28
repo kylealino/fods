@@ -1,0 +1,14 @@
+CRITICAL - 2025-07-01 11:28:47 --> ErrorException: Undefined variable $X
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-pdf.php on line 100.
+ 1 APPPATH\Views\ors\ors-pdf.php(100): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $X', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php', 100)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-pdf', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(48): view('ors/ors-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

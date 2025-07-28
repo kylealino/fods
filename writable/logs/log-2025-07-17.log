@@ -1,0 +1,269 @@
+ERROR - 2025-07-17 08:47:31 --> mysqli_sql_exception: MySQL server has gone away in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('select `usernam...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select `usernam...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select `usernam...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MyLogIn.php(56): CodeIgniter\Database\BaseConnection->query('select `usernam...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('CDS-KYLE')
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-07-17 08:47:31 --> CodeIgniter\Database\Exceptions\DatabaseException: MySQL server has gone away
+[Method: POST, Route: mylogin-auth]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MyLogIn.php(56): CodeIgniter\Database\BaseConnection->query('select `username`,`hash_password` FROM myua_user where username = \'CDS-KYLE\' limit 1 ')
+ 2 APPPATH\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('CDS-KYLE')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-17 08:47:31 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: MySQL server has gone away
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select `username`,`hash_password` FROM myua_user where username = \'CDS-KYLE\' limit 1 ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select `username`,`hash_password` FROM myua_user where username = \'CDS-KYLE\' limit 1 ')
+ 3 APPPATH\Controllers\MyLogIn.php(56): CodeIgniter\Database\BaseConnection->query('select `username`,`hash_password` FROM myua_user where username = \'CDS-KYLE\' limit 1 ')
+ 4 APPPATH\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('CDS-KYLE')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-17 08:47:31 --> [Caused by] mysqli_sql_exception: MySQL server has gone away
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('select `username`,`hash_password` FROM myua_user where username = \'CDS-KYLE\' limit 1 ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select `username`,`hash_password` FROM myua_user where username = \'CDS-KYLE\' limit 1 ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select `username`,`hash_password` FROM myua_user where username = \'CDS-KYLE\' limit 1 ')
+ 4 APPPATH\Controllers\MyLogIn.php(56): CodeIgniter\Database\BaseConnection->query('select `username`,`hash_password` FROM myua_user where username = \'CDS-KYLE\' limit 1 ')
+ 5 APPPATH\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('CDS-KYLE')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-17 09:48:20 --> ErrorException: Undefined variable $action
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 71.
+ 1 APPPATH\Views\ors\ors-main.php(71): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $action', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 71)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(137): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-17 09:48:54 --> ErrorException: Undefined variable $action
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 71.
+ 1 APPPATH\Views\ors\ors-main.php(71): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $action', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 71)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(137): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-17 09:49:26 --> ErrorException: Undefined variable $action
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-main.php on line 71.
+ 1 APPPATH\Views\ors\ors-main.php(71): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $action', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php', 71)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-main', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(137): view('ors/ors-main', [...])
+ 6 APPPATH\Controllers\MyOrs.php(24): App\Controllers\MyOrs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-17 14:34:34 --> CodeIgniter\Database\Exceptions\DatabaseException: You must set the database table to be used with your query.
+[Method: POST, Route: myors]
+in SYSTEMPATH\Database\BaseConnection.php on line 941.
+ 1 SYSTEMPATH\Model.php(714): CodeIgniter\Database\BaseConnection->table(null)
+ 2 SYSTEMPATH\Model.php(920): CodeIgniter\Model->builder()
+ 3 APPPATH\Controllers\MyOrs.php(33): CodeIgniter\Model->__call('ors_certa_approve', [])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-07-17 14:43:04 --> mysqli_sql_exception: Unknown column 'approver' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\tUPDATE tbl...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\tUPDATE tbl...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\tUPDATE tbl...')
+#3 C:\xampp\htdocs\fods\app\Models\MyOrsModel.php(736): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\tUPDATE tbl...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MyOrs.php(33): App\Models\MyOrsModel->ors_certifya_approve()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-07-17 14:43:04 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'approver' in 'field list'
+[Method: POST, Route: myors]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyOrsModel.php(736): CodeIgniter\Database\BaseConnection->query('
+			UPDATE tbl_ors_hd SET `is_pending` = \'0\', `is_approved_certa` = \'1\',`approver` = \'CDS-KYLE\', `certa_remarks` = \'test\' WHERE `recid` = \'2\'
+		')
+ 2 APPPATH\Controllers\MyOrs.php(33): App\Models\MyOrsModel->ors_certifya_approve()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-17 14:43:04 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'approver' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+			UPDATE tbl_ors_hd SET `is_pending` = \'0\', `is_approved_certa` = \'1\',`approver` = \'CDS-KYLE\', `certa_remarks` = \'test\' WHERE `recid` = \'2\'
+		')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+			UPDATE tbl_ors_hd SET `is_pending` = \'0\', `is_approved_certa` = \'1\',`approver` = \'CDS-KYLE\', `certa_remarks` = \'test\' WHERE `recid` = \'2\'
+		')
+ 3 APPPATH\Models\MyOrsModel.php(736): CodeIgniter\Database\BaseConnection->query('
+			UPDATE tbl_ors_hd SET `is_pending` = \'0\', `is_approved_certa` = \'1\',`approver` = \'CDS-KYLE\', `certa_remarks` = \'test\' WHERE `recid` = \'2\'
+		')
+ 4 APPPATH\Controllers\MyOrs.php(33): App\Models\MyOrsModel->ors_certifya_approve()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-17 14:43:04 --> [Caused by] mysqli_sql_exception: Unknown column 'approver' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+			UPDATE tbl_ors_hd SET `is_pending` = \'0\', `is_approved_certa` = \'1\',`approver` = \'CDS-KYLE\', `certa_remarks` = \'test\' WHERE `recid` = \'2\'
+		', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+			UPDATE tbl_ors_hd SET `is_pending` = \'0\', `is_approved_certa` = \'1\',`approver` = \'CDS-KYLE\', `certa_remarks` = \'test\' WHERE `recid` = \'2\'
+		')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+			UPDATE tbl_ors_hd SET `is_pending` = \'0\', `is_approved_certa` = \'1\',`approver` = \'CDS-KYLE\', `certa_remarks` = \'test\' WHERE `recid` = \'2\'
+		')
+ 4 APPPATH\Models\MyOrsModel.php(736): CodeIgniter\Database\BaseConnection->query('
+			UPDATE tbl_ors_hd SET `is_pending` = \'0\', `is_approved_certa` = \'1\',`approver` = \'CDS-KYLE\', `certa_remarks` = \'test\' WHERE `recid` = \'2\'
+		')
+ 5 APPPATH\Controllers\MyOrs.php(33): App\Models\MyOrsModel->ors_certifya_approve()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-07-17 14:43:19 --> mysqli_sql_exception: Unknown column 'approver' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\tUPDATE tbl...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\tUPDATE tbl...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\tUPDATE tbl...')
+#3 C:\xampp\htdocs\fods\app\Models\MyOrsModel.php(736): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\tUPDATE tbl...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MyOrs.php(33): App\Models\MyOrsModel->ors_certifya_approve()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-07-17 14:43:19 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'approver' in 'field list'
+[Method: POST, Route: myors]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyOrsModel.php(736): CodeIgniter\Database\BaseConnection->query('
+			UPDATE tbl_ors_hd SET `is_pending` = \'0\', `is_approved_certa` = \'1\',`approver` = \'CDS-KYLE\', `certa_remarks` = \'test\' WHERE `recid` = \'2\'
+		')
+ 2 APPPATH\Controllers\MyOrs.php(33): App\Models\MyOrsModel->ors_certifya_approve()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-17 14:43:19 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'approver' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+			UPDATE tbl_ors_hd SET `is_pending` = \'0\', `is_approved_certa` = \'1\',`approver` = \'CDS-KYLE\', `certa_remarks` = \'test\' WHERE `recid` = \'2\'
+		')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+			UPDATE tbl_ors_hd SET `is_pending` = \'0\', `is_approved_certa` = \'1\',`approver` = \'CDS-KYLE\', `certa_remarks` = \'test\' WHERE `recid` = \'2\'
+		')
+ 3 APPPATH\Models\MyOrsModel.php(736): CodeIgniter\Database\BaseConnection->query('
+			UPDATE tbl_ors_hd SET `is_pending` = \'0\', `is_approved_certa` = \'1\',`approver` = \'CDS-KYLE\', `certa_remarks` = \'test\' WHERE `recid` = \'2\'
+		')
+ 4 APPPATH\Controllers\MyOrs.php(33): App\Models\MyOrsModel->ors_certifya_approve()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-17 14:43:19 --> [Caused by] mysqli_sql_exception: Unknown column 'approver' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+			UPDATE tbl_ors_hd SET `is_pending` = \'0\', `is_approved_certa` = \'1\',`approver` = \'CDS-KYLE\', `certa_remarks` = \'test\' WHERE `recid` = \'2\'
+		', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+			UPDATE tbl_ors_hd SET `is_pending` = \'0\', `is_approved_certa` = \'1\',`approver` = \'CDS-KYLE\', `certa_remarks` = \'test\' WHERE `recid` = \'2\'
+		')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+			UPDATE tbl_ors_hd SET `is_pending` = \'0\', `is_approved_certa` = \'1\',`approver` = \'CDS-KYLE\', `certa_remarks` = \'test\' WHERE `recid` = \'2\'
+		')
+ 4 APPPATH\Models\MyOrsModel.php(736): CodeIgniter\Database\BaseConnection->query('
+			UPDATE tbl_ors_hd SET `is_pending` = \'0\', `is_approved_certa` = \'1\',`approver` = \'CDS-KYLE\', `certa_remarks` = \'test\' WHERE `recid` = \'2\'
+		')
+ 5 APPPATH\Controllers\MyOrs.php(33): App\Models\MyOrsModel->ors_certifya_approve()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-17 15:10:08 --> ErrorException: Undefined variable $remarks
+[Method: GET, Route: myorsapproval]
+in APPPATH\Views\ors-approval\ors-approval-main.php on line 235.
+ 1 APPPATH\Views\ors-approval\ors-approval-main.php(235): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $remarks', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors-approval\\ors-approval-main.php', 235)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors-approval\\ors-approval-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors-approval/ors-approval-main', [], true)
+ 5 APPPATH\Controllers\MyOrsApproval.php(104): view('ors-approval/ors-approval-main', [...])
+ 6 APPPATH\Controllers\MyOrsApproval.php(23): App\Controllers\MyOrsApproval->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsApproval->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsApproval))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-17 15:10:50 --> ErrorException: Undefined variable $color
+[Method: GET, Route: myorsapproval]
+in APPPATH\Views\ors-approval\ors-approval-main.php on line 239.
+ 1 APPPATH\Views\ors-approval\ors-approval-main.php(239): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $color', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors-approval\\ors-approval-main.php', 239)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors-approval\\ors-approval-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors-approval/ors-approval-main', [], true)
+ 5 APPPATH\Controllers\MyOrsApproval.php(104): view('ors-approval/ors-approval-main', [...])
+ 6 APPPATH\Controllers\MyOrsApproval.php(23): App\Controllers\MyOrsApproval->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsApproval->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsApproval))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

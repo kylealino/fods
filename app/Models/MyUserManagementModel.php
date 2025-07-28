@@ -20,6 +20,8 @@ class MyUserManagementModel extends Model
 		$recid = $this->request->getPostGet('recid');
 		$full_name = $this->request->getPostGet('full_name');
 		$division = $this->request->getPostGet('division');
+		$section = $this->request->getPostGet('section');
+		$position = $this->request->getPostGet('position');
 		$username = $this->request->getPostGet('username');
 		$hash_value = $this->request->getPostGet('hash_value');
 		$hash_password = hash('sha512', $hash_value);
@@ -40,6 +42,30 @@ class MyUserManagementModel extends Model
 			echo "
 			<script>
 			toastr.error('Division is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($section)) {
+			echo "
+			<script>
+			toastr.error('Section is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($position)) {
+			echo "
+			<script>
+			toastr.error('Position is required!', 'Oops!', {
 					progressBar: true,
 					closeButton: true,
 					timeOut:2000,
@@ -72,7 +98,6 @@ class MyUserManagementModel extends Model
 			";
 			die();
 		}
-		
 		if (empty($recid)) {
 			$query = $this->db->query("
 				INSERT INTO `myua_user`(
@@ -81,6 +106,8 @@ class MyUserManagementModel extends Model
 					`hash_value`,
 					`full_name`,
 					`division`,
+					`section`,
+					`position`,
 					`added_at`,
 					`added_by`
 				)
@@ -90,6 +117,8 @@ class MyUserManagementModel extends Model
 					'$hash_value',
 					'$full_name',
 					'$division',
+					'$section',
+					'$position',
 					NOW(),
 					'{$this->cuser}'
 				)
@@ -105,7 +134,9 @@ class MyUserManagementModel extends Model
 				`hash_password` = '$hash_password',
 				`hash_value` = '$hash_value',
 				`full_name` = '$full_name',
-				`division` = '$division'
+				`division` = '$division',
+				`section` = '$section',
+				`position` = '$position'
 				WHERE `recid` = '$recid'
 			");
 			$status = "User Updated successfully";
@@ -196,37 +227,6 @@ class MyUserManagementModel extends Model
 			echo "<script type='text/javascript'>
 			alert('An error occurred while executing the query.');
 		  </script>";
-			exit;
-		}
-	}
-	
-	public function payee_delete() { 
-		$recid = $this->request->getPostGet('recid');
-
-		$query = $this->db->query("
-			DELETE FROM `tbl_payee` WHERE `recid` = '$recid'
-		");
-		$status = "Payee deleted successfully";
-		
-
-		if ($query) {
-			// Echo JavaScript to show the toast and then redirect
-			echo "
-			<div class=\"alert alert-danger\" role=\"alert\"><strong>Info: </strong> $status </div>
-				<script type='text/javascript'>
-
-					// Redirect after a short delay (e.g., 2 seconds)
-					setTimeout(function() {
-						window.location.href = 'mypayee?meaction=MAIN'; // Redirect to MAIN view
-					}, 2000); // 2-second delay for user to see the toast
-				</script>
-			";
-			exit; // Stop further PHP execution after the toast
-		} else {
-			// If there's an error, show an alert message
-			echo "<script type='text/javascript'>
-					alert('An error occurred while executing the query.');
-				  </script>";
 			exit;
 		}
 	}

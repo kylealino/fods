@@ -65,7 +65,7 @@ echo view('templates/myheader.php');
                         </div>
                         </div>
                     <div class="mt-5">
-                        <h2 class="fs-8 text-white mb-0">$8,271,812.32</h2>
+                        <h2 class="fs-8 text-white mb-0">P8,271,812.32</h2>
                         <span class="text-white text-opacity-50">Monthly revenue</span>
                     </div>
                 </div>
@@ -148,12 +148,12 @@ echo view('templates/myheader.php');
                         <div class="col-md-5 border-end">
                             <div class="pe-4">
                                 <h3 class="fs-8 d-flex align-items-center mb-0">
-                                    $10,271,438.78
+                                    P10,271,438.78
                                     <span class="btn btn-circle btn-sm btn-success fs-1 ms-2 d-flex align-items-center justify-content-center">23%</span>
                                 </h3>
                                 <h6 class="fw-normal text-muted mb-0">Budget</h6>
                                 <h3 class="fs-8 d-flex align-items-center mb-0 mt-4">
-                                    $8,271,812.32
+                                    P8,271,812.32
                                 </h3>
                                 <h6 class="fw-normal text-muted mb-0">Expence</h6>
                                 <div class="mt-3 mb-4">
@@ -181,7 +181,7 @@ echo view('templates/myheader.php');
                         </div>
                     </div>
                     <div class="mt-3">
-                        <h2 class="fs-8 text-white mb-0">$10,271,438.78</h2>
+                        <h2 class="fs-8 text-white mb-0">P10,271,438.78</h2>
                         <span class="text-white text-opacity-50">Year 2025</span>
                     </div>
                 </div>
@@ -190,7 +190,7 @@ echo view('templates/myheader.php');
                 <div class="card-body">
                     <div class="row">
                         <div class="col-6 col-xl-7">
-                            <h3 class="fs-7 mb-0">$19,357,332.98</h3>
+                            <h3 class="fs-7 mb-0">P19,357,332.98</h3>
                             <h6 class="text-muted fw-normal">Yearly Budget</h6>
                             <div class="row mt-4 pt-2 gx-0">
                                 <div class="col-6">

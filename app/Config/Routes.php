@@ -49,6 +49,10 @@ $routes->post('uploadFile', 'Upload::index',['filter' => 'myauthuser']);
 $routes->get('myors', 'MyOrs::index',['filter' => 'myauthuser']);
 $routes->post('myors', 'MyOrs::index',['filter' => 'myauthuser']);
 
+//ORS - ORS APPROVAL module
+$routes->get('myorsapproval', 'MyOrsApproval::index',['filter' => 'myauthuser']);
+$routes->post('myorsapproval', 'MyOrsApproval::index',['filter' => 'myauthuser']);
+
 //BURS - BURS module
 $routes->get('myburs', 'MyBurs::index',['filter' => 'myauthuser']);
 $routes->post('myburs', 'MyBurs::index',['filter' => 'myauthuser']);

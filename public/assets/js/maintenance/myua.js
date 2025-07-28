@@ -21,6 +21,8 @@ function __mysys_myua_ent() {
 					var recid = document.getElementById("recid");
 					var full_name = document.getElementById("full_name");
 					var division = document.getElementById("division");
+					var section = document.getElementById("section");
+					var position = document.getElementById("position");
 					var username = document.getElementById("username");
 					var hash_password = document.getElementById("hash_password");
 					var hash_value = document.getElementById("hash_value");
@@ -29,6 +31,8 @@ function __mysys_myua_ent() {
 						recid: recid.value,
 						full_name: full_name.value,
 						division: division.value,
+						section: section.value,
+						position: position.value,
 						username: username.value,
 						hash_password: hash_password.value,
 						hash_value: hash_value.value,
@@ -49,14 +53,12 @@ function __mysys_myua_ent() {
 						},
 						error: function(xhr, status, error) { // display global error on the menu function
 							//__mysys_apps.mybs_simple_toast('memsgtoastcont','metoastmsglang','align-items-center text-bg-danger border-0','Hello, Error Loading Page [TRXMGT-AP-ITEM-TAXDED-ENT]' + error);
-							toastr.error('[MYPAYEE-ENT', "Hello, Error Loading Page..." + error, {
+							toastr.error('[MYUA-ENT', "Hello, Error Loading Page..." + error, {
 							closeButton: true,
 							});
 							return false;
 						} 
 					}); 
-
-					console.log("AJAX URL:", mesiteurl + 'mypayee');
 				} catch(err) { 
 					alert(err.message)
 					return false;

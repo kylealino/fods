@@ -1,58 +1,115 @@
 <?php
 $this->request = \Config\Services::request();
 $this->db = \Config\Database::connect();
-$prjctdata = $this->request->getPostGet('prjctdata');
+$this->myors = model('App\Models\MyOrsModel');
 $action = $this->request->getPostGet('action');
-$this->session = session();
-$this->cuser = $this->session->get('__xsys_myuserzicas__');
+$recid = $this->request->getPostGet('recid');
 
-$recid = "";
-$budget_recid = "";
-$serial_no ="";
-$trxno = "";
-$project_title = "";
-$responsibility_code = "";
-$fund_cluster_code = "";
-$division_name = "";
-$is_pending = "";
-$is_approved = "";
-$is_disapproved = "";
-$approver = "";
-$remarks = "";
-$program_title = "";
-$total_duration = "";
-$duration_from = "";
-$duration_to = "";
-$program_leader = "";
-$monitoring_agency = "";
-$collaborating_agencies = "";
-$implementing_agency = "";
+$program_title = '';
+$particulars = '';
+$funding_source = '';
+$payee_name = '';
+$payee_office = '';
+$payee_address = '';
+$certified_a = '';
+$certified_b = '';
+$position_a = '';
+$position_b = '';
+$serialno = '';
+$is_pending = '';
+$is_approved_certa = '';
+$is_disapproved_certa = '';
+$is_approved_certb = '';
+$is_disapproved_certb = '';
+$certa_remarks = '';
+$certb_remarks = '';
 $MDL_jsscript = "";
-$counter = 1;
 
-if (!empty($prjctdata) || !is_null($prjctdata)) {
+if(!empty($recid) || !is_null($recid)) { 
     $query = $this->db->query("
     SELECT
-        `recid`,
-        `recid` budget_recid,
-        `project_title`,
         `program_title`,
-        `responsibility_code`,
-        `fund_cluster_code`
+        `particulars`,
+        `funding_source`,
+        `payee_name`,
+        `payee_office`,
+        `payee_address`,
+        `certified_a`,
+        `certified_b`,
+        `position_a`,
+        `position_b`,
+        `serialno`,
+        `is_pending`,
+        `is_approved_certa`,
+        `is_disapproved_certa`,
+        `is_approved_certb`,
+        `is_disapproved_certb`,
+        `certa_remarks`,
+        `certb_remarks`
     FROM
-        `tbl_budget_hd`
+        `tbl_ors_hd`
     WHERE 
-        `project_title` = '$prjctdata'"
+        `recid` = '$recid'"
     );
 
     $data = $query->getRowArray();
-    $project_title = $data['project_title'];
     $program_title = $data['program_title'];
-    $responsibility_code = $data['responsibility_code'];
-    $fund_cluster_code = $data['fund_cluster_code'];
-    $budget_recid = $data['budget_recid'];
-}
+    $particulars = $data['particulars'];
+    $funding_source = $data['funding_source'];
+    $payee_name = $data['payee_name'];
+    $payee_office = $data['payee_office'];
+    $payee_address = $data['payee_address'];
+    $certified_a = $data['certified_a'];
+    $position_a = $data['position_a'];
+    $certified_b = $data['certified_b'];
+    $position_b = $data['position_b'];
+    $serialno = $data['serialno'];
+    $is_pending = $data['is_pending'];
+    $is_approved_certa = $data['is_approved_certa'];
+    $is_disapproved_certa = $data['is_disapproved_certa'];
+    $is_approved_certb = $data['is_approved_certb'];
+    $is_disapproved_certb = $data['is_disapproved_certb'];
+    $certa_remarks = $data['certa_remarks'];
+    $certb_remarks = $data['certb_remarks'];
 
+    if ($action == 'certifya_appr_pending') {
+        $MDL_jsscript = "
+        <script>
+            __mysys_ors_ent.__approve_certa();
+            __mysys_ors_ent.__disapprove_certa();
+        </script>
+       ";	
+    }elseif ($action == 'is_disapproved_certa') {
+        $MDL_jsscript = "
+        <script>
+           __mysys_ors_ent.__disapprove_certa();
+        </script>
+       ";	
+    }elseif ($action == 'is_approved_certa') {
+        $MDL_jsscript = "
+        <script>
+           __mysys_ors_ent.__approve_certa();
+        </script>
+       ";	
+    }elseif ($action == 'is_disapproved_certb') {
+        $MDL_jsscript = "
+        <script>
+           __mysys_ors_ent.__disapprove_certb();
+        </script>
+       ";	
+    }elseif ($action == 'is_approved_certb') {
+        $MDL_jsscript = "
+        <script>
+           __mysys_ors_ent.__approve_certb();
+        </script>
+       ";	
+    }else{
+        $MDL_jsscript = "
+
+       ";	
+    }
+
+}
 
 
 echo view('templates/myheader.php');
@@ -75,8 +132,9 @@ echo view('templates/myheader.php');
             </ol>
         </nav>
     </div>
+
     <div class="card rounded">
-        <div class="row myorsburs-outp-msg mx-0">
+        <div class="row myors-outp-msg mx-0">
 
         </div>
         <div class="card-header   bg-info p-1">
@@ -87,12 +145,20 @@ echo view('templates/myheader.php');
                         <span class="pt-1">Entry</span>
                     </h6>
                 </div>
-                <div class="col-sm-6 text-end ">
+                <div class="col-sm-6 text-end">
+                    <?php if ($action == 'certifya_appr_pending'):?>
+                        <button type="button" id="btn_approve" name="btn_approve" class="btn_approve btn btn-sm btn-success">
+                            Approve
+                        </button>
+                        <button type="button" id="btn_disapprove" name="btn_disapprove" class="btn_disapprove btn btn-sm btn-danger">
+                            Dispprove
+                        </button>
+                    <?php endif;?>
                 </div>
             </div>
-		</div>						
+        </div>						
         <div class="card-body p-0 px-4 py-2 my-2">
-            <form action="<?=site_url();?>myorsburs?meaction=MAIN-SAVE" method="post" class="myorsburs-validation">
+            <form action="<?=site_url();?>myors?meaction=MAIN-SAVE" method="post" class="myors-validation">
                 <div class="row mb-2">
                     <div class="col-sm-12">
                         <div class="row mb-2">
@@ -101,7 +167,6 @@ echo view('templates/myheader.php');
                             </div>
                             <div class="col-sm-10">
                                 <input type="hidden" class="form-control form-control-sm" id="recid" name="recid" value="<?=$recid;?>"/>
-                                <input type="hidden" class="form-control form-control-sm" id="serial_no" name="serial_no" value="<?=$serial_no;?>"/>
                                 <input type="text" class="form-control form-control-sm" id="program_title" name="program_title" value="<?=$program_title;?>"/>
                             </div>
                         </div>
@@ -116,7 +181,7 @@ echo view('templates/myheader.php');
                                         <span>Particulars</span>
                                     </div>
                                     <div class="col-sm-8">
-                                        <textarea name="approved_remarks" id="approved_remarks" placeholder="" rows="3" class="form-control form-control-sm"></textarea>
+                                        <textarea name="particulars" id="particulars" placeholder="" rows="4" class="form-control form-control-sm"><?=$particulars;?></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +192,11 @@ echo view('templates/myheader.php');
                                     </div>
                                     <div class="col-sm-8">
                                         <select name="" id="funding_source" class="form-select form-select-sm">
+                                        <?php if(!empty($recid)):?>
+                                            <option value="<?=$funding_source;?>"><?=$funding_source;?></option>
+                                        <?php else:?>
                                             <option value="">Choose...</option>
+                                        <?php endif;?>
                                             <option value="101101">101101</option>
                                             <option value="102101">102101</option>
                                             <option value="102406">102406</option>
@@ -149,18 +218,33 @@ echo view('templates/myheader.php');
                                 <span class="fw-bold">Payee:</span>
                             </div>
                             <div class="col-sm-8">
-                                <select name="payee_name" id="payee_name" class="form-control select2 form-select-sm show-tick">
-                                    <option selected value="">Choose...</option>
-                                    <?php foreach($payeedata as $data): ?>
-                                        <option 
-                                            value="<?= $data['payee_name'] ?>"
-                                            data-office="<?= $data['payee_office'] ?>"
-                                            data-address="<?= $data['payee_address'] ?>"
-                                        >
-                                            <?= $data['payee_name'] ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
+                                <?php if(!empty($recid)):?>
+                                    <select name="payee_name" id="payee_name" class="form-control select2 form-select-sm show-tick">
+                                        <option selected value="<?=$payee_name;?>"><?=$payee_name;?></option>
+                                        <?php foreach($payeedata as $data): ?>
+                                            <option 
+                                                value="<?= $data['payee_name'] ?>"
+                                                data-office="<?= $data['payee_office'] ?>"
+                                                data-address="<?= $data['payee_address'] ?>"
+                                            >
+                                                <?= $data['payee_name'] ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                <?php else:?>
+                                    <select name="payee_name" id="payee_name" class="form-control select2 form-select-sm show-tick">
+                                        <option selected value="">Choose...</option>
+                                        <?php foreach($payeedata as $data): ?>
+                                            <option 
+                                                value="<?= $data['payee_name'] ?>"
+                                                data-office="<?= $data['payee_office'] ?>"
+                                                data-address="<?= $data['payee_address'] ?>"
+                                            >
+                                                <?= $data['payee_name'] ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                <?php endif;?>
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -168,7 +252,7 @@ echo view('templates/myheader.php');
                                 <span class="fw-bold">Office:</span>
                             </div>
                             <div class="col-sm-8">
-                                <input type="text" id="payee_office" name="payee_office" value="" class="form-control form-control-sm bg-light"  />
+                                <input type="text" id="payee_office" name="payee_office" value="<?=$payee_office;?>" class="form-control form-control-sm bg-light"  />
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -176,7 +260,15 @@ echo view('templates/myheader.php');
                                 <span class="fw-bold">Address:</span>
                             </div>
                             <div class="col-sm-8">
-                                <input type="text" id="payee_address" name="payee_address" value="" class="form-control form-control-sm bg-light"  />
+                                <input type="text" id="payee_address" name="payee_address" value="<?=$payee_address;?>" class="form-control form-control-sm"  />
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span class="fw-bold">Serial No.:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" id="serialno" name="serialno" value="<?=$serialno;?>" class="form-control form-control-sm" disabled/>
                             </div>
                         </div>
                     </div>
@@ -246,9 +338,10 @@ echo view('templates/myheader.php');
                                                                 <option selected value ="">Choose...</option>
                                                                 <?php foreach($projectdata as $data){
                                                                     $project_title = $data['project_title'];
-                                                                    $responsibility_code = $data['responsibility_code'];
+                                                                    $rc_code = $data['responsibility_code'];
+                                                                    $mfopaps_code = $data['mfopaps_code'];
                                                                 ?>
-                                                                    <option value="<?=$project_title?>" data-rc="<?=$responsibility_code;?>"><?=$project_title?></option>
+                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
                                                                 <?php }?>
                                                             </select>
                                                         </td>
@@ -256,7 +349,7 @@ echo view('templates/myheader.php');
                                                             <input type="text" id="responsibility_code"  value="" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="mfopap"  value="" size="25" name="mfopap" data-dtid="" class="mfopap"/>
+                                                            <input type="text" id="mfopaps_code"  value="" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
@@ -276,6 +369,84 @@ echo view('templates/myheader.php');
                                                             <input type="number" id="amount"  value="" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
                                                         </td>
                                                     </tr>
+                                                    <?php if(!empty($recid)):
+                                                        $query = $this->db->query("
+                                                        SELECT
+                                                            `recid`,
+                                                            `project_title`,
+                                                            `responsibility_code`,
+                                                            `mfopaps_code`,
+                                                            `sub_object_code`,
+                                                            `uacs_code`,
+                                                            `amount`
+                                                        FROM
+                                                            `tbl_ors_direct_ps_dt`
+                                                        WHERE 
+                                                            `project_id` = '$recid'"
+                                                        );
+                                                        $result = $query->getResultArray();
+                                                        foreach ($result as $data):
+                                                            $dt_id = $data['recid'];
+                                                            $project_title = $data['project_title'];
+                                                            $responsibility_code = $data['responsibility_code'];
+                                                            $mfopaps_code = $data['mfopaps_code'];
+                                                            $sub_object_code = $data['sub_object_code'];
+                                                            $uacs_code = $data['uacs_code'];
+                                                            $amount = $data['amount'];
+                                                    ?>
+                                                    <tr>
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                onclick="$(this).closest('tr').remove();">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </a>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                title="Add rows above"
+                                                                onclick="__mysys_ors_ent.my_add_budget_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
+                                                                <option selected value ="<?=$project_title?>"><?=$project_title?></option>
+                                                                <?php foreach($projectdata as $data){
+                                                                    $project_title = $data['project_title'];
+                                                                    $rc_code = $data['responsibility_code'];
+                                                                    $mfopaps_code = $data['mfopaps_code'];
+                                                                ?>
+                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="responsibility_code"  value="<?=$responsibility_code;?>" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
+                                                                <option selected value ="<?=$sub_object_code;?>"><?=$sub_object_code;?></option>
+                                                                <?php foreach($psuacsdata as $data){
+                                                                    $sub_object_code = $data['sub_object_code'];
+                                                                    $lu_uacs_code = $data['uacs_code'];
+                                                                ?>
+                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$lu_uacs_code;?>"><?=$sub_object_code?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="uacs"  value="<?=$uacs_code;?>" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php endforeach; endif;?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -285,15 +456,148 @@ echo view('templates/myheader.php');
                                             <table id="budget_indirect_line_items" class="table-sm table-striped budgetdata-indirect-list">
                                                 <thead>
                                                     <th class="text-center">
-                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" disabled id="btn_trxjournalitem_add"><i class="ti ti-new-section"></i></a>
+                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" href="javascript:__mysys_ors_ent.my_add_budget_indirect_line();"><i class="ti ti-new-section"></i></a>
                                                     </th>
-                                                    <th class="text-center align-middle">PS - Particulars</th>
-                                                    <th class="text-center align-middle">UACS.</th>
-                                                    <th class="text-center align-middle">Approved Budget</th>
+                                                    <th class="text-center align-middle">Project Title</th>
+                                                    <th class="text-center align-middle">Responsibility Code</th>
+                                                    <th class="text-center align-middle">MFO/PAP</th>
+                                                    <th class="text-center align-middle">Sub-object Code</th>
+                                                    <th class="text-center align-middle">UACS</th>
+                                                    <th class="text-center align-middle">Amount</th>
                                                 </thead>
                                                 <tbody>
+                                                    <tr style="display:none;">
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                onclick="$(this).closest('tr').remove();">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </a>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                title="Add rows above"
+                                                                onclick="__mysys_ors_ent.my_add_budget_indirect_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
+                                                                <option selected value ="">Choose...</option>
+                                                                <?php foreach($projectdata as $data){
+                                                                    $project_title = $data['project_title'];
+                                                                    $responsibility_code = $data['responsibility_code'];
+                                                                    $mfopaps_code = $data['mfopaps_code'];
+                                                                ?>
+                                                                    <option value="<?=$project_title?>" data-rc="<?=$responsibility_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="responsibility_code"  value="" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="mfopaps_code"  value="" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
+                                                                <option selected value ="">Choose...</option>
+                                                                <?php foreach($psuacsdata as $data){
+                                                                    $sub_object_code = $data['sub_object_code'];
+                                                                    $uacs_code = $data['uacs_code'];
+                                                                ?>
+                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="uacs"  value="" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="amount"  value="" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php if(!empty($recid)):
+                                                        $query = $this->db->query("
+                                                        SELECT
+                                                            `recid`,
+                                                            `project_title`,
+                                                            `responsibility_code`,
+                                                            `mfopaps_code`,
+                                                            `sub_object_code`,
+                                                            `uacs_code`,
+                                                            `amount`
+                                                        FROM
+                                                            `tbl_ors_indirect_ps_dt`
+                                                        WHERE 
+                                                            `project_id` = '$recid'"
+                                                        );
+                                                        $result = $query->getResultArray();
+                                                        foreach ($result as $data):
+                                                            $dt_id = $data['recid'];
+                                                            $project_title = $data['project_title'];
+                                                            $responsibility_code = $data['responsibility_code'];
+                                                            $mfopaps_code = $data['mfopaps_code'];
+                                                            $sub_object_code = $data['sub_object_code'];
+                                                            $uacs_code = $data['uacs_code'];
+                                                            $amount = $data['amount'];
+                                                    ?>
+                                                    <tr>
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                onclick="$(this).closest('tr').remove();">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </a>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                title="Add rows above"
+                                                                onclick="__mysys_ors_ent.my_add_budget_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
+                                                                <option selected value ="<?=$project_title?>"><?=$project_title?></option>
+                                                                <?php foreach($projectdata as $data){
+                                                                    $project_title = $data['project_title'];
+                                                                    $rc_code = $data['responsibility_code'];
+                                                                    $mfopaps_code = $data['mfopaps_code'];
+                                                                ?>
+                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="responsibility_code"  value="<?=$responsibility_code;?>" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
+                                                                <option selected value ="<?=$sub_object_code;?>"><?=$sub_object_code;?></option>
+                                                                <?php foreach($psuacsdata as $data){
+                                                                    $sub_object_code = $data['sub_object_code'];
+                                                                    $lu_uacs_code = $data['uacs_code'];
+                                                                ?>
+                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$lu_uacs_code;?>"><?=$sub_object_code?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="uacs"  value="<?=$uacs_code;?>" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php endforeach; endif;?>
                                                 </tbody>
-                                            </table>                  
+                                            </table>              
                                         </div>
                                     </div>
                                 </div>
@@ -308,14 +612,146 @@ echo view('templates/myheader.php');
                                             <table id="budget_mooe_line_items" class="table-sm table-striped budgetmooedata-list">
                                                 <thead>
                                                     <th class="text-center">
-                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" disabled id="btn_budgetmooeitem_add" href="javascript:__mysys_budget_allotment_ent.my_add_budget_mooe_line();"><i class="ti ti-new-section"></i></a>
+                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" href="javascript:__mysys_ors_ent.my_add_budget_mooe_line();"><i class="ti ti-new-section"></i></a>
                                                     </th>
-                                                    <th class="text-center align-middle">MOOE - Particulars</th>
-                                                    <th class="text-center align-middle">UACS.</th>
-                                                    <th class="text-center align-middle">Approved Budget</th>
+                                                    <th class="text-center align-middle">Project Title</th>
+                                                    <th class="text-center align-middle">Responsibility Code</th>
+                                                    <th class="text-center align-middle">MFO/PAP</th>
+                                                    <th class="text-center align-middle">Sub-object Code</th>
+                                                    <th class="text-center align-middle">UACS</th>
+                                                    <th class="text-center align-middle">Amount</th>
                                                 </thead>
                                                 <tbody>
-
+                                                    <tr style="display:none;">
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                onclick="$(this).closest('tr').remove();">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </a>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                title="Add rows above"
+                                                                onclick="__mysys_ors_ent.my_add_budget_mooe_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
+                                                                <option selected value ="">Choose...</option>
+                                                                <?php foreach($projectdata as $data){
+                                                                    $project_title = $data['project_title'];
+                                                                    $responsibility_code = $data['responsibility_code'];
+                                                                    $mfopaps_code = $data['mfopaps_code'];
+                                                                ?>
+                                                                    <option value="<?=$project_title?>" data-rc="<?=$responsibility_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="responsibility_code"  value="" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="mfopaps_code"  value="" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
+                                                                <option selected value ="">Choose...</option>
+                                                                <?php foreach($mooeuacsdata as $data){
+                                                                    $sub_object_code = $data['sub_object_code'];
+                                                                    $uacs_code = $data['uacs_code'];
+                                                                ?>
+                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="uacs"  value="" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="amount"  value="" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php if(!empty($recid)):
+                                                        $query = $this->db->query("
+                                                        SELECT
+                                                            `recid`,
+                                                            `project_title`,
+                                                            `responsibility_code`,
+                                                            `mfopaps_code`,
+                                                            `sub_object_code`,
+                                                            `uacs_code`,
+                                                            `amount`
+                                                        FROM
+                                                            `tbl_ors_direct_mooe_dt`
+                                                        WHERE 
+                                                            `project_id` = '$recid'"
+                                                        );
+                                                        $result = $query->getResultArray();
+                                                        foreach ($result as $data):
+                                                            $dt_id = $data['recid'];
+                                                            $project_title = $data['project_title'];
+                                                            $responsibility_code = $data['responsibility_code'];
+                                                            $mfopaps_code = $data['mfopaps_code'];
+                                                            $sub_object_code = $data['sub_object_code'];
+                                                            $uacs_code = $data['uacs_code'];
+                                                            $amount = $data['amount'];
+                                                    ?>
+                                                    <tr>
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                onclick="$(this).closest('tr').remove();">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </a>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                title="Add rows above"
+                                                                onclick="__mysys_ors_ent.my_add_budget_mooe_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
+                                                                <option selected value ="<?=$project_title?>"><?=$project_title?></option>
+                                                                <?php foreach($projectdata as $data){
+                                                                    $project_title = $data['project_title'];
+                                                                    $rc_code = $data['responsibility_code'];
+                                                                    $mfopaps_code = $data['mfopaps_code'];
+                                                                ?>
+                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="responsibility_code"  value="<?=$responsibility_code;?>" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
+                                                                <option selected value ="<?=$sub_object_code;?>"><?=$sub_object_code;?></option>
+                                                                <?php foreach($mooeuacsdata as $data){
+                                                                    $sub_object_code = $data['sub_object_code'];
+                                                                    $lu_uacs_code = $data['uacs_code'];
+                                                                ?>
+                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$lu_uacs_code;?>"><?=$sub_object_code?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="uacs"  value="<?=$uacs_code;?>" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php endforeach; endif;?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -324,20 +760,154 @@ echo view('templates/myheader.php');
                                             <table id="budget_mooe_indirect_line_items" class="table-sm table-striped budgetmooedata-indirect-list">
                                                 <thead>
                                                     <th class="text-center">
-                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetmooeitem_add" disabled href="javascript:__mysys_budget_allotment_ent.my_add_budget_indirect_mooe_line();"><i class="ti ti-new-section"></i></a>
+                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" href="javascript:__mysys_ors_ent.my_add_budget_indirect_mooe_line();"><i class="ti ti-new-section"></i></a>
                                                     </th>
-                                                    <th class="text-center align-middle">MOOE - Particulars</th>
-                                                    <th class="text-center align-middle">UACS.</th>
-                                                    <th class="text-center align-middle">Approved Budget</th>
+                                                    <th class="text-center align-middle">Project Title</th>
+                                                    <th class="text-center align-middle">Responsibility Code</th>
+                                                    <th class="text-center align-middle">MFO/PAP</th>
+                                                    <th class="text-center align-middle">Sub-object Code</th>
+                                                    <th class="text-center align-middle">UACS</th>
+                                                    <th class="text-center align-middle">Amount</th>
                                                 </thead>
                                                 <tbody>
-
+                                                    <tr style="display:none;">
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                onclick="$(this).closest('tr').remove();">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </a>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                title="Add rows above"
+                                                                onclick="__mysys_ors_ent.my_add_budget_indirect_mooe_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
+                                                                <option selected value ="">Choose...</option>
+                                                                <?php foreach($projectdata as $data){
+                                                                    $project_title = $data['project_title'];
+                                                                    $responsibility_code = $data['responsibility_code'];
+                                                                    $mfopaps_code = $data['mfopaps_code'];
+                                                                ?>
+                                                                    <option value="<?=$project_title?>" data-rc="<?=$responsibility_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="responsibility_code"  value="" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="mfopaps_code"  value="" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
+                                                                <option selected value ="">Choose...</option>
+                                                                <?php foreach($mooeuacsdata as $data){
+                                                                    $sub_object_code = $data['sub_object_code'];
+                                                                    $uacs_code = $data['uacs_code'];
+                                                                ?>
+                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="uacs"  value="" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="amount"  value="" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php if(!empty($recid)):
+                                                        $query = $this->db->query("
+                                                        SELECT
+                                                            `recid`,
+                                                            `project_title`,
+                                                            `responsibility_code`,
+                                                            `mfopaps_code`,
+                                                            `sub_object_code`,
+                                                            `uacs_code`,
+                                                            `amount`
+                                                        FROM
+                                                            `tbl_ors_indirect_mooe_dt`
+                                                        WHERE 
+                                                            `project_id` = '$recid'"
+                                                        );
+                                                        $result = $query->getResultArray();
+                                                        foreach ($result as $data):
+                                                            $dt_id = $data['recid'];
+                                                            $project_title = $data['project_title'];
+                                                            $responsibility_code = $data['responsibility_code'];
+                                                            $mfopaps_code = $data['mfopaps_code'];
+                                                            $sub_object_code = $data['sub_object_code'];
+                                                            $uacs_code = $data['uacs_code'];
+                                                            $amount = $data['amount'];
+                                                    ?>
+                                                    <tr>
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                onclick="$(this).closest('tr').remove();">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </a>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                title="Add rows above"
+                                                                onclick="__mysys_ors_ent.my_add_budget_indirect_mooe_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
+                                                                <option selected value ="<?=$project_title?>"><?=$project_title?></option>
+                                                                <?php foreach($projectdata as $data){
+                                                                    $project_title = $data['project_title'];
+                                                                    $rc_code = $data['responsibility_code'];
+                                                                    $mfopaps_code = $data['mfopaps_code'];
+                                                                ?>
+                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="responsibility_code"  value="<?=$responsibility_code;?>" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
+                                                                <option selected value ="<?=$sub_object_code;?>"><?=$sub_object_code;?></option>
+                                                                <?php foreach($mooeuacsdata as $data){
+                                                                    $sub_object_code = $data['sub_object_code'];
+                                                                    $lu_uacs_code = $data['uacs_code'];
+                                                                ?>
+                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$lu_uacs_code;?>"><?=$sub_object_code?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="uacs"  value="<?=$uacs_code;?>" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php endforeach; endif;?>
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- CO TAB CONTENT -->
                             <div class="tab-pane p-3" id="co-pill" role="tabpanel">
                                 <div class="row">
                                     <div class="table-responsive pe-2 ps-0">
@@ -346,13 +916,146 @@ echo view('templates/myheader.php');
                                             <table id="budget_co_line_items" class="table-sm table-striped budgetcodata-list">
                                                 <thead>
                                                     <th class="text-center">
-                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetcoitem_add" disabled href="javascript:__mysys_budget_allotment_ent.my_add_budget_co_line();"><i class="ti ti-new-section"></i></a>
+                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetcoitem_add" disabled href="javascript:__mysys_ors_ent.my_add_budget_co_line();"><i class="ti ti-new-section"></i></a>
                                                     </th>
-                                                    <th class="text-center align-middle">CO - Particulars</th>
-                                                    <th class="text-center align-middle">UACS.</th>
-                                                    <th class="text-center align-middle">Approved Budget</th>
+                                                    <th class="text-center align-middle">Project Title</th>
+                                                    <th class="text-center align-middle">Responsibility Code</th>
+                                                    <th class="text-center align-middle">MFO/PAP</th>
+                                                    <th class="text-center align-middle">Sub-object Code</th>
+                                                    <th class="text-center align-middle">UACS</th>
+                                                    <th class="text-center align-middle">Amount</th>
                                                 </thead>
                                                 <tbody>
+                                                    <tr style="display:none;">
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                onclick="$(this).closest('tr').remove();">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </a>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                title="Add rows above"
+                                                                onclick="__mysys_ors_ent.my_add_budget_co_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
+                                                                <option selected value ="">Choose...</option>
+                                                                <?php foreach($projectdata as $data){
+                                                                    $project_title = $data['project_title'];
+                                                                    $responsibility_code = $data['responsibility_code'];
+                                                                    $mfopaps_code = $data['mfopaps_code'];
+                                                                ?>
+                                                                    <option value="<?=$project_title?>" data-rc="<?=$responsibility_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="responsibility_code"  value="" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="mfopaps_code"  value="" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
+                                                                <option selected value ="">Choose...</option>
+                                                                <?php foreach($couacsdata as $data){
+                                                                    $sub_object_code = $data['sub_object_code'];
+                                                                    $uacs_code = $data['uacs_code'];
+                                                                ?>
+                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="uacs"  value="" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="amount"  value="" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php if(!empty($recid)):
+                                                        $query = $this->db->query("
+                                                        SELECT
+                                                            `recid`,
+                                                            `project_title`,
+                                                            `responsibility_code`,
+                                                            `mfopaps_code`,
+                                                            `sub_object_code`,
+                                                            `uacs_code`,
+                                                            `amount`
+                                                        FROM
+                                                            `tbl_ors_direct_co_dt`
+                                                        WHERE 
+                                                            `project_id` = '$recid'"
+                                                        );
+                                                        $result = $query->getResultArray();
+                                                        foreach ($result as $data):
+                                                            $dt_id = $data['recid'];
+                                                            $project_title = $data['project_title'];
+                                                            $responsibility_code = $data['responsibility_code'];
+                                                            $mfopaps_code = $data['mfopaps_code'];
+                                                            $sub_object_code = $data['sub_object_code'];
+                                                            $uacs_code = $data['uacs_code'];
+                                                            $amount = $data['amount'];
+                                                    ?>
+                                                    <tr>
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                onclick="$(this).closest('tr').remove();">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </a>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                title="Add rows above"
+                                                                onclick="__mysys_ors_ent.my_add_budget_co_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
+                                                                <option selected value ="<?=$project_title?>"><?=$project_title?></option>
+                                                                <?php foreach($projectdata as $data){
+                                                                    $project_title = $data['project_title'];
+                                                                    $rc_code = $data['responsibility_code'];
+                                                                    $mfopaps_code = $data['mfopaps_code'];
+                                                                ?>
+                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="responsibility_code"  value="<?=$responsibility_code;?>" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
+                                                                <option selected value ="<?=$sub_object_code;?>"><?=$sub_object_code;?></option>
+                                                                <?php foreach($couacsdata as $data){
+                                                                    $sub_object_code = $data['sub_object_code'];
+                                                                    $lu_uacs_code = $data['uacs_code'];
+                                                                ?>
+                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$lu_uacs_code;?>"><?=$sub_object_code?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="uacs"  value="<?=$uacs_code;?>" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php endforeach; endif;?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -361,47 +1064,143 @@ echo view('templates/myheader.php');
                                             <table id="budget_indirect_co_line_items" class="table-sm table-striped budgetcodata-indirect-list">
                                                 <thead>
                                                     <th class="text-center">
-                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetcoitem_add" disabled href="javascript:__mysys_budget_allotment_ent.my_add_budget_indirect_co_line();"><i class="ti ti-new-section"></i></a>
+                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetcoitem_add" disabled href="javascript:__mysys_ors_ent.my_add_budget_indirect_co_line();"><i class="ti ti-new-section"></i></a>
                                                     </th>
-                                                    <th class="text-center align-middle">CO - Particulars</th>
-                                                    <th class="text-center align-middle">UACS.</th>
-                                                    <th class="text-center align-middle">Approved Budget</th>
+                                                    <th class="text-center align-middle">Project Title</th>
+                                                    <th class="text-center align-middle">Responsibility Code</th>
+                                                    <th class="text-center align-middle">MFO/PAP</th>
+                                                    <th class="text-center align-middle">Sub-object Code</th>
+                                                    <th class="text-center align-middle">UACS</th>
+                                                    <th class="text-center align-middle">Amount</th>
                                                 </thead>
                                                 <tbody>
-                                                    <?php if(!empty($budget_recid)):
+                                                    <tr style="display:none;">
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                onclick="$(this).closest('tr').remove();">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </a>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                title="Add rows above"
+                                                                onclick="__mysys_ors_ent.my_add_budget_indirect_co_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
+                                                                <option selected value ="">Choose...</option>
+                                                                <?php foreach($projectdata as $data){
+                                                                    $project_title = $data['project_title'];
+                                                                    $responsibility_code = $data['responsibility_code'];
+                                                                    $mfopaps_code = $data['mfopaps_code'];
+                                                                ?>
+                                                                    <option value="<?=$project_title?>" data-rc="<?=$responsibility_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="responsibility_code"  value="" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="mfopaps_code"  value="" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
+                                                                <option selected value ="">Choose...</option>
+                                                                <?php foreach($couacsdata as $data){
+                                                                    $sub_object_code = $data['sub_object_code'];
+                                                                    $uacs_code = $data['uacs_code'];
+                                                                ?>
+                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="uacs"  value="" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="amount"  value="" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php if(!empty($recid)):
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
-                                                            `particulars`,
-                                                            `code`,
-                                                            `approved_budget`
+                                                            `project_title`,
+                                                            `responsibility_code`,
+                                                            `mfopaps_code`,
+                                                            `sub_object_code`,
+                                                            `uacs_code`,
+                                                            `amount`
                                                         FROM
-                                                            `tbl_budget_indirect_co_dt`
+                                                            `tbl_ors_indirect_co_dt`
                                                         WHERE 
-                                                            `project_id` = '$budget_recid'"
+                                                            `project_id` = '$recid'"
                                                         );
                                                         $result = $query->getResultArray();
                                                         foreach ($result as $data):
                                                             $dt_id = $data['recid'];
-                                                            $particulars = $data['particulars'];
-                                                            $code = $data['code'];
-                                                            $approved_budget = $data['approved_budget'];
-                                                        ?>
+                                                            $project_title = $data['project_title'];
+                                                            $responsibility_code = $data['responsibility_code'];
+                                                            $mfopaps_code = $data['mfopaps_code'];
+                                                            $sub_object_code = $data['sub_object_code'];
+                                                            $uacs_code = $data['uacs_code'];
+                                                            $amount = $data['amount'];
+                                                    ?>
                                                     <tr>
                                                         <td class="text-center align-middle">
-                                                            <a class="text-info px-2 fs-5 bg-hover-danger nav-icon-hover position-relative z-index-5" 
-                                                            href="javascript:void(0)">
-                                                            <i class="ti ti-trash"></i>
-                                                            </a>
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                onclick="$(this).closest('tr').remove();">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </a>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                title="Add rows above"
+                                                                onclick="__mysys_ors_ent.my_add_budget_indirect_co_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
+                                                                <option selected value ="<?=$project_title?>"><?=$project_title?></option>
+                                                                <?php foreach($projectdata as $data){
+                                                                    $project_title = $data['project_title'];
+                                                                    $rc_code = $data['responsibility_code'];
+                                                                    $mfopaps_code = $data['mfopaps_code'];
+                                                                ?>
+                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="responsibility_code"  value="<?=$responsibility_code;?>" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
+                                                                <option selected value ="<?=$sub_object_code;?>"><?=$sub_object_code;?></option>
+                                                                <?php foreach($couacsdata as $data){
+                                                                    $sub_object_code = $data['sub_object_code'];
+                                                                    $lu_uacs_code = $data['uacs_code'];
+                                                                ?>
+                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$lu_uacs_code;?>"><?=$sub_object_code?></option>
+                                                                <?php }?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="uacs"  value="<?=$uacs_code;?>" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:500px; height:30px;"  name="particulars" class="particulars text-center" disabled>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
-                                                        </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center" disabled/>
+                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
@@ -411,20 +1210,103 @@ echo view('templates/myheader.php');
                                     </div>
                                 </div>
 
-                                <div class="row mb-3">
-                                    <div class="col-sm-6">
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <hr class="fw-bolder">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="row mb-2">
+                                    <div class="col-sm-4">
+                                        <span class="fw-bold">Certified A:</span>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <span class="fw-bolder">Total Approved Budget:</span>
-                                                <input type="number" id="total_amount_combined" name="total_amount_combined" value="" class="form-control form-control-sm text-center fw-bold" style="border-bottom: 2px solid #000;"  readonly/>
-                                            </div>
-                                        </div>
+                                    <div class="col-sm-8">
+                                        <?php if(!empty($recid)):?>
+                                            <select name="certified_a" id="certified_a" class="form-control select2 form-select-sm show-tick">
+                                                <option selected value="<?=$certified_a;?>"><?=$certified_a;?></option>
+                                                <?php foreach($certifydata as $data): ?>
+                                                    <option 
+                                                        value="<?= $data['full_name'] ?>"
+                                                        data-position="<?= $data['position'] ?>"
+                                                    >
+                                                        <?= $data['full_name'] ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        <?php else:?>
+                                            <select name="certified_a" id="certified_a" class="form-control select2 form-select-sm show-tick">
+                                                <option selected value="">Choose...</option>
+                                                <?php foreach($certifydata as $data): ?>
+                                                    <option 
+                                                        value="<?= $data['full_name'] ?>"
+                                                        data-position="<?= $data['position'] ?>"
+                                                    >
+                                                        <?= $data['full_name'] ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        <?php endif;?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="row mb-2">
+                                    <div class="col-sm-4">
+                                        <span class="fw-bold">Position:</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="position_a" name="position_a" value="<?=$position_a;?>" class="form-control form-control-sm" disabled/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span class="fw-bold">Certified B:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <?php if(!empty($recid)):?>
+                                    <select name="certified_b" id="certified_b" class="form-control select2 form-select-sm show-tick">
+                                        <option selected value="<?=$certified_b;?>"><?=$certified_b;?></option>
+                                        <?php foreach($certifydata as $data): ?>
+                                            <option 
+                                                value="<?= $data['full_name'] ?>"
+                                                data-position="<?= $data['position'] ?>"
+                                            >
+                                                <?= $data['full_name'] ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                <?php else:?>
+                                    <select name="certified_b" id="certified_b" class="form-control select2 form-select-sm show-tick">
+                                        <option selected value="">Choose...</option>
+                                        <?php foreach($certifydata as $data): ?>
+                                            <option 
+                                                value="<?= $data['full_name'] ?>"
+                                                data-position="<?= $data['position'] ?>"
+                                            >
+                                                <?= $data['full_name'] ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                <?php endif;?>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-12">
+                                <div class="row mb-2">
+                                    <div class="col-sm-4">
+                                        <span class="fw-bold">Position:</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="position_b" name="position_b" value="<?=$position_b;?>" class="form-control form-control-sm" disabled/>
                                     </div>
                                 </div>
                             </div>
@@ -435,12 +1317,72 @@ echo view('templates/myheader.php');
 
                 <div class="row mb-2">  
                     <div class="col-sm-12 text-end">
-                        <button type="submit" class="btn bg-<?= empty($recid) ? 'success' : 'info' ?>-subtle text-<?= empty($recid) ? 'success' : 'info' ?> btn-sm"><i class="ti ti-brand-doctrine mt-1 fs-4 me-1"></i>
+                        <button type="submit" id="submitBtn" class="btn bg-<?= empty($recid) ? 'success' : 'info' ?>-subtle text-<?= empty($recid) ? 'success' : 'info' ?> btn-sm"><i class="ti ti-brand-doctrine mt-1 fs-4 me-1"></i>
                             <?= empty($recid) ? 'Save' : 'Update' ?>
                         </button>
                     </div>
                 </div>
             </form>
+
+
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header bg-info p-1">
+                    <div class="row">
+                        <div class="col-sm-6 d-flex align-items-center text-start">
+                            <h6 class="mb-0 lh-base px-3 text-white fw-semibold d-flex align-items-center">
+                                <i class="ti ti-list fs-5 me-1"></i>
+                                <span class="pt-1">List</span>
+                            </h6>
+                        </div>
+                    </div>
+                </div>						
+                <div class="card-body p-0 px-4 py-2 my-2">
+                    <table id="datatablesSimple" class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Program Title</th>
+                                <th>Particulars</th>
+                                <th>Payee</th>
+                                <th>Total Amount</th>
+                                <th>Print</th>
+                            </tr>
+                        </thead>
+                        <tbody class="align-middle">
+                            <?php if(!empty($orshddata)):
+                                foreach ($orshddata as $data):
+                                    $dt_recid = $data['recid'];
+                                    $program_title = $data['program_title'];
+                                    $particulars = $data['particulars'];
+                                    $payee_name = $data['payee_name'];
+                                    $total_amount = $data['amount'];
+                            ?>
+                            <tr>
+                                <td class="text-center align-middle">
+                                    <a class="text-info nav-icon-hover fs-7" href="myors?meaction=MAIN&recid=<?= $dt_recid ?>" title="Edit Transaction">
+                                        <i class="ti ti-edit"></i>
+                                    </a>
+                                </td>
+                                <td class="text-center"><?=$program_title;?></td>
+                                <td class="text-center"><?=$particulars;?></td>
+                                <td class="text-center"><?=$payee_name;?></td>
+                                <td class="text-center"><?=$total_amount;?></td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm fs-7 text-info" onclick="__mysys_ors_ent.__showPdfInModal('<?= base_url('myors?meaction=PRINT-ORS&recid='.$dt_recid) ?>')" title="Print ORS">
+                                        <i class="ti ti-printer"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <?php endforeach; endif;?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -464,176 +1406,135 @@ echo view('templates/myheader.php');
   </div>
 </div>
 
+<!-- APPROVAL -->
 <div class="modal fade" id="confirmApproveModal" tabindex="-1" aria-labelledby="confirmApproveModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header bg-info text-white">
-        <h5 class="modal-title text-white" id="confirmApproveModalLabel">Confirm Approval</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="row mb-2">
-                    <div class="col-sm-4">
-                        <span>Approver:</span>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header bg-info text-white">
+            <h5 class="modal-title text-white" id="confirmApproveModalLabel">Confirm Approval</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row mb-2">
+                        <div class="col-sm-4">
+                            <span>Approver:</span>
+                        </div>
+                        <div class="col-sm-8">
+                            <?php if($action == 'certifya_appr_approved' && !empty($recid)):?>
+                                <input type="text" id="approved_by" name="approved_by" value="<?=$approver;?>" class="form-control form-control-sm" readonly/>
+                            <?php else:?>
+                                <input type="text" id="approved_by" name="approved_by" value="<?=$this->cuser;?>" class="form-control form-control-sm" readonly/>
+                            <?php endif;?>
+                        </div>
                     </div>
-                    <div class="col-sm-8">
-                        <?php if($action == 'appr_approved' && !empty($recid)):?>
-                            <input type="text" id="approved_by" name="approved_by" value="<?=$approver;?>" class="form-control form-control-sm" readonly/>
+                    <div class="row mb-2">
+                        <div class="col-sm-4">
+                            <span>Remarks:</span>       
+                        </div>
+                        <div class="col-sm-8">
+                        <?php if($action == 'certifya_appr_approved' && !empty($recid)):?>
+                            <textarea name="approved_remarks" id="approved_remarks" placeholder="" rows="3" class="form-control form-control-sm" disabled><?=$certa_remarks;?></textarea>
                         <?php else:?>
-                            <input type="text" id="approved_by" name="approved_by" value="<?=$this->cuser;?>" class="form-control form-control-sm" readonly/>
+                            <textarea name="approved_remarks" id="approved_remarks" placeholder="" rows="3" class="form-control form-control-sm"></textarea>
                         <?php endif;?>
-                    </div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col-sm-4">
-                        <span>Remarks:</span>       
-                    </div>
-                    <div class="col-sm-8">
-                    <?php if($action == 'appr_approved' && !empty($recid)):?>
-                        <textarea name="approved_remarks" id="approved_remarks" placeholder="" rows="3" class="form-control form-control-sm" disabled><?=$remarks;?></textarea>
-                    <?php else:?>
-                        <textarea name="approved_remarks" id="approved_remarks" placeholder="" rows="3" class="form-control form-control-sm"></textarea>
-                    <?php endif;?>
+                        </div>
                     </div>
                 </div>
             </div>
+            
         </div>
-        
-      </div>
-      <div class="modal-footer">
-        <?php if($action == 'appr_approved' && !empty($recid)):?>
-            <button type="button" class="btn bg-secondary-subtle btn-sm" data-bs-dismiss="modal">Back</button>
-        <?php else:?>
-            <button type="button" class="btn btn-success btn-sm px-3" id="confirmApproveBtn">Approve</button>
-            <button type="button" class="btn bg-secondary-subtle btn-sm" data-bs-dismiss="modal">Cancel</button>
-        <?php endif;?>
-      </div>
+        <div class="modal-footer">
+            <?php if($action == 'certifya_appr_approved' && !empty($recid)):?>
+                <button type="button" class="btn bg-secondary-subtle btn-sm" data-bs-dismiss="modal">Back</button>
+            <?php else:?>
+                <button type="button" class="btn btn-success btn-sm px-3" id="confirmApproveBtn">Approve</button>
+                <button type="button" class="btn bg-secondary-subtle btn-sm" data-bs-dismiss="modal">Cancel</button>
+            <?php endif;?>
+        </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <div class="modal fade" id="confirmDisapproveModal" tabindex="-1" aria-labelledby="confirmDisapproveModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header bg-info text-white">
-        <h5 class="modal-title text-white" id="confirmDisapproveModalLabel">Confirm Disapproval</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="row mb-2">
-                    <div class="col-sm-4">
-                        <span>Disapprover:</span>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header bg-info text-white">
+            <h5 class="modal-title text-white" id="confirmDisapproveModalLabel">Confirm Disapproval</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row mb-2">
+                        <div class="col-sm-4">
+                            <span>Disapprover:</span>
+                        </div>
+                        <div class="col-sm-8">
+                            <?php if($action == 'certifya_appr_disapproved' && !empty($recid)):?>
+                                <input type="text" id="disapproved_by" name="disapproved_by" value="<?=$approver;?>" class="form-control form-control-sm" readonly/>
+                            <?php else:?>
+                                <input type="text" id="disapproved_by" name="disapproved_by" value="<?=$this->cuser;?>" class="form-control form-control-sm" readonly/>
+                            <?php endif;?>
+                        </div>
                     </div>
-                    <div class="col-sm-8">
-                        <?php if($action == 'appr_disapproved' && !empty($recid)):?>
-                            <input type="text" id="disapproved_by" name="disapproved_by" value="<?=$approver;?>" class="form-control form-control-sm" readonly/>
-                        <?php else:?>
-                            <input type="text" id="disapproved_by" name="disapproved_by" value="<?=$this->cuser;?>" class="form-control form-control-sm" readonly/>
-                        <?php endif;?>
-                    </div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col-sm-4">
-                        <span>Remarks:</span>       
-                    </div>
-                    <div class="col-sm-8">
-                        <?php if($action == 'appr_disapproved' && !empty($recid)):?>
-                            <textarea name="disapproved_remarks" id="disapproved_remarks" placeholder="" rows="3" class="form-control form-control-sm" disabled><?=$remarks;?></textarea>
-                        <?php else:?>
-                            <textarea name="disapproved_remarks" id="disapproved_remarks" placeholder="" rows="3" class="form-control form-control-sm"></textarea>
-                        <?php endif;?>
+                    <div class="row mb-2">
+                        <div class="col-sm-4">
+                            <span>Remarks:</span>       
+                        </div>
+                        <div class="col-sm-8">
+                            <?php if($action == 'certifya_appr_disapproved' && !empty($recid)):?>
+                                <textarea name="disapproved_remarks" id="disapproved_remarks" placeholder="" rows="3" class="form-control form-control-sm" disabled><?=$certb_remarks;?></textarea>
+                            <?php else:?>
+                                <textarea name="disapproved_remarks" id="disapproved_remarks" placeholder="" rows="3" class="form-control form-control-sm"></textarea>
+                            <?php endif;?>
+                        </div>
                     </div>
                 </div>
             </div>
+            
         </div>
-        
-      </div>
-      <div class="modal-footer">
-        <?php if($action == 'appr_disapproved' && !empty($recid)):?>
-            <button type="button" class="btn bg-secondary-subtle btn-sm" data-bs-dismiss="modal">Back</button>
-        <?php else:?>
-            <button type="button" class="btn btn-danger btn-sm px-3" id="confirmDisapproveBtn">Disapprove</button>
-            <button type="button" class="btn bg-secondary-subtle btn-sm" data-bs-dismiss="modal">Cancel</button>
-        <?php endif;?>
-      </div>
-    </div>
+        <div class="modal-footer">
+            <?php if($action == 'certifya_appr_disapproved' && !empty($recid)):?>
+                <button type="button" class="btn bg-secondary-subtle btn-sm" data-bs-dismiss="modal">Back</button>
+            <?php else:?>
+                <button type="button" class="btn btn-danger btn-sm px-3" id="confirmDisapproveBtn">Disapprove</button>
+                <button type="button" class="btn bg-secondary-subtle btn-sm" data-bs-dismiss="modal">Cancel</button>
+            <?php endif;?>
+        </div>
+        </div>
     </div>
 </div>
 
-
+<!-- PDF Modal -->
+<div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Printing Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe id="pdfFrame" src="" style="width: 100%; height: 80vh;" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="<?=base_url('assets/js/ors/ors.js');?>"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+<script src="<?=base_url('assets/js/ors/ors.js?v=2');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 
-<!-- Bootstrap JS (and Popper.js) -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <?php
 	echo $MDL_jsscript;
 ?>
 <script>
-    
-    // $(document).ready(function () {
-    //     $('#datatablesSimple').DataTable({
-    //         pageLength: 5,
-    //         lengthChange: false,
-    //         order: [[4, 'desc']],
-    //         language: {
-    //         search: "Search:"
-    //         }
-    //     });
-    
-    // });
-
-    $(document).on('change', '.selUacs', function() {
-        var selectedCode = $(this).find('option:selected').data('uacs');
-        $(this).closest('tr').find('.uacs').val(selectedCode);
-    });
-
-    $(document).on('change', '.selProject', function() {
-        var selectedRC = $(this).find('option:selected').data('rc');
-        $(this).closest('tr').find('.responsibility_code').val(selectedRC);
-    });
-
-    $(document).on('change', '#payee_name', function() {
-        var selected = $(this).find('option:selected');
-
-        // Extract data from selected option
-        var office = selected.data('office') || '';
-        var address = selected.data('address') || '';
-        
-        // Set the values into inputs
-        $('#payee_office').val(office);
-        $('#payee_address').val(address);
-
-    });
-
-    $(document).on('change', '#program_title', function() {
-        var selected = $(this).find('option:selected');
-
-        // Extract data from selected option
-        var projectitle = selected.data('projectitle') || '';
-        var rescode = selected.data('rescode') || '';
-        var fundcode = selected.data('fundcode') || '';
-        
-        // Set the values into inputs
-        $('#project_title').val(projectitle);
-        $('#fund_cluster_code').val(rescode);
-        $('#responsibility_code').val(fundcode);
-
-    });
-
-    document.getElementById('project_title').addEventListener('change', function () {
-        const token = this.value;
-        if (token) {
-            window.location.href = `myors?meaction=MAIN&prjctdata=${token}`;
-        }
-    });
+    __mysys_ors_ent.__ors_saving();
 </script>
+
 <?php
     echo view('templates/myfooter.php');
 ?>

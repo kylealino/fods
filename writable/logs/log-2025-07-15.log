@@ -1,0 +1,15 @@
+CRITICAL - 2025-07-15 15:16:47 --> ErrorException: Undefined variable $project_title
+[Method: GET, Route: myorsapproval]
+in APPPATH\Views\ors-approval\ors-approval-main.php on line 193.
+ 1 APPPATH\Views\ors-approval\ors-approval-main.php(193): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $project_title', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors-approval\\ors-approval-main.php', 193)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors-approval\\ors-approval-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors-approval/ors-approval-main', [], true)
+ 5 APPPATH\Controllers\MyOrsApproval.php(72): view('ors-approval/ors-approval-main', [...])
+ 6 APPPATH\Controllers\MyOrsApproval.php(23): App\Controllers\MyOrsApproval->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrsApproval->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrsApproval))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
