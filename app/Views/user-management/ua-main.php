@@ -308,7 +308,7 @@ echo view('templates/myheader.php');
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="<?=base_url('assets/js/maintenance/myua.js');?>"></script>
+<script src="<?=base_url('assets/js/maintenance/myua.js?v=1');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 <script>
     __mysys_myua_ent.__user_saving();

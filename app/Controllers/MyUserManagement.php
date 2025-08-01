@@ -68,7 +68,6 @@ class MyUserManagement extends BaseController
         FROM tbl_access_modules a
         LEFT JOIN tbl_user_access ua 
         ON ua.access_code = a.access_code AND ua.username = '$username'
-        GROUP BY a.`access_name`
         ");
         $accessdata = $accessquery->getResultArray();
 

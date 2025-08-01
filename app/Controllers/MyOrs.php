@@ -85,7 +85,18 @@ class MyOrs extends BaseController
         $couacsquery = $this->db->query("SELECT * FROM mst_uacs WHERE allotment_class = 'Capital Outlay' ORDER BY TRIM(sub_object_code) ASC");
         $couacsdata = $couacsquery->getResultArray();
 
-        $projecttitlequery = $this->db->query("SELECT * FROM tbl_budget_hd WHERE fund_cluster_code = '01'  GROUP BY program_title ORDER BY recid DESC");
+        $projecttitlequery = $this->db->query("
+            SELECT * 
+            FROM tbl_budget_hd AS t1
+            WHERE fund_cluster_code = '01'
+            AND recid = (
+                SELECT MAX(recid)
+                FROM tbl_budget_hd AS t2
+                WHERE t2.program_title = t1.program_title
+                AND t2.fund_cluster_code = '01'
+            )
+            ORDER BY recid DESC
+        ");
         $projecttitledata = $projecttitlequery->getResultArray();
 
         $orshdquery = $this->db->query("
