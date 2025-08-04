@@ -333,7 +333,7 @@ echo view('templates/myheader.php');
                                 <span class="fw-bold">Serial No.:</span>
                             </div>
                             <div class="col-sm-8">
-                                <input type="text" id="serialno" name="serialno" value="<?=$serialno;?>" class="form-control form-control-sm" disabled/>
+                                <input type="text" id="serialno" name="serialno" value="<?=$serialno;?>" class="form-control form-control-sm"/>
                             </div>
                         </div>
                     </div>
@@ -1439,7 +1439,6 @@ echo view('templates/myheader.php');
                                 <th>Particulars</th>
                                 <th>Payee</th>
                                 <th>Total Amount</th>
-                                <th>Print</th>
                             </tr>
                         </thead>
                         <tbody class="align-middle">
@@ -1453,19 +1452,23 @@ echo view('templates/myheader.php');
                             ?>
                             <tr>
                                 <td class="text-center align-middle">
-                                    <a class="text-info nav-icon-hover fs-7" href="myors?meaction=MAIN&recid=<?= $dt_recid ?>" title="Edit Transaction">
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <a class="text-info nav-icon-hover fs-6" 
+                                        href="myors?meaction=MAIN&recid=<?= $dt_recid ?>" 
+                                        title="Edit Transaction">
                                         <i class="ti ti-edit"></i>
-                                    </a>
+                                        </a>
+                                        <button class="btn btn-sm fs-6 text-warning p-0 border-0 bg-transparent" 
+                                                onclick="__mysys_ors_ent.__showPdfInModal('<?= base_url('myors?meaction=PRINT-ORS&recid='.$dt_recid) ?>')" 
+                                                title="Print ORS">
+                                        <i class="ti ti-printer"></i>
+                                        </button>
+                                    </div>
                                 </td>
                                 <td class="text-center"><?=$program_title;?></td>
                                 <td class="text-center"><?=$particulars;?></td>
                                 <td class="text-center"><?=$payee_name;?></td>
                                 <td class="text-center"><?=$total_amount;?></td>
-                                <td class="text-center">
-                                    <button class="btn btn-sm fs-7 text-info" onclick="__mysys_ors_ent.__showPdfInModal('<?= base_url('myors?meaction=PRINT-ORS&recid='.$dt_recid) ?>')" title="Print ORS">
-                                        <i class="ti ti-printer"></i>
-                                    </button>
-                                </td>
                             </tr>
                             <?php endforeach; endif;?>
                         </tbody>
@@ -1614,7 +1617,7 @@ echo view('templates/myheader.php');
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
-<script src="<?=base_url('assets/js/ors/ors.js?v=2');?>"></script>
+<script src="<?=base_url('assets/js/ors/ors.js?v=3');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 
 <?php

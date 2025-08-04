@@ -978,7 +978,6 @@ function __mysys_ors_ent() {
         $('#datatablesSimple').DataTable({
             pageLength: 5,
             lengthChange: false,
-            order: [[2, 'desc']],
             language: {
             search: "Search:"
             }

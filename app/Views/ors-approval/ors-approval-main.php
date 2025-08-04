@@ -148,7 +148,7 @@ echo view('templates/myheader.php');
                                 <td class="text-center"><?=$particulars;?></td>
                                 <td class="text-center"><?= '₱'. number_format($amount,2);?></td>
                                 <td class="text-center align-middle">
-                                    <a class="text-info nav-icon-hover fs-7" href="myors?meaction=MAIN&recid=<?= $recid?>&action=certifya_appr_pending" title="View Transaction">
+                                    <a class="text-info nav-icon-hover fs-6" href="myors?meaction=MAIN&recid=<?= $recid?>&action=certifya_appr_pending" title="View Transaction">
                                         <i class="ti ti-eye"></i>
                                     </a>
                                 </td>
@@ -186,7 +186,7 @@ echo view('templates/myheader.php');
                                 <td class="text-center"><?=$particulars;?></td>
                                 <td class="text-center"><?= '₱'. number_format($amount,2);?></td>
                                 <td class="text-center align-middle">
-                                    <a class="text-info nav-icon-hover fs-7" title="View Transaction" href="myors?meaction=MAIN&recid=<?= $recid?>&action=certifyb_appr_pending">
+                                    <a class="text-info nav-icon-hover fs-6" title="View Transaction" href="myors?meaction=MAIN&recid=<?= $recid?>&action=certifyb_appr_pending">
                                         <i class="ti ti-eye"></i>
                                     </a>
                                 </td>
@@ -264,8 +264,8 @@ echo view('templates/myheader.php');
                                     <?=$budget_status;?>
                                 </td>
                                 <td class="text-center align-middle">
-                                    <a class="text-info nav-icon-hover" href="myors?meaction=MAIN&recid=<?= $recid?>&action=transaction_viewing">
-                                        View
+                                    <a class="text-info nav-icon-hover fs-6" title="View Transaction" href="myors?meaction=MAIN&recid=<?= $recid?>&action=transaction_viewing">
+                                        <i class="ti ti-eye"></i>
                                     </a>
                                 </td>
                             </tr>

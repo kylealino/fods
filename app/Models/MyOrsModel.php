@@ -131,6 +131,7 @@ class MyOrsModel extends Model
 			//ORS SERIALNO
 			$query = $this->db->query("
 				INSERT INTO tbl_ors_hd (
+					`serialno`,
 					`program_title`,
 					`particulars`,
 					`funding_source`,
@@ -143,8 +144,9 @@ class MyOrsModel extends Model
 					`position_b`,
 					`added_by`
 				)
-				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+				VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
 				[
+					$serialno,
 					$program_title,
 					$particulars,
 					$funding_source,
@@ -717,8 +719,8 @@ class MyOrsModel extends Model
 		$serialno = $this->request->getPostGet('serialno');
 		$funding_source = $this->request->getPostGet('funding_source');
 
-		$cseqn =  $this->get_ctr_ors('01',$funding_source,'CTRL_NO01');//TRANSACTION NO
-		$trx = empty($serialno) ? $cseqn : $serialno;
+		// $cseqn =  $this->get_ctr_ors('01',$funding_source,'CTRL_NO01');//TRANSACTION NO
+		// $trx = empty($serialno) ? $cseqn : $serialno;
 
 		$accessquery = $this->db->query("
 			SELECT `recid` FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '2005' AND `is_active` = '1'
@@ -743,8 +745,7 @@ class MyOrsModel extends Model
 				`is_approved_certa` = '1',
 				`is_disapproved_certa` = '0',
 				`certa_approver` = '$approver', 
-				`certa_remarks` = '$remarks',
-				`serialno` = '$trx'
+				`certa_remarks` = '$remarks'
 			WHERE `recid` = '$recid'
 		");
 		$status = "ORS approved!";
@@ -753,7 +754,6 @@ class MyOrsModel extends Model
 			// Echo JavaScript to show the toast and then redirect
 			echo "
 			<script>
-				document.getElementById('serialno').value = '{$trx}';
 				toastr.success('{$status}!', 'Well Done!', {
 						progressBar: true,
 						closeButton: true,

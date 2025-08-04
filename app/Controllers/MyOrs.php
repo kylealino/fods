@@ -140,7 +140,7 @@ class MyOrs extends BaseController
         ON
             a.`division_id` = c.recid
         WHERE a.`fundcluster_id` = '1'
-        ORDER BY a.`project_title` ASC
+        ORDER BY a.`project_title` DESC
         ");
         $projectdata = $projectquery->getResultArray();
 

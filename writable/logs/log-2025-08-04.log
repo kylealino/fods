@@ -39,3 +39,195 @@ in SYSTEMPATH\Database\BaseConnection.php on line 467.
  7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
  8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
  9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-08-04 15:37:40 --> mysqli_sql_exception: Unknown column 'serial_no' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\tINSERT IN...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\tINSERT IN...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\tINSERT IN...')
+#3 C:\xampp\htdocs\fods\app\Models\MyOrsModel.php(160): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\tINSERT IN...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyOrs.php(28): App\Models\MyOrsModel->ors_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-08-04 15:37:40 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'serial_no' in 'field list'
+[Method: POST, Route: myors]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyOrsModel.php(160): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO tbl_ors_hd (
+					`serial_no`,
+					`program_title`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`
+				)
+				VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 2 APPPATH\Controllers\MyOrs.php(28): App\Models\MyOrsModel->ors_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-04 15:37:40 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'serial_no' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				INSERT INTO tbl_ors_hd (
+					`serial_no`,
+					`program_title`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`
+				)
+				VALUES (\'TESDASDASDAS\',\'General Administration and Support Services\', \'TEST\', \'101101\', \'DIVORAH VINLUAN AGUILA\', \'LBP\', \'Taguig City\', \'KYLE ANDRAE ALINO\', \'PROJECT TECHNICAL SPECIALIST I\', \'ROMANA L. LLAMAS\', \'ADMINISTRATIVE OFFICER IV\', \'CDS-KYLE\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				INSERT INTO tbl_ors_hd (
+					`serial_no`,
+					`program_title`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`
+				)
+				VALUES (\'TESDASDASDAS\',\'General Administration and Support Services\', \'TEST\', \'101101\', \'DIVORAH VINLUAN AGUILA\', \'LBP\', \'Taguig City\', \'KYLE ANDRAE ALINO\', \'PROJECT TECHNICAL SPECIALIST I\', \'ROMANA L. LLAMAS\', \'ADMINISTRATIVE OFFICER IV\', \'CDS-KYLE\')')
+ 3 APPPATH\Models\MyOrsModel.php(160): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO tbl_ors_hd (
+					`serial_no`,
+					`program_title`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`
+				)
+				VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 4 APPPATH\Controllers\MyOrs.php(28): App\Models\MyOrsModel->ors_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-04 15:37:40 --> [Caused by] mysqli_sql_exception: Unknown column 'serial_no' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+				INSERT INTO tbl_ors_hd (
+					`serial_no`,
+					`program_title`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`
+				)
+				VALUES (\'TESDASDASDAS\',\'General Administration and Support Services\', \'TEST\', \'101101\', \'DIVORAH VINLUAN AGUILA\', \'LBP\', \'Taguig City\', \'KYLE ANDRAE ALINO\', \'PROJECT TECHNICAL SPECIALIST I\', \'ROMANA L. LLAMAS\', \'ADMINISTRATIVE OFFICER IV\', \'CDS-KYLE\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				INSERT INTO tbl_ors_hd (
+					`serial_no`,
+					`program_title`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`
+				)
+				VALUES (\'TESDASDASDAS\',\'General Administration and Support Services\', \'TEST\', \'101101\', \'DIVORAH VINLUAN AGUILA\', \'LBP\', \'Taguig City\', \'KYLE ANDRAE ALINO\', \'PROJECT TECHNICAL SPECIALIST I\', \'ROMANA L. LLAMAS\', \'ADMINISTRATIVE OFFICER IV\', \'CDS-KYLE\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				INSERT INTO tbl_ors_hd (
+					`serial_no`,
+					`program_title`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`
+				)
+				VALUES (\'TESDASDASDAS\',\'General Administration and Support Services\', \'TEST\', \'101101\', \'DIVORAH VINLUAN AGUILA\', \'LBP\', \'Taguig City\', \'KYLE ANDRAE ALINO\', \'PROJECT TECHNICAL SPECIALIST I\', \'ROMANA L. LLAMAS\', \'ADMINISTRATIVE OFFICER IV\', \'CDS-KYLE\')')
+ 4 APPPATH\Models\MyOrsModel.php(160): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO tbl_ors_hd (
+					`serial_no`,
+					`program_title`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`
+				)
+				VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 5 APPPATH\Controllers\MyOrs.php(28): App\Models\MyOrsModel->ors_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-04 15:45:00 --> ErrorException: Undefined variable $query
+[Method: POST, Route: myors]
+in APPPATH\Models\MyOrsModel.php on line 754.
+ 1 APPPATH\Models\MyOrsModel.php(754): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $query', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MyOrsModel.php', 754)
+ 2 APPPATH\Controllers\MyOrs.php(33): App\Models\MyOrsModel->ors_certifya_approve()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-04 15:46:00 --> ErrorException: Undefined variable $trx
+[Method: POST, Route: myors]
+in APPPATH\Models\MyOrsModel.php on line 757.
+ 1 APPPATH\Models\MyOrsModel.php(757): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $trx', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MyOrsModel.php', 757)
+ 2 APPPATH\Controllers\MyOrs.php(33): App\Models\MyOrsModel->ors_certifya_approve()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
