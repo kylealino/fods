@@ -203,7 +203,7 @@ echo view('templates/myheader.php');
                                 <th>Budget</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="align-middle">
                             <?php if(!empty($pendingbudgetdata)):
                                 
                                 foreach ($pendingbudgetdata as $data):
@@ -213,8 +213,8 @@ echo view('templates/myheader.php');
                             ?>
                             <tr>
                                 <td class="text-center align-middle">
-                                    <a class="text-info nav-icon-hover" href="mybudgetallotment?meaction=MAIN&recid=<?= $recid?>&action=appr_pending">
-                                        Review
+                                    <a class="text-info nav-icon-hover fs-6" href="mybudgetallotment?meaction=MAIN&recid=<?= $recid?>&action=appr_pending">
+                                        <i class="ti ti-eye"></i>
                                     </a>
                                 </td>
                                 <td class="text-center"><?=$project_title;?></td>
@@ -243,7 +243,7 @@ echo view('templates/myheader.php');
                                         <th>Budget</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="align-middle">
                                     <?php if(!empty($approvedbudgetdata)):
                                         
                                         foreach ($approvedbudgetdata as $data):
@@ -253,8 +253,8 @@ echo view('templates/myheader.php');
                                     ?>
                                     <tr>
                                         <td class="text-center align-middle">
-                                            <a class="text-info nav-icon-hover" href="mybudgetallotment?meaction=MAIN&recid=<?= $recid?>&action=appr_approved">
-                                                Review
+                                            <a class="text-info nav-icon-hover fs-6" href="mybudgetallotment?meaction=MAIN&recid=<?= $recid?>&action=appr_approved">
+                                                <i class="ti ti-eye"></i>
                                             </a>
                                         </td>
                                         <td class="text-center"><?=$project_title;?></td>
@@ -280,7 +280,7 @@ echo view('templates/myheader.php');
                                         <th>Budget</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="align-middle">
                                     <?php if(!empty($disapprovedbudgetdata)):
                                         
                                         foreach ($disapprovedbudgetdata as $data):
@@ -290,8 +290,8 @@ echo view('templates/myheader.php');
                                     ?>
                                     <tr>
                                         <td class="text-center align-middle">
-                                            <a class="text-info nav-icon-hover" href="mybudgetallotment?meaction=MAIN&recid=<?= $recid?>&action=appr_disapproved">
-                                                Review
+                                            <a class="text-info nav-icon-hover fs-6" href="mybudgetallotment?meaction=MAIN&recid=<?= $recid?>&action=appr_disapproved">
+                                                <i class="ti ti-eye"></i>
                                             </a>
                                         </td>
                                         <td class="text-center"><?=$project_title;?></td>

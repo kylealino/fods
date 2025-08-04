@@ -524,7 +524,7 @@ echo view('templates/myheader.php');
                                                     <th class="text-center align-middle">3rd Realignment</th>
                                                     <th class="text-center align-middle">Proposed Realignment</th>
                                                 </thead>
-                                                <tbody>
+                                                <tbody class="align-middle">
                                                     <tr style="display:none;">
                                                         <td class="text-center align-middle">
                                                             <div class="d-inline-flex gap-1 justify-content-center">
@@ -673,7 +673,7 @@ echo view('templates/myheader.php');
                                                     <th class="text-center align-middle">3rd Realignment</th>
                                                     <th class="text-center align-middle">Proposed Realignment</th>
                                                 </thead>
-                                                <tbody>
+                                                <tbody class="align-middle">
                                                     <tr style="display:none;">
                                                         <td class="text-center align-middle">
                                                             <div class="d-inline-flex gap-1 justify-content-center">
@@ -831,7 +831,7 @@ echo view('templates/myheader.php');
                                                     <th class="text-center align-middle">3rd Realignment</th>
                                                     <th class="text-center align-middle">Proposed Realignment</th>
                                                 </thead>
-                                                <tbody>
+                                                <tbody class="align-middle">
                                                     <tr style="display:none;">
                                                         <td class="text-center align-middle">
                                                             <div class="d-inline-flex gap-1 justify-content-center">
@@ -979,7 +979,7 @@ echo view('templates/myheader.php');
                                                     <th class="text-center align-middle">3rd Realignment</th>
                                                     <th class="text-center align-middle">Proposed Realignment</th>
                                                 </thead>
-                                                <tbody>
+                                                <tbody class="align-middle">
                                                     <tr style="display:none;">
                                                         <td class="text-center align-middle">
                                                             <div class="d-inline-flex gap-1 justify-content-center">
@@ -1134,7 +1134,7 @@ echo view('templates/myheader.php');
                                                     <th class="text-center align-middle">3rd Realignment</th>
                                                     <th class="text-center align-middle">Proposed Realignment</th>
                                                 </thead>
-                                                <tbody>
+                                                <tbody class="align-middle">
                                                     <tr style="display:none;">
                                                         <td class="text-center align-middle">
                                                             <div class="d-inline-flex gap-1 justify-content-center">
@@ -1257,7 +1257,7 @@ echo view('templates/myheader.php');
                                                     <th class="text-center align-middle">3rd Realignment</th>
                                                     <th class="text-center align-middle">Proposed Realignment</th>
                                                 </thead>
-                                                <tbody>
+                                                <tbody class="align-middle">
                                                     <tr style="display:none;">
                                                         <td class="text-center align-middle">
                                                             <div class="d-inline-flex gap-1 justify-content-center">
@@ -1426,10 +1426,9 @@ echo view('templates/myheader.php');
                         <th>Encode Date</th>
                         <th>Budget</th>
                         <th>Status</th>
-                        <th>Print LIB</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="align-middle">
                     <?php if(!empty($budgetdtdata)):
                         
                         foreach ($budgetdtdata as $data):
@@ -1459,9 +1458,14 @@ echo view('templates/myheader.php');
                     ?>
                     <tr>
                         <td class="text-center align-middle">
-                            <a class="text-info nav-icon-hover" href="mybudgetallotment?meaction=MAIN&recid=<?= $dt_recid ?>">
-                                Review
-                            </a>
+                            <div class="d-flex justify-content-center gap-2">
+                                <a class="text-info nav-icon-hover fs-6" title="Edit Transaction" href="mybudgetallotment?meaction=MAIN&recid=<?= $dt_recid ?>">
+                                    <i class="ti ti-edit"></i>
+                                </a>
+                                <button class="btn btn-sm fs-6 text-warning p-0 border-0 bg-transparent"  onclick="__mysys_budget_allotment_ent.__showPdfInModal('<?= base_url('mybudgetallotment?meaction=PRINT-LIB&recid='.$dt_recid) ?>')">
+                                    <i class="ti ti-printer"></i>
+                                </button>
+                            </div>
                         </td>
                         <td class="text-center"><?=$hdtrxno;?></td>
                         <td class="text-center"><?=$project_title;?></td>
@@ -1469,11 +1473,6 @@ echo view('templates/myheader.php');
                         <td class="text-center"><?=$added_at;?></td>
                         <td class="text-center"><?= 'P'. number_format($approved_budget,2);?></td>
                         <td class="text-center text-<?=$color;?>"><?=$status;?></td>
-                        <td class="text-center">
-                            <button class="btn btn-sm btn-outline-secondary" onclick="__mysys_budget_allotment_ent.__showPdfInModal('<?= base_url('mybudgetallotment?meaction=PRINT-LIB&recid='.$dt_recid) ?>')">
-                                Print
-                            </button>
-                        </td>
                     </tr>
                     <?php endforeach; endif;?>
                 </tbody>
@@ -1519,7 +1518,7 @@ echo view('templates/myheader.php');
                                 <th class="text-center">File Name</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="align-middle">
                             <?php if(!empty($trxno)):
                                 $query = $this->db->query("
                                 SELECT
