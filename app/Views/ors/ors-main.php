@@ -317,7 +317,7 @@ echo view('templates/myheader.php');
                                 <span class="fw-bold">Office:</span>
                             </div>
                             <div class="col-sm-8">
-                                <input type="text" id="payee_office" name="payee_office" value="<?=$payee_office;?>" class="form-control form-control-sm bg-light"  />
+                                <input type="text" id="payee_office" name="payee_office" value="<?=$payee_office;?>" class="form-control form-control-sm " disabled />
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -325,7 +325,7 @@ echo view('templates/myheader.php');
                                 <span class="fw-bold">Address:</span>
                             </div>
                             <div class="col-sm-8">
-                                <input type="text" id="payee_address" name="payee_address" value="<?=$payee_address;?>" class="form-control form-control-sm"  />
+                                <input type="text" id="payee_address" name="payee_address" value="<?=$payee_address;?>" class="form-control form-control-sm"  disabled/>
                             </div>
                         </div>
                         <div class="row mb-2">

@@ -253,8 +253,8 @@ echo view('templates/myheader.php');
                     ?>
                     <tr>
                         <td class="text-center align-middle">
-                            <a class="text-info nav-icon-hover" href="myproject?meaction=MAIN&recid=<?= $recid ?>">
-                                Review
+                            <a class="text-info nav-icon-hover fs-6" href="myproject?meaction=MAIN&recid=<?= $recid ?>">
+                                <i class="ti ti-eye" aria-hidden="true"></i>
                             </a>
                         </td>
                         <td class="text-center"><?=$project_title;?></td>

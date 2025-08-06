@@ -38,54 +38,54 @@ class MyPayeeModel extends Model
 			";
 			die();
 		}
-		if (empty($payee_account_num)) {
-			echo "
-			<script>
-			toastr.error('Account number is required!', 'Oops!', {
-					progressBar: true,
-					closeButton: true,
-					timeOut:2000,
-				});
-			</script>
-			";
-			die();
-		}
-		if (empty($payee_office)) {
-			echo "
-			<script>
-			toastr.error('Office is required!', 'Oops!', {
-					progressBar: true,
-					closeButton: true,
-					timeOut:2000,
-				});
-			</script>
-			";
-			die();
-		}
-		if (empty($payee_tin)) {
-			echo "
-			<script>
-			toastr.error('TIN is required!', 'Oops!', {
-					progressBar: true,
-					closeButton: true,
-					timeOut:2000,
-				});
-			</script>
-			";
-			die();
-		}
-		if (empty($payee_address)) {
-			echo "
-			<script>
-			toastr.error('Address is required!', 'Oops!', {
-					progressBar: true,
-					closeButton: true,
-					timeOut:2000,
-				});
-			</script>
-			";
-			die();
-		}
+		// if (empty($payee_account_num)) {
+		// 	echo "
+		// 	<script>
+		// 	toastr.error('Account number is required!', 'Oops!', {
+		// 			progressBar: true,
+		// 			closeButton: true,
+		// 			timeOut:2000,
+		// 		});
+		// 	</script>
+		// 	";
+		// 	die();
+		// }
+		// if (empty($payee_office)) {
+		// 	echo "
+		// 	<script>
+		// 	toastr.error('Office is required!', 'Oops!', {
+		// 			progressBar: true,
+		// 			closeButton: true,
+		// 			timeOut:2000,
+		// 		});
+		// 	</script>
+		// 	";
+		// 	die();
+		// }
+		// if (empty($payee_tin)) {
+		// 	echo "
+		// 	<script>
+		// 	toastr.error('TIN is required!', 'Oops!', {
+		// 			progressBar: true,
+		// 			closeButton: true,
+		// 			timeOut:2000,
+		// 		});
+		// 	</script>
+		// 	";
+		// 	die();
+		// }
+		// if (empty($payee_address)) {
+		// 	echo "
+		// 	<script>
+		// 	toastr.error('Address is required!', 'Oops!', {
+		// 			progressBar: true,
+		// 			closeButton: true,
+		// 			timeOut:2000,
+		// 		});
+		// 	</script>
+		// 	";
+		// 	die();
+		// }
 
 		if (empty($recid)) {
 			$query = $this->db->query("

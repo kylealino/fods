@@ -206,8 +206,8 @@ echo view('templates/myheader.php');
                             ?>
                             <tr>
                                 <td class="text-center align-middle">
-                                    <a class="text-info nav-icon-hover" href="myua?meaction=MAIN&recid=<?= $list_recid ?>">
-                                         Review
+                                    <a class="text-info nav-icon-hover fs-6" href="myua?meaction=MAIN&recid=<?= $list_recid ?>">
+                                         <i class="ti ti-eye" aria-hidden="true"></i>
                                     </a>
                                 </td>
                                 <td class="text-center"><?=$full_name;?></td>

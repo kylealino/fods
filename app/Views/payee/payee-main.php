@@ -191,7 +191,7 @@ echo view('templates/myheader.php');
                         <th>Currency</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="align-middle">
                     <?php if(!empty($results)):
                         
                         foreach ($results as $data):
@@ -206,8 +206,8 @@ echo view('templates/myheader.php');
                     ?>
                     <tr>
                         <td class="text-center align-middle">
-                            <a class="text-info nav-icon-hover" href="mypayee?meaction=MAIN&recid=<?= $recid ?>">
-                                <i class="fa fa-eye" aria-hidden="true"></i> Review
+                            <a class="text-info nav-icon-hover fs-6" href="mypayee?meaction=MAIN&recid=<?= $recid ?>">
+                                <i class="ti ti-eye" aria-hidden="true"></i>
                             </a>
                         </td>
                         <td class="text-center"><?=$payee_name;?></td>
@@ -251,7 +251,7 @@ echo view('templates/myheader.php');
     __mysys_payee_ent.__payee_saving();
     $(document).ready(function () {
   $('#datatablesSimple').DataTable({
-    pageLength: 10,
+    pageLength: 5,
     lengthChange: false,
     language: {
       search: "Search:"
