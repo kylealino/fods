@@ -72,11 +72,11 @@ $pdf->Cell(30, 4, 'FAD-BS-001' , 'TRL', 1, 'L');
 
 $Y = $pdf->GetY();
 $pdf->SetXY(170, $Y);
-$pdf->Cell(30, 4, 'Revision 1' , 'RL', 1, 'L');
+$pdf->Cell(30, 4, 'Revision 0' , 'RL', 1, 'L');
 
 $Y = $pdf->GetY();
 $pdf->SetXY(170, $Y);
-$pdf->Cell(30, 4, $formattedDate , 'BRL', 1, 'L');
+$pdf->Cell(30, 4, 'June 10 2024' , 'BRL', 1, 'L');
 
 $Y = $pdf->GetY()+4;
 $pdf->SetXY(170, $Y);
@@ -123,7 +123,7 @@ $Y += 5;
 $pdf->SetXY(130, $Y);
 $pdf->Cell(20, 5, 'Date:' , 0, 1, 'L');
 $pdf->SetXY(150, $Y);
-$pdf->Cell(50, 5, $formattedDate , 'R', 1, 'L');
+$pdf->Cell(50, 5, '' , 'R', 1, 'L');
 $pdf->SetXY(150, $Y);
 $pdf->Cell(40, 5, '' , 'B', 1, 'L');
 $Y += 5;
@@ -208,6 +208,166 @@ $data = $query->getRowArray();
 $particulars = $data['particulars'];
 $total_amount = 0;
 
+//---------------------------------------------------------   DIRECT PS RC CODE, MFO PAPS FETCHING   --------------------------------------------------------------------
+$DPSY= 85;
+$rc_list_psd = [];
+$mfo_list_psd = [];
+$pdf->SetXY(10, $DPSY);
+$query = $this->db->query("
+    SELECT
+        `responsibility_code`,
+        `mfopaps_code`
+    FROM
+        `tbl_ors_direct_ps_dt`
+    WHERE
+        `project_id` = '$recid'
+");
+
+$data = $query->getResultArray();
+
+foreach ($data as $row) {
+    $rc_list_psd[] = $row['responsibility_code'];
+    $mfo_list_psd[] = $row['mfopaps_code'];
+}
+
+// Get unique RCs only
+$unique_rc_list_psd = array_unique($rc_list_psd);
+$unique_mfo_list_psd = array_unique($mfo_list_psd);
+
+foreach ($unique_rc_list_psd as $rc) {
+    $pdf->MultiCell(38, 4, $rc, 0, 'L'); // full width usage
+}
+foreach ($unique_mfo_list_psd as $mfo) {
+    $pdf->SetXY(105, $DPSY);
+    $pdf->MultiCell(30, 4, $mfo, 0, 'L'); // full width usage
+    $DPSY = $pdf->GetY($DPSY);
+}
+
+//DT INDIRECT PS
+if($DPSY == 85){
+    $IDPSY = $DPSY;
+}else{
+    $IDPSY = $pdf->GetY($DPSY);
+}
+
+$rc_list_psid = [];
+$mfo_list_psid = [];
+$pdf->SetXY(10, $DPSY);
+$query = $this->db->query("
+    SELECT
+        `responsibility_code`,
+        `mfopaps_code`
+    FROM
+        `tbl_ors_indirect_ps_dt`
+    WHERE
+        `project_id` = '$recid'
+");
+
+$data = $query->getResultArray();
+
+foreach ($data as $row) {
+    $rc_list_psid[] = $row['responsibility_code'];
+    $mfo_list_psid[] = $row['mfopaps_code'];
+}
+
+// Get unique RCs only
+$unique_rc_list_psid = array_unique($rc_list_psid);
+$unique_mfo_list_psid = array_unique($mfo_list_psid);
+
+foreach ($unique_rc_list_psid as $rc) {
+    $pdf->MultiCell(38, 4, $rc, 0, 'L'); // full width usage
+}
+foreach ($unique_mfo_list_psid as $mfo) {
+    $pdf->SetXY(105, $IDPSY);
+    $pdf->MultiCell(30, 4, $mfo, 0, 'L'); // full width usage
+    $IDPSY = $pdf->GetY($IDPSY);
+}
+
+//DT DIRECT MOOE
+if($IDPSY >= 85){
+    $DMOOEY = $IDPSY;
+}else{
+    $DMOOEY = $pdf->GetY($IDPSY);
+}
+
+$rc_list_mooed = [];
+$mfo_list_mooed = [];
+$pdf->SetXY(10, $DPSY);
+$query = $this->db->query("
+    SELECT
+        `responsibility_code`,
+        `mfopaps_code`
+    FROM
+        `tbl_ors_direct_mooe_dt`
+    WHERE
+        `project_id` = '$recid'
+");
+
+$data = $query->getResultArray();
+
+foreach ($data as $row) {
+    $rc_list_mooed[] = $row['responsibility_code'];
+    $mfo_list_mooed[] = $row['mfopaps_code'];
+}
+
+// Get unique RCs only
+$unique_rc_list_mooed = array_unique($rc_list_mooed);
+$unique_mfo_list_mooed = array_unique($mfo_list_mooed);
+
+foreach ($unique_rc_list_mooed as $rc) {
+    $pdf->SetXY(10, $DMOOEY);
+    $pdf->MultiCell(38, 4, $rc, 0, 'L'); // full width usage
+}
+foreach ($unique_mfo_list_mooed as $mfo) {
+    $pdf->SetXY(105, $DMOOEY);
+    $pdf->MultiCell(30, 4, $mfo, 0, 'L'); // full width usage
+    $DMOOEY = $pdf->GetY($DMOOEY);
+}
+
+//DT INDIRECT MOOE
+if($DMOOEY >= 85){
+    $IDMOOEY = $DMOOEY;
+}else{
+    $IDMOOEY = $pdf->GetY($DMOOEY);
+}
+
+$rc_list_mooeid = [];
+$mfo_list_mooeid = [];
+$pdf->SetXY(10, $DPSY);
+$query = $this->db->query("
+    SELECT
+        `responsibility_code`,
+        `mfopaps_code`
+    FROM
+        `tbl_ors_indirect_mooe_dt`
+    WHERE
+        `project_id` = '$recid'
+");
+
+$data = $query->getResultArray();
+
+foreach ($data as $row) {
+    $rc_list_mooeid[] = $row['responsibility_code'];
+    $mfo_list_mooeid[] = $row['mfopaps_code'];
+}
+
+// Get unique RCs only
+$unique_rc_list_mooeid = array_unique($rc_list_mooeid);
+$unique_mfo_list_mooeid = array_unique($mfo_list_mooeid);
+
+foreach ($unique_rc_list_mooeid as $rc) {
+    $pdf->SetXY(10, $IDMOOEY);
+    $pdf->MultiCell(38, 4, $rc, 0, 'L'); // full width usage
+}
+foreach ($unique_mfo_list_mooeid as $mfo) {
+    $pdf->SetXY(105, $IDMOOEY);
+    $pdf->MultiCell(30, 4, $mfo, 0, 'L'); // full width usage
+    $IDMOOEY = $pdf->GetY($IDMOOEY);
+}
+
+
+//-----------------------------------------------------  UACS CODE AND AMOUNT DT FETCHING    ----------------------------------------------------------------------------------
+
 //DT DIRECT PS
 $DPS = 85;
 $query = $this->db->query("
@@ -236,14 +396,14 @@ foreach ($data as $row) {
     $uacs_code = $row['uacs_code'];
     $amount = $row['amount'];
     
-    if ($responsibility_code !== $last_responsibility_code && $responsibility_code !== null) {
-        $pdf->SetXY(10, $DPS);
-        $pdf->MultiCell(38, 4, $responsibility_code, 0, 'L'); // full width usage
-        $last_responsibility_code = $responsibility_code;
-    }
+    // if ($responsibility_code !== $last_responsibility_code && $responsibility_code !== null) {
+    //     $pdf->SetXY(10, $DPS);
+    //     $pdf->MultiCell(38, 4, $responsibility_code, 0, 'L'); // full width usage
+    //     $last_responsibility_code = $responsibility_code;
+    // }
 
-    $pdf->SetXY(105, $DPS);
-    $pdf->Cell(30, 4, $mfopaps_code , 0, 1, 'C');
+    // $pdf->SetXY(105, $DPS);
+    // $pdf->Cell(30, 4, $mfopaps_code , 0, 1, 'C');
 
     $pdf->SetXY(135, $DPS);
     $pdf->Cell(30, 4, $uacs_code , 0, 1, 'C');
@@ -251,7 +411,7 @@ foreach ($data as $row) {
     $pdf->SetXY(165, $DPS);
     $pdf->Cell(25, 4, number_format($amount,2), 0, 1, 'R');
     $total_amount += $amount;
-    $DPS = $pdf->GetY($DPS) + 4;
+    $DPS = $pdf->GetY($DPS);
 }
 
 //DT INDIRECT PS
@@ -287,14 +447,14 @@ foreach ($data as $row) {
     $uacs_code = $row['uacs_code'];
     $amount = $row['amount'];
     
-    if ($responsibility_code !== $last_responsibility_code && $responsibility_code !== null) {
-        $pdf->SetXY(10, $IDPS);
-        $pdf->MultiCell(37, 4, $responsibility_code, 0, 'L'); // full width usage
-        $last_responsibility_code = $responsibility_code;
-    }
+    // if ($responsibility_code !== $last_responsibility_code && $responsibility_code !== null) {
+    //     $pdf->SetXY(10, $IDPS);
+    //     $pdf->MultiCell(37, 4, $responsibility_code, 0, 'L'); // full width usage
+    //     $last_responsibility_code = $responsibility_code;
+    // }
 
-    $pdf->SetXY(105, $IDPS);
-    $pdf->Cell(30, 4, $mfopaps_code , 0, 1, 'C');
+    // $pdf->SetXY(105, $IDPS);
+    // $pdf->Cell(30, 4, $mfopaps_code , 0, 1, 'C');
 
     $pdf->SetXY(135, $IDPS);
     $pdf->Cell(30, 4, $uacs_code , 0, 1, 'C');
@@ -302,7 +462,7 @@ foreach ($data as $row) {
     $pdf->SetXY(165, $IDPS);
     $pdf->Cell(25, 4, number_format($amount,2), 0, 1, 'R');
     $total_amount += $amount;
-    $IDPS = $pdf->GetY($IDPS) + 4;
+    $IDPS = $pdf->GetY($IDPS);
 }
 
 //MOEE ENTRY
@@ -340,14 +500,14 @@ foreach ($data as $row) {
     $uacs_code = $row['uacs_code'];
     $amount = $row['amount'];
     
-    if ($responsibility_code !== $last_responsibility_code && $responsibility_code !== null) {
-        $pdf->SetXY(10, $DMOOE);
-        $pdf->MultiCell(37, 4, $responsibility_code, 0, 'L'); // full width usage
-        $last_responsibility_code = $responsibility_code;
-    }
+    // if ($responsibility_code !== $last_responsibility_code && $responsibility_code !== null) {
+    //     $pdf->SetXY(10, $DMOOE);
+    //     $pdf->MultiCell(37, 4, $responsibility_code, 0, 'L'); // full width usage
+    //     $last_responsibility_code = $responsibility_code;
+    // }
 
-    $pdf->SetXY(105, $DMOOE);
-    $pdf->Cell(30, 4, $mfopaps_code , 0, 1, 'C');
+    // $pdf->SetXY(105, $DMOOE);
+    // $pdf->Cell(30, 4, $mfopaps_code , 0, 1, 'C');
 
     $pdf->SetXY(135, $DMOOE);
     $pdf->Cell(30, 4, $uacs_code , 0, 1, 'C');
@@ -355,7 +515,7 @@ foreach ($data as $row) {
     $pdf->SetXY(165, $DMOOE);
     $pdf->Cell(25, 4, number_format($amount,2), 0, 1, 'R');
     $total_amount += $amount;
-    $DMOOE = $pdf->GetY($DMOOE) + 4;
+    $DMOOE = $pdf->GetY($DMOOE);
 }
 
 //DT INDIRECT MOOE
@@ -391,14 +551,14 @@ foreach ($data as $row) {
     $uacs_code = $row['uacs_code'];
     $amount = $row['amount'];
     
-    if ($responsibility_code !== $last_responsibility_code && $responsibility_code !== null) {
-        $pdf->SetXY(10, $IDMOOE);
-        $pdf->MultiCell(37, 4, $responsibility_code, 0, 'L'); // full width usage
-        $last_responsibility_code = $responsibility_code;
-    }
+    // if ($responsibility_code !== $last_responsibility_code && $responsibility_code !== null) {
+    //     $pdf->SetXY(10, $IDMOOE);
+    //     $pdf->MultiCell(37, 4, $responsibility_code, 0, 'L'); // full width usage
+    //     $last_responsibility_code = $responsibility_code;
+    // }
 
-    $pdf->SetXY(105, $IDMOOE);
-    $pdf->Cell(30, 4, $mfopaps_code , 0, 1, 'C');
+    // $pdf->SetXY(105, $IDMOOE);
+    // $pdf->Cell(30, 4, $mfopaps_code , 0, 1, 'C');
 
     $pdf->SetXY(135, $IDMOOE);
     $pdf->Cell(30, 4, $uacs_code , 0, 1, 'C');
@@ -406,7 +566,7 @@ foreach ($data as $row) {
     $pdf->SetXY(165, $IDMOOE);
     $pdf->Cell(25, 4, number_format($amount,2), 0, 1, 'R');
     $total_amount += $amount;
-    $IDMOOE = $pdf->GetY($IDMOOE) + 4;
+    $IDMOOE = $pdf->GetY($IDMOOE);
 }
 
 //DT DIRECT CO
@@ -442,14 +602,14 @@ foreach ($data as $row) {
     $uacs_code = $row['uacs_code'];
     $amount = $row['amount'];
     
-    if ($responsibility_code !== $last_responsibility_code && $responsibility_code !== null) {
-        $pdf->SetXY(10, $DCO);
-        $pdf->MultiCell(37, 4, $responsibility_code, 0, 'L'); // full width usage
-        $last_responsibility_code = $responsibility_code;
-    }
+    // if ($responsibility_code !== $last_responsibility_code && $responsibility_code !== null) {
+    //     $pdf->SetXY(10, $DCO);
+    //     $pdf->MultiCell(37, 4, $responsibility_code, 0, 'L'); // full width usage
+    //     $last_responsibility_code = $responsibility_code;
+    // }
 
-    $pdf->SetXY(105, $DCO);
-    $pdf->Cell(30, 4, $mfopaps_code , 0, 1, 'C');
+    // $pdf->SetXY(105, $DCO);
+    // $pdf->Cell(30, 4, $mfopaps_code , 0, 1, 'C');
 
     $pdf->SetXY(135, $DCO);
     $pdf->Cell(30, 4, $uacs_code , 0, 1, 'C');
@@ -457,7 +617,7 @@ foreach ($data as $row) {
     $pdf->SetXY(165, $DCO);
     $pdf->Cell(25, 4, number_format($amount,2), 0, 1, 'R');
     $total_amount += $amount;
-    $DCO = $pdf->GetY($DCO) + 4;
+    $DCO = $pdf->GetY($DCO);
 }
 
 //DT INDIRECT CO
@@ -493,14 +653,14 @@ foreach ($data as $row) {
     $uacs_code = $row['uacs_code'];
     $amount = $row['amount'];
     
-    if ($responsibility_code !== $last_responsibility_code && $responsibility_code !== null) {
-        $pdf->SetXY(10, $IDCO);
-        $pdf->MultiCell(37, 4, $responsibility_code, 0, 'L'); // full width usage
-        $last_responsibility_code = $responsibility_code;
-    }
+    // if ($responsibility_code !== $last_responsibility_code && $responsibility_code !== null) {
+    //     $pdf->SetXY(10, $IDCO);
+    //     $pdf->MultiCell(37, 4, $responsibility_code, 0, 'L'); // full width usage
+    //     $last_responsibility_code = $responsibility_code;
+    // }
 
-    $pdf->SetXY(105, $IDCO);
-    $pdf->Cell(30, 4, $mfopaps_code , 0, 1, 'C');
+    // $pdf->SetXY(105, $IDCO);
+    // $pdf->Cell(30, 4, $mfopaps_code , 0, 1, 'C');
 
     $pdf->SetXY(135, $IDCO);
     $pdf->Cell(30, 4, $uacs_code , 0, 1, 'C');
@@ -508,7 +668,7 @@ foreach ($data as $row) {
     $pdf->SetXY(165, $IDCO);
     $pdf->Cell(25, 4, number_format($amount,2), 0, 1, 'R');
     $total_amount += $amount;
-    $IDCO = $pdf->GetY($IDCO) + 4;
+    $IDCO = $pdf->GetY($IDCO);
 }
 
 
@@ -530,7 +690,9 @@ $pdf->SetXY(135, $Y);
 $pdf->Cell(30, 3, '' , 0, 1, 'C');
 
 $pdf->SetXY(165, $Y);
+$pdf->SetFont('Arial', 'B', 8);
 $pdf->Cell(35, 3, number_format($total_amount, 2) , 0, 1, 'C');
+$pdf->SetFont('Arial', '', 8);
 
 
 $Y = 171.5;

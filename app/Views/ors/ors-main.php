@@ -232,7 +232,19 @@ echo view('templates/myheader.php');
                             </div>
                             <div class="col-sm-10">
                                 <input type="hidden" class="form-control form-control-sm" id="recid" name="recid" value="<?=$recid;?>"/>
-                                <input type="text" class="form-control form-control-sm" id="program_title" name="program_title" value="<?=$program_title;?>"/>
+                                <select name="" id="program_title" class="form-select form-select-sm">
+                                <?php if(!empty($recid)):?>
+                                    <option value="<?=$program_title;?>"><?=$program_title;?></option>
+                                <?php else:?>
+                                    <option value="">Choose...</option>
+                                <?php endif;?>
+                                    <option value="General Administration and Support Service">General Administration and Support Service</option>
+                                    <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
+                                    <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
+                                    <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
+                                    <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
+                                    <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -481,9 +493,9 @@ echo view('templates/myheader.php');
                                                                 <?php foreach($projectdata as $data){
                                                                     $project_title = $data['project_title'];
                                                                     $rc_code = $data['responsibility_code'];
-                                                                    $mfopaps_code = $data['mfopaps_code'];
+                                                                    $mfopaps_code_lckup = $data['mfopaps_code'];
                                                                 ?>
-                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
+                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code_lckup;?>"><?=$project_title?></option>
                                                                 <?php }?>
                                                             </select>
                                                         </td>
@@ -630,9 +642,9 @@ echo view('templates/myheader.php');
                                                                 <?php foreach($projectdata as $data){
                                                                     $project_title = $data['project_title'];
                                                                     $rc_code = $data['responsibility_code'];
-                                                                    $mfopaps_code = $data['mfopaps_code'];
+                                                                    $mfopaps_code_lckup = $data['mfopaps_code'];
                                                                 ?>
-                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
+                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code_lckup;?>"><?=$project_title?></option>
                                                                 <?php }?>
                                                             </select>
                                                         </td>
@@ -786,9 +798,9 @@ echo view('templates/myheader.php');
                                                                 <?php foreach($projectdata as $data){
                                                                     $project_title = $data['project_title'];
                                                                     $rc_code = $data['responsibility_code'];
-                                                                    $mfopaps_code = $data['mfopaps_code'];
+                                                                    $mfopaps_code_lckup = $data['mfopaps_code'];
                                                                 ?>
-                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
+                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code_lckup;?>"><?=$project_title?></option>
                                                                 <?php }?>
                                                             </select>
                                                         </td>
@@ -934,9 +946,9 @@ echo view('templates/myheader.php');
                                                                 <?php foreach($projectdata as $data){
                                                                     $project_title = $data['project_title'];
                                                                     $rc_code = $data['responsibility_code'];
-                                                                    $mfopaps_code = $data['mfopaps_code'];
+                                                                    $mfopaps_code_lckup = $data['mfopaps_code'];
                                                                 ?>
-                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
+                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code_lckup;?>"><?=$project_title?></option>
                                                                 <?php }?>
                                                             </select>
                                                         </td>
@@ -1090,9 +1102,9 @@ echo view('templates/myheader.php');
                                                                 <?php foreach($projectdata as $data){
                                                                     $project_title = $data['project_title'];
                                                                     $rc_code = $data['responsibility_code'];
-                                                                    $mfopaps_code = $data['mfopaps_code'];
+                                                                    $mfopaps_code_lckup = $data['mfopaps_code'];
                                                                 ?>
-                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
+                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code_lckup;?>"><?=$project_title?></option>
                                                                 <?php }?>
                                                             </select>
                                                         </td>
@@ -1238,9 +1250,9 @@ echo view('templates/myheader.php');
                                                                 <?php foreach($projectdata as $data){
                                                                     $project_title = $data['project_title'];
                                                                     $rc_code = $data['responsibility_code'];
-                                                                    $mfopaps_code = $data['mfopaps_code'];
+                                                                    $mfopaps_code_lckup = $data['mfopaps_code'];
                                                                 ?>
-                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
+                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code_lckup;?>"><?=$project_title?></option>
                                                                 <?php }?>
                                                             </select>
                                                         </td>
@@ -1294,7 +1306,7 @@ echo view('templates/myheader.php');
                                         <?php if(!empty($recid)):?>
                                             <select name="certified_a" id="certified_a" class="form-control select2 form-select-sm show-tick">
                                                 <option selected value="<?=$certified_a;?>"><?=$certified_a;?></option>
-                                                <?php foreach($certifydata as $data): ?>
+                                                <?php foreach($certifyadata as $data): ?>
                                                     <option 
                                                         value="<?= $data['full_name'] ?>"
                                                         data-position="<?= $data['position'] ?>"
@@ -1306,7 +1318,7 @@ echo view('templates/myheader.php');
                                         <?php else:?>
                                             <select name="certified_a" id="certified_a" class="form-control select2 form-select-sm show-tick">
                                                 <option selected value="">Choose...</option>
-                                                <?php foreach($certifydata as $data): ?>
+                                                <?php foreach($certifyadata as $data): ?>
                                                     <option 
                                                         value="<?= $data['full_name'] ?>"
                                                         data-position="<?= $data['position'] ?>"
@@ -1352,7 +1364,7 @@ echo view('templates/myheader.php');
                                 <?php if(!empty($recid)):?>
                                     <select name="certified_b" id="certified_b" class="form-control select2 form-select-sm show-tick">
                                         <option selected value="<?=$certified_b;?>"><?=$certified_b;?></option>
-                                        <?php foreach($certifydata as $data): ?>
+                                        <?php foreach($certifybdata as $data): ?>
                                             <option 
                                                 value="<?= $data['full_name'] ?>"
                                                 data-position="<?= $data['position'] ?>"
@@ -1364,7 +1376,7 @@ echo view('templates/myheader.php');
                                 <?php else:?>
                                     <select name="certified_b" id="certified_b" class="form-control select2 form-select-sm show-tick">
                                         <option selected value="">Choose...</option>
-                                        <?php foreach($certifydata as $data): ?>
+                                        <?php foreach($certifybdata as $data): ?>
                                             <option 
                                                 value="<?= $data['full_name'] ?>"
                                                 data-position="<?= $data['position'] ?>"
@@ -1468,7 +1480,7 @@ echo view('templates/myheader.php');
                                 <td class="text-center"><?=$program_title;?></td>
                                 <td class="text-center"><?=$particulars;?></td>
                                 <td class="text-center"><?=$payee_name;?></td>
-                                <td class="text-center"><?=$total_amount;?></td>
+                                <td class="text-center"><?= 'P'. number_format($total_amount,2);?></td>
                             </tr>
                             <?php endforeach; endif;?>
                         </tbody>

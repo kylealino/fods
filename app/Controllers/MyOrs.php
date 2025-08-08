@@ -144,8 +144,11 @@ class MyOrs extends BaseController
         ");
         $projectdata = $projectquery->getResultArray();
 
-        $certifyquery = $this->db->query("SELECT * FROM myua_user ORDER BY recid DESC");
-        $certifydata = $certifyquery->getResultArray();
+        $certifyaquery = $this->db->query("SELECT * FROM myua_user WHERE cert_tag = '1' ORDER BY recid DESC");
+        $certifyadata = $certifyaquery->getResultArray();
+
+        $certifybquery = $this->db->query("SELECT * FROM myua_user WHERE cert_tag = '2' ORDER BY recid DESC");
+        $certifybdata = $certifybquery->getResultArray();
 
 
         return view('ors/ors-main', [
@@ -155,7 +158,8 @@ class MyOrs extends BaseController
             'payeedata' => $payeedata,
             'projectdata' => $projectdata,
             'orshddata' => $orshddata,
-            'certifydata' => $certifydata,
+            'certifyadata' => $certifyadata,
+            'certifybdata' => $certifybdata,
         ]);
     }
     
