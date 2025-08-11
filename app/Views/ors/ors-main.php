@@ -5,7 +5,7 @@ $this->myors = model('App\Models\MyOrsModel');
 $action = $this->request->getPostGet('action');
 $recid = $this->request->getPostGet('recid');
 
-$program_title = '';
+$ors_date = '';
 $particulars = '';
 $funding_source = '';
 $payee_name = '';
@@ -32,7 +32,7 @@ $status_msg_b = "";
 if(!empty($recid) || !is_null($recid)) { 
     $query = $this->db->query("
     SELECT
-        `program_title`,
+        `ors_date`,
         `particulars`,
         `funding_source`,
         `payee_name`,
@@ -59,7 +59,7 @@ if(!empty($recid) || !is_null($recid)) {
     );
 
     $data = $query->getRowArray();
-    $program_title = $data['program_title'];
+    $ors_date = $data['ors_date'];
     $particulars = $data['particulars'];
     $funding_source = $data['funding_source'];
     $payee_name = $data['payee_name'];
@@ -224,31 +224,8 @@ echo view('templates/myheader.php');
         </div>						
         <div class="card-body p-0 px-4 py-2 my-2">
             <form action="<?=site_url();?>myors?meaction=MAIN-SAVE" method="post" class="myors-validation">
-                <div class="row mb-2">
-                    <div class="col-sm-12">
-                        <div class="row mb-2">
-                            <div class="col-sm-2">
-                                <span>Program Title</span>
-                            </div>
-                            <div class="col-sm-10">
-                                <input type="hidden" class="form-control form-control-sm" id="recid" name="recid" value="<?=$recid;?>"/>
-                                <select name="" id="program_title" class="form-select form-select-sm">
-                                <?php if(!empty($recid)):?>
-                                    <option value="<?=$program_title;?>"><?=$program_title;?></option>
-                                <?php else:?>
-                                    <option value="">Choose...</option>
-                                <?php endif;?>
-                                    <option value="General Administration and Support Service">General Administration and Support Service</option>
-                                    <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
-                                    <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
-                                    <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
-                                    <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
-                                    <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <input type="hidden" class="form-control form-control-sm" id="recid" name="recid" value="<?=$recid;?>"/>
+
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="row">
@@ -284,6 +261,16 @@ echo view('templates/myheader.php');
                                             <option value="308602">308602</option>
                                             <option value="308603">308603</option>
                                         </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="row mb-2">
+                                    <div class="col-sm-4">
+                                        <span>Date</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="date" name="ors_date" id="ors_date" value="<?=$ors_date;?>" class="form form-control form-control-sm">
                                     </div>
                                 </div>
                             </div>
@@ -386,6 +373,7 @@ echo view('templates/myheader.php');
                                                     <th class="text-center">
                                                         <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" href="javascript:__mysys_ors_ent.my_add_budget_line();"><i class="ti ti-new-section"></i></a>
                                                     </th>
+                                                    <th class="text-center align-middle">Program Title</th>
                                                     <th class="text-center align-middle">Project Title</th>
                                                     <th class="text-center align-middle">Responsibility Code</th>
                                                     <th class="text-center align-middle">MFO/PAP</th>
@@ -409,6 +397,16 @@ echo view('templates/myheader.php');
                                                                     <i class="ti ti-plus"></i>
                                                                 </a>
                                                             </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
+                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
+                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
+                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
+                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
+                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
+                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
+                                                            </select>
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <select name="selProject" class="selProject form" style="width:600px; height:30px;">
@@ -450,6 +448,7 @@ echo view('templates/myheader.php');
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
+                                                            `program_title`,
                                                             `project_title`,
                                                             `responsibility_code`,
                                                             `mfopaps_code`,
@@ -464,6 +463,7 @@ echo view('templates/myheader.php');
                                                         $result = $query->getResultArray();
                                                         foreach ($result as $data):
                                                             $dt_id = $data['recid'];
+                                                            $program_title = $data['program_title'];
                                                             $project_title = $data['project_title'];
                                                             $responsibility_code = $data['responsibility_code'];
                                                             $mfopaps_code = $data['mfopaps_code'];
@@ -486,6 +486,17 @@ echo view('templates/myheader.php');
                                                                     <i class="ti ti-plus"></i>
                                                                 </a>
                                                             </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
+                                                                <option value="<?=$program_title;?>"><?=$program_title;?></option>
+                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
+                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
+                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
+                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
+                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
+                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
+                                                            </select>
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <select name="selProject" class="selProject form" style="width:600px; height:30px;">
@@ -535,6 +546,7 @@ echo view('templates/myheader.php');
                                                     <th class="text-center">
                                                         <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" href="javascript:__mysys_ors_ent.my_add_budget_indirect_line();"><i class="ti ti-new-section"></i></a>
                                                     </th>
+                                                    <th class="text-center align-middle">Program Title</th>
                                                     <th class="text-center align-middle">Project Title</th>
                                                     <th class="text-center align-middle">Responsibility Code</th>
                                                     <th class="text-center align-middle">MFO/PAP</th>
@@ -558,6 +570,16 @@ echo view('templates/myheader.php');
                                                                     <i class="ti ti-plus"></i>
                                                                 </a>
                                                             </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
+                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
+                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
+                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
+                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
+                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
+                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
+                                                            </select>
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <select name="selProject" class="selProject form" style="width:600px; height:30px;">
@@ -599,6 +621,7 @@ echo view('templates/myheader.php');
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
+                                                            `program_title`,
                                                             `project_title`,
                                                             `responsibility_code`,
                                                             `mfopaps_code`,
@@ -613,6 +636,7 @@ echo view('templates/myheader.php');
                                                         $result = $query->getResultArray();
                                                         foreach ($result as $data):
                                                             $dt_id = $data['recid'];
+                                                            $program_title = $data['program_title'];
                                                             $project_title = $data['project_title'];
                                                             $responsibility_code = $data['responsibility_code'];
                                                             $mfopaps_code = $data['mfopaps_code'];
@@ -635,6 +659,17 @@ echo view('templates/myheader.php');
                                                                     <i class="ti ti-plus"></i>
                                                                 </a>
                                                             </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
+                                                                <option value="<?=$program_title;?>"><?=$program_title;?></option>
+                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
+                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
+                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
+                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
+                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
+                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
+                                                            </select>
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <select name="selProject" class="selProject form" style="width:600px; height:30px;">
@@ -691,6 +726,7 @@ echo view('templates/myheader.php');
                                                     <th class="text-center">
                                                         <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" href="javascript:__mysys_ors_ent.my_add_budget_mooe_line();"><i class="ti ti-new-section"></i></a>
                                                     </th>
+                                                    <th class="text-center align-middle">Program Title</th>
                                                     <th class="text-center align-middle">Project Title</th>
                                                     <th class="text-center align-middle">Responsibility Code</th>
                                                     <th class="text-center align-middle">MFO/PAP</th>
@@ -714,6 +750,16 @@ echo view('templates/myheader.php');
                                                                     <i class="ti ti-plus"></i>
                                                                 </a>
                                                             </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
+                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
+                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
+                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
+                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
+                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
+                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
+                                                            </select>
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <select name="selProject" class="selProject form" style="width:600px; height:30px;">
@@ -755,6 +801,7 @@ echo view('templates/myheader.php');
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
+                                                            `program_title`,
                                                             `project_title`,
                                                             `responsibility_code`,
                                                             `mfopaps_code`,
@@ -769,6 +816,7 @@ echo view('templates/myheader.php');
                                                         $result = $query->getResultArray();
                                                         foreach ($result as $data):
                                                             $dt_id = $data['recid'];
+                                                            $program_title = $data['program_title'];
                                                             $project_title = $data['project_title'];
                                                             $responsibility_code = $data['responsibility_code'];
                                                             $mfopaps_code = $data['mfopaps_code'];
@@ -791,6 +839,17 @@ echo view('templates/myheader.php');
                                                                     <i class="ti ti-plus"></i>
                                                                 </a>
                                                             </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
+                                                                <option value="<?=$program_title;?>"><?=$program_title;?></option>
+                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
+                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
+                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
+                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
+                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
+                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
+                                                            </select>
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <select name="selProject" class="selProject form" style="width:600px; height:30px;">
@@ -839,6 +898,7 @@ echo view('templates/myheader.php');
                                                     <th class="text-center">
                                                         <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" href="javascript:__mysys_ors_ent.my_add_budget_indirect_mooe_line();"><i class="ti ti-new-section"></i></a>
                                                     </th>
+                                                    <th class="text-center align-middle">Program Title</th>
                                                     <th class="text-center align-middle">Project Title</th>
                                                     <th class="text-center align-middle">Responsibility Code</th>
                                                     <th class="text-center align-middle">MFO/PAP</th>
@@ -862,6 +922,16 @@ echo view('templates/myheader.php');
                                                                     <i class="ti ti-plus"></i>
                                                                 </a>
                                                             </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
+                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
+                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
+                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
+                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
+                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
+                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
+                                                            </select>
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <select name="selProject" class="selProject form" style="width:600px; height:30px;">
@@ -903,6 +973,7 @@ echo view('templates/myheader.php');
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
+                                                            `program_title`,
                                                             `project_title`,
                                                             `responsibility_code`,
                                                             `mfopaps_code`,
@@ -917,6 +988,7 @@ echo view('templates/myheader.php');
                                                         $result = $query->getResultArray();
                                                         foreach ($result as $data):
                                                             $dt_id = $data['recid'];
+                                                            $program_title = $data['program_title'];
                                                             $project_title = $data['project_title'];
                                                             $responsibility_code = $data['responsibility_code'];
                                                             $mfopaps_code = $data['mfopaps_code'];
@@ -939,6 +1011,17 @@ echo view('templates/myheader.php');
                                                                     <i class="ti ti-plus"></i>
                                                                 </a>
                                                             </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
+                                                                <option value="<?=$program_title;?>"><?=$program_title;?></option>
+                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
+                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
+                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
+                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
+                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
+                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
+                                                            </select>
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <select name="selProject" class="selProject form" style="width:600px; height:30px;">
@@ -995,6 +1078,7 @@ echo view('templates/myheader.php');
                                                     <th class="text-center">
                                                         <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetcoitem_add" disabled href="javascript:__mysys_ors_ent.my_add_budget_co_line();"><i class="ti ti-new-section"></i></a>
                                                     </th>
+                                                    <th class="text-center align-middle">Program Title</th>
                                                     <th class="text-center align-middle">Project Title</th>
                                                     <th class="text-center align-middle">Responsibility Code</th>
                                                     <th class="text-center align-middle">MFO/PAP</th>
@@ -1018,6 +1102,16 @@ echo view('templates/myheader.php');
                                                                     <i class="ti ti-plus"></i>
                                                                 </a>
                                                             </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
+                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
+                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
+                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
+                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
+                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
+                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
+                                                            </select>
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <select name="selProject" class="selProject form" style="width:600px; height:30px;">
@@ -1059,6 +1153,7 @@ echo view('templates/myheader.php');
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
+                                                            `program_title`,
                                                             `project_title`,
                                                             `responsibility_code`,
                                                             `mfopaps_code`,
@@ -1073,6 +1168,7 @@ echo view('templates/myheader.php');
                                                         $result = $query->getResultArray();
                                                         foreach ($result as $data):
                                                             $dt_id = $data['recid'];
+                                                            $program_title = $data['program_title'];
                                                             $project_title = $data['project_title'];
                                                             $responsibility_code = $data['responsibility_code'];
                                                             $mfopaps_code = $data['mfopaps_code'];
@@ -1095,6 +1191,17 @@ echo view('templates/myheader.php');
                                                                     <i class="ti ti-plus"></i>
                                                                 </a>
                                                             </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
+                                                                <option value="<?=$program_title;?>"><?=$program_title;?></option>
+                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
+                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
+                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
+                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
+                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
+                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
+                                                            </select>
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <select name="selProject" class="selProject form" style="width:600px; height:30px;">
@@ -1143,6 +1250,7 @@ echo view('templates/myheader.php');
                                                     <th class="text-center">
                                                         <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetcoitem_add" disabled href="javascript:__mysys_ors_ent.my_add_budget_indirect_co_line();"><i class="ti ti-new-section"></i></a>
                                                     </th>
+                                                    <th class="text-center align-middle">Program Title</th>
                                                     <th class="text-center align-middle">Project Title</th>
                                                     <th class="text-center align-middle">Responsibility Code</th>
                                                     <th class="text-center align-middle">MFO/PAP</th>
@@ -1166,6 +1274,16 @@ echo view('templates/myheader.php');
                                                                     <i class="ti ti-plus"></i>
                                                                 </a>
                                                             </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
+                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
+                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
+                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
+                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
+                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
+                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
+                                                            </select>
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <select name="selProject" class="selProject form" style="width:600px; height:30px;">
@@ -1207,6 +1325,7 @@ echo view('templates/myheader.php');
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
+                                                            `program_title`,
                                                             `project_title`,
                                                             `responsibility_code`,
                                                             `mfopaps_code`,
@@ -1221,6 +1340,7 @@ echo view('templates/myheader.php');
                                                         $result = $query->getResultArray();
                                                         foreach ($result as $data):
                                                             $dt_id = $data['recid'];
+                                                            $program_title = $data['program_title'];
                                                             $project_title = $data['project_title'];
                                                             $responsibility_code = $data['responsibility_code'];
                                                             $mfopaps_code = $data['mfopaps_code'];
@@ -1243,6 +1363,17 @@ echo view('templates/myheader.php');
                                                                     <i class="ti ti-plus"></i>
                                                                 </a>
                                                             </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
+                                                                <option value="<?=$program_title;?>"><?=$program_title;?></option>
+                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
+                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
+                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
+                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
+                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
+                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
+                                                            </select>
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <select name="selProject" class="selProject form" style="width:600px; height:30px;">
@@ -1447,7 +1578,6 @@ echo view('templates/myheader.php');
                         <thead>
                             <tr>
                                 <th>Action</th>
-                                <th>Program Title</th>
                                 <th>Particulars</th>
                                 <th>Payee</th>
                                 <th>Total Amount</th>
@@ -1457,7 +1587,6 @@ echo view('templates/myheader.php');
                             <?php if(!empty($orshddata)):
                                 foreach ($orshddata as $data):
                                     $dt_recid = $data['recid'];
-                                    $program_title = $data['program_title'];
                                     $particulars = $data['particulars'];
                                     $payee_name = $data['payee_name'];
                                     $total_amount = $data['amount'];
@@ -1477,7 +1606,6 @@ echo view('templates/myheader.php');
                                         </button>
                                     </div>
                                 </td>
-                                <td class="text-center"><?=$program_title;?></td>
                                 <td class="text-center"><?=$particulars;?></td>
                                 <td class="text-center"><?=$payee_name;?></td>
                                 <td class="text-center"><?= 'P'. number_format($total_amount,2);?></td>
@@ -1629,7 +1757,7 @@ echo view('templates/myheader.php');
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
-<script src="<?=base_url('assets/js/ors/ors.js?v=3');?>"></script>
+<script src="<?=base_url('assets/js/ors/ors.js?v=4');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 
 <?php

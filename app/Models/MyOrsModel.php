@@ -19,7 +19,6 @@ class MyOrsModel extends Model
 	public function ors_save() { 
 		$recid = $this->request->getPostGet('recid');
 		$serialno = $this->request->getPostGet('serialno');
-		$program_title = $this->request->getPostGet('program_title');
 		$particulars = $this->request->getPostGet('particulars');
 		$funding_source = $this->request->getPostGet('funding_source');
 		$payee_name = $this->request->getPostGet('payee_name');
@@ -35,7 +34,10 @@ class MyOrsModel extends Model
 		$budgetmooeindirectdtdata = $this->request->getPostGet('budgetmooeindirectdtdata');
 		$budgetcodtdata = $this->request->getPostGet('budgetcodtdata');
 		$budgetindirectcodtdata = $this->request->getPostGet('budgetindirectcodtdata');
-
+		$ors_date = $this->request->getPostGet('ors_date');
+		
+		// var_dump($ors_date);
+		// die();
 		
 		// $cseqn =  $this->get_ctr_ors('01',$funding_source,'CTRL_NO01');//TRANSACTION NO
 		// $trx = empty($serialno) ? $cseqn : $serialno;
@@ -61,18 +63,6 @@ class MyOrsModel extends Model
 		// var_dump($budgetdtdata);
 		// die();
 
-		if (empty($program_title)) {
-			echo "
-			<script>
-			toastr.error('Program title is required!', 'Oops!', {
-					progressBar: true,
-					closeButton: true,
-					timeOut:2000,
-				});
-			</script>
-			";
-			die();
-		}
 		if (empty($funding_source)) {
 			echo "
 			<script>
@@ -133,7 +123,6 @@ class MyOrsModel extends Model
 			$query = $this->db->query("
 				INSERT INTO tbl_ors_hd (
 					`serialno`,
-					`program_title`,
 					`particulars`,
 					`funding_source`,
 					`payee_name`,
@@ -143,12 +132,12 @@ class MyOrsModel extends Model
 					`position_a`,
 					`certified_b`,
 					`position_b`,
-					`added_by`
+					`added_by`,
+					`ors_date`
 				)
-				VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
 				[
 					$serialno,
-					$program_title,
 					$particulars,
 					$funding_source,
 					$payee_name,
@@ -158,7 +147,8 @@ class MyOrsModel extends Model
 					$position_a,
 					$certified_b,
 					$position_b,
-					$this->cuser
+					$this->cuser,
+					$ors_date
 				]
 			);
 
@@ -168,16 +158,18 @@ class MyOrsModel extends Model
 			if (!empty($budgetdtdata)) {
 				for($aa = 0; $aa < count($budgetdtdata); $aa++){
 					$medata = explode("x|x",$budgetdtdata[$aa]);
-					$project_title = $medata[0]; 
-					$responsibility_code = $medata[1]; 
-					$mfopaps_code = $medata[2];
-					$sub_object_code = $medata[3];  
-					$uacs_code = $medata[4]; 
-					$amount = $medata[5]; 
+					$program_title = $medata[0]; 
+					$project_title = $medata[1]; 
+					$responsibility_code = $medata[2]; 
+					$mfopaps_code = $medata[3];
+					$sub_object_code = $medata[4];  
+					$uacs_code = $medata[5]; 
+					$amount = $medata[6]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_ors_direct_ps_dt (
 							`project_id`,
+							`program_title`,
 							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
@@ -186,9 +178,10 @@ class MyOrsModel extends Model
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?,?, ?, ?, ?, ?, ?, ?,?)", 
 						[
 							$project_id,
+							$program_title,
 							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
@@ -205,16 +198,18 @@ class MyOrsModel extends Model
 			if (!empty($budgetdtindirectdata)) {
 				for($aa = 0; $aa < count($budgetdtindirectdata); $aa++){
 					$medata = explode("x|x",$budgetdtindirectdata[$aa]);
-					$project_title = $medata[0]; 
-					$responsibility_code = $medata[1]; 
-					$mfopaps_code = $medata[2];
-					$sub_object_code = $medata[3];  
-					$uacs_code = $medata[4]; 
-					$amount = $medata[5]; 
+					$program_title = $medata[0]; 
+					$project_title = $medata[1]; 
+					$responsibility_code = $medata[2]; 
+					$mfopaps_code = $medata[3];
+					$sub_object_code = $medata[4];  
+					$uacs_code = $medata[5]; 
+					$amount = $medata[6]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_ors_indirect_ps_dt (
 							`project_id`,
+							`program_title`,
 							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
@@ -223,9 +218,10 @@ class MyOrsModel extends Model
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
 						[
 							$project_id,
+							$program_title,
 							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
@@ -244,16 +240,18 @@ class MyOrsModel extends Model
 				//this is for normal saving and updating
 				for($aa = 0; $aa < count($budgetmooedtdata); $aa++){
 					$medata = explode("x|x",$budgetmooedtdata[$aa]);
-					$project_title = $medata[0]; 
-					$responsibility_code = $medata[1]; 
-					$mfopaps_code = $medata[2];
-					$sub_object_code = $medata[3];  
-					$uacs_code = $medata[4]; 
-					$amount = $medata[5]; 
+					$program_title = $medata[0]; 
+					$project_title = $medata[1]; 
+					$responsibility_code = $medata[2]; 
+					$mfopaps_code = $medata[3];
+					$sub_object_code = $medata[4];  
+					$uacs_code = $medata[5]; 
+					$amount = $medata[6]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_ors_direct_mooe_dt (
 							`project_id`,
+							`program_title`,
 							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
@@ -262,9 +260,10 @@ class MyOrsModel extends Model
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
 						[
 							$project_id,
+							$program_title,
 							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
@@ -283,16 +282,18 @@ class MyOrsModel extends Model
 				//this is for normal saving and updating
 				for($aa = 0; $aa < count($budgetmooeindirectdtdata); $aa++){
 					$medata = explode("x|x",$budgetmooeindirectdtdata[$aa]);
-					$project_title = $medata[0]; 
-					$responsibility_code = $medata[1]; 
-					$mfopaps_code = $medata[2];
-					$sub_object_code = $medata[3];  
-					$uacs_code = $medata[4]; 
-					$amount = $medata[5]; 
+					$program_title = $medata[0]; 
+					$project_title = $medata[1]; 
+					$responsibility_code = $medata[2]; 
+					$mfopaps_code = $medata[3];
+					$sub_object_code = $medata[4];  
+					$uacs_code = $medata[5]; 
+					$amount = $medata[6]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_ors_indirect_mooe_dt (
 							`project_id`,
+							`program_title`,
 							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
@@ -301,9 +302,10 @@ class MyOrsModel extends Model
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
 						[
 							$project_id,
+							$program_title,
 							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
@@ -322,16 +324,18 @@ class MyOrsModel extends Model
 				//this is for normal saving and updating
 				for($aa = 0; $aa < count($budgetcodtdata); $aa++){
 					$medata = explode("x|x",$budgetcodtdata[$aa]);
-					$project_title = $medata[0]; 
-					$responsibility_code = $medata[1]; 
-					$mfopaps_code = $medata[2];
-					$sub_object_code = $medata[3];  
-					$uacs_code = $medata[4]; 
-					$amount = $medata[5]; 
+					$program_title = $medata[0]; 
+					$project_title = $medata[1]; 
+					$responsibility_code = $medata[2]; 
+					$mfopaps_code = $medata[3];
+					$sub_object_code = $medata[4];  
+					$uacs_code = $medata[5]; 
+					$amount = $medata[6]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_ors_direct_co_dt (
 							`project_id`,
+							`program_title`,
 							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
@@ -340,9 +344,10 @@ class MyOrsModel extends Model
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
 						[
 							$project_id,
+							$program_title,
 							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
@@ -360,16 +365,18 @@ class MyOrsModel extends Model
 				//this is for normal saving and updating
 				for($aa = 0; $aa < count($budgetindirectcodtdata); $aa++){
 					$medata = explode("x|x",$budgetindirectcodtdata[$aa]);
-					$project_title = $medata[0]; 
-					$responsibility_code = $medata[1]; 
-					$mfopaps_code = $medata[2];
-					$sub_object_code = $medata[3];  
-					$uacs_code = $medata[4]; 
-					$amount = $medata[5]; 
+					$program_title = $medata[0]; 
+					$project_title = $medata[1]; 
+					$responsibility_code = $medata[2]; 
+					$mfopaps_code = $medata[3];
+					$sub_object_code = $medata[4];  
+					$uacs_code = $medata[5]; 
+					$amount = $medata[6]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_ors_indirect_co_dt (
 							`project_id`,
+							`program_title`,
 							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
@@ -378,9 +385,10 @@ class MyOrsModel extends Model
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
 						[
 							$project_id,
+							$program_title,
 							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
@@ -415,7 +423,6 @@ class MyOrsModel extends Model
 			$query = $this->db->query("
 				UPDATE tbl_ors_hd
 				SET
-					`program_title` = ?,
 					`particulars` = ?,
 					`funding_source` = ?,
 					`payee_name` = ?,
@@ -424,10 +431,10 @@ class MyOrsModel extends Model
 					`certified_a` = ?,
 					`position_a` = ?,
 					`certified_b` = ?,
-					`position_b` = ?
+					`position_b` = ?,
+					`ors_date` = ?
 				WHERE recid = ?
 			", [
-				$program_title,
 				$particulars,
 				$funding_source,
 				$payee_name,
@@ -437,6 +444,7 @@ class MyOrsModel extends Model
 				$position_a,
 				$certified_b,
 				$position_b,
+				$ors_date,
 				$recid
 			]);
 
@@ -446,15 +454,17 @@ class MyOrsModel extends Model
 				$query = $this->db->query("DELETE FROM tbl_ors_direct_ps_dt WHERE `project_id` = '$project_id'");
 				for($aa = 0; $aa < count($budgetdtdata); $aa++){
 					$medata = explode("x|x",$budgetdtdata[$aa]);
-					$project_title = $medata[0]; 
-					$responsibility_code = $medata[1]; 
-					$mfopaps_code = $medata[2];
-					$sub_object_code = $medata[3];  
-					$uacs_code = $medata[4]; 
-					$amount = $medata[5]; 
+					$program_title = $medata[0]; 
+					$project_title = $medata[1]; 
+					$responsibility_code = $medata[2]; 
+					$mfopaps_code = $medata[3];
+					$sub_object_code = $medata[4];  
+					$uacs_code = $medata[5]; 
+					$amount = $medata[6]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_ors_direct_ps_dt (
+							`program_title`,
 							`project_id`,
 							`project_title`,
 							`responsibility_code`,
@@ -464,8 +474,9 @@ class MyOrsModel extends Model
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
 						[
+							$program_title,
 							$project_id,
 							$project_title,
 							$responsibility_code,
@@ -486,16 +497,18 @@ class MyOrsModel extends Model
 				$query = $this->db->query("DELETE FROM tbl_ors_indirect_ps_dt WHERE `project_id` = '$project_id'");
 				for($aa = 0; $aa < count($budgetdtindirectdata); $aa++){
 					$medata = explode("x|x",$budgetdtindirectdata[$aa]);
-					$project_title = $medata[0]; 
-					$responsibility_code = $medata[1]; 
-					$mfopaps_code = $medata[2];
-					$sub_object_code = $medata[3];  
-					$uacs_code = $medata[4]; 
-					$amount = $medata[5]; 
+					$program_title = $medata[0]; 
+					$project_title = $medata[1]; 
+					$responsibility_code = $medata[2]; 
+					$mfopaps_code = $medata[3];
+					$sub_object_code = $medata[4];  
+					$uacs_code = $medata[5]; 
+					$amount = $medata[6]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_ors_indirect_ps_dt (
 							`project_id`,
+							`program_title`,
 							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
@@ -504,9 +517,10 @@ class MyOrsModel extends Model
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
 						[
 							$project_id,
+							$program_title,
 							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
@@ -526,16 +540,18 @@ class MyOrsModel extends Model
 				$query = $this->db->query("DELETE FROM tbl_ors_direct_mooe_dt WHERE `project_id` = '$project_id'");
 				for($aa = 0; $aa < count($budgetmooedtdata); $aa++){
 					$medata = explode("x|x",$budgetmooedtdata[$aa]);
-					$project_title = $medata[0]; 
-					$responsibility_code = $medata[1]; 
-					$mfopaps_code = $medata[2];
-					$sub_object_code = $medata[3];  
-					$uacs_code = $medata[4]; 
-					$amount = $medata[5]; 
+					$program_title = $medata[0]; 
+					$project_title = $medata[1]; 
+					$responsibility_code = $medata[2]; 
+					$mfopaps_code = $medata[3];
+					$sub_object_code = $medata[4];  
+					$uacs_code = $medata[5]; 
+					$amount = $medata[6]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_ors_direct_mooe_dt (
 							`project_id`,
+							`program_title`,
 							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
@@ -544,9 +560,10 @@ class MyOrsModel extends Model
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
 						[
 							$project_id,
+							$program_title,
 							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
@@ -555,6 +572,7 @@ class MyOrsModel extends Model
 							$amount,
 							$this->cuser
 						]
+
 					);
 					
 				}
@@ -566,16 +584,18 @@ class MyOrsModel extends Model
 				$query = $this->db->query("DELETE FROM tbl_ors_indirect_mooe_dt WHERE `project_id` = '$project_id'");
 				for($aa = 0; $aa < count($budgetmooeindirectdtdata); $aa++){
 					$medata = explode("x|x",$budgetmooeindirectdtdata[$aa]);
-					$project_title = $medata[0]; 
-					$responsibility_code = $medata[1]; 
-					$mfopaps_code = $medata[2];
-					$sub_object_code = $medata[3];  
-					$uacs_code = $medata[4]; 
-					$amount = $medata[5]; 
+					$program_title = $medata[0]; 
+					$project_title = $medata[1]; 
+					$responsibility_code = $medata[2]; 
+					$mfopaps_code = $medata[3];
+					$sub_object_code = $medata[4];  
+					$uacs_code = $medata[5]; 
+					$amount = $medata[6]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_ors_indirect_mooe_dt (
 							`project_id`,
+							`program_title`,
 							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
@@ -584,9 +604,10 @@ class MyOrsModel extends Model
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
 						[
 							$project_id,
+							$program_title,
 							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
@@ -595,6 +616,7 @@ class MyOrsModel extends Model
 							$amount,
 							$this->cuser
 						]
+
 					);
 					
 				}
@@ -606,16 +628,18 @@ class MyOrsModel extends Model
 				$query = $this->db->query("DELETE FROM tbl_ors_direct_co_dt WHERE `project_id` = '$project_id'");
 				for($aa = 0; $aa < count($budgetcodtdata); $aa++){
 					$medata = explode("x|x",$budgetcodtdata[$aa]);
-					$project_title = $medata[0]; 
-					$responsibility_code = $medata[1]; 
-					$mfopaps_code = $medata[2];
-					$sub_object_code = $medata[3];  
-					$uacs_code = $medata[4]; 
-					$amount = $medata[5]; 
+					$program_title = $medata[0]; 
+					$project_title = $medata[1]; 
+					$responsibility_code = $medata[2]; 
+					$mfopaps_code = $medata[3];
+					$sub_object_code = $medata[4];  
+					$uacs_code = $medata[5]; 
+					$amount = $medata[6]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_ors_direct_co_dt (
 							`project_id`,
+							`program_title`,
 							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
@@ -624,9 +648,10 @@ class MyOrsModel extends Model
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
 						[
 							$project_id,
+							$program_title,
 							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
@@ -635,6 +660,7 @@ class MyOrsModel extends Model
 							$amount,
 							$this->cuser
 						]
+
 					);
 					
 				}
@@ -646,16 +672,18 @@ class MyOrsModel extends Model
 				$query = $this->db->query("DELETE FROM tbl_ors_indirect_co_dt WHERE `project_id` = '$project_id'");
 				for($aa = 0; $aa < count($budgetindirectcodtdata); $aa++){
 					$medata = explode("x|x",$budgetindirectcodtdata[$aa]);
-					$project_title = $medata[0]; 
-					$responsibility_code = $medata[1]; 
-					$mfopaps_code = $medata[2];
-					$sub_object_code = $medata[3];  
-					$uacs_code = $medata[4]; 
-					$amount = $medata[5]; 
+					$program_title = $medata[0]; 
+					$project_title = $medata[1]; 
+					$responsibility_code = $medata[2]; 
+					$mfopaps_code = $medata[3];
+					$sub_object_code = $medata[4];  
+					$uacs_code = $medata[5]; 
+					$amount = $medata[6]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_ors_indirect_co_dt (
 							`project_id`,
+							`program_title`,
 							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
@@ -664,9 +692,10 @@ class MyOrsModel extends Model
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
 						[
 							$project_id,
+							$program_title,
 							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
@@ -675,6 +704,7 @@ class MyOrsModel extends Model
 							$amount,
 							$this->cuser
 						]
+
 					);
 					
 				}

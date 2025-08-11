@@ -20,7 +20,6 @@ WHERE
 );
 
 $data = $query->getRowArray();
-$program_title = $data['program_title'];
 $particulars = $data['particulars'];
 $funding_source = $data['funding_source'];
 $payee_name = $data['payee_name'];
@@ -31,6 +30,7 @@ $position_a = $data['position_a'];
 $certified_b = $data['certified_b'];
 $position_b = $data['position_b'];
 $serialno = $data['serialno'];
+$ors_date = $data['ors_date'];
 
 //certify a division
 $query = $this->db->query("
@@ -125,7 +125,7 @@ $pdf->Cell(20, 5, 'Date:' , 0, 1, 'L');
 $pdf->SetXY(150, $Y);
 $pdf->Cell(50, 5, '' , 'R', 1, 'L');
 $pdf->SetXY(150, $Y);
-$pdf->Cell(40, 5, '' , 'B', 1, 'L');
+$pdf->Cell(40, 5, $ors_date , 'B', 1, 'L');
 $Y += 5;
 $pdf->SetXY(130, $Y);
 $pdf->Cell(20, 5, 'Fund Cluster:' , 0, 1, 'L');
