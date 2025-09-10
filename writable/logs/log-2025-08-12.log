@@ -1,0 +1,42 @@
+CRITICAL - 2025-08-12 15:22:00 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-pdf.php on line 45.
+ 1 APPPATH\Views\ors\ors-pdf.php(45): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php', 45)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-pdf', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(58): view('ors/ors-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-12 15:36:20 --> ErrorException: Undefined variable $index
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-pdf.php on line 321.
+ 1 APPPATH\Views\ors\ors-pdf.php(321): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $index', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php', 321)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-pdf', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(58): view('ors/ors-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-12 15:54:41 --> ErrorException: Undefined variable $IDPSY_MFO
+[Method: GET, Route: myors]
+in APPPATH\Views\ors\ors-pdf.php on line 299.
+ 1 APPPATH\Views\ors\ors-pdf.php(299): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $IDPSY_MFO', 'C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php', 299)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\ors\\ors-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('ors/ors-pdf', [], true)
+ 5 APPPATH\Controllers\MyOrs.php(58): view('ors/ors-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyOrs->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyOrs))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

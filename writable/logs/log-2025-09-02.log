@@ -1,0 +1,269 @@
+CRITICAL - 2025-09-02 13:21:20 --> ErrorException: Undefined variable $coobjectdata
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Controllers\MySaobReport.php on line 137.
+ 1 APPPATH\Controllers\MySaobReport.php(137): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $coobjectdata', 'C:\\xampp\\htdocs\\fods\\app\\Controllers\\MySaobReport.php', 137)
+ 2 APPPATH\Controllers\MySaobReport.php(22): App\Controllers\MySaobReport->loadMainView()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-09-02 13:47:14 --> mysqli_sql_exception: Unknown column 'object_code' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n             ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n             ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n             ...')
+#3 C:\xampp\htdocs\fods\app\Views\report\saob-main.php(810): CodeIgniter\Database\BaseConnection->query('\r\n             ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('report/saob-mai...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(144): view('report/saob-mai...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(22): App\Controllers\MySaobReport->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2025-09-02 13:47:14 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'object_code' in 'field list'
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\report\saob-main.php(810): CodeIgniter\Database\BaseConnection->query('
+                                                                SELECT
+                                                                    `recid`,
+                                                                    `object_code`,
+                                                                    `particulars`,
+                                                                    `code`,
+                                                                    `approved_budget`,
+                                                                    `revision`,
+                                                                    `proposed_revision`,
+                                                                    `january_revision`,
+                                                                    `february_revision`,
+                                                                    `march_revision`,
+                                                                    `april_revision`,
+                                                                    `may_revision`,
+                                                                    `june_revision`,
+                                                                    `july_revision`,
+                                                                    `august_revision`,
+                                                                    `september_revision`,
+                                                                    `october_revision`,
+                                                                    `november_revision`,
+                                                                    `december_revision`
+                                                                FROM
+                                                                    `tbl_saob_co_dt`
+                                                                WHERE 
+                                                                    `project_id` = \'39\'')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-main', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(144): view('report/saob-main', [...])
+ 6 APPPATH\Controllers\MySaobReport.php(22): App\Controllers\MySaobReport->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-02 13:47:14 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'object_code' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+                                                                SELECT
+                                                                    `recid`,
+                                                                    `object_code`,
+                                                                    `particulars`,
+                                                                    `code`,
+                                                                    `approved_budget`,
+                                                                    `revision`,
+                                                                    `proposed_revision`,
+                                                                    `january_revision`,
+                                                                    `february_revision`,
+                                                                    `march_revision`,
+                                                                    `april_revision`,
+                                                                    `may_revision`,
+                                                                    `june_revision`,
+                                                                    `july_revision`,
+                                                                    `august_revision`,
+                                                                    `september_revision`,
+                                                                    `october_revision`,
+                                                                    `november_revision`,
+                                                                    `december_revision`
+                                                                FROM
+                                                                    `tbl_saob_co_dt`
+                                                                WHERE 
+                                                                    `project_id` = \'39\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+                                                                SELECT
+                                                                    `recid`,
+                                                                    `object_code`,
+                                                                    `particulars`,
+                                                                    `code`,
+                                                                    `approved_budget`,
+                                                                    `revision`,
+                                                                    `proposed_revision`,
+                                                                    `january_revision`,
+                                                                    `february_revision`,
+                                                                    `march_revision`,
+                                                                    `april_revision`,
+                                                                    `may_revision`,
+                                                                    `june_revision`,
+                                                                    `july_revision`,
+                                                                    `august_revision`,
+                                                                    `september_revision`,
+                                                                    `october_revision`,
+                                                                    `november_revision`,
+                                                                    `december_revision`
+                                                                FROM
+                                                                    `tbl_saob_co_dt`
+                                                                WHERE 
+                                                                    `project_id` = \'39\'')
+ 3 APPPATH\Views\report\saob-main.php(810): CodeIgniter\Database\BaseConnection->query('
+                                                                SELECT
+                                                                    `recid`,
+                                                                    `object_code`,
+                                                                    `particulars`,
+                                                                    `code`,
+                                                                    `approved_budget`,
+                                                                    `revision`,
+                                                                    `proposed_revision`,
+                                                                    `january_revision`,
+                                                                    `february_revision`,
+                                                                    `march_revision`,
+                                                                    `april_revision`,
+                                                                    `may_revision`,
+                                                                    `june_revision`,
+                                                                    `july_revision`,
+                                                                    `august_revision`,
+                                                                    `september_revision`,
+                                                                    `october_revision`,
+                                                                    `november_revision`,
+                                                                    `december_revision`
+                                                                FROM
+                                                                    `tbl_saob_co_dt`
+                                                                WHERE 
+                                                                    `project_id` = \'39\'')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-main', [], true)
+ 7 APPPATH\Controllers\MySaobReport.php(144): view('report/saob-main', [...])
+ 8 APPPATH\Controllers\MySaobReport.php(22): App\Controllers\MySaobReport->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-02 13:47:14 --> [Caused by] mysqli_sql_exception: Unknown column 'object_code' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+                                                                SELECT
+                                                                    `recid`,
+                                                                    `object_code`,
+                                                                    `particulars`,
+                                                                    `code`,
+                                                                    `approved_budget`,
+                                                                    `revision`,
+                                                                    `proposed_revision`,
+                                                                    `january_revision`,
+                                                                    `february_revision`,
+                                                                    `march_revision`,
+                                                                    `april_revision`,
+                                                                    `may_revision`,
+                                                                    `june_revision`,
+                                                                    `july_revision`,
+                                                                    `august_revision`,
+                                                                    `september_revision`,
+                                                                    `october_revision`,
+                                                                    `november_revision`,
+                                                                    `december_revision`
+                                                                FROM
+                                                                    `tbl_saob_co_dt`
+                                                                WHERE 
+                                                                    `project_id` = \'39\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+                                                                SELECT
+                                                                    `recid`,
+                                                                    `object_code`,
+                                                                    `particulars`,
+                                                                    `code`,
+                                                                    `approved_budget`,
+                                                                    `revision`,
+                                                                    `proposed_revision`,
+                                                                    `january_revision`,
+                                                                    `february_revision`,
+                                                                    `march_revision`,
+                                                                    `april_revision`,
+                                                                    `may_revision`,
+                                                                    `june_revision`,
+                                                                    `july_revision`,
+                                                                    `august_revision`,
+                                                                    `september_revision`,
+                                                                    `october_revision`,
+                                                                    `november_revision`,
+                                                                    `december_revision`
+                                                                FROM
+                                                                    `tbl_saob_co_dt`
+                                                                WHERE 
+                                                                    `project_id` = \'39\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+                                                                SELECT
+                                                                    `recid`,
+                                                                    `object_code`,
+                                                                    `particulars`,
+                                                                    `code`,
+                                                                    `approved_budget`,
+                                                                    `revision`,
+                                                                    `proposed_revision`,
+                                                                    `january_revision`,
+                                                                    `february_revision`,
+                                                                    `march_revision`,
+                                                                    `april_revision`,
+                                                                    `may_revision`,
+                                                                    `june_revision`,
+                                                                    `july_revision`,
+                                                                    `august_revision`,
+                                                                    `september_revision`,
+                                                                    `october_revision`,
+                                                                    `november_revision`,
+                                                                    `december_revision`
+                                                                FROM
+                                                                    `tbl_saob_co_dt`
+                                                                WHERE 
+                                                                    `project_id` = \'39\'')
+ 4 APPPATH\Views\report\saob-main.php(810): CodeIgniter\Database\BaseConnection->query('
+                                                                SELECT
+                                                                    `recid`,
+                                                                    `object_code`,
+                                                                    `particulars`,
+                                                                    `code`,
+                                                                    `approved_budget`,
+                                                                    `revision`,
+                                                                    `proposed_revision`,
+                                                                    `january_revision`,
+                                                                    `february_revision`,
+                                                                    `march_revision`,
+                                                                    `april_revision`,
+                                                                    `may_revision`,
+                                                                    `june_revision`,
+                                                                    `july_revision`,
+                                                                    `august_revision`,
+                                                                    `september_revision`,
+                                                                    `october_revision`,
+                                                                    `november_revision`,
+                                                                    `december_revision`
+                                                                FROM
+                                                                    `tbl_saob_co_dt`
+                                                                WHERE 
+                                                                    `project_id` = \'39\'')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-main', [], true)
+ 8 APPPATH\Controllers\MySaobReport.php(144): view('report/saob-main', [...])
+ 9 APPPATH\Controllers\MySaobReport.php(22): App\Controllers\MySaobReport->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

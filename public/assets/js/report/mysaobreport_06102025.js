@@ -540,6 +540,24 @@ function __mysys_saob_rpt_ent() {
 						budgetdtdata.push(psdata);
 					}
 
+					// Prepare PS data INDIRECT --
+					var rowcount11 = jQuery('.budgetdata-indirect-list tr').length;
+					var budgetdtindirectdata = [];
+					var psindirectdata = '';
+	
+					for (var aa = 2; aa < rowcount11; aa++) {
+						var clonedRow = jQuery('.budgetdata-indirect-list tr:eq(' + aa + ')'); 
+						var particulars = clonedRow.find('select.selUacs').val();
+						var uacs = clonedRow.find('input[type=text]').eq(0).val();
+						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
+						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
+						var revision = clonedRow.find('input[type=number]').eq(1).val();  
+						var proposed_revision = clonedRow.find('input[type=number]').eq(2).val();  
+						
+						psindirectdata = particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + revision + 'x|x' + proposed_revision;
+						budgetdtindirectdata.push(psindirectdata);
+					}
+
 					// Prepare MOEE data
 					var rowcount2 = jQuery('.budgetmooedata-list tr').length;
 					var budgetmooedtdata = [];
@@ -556,6 +574,24 @@ function __mysys_saob_rpt_ent() {
 						
 						mooedata = particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + revision + 'x|x' + proposed_revision;
 						budgetmooedtdata.push(mooedata);
+					}
+
+					// Prepare MOEE data
+					var rowcount22 = jQuery('.budgetmooedata-indirect-list tr').length;
+					var budgetmooeindirectdtdata = [];
+					var mooeindirectdata = '';
+	
+					for (var aa = 2; aa < rowcount22; aa++) {
+						var clonedRow = jQuery('.budgetmooedata-indirect-list tr:eq(' + aa + ')'); 
+						var particulars = clonedRow.find('select.selUacs').val();
+						var uacs = clonedRow.find('input[type=text]').eq(0).val();
+						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
+						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
+						var revision = clonedRow.find('input[type=number]').eq(1).val();  
+						var proposed_revision = clonedRow.find('input[type=number]').eq(2).val();
+						
+						mooeindirectdata = particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + revision + 'x|x' + proposed_revision;
+						budgetmooeindirectdtdata.push(mooeindirectdata);
 					}
 
 					// Prepare CO data
@@ -576,6 +612,23 @@ function __mysys_saob_rpt_ent() {
 						budgetcodtdata.push(codata);
 					}
 
+					// Prepare CO data
+					var rowcount33 = jQuery('.budgetcodata-indirect-list tr').length;
+					var budgetindirectcodtdata = [];
+					var coindirectdata = '';
+	
+					for (var aa = 2; aa < rowcount33; aa++) {
+						var clonedRow = jQuery('.budgetcodata-indirect-list tr:eq(' + aa + ')'); 
+						var expense_item = clonedRow.find('input[type=text]').eq(0).val();
+						var uacs = clonedRow.find('input[type=text]').eq(1).val();
+						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
+						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
+						var revision = clonedRow.find('input[type=number]').eq(1).val();  
+						var proposed_revision = clonedRow.find('input[type=number]').eq(2).val();  		
+						
+						coindirectdata = expense_item + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + revision + 'x|x' + proposed_revision;
+						budgetindirectcodtdata.push(coindirectdata);
+					}
 
 					var mparam = { 
 						recid: recid.value,
@@ -585,8 +638,11 @@ function __mysys_saob_rpt_ent() {
 						agency: agency.value,
 						current_year: current_year.value,
 						budgetdtdata: budgetdtdata,
+						budgetdtindirectdata: budgetdtindirectdata,
 						budgetmooedtdata: budgetmooedtdata,
+						budgetmooeindirectdtdata: budgetmooeindirectdtdata,
 						budgetcodtdata: budgetcodtdata,
+						budgetindirectcodtdata: budgetindirectcodtdata,
 						is_jan: is_jan,
 						is_feb: is_feb,
 						is_mar: is_mar,

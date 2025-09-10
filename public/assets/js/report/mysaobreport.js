@@ -20,6 +20,7 @@ function __mysys_saob_rpt_ent() {
 			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=number]').eq(1).attr('id', 'col4' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=number]').eq(2).attr('id', 'col5' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(3).attr('id', 'col6' + mid); // ID for date field
 			// Now reset only the debit and credit fields (input[type=number])
 			
 			jQuery(clonedRow).find('select').eq(0).val('');
@@ -27,6 +28,7 @@ function __mysys_saob_rpt_ent() {
 			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
 			jQuery(clonedRow).find('input[type=number]').eq(1).val('');
 			jQuery(clonedRow).find('input[type=number]').eq(2).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(3).val('');
 	
 			// Insert the cloned row before the last row (footer row)
 			jQuery('#budget_line_items tbody').append(clonedRow);
@@ -64,7 +66,7 @@ function __mysys_saob_rpt_ent() {
 			jQuery(templateRow).find('select').eq(0).val('').attr('id', 'col4' + mid);
 			jQuery(templateRow).find('input[type=text]').eq(0).val('').attr('id', 'col1' + mid);
 			jQuery(templateRow).find('input[type=number]').each(function (i) {
-				jQuery(this).val('').attr('id', 'col' + (2 + i) + mid).attr('data-dtid', '');
+				jQuery(this).val('').attr('id', 'col' + (3 + i) + mid).attr('data-dtid', '');
 			});
 
 			// Insert above the clicked row
@@ -175,6 +177,7 @@ function __mysys_saob_rpt_ent() {
 			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=number]').eq(1).attr('id', 'col4' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=number]').eq(2).attr('id', 'col5' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(2).attr('id', 'col6' + mid); // ID for date field
 			// Now reset only the debit and credit fields (input[type=number])
 			
 			jQuery(clonedRow).find('select').eq(0).val('');
@@ -182,6 +185,7 @@ function __mysys_saob_rpt_ent() {
 			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
 			jQuery(clonedRow).find('input[type=number]').eq(1).val('');
 			jQuery(clonedRow).find('input[type=number]').eq(2).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(3).val('');
 	
 			// Insert the cloned row before the last row (footer row)
 			jQuery('#budget_mooe_line_items tbody').append(clonedRow);
@@ -219,7 +223,7 @@ function __mysys_saob_rpt_ent() {
 			jQuery(templateRow).find('select').eq(0).val('').attr('id', 'col4' + mid);
 			jQuery(templateRow).find('input[type=text]').eq(0).val('').attr('id', 'col1' + mid);
 			jQuery(templateRow).find('input[type=number]').each(function (i) {
-				jQuery(this).val('').attr('id', 'col' + (2 + i) + mid).attr('data-dtid', '');
+				jQuery(this).val('').attr('id', 'col' + (3 + i) + mid).attr('data-dtid', '');
 			});
 
 			// Insert above the clicked row
@@ -331,6 +335,7 @@ function __mysys_saob_rpt_ent() {
 			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=number]').eq(1).attr('id', 'col4' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=number]').eq(2).attr('id', 'col5' + mid); // ID for date field
+			jQuery(clonedRow).find('input[type=number]').eq(3).attr('id', 'col5' + mid); // ID for date field
 
 			// Now reset only the debit and credit fields (input[type=number])
 			
@@ -339,6 +344,7 @@ function __mysys_saob_rpt_ent() {
 			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
 			jQuery(clonedRow).find('input[type=number]').eq(1).val('');
 			jQuery(clonedRow).find('input[type=number]').eq(2).val('');
+			jQuery(clonedRow).find('input[type=number]').eq(3).val('');
 	
 			// Insert the cloned row before the last row (footer row)
 			jQuery('#budget_co_line_items tbody').append(clonedRow);
@@ -376,7 +382,7 @@ function __mysys_saob_rpt_ent() {
 			jQuery(templateRow).find('input[type=text]').eq(0).val('').attr('id', 'col1' + mid);
 			jQuery(templateRow).find('input[type=text]').eq(1).val('').attr('id', 'col2' + mid);
 			jQuery(templateRow).find('input[type=number]').each(function (i) {
-				jQuery(this).val('').attr('id', 'col' + (2 + i) + mid).attr('data-dtid', '');
+				jQuery(this).val('').attr('id', 'col' + (3 + i) + mid).attr('data-dtid', '');
 			});
 
 			// Insert above the clicked row
@@ -502,6 +508,7 @@ function __mysys_saob_rpt_ent() {
 					var recid = document.getElementById("recid");
 					var trxno = document.getElementById("trxno");
 					var program_title = document.getElementById("program_title");
+					var project_title = document.getElementById("project_title");
 					var department = document.getElementById("department");
 					var agency = document.getElementById("agency");
 					var current_year = document.getElementById("current_year");
@@ -530,15 +537,20 @@ function __mysys_saob_rpt_ent() {
 	
 					for (var aa = 2; aa < rowcount1; aa++) {
 						var clonedRow = jQuery('.budgetdata-list tr:eq(' + aa + ')'); 
+						var object_code = clonedRow.find('select.selObject').val();
 						var particulars = clonedRow.find('select.selUacs').val();
 						var uacs = clonedRow.find('input[type=text]').eq(0).val();
 						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
+						var revised_allotment = clonedRow.find('input[type=number]').eq(1).val();  
+						var revision = clonedRow.find('input[type=number]').eq(2).val();  
+						var proposed_revision = clonedRow.find('input[type=number]').eq(3).val();  
 						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
-						var revision = clonedRow.find('input[type=number]').eq(1).val();  
-						var proposed_revision = clonedRow.find('input[type=number]').eq(2).val();  
-						psdata = particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + revision + 'x|x' + proposed_revision;
+						psdata = object_code + 'x|x' + particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + revised_allotment + 'x|x' + revision + 'x|x' + proposed_revision + 'x|x' + dtid;
 						budgetdtdata.push(psdata);
 					}
+
+					console.log('PS Table Fetching----------------------');
+					console.log(budgetdtdata);
 
 					// Prepare MOEE data
 					var rowcount2 = jQuery('.budgetmooedata-list tr').length;
@@ -547,14 +559,16 @@ function __mysys_saob_rpt_ent() {
 	
 					for (var aa = 2; aa < rowcount2; aa++) {
 						var clonedRow = jQuery('.budgetmooedata-list tr:eq(' + aa + ')'); 
+						var object_code = clonedRow.find('select.selObject').val();
 						var particulars = clonedRow.find('select.selUacs').val();
 						var uacs = clonedRow.find('input[type=text]').eq(0).val();
 						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
+						var revised_allotment = clonedRow.find('input[type=number]').eq(1).val();  
+						var revision = clonedRow.find('input[type=number]').eq(2).val();  
+						var proposed_revision = clonedRow.find('input[type=number]').eq(3).val();
 						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
-						var revision = clonedRow.find('input[type=number]').eq(1).val();  
-						var proposed_revision = clonedRow.find('input[type=number]').eq(2).val();
 						
-						mooedata = particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + revision + 'x|x' + proposed_revision;
+						mooedata = object_code + 'x|x' + particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + revised_allotment + 'x|x' + revision + 'x|x' + proposed_revision + 'x|x' + dtid;
 						budgetmooedtdata.push(mooedata);
 					}
 
@@ -565,14 +579,16 @@ function __mysys_saob_rpt_ent() {
 	
 					for (var aa = 2; aa < rowcount3; aa++) {
 						var clonedRow = jQuery('.budgetcodata-list tr:eq(' + aa + ')'); 
-						var expense_item = clonedRow.find('input[type=text]').eq(0).val();
-						var uacs = clonedRow.find('input[type=text]').eq(1).val();
+						var object_code = clonedRow.find('select.selObject').val();
+						var particulars = clonedRow.find('select.selUacs').val();
+						var uacs = clonedRow.find('input[type=text]').eq(0).val();
 						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
+						var revised_allotment = clonedRow.find('input[type=number]').eq(1).val();  
+						var revision = clonedRow.find('input[type=number]').eq(2).val();  
+						var proposed_revision = clonedRow.find('input[type=number]').eq(3).val();
 						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
-						var revision = clonedRow.find('input[type=number]').eq(1).val();  
-						var proposed_revision = clonedRow.find('input[type=number]').eq(2).val();  
 						
-						codata = expense_item + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid + 'x|x' + revision + 'x|x' + proposed_revision;
+						codata = object_code + 'x|x' + particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + revised_allotment + 'x|x' + revision + 'x|x' + proposed_revision + 'x|x' + dtid;
 						budgetcodtdata.push(codata);
 					}
 
@@ -580,6 +596,7 @@ function __mysys_saob_rpt_ent() {
 						recid: recid.value,
 						trxno: trxno.value,
 						program_title: program_title.value,
+						project_title: project_title.value,
 						department: department.value,
 						agency: agency.value,
 						current_year: current_year.value,
@@ -762,7 +779,7 @@ function __mysys_saob_rpt_ent() {
         jQuery('.budgetdata-list tr').each(function () {
             var row = jQuery(this);
 
-            var approved = parseFloat(row.find('.approved_budget').val()) || 0;
+            var approved = parseFloat(row.find('.revised_allotment').val()) || 0;
             var revision = parseFloat(row.find('.revision').val()) || 0;
 
             var total = approved + revision;
@@ -776,7 +793,7 @@ function __mysys_saob_rpt_ent() {
         jQuery('.budgetmooedata-list tr').each(function () {
             var row = jQuery(this);
 
-            var approved = parseFloat(row.find('.approved_budget').val()) || 0;
+            var approved = parseFloat(row.find('.revised_allotment').val()) || 0;
             var revision = parseFloat(row.find('.revision').val()) || 0;
 
             var total = approved + revision;
@@ -790,7 +807,7 @@ function __mysys_saob_rpt_ent() {
         jQuery('.budgetcodata-list tr').each(function () {
             var row = jQuery(this);
 
-            var approved = parseFloat(row.find('.approved_budget').val()) || 0;
+            var approved = parseFloat(row.find('.revised_allotment').val()) || 0;
             var revision = parseFloat(row.find('.revision').val()) || 0;
 
             var total = approved + revision;
@@ -802,12 +819,21 @@ function __mysys_saob_rpt_ent() {
 	this.__combined_totals = function () {
 		let totalApprovedCombined = 0;
 		let totalProposedCombined = 0;
-
+		let recid = jQuery("#recid").val(); 
+		let is_jan = jQuery("#is_jan_val").val(); 
 		// PS DIRECT COST TABLE
 		jQuery('.budgetdata-list tr').each(function () {
 			let row = jQuery(this);
 
-			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			let approved = 0;
+			if (recid === null || recid === '') {
+				approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			}else if(is_jan == 0){
+				approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			}else {
+				approved = parseFloat(row.find('.revised_allotment').val()) || 0;
+			}
+
 			let revision = parseFloat(row.find('.revision').val()) || 0;
 
 			let total = approved + revision;
@@ -816,13 +842,23 @@ function __mysys_saob_rpt_ent() {
 
 			totalApprovedCombined += approved;
 			totalProposedCombined += total;
+
+
 		});
 
 		// MOOE DIRECT COST TABLE
 		jQuery('.budgetmooedata-list tr').each(function () {
 			let row = jQuery(this);
 
-			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			let approved = 0;
+			if (recid === null || recid === '') {
+				approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			}else if(is_jan == 0){
+				approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			}else {
+				approved = parseFloat(row.find('.revised_allotment').val()) || 0;
+			}
+
 			let revision = parseFloat(row.find('.revision').val()) || 0;
 
 			let total = approved + revision;
@@ -837,7 +873,15 @@ function __mysys_saob_rpt_ent() {
 		jQuery('.budgetcodata-list tr').each(function () {
 			let row = jQuery(this);
 
-			let approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			let approved = 0;
+			if (recid === null || recid === '') {
+				approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			}else if(is_jan == 0){
+				approved = parseFloat(row.find('.approved_budget').val()) || 0;
+			}else {
+				approved = parseFloat(row.find('.revised_allotment').val()) || 0;
+			}
+
 			let revision = parseFloat(row.find('.revision').val()) || 0;
 
 			let total = approved + revision;
@@ -849,8 +893,23 @@ function __mysys_saob_rpt_ent() {
 		});
 
 		// SET VALUES TO INPUT FIELDS
-		jQuery('#total_approved_combined').val(totalApprovedCombined.toFixed(2));
-		jQuery('#total_proposed_combined').val(totalProposedCombined.toFixed(2));
+		// Format with commas + 2 decimals
+		$('#total_approved_combined').val(
+		Number(totalApprovedCombined || 0).toLocaleString('en-US', {
+			minimumFractionDigits: 2,
+			maximumFractionDigits: 2
+		})
+		);
+
+		$('#total_proposed_combined').val(
+		Number(totalProposedCombined || 0).toLocaleString('en-US', {
+			minimumFractionDigits: 2,
+			maximumFractionDigits: 2
+		})
+		);
+
+
+
 	};
 
 	this.__toggleExtensionFields = function(checkbox){
@@ -901,7 +960,9 @@ function __mysys_saob_rpt_ent() {
         // Toggle all based on the checkbox
         $('#is_jan').on('change', function () {
             const isChecked = $(this).is(':checked');
+			$('.approved_budget').prop('disabled', isChecked);
             $('.revision').prop('disabled', !isChecked);
+
         });
         $('#is_feb').on('change', function () {
             const isChecked = $(this).is(':checked');

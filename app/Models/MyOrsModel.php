@@ -424,6 +424,7 @@ class MyOrsModel extends Model
 				UPDATE tbl_ors_hd
 				SET
 					`particulars` = ?,
+					`serialno` = ?,
 					`funding_source` = ?,
 					`payee_name` = ?,
 					`payee_office` = ?,
@@ -436,6 +437,7 @@ class MyOrsModel extends Model
 				WHERE recid = ?
 			", [
 				$particulars,
+				$serialno,
 				$funding_source,
 				$payee_name,
 				$payee_office,

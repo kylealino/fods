@@ -1,0 +1,86 @@
+CRITICAL - 2025-08-20 09:25:11 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-main.php on line 52.
+ 1 APPPATH\Views\report\saob-main.php(52): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-main.php', 52)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-main', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(125): view('report/saob-main', [...])
+ 6 APPPATH\Controllers\MySaobReport.php(22): App\Controllers\MySaobReport->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-20 09:36:02 --> ErrorException: Undefined variable $allotment_value
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-main.php on line 424.
+ 1 APPPATH\Views\report\saob-main.php(424): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $allotment_value', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-main.php', 424)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-main', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(125): view('report/saob-main', [...])
+ 6 APPPATH\Controllers\MySaobReport.php(22): App\Controllers\MySaobReport->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-20 09:36:55 --> ErrorException: Undefined variable $allotment_value
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-main.php on line 424.
+ 1 APPPATH\Views\report\saob-main.php(424): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $allotment_value', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-main.php', 424)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-main', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(125): view('report/saob-main', [...])
+ 6 APPPATH\Controllers\MySaobReport.php(22): App\Controllers\MySaobReport->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-20 13:29:12 --> CodeIgniter\Database\Exceptions\DatabaseException: You must set the database table to be used with your query.
+[Method: POST, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 941.
+ 1 SYSTEMPATH\Model.php(714): CodeIgniter\Database\BaseConnection->table(null)
+ 2 SYSTEMPATH\Model.php(920): CodeIgniter\Model->builder()
+ 3 APPPATH\Models\MySaobReportModel.php(376): CodeIgniter\Model->__call('query', [...])
+ 4 APPPATH\Controllers\MySaobReport.php(30): App\Models\MySaobReportModel->saob_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-20 13:30:27 --> CodeIgniter\Database\Exceptions\DatabaseException: You must set the database table to be used with your query.
+[Method: POST, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 941.
+ 1 SYSTEMPATH\Model.php(714): CodeIgniter\Database\BaseConnection->table(null)
+ 2 SYSTEMPATH\Model.php(920): CodeIgniter\Model->builder()
+ 3 APPPATH\Models\MySaobReportModel.php(376): CodeIgniter\Model->__call('query', [...])
+ 4 APPPATH\Controllers\MySaobReport.php(30): App\Models\MySaobReportModel->saob_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-20 16:18:27 --> ErrorException: Undefined variable $particulars
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-main.php on line 699.
+ 1 APPPATH\Views\report\saob-main.php(699): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $particulars', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-main.php', 699)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-main', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(129): view('report/saob-main', [...])
+ 6 APPPATH\Controllers\MySaobReport.php(22): App\Controllers\MySaobReport->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

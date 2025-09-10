@@ -82,14 +82,29 @@ class MySaobReport extends BaseController
         $psuacsquery = $this->db->query("SELECT * FROM mst_uacs WHERE allotment_class = 'Personnel Services' ORDER BY TRIM(sub_object_code) ASC");
         $psuacsdata = $psuacsquery->getResultArray();
 
+        $psobjectquery = $this->db->query("SELECT DISTINCT object_code FROM mst_uacs WHERE allotment_class = 'Personnel Services'  ORDER BY TRIM(object_code) ASC");
+        $psobjectdata = $psobjectquery->getResultArray();
+
         $mooeuacsquery = $this->db->query("SELECT * FROM mst_uacs WHERE allotment_class = 'Maintenance and Other Operating Expenses' ORDER BY TRIM(sub_object_code) ASC");
         $mooeuacsdata = $mooeuacsquery->getResultArray();
+
+        $mooeobjectquery = $this->db->query("SELECT DISTINCT object_code FROM mst_uacs WHERE allotment_class = 'Maintenance and Other Operating Expenses' ORDER BY TRIM(object_code) ASC");
+        $mooeobjectdata = $mooeobjectquery->getResultArray();
+
+        $couacsquery = $this->db->query("SELECT * FROM mst_uacs WHERE allotment_class = 'Capital Outlay' ORDER BY TRIM(sub_object_code) ASC");
+        $couacsdata = $couacsquery->getResultArray();
+
+        $coobjectquery = $this->db->query("SELECT DISTINCT object_code FROM mst_uacs WHERE allotment_class = 'Capital Outlay' ORDER BY TRIM(object_code) ASC");
+        $coobjectdata = $coobjectquery->getResultArray();
 
         $programtitlequery = $this->db->query("SELECT * FROM tbl_budget_hd WHERE fund_cluster_code = '01'  GROUP BY program_title ORDER BY recid DESC");
         $programtitledata = $programtitlequery->getResultArray();
 
         $saobhdquery = $this->db->query("SELECT * FROM tbl_saob_hd ORDER BY recid DESC");
         $saobhddata = $saobhdquery->getResultArray();
+
+  
+
 
         //reference/project title lookup
         $projectquery = $this->db->query("
@@ -117,8 +132,12 @@ class MySaobReport extends BaseController
         return view('report/saob-main', [
             'fundclusterdata' => $fundclusterdata,
             'divisiondata' => $divisiondata,
+            'psobjectdata' => $psobjectdata,
+            'mooeobjectdata' => $mooeobjectdata,
+            'coobjectdata' => $coobjectdata,
             'psuacsdata' => $psuacsdata,
             'mooeuacsdata' => $mooeuacsdata,
+            'couacsdata' => $couacsdata,
             'budgetdtdata' => $budgetdtdata,
             'projectdata' => $projectdata,
             'programtitledata' => $programtitledata,

@@ -210,7 +210,6 @@ $total_amount = 0;
 
 //---------------------------------------------------------   DIRECT PS RC CODE, MFO PAPS FETCHING   --------------------------------------------------------------------
 $DPSY= 85;
-$DPSY_MFO = $DPSY;
 $rc_list_psd = [];
 $mfo_list_psd = [];
 $pdf->SetXY(10, $DPSY);
@@ -235,30 +234,20 @@ foreach ($data as $row) {
 $unique_rc_list_psd = array_unique($rc_list_psd);
 $unique_mfo_list_psd = array_unique($mfo_list_psd);
 
-$previous_rc = null;
 foreach ($unique_rc_list_psd as $rc) {
     $pdf->MultiCell(38, 4, $rc, 0, 'L'); // full width usage
-    
-    // If current RC is not the same as previous, add 5 to y-coordinate
-    if ($rc !== $previous_rc) {
-        $DPSY += 5;
-    }
-    $previous_rc = $rc;
 }
 foreach ($unique_mfo_list_psd as $mfo) {
-    $pdf->SetXY(105, $DPSY_MFO);
+    $pdf->SetXY(105, $DPSY);
     $pdf->MultiCell(30, 4, $mfo, 0, 'L'); // full width usage
-    $DPSY_MFO = $pdf->GetY($DPSY_MFO);
+    $DPSY = $pdf->GetY($DPSY);
 }
-
 
 //DT INDIRECT PS
 if($DPSY == 85){
     $IDPSY = $DPSY;
-    $IDPSY_MFO = $IDPSY;
 }else{
     $IDPSY = $pdf->GetY($DPSY);
-    $IDPSY_MFO = $IDPSY;
 }
 
 $rc_list_psid = [];
@@ -285,20 +274,13 @@ foreach ($data as $row) {
 $unique_rc_list_psid = array_unique($rc_list_psid);
 $unique_mfo_list_psid = array_unique($mfo_list_psid);
 
-$previous_rc = null;
 foreach ($unique_rc_list_psid as $rc) {
     $pdf->MultiCell(38, 4, $rc, 0, 'L'); // full width usage
-    
-    // If current RC is not the same as previous, add 5 to y-coordinate
-    if ($rc !== $previous_rc) {
-        $IDPSY += 5;
-    }
-    $previous_rc = $rc;
 }
 foreach ($unique_mfo_list_psid as $mfo) {
-    $pdf->SetXY(105, $IDPSY_MFO);
+    $pdf->SetXY(105, $IDPSY);
     $pdf->MultiCell(30, 4, $mfo, 0, 'L'); // full width usage
-    $IDPSY_MFO = $pdf->GetY($IDPSY_MFO);
+    $IDPSY = $pdf->GetY($IDPSY);
 }
 
 //DT DIRECT MOOE
@@ -356,10 +338,8 @@ foreach ($unique_mfo_list_mooed as $mfo) {
 //DT INDIRECT MOOE
 if($DMOOEY >= 85){
     $IDMOOEY = $DMOOEY;
-    $IDMOOEY_MFO = $IDMOOEY;
 }else{
     $IDMOOEY = $pdf->GetY($DMOOEY);
-    $IDMOOEY_MFO = $IDMOOEY;
 }
 
 $rc_list_mooeid = [];
@@ -386,22 +366,14 @@ foreach ($data as $row) {
 $unique_rc_list_mooeid = array_unique($rc_list_mooeid);
 $unique_mfo_list_mooeid = array_unique($mfo_list_mooeid);
 
-$previous_rc = null;
 foreach ($unique_rc_list_mooeid as $rc) {
     $pdf->SetXY(10, $IDMOOEY);
     $pdf->MultiCell(38, 4, $rc, 0, 'L'); // full width usage
-    
-    // If current RC is not the same as previous, add 5 to y-coordinate
-    if ($rc !== $previous_rc) {
-        $IDMOOEY += 5;
-    }
-    $previous_rc = $rc;
 }
-
 foreach ($unique_mfo_list_mooeid as $mfo) {
-    $pdf->SetXY(105, $IDMOOEY_MFO);
+    $pdf->SetXY(105, $IDMOOEY);
     $pdf->MultiCell(30, 4, $mfo, 0, 'L'); // full width usage
-    $IDMOOEY_MFO = $pdf->GetY($IDMOOEY_MFO);
+    $IDMOOEY = $pdf->GetY($IDMOOEY);
 }
 
 

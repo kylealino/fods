@@ -1,0 +1,435 @@
+CRITICAL - 2025-08-27 09:00:01 --> ErrorException: Undefined variable $month
+[Method: POST, Route: mysaobrpt]
+in APPPATH\Models\MySaobReportModel.php on line 1537.
+ 1 APPPATH\Models\MySaobReportModel.php(1537): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $month', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MySaobReportModel.php', 1537)
+ 2 APPPATH\Controllers\MySaobReport.php(30): App\Models\MySaobReportModel->saob_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-27 09:12:26 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-main.php on line 53.
+ 1 APPPATH\Views\report\saob-main.php(53): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-main.php', 53)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-main', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(129): view('report/saob-main', [...])
+ 6 APPPATH\Controllers\MySaobReport.php(22): App\Controllers\MySaobReport->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-08-27 09:28:07 --> mysqli_sql_exception: Lock wait timeout exceeded; try restarting transaction in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('update myctr_sa...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('update myctr_sa...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('update myctr_sa...')
+#3 C:\xampp\htdocs\fods\app\Models\MySaobReportModel.php(2365): CodeIgniter\Database\BaseConnection->query('update myctr_sa...')
+#4 C:\xampp\htdocs\fods\app\Models\MySaobReportModel.php(49): App\Models\MySaobReportModel->get_ctr_saob('LIB', 'fods', 'CTRL_NO01')
+#5 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(30): App\Models\MySaobReportModel->saob_save()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2025-08-27 09:28:07 --> CodeIgniter\Database\Exceptions\DatabaseException: Lock wait timeout exceeded; try restarting transaction
+[Method: POST, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MySaobReportModel.php(2365): CodeIgniter\Database\BaseConnection->query('update myctr_saob set CTRL_NO01 = \'00004\'')
+ 2 APPPATH\Models\MySaobReportModel.php(49): App\Models\MySaobReportModel->get_ctr_saob('LIB', 'fods', 'CTRL_NO01')
+ 3 APPPATH\Controllers\MySaobReport.php(30): App\Models\MySaobReportModel->saob_save()
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-27 09:28:07 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Lock wait timeout exceeded; try restarting transaction
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('update myctr_saob set CTRL_NO01 = \'00004\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('update myctr_saob set CTRL_NO01 = \'00004\'')
+ 3 APPPATH\Models\MySaobReportModel.php(2365): CodeIgniter\Database\BaseConnection->query('update myctr_saob set CTRL_NO01 = \'00004\'')
+ 4 APPPATH\Models\MySaobReportModel.php(49): App\Models\MySaobReportModel->get_ctr_saob('LIB', 'fods', 'CTRL_NO01')
+ 5 APPPATH\Controllers\MySaobReport.php(30): App\Models\MySaobReportModel->saob_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-27 09:28:07 --> [Caused by] mysqli_sql_exception: Lock wait timeout exceeded; try restarting transaction
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('update myctr_saob set CTRL_NO01 = \'00004\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('update myctr_saob set CTRL_NO01 = \'00004\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('update myctr_saob set CTRL_NO01 = \'00004\'')
+ 4 APPPATH\Models\MySaobReportModel.php(2365): CodeIgniter\Database\BaseConnection->query('update myctr_saob set CTRL_NO01 = \'00004\'')
+ 5 APPPATH\Models\MySaobReportModel.php(49): App\Models\MySaobReportModel->get_ctr_saob('LIB', 'fods', 'CTRL_NO01')
+ 6 APPPATH\Controllers\MySaobReport.php(30): App\Models\MySaobReportModel->saob_save()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-08-27 09:28:58 --> mysqli_sql_exception: Lock wait timeout exceeded; try restarting transaction in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('update myctr_sa...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('update myctr_sa...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('update myctr_sa...')
+#3 C:\xampp\htdocs\fods\app\Models\MySaobReportModel.php(2365): CodeIgniter\Database\BaseConnection->query('update myctr_sa...')
+#4 C:\xampp\htdocs\fods\app\Models\MySaobReportModel.php(49): App\Models\MySaobReportModel->get_ctr_saob('LIB', 'fods', 'CTRL_NO01')
+#5 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(30): App\Models\MySaobReportModel->saob_save()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2025-08-27 09:28:58 --> CodeIgniter\Database\Exceptions\DatabaseException: Lock wait timeout exceeded; try restarting transaction
+[Method: POST, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MySaobReportModel.php(2365): CodeIgniter\Database\BaseConnection->query('update myctr_saob set CTRL_NO01 = \'00004\'')
+ 2 APPPATH\Models\MySaobReportModel.php(49): App\Models\MySaobReportModel->get_ctr_saob('LIB', 'fods', 'CTRL_NO01')
+ 3 APPPATH\Controllers\MySaobReport.php(30): App\Models\MySaobReportModel->saob_save()
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-27 09:28:58 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Lock wait timeout exceeded; try restarting transaction
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('update myctr_saob set CTRL_NO01 = \'00004\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('update myctr_saob set CTRL_NO01 = \'00004\'')
+ 3 APPPATH\Models\MySaobReportModel.php(2365): CodeIgniter\Database\BaseConnection->query('update myctr_saob set CTRL_NO01 = \'00004\'')
+ 4 APPPATH\Models\MySaobReportModel.php(49): App\Models\MySaobReportModel->get_ctr_saob('LIB', 'fods', 'CTRL_NO01')
+ 5 APPPATH\Controllers\MySaobReport.php(30): App\Models\MySaobReportModel->saob_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-27 09:28:58 --> [Caused by] mysqli_sql_exception: Lock wait timeout exceeded; try restarting transaction
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('update myctr_saob set CTRL_NO01 = \'00004\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('update myctr_saob set CTRL_NO01 = \'00004\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('update myctr_saob set CTRL_NO01 = \'00004\'')
+ 4 APPPATH\Models\MySaobReportModel.php(2365): CodeIgniter\Database\BaseConnection->query('update myctr_saob set CTRL_NO01 = \'00004\'')
+ 5 APPPATH\Models\MySaobReportModel.php(49): App\Models\MySaobReportModel->get_ctr_saob('LIB', 'fods', 'CTRL_NO01')
+ 6 APPPATH\Controllers\MySaobReport.php(30): App\Models\MySaobReportModel->saob_save()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-27 09:30:04 --> ErrorException: Maximum execution time of 120 seconds exceeded
+[Method: POST, Route: mysaobrpt]
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 328.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2025-08-27 09:30:04 --> ErrorException: Maximum execution time of 120 seconds exceeded
+[Method: POST, Route: mysaobrpt]
+in SYSTEMPATH\Session\Handlers\FileHandler.php on line 136.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2025-08-27 09:30:04 --> ErrorException: Maximum execution time of 120 seconds exceeded
+[Method: POST, Route: mysaobrpt]
+in SYSTEMPATH\Session\Handlers\FileHandler.php on line 136.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2025-08-27 09:30:04 --> ErrorException: Maximum execution time of 120 seconds exceeded
+[Method: POST, Route: mysaobrpt]
+in SYSTEMPATH\Session\Handlers\FileHandler.php on line 136.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2025-08-27 09:30:04 --> ErrorException: Maximum execution time of 120 seconds exceeded
+[Method: POST, Route: mysaobrpt]
+in SYSTEMPATH\Session\Handlers\FileHandler.php on line 136.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2025-08-27 09:30:04 --> ErrorException: Maximum execution time of 120 seconds exceeded
+[Method: POST, Route: mysaobrpt]
+in SYSTEMPATH\Session\Handlers\FileHandler.php on line 136.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2025-08-27 09:31:22 --> Error connecting to the database: ErrorException: mysqli::real_connect(): Error while reading greeting packet. PID=15260 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mysqli::real_co...', 'C:\\xampp\\htdocs...', 202)
+#1 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', 'root', '', 'fods', 3306, '', 0)
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#3 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#4 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(50): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#5 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(22): App\Controllers\MySaobReport->loadMainView()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+
+Next mysqli_sql_exception: MySQL server has gone away in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', 'root', '', 'fods', 3306, '', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(50): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(22): App\Controllers\MySaobReport->loadMainView()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: MySQL server has gone away in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(50): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(22): App\Controllers\MySaobReport->loadMainView()
+#4 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#9 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#10 {main}
+CRITICAL - 2025-08-27 09:31:22 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: MySQL server has gone away
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Controllers\MySaobReport.php(50): CodeIgniter\Database\BaseConnection->query('
+        SELECT 
+            a.`recid`,
+            a.`trxno`,
+            a.`project_title`,
+            a.`responsibility_code`,
+            a.`fund_cluster_code`,
+            a.`division_name`,
+            a.`is_pending`,
+            a.`is_approved`,
+            a.`is_disapproved`,
+            a.`added_at`,
+            (
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_co_dt` WHERE project_id = a.recid), 0) +
+                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_co_dt` WHERE project_id = a.recid), 0)
+            ) AS approved_budget
+        FROM
+            tbl_budget_hd a
+        ')
+ 3 APPPATH\Controllers\MySaobReport.php(22): App\Controllers\MySaobReport->loadMainView()
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-08-27 09:31:42 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', 'root', '', 'fods', 3306, '', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\fods\app\Views\MyDashboard.php(13): CodeIgniter\Database\BaseConnection->query('\r\nSELECT \r\n    ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('MyDashboard', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\Home.php(13): view('MyDashboard')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\Home->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\fods\app\Views\MyDashboard.php(13): CodeIgniter\Database\BaseConnection->query('\r\nSELECT \r\n    ...')
+#3 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#5 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('MyDashboard', Array, true)
+#6 C:\xampp\htdocs\fods\app\Controllers\Home.php(13): view('MyDashboard')
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\Home->index()
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2025-08-27 09:31:42 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: GET, Route: /]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Views\MyDashboard.php(13): CodeIgniter\Database\BaseConnection->query('
+SELECT 
+    `full_name`
+    
+FROM 
+    `myua_user` 
+WHERE 
+    `username` = \'CDS-KYLE\'')
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\MyDashboard.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('MyDashboard', [], true)
+ 6 APPPATH\Controllers\Home.php(13): view('MyDashboard')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-08-27 09:31:46 --> Error connecting to the database: ErrorException: mysqli::real_connect(): Error while reading greeting packet. PID=15260 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mysqli::real_co...', 'C:\\xampp\\htdocs...', 202)
+#1 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', 'root', '', 'fods', 3306, '', 0)
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#3 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#4 C:\xampp\htdocs\fods\app\Views\MyDashboard.php(13): CodeIgniter\Database\BaseConnection->query('\r\nSELECT \r\n    ...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('MyDashboard', Array, true)
+#8 C:\xampp\htdocs\fods\app\Controllers\Home.php(13): view('MyDashboard')
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\Home->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+
+Next mysqli_sql_exception: MySQL server has gone away in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', 'root', '', 'fods', 3306, '', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\fods\app\Views\MyDashboard.php(13): CodeIgniter\Database\BaseConnection->query('\r\nSELECT \r\n    ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('MyDashboard', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\Home.php(13): view('MyDashboard')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\Home->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: MySQL server has gone away in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\fods\app\Views\MyDashboard.php(13): CodeIgniter\Database\BaseConnection->query('\r\nSELECT \r\n    ...')
+#3 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#5 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('MyDashboard', Array, true)
+#6 C:\xampp\htdocs\fods\app\Controllers\Home.php(13): view('MyDashboard')
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\Home->index()
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2025-08-27 09:31:46 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: MySQL server has gone away
+[Method: GET, Route: /]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Views\MyDashboard.php(13): CodeIgniter\Database\BaseConnection->query('
+SELECT 
+    `full_name`
+    
+FROM 
+    `myua_user` 
+WHERE 
+    `username` = \'CDS-KYLE\'')
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\MyDashboard.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('MyDashboard', [], true)
+ 6 APPPATH\Controllers\Home.php(13): view('MyDashboard')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-08-27 13:24:50 --> mysqli_sql_exception: MySQL server has gone away in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('select `usernam...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select `usernam...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select `usernam...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MyLogIn.php(56): CodeIgniter\Database\BaseConnection->query('select `usernam...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('CDS-KYLE')
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-08-27 13:24:50 --> CodeIgniter\Database\Exceptions\DatabaseException: MySQL server has gone away
+[Method: POST, Route: mylogin-auth]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MyLogIn.php(56): CodeIgniter\Database\BaseConnection->query('select `username`,`hash_password` FROM myua_user where username = \'CDS-KYLE\' limit 1 ')
+ 2 APPPATH\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('CDS-KYLE')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-27 13:24:50 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: MySQL server has gone away
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select `username`,`hash_password` FROM myua_user where username = \'CDS-KYLE\' limit 1 ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select `username`,`hash_password` FROM myua_user where username = \'CDS-KYLE\' limit 1 ')
+ 3 APPPATH\Controllers\MyLogIn.php(56): CodeIgniter\Database\BaseConnection->query('select `username`,`hash_password` FROM myua_user where username = \'CDS-KYLE\' limit 1 ')
+ 4 APPPATH\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('CDS-KYLE')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-27 13:24:50 --> [Caused by] mysqli_sql_exception: MySQL server has gone away
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('select `username`,`hash_password` FROM myua_user where username = \'CDS-KYLE\' limit 1 ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select `username`,`hash_password` FROM myua_user where username = \'CDS-KYLE\' limit 1 ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select `username`,`hash_password` FROM myua_user where username = \'CDS-KYLE\' limit 1 ')
+ 4 APPPATH\Controllers\MyLogIn.php(56): CodeIgniter\Database\BaseConnection->query('select `username`,`hash_password` FROM myua_user where username = \'CDS-KYLE\' limit 1 ')
+ 5 APPPATH\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('CDS-KYLE')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-08-27 16:10:06 --> ErrorException: Undefined variable $Y
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-pdf.php on line 144.
+ 1 APPPATH\Views\report\saob-pdf.php(144): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $Y', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php', 144)
+ 2 APPPATH\Views\report\saob-pdf.php(229): printTableHeader(Object(PDF), 'January')
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 6 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
