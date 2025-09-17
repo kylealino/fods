@@ -283,6 +283,12 @@ $ps_grand_total = 0;
 $mooe_grand_total = 0;
 $co_grand_total = 0;
 $thismonth_grand_total = 0;
+
+$ps_todate_grand_total = 0;
+$mooe_todate_grand_total = 0;
+$co_todate_grand_total = 0;
+$todate_grand_total = 0;
+
 $grand_unobligated = 0;
 $grand_percentage_minus = 0;
 $printed_once = '';
@@ -313,6 +319,8 @@ $query = $this->db->query("
 $rw = $query->getRowArray();
 $total_project_budget = $rw['total_approved_budget'];
 
+//CURRENT DATE GRAND TOTAL
+
 //PS GRAND TOTAL
 $query = $this->db->query("
     SELECT 
@@ -339,6 +347,11 @@ $query = $this->db->query("
                 AND i.`project_title` LIKE '%General Administration%'
             ), 0) AS total_sub_month
         FROM tbl_saob_ps_dt AS b
+        JOIN
+        tbl_saob_hd saob
+        on b.project_id = saob.recid
+        WHERE
+        saob.program_title LIKE '%General Administration and support%'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -370,6 +383,11 @@ $query = $this->db->query("
                 AND i.`project_title` LIKE '%General Administration%'
             ), 0) AS total_sub_month
         FROM tbl_saob_mooe_dt AS b
+        JOIN
+        tbl_saob_hd saob
+        on b.project_id = saob.recid
+        WHERE
+        saob.program_title LIKE '%General Administration and support%'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -401,15 +419,121 @@ $query = $this->db->query("
                 AND i.`project_title` LIKE '%General Administration%'
             ), 0) AS total_sub_month
         FROM tbl_saob_co_dt AS b
+        JOIN
+        tbl_saob_hd saob
+        on b.project_id = saob.recid
+        WHERE
+        saob.program_title LIKE '%General Administration and support%'
     ) AS t;
 ");
 $rw = $query->getRowArray();
 $co_grand_total = $rw['grand_total'];
 
 $thismonth_grand_total = $ps_grand_total + $mooe_grand_total + $co_grand_total;
-$grand_unobligated = $total_project_budget - $thismonth_grand_total;
+
+
+//UP TO DATE GRAND TOTAL
+
+//UP TO DATE PS GRAND TOTAL
+$query = $this->db->query("
+    SELECT 
+        SUM(total_sub_month) AS grand_total
+    FROM (
+        SELECT
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_ps_dt d 
+                JOIN tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+                WHERE d.sub_object_code = b.particulars 
+                AND d.`project_title` LIKE '%General Administration and support%'
+            ), 0)
+            +
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_ps_dt i 
+                JOIN tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+                WHERE i.sub_object_code = b.particulars 
+                AND i.`project_title` LIKE '%General Administration and support%'
+            ), 0) AS total_sub_month
+        FROM tbl_saob_ps_dt AS b
+        JOIN
+        tbl_saob_hd saob
+        on b.project_id = saob.recid
+        WHERE
+        saob.program_title LIKE '%General Administration and support%'
+    ) AS t;
+");
+$rw = $query->getRowArray();
+$ps_todate_grand_total = $rw['grand_total'];
+
+//UP TO DATE MOOE GRAND TOTAL
+$query = $this->db->query("
+    SELECT 
+        SUM(total_sub_month) AS grand_total
+    FROM (
+        SELECT
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_mooe_dt d 
+                JOIN tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+                WHERE d.sub_object_code = b.particulars 
+                AND d.`project_title` LIKE '%General Administration%'
+            ), 0)
+            +
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_mooe_dt i 
+                JOIN tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+                WHERE i.sub_object_code = b.particulars 
+                AND i.`project_title` LIKE '%General Administration%'
+            ), 0) AS total_sub_month
+        FROM tbl_saob_mooe_dt AS b
+        JOIN
+        tbl_saob_hd saob
+        on b.project_id = saob.recid
+        WHERE
+        saob.program_title LIKE '%General Administration and support%'
+    ) AS t;
+");
+$rw = $query->getRowArray();
+$mooe_todate_grand_total = $rw['grand_total'];
+
+//UP TO DATE CO GRAND TOTAL
+$query = $this->db->query("
+    SELECT 
+        SUM(total_sub_month) AS grand_total
+    FROM (
+        SELECT
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_co_dt d 
+                JOIN tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+                WHERE d.sub_object_code = b.particulars 
+                AND d.`project_title` LIKE '%General Administration%'
+            ), 0)
+            +
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_co_dt i 
+                JOIN tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+                WHERE i.sub_object_code = b.particulars 
+                AND i.`project_title` LIKE '%General Administration%'
+            ), 0) AS total_sub_month
+        FROM tbl_saob_co_dt AS b
+        JOIN
+        tbl_saob_hd saob
+        on b.project_id = saob.recid
+        WHERE
+        saob.program_title LIKE '%General Administration and support%'
+    ) AS t;
+");
+$rw = $query->getRowArray();
+$co_todate_grand_total = $rw['grand_total'];
+
+$todate_grand_total = $ps_todate_grand_total + $mooe_todate_grand_total + $co_todate_grand_total;
+$grand_unobligated = $total_project_budget - $todate_grand_total;
 if (!empty($total_project_budget) && $total_project_budget > 0) {
-    $grand_percentage_minus = ($thismonth_grand_total / $total_project_budget) * 100;
+    $grand_percentage_minus = ($todate_grand_total / $total_project_budget) * 100;
 }
 
 $Y = $pdf->GetY()+3.5;
@@ -434,12 +558,16 @@ $query = $this->db->query("
 ");
 $hd_data = $query->getResultArray();
 $total_all_sub_month = 0;
+$total_all_todate_month = 0;
 $ors_total_current_month = 0;
 
 foreach ($hd_data as $hd_row) {
     $ps_current_month = 0;
     $mooe_current_month = 0;
     $co_current_month = 0;
+    $ps_tolatest_month = 0;
+    $mooe_tolatest_month = 0;
+    $co_tolatest_month = 0;
     $total_unobligated = 0;
     $total_percentage_minus = 0;
     $program_title = $hd_row['program_title'];
@@ -487,7 +615,7 @@ foreach ($hd_data as $hd_row) {
                 SELECT SUM(amount) 
                 FROM tbl_ors_direct_ps_dt d 
                 JOIN tbl_ors_hd hd ON d.project_id = hd.recid
-                WHERE d.sub_object_code = b.particulars
+                WHERE d.sub_object_code = b.particulars 
                 AND d.project_title LIKE '%$program_tagging%'
             ), 0)
             + COALESCE((
@@ -552,6 +680,7 @@ foreach ($hd_data as $hd_row) {
     }
 
     $ps_current_month += $ps_total_current_month;
+    $ps_tolatest_month += $ps_total_todate_month;
 
     //MOOE------------------------------------------
     $query = $this->db->query("
@@ -576,14 +705,14 @@ foreach ($hd_data as $hd_row) {
             ), 0) AS total_sub_month,
             COALESCE((
                 SELECT SUM(amount) 
-                FROM tbl_ors_direct_ps_dt d 
+                FROM tbl_ors_direct_mooe_dt d 
                 JOIN tbl_ors_hd hd ON d.project_id = hd.recid
                 WHERE d.sub_object_code = b.particulars
                 AND d.project_title LIKE '%$program_tagging%'
             ), 0)
             + COALESCE((
                 SELECT SUM(amount) 
-                FROM tbl_ors_indirect_ps_dt i 
+                FROM tbl_ors_indirect_mooe_dt i 
                 JOIN tbl_ors_hd hd ON i.project_id = hd.recid
                 WHERE i.sub_object_code = b.particulars
                 AND i.project_title LIKE '%$program_tagging%'
@@ -640,6 +769,7 @@ foreach ($hd_data as $hd_row) {
           
     }
     $mooe_current_month += $mooe_total_current_month;
+    $mooe_tolatest_month += $mooe_total_todate_month;
 
     //CO--------------------------------------------
     $query = $this->db->query("
@@ -664,14 +794,14 @@ foreach ($hd_data as $hd_row) {
             ), 0) AS total_sub_month,
             COALESCE((
                 SELECT SUM(amount) 
-                FROM tbl_ors_direct_ps_dt d 
+                FROM tbl_ors_direct_co_dt d 
                 JOIN tbl_ors_hd hd ON d.project_id = hd.recid
                 WHERE d.sub_object_code = b.particulars
                 AND d.project_title LIKE '%$program_tagging%'
             ), 0)
             + COALESCE((
                 SELECT SUM(amount) 
-                FROM tbl_ors_indirect_ps_dt i 
+                FROM tbl_ors_indirect_co_dt i 
                 JOIN tbl_ors_hd hd ON i.project_id = hd.recid
                 WHERE i.sub_object_code = b.particulars
                 AND i.project_title LIKE '%$program_tagging%'
@@ -729,10 +859,13 @@ foreach ($hd_data as $hd_row) {
     }
 
     $co_current_month += $co_total_current_month;
+    $co_tolatest_month += $co_total_todate_month;
+
     $total_all_sub_month = $ps_current_month + $mooe_current_month + $co_current_month;
-    $total_unobligated = $total_approved_budget - $total_all_sub_month;
+    $total_all_todate_month = $ps_tolatest_month + $mooe_tolatest_month + $co_tolatest_month;
+    $total_unobligated = $total_approved_budget - $total_all_todate_month;
     if (!empty($total_approved_budget) && $total_approved_budget > 0) {
-        $total_percentage_minus = ($total_all_sub_month / $total_approved_budget) * 100;
+        $total_percentage_minus = ($total_all_todate_month / $total_approved_budget) * 100;
     }
     if ($program_tagging == 'General Administration and Support') {
         $pdf->SetXY(10, $Y - 3.5);
@@ -746,7 +879,7 @@ foreach ($hd_data as $hd_row) {
         $pdf->Cell(21.8, 3.5, number_format($thismonth_grand_total, 2), 1, 1, 'C'); // full width usage
         $pdf->SetXY(140, $Y - 3.5);
         $pdf->SetFont('Arial', '', 8);
-        $pdf->Cell(21.8, 3.5, number_format($thismonth_grand_total, 2), 1, 1, 'C'); // full width usage
+        $pdf->Cell(21.8, 3.5, number_format($todate_grand_total, 2), 1, 1, 'C'); // full width usage
         $pdf->SetXY(162, $Y - 3.5);
         $pdf->SetFont('Arial', '', 8);
         $pdf->Cell(21.8, 3.5, number_format($grand_unobligated, 2), 1, 1, 'C'); // full width usage
@@ -814,7 +947,7 @@ foreach ($hd_data as $hd_row) {
 
     $pdf->SetXY(140, $Y);
     $pdf->SetFont('Arial', '', 8);
-    $pdf->Cell(21.8, 3.5, number_format($total_all_sub_month, 2), 1, 1, 'C');
+    $pdf->Cell(21.8, 3.5, number_format($total_all_todate_month, 2), 1, 1, 'C');
 
     $pdf->SetXY(162, $Y);
     $pdf->SetFont('Arial', '', 8);
@@ -883,9 +1016,9 @@ foreach ($hd_data as $hd_row) {
         $query = $this->db->query("
             SELECT COALESCE(SUM(amount),0) AS total_amount  
             FROM (
-                SELECT dps.`amount` FROM tbl_ors_direct_ps_dt dps JOIN tbl_ors_hd hd on dps.`project_id` = hd.`recid` WHERE dps.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND dps.`project_title` like '%$program_tagging%'
+                SELECT dps.`amount` FROM tbl_ors_direct_ps_dt dps JOIN tbl_ors_hd hd on dps.`project_id` = hd.`recid` WHERE dps.`sub_object_code` = '$sub_object_code'  AND dps.`project_title` like '%$program_tagging%'
                 UNION ALL
-                SELECT idps.`amount` FROM tbl_ors_indirect_ps_dt idps JOIN tbl_ors_hd hd on idps.`project_id` = hd.`recid` WHERE idps.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND idps.`project_title` like '%$program_tagging%'
+                SELECT idps.`amount` FROM tbl_ors_indirect_ps_dt idps JOIN tbl_ors_hd hd on idps.`project_id` = hd.`recid` WHERE idps.`sub_object_code` = '$sub_object_code' AND idps.`project_title` like '%$program_tagging%'
             ) AS combined
         ");
 
@@ -1103,9 +1236,9 @@ foreach ($hd_data as $hd_row) {
         $query = $this->db->query("
             SELECT COALESCE(SUM(amount),0) AS total_amount  
             FROM (
-                SELECT dmooe.`amount` FROM tbl_ors_direct_mooe_dt dmooe JOIN tbl_ors_hd hd on dmooe.`project_id` = hd.`recid` WHERE dmooe.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND dmooe.`project_title` like '%$program_tagging%'
+                SELECT dmooe.`amount` FROM tbl_ors_direct_mooe_dt dmooe JOIN tbl_ors_hd hd on dmooe.`project_id` = hd.`recid` WHERE dmooe.`sub_object_code` = '$sub_object_code' AND dmooe.`project_title` like '%$program_tagging%'
                 UNION ALL
-                SELECT idmooe.`amount` FROM tbl_ors_indirect_mooe_dt idmooe JOIN tbl_ors_hd hd on idmooe.`project_id` = hd.`recid` WHERE idmooe.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND idmooe.`project_title` like '%$program_tagging%'
+                SELECT idmooe.`amount` FROM tbl_ors_indirect_mooe_dt idmooe JOIN tbl_ors_hd hd on idmooe.`project_id` = hd.`recid` WHERE idmooe.`sub_object_code` = '$sub_object_code' AND idmooe.`project_title` like '%$program_tagging%'
             ) AS combined
         ");
 
@@ -1328,9 +1461,9 @@ foreach ($hd_data as $hd_row) {
         $query = $this->db->query("
             SELECT COALESCE(SUM(amount),0) AS total_amount  
             FROM (
-                SELECT dco.`amount` FROM tbl_ors_direct_co_dt dco JOIN tbl_ors_hd hd on dco.`project_id` = hd.`recid` WHERE dco.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND dco.`project_title` like '%$program_tagging%'
+                SELECT dco.`amount` FROM tbl_ors_direct_co_dt dco JOIN tbl_ors_hd hd on dco.`project_id` = hd.`recid` WHERE dco.`sub_object_code` = '$sub_object_code' AND dco.`project_title` like '%$program_tagging%'
                 UNION ALL
-                SELECT idco.`amount` FROM tbl_ors_indirect_co_dt idco JOIN tbl_ors_hd hd on idco.`project_id` = hd.`recid` WHERE idco.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND idco.`project_title` like '%$program_tagging%'
+                SELECT idco.`amount` FROM tbl_ors_indirect_co_dt idco JOIN tbl_ors_hd hd on idco.`project_id` = hd.`recid` WHERE idco.`sub_object_code` = '$sub_object_code' AND idco.`project_title` like '%$program_tagging%'
             ) AS combined
         ");
 
@@ -1522,22 +1655,6 @@ foreach ($hd_data as $hd_row) {
 
     $Y = $pdf->GetY() + 3.5;    
 
-    // $pdf->SetXY(10, 27.5);
-    // $pdf->Cell(64, 241, '', 1, 0); 
-    // $pdf->SetXY(74, 27.5);
-    // $pdf->Cell(22, 241, '', 1, 0); 
-    // $pdf->SetXY(96, 27.5);
-    // $pdf->Cell(22, 241, '', 1, 0); 
-    // $pdf->SetXY(118, 27.5);
-    // $pdf->Cell(22, 241, '', 1, 0); 
-    // $pdf->SetXY(140, 27.5);
-    // $pdf->Cell(22, 241, '', 1, 0); 
-    // $pdf->SetXY(162, 27.5);
-    // $pdf->Cell(22, 241, '', 1, 0); 
-    // $pdf->SetXY(184, 27.5);
-    // $pdf->Cell(17, 241, '', 1, 0); 
-
-
 }
 
 // TOTAL CURRENT YEAR BUDGET -------------------------------------------- 
@@ -1555,7 +1672,7 @@ $pdf->SetFont('Arial', '', 8);
 $pdf->Cell(21.8, 3.5, number_format($thismonth_grand_total, 2), 'B', 1, 'C'); // full width usage
 $pdf->SetXY(140, $Y);
 $pdf->SetFont('Arial', '', 8);
-$pdf->Cell(21.8, 3.5, number_format($thismonth_grand_total, 2), 'B', 1, 'C'); // full width usage
+$pdf->Cell(21.8, 3.5, number_format($todate_grand_total, 2), 'B', 1, 'C'); // full width usage
 $pdf->SetXY(162, $Y);
 $pdf->SetFont('Arial', '', 8);
 $pdf->Cell(21.8, 3.5, number_format($grand_unobligated, 2), 'B', 1, 'C'); // full width usage
@@ -1569,1303 +1686,1303 @@ $pdf->Cell(17, 3.5, number_format($grand_percentage_minus, 2) . '%', 'B', 1, 'C'
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-$total_curryear_budget = 0;
-$total_year_ps = 0;
-$total_year_mooe = 0;
-$total_year_co = 0;
-$total_sub_month_amount = 0;
-$total_sub_year_amount = 0;
-$program_tagging = "";
-$program_class = "";
+// $total_curryear_budget = 0;
+// $total_year_ps = 0;
+// $total_year_mooe = 0;
+// $total_year_co = 0;
+// $total_sub_month_amount = 0;
+// $total_sub_year_amount = 0;
+// $program_tagging = "";
+// $program_class = "";
 
-$total_todate_month = 0;
-$ps_total_unobligated = 0;
-$mooe_total_unobligated = 0;
-$co_total_unobligated = 0;
-$ps_percentage_minus = 0;
-$mooe_percentage_minus = 0;
-$co_percentage_minus = 0;
-$total_project_budget = 0;
-$ps_grand_total = 0;
-$mooe_grand_total = 0;
-$co_grand_total = 0;
-$thismonth_grand_total = 0;
-$grand_unobligated = 0;
-$grand_percentage_minus = 0;
-$printed_once = '';
-$printed_after_mooe = '';
-//CURRENT YEAR BUDGET
+// $total_todate_month = 0;
+// $ps_total_unobligated = 0;
+// $mooe_total_unobligated = 0;
+// $co_total_unobligated = 0;
+// $ps_percentage_minus = 0;
+// $mooe_percentage_minus = 0;
+// $co_percentage_minus = 0;
+// $total_project_budget = 0;
+// $ps_grand_total = 0;
+// $mooe_grand_total = 0;
+// $co_grand_total = 0;
+// $thismonth_grand_total = 0;
+// $grand_unobligated = 0;
+// $grand_percentage_minus = 0;
+// $printed_once = '';
+// $printed_after_mooe = '';
+// //CURRENT YEAR BUDGET
 
-$Y = $pdf->GetY()+5;
-$pdf->SetXY(10, $Y);
-$pdf->SetFont('Arial', '', 8);
-$pdf->Cell(191, 5, 'B. Operations', 1, 1, 'L');
+// $Y = $pdf->GetY()+5;
+// $pdf->SetXY(10, $Y);
+// $pdf->SetFont('Arial', '', 8);
+// $pdf->Cell(191, 5, 'B. Operations', 1, 1, 'L');
 
-$query = $this->db->query("
-    SELECT
-        SUM(
-            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid`), 0) +
-            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`), 0) +
-            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`), 0)
-        ) AS total_approved_budget
-    FROM
-        `tbl_saob_hd` a
-    WHERE 
-        a.`program_title` like '%Scientific Research and%'
-    ORDER BY a.`recid`
-");
-$rw = $query->getRowArray();
-$total_project_budget = $rw['total_approved_budget'];
+// $query = $this->db->query("
+//     SELECT
+//         SUM(
+//             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid`), 0) +
+//             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`), 0) +
+//             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`), 0)
+//         ) AS total_approved_budget
+//     FROM
+//         `tbl_saob_hd` a
+//     WHERE 
+//         a.`program_title` like '%Scientific Research and%'
+//     ORDER BY a.`recid`
+// ");
+// $rw = $query->getRowArray();
+// $total_project_budget = $rw['total_approved_budget'];
 
-//PS GRAND TOTAL
-$query = $this->db->query("
-    SELECT 
-        SUM(total_sub_month) AS grand_total
-    FROM (
-        SELECT
-            COALESCE((
-                SELECT SUM(amount) 
-                FROM tbl_ors_direct_ps_dt d 
-                JOIN tbl_ors_hd hd ON d.`project_id` = hd.`recid`
-                WHERE d.sub_object_code = b.particulars 
-                AND hd.`ors_date` >= '$date_from' 
-                AND hd.`ors_date` < '$date_to'
-                AND d.`project_title` LIKE '%Scientific Research and Development%'
-            ), 0)
-            +
-            COALESCE((
-                SELECT SUM(amount) 
-                FROM tbl_ors_indirect_ps_dt i 
-                JOIN tbl_ors_hd hd ON i.`project_id` = hd.`recid`
-                WHERE i.sub_object_code = b.particulars 
-                AND hd.`ors_date` >= '$date_from' 
-                AND hd.`ors_date` < '$date_to'
-                AND i.`project_title` LIKE '%Scientific Research and Development%'
-            ), 0) AS total_sub_month
-        FROM tbl_saob_ps_dt AS b
-    ) AS t;
-");
-$rw = $query->getRowArray();
-$ps_grand_total = $rw['grand_total'];
+// //PS GRAND TOTAL
+// $query = $this->db->query("
+//     SELECT 
+//         SUM(total_sub_month) AS grand_total
+//     FROM (
+//         SELECT
+//             COALESCE((
+//                 SELECT SUM(amount) 
+//                 FROM tbl_ors_direct_ps_dt d 
+//                 JOIN tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+//                 WHERE d.sub_object_code = b.particulars 
+//                 AND hd.`ors_date` >= '$date_from' 
+//                 AND hd.`ors_date` < '$date_to'
+//                 AND d.`project_title` LIKE '%Scientific Research and Development%'
+//             ), 0)
+//             +
+//             COALESCE((
+//                 SELECT SUM(amount) 
+//                 FROM tbl_ors_indirect_ps_dt i 
+//                 JOIN tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+//                 WHERE i.sub_object_code = b.particulars 
+//                 AND hd.`ors_date` >= '$date_from' 
+//                 AND hd.`ors_date` < '$date_to'
+//                 AND i.`project_title` LIKE '%Scientific Research and Development%'
+//             ), 0) AS total_sub_month
+//         FROM tbl_saob_ps_dt AS b
+//     ) AS t;
+// ");
+// $rw = $query->getRowArray();
+// $ps_grand_total = $rw['grand_total'];
 
-//MOOE GRAND TOTAL
-$query = $this->db->query("
-    SELECT 
-        SUM(total_sub_month) AS grand_total
-    FROM (
-        SELECT
-            COALESCE((
-                SELECT SUM(amount) 
-                FROM tbl_ors_direct_mooe_dt d 
-                JOIN tbl_ors_hd hd ON d.`project_id` = hd.`recid`
-                WHERE d.sub_object_code = b.particulars 
-                AND hd.`ors_date` >= '$date_from' 
-                AND hd.`ors_date` < '$date_to'
-                AND d.`project_title` LIKE '%Scientific Research and Development%'
-            ), 0)
-            +
-            COALESCE((
-                SELECT SUM(amount) 
-                FROM tbl_ors_indirect_mooe_dt i 
-                JOIN tbl_ors_hd hd ON i.`project_id` = hd.`recid`
-                WHERE i.sub_object_code = b.particulars 
-                AND hd.`ors_date` >= '$date_from' 
-                AND hd.`ors_date` < '$date_to'
-                AND i.`project_title` LIKE '%Scientific Research and Development%'
-            ), 0) AS total_sub_month
-        FROM tbl_saob_mooe_dt AS b
-    ) AS t;
-");
-$rw = $query->getRowArray();
-$mooe_grand_total = $rw['grand_total'];
+// //MOOE GRAND TOTAL
+// $query = $this->db->query("
+//     SELECT 
+//         SUM(total_sub_month) AS grand_total
+//     FROM (
+//         SELECT
+//             COALESCE((
+//                 SELECT SUM(amount) 
+//                 FROM tbl_ors_direct_mooe_dt d 
+//                 JOIN tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+//                 WHERE d.sub_object_code = b.particulars 
+//                 AND hd.`ors_date` >= '$date_from' 
+//                 AND hd.`ors_date` < '$date_to'
+//                 AND d.`project_title` LIKE '%Scientific Research and Development%'
+//             ), 0)
+//             +
+//             COALESCE((
+//                 SELECT SUM(amount) 
+//                 FROM tbl_ors_indirect_mooe_dt i 
+//                 JOIN tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+//                 WHERE i.sub_object_code = b.particulars 
+//                 AND hd.`ors_date` >= '$date_from' 
+//                 AND hd.`ors_date` < '$date_to'
+//                 AND i.`project_title` LIKE '%Scientific Research and Development%'
+//             ), 0) AS total_sub_month
+//         FROM tbl_saob_mooe_dt AS b
+//     ) AS t;
+// ");
+// $rw = $query->getRowArray();
+// $mooe_grand_total = $rw['grand_total'];
 
-//CO GRAND TOTAL
-$query = $this->db->query("
-    SELECT 
-        SUM(total_sub_month) AS grand_total
-    FROM (
-        SELECT
-            COALESCE((
-                SELECT SUM(amount) 
-                FROM tbl_ors_direct_co_dt d 
-                JOIN tbl_ors_hd hd ON d.`project_id` = hd.`recid`
-                WHERE d.sub_object_code = b.particulars 
-                AND hd.`ors_date` >= '$date_from' 
-                AND hd.`ors_date` < '$date_to'
-                AND d.`project_title` LIKE '%Scientific Research and Development%'
-            ), 0)
-            +
-            COALESCE((
-                SELECT SUM(amount) 
-                FROM tbl_ors_indirect_co_dt i 
-                JOIN tbl_ors_hd hd ON i.`project_id` = hd.`recid`
-                WHERE i.sub_object_code = b.particulars 
-                AND hd.`ors_date` >= '$date_from' 
-                AND hd.`ors_date` < '$date_to'
-                AND i.`project_title` LIKE '%Scientific Research and Development%'
-            ), 0) AS total_sub_month
-        FROM tbl_saob_co_dt AS b
-    ) AS t;
-");
-$rw = $query->getRowArray();
-$co_grand_total = $rw['grand_total'];
+// //CO GRAND TOTAL
+// $query = $this->db->query("
+//     SELECT 
+//         SUM(total_sub_month) AS grand_total
+//     FROM (
+//         SELECT
+//             COALESCE((
+//                 SELECT SUM(amount) 
+//                 FROM tbl_ors_direct_co_dt d 
+//                 JOIN tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+//                 WHERE d.sub_object_code = b.particulars 
+//                 AND hd.`ors_date` >= '$date_from' 
+//                 AND hd.`ors_date` < '$date_to'
+//                 AND d.`project_title` LIKE '%Scientific Research and Development%'
+//             ), 0)
+//             +
+//             COALESCE((
+//                 SELECT SUM(amount) 
+//                 FROM tbl_ors_indirect_co_dt i 
+//                 JOIN tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+//                 WHERE i.sub_object_code = b.particulars 
+//                 AND hd.`ors_date` >= '$date_from' 
+//                 AND hd.`ors_date` < '$date_to'
+//                 AND i.`project_title` LIKE '%Scientific Research and Development%'
+//             ), 0) AS total_sub_month
+//         FROM tbl_saob_co_dt AS b
+//     ) AS t;
+// ");
+// $rw = $query->getRowArray();
+// $co_grand_total = $rw['grand_total'];
 
-$thismonth_grand_total = $ps_grand_total + $mooe_grand_total + $co_grand_total;
-$grand_unobligated = $total_project_budget - $thismonth_grand_total;
-if (!empty($total_project_budget) && $total_project_budget > 0) {
-    $grand_percentage_minus = ($thismonth_grand_total / $total_project_budget) * 100;
-}
+// $thismonth_grand_total = $ps_grand_total + $mooe_grand_total + $co_grand_total;
+// $grand_unobligated = $total_project_budget - $thismonth_grand_total;
+// if (!empty($total_project_budget) && $total_project_budget > 0) {
+//     $grand_percentage_minus = ($thismonth_grand_total / $total_project_budget) * 100;
+// }
 
-$Y = $pdf->GetY()+3.5;
-$query = $this->db->query("
-    SELECT
-        a.`program_title`,
-        a.`project_title`,
-        a.`recid`,
-        (SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) AS total_ps,
-        (SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) AS total_mooe,
-        (SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`) AS total_co,
-        (
-            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid`), 0) +
-            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`), 0) +
-            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`), 0)
-        ) AS total_approved_budget
-    FROM
-        `tbl_saob_hd` a
-    WHERE 
-        a.`program_title` like '%Scientific Research and%'
-    ORDER BY a.`recid`
-");
-$hd_data = $query->getResultArray();
-$total_all_sub_month = 0;
-$ors_total_current_month = 0;
+// $Y = $pdf->GetY()+3.5;
+// $query = $this->db->query("
+//     SELECT
+//         a.`program_title`,
+//         a.`project_title`,
+//         a.`recid`,
+//         (SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) AS total_ps,
+//         (SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) AS total_mooe,
+//         (SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`) AS total_co,
+//         (
+//             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid`), 0) +
+//             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`), 0) +
+//             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`), 0)
+//         ) AS total_approved_budget
+//     FROM
+//         `tbl_saob_hd` a
+//     WHERE 
+//         a.`program_title` like '%Scientific Research and%'
+//     ORDER BY a.`recid`
+// ");
+// $hd_data = $query->getResultArray();
+// $total_all_sub_month = 0;
+// $ors_total_current_month = 0;
 
-foreach ($hd_data as $hd_row) {
-    $ps_current_month = 0;
-    $mooe_current_month = 0;
-    $co_current_month = 0;
-    $total_unobligated = 0;
-    $total_percentage_minus = 0;
-    $program_title = $hd_row['program_title'];
-    $project_title = $hd_row['project_title'];
-    $recid = $hd_row['recid'];
-    $total_ps = $hd_row['total_ps'];
-    $total_mooe = $hd_row['total_mooe'];
-    $total_co = $hd_row['total_co'];
-    $total_approved_budget = $hd_row['total_approved_budget'];
+// foreach ($hd_data as $hd_row) {
+//     $ps_current_month = 0;
+//     $mooe_current_month = 0;
+//     $co_current_month = 0;
+//     $total_unobligated = 0;
+//     $total_percentage_minus = 0;
+//     $program_title = $hd_row['program_title'];
+//     $project_title = $hd_row['project_title'];
+//     $recid = $hd_row['recid'];
+//     $total_ps = $hd_row['total_ps'];
+//     $total_mooe = $hd_row['total_mooe'];
+//     $total_co = $hd_row['total_co'];
+//     $total_approved_budget = $hd_row['total_approved_budget'];
 
-    if ($project_title == 'General Administration and Support Services') {
-        $program_tagging = 'General Administration and Support';
-        $program_like = 'General Administration';
-    }elseif ($project_title == 'Relocation and Construction of New DOST-FNRI') {
-        $program_tagging = 'Relocation and Construction of New DOST-FNRI';
-        $program_like = 'Relocation and Construction';
-    }elseif($project_title == 'Administration of Personnel Benefits'){
-        $program_tagging = 'Administration of Personnel Benefits';
-        $program_like = 'Administration of Personnel';
-    }
+//     if ($project_title == 'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition') {
+//         $program_tagging = 'FOOD AND NUTRITION RESEARCH AND DEVELOPMENT PROGRAM';
+//         $program_like = 'Scientific Research';
+//     }elseif ($project_title == 'Relocation and Construction of New DOST-FNRI') {
+//         $program_tagging = 'Relocation and Construction of New DOST-FNRI';
+//         $program_like = 'Relocation and Construction';
+//     }elseif($project_title == 'Administration of Personnel Benefits'){
+//         $program_tagging = 'Administration of Personnel Benefits';
+//         $program_like = 'Administration of Personnel';
+//     }
 
 
-    //PS--------------------------------------------
-    $query = $this->db->query("
-        SELECT
-            u.allotment_class,
-            b.object_code,
-            b.particulars AS sub_object_code,
-            b.code AS uacs_code,
-            b.approved_budget,
-            COALESCE((
-                SELECT SUM(amount) 
-                FROM tbl_ors_direct_ps_dt d 
-                JOIN
-                tbl_ors_hd hd ON d.`project_id` = hd.`recid`
-                WHERE d.sub_object_code = b.particulars AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND d.`project_title` like '%$program_tagging%'
-            ), 0) + COALESCE((
-                SELECT SUM(amount) 
-                FROM tbl_ors_indirect_ps_dt i 
-                JOIN
-                tbl_ors_hd hd ON i.`project_id` = hd.`recid`
-                WHERE i.sub_object_code = b.particulars AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND i.`project_title` like '%$program_tagging%'
-            ), 0) AS total_sub_month,
-            COALESCE((
-                SELECT SUM(amount) 
-                FROM tbl_ors_direct_ps_dt d 
-                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
-                WHERE d.sub_object_code = b.particulars
-                AND d.project_title LIKE '%$program_tagging%'
-            ), 0)
-            + COALESCE((
-                SELECT SUM(amount) 
-                FROM tbl_ors_indirect_ps_dt i 
-                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
-                WHERE i.sub_object_code = b.particulars
-                AND i.project_title LIKE '%$program_tagging%'
-            ), 0) AS total_sub_all
-        FROM 
-            tbl_saob_ps_dt AS b
-        LEFT JOIN 
-            mst_uacs AS u ON b.code = u.uacs_code
-        WHERE 
-            b.project_id = '$recid' AND b.`project_title` like '%$program_tagging%'
-        ORDER BY 
-            b.recid, b.particulars;
+//     //PS--------------------------------------------
+//     $query = $this->db->query("
+//         SELECT
+//             u.allotment_class,
+//             b.object_code,
+//             b.particulars AS sub_object_code,
+//             b.code AS uacs_code,
+//             b.approved_budget,
+//             COALESCE((
+//                 SELECT SUM(amount) 
+//                 FROM tbl_ors_direct_ps_dt d 
+//                 JOIN
+//                 tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+//                 WHERE d.sub_object_code = b.particulars AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND d.`project_title` like '%Scientific Research and Development%'
+//             ), 0) + COALESCE((
+//                 SELECT SUM(amount) 
+//                 FROM tbl_ors_indirect_ps_dt i 
+//                 JOIN
+//                 tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+//                 WHERE i.sub_object_code = b.particulars AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND i.`project_title` like '%Scientific Research and Development%'
+//             ), 0) AS total_sub_month,
+//             COALESCE((
+//                 SELECT SUM(amount) 
+//                 FROM tbl_ors_direct_ps_dt d 
+//                 JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+//                 WHERE d.sub_object_code = b.particulars
+//                 AND d.project_title LIKE '%Scientific Research and Development%'
+//             ), 0)
+//             + COALESCE((
+//                 SELECT SUM(amount) 
+//                 FROM tbl_ors_indirect_ps_dt i 
+//                 JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+//                 WHERE i.sub_object_code = b.particulars
+//                 AND i.project_title LIKE '%Scientific Research and Development%'
+//             ), 0) AS total_sub_all
+//         FROM 
+//             tbl_saob_ps_dt AS b
+//         LEFT JOIN 
+//             mst_uacs AS u ON b.code = u.uacs_code
+//         WHERE 
+//             b.project_id = '$recid' AND b.`project_title` like '%Scientific Research and Development%'
+//         ORDER BY 
+//             b.recid, b.particulars;
 
-    ");
-    $ps_data = $query->getResultArray();
-    //total ps object code fetching
-    $ps_object_code_totals = [];
-    $ps_sub_month_totals = [];
-    $ps_sub_year_totals = [];
-    $last_object_code = '';
+//     ");
+//     $ps_data = $query->getResultArray();
+//     //total ps object code fetching
+//     $ps_object_code_totals = [];
+//     $ps_sub_month_totals = [];
+//     $ps_sub_year_totals = [];
+//     $last_object_code = '';
     
-    $ps_total_current_month = 0;
-    $ps_total_todate_month = 0;
-    foreach ($ps_data as $ps_row) {
-        $object_code = $ps_row['object_code'];
-        $sub_object_code = $ps_row['sub_object_code'];
-        $approved_budget = floatval($ps_row['approved_budget']);
-        $total_sub_month = floatval($ps_row['total_sub_month']);
-        $total_sub_all = floatval($ps_row['total_sub_all']);
+//     $ps_total_current_month = 0;
+//     $ps_total_todate_month = 0;
+//     foreach ($ps_data as $ps_row) {
+//         $object_code = $ps_row['object_code'];
+//         $sub_object_code = $ps_row['sub_object_code'];
+//         $approved_budget = floatval($ps_row['approved_budget']);
+//         $total_sub_month = floatval($ps_row['total_sub_month']);
+//         $total_sub_all = floatval($ps_row['total_sub_all']);
 
-        if (!isset($ps_object_code_totals[$object_code])) {
-            $ps_object_code_totals[$object_code] = 0;
-        }
-        $ps_object_code_totals[$object_code] += $approved_budget;
+//         if (!isset($ps_object_code_totals[$object_code])) {
+//             $ps_object_code_totals[$object_code] = 0;
+//         }
+//         $ps_object_code_totals[$object_code] += $approved_budget;
 
-        if (!isset($ps_sub_month_totals[$object_code])) {
-            $ps_sub_month_totals[$object_code] = 0;
-        }
-        $ps_sub_month_totals[$object_code] += $total_sub_month;
+//         if (!isset($ps_sub_month_totals[$object_code])) {
+//             $ps_sub_month_totals[$object_code] = 0;
+//         }
+//         $ps_sub_month_totals[$object_code] += $total_sub_month;
 
-        if (!isset($ps_sub_year_totals[$object_code])) {
-            $ps_sub_year_totals[$object_code] = 0;
-        }
-        $ps_sub_year_totals[$object_code] += $total_sub_all;
+//         if (!isset($ps_sub_year_totals[$object_code])) {
+//             $ps_sub_year_totals[$object_code] = 0;
+//         }
+//         $ps_sub_year_totals[$object_code] += $total_sub_all;
 
-        $ps_total_current_month += $total_sub_month;
-        $ps_total_todate_month += $total_sub_all;
+//         $ps_total_current_month += $total_sub_month;
+//         $ps_total_todate_month += $total_sub_all;
 
-        $ps_total_unobligated = ($total_ps ?? 0) - ($ps_total_todate_month ?? 0);
+//         $ps_total_unobligated = ($total_ps ?? 0) - ($ps_total_todate_month ?? 0);
         
         
-        if (!empty($total_ps) && $total_ps > 0) {
-            $ps_percentage_minus = ($ps_total_todate_month / $total_ps) * 100;   
-        }
+//         if (!empty($total_ps) && $total_ps > 0) {
+//             $ps_percentage_minus = ($ps_total_todate_month / $total_ps) * 100;   
+//         }
 
 
-    }
+//     }
 
-    $ps_current_month += $ps_total_current_month;
+//     $ps_current_month += $ps_total_current_month;
 
-    //MOOE------------------------------------------
-    $query = $this->db->query("
-        SELECT
-            u.allotment_class,
-            b.object_code,
-            b.particulars AS sub_object_code,
-            b.code AS uacs_code,
-            b.approved_budget,
-            COALESCE((
-                SELECT SUM(amount) 
-                FROM tbl_ors_direct_mooe_dt d 
-                JOIN
-                tbl_ors_hd hd ON d.`project_id` = hd.`recid`
-                WHERE d.sub_object_code = b.particulars AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND d.`project_title` like '%$program_tagging%'
-            ), 0) + COALESCE((
-                SELECT SUM(amount) 
-                FROM tbl_ors_indirect_mooe_dt i 
-                JOIN
-                tbl_ors_hd hd ON i.`project_id` = hd.`recid`
-                WHERE i.sub_object_code = b.particulars AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND i.`project_title` like '%$program_tagging%'
-            ), 0) AS total_sub_month,
-            COALESCE((
-                SELECT SUM(amount) 
-                FROM tbl_ors_direct_ps_dt d 
-                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
-                WHERE d.sub_object_code = b.particulars
-                AND d.project_title LIKE '%$program_tagging%'
-            ), 0)
-            + COALESCE((
-                SELECT SUM(amount) 
-                FROM tbl_ors_indirect_ps_dt i 
-                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
-                WHERE i.sub_object_code = b.particulars
-                AND i.project_title LIKE '%$program_tagging%'
-            ), 0) AS total_sub_all
-        FROM 
-            tbl_saob_mooe_dt AS b
-        LEFT JOIN 
-            mst_uacs AS u ON b.code = u.uacs_code
-        WHERE 
-            b.project_id = '$recid' AND b.`project_title` like '%$program_tagging%'
-        ORDER BY 
-            b.recid, b.particulars;
+//     //MOOE------------------------------------------
+//     $query = $this->db->query("
+//         SELECT
+//             u.allotment_class,
+//             b.object_code,
+//             b.particulars AS sub_object_code,
+//             b.code AS uacs_code,
+//             b.approved_budget,
+//             COALESCE((
+//                 SELECT SUM(amount) 
+//                 FROM tbl_ors_direct_mooe_dt d 
+//                 JOIN
+//                 tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+//                 WHERE d.sub_object_code = b.particulars AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND d.`project_title` like '%$program_like%'
+//             ), 0) + COALESCE((
+//                 SELECT SUM(amount) 
+//                 FROM tbl_ors_indirect_mooe_dt i 
+//                 JOIN
+//                 tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+//                 WHERE i.sub_object_code = b.particulars AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND i.`project_title` like '%$program_like%'
+//             ), 0) AS total_sub_month,
+//             COALESCE((
+//                 SELECT SUM(amount) 
+//                 FROM tbl_ors_direct_ps_dt d 
+//                 JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+//                 WHERE d.sub_object_code = b.particulars
+//                 AND d.project_title LIKE '%$program_like%'
+//             ), 0)
+//             + COALESCE((
+//                 SELECT SUM(amount) 
+//                 FROM tbl_ors_indirect_ps_dt i 
+//                 JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+//                 WHERE i.sub_object_code = b.particulars
+//                 AND i.project_title LIKE '%$program_like%'
+//             ), 0) AS total_sub_all
+//         FROM 
+//             tbl_saob_mooe_dt AS b
+//         LEFT JOIN 
+//             mst_uacs AS u ON b.code = u.uacs_code
+//         WHERE 
+//             b.project_id = '$recid' AND b.`project_title` like '%$program_like%'
+//         ORDER BY 
+//             b.recid, b.particulars;
 
-    ");
-    $mooe_data = $query->getResultArray();
-    //total mooe object code fetching
-    $mooe_object_code_totals = [];
-    $mooe_sub_month_totals = [];
-    $mooe_sub_year_totals = [];
-    $last_object_code = '';
-    $mooe_total_current_month = 0;
-    $mooe_total_todate_month = 0;
-    foreach ($mooe_data as $mooe_row) {
-        $object_code = $mooe_row['object_code'];
-        $sub_object_code = $mooe_row['sub_object_code'];
-        $approved_budget = floatval($mooe_row['approved_budget']);
-        $total_sub_month = floatval($mooe_row['total_sub_month']);
-        $total_sub_all = floatval($mooe_row['total_sub_all']);
+//     ");
+//     $mooe_data = $query->getResultArray();
+//     //total mooe object code fetching
+//     $mooe_object_code_totals = [];
+//     $mooe_sub_month_totals = [];
+//     $mooe_sub_year_totals = [];
+//     $last_object_code = '';
+//     $mooe_total_current_month = 0;
+//     $mooe_total_todate_month = 0;
+//     foreach ($mooe_data as $mooe_row) {
+//         $object_code = $mooe_row['object_code'];
+//         $sub_object_code = $mooe_row['sub_object_code'];
+//         $approved_budget = floatval($mooe_row['approved_budget']);
+//         $total_sub_month = floatval($mooe_row['total_sub_month']);
+//         $total_sub_all = floatval($mooe_row['total_sub_all']);
 
-        if (!isset($mooe_object_code_totals[$object_code])) {
-            $mooe_object_code_totals[$object_code] = 0;
-        }
-        $mooe_object_code_totals[$object_code] += $approved_budget;
+//         if (!isset($mooe_object_code_totals[$object_code])) {
+//             $mooe_object_code_totals[$object_code] = 0;
+//         }
+//         $mooe_object_code_totals[$object_code] += $approved_budget;
 
-        if (!isset($mooe_sub_month_totals[$object_code])) {
-            $mooe_sub_month_totals[$object_code] = 0;
-        }
-        $mooe_sub_month_totals[$object_code] += $total_sub_month;
+//         if (!isset($mooe_sub_month_totals[$object_code])) {
+//             $mooe_sub_month_totals[$object_code] = 0;
+//         }
+//         $mooe_sub_month_totals[$object_code] += $total_sub_month;
 
-        if (!isset($mooe_sub_year_totals[$object_code])) {
-            $mooe_sub_year_totals[$object_code] = 0;
-        }
-        $mooe_sub_year_totals[$object_code] += $total_sub_all;
+//         if (!isset($mooe_sub_year_totals[$object_code])) {
+//             $mooe_sub_year_totals[$object_code] = 0;
+//         }
+//         $mooe_sub_year_totals[$object_code] += $total_sub_all;
 
-        $mooe_total_current_month += $total_sub_month;
-        $mooe_total_todate_month += $total_sub_all;
+//         $mooe_total_current_month += $total_sub_month;
+//         $mooe_total_todate_month += $total_sub_all;
 
-        $mooe_total_unobligated = ($total_mooe ?? 0) - ($mooe_total_todate_month ?? 0);
+//         $mooe_total_unobligated = ($total_mooe ?? 0) - ($mooe_total_todate_month ?? 0);
         
         
-        if (!empty($total_mooe) && $total_mooe > 0) {
-            $mooe_percentage_minus = ($mooe_total_todate_month / $total_mooe) * 100;
-        }
+//         if (!empty($total_mooe) && $total_mooe > 0) {
+//             $mooe_percentage_minus = ($mooe_total_todate_month / $total_mooe) * 100;
+//         }
           
-    }
-    $mooe_current_month += $mooe_total_current_month;
+//     }
+//     $mooe_current_month += $mooe_total_current_month;
 
-    //CO--------------------------------------------
-    $query = $this->db->query("
-        SELECT
-            u.allotment_class,
-            b.object_code,
-            b.particulars AS sub_object_code,
-            b.code AS uacs_code,
-            b.approved_budget,
-            COALESCE((
-                SELECT SUM(amount) 
-                FROM tbl_ors_direct_co_dt d 
-                JOIN
-                tbl_ors_hd hd ON d.`project_id` = hd.`recid`
-                WHERE d.sub_object_code = b.particulars AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND d.`project_title` like '%$program_tagging%'
-            ), 0) + COALESCE((
-                SELECT SUM(amount) 
-                FROM tbl_ors_indirect_co_dt i 
-                JOIN
-                tbl_ors_hd hd ON i.`project_id` = hd.`recid`
-                WHERE i.sub_object_code = b.particulars AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND i.`project_title` like '%$program_tagging%'
-            ), 0) AS total_sub_month,
-            COALESCE((
-                SELECT SUM(amount) 
-                FROM tbl_ors_direct_ps_dt d 
-                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
-                WHERE d.sub_object_code = b.particulars
-                AND d.project_title LIKE '%$program_tagging%'
-            ), 0)
-            + COALESCE((
-                SELECT SUM(amount) 
-                FROM tbl_ors_indirect_ps_dt i 
-                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
-                WHERE i.sub_object_code = b.particulars
-                AND i.project_title LIKE '%$program_tagging%'
-            ), 0) AS total_sub_all
-        FROM 
-            tbl_saob_co_dt AS b
-        LEFT JOIN 
-            mst_uacs AS u ON b.code = u.uacs_code
-        WHERE 
-            b.project_id = '$recid' AND b.`project_title` like '%$program_tagging%'
-        ORDER BY 
-            b.recid, b.particulars;
+//     //CO--------------------------------------------
+//     $query = $this->db->query("
+//         SELECT
+//             u.allotment_class,
+//             b.object_code,
+//             b.particulars AS sub_object_code,
+//             b.code AS uacs_code,
+//             b.approved_budget,
+//             COALESCE((
+//                 SELECT SUM(amount) 
+//                 FROM tbl_ors_direct_co_dt d 
+//                 JOIN
+//                 tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+//                 WHERE d.sub_object_code = b.particulars AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND d.`project_title` like '%$program_like%'
+//             ), 0) + COALESCE((
+//                 SELECT SUM(amount) 
+//                 FROM tbl_ors_indirect_co_dt i 
+//                 JOIN
+//                 tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+//                 WHERE i.sub_object_code = b.particulars AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND i.`project_title` like '%$program_like%'
+//             ), 0) AS total_sub_month,
+//             COALESCE((
+//                 SELECT SUM(amount) 
+//                 FROM tbl_ors_direct_ps_dt d 
+//                 JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+//                 WHERE d.sub_object_code = b.particulars
+//                 AND d.project_title LIKE '%$program_like%'
+//             ), 0)
+//             + COALESCE((
+//                 SELECT SUM(amount) 
+//                 FROM tbl_ors_indirect_ps_dt i 
+//                 JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+//                 WHERE i.sub_object_code = b.particulars
+//                 AND i.project_title LIKE '%$program_like%'
+//             ), 0) AS total_sub_all
+//         FROM 
+//             tbl_saob_co_dt AS b
+//         LEFT JOIN 
+//             mst_uacs AS u ON b.code = u.uacs_code
+//         WHERE 
+//             b.project_id = '$recid' AND b.`project_title` like '%$program_like%'
+//         ORDER BY 
+//             b.recid, b.particulars;
 
-    ");
-    $co_data = $query->getResultArray();
-    //total co object code fetching
-    $co_object_code_totals = [];
-    $co_sub_month_totals = [];
-    $co_sub_year_totals = [];
-    $last_object_code = '';
-    $co_total_current_month = 0;
-    $co_total_todate_month = 0;
-    foreach ($co_data as $co_row) {
-        $object_code = $co_row['object_code'];
-        $sub_object_code = $co_row['sub_object_code'];
-        $approved_budget = floatval($co_row['approved_budget']);
-        $total_sub_month = floatval($co_row['total_sub_month']);
-        $total_sub_all = floatval($co_row['total_sub_all']);
+//     ");
+//     $co_data = $query->getResultArray();
+//     //total co object code fetching
+//     $co_object_code_totals = [];
+//     $co_sub_month_totals = [];
+//     $co_sub_year_totals = [];
+//     $last_object_code = '';
+//     $co_total_current_month = 0;
+//     $co_total_todate_month = 0;
+//     foreach ($co_data as $co_row) {
+//         $object_code = $co_row['object_code'];
+//         $sub_object_code = $co_row['sub_object_code'];
+//         $approved_budget = floatval($co_row['approved_budget']);
+//         $total_sub_month = floatval($co_row['total_sub_month']);
+//         $total_sub_all = floatval($co_row['total_sub_all']);
 
-        if (!isset($co_object_code_totals[$object_code])) {
-            $co_object_code_totals[$object_code] = 0;
-        }
-        $co_object_code_totals[$object_code] += $approved_budget;
+//         if (!isset($co_object_code_totals[$object_code])) {
+//             $co_object_code_totals[$object_code] = 0;
+//         }
+//         $co_object_code_totals[$object_code] += $approved_budget;
 
-        if (!isset($co_sub_month_totals[$object_code])) {
-            $co_sub_month_totals[$object_code] = 0;
-        }
-        $co_sub_month_totals[$object_code] += $total_sub_month;
+//         if (!isset($co_sub_month_totals[$object_code])) {
+//             $co_sub_month_totals[$object_code] = 0;
+//         }
+//         $co_sub_month_totals[$object_code] += $total_sub_month;
 
-        if (!isset($co_sub_year_totals[$object_code])) {
-            $co_sub_year_totals[$object_code] = 0;
-        }
-        $co_sub_year_totals[$object_code] += $total_sub_all;
+//         if (!isset($co_sub_year_totals[$object_code])) {
+//             $co_sub_year_totals[$object_code] = 0;
+//         }
+//         $co_sub_year_totals[$object_code] += $total_sub_all;
 
-        $co_total_current_month += $total_sub_month;
-        $co_total_todate_month += $total_sub_all;
+//         $co_total_current_month += $total_sub_month;
+//         $co_total_todate_month += $total_sub_all;
 
-        $co_total_unobligated = ($total_co ?? 0) - ($co_total_todate_month ?? 0);
+//         $co_total_unobligated = ($total_co ?? 0) - ($co_total_todate_month ?? 0);
         
         
-        if (!empty($total_co) && $total_co > 0) {
-            $co_percentage_minus = ($co_total_todate_month / $total_co) * 100;
-        }
+//         if (!empty($total_co) && $total_co > 0) {
+//             $co_percentage_minus = ($co_total_todate_month / $total_co) * 100;
+//         }
           
-    }
+//     }
 
-    $co_current_month += $co_total_current_month;
-    $total_all_sub_month = $ps_current_month + $mooe_current_month + $co_current_month;
-    $total_unobligated = $total_approved_budget - $total_all_sub_month;
-    if (!empty($total_approved_budget) && $total_approved_budget > 0) {
-        $total_percentage_minus = ($total_all_sub_month / $total_approved_budget) * 100;
-    }
-    if ($program_tagging == 'General Administration and Support') {
-        $pdf->SetXY(10, $Y - 3.5);
-        $pdf->SetFont('Arial', '', 8);
-        $pdf->MultiCell(52, 3.5, $program_tagging, 1, 'R'); // full width usage
-        $pdf->SetXY(96, $Y - 3.5);
-        $pdf->SetFont('Arial', '', 8);
-        $pdf->Cell(21.8, 3.5, number_format($total_project_budget, 2), 1, 1, 'C'); // full width usage
-        $pdf->SetXY(118, $Y - 3.5);
-        $pdf->SetFont('Arial', '', 8);
-        $pdf->Cell(21.8, 3.5, number_format($thismonth_grand_total, 2), 1, 1, 'C'); // full width usage
-        $pdf->SetXY(140, $Y - 3.5);
-        $pdf->SetFont('Arial', '', 8);
-        $pdf->Cell(21.8, 3.5, number_format($thismonth_grand_total, 2), 1, 1, 'C'); // full width usage
-        $pdf->SetXY(162, $Y - 3.5);
-        $pdf->SetFont('Arial', '', 8);
-        $pdf->Cell(21.8, 3.5, number_format($grand_unobligated, 2), 1, 1, 'C'); // full width usage
-        $pdf->SetXY(184, $Y - 3.5);
-        $pdf->SetFont('Arial', 'B', 8);
-        $pdf->Cell(17, 3.5, number_format($grand_percentage_minus, 2) . '%', 1, 1, 'C'); // full width usage
-    }elseif($project_title == 'Relocation and Construction of New DOST-FNRI'){
-        $pdf->SetXY(10, $Y-3.5);
-        $pdf->Cell(191, 3.5, 'RARARARARARARARARARARA', 1, 1, 'C'); // full width usage
-        $Y = $pdf->GetY()+3.5;
-        $pdf->SetXY(15, $Y -3.5);
-        $pdf->SetFont('Arial', '', 8);
-        $pdf->MultiCell(186, 3.5, 'Locally-Funder Project', 1, 'L'); // full width usage
-        $pdf->SetXY(10, $Y -3.5);
-        $pdf->SetFont('Arial', '', 8);
-        $pdf->MultiCell(5, 3.5, '', 1, 'L'); // full width usage
-    }else{
-        $pdf->SetXY(10, $Y-3.5);
-        $pdf->Cell(191, 3.5, 'RARARARARARARARARARARA', 1, 1, 'C'); // full width usage
-        $Y = $pdf->GetY()+3.5;
-        $pdf->SetXY(15, $Y - 3.5);
-        $pdf->SetFont('Arial', '', 8);
-        $pdf->MultiCell(59, 3, $program_tagging, 1, 'L'); // full width usage
-        $pdf->SetXY(10, $Y -3.5);
-        $pdf->SetFont('Arial', '', 8);
-        $pdf->MultiCell(5, 3.5, '', 1, 'L'); // full width usage
-        $pdf->SetXY(96, $Y - 3.5);
-        $pdf->SetFont('Arial', '', 8);
-        $pdf->Cell(21.8, 3.5, '', 0, 1, 'C'); // full width usage
+//     $co_current_month += $co_total_current_month;
+//     $total_all_sub_month = $ps_current_month + $mooe_current_month + $co_current_month;
+//     $total_unobligated = $total_approved_budget - $total_all_sub_month;
+//     if (!empty($total_approved_budget) && $total_approved_budget > 0) {
+//         $total_percentage_minus = ($total_all_sub_month / $total_approved_budget) * 100;
+//     }
+//     if ($program_tagging == 'FOOD AND NUTRITION RESEARCH AND DEVELOPMENT PROGRAM') {
+//         $pdf->SetXY(10, $Y - 3.5);
+//         $pdf->SetFont('Arial', '', 8);
+//         $pdf->MultiCell(52, 3.5, $program_tagging, 1, 'R'); // full width usage
+//         $pdf->SetXY(96, $Y - 3.5);
+//         $pdf->SetFont('Arial', '', 8);
+//         $pdf->Cell(21.8, 3.5, number_format($total_project_budget, 2), 1, 1, 'C'); // full width usage
+//         $pdf->SetXY(118, $Y - 3.5);
+//         $pdf->SetFont('Arial', '', 8);
+//         $pdf->Cell(21.8, 3.5, number_format($thismonth_grand_total, 2), 1, 1, 'C'); // full width usage
+//         $pdf->SetXY(140, $Y - 3.5);
+//         $pdf->SetFont('Arial', '', 8);
+//         $pdf->Cell(21.8, 3.5, number_format($thismonth_grand_total, 2), 1, 1, 'C'); // full width usage
+//         $pdf->SetXY(162, $Y - 3.5);
+//         $pdf->SetFont('Arial', '', 8);
+//         $pdf->Cell(21.8, 3.5, number_format($grand_unobligated, 2), 1, 1, 'C'); // full width usage
+//         $pdf->SetXY(184, $Y - 3.5);
+//         $pdf->SetFont('Arial', 'B', 8);
+//         $pdf->Cell(17, 3.5, number_format($grand_percentage_minus, 2) . '%', 1, 1, 'C'); // full width usage
+//     }elseif($project_title == 'Relocation and Construction of New DOST-FNRI'){
+//         $pdf->SetXY(10, $Y-3.5);
+//         $pdf->Cell(191, 3.5, 'RARARARARARARARARARARA', 1, 1, 'C'); // full width usage
+//         $Y = $pdf->GetY()+3.5;
+//         $pdf->SetXY(15, $Y -3.5);
+//         $pdf->SetFont('Arial', '', 8);
+//         $pdf->MultiCell(186, 3.5, 'Locally-Funder Project', 1, 'L'); // full width usage
+//         $pdf->SetXY(10, $Y -3.5);
+//         $pdf->SetFont('Arial', '', 8);
+//         $pdf->MultiCell(5, 3.5, '', 1, 'L'); // full width usage
+//     }else{
+//         $pdf->SetXY(10, $Y-3.5);
+//         $pdf->Cell(191, 3.5, 'RARARARARARARARARARARA', 1, 1, 'C'); // full width usage
+//         $Y = $pdf->GetY()+3.5;
+//         $pdf->SetXY(15, $Y - 3.5);
+//         $pdf->SetFont('Arial', '', 8);
+//         $pdf->MultiCell(59, 3, $program_tagging, 1, 'L'); // full width usage
+//         $pdf->SetXY(10, $Y -3.5);
+//         $pdf->SetFont('Arial', '', 8);
+//         $pdf->MultiCell(5, 3.5, '', 1, 'L'); // full width usage
+//         $pdf->SetXY(96, $Y - 3.5);
+//         $pdf->SetFont('Arial', '', 8);
+//         $pdf->Cell(21.8, 3.5, '', 0, 1, 'C'); // full width usage
         
-    }
+//     }
 
-    $Y = $pdf->GetY();
-    $pdf->SetFont('Arial', 'B', 8);
+//     $Y = $pdf->GetY()+3.5;
+//     $pdf->SetFont('Arial', 'B', 8);
 
-    // Calculate approximate lines needed
-    $textWidth = 59; // MultiCell width
-    $charWidth = 1.5; // Approximate character width in mm
-    $maxCharsPerLine = floor($textWidth / $charWidth);
-    $textLength = strlen($project_title);
-    $linesNeeded = ceil($textLength / $maxCharsPerLine);
-    $linesNeeded = max(1, $linesNeeded); // At least 1 line
+//     // Calculate approximate lines needed
+//     $textWidth = 59; // MultiCell width
+//     $charWidth = 1.5; // Approximate character width in mm
+//     $maxCharsPerLine = floor($textWidth / $charWidth);
+//     $textLength = strlen($project_title);
+//     $linesNeeded = ceil($textLength / $maxCharsPerLine);
+//     $linesNeeded = max(1, $linesNeeded); // At least 1 line
 
-    $lineHeight = 3.5;
-    $totalHeight = $linesNeeded * $lineHeight;
+//     $lineHeight = 3.5;
+//     $totalHeight = $linesNeeded * $lineHeight;
 
-    // Draw both cells with calculated height
-    $pdf->SetXY(10, $Y);
-    $pdf->SetFont('Arial', '', 8);
-    $pdf->Cell(5, $totalHeight, '', 1, 0, 'C');
+//     // Draw both cells with calculated height
+//     $pdf->SetXY(10, $Y);
+//     $pdf->SetFont('Arial', '', 8);
+//     $pdf->Cell(5, $totalHeight, '', 1, 0, 'C');
 
-    $pdf->SetXY(15, $Y);
-    $pdf->SetFont('Arial', 'B', 8);
-    $pdf->MultiCell(59, $lineHeight, $project_title, 1, 'L');
+//     $pdf->SetXY(15, $Y);
+//     $pdf->SetFont('Arial', 'B', 8);
+//     $pdf->MultiCell(59, $lineHeight, $project_title, 1, 'L');
 
-    $Y += $totalHeight;
-    $Y = $pdf->GetY() - 3.9;
-    $pdf->SetXY(96, $Y);
-    $pdf->SetFont('Arial', '', 8);
-    $pdf->Cell(21.8, 3.5, number_format($total_approved_budget, 2), 1, 1, 'C');
+//     $Y += $totalHeight;
+//     $Y = $pdf->GetY() - 3.9;
+//     $pdf->SetXY(96, $Y);
+//     $pdf->SetFont('Arial', '', 8);
+//     $pdf->Cell(21.8, 3.5, number_format($total_approved_budget, 2), 1, 1, 'C');
 
-    $pdf->SetXY(118, $Y);
-    $pdf->SetFont('Arial', '', 8);
-    $pdf->Cell(21.8, 3.5, number_format($total_all_sub_month, 2), 1, 1, 'C');
+//     $pdf->SetXY(118, $Y);
+//     $pdf->SetFont('Arial', '', 8);
+//     $pdf->Cell(21.8, 3.5, number_format($total_all_sub_month, 2), 1, 1, 'C');
 
-    $pdf->SetXY(140, $Y);
-    $pdf->SetFont('Arial', '', 8);
-    $pdf->Cell(21.8, 3.5, number_format($total_all_sub_month, 2), 1, 1, 'C');
+//     $pdf->SetXY(140, $Y);
+//     $pdf->SetFont('Arial', '', 8);
+//     $pdf->Cell(21.8, 3.5, number_format($total_all_sub_month, 2), 1, 1, 'C');
 
-    $pdf->SetXY(162, $Y);
-    $pdf->SetFont('Arial', '', 8);
-    $pdf->Cell(21.8, 3.5, number_format($total_unobligated, 2), 1, 1, 'C');
+//     $pdf->SetXY(162, $Y);
+//     $pdf->SetFont('Arial', '', 8);
+//     $pdf->Cell(21.8, 3.5, number_format($total_unobligated, 2), 1, 1, 'C');
 
-    $pdf->SetXY(162, $Y);
-    $pdf->SetFont('Arial', '', 8);
-    $pdf->Cell(21.8, 3.5, number_format($total_unobligated, 2), 1, 1, 'C');
+//     $pdf->SetXY(162, $Y);
+//     $pdf->SetFont('Arial', '', 8);
+//     $pdf->Cell(21.8, 3.5, number_format($total_unobligated, 2), 1, 1, 'C');
 
-    $pdf->SetXY(184, $Y);
-    $pdf->SetFont('Arial', 'B', 8);
-    $pdf->Cell(17, 3.5, number_format($total_percentage_minus, 2) . '%', 1, 1, 'C');
+//     $pdf->SetXY(184, $Y);
+//     $pdf->SetFont('Arial', 'B', 8);
+//     $pdf->Cell(17, 3.5, number_format($total_percentage_minus, 2) . '%', 1, 1, 'C');
 
-    $Y = $pdf->GetY() - 7;
-    $pdf->SetXY(96, $Y);
-    $pdf->SetFont('Arial', '', 8);
-    $pdf->Cell(21.8, 3.5, 'TEST', 1, 1, 'C');
+//     $Y = $pdf->GetY() - 7;
+//     $pdf->SetXY(96, $Y);
+//     $pdf->SetFont('Arial', '', 8);
+//     $pdf->Cell(21.8, 3.5, 'TEST', 1, 1, 'C');
 
-    $pdf->SetXY(118, $Y);
-    $pdf->SetFont('Arial', '', 8);
-    $pdf->Cell(21.8, 3.5, 'TEST', 1, 1, 'C');
+//     $pdf->SetXY(118, $Y);
+//     $pdf->SetFont('Arial', '', 8);
+//     $pdf->Cell(21.8, 3.5, 'TEST', 1, 1, 'C');
 
-    $pdf->SetXY(140, $Y);
-    $pdf->SetFont('Arial', '', 8);
-    $pdf->Cell(21.8, 3.5, 'TEST', 1, 1, 'C');
+//     $pdf->SetXY(140, $Y);
+//     $pdf->SetFont('Arial', '', 8);
+//     $pdf->Cell(21.8, 3.5, 'TEST', 1, 1, 'C');
 
-    $pdf->SetXY(162, $Y);
-    $pdf->SetFont('Arial', '', 8);
-    $pdf->Cell(21.8, 3.5, 'TEST', 1, 1, 'C');
+//     $pdf->SetXY(162, $Y);
+//     $pdf->SetFont('Arial', '', 8);
+//     $pdf->Cell(21.8, 3.5, 'TEST', 1, 1, 'C');
 
-    $pdf->SetXY(162, $Y);
-    $pdf->SetFont('Arial', '', 8);
-    $pdf->Cell(21.8, 3.5, 'TEST', 1, 1, 'C');
+//     $pdf->SetXY(162, $Y);
+//     $pdf->SetFont('Arial', '', 8);
+//     $pdf->Cell(21.8, 3.5, 'TEST', 1, 1, 'C');
 
-    $pdf->SetXY(184, $Y);
-    $pdf->SetFont('Arial', '', 8);
-    $pdf->Cell(17, 3.5, 'TEST', 1, 1, 'C');
+//     $pdf->SetXY(184, $Y);
+//     $pdf->SetFont('Arial', '', 8);
+//     $pdf->Cell(17, 3.5, 'TEST', 1, 1, 'C');
 
-    $Y = $pdf->GetY() + 3.5;
+//     $Y = $pdf->GetY() + 3.5;
 
 
-    $last_allotment_class = '';
-    $last_sub_object_code = '';
-    $last_object_code = '';
+//     $last_allotment_class = '';
+//     $last_sub_object_code = '';
+//     $last_object_code = '';
     
-    $Y = $pdf->GetY() + 3.5;
-    foreach ($ps_data as $ps_row) {
-        $allotment_class = $ps_row['allotment_class'];
-        $object_code = $ps_row['object_code'];
-        $sub_object_code = $ps_row['sub_object_code'];
-        $uacs_code = $ps_row['uacs_code'];
-        $approved_budget = $ps_row['approved_budget'];
+//     $Y = $pdf->GetY() + 3.5;
+//     foreach ($ps_data as $ps_row) {
+//         $allotment_class = $ps_row['allotment_class'];
+//         $object_code = $ps_row['object_code'];
+//         $sub_object_code = $ps_row['sub_object_code'];
+//         $uacs_code = $ps_row['uacs_code'];
+//         $approved_budget = $ps_row['approved_budget'];
 
-        $query = $this->db->query("
-            SELECT COALESCE(SUM(amount),0) AS total_amount  
-            FROM (
-                SELECT dps.`amount` FROM tbl_ors_direct_ps_dt dps JOIN tbl_ors_hd hd on dps.`project_id` = hd.`recid` WHERE dps.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND dps.`project_title` like '%$program_tagging%'
-                UNION ALL
-                SELECT idps.`amount` FROM tbl_ors_indirect_ps_dt idps JOIN tbl_ors_hd hd on idps.`project_id` = hd.`recid` WHERE idps.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND idps.`project_title` like '%$program_tagging%'
-            ) AS combined
-        ");
+//         $query = $this->db->query("
+//             SELECT COALESCE(SUM(amount),0) AS total_amount  
+//             FROM (
+//                 SELECT dps.`amount` FROM tbl_ors_direct_ps_dt dps JOIN tbl_ors_hd hd on dps.`project_id` = hd.`recid` WHERE dps.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND dps.`project_title` like '%$program_like%'
+//                 UNION ALL
+//                 SELECT idps.`amount` FROM tbl_ors_indirect_ps_dt idps JOIN tbl_ors_hd hd on idps.`project_id` = hd.`recid` WHERE idps.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND idps.`project_title` like '%$program_like%'
+//             ) AS combined
+//         ");
 
-        $result = $query->getRowArray();
-        $month_amount = $result['total_amount'];
+//         $result = $query->getRowArray();
+//         $month_amount = $result['total_amount'];
 
-        $query = $this->db->query("
-            SELECT COALESCE(SUM(amount),0) AS total_amount  
-            FROM (
-                SELECT dps.`amount` FROM tbl_ors_direct_ps_dt dps JOIN tbl_ors_hd hd on dps.`project_id` = hd.`recid` WHERE dps.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND dps.`project_title` like '%$program_tagging%'
-                UNION ALL
-                SELECT idps.`amount` FROM tbl_ors_indirect_ps_dt idps JOIN tbl_ors_hd hd on idps.`project_id` = hd.`recid` WHERE idps.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND idps.`project_title` like '%$program_tagging%'
-            ) AS combined
-        ");
+//         $query = $this->db->query("
+//             SELECT COALESCE(SUM(amount),0) AS total_amount  
+//             FROM (
+//                 SELECT dps.`amount` FROM tbl_ors_direct_ps_dt dps JOIN tbl_ors_hd hd on dps.`project_id` = hd.`recid` WHERE dps.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND dps.`project_title` like '%$program_like%'
+//                 UNION ALL
+//                 SELECT idps.`amount` FROM tbl_ors_indirect_ps_dt idps JOIN tbl_ors_hd hd on idps.`project_id` = hd.`recid` WHERE idps.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND idps.`project_title` like '%$program_like%'
+//             ) AS combined
+//         ");
 
-        $result = $query->getRowArray();
-        $year_amount = $result['total_amount'];
+//         $result = $query->getRowArray();
+//         $year_amount = $result['total_amount'];
 
-        if ($Y > 270) {
-        $pdf->AddPage();
-            $Y = $pdf->GetY();
-            $pdf->SetXY(10, $Y);
-            $pdf->SetFont('Arial', 'B', 7);
-            $pdf->Cell(64, 3.5, '', 'TRL', 0, 'C');//ROW 1
-            $pdf->Cell(22, 3.5, '', 'TRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '', 'TRL', 0, 'C');
-            $pdf->Cell(44, 3.5, '', 'TRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '', 'TRL', 0, 'C');
-            $pdf->Cell(17, 3.5, '', 'TRL', 0, 'C');
-            $Y+= 3.5;
+//         if ($Y > 270) {
+//         $pdf->AddPage();
+//             $Y = $pdf->GetY();
+//             $pdf->SetXY(10, $Y);
+//             $pdf->SetFont('Arial', 'B', 7);
+//             $pdf->Cell(64, 3.5, '', 'TRL', 0, 'C');//ROW 1
+//             $pdf->Cell(22, 3.5, '', 'TRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '', 'TRL', 0, 'C');
+//             $pdf->Cell(44, 3.5, '', 'TRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '', 'TRL', 0, 'C');
+//             $pdf->Cell(17, 3.5, '', 'TRL', 0, 'C');
+//             $Y+= 3.5;
 
-            $pdf->SetXY(10, $Y);
-            $pdf->Cell(64, 3.5, '', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, '', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, '', 'RL', 0, 'C');
-            $pdf->Cell(44, 3.5, 'Obligation Incurred', 'BRL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'Unobligated', 'RL', 0, 'C');
-            $pdf->Cell(17, 3.5, '', 'RL', 0, 'C');
-            $Y+= 3.5;
+//             $pdf->SetXY(10, $Y);
+//             $pdf->Cell(64, 3.5, '', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '', 'RL', 0, 'C');
+//             $pdf->Cell(44, 3.5, 'Obligation Incurred', 'BRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'Unobligated', 'RL', 0, 'C');
+//             $pdf->Cell(17, 3.5, '', 'RL', 0, 'C');
+//             $Y+= 3.5;
 
-            $pdf->SetXY(10, $Y);
-            $pdf->Cell(64, 3.5, 'OBJECT OF EXPENDITURE', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, '', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'Revised', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'This month', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'Obligation', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'Balance of', 'RL', 0, 'C');
-            $pdf->Cell(17, 3.5, 'Percent', 'RL', 0, 'C');
-            $Y+= 3.5;
+//             $pdf->SetXY(10, $Y);
+//             $pdf->Cell(64, 3.5, 'OBJECT OF EXPENDITURE', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'Revised', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'This month', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'Obligation', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'Balance of', 'RL', 0, 'C');
+//             $pdf->Cell(17, 3.5, 'Percent', 'RL', 0, 'C');
+//             $Y+= 3.5;
 
-            $pdf->SetXY(10, $Y);
-            $pdf->Cell(64, 3.5, '', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'UACS', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'Allotment', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, $month, 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'To Date', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'Allotment', 'RL', 0, 'C');
-            $pdf->Cell(17, 3.5, 'Of', 'RL', 0, 'C');
-            $Y+= 3.5;
+//             $pdf->SetXY(10, $Y);
+//             $pdf->Cell(64, 3.5, '', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'UACS', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'Allotment', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, $month, 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'To Date', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'Allotment', 'RL', 0, 'C');
+//             $pdf->Cell(17, 3.5, 'Of', 'RL', 0, 'C');
+//             $Y+= 3.5;
 
-            $pdf->SetXY(10, $Y);
-            $pdf->Cell(64, 3.5, '', 'BRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '(1)', 'BRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '(4)', 'BRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '(5)', 'BRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '(6)', 'BRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '(7)=(4)-(6)', 'BRL', 0, 'C');
-            $pdf->Cell(17, 3.5, 'Utilization', 'BRL', 0, 'C');
+//             $pdf->SetXY(10, $Y);
+//             $pdf->Cell(64, 3.5, '', 'BRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '(1)', 'BRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '(4)', 'BRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '(5)', 'BRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '(6)', 'BRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '(7)=(4)-(6)', 'BRL', 0, 'C');
+//             $pdf->Cell(17, 3.5, 'Utilization', 'BRL', 0, 'C');
 
-            $Y = $pdf->GetY()+4.5;
-            // $pdf->SetXY(10, $Y);
-            // $pdf->Cell(64, 215.5, '', 1, 0); 
-            // $pdf->SetXY(74, $Y);
-            // $pdf->Cell(22, 215.5, '', 1, 0); 
-            // $pdf->SetXY(96, $Y);
-            // $pdf->Cell(22, 215.5, '', 1, 0); 
-            // $pdf->SetXY(118, $Y);
-            // $pdf->Cell(22, 215.5, '', 1, 0); 
-            // $pdf->SetXY(140, $Y);
-            // $pdf->Cell(22, 215.5, '', 1, 0); 
-            // $pdf->SetXY(162, $Y);
-            // $pdf->Cell(22, 215.5, '', 1, 0); 
-            // $pdf->SetXY(184, $Y);
-            // $pdf->Cell(17, 215.5, '', 1, 0); 
-        }
+//             $Y = $pdf->GetY()+4.5;
+//             // $pdf->SetXY(10, $Y);
+//             // $pdf->Cell(64, 215.5, '', 1, 0); 
+//             // $pdf->SetXY(74, $Y);
+//             // $pdf->Cell(22, 215.5, '', 1, 0); 
+//             // $pdf->SetXY(96, $Y);
+//             // $pdf->Cell(22, 215.5, '', 1, 0); 
+//             // $pdf->SetXY(118, $Y);
+//             // $pdf->Cell(22, 215.5, '', 1, 0); 
+//             // $pdf->SetXY(140, $Y);
+//             // $pdf->Cell(22, 215.5, '', 1, 0); 
+//             // $pdf->SetXY(162, $Y);
+//             // $pdf->Cell(22, 215.5, '', 1, 0); 
+//             // $pdf->SetXY(184, $Y);
+//             // $pdf->Cell(17, 215.5, '', 1, 0); 
+//         }
 
-        if ($allotment_class !== $last_allotment_class && $allotment_class !== null) {
-            $pdf->SetFont('Arial', '', 8);
-            $pdf->SetXY(5, $Y);
-            $pdf->Cell(5, 4.5, '', 0, 0, 'L');
-            $pdf->MultiCell(59, 4.5, $allotment_class, 1, 'L'); // full width usage
-            $pdf->SetXY(96, $Y);
-            $pdf->Cell(21.8, 4.5,  number_format($total_ps, 2), 'B', 1, 'C');
-            $pdf->SetXY(118, $Y);
-            $pdf->Cell(21.8, 4.5,  number_format($ps_total_current_month, 2), 'B', 1, 'C');
-            $pdf->SetXY(140, $Y);
-            $pdf->Cell(21.8, 4.5,  number_format($ps_total_todate_month, 2), 'B', 1, 'C');
-            $pdf->SetXY(162, $Y);
-            $pdf->Cell(21.8, 4.5,  number_format($ps_total_unobligated, 2), 'B', 1, 'C');
-            $pdf->SetFont('Arial', 'B', 8);
-            $pdf->SetXY(184, $Y);
-            $pdf->Cell(17, 4.5, number_format($ps_percentage_minus, 2) . '%', 1, 1, 'C');
-            $Y += 4.5;
-            $last_allotment_class = $allotment_class;
-        }
+//         if ($allotment_class !== $last_allotment_class && $allotment_class !== null) {
+//             $pdf->SetFont('Arial', '', 8);
+//             $pdf->SetXY(5, $Y);
+//             $pdf->Cell(5, 4.5, '', 0, 0, 'L');
+//             $pdf->MultiCell(59, 4.5, $allotment_class, 1, 'L'); // full width usage
+//             $pdf->SetXY(96, $Y);
+//             $pdf->Cell(21.8, 4.5,  number_format($total_ps, 2), 'B', 1, 'C');
+//             $pdf->SetXY(118, $Y);
+//             $pdf->Cell(21.8, 4.5,  number_format($ps_total_current_month, 2), 'B', 1, 'C');
+//             $pdf->SetXY(140, $Y);
+//             $pdf->Cell(21.8, 4.5,  number_format($ps_total_todate_month, 2), 'B', 1, 'C');
+//             $pdf->SetXY(162, $Y);
+//             $pdf->Cell(21.8, 4.5,  number_format($ps_total_unobligated, 2), 'B', 1, 'C');
+//             $pdf->SetFont('Arial', 'B', 8);
+//             $pdf->SetXY(184, $Y);
+//             $pdf->Cell(17, 4.5, number_format($ps_percentage_minus, 2) . '%', 1, 1, 'C');
+//             $Y += 4.5;
+//             $last_allotment_class = $allotment_class;
+//         }
 
-        if ($object_code !== $last_object_code && $object_code !== null) {
-            $pdf->SetFont('Arial', '', 8);
-            $pdf->SetXY(10, $Y);
-            $pdf->SetFont('Arial', '', 8);
-            $pdf->Cell(5, 4.5, '', 1, 1, 'C');
-            $pdf->SetXY(10, $Y);
-            $pdf->Cell(5, 4.5, '', 0, 0, 'L');
-            $pdf->MultiCell(59, 4.5, $object_code, 1, 'L'); // full width usage
-            $total_for_object_code = $ps_object_code_totals[$object_code] ?? 0;
-            $total_sub_month_amount = $ps_sub_month_totals[$object_code] ?? 0;
-            $total_sub_year_amount = $ps_sub_year_totals[$object_code] ?? 0;
-            $total_sub_unobligated = ($total_for_object_code ?? 0) - ($total_sub_year_amount ?? 0);
-            $pdf->SetXY(96, $Y);
-            $pdf->Cell(21.8, 4.5, number_format($total_for_object_code,2), 'B', 1, 'C');
-            $pdf->SetXY(118, $Y);
-            $pdf->Cell(21.8, 4.5, number_format($total_sub_month_amount,2), 'B', 1, 'C');
-            $pdf->SetXY(140, $Y);
-            $pdf->Cell(21.8, 4.5, number_format($total_sub_year_amount,2), 'B', 1, 'C');
-            $pdf->SetXY(162, $Y);
-            $pdf->Cell(21.8, 4.5, number_format($total_sub_unobligated,2), 'B', 1, 'C');
-            $pdf->SetXY(184, $Y);
-            $pdf->Cell(17, 4.5, 'TEST PS', 1, 1, 'C');
-            $Y += 4.5;
-            $last_object_code = $object_code;
+//         if ($object_code !== $last_object_code && $object_code !== null) {
+//             $pdf->SetFont('Arial', '', 8);
+//             $pdf->SetXY(10, $Y);
+//             $pdf->SetFont('Arial', '', 8);
+//             $pdf->Cell(5, 4.5, '', 1, 1, 'C');
+//             $pdf->SetXY(10, $Y);
+//             $pdf->Cell(5, 4.5, '', 0, 0, 'L');
+//             $pdf->MultiCell(59, 4.5, $object_code, 1, 'L'); // full width usage
+//             $total_for_object_code = $ps_object_code_totals[$object_code] ?? 0;
+//             $total_sub_month_amount = $ps_sub_month_totals[$object_code] ?? 0;
+//             $total_sub_year_amount = $ps_sub_year_totals[$object_code] ?? 0;
+//             $total_sub_unobligated = ($total_for_object_code ?? 0) - ($total_sub_year_amount ?? 0);
+//             $pdf->SetXY(96, $Y);
+//             $pdf->Cell(21.8, 4.5, number_format($total_for_object_code,2), 'B', 1, 'C');
+//             $pdf->SetXY(118, $Y);
+//             $pdf->Cell(21.8, 4.5, number_format($total_sub_month_amount,2), 'B', 1, 'C');
+//             $pdf->SetXY(140, $Y);
+//             $pdf->Cell(21.8, 4.5, number_format($total_sub_year_amount,2), 'B', 1, 'C');
+//             $pdf->SetXY(162, $Y);
+//             $pdf->Cell(21.8, 4.5, number_format($total_sub_unobligated,2), 'B', 1, 'C');
+//             $pdf->SetXY(184, $Y);
+//             $pdf->Cell(17, 4.5, 'TEST PS', 1, 1, 'C');
+//             $Y += 4.5;
+//             $last_object_code = $object_code;
 
             
-        }
-        // Print Expenditure Category if it changes
-        // Print Expenditure Category if it changes
-        if ($sub_object_code !== $last_sub_object_code && $sub_object_code !== null) {
-            $pdf->SetFont('Arial', '', 8);
+//         }
+//         // Print Expenditure Category if it changes
+//         // Print Expenditure Category if it changes
+//         if ($sub_object_code !== $last_sub_object_code && $sub_object_code !== null) {
+//             $pdf->SetFont('Arial', '', 8);
             
-            // Calculate the number of lines needed
-            $textWidth = 53;
-            $approximateCharsPerLine = floor($textWidth / 2);
-            $textLength = strlen($sub_object_code);
-            $numberOfLines = ceil($textLength / $approximateCharsPerLine);
-            $numberOfLines = max(1, $numberOfLines);
+//             // Calculate the number of lines needed
+//             $textWidth = 53;
+//             $approximateCharsPerLine = floor($textWidth / 2);
+//             $textLength = strlen($sub_object_code);
+//             $numberOfLines = ceil($textLength / $approximateCharsPerLine);
+//             $numberOfLines = max(1, $numberOfLines);
             
-            // Calculate total height for this row
-            $lineHeight = 4.5;
-            $totalRowHeight = $numberOfLines * $lineHeight;
+//             // Calculate total height for this row
+//             $lineHeight = 4.5;
+//             $totalRowHeight = $numberOfLines * $lineHeight;
             
-            // Draw ALL cells with the same height using Cell()
-            $pdf->SetXY(10, $Y);
-            $pdf->Cell(10, $totalRowHeight, '', 1, 0, 'C'); // First column
+//             // Draw ALL cells with the same height using Cell()
+//             $pdf->SetXY(10, $Y);
+//             $pdf->Cell(10, $totalRowHeight, '', 1, 0, 'C'); // First column
             
-            $pdf->SetXY(20, $Y);
-            $pdf->Cell(53, $totalRowHeight, '', 0, 0, 'L'); // Text column (empty border)
+//             $pdf->SetXY(20, $Y);
+//             $pdf->Cell(53, $totalRowHeight, '', 0, 0, 'L'); // Text column (empty border)
             
-            $pdf->SetXY(73, $Y);
-            $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // UACS column
+//             $pdf->SetXY(73, $Y);
+//             $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // UACS column
             
-            $pdf->SetXY(95, $Y);
-            $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // Allotment column
+//             $pdf->SetXY(95, $Y);
+//             $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // Allotment column
             
-            $pdf->SetXY(117, $Y);
-            $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // This month column
+//             $pdf->SetXY(117, $Y);
+//             $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // This month column
             
-            $pdf->SetXY(139, $Y);
-            $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // To Date column
+//             $pdf->SetXY(139, $Y);
+//             $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // To Date column
             
-            $pdf->SetXY(161, $Y);
-            $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // Balance column
+//             $pdf->SetXY(161, $Y);
+//             $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // Balance column
             
-            $pdf->SetXY(184, $Y);
-            $pdf->Cell(17, $totalRowHeight, 'your text', 1, 0, 'C'); // Last column
+//             $pdf->SetXY(184, $Y);
+//             $pdf->Cell(17, $totalRowHeight, 'your text', 1, 0, 'C'); // Last column
             
-            // Now manually write the text in the appropriate cell with line breaks
-            $pdf->SetXY(21, $Y); // Slight offset for better appearance
-            $pdf->MultiCell(51, $lineHeight, $sub_object_code, 0, 'L'); // No border
+//             // Now manually write the text in the appropriate cell with line breaks
+//             $pdf->SetXY(21, $Y); // Slight offset for better appearance
+//             $pdf->MultiCell(51, $lineHeight, $sub_object_code, 0, 'L'); // No border
             
-            $Y += $totalRowHeight;
-            $last_sub_object_code = $sub_object_code;
-        }
-        $Y = $pdf->GetY() - 3.5;
-        $pdf->SetXY(76, $Y);
-        $pdf->Cell(20, 3.5, $uacs_code, 0, 1, 'C');
+//             $Y += $totalRowHeight;
+//             $last_sub_object_code = $sub_object_code;
+//         }
+//         $Y = $pdf->GetY() - 3.5;
+//         $pdf->SetXY(76, $Y);
+//         $pdf->Cell(20, 3.5, $uacs_code, 0, 1, 'C');
 
-        $pdf->SetXY(97, $Y);
-        $pdf->Cell(20, 3.5, ($approved_budget == 0.00 || !is_numeric($approved_budget)) ? 0.00 : number_format((float)$approved_budget, 2), 0, 1, 'C');
+//         $pdf->SetXY(97, $Y);
+//         $pdf->Cell(20, 3.5, ($approved_budget == 0.00 || !is_numeric($approved_budget)) ? 0.00 : number_format((float)$approved_budget, 2), 0, 1, 'C');
 
-        $pdf->SetXY(119, $Y);
-        $pdf->Cell(20, 3.5, $month_amount, 0, 1, 'C');
+//         $pdf->SetXY(119, $Y);
+//         $pdf->Cell(20, 3.5, $month_amount, 0, 1, 'C');
 
-        $pdf->SetXY(142, $Y);
-        $pdf->Cell(20, 3.5, $year_amount, 0, 1, 'C');
+//         $pdf->SetXY(142, $Y);
+//         $pdf->Cell(20, 3.5, $year_amount, 0, 1, 'C');
 
-        $subobligated_amount = $approved_budget - $year_amount;
-        $pdf->SetXY(164, $Y);
-        $pdf->Cell(20, 3.5, number_format($subobligated_amount,2), 0, 1, 'C');
+//         $subobligated_amount = $approved_budget - $year_amount;
+//         $pdf->SetXY(164, $Y);
+//         $pdf->Cell(20, 3.5, number_format($subobligated_amount,2), 0, 1, 'C');
 
-        $Y = $pdf->GetY();
+//         $Y = $pdf->GetY();
 
-    }
+//     }
 
-    $last_allotment_class = '';
-    $last_sub_object_code = '';
-    $last_object_code = '';
+//     $last_allotment_class = '';
+//     $last_sub_object_code = '';
+//     $last_object_code = '';
 
-    $Y = $pdf->GetY();
-    foreach ($mooe_data as $mooe_row) {
-        $allotment_class = $mooe_row['allotment_class'];
-        $object_code = $mooe_row['object_code'];
-        $sub_object_code = $mooe_row['sub_object_code'];
-        $uacs_code = $mooe_row['uacs_code'];
-        $approved_budget = $mooe_row['approved_budget'];
+//     $Y = $pdf->GetY();
+//     foreach ($mooe_data as $mooe_row) {
+//         $allotment_class = $mooe_row['allotment_class'];
+//         $object_code = $mooe_row['object_code'];
+//         $sub_object_code = $mooe_row['sub_object_code'];
+//         $uacs_code = $mooe_row['uacs_code'];
+//         $approved_budget = $mooe_row['approved_budget'];
 
-        $query = $this->db->query("
-            SELECT COALESCE(SUM(amount),0) AS total_amount  
-            FROM (
-                SELECT dmooe.`amount` FROM tbl_ors_direct_mooe_dt dmooe JOIN tbl_ors_hd hd on dmooe.`project_id` = hd.`recid` WHERE dmooe.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND dmooe.`project_title` like '%$program_tagging%'
-                UNION ALL
-                SELECT idmooe.`amount` FROM tbl_ors_indirect_mooe_dt idmooe JOIN tbl_ors_hd hd on idmooe.`project_id` = hd.`recid` WHERE idmooe.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND idmooe.`project_title` like '%$program_tagging%'
-            ) AS combined
-        ");
+//         $query = $this->db->query("
+//             SELECT COALESCE(SUM(amount),0) AS total_amount  
+//             FROM (
+//                 SELECT dmooe.`amount` FROM tbl_ors_direct_mooe_dt dmooe JOIN tbl_ors_hd hd on dmooe.`project_id` = hd.`recid` WHERE dmooe.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND dmooe.`project_title` like '%$program_tagging%'
+//                 UNION ALL
+//                 SELECT idmooe.`amount` FROM tbl_ors_indirect_mooe_dt idmooe JOIN tbl_ors_hd hd on idmooe.`project_id` = hd.`recid` WHERE idmooe.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND idmooe.`project_title` like '%$program_tagging%'
+//             ) AS combined
+//         ");
 
-        $result = $query->getRowArray();
-        $month_amount = $result['total_amount'];
+//         $result = $query->getRowArray();
+//         $month_amount = $result['total_amount'];
 
-        $query = $this->db->query("
-            SELECT COALESCE(SUM(amount),0) AS total_amount  
-            FROM (
-                SELECT dmooe.`amount` FROM tbl_ors_direct_mooe_dt dmooe JOIN tbl_ors_hd hd on dmooe.`project_id` = hd.`recid` WHERE dmooe.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND dmooe.`project_title` like '%$program_tagging%'
-                UNION ALL
-                SELECT idmooe.`amount` FROM tbl_ors_indirect_mooe_dt idmooe JOIN tbl_ors_hd hd on idmooe.`project_id` = hd.`recid` WHERE idmooe.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND idmooe.`project_title` like '%$program_tagging%'
-            ) AS combined
-        ");
+//         $query = $this->db->query("
+//             SELECT COALESCE(SUM(amount),0) AS total_amount  
+//             FROM (
+//                 SELECT dmooe.`amount` FROM tbl_ors_direct_mooe_dt dmooe JOIN tbl_ors_hd hd on dmooe.`project_id` = hd.`recid` WHERE dmooe.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND dmooe.`project_title` like '%$program_tagging%'
+//                 UNION ALL
+//                 SELECT idmooe.`amount` FROM tbl_ors_indirect_mooe_dt idmooe JOIN tbl_ors_hd hd on idmooe.`project_id` = hd.`recid` WHERE idmooe.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND idmooe.`project_title` like '%$program_tagging%'
+//             ) AS combined
+//         ");
 
-        $result = $query->getRowArray();
-        $year_amount = $result['total_amount'];
+//         $result = $query->getRowArray();
+//         $year_amount = $result['total_amount'];
 
-        if ($Y > 255) {
-            $pdf->AddPage();
-            $Y = $pdf->GetY();
-            $pdf->SetXY(10, $Y);
-            $pdf->SetFont('Arial', 'B', 7);
-            $pdf->Cell(64, 3.5, '', 'TRL', 0, 'C');//ROW 1
-            $pdf->Cell(22, 3.5, '', 'TRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '', 'TRL', 0, 'C');
-            $pdf->Cell(44, 3.5, '', 'TRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '', 'TRL', 0, 'C');
-            $pdf->Cell(17, 3.5, '', 'TRL', 0, 'C');
-            $Y+= 3.5;
+//         if ($Y > 255) {
+//             $pdf->AddPage();
+//             $Y = $pdf->GetY();
+//             $pdf->SetXY(10, $Y);
+//             $pdf->SetFont('Arial', 'B', 7);
+//             $pdf->Cell(64, 3.5, '', 'TRL', 0, 'C');//ROW 1
+//             $pdf->Cell(22, 3.5, '', 'TRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '', 'TRL', 0, 'C');
+//             $pdf->Cell(44, 3.5, '', 'TRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '', 'TRL', 0, 'C');
+//             $pdf->Cell(17, 3.5, '', 'TRL', 0, 'C');
+//             $Y+= 3.5;
 
-            $pdf->SetXY(10, $Y);
-            $pdf->Cell(64, 3.5, '', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, '', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, '', 'RL', 0, 'C');
-            $pdf->Cell(44, 3.5, 'Obligation Incurred', 'BRL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'Unobligated', 'RL', 0, 'C');
-            $pdf->Cell(17, 3.5, '', 'RL', 0, 'C');
-            $Y+= 3.5;
+//             $pdf->SetXY(10, $Y);
+//             $pdf->Cell(64, 3.5, '', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '', 'RL', 0, 'C');
+//             $pdf->Cell(44, 3.5, 'Obligation Incurred', 'BRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'Unobligated', 'RL', 0, 'C');
+//             $pdf->Cell(17, 3.5, '', 'RL', 0, 'C');
+//             $Y+= 3.5;
 
-            $pdf->SetXY(10, $Y);
-            $pdf->Cell(64, 3.5, 'OBJECT OF EXPENDITURE', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, '', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'Revised', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'This month', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'Obligation', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'Balance of', 'RL', 0, 'C');
-            $pdf->Cell(17, 3.5, 'Percent', 'RL', 0, 'C');
-            $Y+= 3.5;
+//             $pdf->SetXY(10, $Y);
+//             $pdf->Cell(64, 3.5, 'OBJECT OF EXPENDITURE', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'Revised', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'This month', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'Obligation', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'Balance of', 'RL', 0, 'C');
+//             $pdf->Cell(17, 3.5, 'Percent', 'RL', 0, 'C');
+//             $Y+= 3.5;
 
-            $pdf->SetXY(10, $Y);
-            $pdf->Cell(64, 3.5, '', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'UACS', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'Allotment', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, $month, 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'To Date', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'Allotment', 'RL', 0, 'C');
-            $pdf->Cell(17, 3.5, 'Of', 'RL', 0, 'C');
-            $Y+= 3.5;
+//             $pdf->SetXY(10, $Y);
+//             $pdf->Cell(64, 3.5, '', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'UACS', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'Allotment', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, $month, 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'To Date', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'Allotment', 'RL', 0, 'C');
+//             $pdf->Cell(17, 3.5, 'Of', 'RL', 0, 'C');
+//             $Y+= 3.5;
 
-            $pdf->SetXY(10, $Y);
-            $pdf->Cell(64, 3.5, '', 'BRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '(1)', 'BRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '(4)', 'BRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '(5)', 'BRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '(6)', 'BRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '(7)=(4)-(6)', 'BRL', 0, 'C');
-            $pdf->Cell(17, 3.5, 'Utilization', 'BRL', 0, 'C');
+//             $pdf->SetXY(10, $Y);
+//             $pdf->Cell(64, 3.5, '', 'BRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '(1)', 'BRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '(4)', 'BRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '(5)', 'BRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '(6)', 'BRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '(7)=(4)-(6)', 'BRL', 0, 'C');
+//             $pdf->Cell(17, 3.5, 'Utilization', 'BRL', 0, 'C');
 
-            $Y = $pdf->GetY()+3.5;
+//             $Y = $pdf->GetY()+3.5;
 
-        }
+//         }
         
-        if ($allotment_class !== $last_allotment_class && $allotment_class !== null) {
-            $pdf->SetFont('Arial', '', 8);
-            $pdf->SetXY(5, $Y);
-            $pdf->Cell(5, 4.5, '', 0, 0, 'L');
-            $pdf->MultiCell(59, 4.5, $allotment_class, 1, 'L'); // full width usage
-            $pdf->SetXY(96, $Y);
-            $pdf->Cell(21.8, 4.5,  number_format($total_mooe, 2), 'B', 1, 'C');
-            $pdf->SetXY(118, $Y);
-            $pdf->Cell(21.8, 4.5,  number_format($mooe_total_current_month, 2), 'B', 1, 'C');
-            $pdf->SetXY(140, $Y);
-            $pdf->Cell(21.8, 4.5,  number_format($mooe_total_todate_month, 2), 'B', 1, 'C');
-            $pdf->SetXY(162, $Y);
-            $pdf->Cell(21.8, 4.5,  number_format($mooe_total_unobligated, 2), 'B', 1, 'C');
-             $pdf->SetFont('Arial', 'B', 8);
-            $pdf->SetXY(184, $Y);
-            $pdf->Cell(17, 4.5, number_format($mooe_percentage_minus, 2) . '%', 1, 1, 'C');
-            $Y += 4.5;
-            $last_allotment_class = $allotment_class;
-        }
+//         if ($allotment_class !== $last_allotment_class && $allotment_class !== null) {
+//             $pdf->SetFont('Arial', '', 8);
+//             $pdf->SetXY(5, $Y);
+//             $pdf->Cell(5, 4.5, '', 0, 0, 'L');
+//             $pdf->MultiCell(59, 4.5, $allotment_class, 1, 'L'); // full width usage
+//             $pdf->SetXY(96, $Y);
+//             $pdf->Cell(21.8, 4.5,  number_format($total_mooe, 2), 'B', 1, 'C');
+//             $pdf->SetXY(118, $Y);
+//             $pdf->Cell(21.8, 4.5,  number_format($mooe_total_current_month, 2), 'B', 1, 'C');
+//             $pdf->SetXY(140, $Y);
+//             $pdf->Cell(21.8, 4.5,  number_format($mooe_total_todate_month, 2), 'B', 1, 'C');
+//             $pdf->SetXY(162, $Y);
+//             $pdf->Cell(21.8, 4.5,  number_format($mooe_total_unobligated, 2), 'B', 1, 'C');
+//              $pdf->SetFont('Arial', 'B', 8);
+//             $pdf->SetXY(184, $Y);
+//             $pdf->Cell(17, 4.5, number_format($mooe_percentage_minus, 2) . '%', 1, 1, 'C');
+//             $Y += 4.5;
+//             $last_allotment_class = $allotment_class;
+//         }
 
-        if ($object_code !== $last_object_code && $object_code !== null) {
-            $pdf->SetFont('Arial', '', 8);
-            $pdf->SetXY(10, $Y);
-            $pdf->SetFont('Arial', '', 8);
-            $pdf->Cell(5, 4.5, '', 1, 1, 'C');
-            $pdf->SetFont('Arial', '', 8);
-            $pdf->SetXY(10, $Y);
-            $pdf->Cell(5, 4.5, '', 0, 0, 'L');
-            if ($object_code == 'Confidential, Intelligence and Extraordinary Expenses') {
-                $object_code = 'Confidential, Intelligence and Extraord. Exps.';
-            }
-            $pdf->MultiCell(59, 4.5, $object_code, 1, 'L'); // full width usage
-            $total_for_object_code = $mooe_object_code_totals[$object_code] ?? 0;
-            $total_sub_month_amount = $mooe_sub_month_totals[$object_code] ?? 0;
-            $total_sub_year_amount = $mooe_sub_year_totals[$object_code] ?? 0;
-            $total_sub_unobligated = ($total_for_object_code ?? 0) - ($total_sub_year_amount ?? 0);
-            $pdf->SetXY(96, $Y);
-            $pdf->Cell(21.8, 4.5, number_format($total_for_object_code,2), 1, 1, 'C');
-            $pdf->SetXY(118, $Y);
-            $pdf->Cell(21.8, 4.5, number_format($total_sub_month_amount,2), 1, 1, 'C');
-            $pdf->SetXY(140, $Y);
-            $pdf->Cell(21.8, 4.5, number_format($total_sub_year_amount,2), 1, 1, 'C');
-            $pdf->SetXY(162, $Y);
-            $pdf->Cell(21.8, 4.5, number_format($total_sub_unobligated,2), 1, 1, 'C');
-            $pdf->SetXY(184, $Y);
-            $pdf->Cell(17, 4.5, 'TESTRARARARA', 1, 1, 'C');
-            $Y += 4.5;
-            $last_object_code = $object_code;
-        }
-        // Print Expenditure Category if it changes
-        if ($sub_object_code !== $last_sub_object_code && $sub_object_code !== null) {
-            $pdf->SetFont('Arial', '', 8);
+//         if ($object_code !== $last_object_code && $object_code !== null) {
+//             $pdf->SetFont('Arial', '', 8);
+//             $pdf->SetXY(10, $Y);
+//             $pdf->SetFont('Arial', '', 8);
+//             $pdf->Cell(5, 4.5, '', 1, 1, 'C');
+//             $pdf->SetFont('Arial', '', 8);
+//             $pdf->SetXY(10, $Y);
+//             $pdf->Cell(5, 4.5, '', 0, 0, 'L');
+//             if ($object_code == 'Confidential, Intelligence and Extraordinary Expenses') {
+//                 $object_code = 'Confidential, Intelligence and Extraord. Exps.';
+//             }
+//             $pdf->MultiCell(59, 4.5, $object_code, 1, 'L'); // full width usage
+//             $total_for_object_code = $mooe_object_code_totals[$object_code] ?? 0;
+//             $total_sub_month_amount = $mooe_sub_month_totals[$object_code] ?? 0;
+//             $total_sub_year_amount = $mooe_sub_year_totals[$object_code] ?? 0;
+//             $total_sub_unobligated = ($total_for_object_code ?? 0) - ($total_sub_year_amount ?? 0);
+//             $pdf->SetXY(96, $Y);
+//             $pdf->Cell(21.8, 4.5, number_format($total_for_object_code,2), 1, 1, 'C');
+//             $pdf->SetXY(118, $Y);
+//             $pdf->Cell(21.8, 4.5, number_format($total_sub_month_amount,2), 1, 1, 'C');
+//             $pdf->SetXY(140, $Y);
+//             $pdf->Cell(21.8, 4.5, number_format($total_sub_year_amount,2), 1, 1, 'C');
+//             $pdf->SetXY(162, $Y);
+//             $pdf->Cell(21.8, 4.5, number_format($total_sub_unobligated,2), 1, 1, 'C');
+//             $pdf->SetXY(184, $Y);
+//             $pdf->Cell(17, 4.5, 'TESTRARARARA', 1, 1, 'C');
+//             $Y += 4.5;
+//             $last_object_code = $object_code;
+//         }
+//         // Print Expenditure Category if it changes
+//         if ($sub_object_code !== $last_sub_object_code && $sub_object_code !== null) {
+//             $pdf->SetFont('Arial', '', 8);
             
-            if ($Y >265) {
-                $pdf->SetXY(10, $Y);
-                $pdf->Cell(191, 4.5, '', 'B', 0, 'C'); // Balance column
-            }
-            // Calculate the number of lines needed
-            $textWidth = 53;
-            $approximateCharsPerLine = floor($textWidth / 2);
-            $textLength = strlen($sub_object_code);
-            $numberOfLines = ceil($textLength / $approximateCharsPerLine);
-            $numberOfLines = max(1, $numberOfLines);
+//             if ($Y >265) {
+//                 $pdf->SetXY(10, $Y);
+//                 $pdf->Cell(191, 4.5, '', 'B', 0, 'C'); // Balance column
+//             }
+//             // Calculate the number of lines needed
+//             $textWidth = 53;
+//             $approximateCharsPerLine = floor($textWidth / 2);
+//             $textLength = strlen($sub_object_code);
+//             $numberOfLines = ceil($textLength / $approximateCharsPerLine);
+//             $numberOfLines = max(1, $numberOfLines);
             
-            // Calculate total height for this row
-            $lineHeight = 4.5;
-            $totalRowHeight = $numberOfLines * $lineHeight;
+//             // Calculate total height for this row
+//             $lineHeight = 4.5;
+//             $totalRowHeight = $numberOfLines * $lineHeight;
             
-            // Draw ALL cells with the same height using Cell()
-            $pdf->SetXY(10, $Y);
-            $pdf->Cell(10, $totalRowHeight, '', 1, 0, 'C'); // First column
+//             // Draw ALL cells with the same height using Cell()
+//             $pdf->SetXY(10, $Y);
+//             $pdf->Cell(10, $totalRowHeight, '', 1, 0, 'C'); // First column
             
-            $pdf->SetXY(20, $Y);
-            $pdf->Cell(53, $totalRowHeight, '', 0, 0, 'L'); // Text column (empty border)
+//             $pdf->SetXY(20, $Y);
+//             $pdf->Cell(53, $totalRowHeight, '', 0, 0, 'L'); // Text column (empty border)
             
-            $pdf->SetXY(73, $Y);
-            $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // UACS column
+//             $pdf->SetXY(73, $Y);
+//             $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // UACS column
             
-            $pdf->SetXY(95, $Y);
-            $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // Allotment column
+//             $pdf->SetXY(95, $Y);
+//             $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // Allotment column
             
-            $pdf->SetXY(117, $Y);
-            $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // This month column
+//             $pdf->SetXY(117, $Y);
+//             $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // This month column
             
-            $pdf->SetXY(139, $Y);
-            $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // To Date column
+//             $pdf->SetXY(139, $Y);
+//             $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // To Date column
             
-            $pdf->SetXY(161, $Y);
-            $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // Balance column
+//             $pdf->SetXY(161, $Y);
+//             $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // Balance column
             
-            $pdf->SetXY(184, $Y);
-            $pdf->Cell(17, $totalRowHeight, 'your text', 1, 0, 'C'); // Last column
+//             $pdf->SetXY(184, $Y);
+//             $pdf->Cell(17, $totalRowHeight, 'your text', 1, 0, 'C'); // Last column
             
-            // Now manually write the text in the appropriate cell with line breaks
-            $pdf->SetXY(21, $Y); // Slight offset for better appearance
-            $pdf->MultiCell(51, $lineHeight, $sub_object_code, 0, 'L'); // No border
+//             // Now manually write the text in the appropriate cell with line breaks
+//             $pdf->SetXY(21, $Y); // Slight offset for better appearance
+//             $pdf->MultiCell(51, $lineHeight, $sub_object_code, 0, 'L'); // No border
             
-            $Y += $totalRowHeight;
-            $last_sub_object_code = $sub_object_code;
+//             $Y += $totalRowHeight;
+//             $last_sub_object_code = $sub_object_code;
 
-        }
+//         }
 
-        $Y = $pdf->GetY() - 4.5;
-        $pdf->SetXY(76, $Y);
-        $pdf->Cell(20, 4.5, $uacs_code, 0, 1, 'C');
+//         $Y = $pdf->GetY() - 4.5;
+//         $pdf->SetXY(76, $Y);
+//         $pdf->Cell(20, 4.5, $uacs_code, 0, 1, 'C');
 
-        $pdf->SetXY(97, $Y);
-        $pdf->Cell(20, 4.5, ($approved_budget == 0.00 || !is_numeric($approved_budget)) ? 0.00 : number_format((float)$approved_budget, 2), 0, 1, 'C');
+//         $pdf->SetXY(97, $Y);
+//         $pdf->Cell(20, 4.5, ($approved_budget == 0.00 || !is_numeric($approved_budget)) ? 0.00 : number_format((float)$approved_budget, 2), 0, 1, 'C');
 
-        $pdf->SetXY(119, $Y);
-        $pdf->Cell(20, 4.5, $month_amount, 0, 1, 'C');
+//         $pdf->SetXY(119, $Y);
+//         $pdf->Cell(20, 4.5, $month_amount, 0, 1, 'C');
 
-        $pdf->SetXY(142, $Y);
-        $pdf->Cell(20, 4.5, $year_amount, 0, 1, 'C');
+//         $pdf->SetXY(142, $Y);
+//         $pdf->Cell(20, 4.5, $year_amount, 0, 1, 'C');
 
-        $subobligated_amount = $approved_budget - $year_amount;
-        $pdf->SetXY(164, $Y);
-        $pdf->Cell(20, 4.5, number_format($subobligated_amount,2), 0, 1, 'C');
+//         $subobligated_amount = $approved_budget - $year_amount;
+//         $pdf->SetXY(164, $Y);
+//         $pdf->Cell(20, 4.5, number_format($subobligated_amount,2), 0, 1, 'C');
 
-        $Y = $pdf->GetY();
+//         $Y = $pdf->GetY();
 
-        if($Y > 255){
-            if (!$printed_once) {
-                $Y = $pdf->GetY()+3.5;
-                $pdf->Cell(191, 3.5, 'This line will only print once', 'T', 1, 'C');
-                $printed_once = true; // prevent printing again
-            }
-        }
+//         if($Y > 255){
+//             if (!$printed_once) {
+//                 $Y = $pdf->GetY()+3.5;
+//                 $pdf->Cell(191, 3.5, 'This line will only print once', 'T', 1, 'C');
+//                 $printed_once = true; // prevent printing again
+//             }
+//         }
 
-    }
+//     }
 
-    $last_allotment_class = '';
-    $last_sub_object_code = '';
-    $last_object_code = '';
+//     $last_allotment_class = '';
+//     $last_sub_object_code = '';
+//     $last_object_code = '';
 
-    $Y = $pdf->GetY();
-    $pdf->SetXY(10, $Y);
-    $pdf->Cell(191, 4.5, 'TEST AFTER MOOE', 1, 1, 'C');
-    $Y = $pdf->GetY();
-    foreach ($co_data as $co_row) {
-        $allotment_class = $co_row['allotment_class'];
-        $object_code = $co_row['object_code'];
-        $sub_object_code = $co_row['sub_object_code'];
-        $uacs_code = $co_row['uacs_code'];
-        $approved_budget = $co_row['approved_budget'];
+//     $Y = $pdf->GetY();
+//     $pdf->SetXY(10, $Y);
+//     $pdf->Cell(191, 4.5, 'TEST AFTER MOOE', 1, 1, 'C');
+//     $Y = $pdf->GetY();
+//     foreach ($co_data as $co_row) {
+//         $allotment_class = $co_row['allotment_class'];
+//         $object_code = $co_row['object_code'];
+//         $sub_object_code = $co_row['sub_object_code'];
+//         $uacs_code = $co_row['uacs_code'];
+//         $approved_budget = $co_row['approved_budget'];
 
-        $query = $this->db->query("
-            SELECT COALESCE(SUM(amount),0) AS total_amount  
-            FROM (
-                SELECT dco.`amount` FROM tbl_ors_direct_co_dt dco JOIN tbl_ors_hd hd on dco.`project_id` = hd.`recid` WHERE dco.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND dco.`project_title` like '%$program_tagging%'
-                UNION ALL
-                SELECT idco.`amount` FROM tbl_ors_indirect_co_dt idco JOIN tbl_ors_hd hd on idco.`project_id` = hd.`recid` WHERE idco.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND idco.`project_title` like '%$program_tagging%'
-            ) AS combined
-        ");
+//         $query = $this->db->query("
+//             SELECT COALESCE(SUM(amount),0) AS total_amount  
+//             FROM (
+//                 SELECT dco.`amount` FROM tbl_ors_direct_co_dt dco JOIN tbl_ors_hd hd on dco.`project_id` = hd.`recid` WHERE dco.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND dco.`project_title` like '%$program_tagging%'
+//                 UNION ALL
+//                 SELECT idco.`amount` FROM tbl_ors_indirect_co_dt idco JOIN tbl_ors_hd hd on idco.`project_id` = hd.`recid` WHERE idco.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND idco.`project_title` like '%$program_tagging%'
+//             ) AS combined
+//         ");
 
-        $result = $query->getRowArray();
-        $month_amount = $result['total_amount'];
+//         $result = $query->getRowArray();
+//         $month_amount = $result['total_amount'];
 
-        $query = $this->db->query("
-            SELECT COALESCE(SUM(amount),0) AS total_amount  
-            FROM (
-                SELECT dco.`amount` FROM tbl_ors_direct_co_dt dco JOIN tbl_ors_hd hd on dco.`project_id` = hd.`recid` WHERE dco.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND dco.`project_title` like '%$program_tagging%'
-                UNION ALL
-                SELECT idco.`amount` FROM tbl_ors_indirect_co_dt idco JOIN tbl_ors_hd hd on idco.`project_id` = hd.`recid` WHERE idco.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND idco.`project_title` like '%$program_tagging%'
-            ) AS combined
-        ");
+//         $query = $this->db->query("
+//             SELECT COALESCE(SUM(amount),0) AS total_amount  
+//             FROM (
+//                 SELECT dco.`amount` FROM tbl_ors_direct_co_dt dco JOIN tbl_ors_hd hd on dco.`project_id` = hd.`recid` WHERE dco.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND dco.`project_title` like '%$program_tagging%'
+//                 UNION ALL
+//                 SELECT idco.`amount` FROM tbl_ors_indirect_co_dt idco JOIN tbl_ors_hd hd on idco.`project_id` = hd.`recid` WHERE idco.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND idco.`project_title` like '%$program_tagging%'
+//             ) AS combined
+//         ");
 
-        $result = $query->getRowArray();
-        $year_amount = $result['total_amount'];
+//         $result = $query->getRowArray();
+//         $year_amount = $result['total_amount'];
 
-        if ($Y > 255) {
-            $pdf->AddPage();
-            $Y = $pdf->GetY();
-            $pdf->SetXY(10, $Y);
-            $pdf->SetFont('Arial', 'B', 7);
-            $pdf->Cell(64, 3.5, '', 'TRL', 0, 'C');//ROW 1
-            $pdf->Cell(22, 3.5, '', 'TRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '', 'TRL', 0, 'C');
-            $pdf->Cell(44, 3.5, '', 'TRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '', 'TRL', 0, 'C');
-            $pdf->Cell(17, 3.5, '', 'TRL', 0, 'C');
-            $Y+= 3.5;
+//         if ($Y > 255) {
+//             $pdf->AddPage();
+//             $Y = $pdf->GetY();
+//             $pdf->SetXY(10, $Y);
+//             $pdf->SetFont('Arial', 'B', 7);
+//             $pdf->Cell(64, 3.5, '', 'TRL', 0, 'C');//ROW 1
+//             $pdf->Cell(22, 3.5, '', 'TRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '', 'TRL', 0, 'C');
+//             $pdf->Cell(44, 3.5, '', 'TRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '', 'TRL', 0, 'C');
+//             $pdf->Cell(17, 3.5, '', 'TRL', 0, 'C');
+//             $Y+= 3.5;
 
-            $pdf->SetXY(10, $Y);
-            $pdf->Cell(64, 3.5, '', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, '', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, '', 'RL', 0, 'C');
-            $pdf->Cell(44, 3.5, 'Obligation Incurred', 'BRL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'Unobligated', 'RL', 0, 'C');
-            $pdf->Cell(17, 3.5, '', 'RL', 0, 'C');
-            $Y+= 3.5;
+//             $pdf->SetXY(10, $Y);
+//             $pdf->Cell(64, 3.5, '', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '', 'RL', 0, 'C');
+//             $pdf->Cell(44, 3.5, 'Obligation Incurred', 'BRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'Unobligated', 'RL', 0, 'C');
+//             $pdf->Cell(17, 3.5, '', 'RL', 0, 'C');
+//             $Y+= 3.5;
 
-            $pdf->SetXY(10, $Y);
-            $pdf->Cell(64, 3.5, 'OBJECT OF EXPENDITURE', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, '', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'Revised', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'This month', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'Obligation', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'Balance of', 'RL', 0, 'C');
-            $pdf->Cell(17, 3.5, 'Percent', 'RL', 0, 'C');
-            $Y+= 3.5;
+//             $pdf->SetXY(10, $Y);
+//             $pdf->Cell(64, 3.5, 'OBJECT OF EXPENDITURE', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'Revised', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'This month', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'Obligation', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'Balance of', 'RL', 0, 'C');
+//             $pdf->Cell(17, 3.5, 'Percent', 'RL', 0, 'C');
+//             $Y+= 3.5;
 
-            $pdf->SetXY(10, $Y);
-            $pdf->Cell(64, 3.5, '', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'UACS', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'Allotment', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, $month, 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'To Date', 'RL', 0, 'C');
-            $pdf->Cell(22, 3.5, 'Allotment', 'RL', 0, 'C');
-            $pdf->Cell(17, 3.5, 'Of', 'RL', 0, 'C');
-            $Y+= 3.5;
+//             $pdf->SetXY(10, $Y);
+//             $pdf->Cell(64, 3.5, '', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'UACS', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'Allotment', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, $month, 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'To Date', 'RL', 0, 'C');
+//             $pdf->Cell(22, 3.5, 'Allotment', 'RL', 0, 'C');
+//             $pdf->Cell(17, 3.5, 'Of', 'RL', 0, 'C');
+//             $Y+= 3.5;
 
-            $pdf->SetXY(10, $Y);
-            $pdf->Cell(64, 3.5, '', 'BRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '(1)', 'BRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '(4)', 'BRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '(5)', 'BRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '(6)', 'BRL', 0, 'C');
-            $pdf->Cell(22, 3.5, '(7)=(4)-(6)', 'BRL', 0, 'C');
-            $pdf->Cell(17, 3.5, 'Utilization', 'BRL', 0, 'C');
+//             $pdf->SetXY(10, $Y);
+//             $pdf->Cell(64, 3.5, '', 'BRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '(1)', 'BRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '(4)', 'BRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '(5)', 'BRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '(6)', 'BRL', 0, 'C');
+//             $pdf->Cell(22, 3.5, '(7)=(4)-(6)', 'BRL', 0, 'C');
+//             $pdf->Cell(17, 3.5, 'Utilization', 'BRL', 0, 'C');
 
-            $Y = $pdf->GetY() + 3.5;
-            $pdf->SetXY(10, $Y);
+//             $Y = $pdf->GetY() + 3.5;
+//             $pdf->SetXY(10, $Y);
 
-        }
+//         }
         
-        if ($allotment_class !== $last_allotment_class && $allotment_class !== null) {
-            $pdf->SetFont('Arial', '', 8);
-            $pdf->SetXY(5, $Y);
-            $pdf->Cell(5, 4.5, '', 0, 0, 'L');
-            $pdf->MultiCell(59, 4.5, $allotment_class, 1, 'L'); // full width usage
-            $pdf->SetXY(96, $Y);
-            $pdf->Cell(21.8, 4.5,  number_format($total_co, 2), 'B', 1, 'C');
-            $pdf->SetXY(118, $Y);
-            $pdf->Cell(21.8, 4.5,  number_format($co_total_current_month, 2), 'B', 1, 'C');
-            $pdf->SetXY(140, $Y);
-            $pdf->Cell(21.8, 4.5,  number_format($co_total_todate_month, 2), 'B', 1, 'C');
-            $pdf->SetXY(162, $Y);
-            $pdf->Cell(21.8, 4.5,  number_format($co_total_unobligated, 2), 'B', 1, 'C');
-             $pdf->SetFont('Arial', 'B', 8);
-            $pdf->SetXY(184, $Y);
-            $pdf->Cell(17, 4.5, number_format($co_percentage_minus, 2) . '%', 1, 1, 'C');
-            $Y += 4.5;
-            $last_allotment_class = $allotment_class;
-        }
+//         if ($allotment_class !== $last_allotment_class && $allotment_class !== null) {
+//             $pdf->SetFont('Arial', '', 8);
+//             $pdf->SetXY(5, $Y);
+//             $pdf->Cell(5, 4.5, '', 0, 0, 'L');
+//             $pdf->MultiCell(59, 4.5, $allotment_class, 1, 'L'); // full width usage
+//             $pdf->SetXY(96, $Y);
+//             $pdf->Cell(21.8, 4.5,  number_format($total_co, 2), 'B', 1, 'C');
+//             $pdf->SetXY(118, $Y);
+//             $pdf->Cell(21.8, 4.5,  number_format($co_total_current_month, 2), 'B', 1, 'C');
+//             $pdf->SetXY(140, $Y);
+//             $pdf->Cell(21.8, 4.5,  number_format($co_total_todate_month, 2), 'B', 1, 'C');
+//             $pdf->SetXY(162, $Y);
+//             $pdf->Cell(21.8, 4.5,  number_format($co_total_unobligated, 2), 'B', 1, 'C');
+//              $pdf->SetFont('Arial', 'B', 8);
+//             $pdf->SetXY(184, $Y);
+//             $pdf->Cell(17, 4.5, number_format($co_percentage_minus, 2) . '%', 1, 1, 'C');
+//             $Y += 4.5;
+//             $last_allotment_class = $allotment_class;
+//         }
 
-        if ($object_code !== $last_object_code && $object_code !== null) {
-            $pdf->SetXY(10, $Y);
-            $pdf->SetFont('Arial', '', 8);
-            $pdf->Cell(5, 4.5, '', 1, 1, 'C');
-            $pdf->SetFont('Arial', '', 8);
-            $pdf->SetXY(10, $Y);
-            $pdf->Cell(5, 4.5, '', 0, 0, 'L');
-            if ($object_code == 'Confidential, Intelligence and Extraordinary Expenses') {
-                $object_code = 'Confidential, Intelligence and Extraord. Exps.';
-            }
-            $pdf->MultiCell(59, 4.5, $object_code, 1, 'L'); // full width usage
-            $total_for_object_code = $co_object_code_totals[$object_code] ?? 0;
-            $total_sub_month_amount = $co_sub_month_totals[$object_code] ?? 0;
-            $total_sub_year_amount = $co_sub_year_totals[$object_code] ?? 0;
-            $total_sub_unobligated = ($total_for_object_code ?? 0) - ($total_sub_year_amount ?? 0);
-            $pdf->SetXY(96, $Y);
-            $pdf->Cell(21.8, 4.5, number_format($total_for_object_code,2), 'B', 1, 'C');
-            $pdf->SetXY(118, $Y);
-            $pdf->Cell(21.8, 4.5, number_format($total_sub_month_amount,2), 'B', 1, 'C');
-            $pdf->SetXY(140, $Y);
-            $pdf->Cell(21.8, 4.5, number_format($total_sub_year_amount,2), 'B', 1, 'C');
-            $pdf->SetXY(162, $Y);
-            $pdf->Cell(21.8, 4.5, number_format($total_sub_unobligated,2), 'B', 1, 'C');
-            $pdf->SetXY(184, $Y);
-            $pdf->Cell(17, 4.5, 'TEST rararar', 1, 1, 'C');
-            $Y += 4.5;
-            $last_object_code = $object_code;
-        }
-        // Print Expenditure Category if it changes
-        if ($sub_object_code !== $last_sub_object_code && $sub_object_code !== null) {
-            $pdf->SetFont('Arial', '', 8);
+//         if ($object_code !== $last_object_code && $object_code !== null) {
+//             $pdf->SetXY(10, $Y);
+//             $pdf->SetFont('Arial', '', 8);
+//             $pdf->Cell(5, 4.5, '', 1, 1, 'C');
+//             $pdf->SetFont('Arial', '', 8);
+//             $pdf->SetXY(10, $Y);
+//             $pdf->Cell(5, 4.5, '', 0, 0, 'L');
+//             if ($object_code == 'Confidential, Intelligence and Extraordinary Expenses') {
+//                 $object_code = 'Confidential, Intelligence and Extraord. Exps.';
+//             }
+//             $pdf->MultiCell(59, 4.5, $object_code, 1, 'L'); // full width usage
+//             $total_for_object_code = $co_object_code_totals[$object_code] ?? 0;
+//             $total_sub_month_amount = $co_sub_month_totals[$object_code] ?? 0;
+//             $total_sub_year_amount = $co_sub_year_totals[$object_code] ?? 0;
+//             $total_sub_unobligated = ($total_for_object_code ?? 0) - ($total_sub_year_amount ?? 0);
+//             $pdf->SetXY(96, $Y);
+//             $pdf->Cell(21.8, 4.5, number_format($total_for_object_code,2), 'B', 1, 'C');
+//             $pdf->SetXY(118, $Y);
+//             $pdf->Cell(21.8, 4.5, number_format($total_sub_month_amount,2), 'B', 1, 'C');
+//             $pdf->SetXY(140, $Y);
+//             $pdf->Cell(21.8, 4.5, number_format($total_sub_year_amount,2), 'B', 1, 'C');
+//             $pdf->SetXY(162, $Y);
+//             $pdf->Cell(21.8, 4.5, number_format($total_sub_unobligated,2), 'B', 1, 'C');
+//             $pdf->SetXY(184, $Y);
+//             $pdf->Cell(17, 4.5, 'TEST rararar', 1, 1, 'C');
+//             $Y += 4.5;
+//             $last_object_code = $object_code;
+//         }
+//         // Print Expenditure Category if it changes
+//         if ($sub_object_code !== $last_sub_object_code && $sub_object_code !== null) {
+//             $pdf->SetFont('Arial', '', 8);
             
-            if ($Y >265) {
-                $pdf->SetXY(10, $Y);
-                $pdf->Cell(191, 4.5, '', 'B', 0, 'C'); // Balance column
-            }
-            // Calculate the number of lines needed
-            $textWidth = 53;
-            $approximateCharsPerLine = floor($textWidth / 2);
-            $textLength = strlen($sub_object_code);
-            $numberOfLines = ceil($textLength / $approximateCharsPerLine);
-            $numberOfLines = max(1, $numberOfLines);
+//             if ($Y >265) {
+//                 $pdf->SetXY(10, $Y);
+//                 $pdf->Cell(191, 4.5, '', 'B', 0, 'C'); // Balance column
+//             }
+//             // Calculate the number of lines needed
+//             $textWidth = 53;
+//             $approximateCharsPerLine = floor($textWidth / 2);
+//             $textLength = strlen($sub_object_code);
+//             $numberOfLines = ceil($textLength / $approximateCharsPerLine);
+//             $numberOfLines = max(1, $numberOfLines);
             
-            // Calculate total height for this row
-            $lineHeight = 4.5;
-            $totalRowHeight = $numberOfLines * $lineHeight;
+//             // Calculate total height for this row
+//             $lineHeight = 4.5;
+//             $totalRowHeight = $numberOfLines * $lineHeight;
             
-            // Draw ALL cells with the same height using Cell()
-            $pdf->SetXY(10, $Y);
-            $pdf->Cell(10, $totalRowHeight, '', 1, 0, 'C'); // First column
+//             // Draw ALL cells with the same height using Cell()
+//             $pdf->SetXY(10, $Y);
+//             $pdf->Cell(10, $totalRowHeight, '', 1, 0, 'C'); // First column
             
-            $pdf->SetXY(20, $Y);
-            $pdf->Cell(53, $totalRowHeight, '', 0, 0, 'L'); // Text column (empty border)
+//             $pdf->SetXY(20, $Y);
+//             $pdf->Cell(53, $totalRowHeight, '', 0, 0, 'L'); // Text column (empty border)
             
-            $pdf->SetXY(73, $Y);
-            $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // UACS column
+//             $pdf->SetXY(73, $Y);
+//             $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // UACS column
             
-            $pdf->SetXY(95, $Y);
-            $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // Allotment column
+//             $pdf->SetXY(95, $Y);
+//             $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // Allotment column
             
-            $pdf->SetXY(117, $Y);
-            $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // This month column
+//             $pdf->SetXY(117, $Y);
+//             $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // This month column
             
-            $pdf->SetXY(139, $Y);
-            $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // To Date column
+//             $pdf->SetXY(139, $Y);
+//             $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // To Date column
             
-            $pdf->SetXY(161, $Y);
-            $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // Balance column
+//             $pdf->SetXY(161, $Y);
+//             $pdf->Cell(22, $totalRowHeight, '', 0, 0, 'C'); // Balance column
             
-            $pdf->SetXY(184, $Y);
-            $pdf->Cell(17, $totalRowHeight, 'your text', 1, 0, 'C'); // Last column
+//             $pdf->SetXY(184, $Y);
+//             $pdf->Cell(17, $totalRowHeight, 'your text', 1, 0, 'C'); // Last column
             
-            // Now manually write the text in the appropriate cell with line breaks
-            $pdf->SetXY(21, $Y); // Slight offset for better appearance
-            $pdf->MultiCell(51, $lineHeight, $sub_object_code, 0, 'L'); // No border
+//             // Now manually write the text in the appropriate cell with line breaks
+//             $pdf->SetXY(21, $Y); // Slight offset for better appearance
+//             $pdf->MultiCell(51, $lineHeight, $sub_object_code, 0, 'L'); // No border
             
-            $Y += $totalRowHeight;
-            $last_sub_object_code = $sub_object_code;
+//             $Y += $totalRowHeight;
+//             $last_sub_object_code = $sub_object_code;
 
-        }
+//         }
 
-        $Y = $pdf->GetY() - 4.5;
-        $pdf->SetXY(76, $Y);
-        $pdf->Cell(20, 4.5, $uacs_code, 0, 1, 'C');
+//         $Y = $pdf->GetY() - 4.5;
+//         $pdf->SetXY(76, $Y);
+//         $pdf->Cell(20, 4.5, $uacs_code, 0, 1, 'C');
 
-        $pdf->SetXY(97, $Y);
-        $pdf->Cell(20, 4.5, ($approved_budget == 0.00 || !is_numeric($approved_budget)) ? 0.00 : number_format((float)$approved_budget, 2), 0, 1, 'C');
+//         $pdf->SetXY(97, $Y);
+//         $pdf->Cell(20, 4.5, ($approved_budget == 0.00 || !is_numeric($approved_budget)) ? 0.00 : number_format((float)$approved_budget, 2), 0, 1, 'C');
 
-        $pdf->SetXY(119, $Y);
-        $pdf->Cell(20, 4.5, $month_amount, 0, 1, 'C');
+//         $pdf->SetXY(119, $Y);
+//         $pdf->Cell(20, 4.5, $month_amount, 0, 1, 'C');
 
-        $pdf->SetXY(142, $Y);
-        $pdf->Cell(20, 4.5, $year_amount, 0, 1, 'C');
+//         $pdf->SetXY(142, $Y);
+//         $pdf->Cell(20, 4.5, $year_amount, 0, 1, 'C');
 
-        $subobligated_amount = $approved_budget - $year_amount;
-        $pdf->SetXY(164, $Y);
-        $pdf->Cell(20, 4.5, number_format($subobligated_amount,2), 0, 1, 'C');
+//         $subobligated_amount = $approved_budget - $year_amount;
+//         $pdf->SetXY(164, $Y);
+//         $pdf->Cell(20, 4.5, number_format($subobligated_amount,2), 0, 1, 'C');
 
-        $Y = $pdf->GetY();
+//         $Y = $pdf->GetY();
 
-    }
+//     }
 
-    $total_year_ps += $total_ps;
-    $total_year_mooe += $total_mooe;
-    $total_year_co += $total_co;
-    $ors_total_current_month += $total_all_sub_month;
+//     $total_year_ps += $total_ps;
+//     $total_year_mooe += $total_mooe;
+//     $total_year_co += $total_co;
+//     $ors_total_current_month += $total_all_sub_month;
 
-    $Y = $pdf->GetY() + 3.5;    
+//     $Y = $pdf->GetY() + 3.5;    
 
-    // $pdf->SetXY(10, 27.5);
-    // $pdf->Cell(64, 241, '', 1, 0); 
-    // $pdf->SetXY(74, 27.5);
-    // $pdf->Cell(22, 241, '', 1, 0); 
-    // $pdf->SetXY(96, 27.5);
-    // $pdf->Cell(22, 241, '', 1, 0); 
-    // $pdf->SetXY(118, 27.5);
-    // $pdf->Cell(22, 241, '', 1, 0); 
-    // $pdf->SetXY(140, 27.5);
-    // $pdf->Cell(22, 241, '', 1, 0); 
-    // $pdf->SetXY(162, 27.5);
-    // $pdf->Cell(22, 241, '', 1, 0); 
-    // $pdf->SetXY(184, 27.5);
-    // $pdf->Cell(17, 241, '', 1, 0); 
+//     // $pdf->SetXY(10, 27.5);
+//     // $pdf->Cell(64, 241, '', 1, 0); 
+//     // $pdf->SetXY(74, 27.5);
+//     // $pdf->Cell(22, 241, '', 1, 0); 
+//     // $pdf->SetXY(96, 27.5);
+//     // $pdf->Cell(22, 241, '', 1, 0); 
+//     // $pdf->SetXY(118, 27.5);
+//     // $pdf->Cell(22, 241, '', 1, 0); 
+//     // $pdf->SetXY(140, 27.5);
+//     // $pdf->Cell(22, 241, '', 1, 0); 
+//     // $pdf->SetXY(162, 27.5);
+//     // $pdf->Cell(22, 241, '', 1, 0); 
+//     // $pdf->SetXY(184, 27.5);
+//     // $pdf->Cell(17, 241, '', 1, 0); 
 
 
-}
+// }
 
-// TOTAL CURRENT YEAR BUDGET -------------------------------------------- 
+// // TOTAL CURRENT YEAR BUDGET -------------------------------------------- 
 
-$total_curryear_budget = $total_year_ps + $total_year_mooe + $total_year_co;
-$Y = $pdf->GetY();
-$pdf->SetFont('Arial', 'B', 8);
-$pdf->SetXY(10, $Y);
-$pdf->Cell(191, 3.5, 'Total, General Administration & Support', 1, 1, 'L');
-$pdf->SetFont('Arial', '', 8);
-$pdf->SetXY(96, $Y);
-$pdf->Cell(22, 3.5, ($total_curryear_budget == 0.00 || !is_numeric($total_curryear_budget)) ? 0.00 : number_format((float)$total_curryear_budget, 2), 0, 1, 'C');
-$pdf->SetXY(118, $Y);
-$pdf->SetFont('Arial', '', 8);
-$pdf->Cell(21.8, 3.5, number_format($thismonth_grand_total, 2), 'B', 1, 'C'); // full width usage
-$pdf->SetXY(140, $Y);
-$pdf->SetFont('Arial', '', 8);
-$pdf->Cell(21.8, 3.5, number_format($thismonth_grand_total, 2), 'B', 1, 'C'); // full width usage
-$pdf->SetXY(162, $Y);
-$pdf->SetFont('Arial', '', 8);
-$pdf->Cell(21.8, 3.5, number_format($grand_unobligated, 2), 'B', 1, 'C'); // full width usage
-$pdf->SetXY(184, $Y);
-$pdf->SetFont('Arial', 'B', 8);
-$pdf->Cell(17, 3.5, number_format($grand_percentage_minus, 2) . '%', 'B', 1, 'C'); // full width usage
+// $total_curryear_budget = $total_year_ps + $total_year_mooe + $total_year_co;
+// $Y = $pdf->GetY();
+// $pdf->SetFont('Arial', 'B', 8);
+// $pdf->SetXY(10, $Y);
+// $pdf->Cell(191, 3.5, 'Total, General Administration & Support', 1, 1, 'L');
+// $pdf->SetFont('Arial', '', 8);
+// $pdf->SetXY(96, $Y);
+// $pdf->Cell(22, 3.5, ($total_curryear_budget == 0.00 || !is_numeric($total_curryear_budget)) ? 0.00 : number_format((float)$total_curryear_budget, 2), 0, 1, 'C');
+// $pdf->SetXY(118, $Y);
+// $pdf->SetFont('Arial', '', 8);
+// $pdf->Cell(21.8, 3.5, number_format($thismonth_grand_total, 2), 'B', 1, 'C'); // full width usage
+// $pdf->SetXY(140, $Y);
+// $pdf->SetFont('Arial', '', 8);
+// $pdf->Cell(21.8, 3.5, number_format($thismonth_grand_total, 2), 'B', 1, 'C'); // full width usage
+// $pdf->SetXY(162, $Y);
+// $pdf->SetFont('Arial', '', 8);
+// $pdf->Cell(21.8, 3.5, number_format($grand_unobligated, 2), 'B', 1, 'C'); // full width usage
+// $pdf->SetXY(184, $Y);
+// $pdf->SetFont('Arial', 'B', 8);
+// $pdf->Cell(17, 3.5, number_format($grand_percentage_minus, 2) . '%', 'B', 1, 'C'); // full width usage
 
 $pdf->Output();
 exit;
