@@ -75,3 +75,269 @@ in APPPATH\Views\report\saob-pdf.php on line 3326.
  9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
 10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
 11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-09-18 14:37:44 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippine...' at line 16 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\t\tINSERT I...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\t\tINSERT I...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\t\tINSERT I...')
+#3 C:\xampp\htdocs\fods\app\Models\MySaobReportModel.php(268): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\t\tINSERT I...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(30): App\Models\MySaobReportModel->saob_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-09-18 14:37:44 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippine...' at line 16
+[Method: POST, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MySaobReportModel.php(268): CodeIgniter\Database\BaseConnection->query('
+					INSERT INTO `tbl_saob_mooe_dt`(
+							`project_id`,
+							`project_title`,
+							`object_code`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revised_allotment`,
+							`revision`,
+							`proposed_revision`,
+							`added_at`,
+							`added_by`
+						)
+						VALUES(
+							\'43\',
+							\'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\',
+							\'Traveling Expenses\',
+							\'Traveling Expenses - Local\',
+							\'50201010-00\',
+							\'100000\',
+							\'\',
+							\'\',
+							\'100000.00\',
+							NOW(),
+							\'CDS-KYLE\'
+						)
+					')
+ 2 APPPATH\Controllers\MySaobReport.php(30): App\Models\MySaobReportModel->saob_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-18 14:37:44 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippine...' at line 16
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+					INSERT INTO `tbl_saob_mooe_dt`(
+							`project_id`,
+							`project_title`,
+							`object_code`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revised_allotment`,
+							`revision`,
+							`proposed_revision`,
+							`added_at`,
+							`added_by`
+						)
+						VALUES(
+							\'43\',
+							\'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\',
+							\'Traveling Expenses\',
+							\'Traveling Expenses - Local\',
+							\'50201010-00\',
+							\'100000\',
+							\'\',
+							\'\',
+							\'100000.00\',
+							NOW(),
+							\'CDS-KYLE\'
+						)
+					')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+					INSERT INTO `tbl_saob_mooe_dt`(
+							`project_id`,
+							`project_title`,
+							`object_code`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revised_allotment`,
+							`revision`,
+							`proposed_revision`,
+							`added_at`,
+							`added_by`
+						)
+						VALUES(
+							\'43\',
+							\'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\',
+							\'Traveling Expenses\',
+							\'Traveling Expenses - Local\',
+							\'50201010-00\',
+							\'100000\',
+							\'\',
+							\'\',
+							\'100000.00\',
+							NOW(),
+							\'CDS-KYLE\'
+						)
+					')
+ 3 APPPATH\Models\MySaobReportModel.php(268): CodeIgniter\Database\BaseConnection->query('
+					INSERT INTO `tbl_saob_mooe_dt`(
+							`project_id`,
+							`project_title`,
+							`object_code`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revised_allotment`,
+							`revision`,
+							`proposed_revision`,
+							`added_at`,
+							`added_by`
+						)
+						VALUES(
+							\'43\',
+							\'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\',
+							\'Traveling Expenses\',
+							\'Traveling Expenses - Local\',
+							\'50201010-00\',
+							\'100000\',
+							\'\',
+							\'\',
+							\'100000.00\',
+							NOW(),
+							\'CDS-KYLE\'
+						)
+					')
+ 4 APPPATH\Controllers\MySaobReport.php(30): App\Models\MySaobReportModel->saob_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-18 14:37:44 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippine...' at line 16
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+					INSERT INTO `tbl_saob_mooe_dt`(
+							`project_id`,
+							`project_title`,
+							`object_code`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revised_allotment`,
+							`revision`,
+							`proposed_revision`,
+							`added_at`,
+							`added_by`
+						)
+						VALUES(
+							\'43\',
+							\'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\',
+							\'Traveling Expenses\',
+							\'Traveling Expenses - Local\',
+							\'50201010-00\',
+							\'100000\',
+							\'\',
+							\'\',
+							\'100000.00\',
+							NOW(),
+							\'CDS-KYLE\'
+						)
+					', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+					INSERT INTO `tbl_saob_mooe_dt`(
+							`project_id`,
+							`project_title`,
+							`object_code`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revised_allotment`,
+							`revision`,
+							`proposed_revision`,
+							`added_at`,
+							`added_by`
+						)
+						VALUES(
+							\'43\',
+							\'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\',
+							\'Traveling Expenses\',
+							\'Traveling Expenses - Local\',
+							\'50201010-00\',
+							\'100000\',
+							\'\',
+							\'\',
+							\'100000.00\',
+							NOW(),
+							\'CDS-KYLE\'
+						)
+					')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+					INSERT INTO `tbl_saob_mooe_dt`(
+							`project_id`,
+							`project_title`,
+							`object_code`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revised_allotment`,
+							`revision`,
+							`proposed_revision`,
+							`added_at`,
+							`added_by`
+						)
+						VALUES(
+							\'43\',
+							\'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\',
+							\'Traveling Expenses\',
+							\'Traveling Expenses - Local\',
+							\'50201010-00\',
+							\'100000\',
+							\'\',
+							\'\',
+							\'100000.00\',
+							NOW(),
+							\'CDS-KYLE\'
+						)
+					')
+ 4 APPPATH\Models\MySaobReportModel.php(268): CodeIgniter\Database\BaseConnection->query('
+					INSERT INTO `tbl_saob_mooe_dt`(
+							`project_id`,
+							`project_title`,
+							`object_code`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revised_allotment`,
+							`revision`,
+							`proposed_revision`,
+							`added_at`,
+							`added_by`
+						)
+						VALUES(
+							\'43\',
+							\'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\',
+							\'Traveling Expenses\',
+							\'Traveling Expenses - Local\',
+							\'50201010-00\',
+							\'100000\',
+							\'\',
+							\'\',
+							\'100000.00\',
+							NOW(),
+							\'CDS-KYLE\'
+						)
+					')
+ 5 APPPATH\Controllers\MySaobReport.php(30): App\Models\MySaobReportModel->saob_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
