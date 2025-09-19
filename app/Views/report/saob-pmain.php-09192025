@@ -130,6 +130,25 @@ echo view('templates/myheader.php');
                                         <span class="fw-bold">Program Title:</span>
                                     </div>
                                     <div class="col-sm-10">
+                                        <?php if(!empty($recid)):?>
+                                            <select name="program_title" id="program_title" class="form-select select2 form-select-sm show-tick">
+                                                <option selected value="<?=$program_title;?>"><?=$program_title;?></option>
+                                                <?php foreach($programtitledata as $data): ?>
+                                                    <option value="<?= $data['program_title'] ?>">
+                                                        <?= $data['program_title'] ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        <?php else:?>
+                                            <select name="program_title" id="program_title" class="form-select select2 form-select-sm show-tick">
+                                                <option selected value="">Choose...</option>
+                                                <?php foreach($programtitledata as $data): ?>
+                                                    <option value="<?= $data['program_title'] ?>">
+                                                        <?= $data['program_title'] ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        <?php endif;?>
                                         <input type="text" id="program_title" name="program_title" value="<?=$program_title;?>" class="form-control form-control-sm"/>
                                     </div>
                                 </div>
