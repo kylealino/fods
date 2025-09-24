@@ -306,7 +306,7 @@ $pdf->Cell(191, 5, 'A. Programs', 1, 1, 'L');
 $query = $this->db->query("
     SELECT
         SUM(
-            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid`), 0) +
+            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid` AND code != '50103010-00'), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`), 0)
         ) AS total_approved_budget
@@ -351,7 +351,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.program_title LIKE '%General Administration and support%'
+        saob.program_title LIKE '%General Administration and support%' AND b.`code` != '50103010-00'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -460,7 +460,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.program_title LIKE '%General Administration and support%'
+        saob.program_title LIKE '%General Administration and support%' AND b.`code` != '50103010-00'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -536,17 +536,23 @@ if (!empty($total_project_budget) && $total_project_budget > 0) {
     $grand_percentage_minus = ($todate_grand_total / $total_project_budget) * 100;
 }
 
+$general_total_project_budget = $total_project_budget;
+$general_thismonth_grand_total = $thismonth_grand_total;
+$general_todate_grand_total = $todate_grand_total;
+$general_grand_unobligated = $grand_unobligated;
+$general_grand_percentage_minus = $grand_percentage_minus;
+
 $Y = $pdf->GetY();
 $query = $this->db->query("
     SELECT
         a.`program_title`,
         a.`project_title`,
         a.`recid`,
-        (SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) AS total_ps,
+        (SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid` AND code != '50103010-00') AS total_ps,
         (SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) AS total_mooe,
         (SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`) AS total_co,
         (
-            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid`), 0) +
+            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid` AND code != '50103010-00'), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`), 0)
         ) AS total_approved_budget
@@ -630,7 +636,7 @@ foreach ($hd_data as $hd_row) {
         LEFT JOIN 
             mst_uacs AS u ON b.code = u.uacs_code
         WHERE 
-            b.project_id = '$recid'
+            b.project_id = '$recid' AND b.`code` != '50103010-00'
         ORDER BY 
             b.recid, b.particulars;
 
@@ -1807,7 +1813,7 @@ $Y = $pdf->GetY() +3.5;
 $query = $this->db->query("
     SELECT
         SUM(
-            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid`), 0) +
+            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid` and code != '50103010-00'), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`), 0)
         ) AS total_approved_budget
@@ -1852,7 +1858,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%'
+        saob.project_title LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%' AND b.`code` != '50103010-00'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -1961,7 +1967,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%'
+        saob.project_title LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%' AND b.`code` != '50103010-00'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -2285,11 +2291,11 @@ $query = $this->db->query("
         a.`program_title`,
         a.`project_title`,
         a.`recid`,
-        (SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) AS total_ps,
+        (SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid` and code != '50103010-00') AS total_ps,
         (SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) AS total_mooe,
         (SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`) AS total_co,
         (
-            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid`), 0) +
+            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid` and code != '50103010-00'), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`), 0)
         ) AS total_approved_budget
@@ -2367,7 +2373,7 @@ foreach ($hd_data as $hd_row) {
         LEFT JOIN 
             mst_uacs AS u ON b.code = u.uacs_code
         WHERE 
-            b.project_id = '$recid'
+            b.project_id = '$recid' AND b.`code` != '50103010-00'
         ORDER BY 
             b.recid, b.particulars;
 
@@ -4882,7 +4888,7 @@ $Y = $pdf->GetY() +3.5;
 $query = $this->db->query("
     SELECT
         SUM(
-            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid`), 0) +
+            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid` AND `code` != '50103010-00'), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`), 0)
         ) AS total_approved_budget
@@ -4927,7 +4933,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%'
+        saob.project_title LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%' AND b.`code` != '50103010-00'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -5033,7 +5039,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%'
+        saob.project_title LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%' AND b.`code` != '50103010-00'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -5351,11 +5357,11 @@ $query = $this->db->query("
         a.`program_title`,
         a.`project_title`,
         a.`recid`,
-        (SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) AS total_ps,
+        (SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid` AND `code` != '50103010-00') AS total_ps,
         (SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) AS total_mooe,
         (SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`) AS total_co,
         (
-            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid`), 0) +
+            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid` AND `code` != '50103010-00'), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`), 0)
         ) AS total_approved_budget
@@ -5433,7 +5439,7 @@ foreach ($hd_data as $hd_row) {
         LEFT JOIN 
             mst_uacs AS u ON b.code = u.uacs_code
         WHERE 
-            b.project_id = '$recid'
+            b.project_id = '$recid' AND b.`code` != '50103010-00'
         ORDER BY 
             b.recid, b.particulars;
 
@@ -7937,7 +7943,7 @@ $Y = $pdf->GetY() +3.5;
 $query = $this->db->query("
     SELECT
         SUM(
-            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid`), 0) +
+            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid` AND `code` != '50103010-00'), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`), 0)
         ) AS total_approved_budget
@@ -7982,7 +7988,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Technical Services on Food and Nutrition%'
+        saob.project_title LIKE '%Technical Services on Food and Nutrition%' AND b.`code` != '50103010-00'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -8088,7 +8094,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Technical Services on Food and Nutrition%'
+        saob.project_title LIKE '%Technical Services on Food and Nutrition%' AND b.`code` != '50103010-00'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -8176,11 +8182,11 @@ $query = $this->db->query("
         a.`program_title`,
         a.`project_title`,
         a.`recid`,
-        (SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid`) AS total_ps,
+        (SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid` AND `code` != '50103010-00') AS total_ps,
         (SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) AS total_mooe,
         (SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`) AS total_co,
         (
-            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid`), 0) +
+            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid` AND `code` != '50103010-00'), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`), 0)
         ) AS total_approved_budget
@@ -8257,7 +8263,7 @@ foreach ($hd_data as $hd_row) {
         LEFT JOIN 
             mst_uacs AS u ON b.code = u.uacs_code
         WHERE 
-            b.project_id = '$recid'
+            b.project_id = '$recid' AND b.`code` != '50103010-00'
         ORDER BY 
             b.recid, b.particulars;
 
@@ -9299,9 +9305,561 @@ foreach ($hd_data as $hd_row) {
     $Y = $pdf->GetY() + 3.5;    
 
 }
+
+$subtotal_total_project_budget = 0;
+$subtotal_thismonth_grand_total = 0;
+$subtotal_todate_grand_total = 0;
+$subtotal_grand_unobligated = 0;
+$subtotal_grand_percentage_minus = 0;
+
+$totalprogram_total_project_budget = 0;
+$totalprogram_thismonth_grand_total = 0;
+$totalprogram_todate_grand_total = 0;
+$totalprogram_grand_unobligated = 0;
+$totalprogram_grand_percentage_minus = 0;
+
+
+$subtotal_total_project_budget = $scientific_total_project_budget + $nutritional_total_project_budget + $foodnutri_total_project_budget;
+$subtotal_thismonth_grand_total = $scientific_thismonth_grand_total + $nutritional_thismonth_grand_total + $foodnutri_thismonth_grand_total;
+$subtotal_todate_grand_total = $scientific_todate_grand_total + $nutritional_todate_grand_total + $foodnutri_todate_grand_total;
+$subtotal_grand_unobligated = $scientific_grand_unobligated + $nutritional_grand_unobligated + $foodnutri_grand_unobligated;
+$subtotal_grand_percentage_minus = ($subtotal_todate_grand_total / $subtotal_total_project_budget) * 100;
+
+
+$totalprogram_total_project_budget = $general_total_project_budget + $subtotal_total_project_budget;
+$totalprogram_thismonth_grand_total = $general_thismonth_grand_total + $subtotal_thismonth_grand_total;
+$totalprogram_todate_grand_total = $general_todate_grand_total + $subtotal_todate_grand_total;
+$totalprogram_grand_unobligated = $general_grand_unobligated + $subtotal_grand_unobligated;
+$totalprogram_grand_percentage_minus = ($totalprogram_todate_grand_total / $totalprogram_total_project_budget) * 100;
+
+//----------------------------------------------------------------- SUB TOTAL OPERATIONS -----------------------------------------------------------------------------------
 $Y = $pdf->GetY() + 7;  
 $pdf->SetXY(10, $Y);
-$pdf->Cell(191, 3.5, '', 'TRL', 0, 'C');
+$pdf->Cell(86, 3.5, '', 'TRL', 0, 'L'); // First column
+
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'TRL', 0, 'R'); // Percentage column
+$Y = $pdf->GetY() + 3.5;  
+
+$pdf->SetXY(10, $Y);
+$pdf->Cell(86, 3.5, 'Sub-Total, Operations', 'BRL', 0, 'L'); // First column
+
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, number_format($subtotal_total_project_budget,2), 'BRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, number_format($subtotal_thismonth_grand_total,2), 'BRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, number_format($subtotal_todate_grand_total,2), 'BRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, number_format($subtotal_grand_unobligated,2), 'BRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, number_format($subtotal_grand_percentage_minus, 2) . '%', 'BRL', 0, 'R'); // Percentage column
+
+//----------------------------------------------------------------- TOTAL PROGRAMS AND ACTIVITIES -----------------------------------------------------------------------------
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->Cell(86, 3.5, '', 'TRL', 0, 'L'); // First column
+
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'TRL', 0, 'R'); // Percentage column
+$Y = $pdf->GetY() + 3.5;  
+
+$pdf->SetXY(10, $Y);
+$pdf->Cell(86, 3.5, 'Total Program and Activities', 'BRL', 0, 'L'); // First column
+
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, number_format($totalprogram_total_project_budget,2), 'BRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, number_format($totalprogram_thismonth_grand_total,2), 'BRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, number_format($totalprogram_todate_grand_total,2), 'BRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, number_format($totalprogram_grand_unobligated,2), 'BRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, number_format($totalprogram_grand_percentage_minus, 2) . '%', 'BRL', 0, 'R'); // Percentage column
+
+//----------------------------------------------------------------- TOTAL CURRENT YEAR APPROPRIATIONS -----------------------------------------------------------=------------
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->Cell(86, 3.5, '', 'TRL', 0, 'L'); // First column
+
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'TRL', 0, 'R'); // Percentage column
+$Y = $pdf->GetY() + 3.5;  
+
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', 'B', 9);
+$pdf->Cell(86, 3.5, 'TOTAL CURRENT YEAR APPROPRIATIONS', 'BRL', 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, number_format($totalprogram_total_project_budget,2), 'BRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, number_format($totalprogram_thismonth_grand_total,2), 'BRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, number_format($totalprogram_todate_grand_total,2), 'BRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, number_format($totalprogram_grand_unobligated,2), 'BRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, number_format($totalprogram_grand_percentage_minus, 2) . '%', 'BRL', 0, 'R'); // Percentage column
+
+//----------------------------------------------------------------- AUTOMATIC  APPROPRIATIONS ---------------------------------------------------------------------------------
+$Y = printTableHeader($pdf, $month);
+//GENERAL TOTAL
+$query = $this->db->query("
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        a.`approved_budget`,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= '$date_from' 
+            AND bhd.`ors_date` < '$date_to'
+            AND b.`program_title` LIKE '%General Administration and%'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND b.`program_title` LIKE '%General Administration and%'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = '50103010-00'
+        AND c.`program_title` LIKE '%General Administration and%';
+");
+$rw = $query->getRowArray();
+$general_particulars = $rw['particulars'];
+$general_code = $rw['code'];
+$general_approved_budget = $rw['approved_budget'];
+$general_thismonth_amount = $rw['thismonth_amount'];
+$general_todate_amount = $rw['todate_amount'];
+$general_unobligated_amount = $general_approved_budget - $general_todate_amount;
+
+//SCIENTIFIC TOTAL
+$query = $this->db->query("
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        a.`approved_budget`,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= '$date_from' 
+            AND bhd.`ors_date` < '$date_to'
+            AND b.`program_title` LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND b.`program_title` LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = '50103010-00'
+        AND c.`program_title` LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%';
+");
+$rw = $query->getRowArray();
+$scientific_particulars = $rw['particulars'];
+$scientific_code = $rw['code'];
+$scientific_approved_budget = $rw['approved_budget'];
+$scientific_thismonth_amount = $rw['thismonth_amount'];
+$scientific_todate_amount = $rw['todate_amount'];
+$scientific_unobligated_amount = $scientific_approved_budget - $scientific_todate_amount;
+
+//NUTRITIONAL TOTAL
+$query = $this->db->query("
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        a.`approved_budget`,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= '$date_from' 
+            AND bhd.`ors_date` < '$date_to'
+            AND b.`project_title` LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND b.`project_title` LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = '50103010-00'
+        AND c.`project_title` LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%';
+");
+$rw = $query->getRowArray();
+$nutritional_particulars = $rw['particulars'];
+$nutritional_code = $rw['code'];
+$nutritional_approved_budget = $rw['approved_budget'];
+$nutritional_thismonth_amount = $rw['thismonth_amount'];
+$nutritional_todate_amount = $rw['todate_amount'];
+$nutritional_unobligated_amount = $nutritional_approved_budget - $nutritional_todate_amount;
+
+//TECHNICAL TOTAL
+$query = $this->db->query("
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        a.`approved_budget`,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= '$date_from' 
+            AND bhd.`ors_date` < '$date_to'
+            AND b.`project_title` LIKE '%Technical Services on Food and Nutrition%'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND b.`project_title` LIKE '%Technical Services on Food and Nutrition%'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = '50103010-00'
+        AND c.`project_title` LIKE '%Technical Services on Food and Nutrition%';
+");
+$rw = $query->getRowArray();
+$technical_particulars = $rw['particulars'];
+$technical_code = $rw['code'];
+$technical_approved_budget = $rw['approved_budget'];
+$technical_thismonth_amount = $rw['thismonth_amount'];
+$technical_todate_amount = $rw['todate_amount'];
+$technical_unobligated_amount = $technical_approved_budget - $technical_todate_amount;
+
+$automatic_approved_budget = $general_approved_budget + $scientific_approved_budget + $nutritional_approved_budget + $technical_approved_budget;
+$automatic_thismonth_amount = $general_thismonth_amount + $scientific_thismonth_amount + $nutritional_thismonth_amount + $technical_thismonth_amount;
+$automatic_todate_amount = $general_todate_amount + $scientific_todate_amount + $nutritional_todate_amount + $technical_todate_amount;
+$automatic_unobligated_amount = $general_unobligated_amount + $scientific_unobligated_amount + $nutritional_unobligated_amount + $technical_unobligated_amount;
+$automatic_percentage = ($automatic_todate_amount / $automatic_approved_budget) * 100;
+
+
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->Cell(86, 3.5, '', 'TRL', 0, 'L'); // First column
+
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'TRL', 0, 'R'); // Percentage column
+$Y = $pdf->GetY() + 3.5;  
+
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', 'B', 9);
+$pdf->Cell(86, 3.5, 'AUTOMATIC APPROPRIATIONS', 'BRL', 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'BRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'BRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'BRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'BRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'BRL', 0, 'R'); // Percentage column
+
+//TOTAL OBJECT CODE GENERAL DATA
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->Cell(10, 3.5, '', 'BL', 0, 'L'); // First column
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(54, 3.5, 'Retirement and Life Insurance Premium', 'B', 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, '', 'BR', 0, 'R'); // Budget column
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, number_format($automatic_approved_budget,2), 'BRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, number_format($automatic_thismonth_amount,2), 'BRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, number_format($automatic_todate_amount,2), 'BRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, number_format($automatic_unobligated_amount,2), 'BRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, number_format($automatic_percentage,2) . '%', 'BRL', 0, 'R'); // Percentage column
+
+//----------------------------------------------------------------- GENERAL DATA FETCHING ---------------------------------------------------------------------------------
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->Cell(5, 3.5, '', 'BL', 0, 'L'); // First column
+$pdf->SetXY(15, $Y);
+$pdf->Cell(59, 3.5, 'I.a.1 Retirement and Life Insurance Premium', 'B', 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, $general_code, 'BR', 0, 'R'); // Budget column
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, number_format($general_approved_budget,2), 'BR', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, number_format($general_thismonth_amount,2), 'BR', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, number_format($general_todate_amount,2), 'BRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, number_format($general_unobligated_amount,2), 'BRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'BRL', 0, 'R'); // Percentage column
+
+//----------------------------------------------------------------- SCIENTIFIC DATA FETCHING ---------------------------------------------------------------------------------
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->Cell(5, 3.5, '', 'BL', 0, 'L'); // First column
+$pdf->SetXY(15, $Y);
+$pdf->Cell(59, 3.5, 'II.a.1 Retirement and Life Insurance Premium', 'B', 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, $scientific_code, 'BR', 0, 'R'); // Budget column
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, number_format($scientific_approved_budget,2), 'BR', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, number_format($scientific_thismonth_amount,2), 'BR', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, number_format($scientific_todate_amount,2), 'BRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, number_format($scientific_unobligated_amount,2), 'BRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'BRL', 0, 'R'); // Percentage column
+
+//----------------------------------------------------------------- NUTRITIONAL DATA FETCHING ---------------------------------------------------------------------------------
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->Cell(5, 3.5, '', 'BL', 0, 'L'); // First column
+$pdf->SetXY(15, $Y);
+$pdf->Cell(59, 3.5, 'II.b.1 Retirement and Life Insurance Premium', 'B', 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, $nutritional_code, 'BR', 0, 'R'); // Budget column
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, number_format($nutritional_approved_budget,2), 'BR', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, number_format($nutritional_thismonth_amount,2), 'BR', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, number_format($nutritional_todate_amount,2), 'BRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, number_format($nutritional_unobligated_amount,2), 'BRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'BRL', 0, 'R'); // Percentage column
+
+//----------------------------------------------------------------- TECHNICAL DATA FETCHING ---------------------------------------------------------------------------------
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->Cell(5, 3.5, '', 'BL', 0, 'L'); // First column
+$pdf->SetXY(15, $Y);
+$pdf->Cell(64, 3.5, 'II.b.1 Retirement and Life Insurance Premium', 'B', 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, $technical_code, 'BR', 0, 'R'); // Budget column
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, number_format($technical_approved_budget,2), 'BR', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, number_format($technical_thismonth_amount,2), 'BR', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, number_format($technical_todate_amount,2), 'BRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, number_format($technical_unobligated_amount,2), 'BRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'BRL', 0, 'R'); // Percentage column
+
+//----------------------------------------------------------------- TOTAL AUTOMATIC APPROPRIATIONS -----------------------------------------------------------=------------
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->Cell(86, 3.5, '', 'TRL', 0, 'L'); // First column
+
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'TRL', 0, 'R'); // Percentage column
+$Y = $pdf->GetY() + 3.5;  
+
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', 'B', 9);
+$pdf->Cell(86, 3.5, 'TOTAL AUTOMATIC APPROPRIATIONS', 'BRL', 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, number_format($automatic_approved_budget,2), 'BRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, number_format($automatic_thismonth_amount,2), 'BRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, number_format($automatic_todate_amount,2), 'BRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, number_format($automatic_unobligated_amount,2), 'BRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, number_format($automatic_percentage, 2) . '%', 'BRL', 0, 'R'); // Percentage column
+
+//----------------------------------------------------------------- GRAND TOTAL CURRENT YEAR BUDGET ---------------------------------------------------------------------------
+$grandtotal_total_project_budget = $totalprogram_total_project_budget + $automatic_approved_budget;
+$grandtotal_thismonth_grand_total = $totalprogram_thismonth_grand_total + $automatic_thismonth_amount;
+$grandtotal_todate_grand_total = $totalprogram_todate_grand_total + $automatic_todate_amount;
+$grandtotal_grand_unobligated = $totalprogram_grand_unobligated + $automatic_unobligated_amount;
+$grandtotal_grand_percentage_minus = ($grandtotal_todate_grand_total / $grandtotal_total_project_budget) * 100;
+
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->Cell(86, 3.5, '', 'TRL', 0, 'L'); // First column
+
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'TRL', 0, 'R'); // Percentage column
+$Y = $pdf->GetY() + 3.5;  
+
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', 'B', 9);
+$pdf->Cell(86, 3.5, 'GRAND TOTAL, CURRENT YEAR BUDGET', 'BRL', 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, number_format($grandtotal_total_project_budget,2), 'BRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, number_format($grandtotal_thismonth_grand_total,2), 'BRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, number_format($grandtotal_todate_grand_total,2), 'BRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, number_format($grandtotal_grand_unobligated,2), 'BRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, number_format($grandtotal_grand_percentage_minus, 2) . '%', 'BRL', 0, 'R'); // Percentage column
 
 $pdf->Output();
 exit;

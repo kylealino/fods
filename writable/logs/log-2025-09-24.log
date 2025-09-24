@@ -1,0 +1,1822 @@
+ERROR - 2025-09-24 08:34:13 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', 'root', '', 'fods', 3306, '', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\fods\app\Controllers\MyLogIn.php(56): CodeIgniter\Database\BaseConnection->query('select `usernam...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('CDS-KYLE')
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\fods\app\Controllers\MyLogIn.php(56): CodeIgniter\Database\BaseConnection->query('select `usernam...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('CDS-KYLE')
+#4 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#9 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#10 {main}
+CRITICAL - 2025-09-24 08:34:13 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: POST, Route: mylogin-auth]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Controllers\MyLogIn.php(56): CodeIgniter\Database\BaseConnection->query('select `username`,`hash_password` FROM myua_user where username = \'CDS-KYLE\' limit 1 ')
+ 3 APPPATH\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('CDS-KYLE')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-24 13:51:31 --> DivisionByZeroError: Division by zero
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-pdf.php on line 9345.
+ 1 SYSTEMPATH\View\View.php(224): include()
+ 2 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 4 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-09-24 14:37:23 --> mysqli_sql_exception: Unknown column 'b.uacs_code' in 'where clause' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\report\saob-pdf.php(639): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-09-24 14:37:23 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'b.uacs_code' in 'where clause'
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\report\saob-pdf.php(639): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_ps_dt d 
+                JOIN
+                tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+                WHERE d.sub_object_code = b.particulars AND hd.`ors_date` >= \'2025-01-01\' AND hd.`ors_date` < \'2025-02-01\' AND d.`project_title` like \'%General Administration and Support%\'
+            ), 0) + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_ps_dt i 
+                JOIN
+                tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+                WHERE i.sub_object_code = b.particulars AND hd.`ors_date` >= \'2025-01-01\' AND hd.`ors_date` < \'2025-02-01\' AND i.`project_title` like \'%General Administration and Support%\'
+            ), 0) AS total_sub_month,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_ps_dt d 
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars 
+                AND d.project_title LIKE \'%General Administration and Support%\'
+            ), 0)
+            + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_ps_dt i 
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND i.project_title LIKE \'%General Administration and Support%\'
+            ), 0) AS total_sub_all
+        FROM 
+            tbl_saob_ps_dt AS b
+        LEFT JOIN 
+            mst_uacs AS u ON b.code = u.uacs_code
+        WHERE 
+            b.project_id = \'39\' AND b.`uacs_code` != \'50103010-00\'
+        ORDER BY 
+            b.recid, b.particulars;
+
+    ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-24 14:37:23 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'b.uacs_code' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_ps_dt d 
+                JOIN
+                tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+                WHERE d.sub_object_code = b.particulars AND hd.`ors_date` >= \'2025-01-01\' AND hd.`ors_date` < \'2025-02-01\' AND d.`project_title` like \'%General Administration and Support%\'
+            ), 0) + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_ps_dt i 
+                JOIN
+                tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+                WHERE i.sub_object_code = b.particulars AND hd.`ors_date` >= \'2025-01-01\' AND hd.`ors_date` < \'2025-02-01\' AND i.`project_title` like \'%General Administration and Support%\'
+            ), 0) AS total_sub_month,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_ps_dt d 
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars 
+                AND d.project_title LIKE \'%General Administration and Support%\'
+            ), 0)
+            + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_ps_dt i 
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND i.project_title LIKE \'%General Administration and Support%\'
+            ), 0) AS total_sub_all
+        FROM 
+            tbl_saob_ps_dt AS b
+        LEFT JOIN 
+            mst_uacs AS u ON b.code = u.uacs_code
+        WHERE 
+            b.project_id = \'39\' AND b.`uacs_code` != \'50103010-00\'
+        ORDER BY 
+            b.recid, b.particulars;
+
+    ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_ps_dt d 
+                JOIN
+                tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+                WHERE d.sub_object_code = b.particulars AND hd.`ors_date` >= \'2025-01-01\' AND hd.`ors_date` < \'2025-02-01\' AND d.`project_title` like \'%General Administration and Support%\'
+            ), 0) + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_ps_dt i 
+                JOIN
+                tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+                WHERE i.sub_object_code = b.particulars AND hd.`ors_date` >= \'2025-01-01\' AND hd.`ors_date` < \'2025-02-01\' AND i.`project_title` like \'%General Administration and Support%\'
+            ), 0) AS total_sub_month,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_ps_dt d 
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars 
+                AND d.project_title LIKE \'%General Administration and Support%\'
+            ), 0)
+            + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_ps_dt i 
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND i.project_title LIKE \'%General Administration and Support%\'
+            ), 0) AS total_sub_all
+        FROM 
+            tbl_saob_ps_dt AS b
+        LEFT JOIN 
+            mst_uacs AS u ON b.code = u.uacs_code
+        WHERE 
+            b.project_id = \'39\' AND b.`uacs_code` != \'50103010-00\'
+        ORDER BY 
+            b.recid, b.particulars;
+
+    ')
+ 3 APPPATH\Views\report\saob-pdf.php(639): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_ps_dt d 
+                JOIN
+                tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+                WHERE d.sub_object_code = b.particulars AND hd.`ors_date` >= \'2025-01-01\' AND hd.`ors_date` < \'2025-02-01\' AND d.`project_title` like \'%General Administration and Support%\'
+            ), 0) + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_ps_dt i 
+                JOIN
+                tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+                WHERE i.sub_object_code = b.particulars AND hd.`ors_date` >= \'2025-01-01\' AND hd.`ors_date` < \'2025-02-01\' AND i.`project_title` like \'%General Administration and Support%\'
+            ), 0) AS total_sub_month,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_ps_dt d 
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars 
+                AND d.project_title LIKE \'%General Administration and Support%\'
+            ), 0)
+            + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_ps_dt i 
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND i.project_title LIKE \'%General Administration and Support%\'
+            ), 0) AS total_sub_all
+        FROM 
+            tbl_saob_ps_dt AS b
+        LEFT JOIN 
+            mst_uacs AS u ON b.code = u.uacs_code
+        WHERE 
+            b.project_id = \'39\' AND b.`uacs_code` != \'50103010-00\'
+        ORDER BY 
+            b.recid, b.particulars;
+
+    ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 7 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-24 14:37:23 --> [Caused by] mysqli_sql_exception: Unknown column 'b.uacs_code' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_ps_dt d 
+                JOIN
+                tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+                WHERE d.sub_object_code = b.particulars AND hd.`ors_date` >= \'2025-01-01\' AND hd.`ors_date` < \'2025-02-01\' AND d.`project_title` like \'%General Administration and Support%\'
+            ), 0) + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_ps_dt i 
+                JOIN
+                tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+                WHERE i.sub_object_code = b.particulars AND hd.`ors_date` >= \'2025-01-01\' AND hd.`ors_date` < \'2025-02-01\' AND i.`project_title` like \'%General Administration and Support%\'
+            ), 0) AS total_sub_month,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_ps_dt d 
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars 
+                AND d.project_title LIKE \'%General Administration and Support%\'
+            ), 0)
+            + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_ps_dt i 
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND i.project_title LIKE \'%General Administration and Support%\'
+            ), 0) AS total_sub_all
+        FROM 
+            tbl_saob_ps_dt AS b
+        LEFT JOIN 
+            mst_uacs AS u ON b.code = u.uacs_code
+        WHERE 
+            b.project_id = \'39\' AND b.`uacs_code` != \'50103010-00\'
+        ORDER BY 
+            b.recid, b.particulars;
+
+    ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_ps_dt d 
+                JOIN
+                tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+                WHERE d.sub_object_code = b.particulars AND hd.`ors_date` >= \'2025-01-01\' AND hd.`ors_date` < \'2025-02-01\' AND d.`project_title` like \'%General Administration and Support%\'
+            ), 0) + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_ps_dt i 
+                JOIN
+                tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+                WHERE i.sub_object_code = b.particulars AND hd.`ors_date` >= \'2025-01-01\' AND hd.`ors_date` < \'2025-02-01\' AND i.`project_title` like \'%General Administration and Support%\'
+            ), 0) AS total_sub_month,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_ps_dt d 
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars 
+                AND d.project_title LIKE \'%General Administration and Support%\'
+            ), 0)
+            + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_ps_dt i 
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND i.project_title LIKE \'%General Administration and Support%\'
+            ), 0) AS total_sub_all
+        FROM 
+            tbl_saob_ps_dt AS b
+        LEFT JOIN 
+            mst_uacs AS u ON b.code = u.uacs_code
+        WHERE 
+            b.project_id = \'39\' AND b.`uacs_code` != \'50103010-00\'
+        ORDER BY 
+            b.recid, b.particulars;
+
+    ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_ps_dt d 
+                JOIN
+                tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+                WHERE d.sub_object_code = b.particulars AND hd.`ors_date` >= \'2025-01-01\' AND hd.`ors_date` < \'2025-02-01\' AND d.`project_title` like \'%General Administration and Support%\'
+            ), 0) + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_ps_dt i 
+                JOIN
+                tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+                WHERE i.sub_object_code = b.particulars AND hd.`ors_date` >= \'2025-01-01\' AND hd.`ors_date` < \'2025-02-01\' AND i.`project_title` like \'%General Administration and Support%\'
+            ), 0) AS total_sub_month,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_ps_dt d 
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars 
+                AND d.project_title LIKE \'%General Administration and Support%\'
+            ), 0)
+            + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_ps_dt i 
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND i.project_title LIKE \'%General Administration and Support%\'
+            ), 0) AS total_sub_all
+        FROM 
+            tbl_saob_ps_dt AS b
+        LEFT JOIN 
+            mst_uacs AS u ON b.code = u.uacs_code
+        WHERE 
+            b.project_id = \'39\' AND b.`uacs_code` != \'50103010-00\'
+        ORDER BY 
+            b.recid, b.particulars;
+
+    ')
+ 4 APPPATH\Views\report\saob-pdf.php(639): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_ps_dt d 
+                JOIN
+                tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+                WHERE d.sub_object_code = b.particulars AND hd.`ors_date` >= \'2025-01-01\' AND hd.`ors_date` < \'2025-02-01\' AND d.`project_title` like \'%General Administration and Support%\'
+            ), 0) + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_ps_dt i 
+                JOIN
+                tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+                WHERE i.sub_object_code = b.particulars AND hd.`ors_date` >= \'2025-01-01\' AND hd.`ors_date` < \'2025-02-01\' AND i.`project_title` like \'%General Administration and Support%\'
+            ), 0) AS total_sub_month,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_ps_dt d 
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars 
+                AND d.project_title LIKE \'%General Administration and Support%\'
+            ), 0)
+            + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_ps_dt i 
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND i.project_title LIKE \'%General Administration and Support%\'
+            ), 0) AS total_sub_all
+        FROM 
+            tbl_saob_ps_dt AS b
+        LEFT JOIN 
+            mst_uacs AS u ON b.code = u.uacs_code
+        WHERE 
+            b.project_id = \'39\' AND b.`uacs_code` != \'50103010-00\'
+        ORDER BY 
+            b.recid, b.particulars;
+
+    ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 8 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-09-24 15:42:05 --> mysqli_sql_exception: Unknown column 'a.program_title' in 'where clause' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT\r\n ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT\r\n ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT\r\n ...')
+#3 C:\xampp\htdocs\fods\app\Views\report\saob-pdf.php(9519): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT\r\n ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-09-24 15:42:05 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'a.program_title' in 'where clause'
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\report\saob-pdf.php(9519): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        b.`amount`
+    FROM
+    tbl_saob_ps_dt a
+    JOIN
+    tbl_ors_direct_ps_dt b
+    on
+    a.code = b.`uacs_code`
+    WHERE 
+    a. code = \'50103010-00\' and a.`program_title` like \'%General Administration and%\'
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-24 15:42:05 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'a.program_title' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        b.`amount`
+    FROM
+    tbl_saob_ps_dt a
+    JOIN
+    tbl_ors_direct_ps_dt b
+    on
+    a.code = b.`uacs_code`
+    WHERE 
+    a. code = \'50103010-00\' and a.`program_title` like \'%General Administration and%\'
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        b.`amount`
+    FROM
+    tbl_saob_ps_dt a
+    JOIN
+    tbl_ors_direct_ps_dt b
+    on
+    a.code = b.`uacs_code`
+    WHERE 
+    a. code = \'50103010-00\' and a.`program_title` like \'%General Administration and%\'
+')
+ 3 APPPATH\Views\report\saob-pdf.php(9519): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        b.`amount`
+    FROM
+    tbl_saob_ps_dt a
+    JOIN
+    tbl_ors_direct_ps_dt b
+    on
+    a.code = b.`uacs_code`
+    WHERE 
+    a. code = \'50103010-00\' and a.`program_title` like \'%General Administration and%\'
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 7 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-24 15:42:05 --> [Caused by] mysqli_sql_exception: Unknown column 'a.program_title' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        b.`amount`
+    FROM
+    tbl_saob_ps_dt a
+    JOIN
+    tbl_ors_direct_ps_dt b
+    on
+    a.code = b.`uacs_code`
+    WHERE 
+    a. code = \'50103010-00\' and a.`program_title` like \'%General Administration and%\'
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        b.`amount`
+    FROM
+    tbl_saob_ps_dt a
+    JOIN
+    tbl_ors_direct_ps_dt b
+    on
+    a.code = b.`uacs_code`
+    WHERE 
+    a. code = \'50103010-00\' and a.`program_title` like \'%General Administration and%\'
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        b.`amount`
+    FROM
+    tbl_saob_ps_dt a
+    JOIN
+    tbl_ors_direct_ps_dt b
+    on
+    a.code = b.`uacs_code`
+    WHERE 
+    a. code = \'50103010-00\' and a.`program_title` like \'%General Administration and%\'
+')
+ 4 APPPATH\Views\report\saob-pdf.php(9519): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        b.`amount`
+    FROM
+    tbl_saob_ps_dt a
+    JOIN
+    tbl_ors_direct_ps_dt b
+    on
+    a.code = b.`uacs_code`
+    WHERE 
+    a. code = \'50103010-00\' and a.`program_title` like \'%General Administration and%\'
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 8 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-09-24 15:52:30 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESC...' at line 9 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT\r\n ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT\r\n ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT\r\n ...')
+#3 C:\xampp\htdocs\fods\app\Views\report\saob-pdf.php(9528): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT\r\n ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-09-24 15:52:30 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESC...' at line 9
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\report\saob-pdf.php(9528): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`ors_date` >= \'2025-01-01\' AND bhd.`ors_date` < \'2025-02-01\' AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS todate_amount,
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-24 15:52:30 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESC...' at line 9
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`ors_date` >= \'2025-01-01\' AND bhd.`ors_date` < \'2025-02-01\' AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS todate_amount,
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`ors_date` >= \'2025-01-01\' AND bhd.`ors_date` < \'2025-02-01\' AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS todate_amount,
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+
+')
+ 3 APPPATH\Views\report\saob-pdf.php(9528): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`ors_date` >= \'2025-01-01\' AND bhd.`ors_date` < \'2025-02-01\' AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS todate_amount,
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 7 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-24 15:52:30 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESC...' at line 9
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`ors_date` >= \'2025-01-01\' AND bhd.`ors_date` < \'2025-02-01\' AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS todate_amount,
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`ors_date` >= \'2025-01-01\' AND bhd.`ors_date` < \'2025-02-01\' AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS todate_amount,
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`ors_date` >= \'2025-01-01\' AND bhd.`ors_date` < \'2025-02-01\' AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS todate_amount,
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+
+')
+ 4 APPPATH\Views\report\saob-pdf.php(9528): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`ors_date` >= \'2025-01-01\' AND bhd.`ors_date` < \'2025-02-01\' AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS todate_amount,
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 8 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-09-24 15:52:54 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESC...' at line 9 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT\r\n ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT\r\n ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT\r\n ...')
+#3 C:\xampp\htdocs\fods\app\Views\report\saob-pdf.php(9528): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT\r\n ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-09-24 15:52:54 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESC...' at line 9
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\report\saob-pdf.php(9528): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`ors_date` >= \'2025-01-01\' AND bhd.`ors_date` < \'2025-02-01\' AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-24 15:52:54 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESC...' at line 9
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`ors_date` >= \'2025-01-01\' AND bhd.`ors_date` < \'2025-02-01\' AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`ors_date` >= \'2025-01-01\' AND bhd.`ors_date` < \'2025-02-01\' AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+
+')
+ 3 APPPATH\Views\report\saob-pdf.php(9528): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`ors_date` >= \'2025-01-01\' AND bhd.`ors_date` < \'2025-02-01\' AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 7 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-24 15:52:54 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESC...' at line 9
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`ors_date` >= \'2025-01-01\' AND bhd.`ors_date` < \'2025-02-01\' AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`ors_date` >= \'2025-01-01\' AND bhd.`ors_date` < \'2025-02-01\' AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`ors_date` >= \'2025-01-01\' AND bhd.`ors_date` < \'2025-02-01\' AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+
+')
+ 4 APPPATH\Views\report\saob-pdf.php(9528): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`ors_date` >= \'2025-01-01\' AND bhd.`ors_date` < \'2025-02-01\' AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`) amount
+            FROM tbl_ors_direct_ps_dt b
+            JOIN
+            tbl_ors_hd bhd ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` AND bhd.`program_title` LIKE \'%General Administration and%\';
+            LIMIT 1
+        ),0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 8 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-09-24 15:53:50 --> mysqli_sql_exception: Unknown column 'bhd.program_title' in 'where clause' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT\r\n ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT\r\n ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT\r\n ...')
+#3 C:\xampp\htdocs\fods\app\Views\report\saob-pdf.php(9530): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT\r\n ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-09-24 15:53:50 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'bhd.program_title' in 'where clause'
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\report\saob-pdf.php(9530): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= \'2025-01-01\' 
+            AND bhd.`ors_date` < \'2025-02-01\'
+            AND bhd.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-24 15:53:50 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'bhd.program_title' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= \'2025-01-01\' 
+            AND bhd.`ors_date` < \'2025-02-01\'
+            AND bhd.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= \'2025-01-01\' 
+            AND bhd.`ors_date` < \'2025-02-01\'
+            AND bhd.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+')
+ 3 APPPATH\Views\report\saob-pdf.php(9530): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= \'2025-01-01\' 
+            AND bhd.`ors_date` < \'2025-02-01\'
+            AND bhd.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 7 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-24 15:53:50 --> [Caused by] mysqli_sql_exception: Unknown column 'bhd.program_title' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= \'2025-01-01\' 
+            AND bhd.`ors_date` < \'2025-02-01\'
+            AND bhd.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= \'2025-01-01\' 
+            AND bhd.`ors_date` < \'2025-02-01\'
+            AND bhd.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= \'2025-01-01\' 
+            AND bhd.`ors_date` < \'2025-02-01\'
+            AND bhd.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+')
+ 4 APPPATH\Views\report\saob-pdf.php(9530): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= \'2025-01-01\' 
+            AND bhd.`ors_date` < \'2025-02-01\'
+            AND bhd.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 8 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-09-24 15:56:11 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt...' at line 5 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT\r\n ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT\r\n ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT\r\n ...')
+#3 C:\xampp\htdocs\fods\app\Views\report\saob-pdf.php(9531): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT\r\n ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-09-24 15:56:11 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt...' at line 5
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\report\saob-pdf.php(9531): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        a.`approved_budget`
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= \'2025-01-01\' 
+            AND bhd.`ors_date` < \'2025-02-01\'
+            AND b.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND b.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-24 15:56:11 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt...' at line 5
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        a.`approved_budget`
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= \'2025-01-01\' 
+            AND bhd.`ors_date` < \'2025-02-01\'
+            AND b.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND b.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        a.`approved_budget`
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= \'2025-01-01\' 
+            AND bhd.`ors_date` < \'2025-02-01\'
+            AND b.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND b.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+')
+ 3 APPPATH\Views\report\saob-pdf.php(9531): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        a.`approved_budget`
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= \'2025-01-01\' 
+            AND bhd.`ors_date` < \'2025-02-01\'
+            AND b.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND b.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 7 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-24 15:56:11 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt...' at line 5
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        a.`approved_budget`
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= \'2025-01-01\' 
+            AND bhd.`ors_date` < \'2025-02-01\'
+            AND b.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND b.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        a.`approved_budget`
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= \'2025-01-01\' 
+            AND bhd.`ors_date` < \'2025-02-01\'
+            AND b.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND b.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        a.`approved_budget`
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= \'2025-01-01\' 
+            AND bhd.`ors_date` < \'2025-02-01\'
+            AND b.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND b.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+')
+ 4 APPPATH\Views\report\saob-pdf.php(9531): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        a.`approved_budget`
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= \'2025-01-01\' 
+            AND bhd.`ors_date` < \'2025-02-01\'
+            AND b.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND b.`program_title` LIKE \'%General Administration and%\'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = \'50103010-00\'
+        AND c.`program_title` LIKE \'%General Administration and%\';
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 8 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-24 16:17:10 --> ErrorException: Undefined variable $code
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-pdf.php on line 9563.
+ 1 APPPATH\Views\report\saob-pdf.php(9563): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $code', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php', 9563)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-24 16:20:33 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-pdf.php on line 9672.
+ 1 APPPATH\Views\report\saob-pdf.php(9672): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php', 9672)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(26): view('report/saob-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
