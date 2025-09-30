@@ -90,6 +90,7 @@ class MySaobReport extends BaseController
 
         $mooeobjectquery = $this->db->query("SELECT DISTINCT object_code FROM mst_uacs WHERE allotment_class = 'Maintenance and Other Operating Expenses' ORDER BY TRIM(object_code) ASC");
         $mooeobjectdata = $mooeobjectquery->getResultArray();
+        $mooeobjectdata[] = ['object_code' => 'General Services'];
 
         $couacsquery = $this->db->query("SELECT * FROM mst_uacs WHERE allotment_class = 'Capital Outlay' ORDER BY TRIM(sub_object_code) ASC");
         $couacsdata = $couacsquery->getResultArray();
