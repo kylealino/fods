@@ -98,8 +98,8 @@ class MySaobReport extends BaseController
         $coobjectquery = $this->db->query("SELECT DISTINCT object_code FROM mst_uacs WHERE allotment_class = 'Capital Outlay' ORDER BY TRIM(object_code) ASC");
         $coobjectdata = $coobjectquery->getResultArray();
 
-        $programtitlequery = $this->db->query("SELECT * FROM tbl_budget_hd WHERE fund_cluster_code = '01'  GROUP BY program_title ORDER BY recid DESC");
-        $programtitledata = $programtitlequery->getResultArray();
+        // $programtitlequery = $this->db->query("SELECT program_title FROM tbl_budget_hd WHERE fund_cluster_code = '01'  GROUP BY program_title ORDER BY recid DESC");
+        // $programtitledata = $programtitlequery->getResultArray();
 
         $saobhdquery = $this->db->query("SELECT * FROM tbl_saob_hd ORDER BY recid DESC");
         $saobhddata = $saobhdquery->getResultArray();
@@ -141,7 +141,7 @@ class MySaobReport extends BaseController
             'couacsdata' => $couacsdata,
             'budgetdtdata' => $budgetdtdata,
             'projectdata' => $projectdata,
-            'programtitledata' => $programtitledata,
+            // 'programtitledata' => $programtitledata,
             'saobhddata' => $saobhddata,
         ]);
     }

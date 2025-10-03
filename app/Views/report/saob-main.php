@@ -1072,10 +1072,6 @@ echo view('templates/myheader.php');
   </div>
 </div>
 
-<?php
-echo $this->mybudgetallotment->mylibzsys->memsgbox2('mybudgetallotment_print','Saob Print','','modal-xl','',0);
-?>
-
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
