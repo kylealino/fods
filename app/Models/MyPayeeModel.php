@@ -22,6 +22,7 @@ class MyPayeeModel extends Model
 		$payee_account_num = $this->request->getPostGet('payee_account_num');
 		$payee_office = $this->request->getPostGet('payee_office');
 		$payee_tin = $this->request->getPostGet('payee_tin');
+		$contact_no = $this->request->getPostGet('contact_no');
 		$payee_address = $this->request->getPostGet('payee_address');
 		$disb_method = $this->request->getPostGet('disb_method');
 		$currency = $this->request->getPostGet('currency');
@@ -38,62 +39,31 @@ class MyPayeeModel extends Model
 			";
 			die();
 		}
-		// if (empty($payee_account_num)) {
-		// 	echo "
-		// 	<script>
-		// 	toastr.error('Account number is required!', 'Oops!', {
-		// 			progressBar: true,
-		// 			closeButton: true,
-		// 			timeOut:2000,
-		// 		});
-		// 	</script>
-		// 	";
-		// 	die();
-		// }
-		// if (empty($payee_office)) {
-		// 	echo "
-		// 	<script>
-		// 	toastr.error('Office is required!', 'Oops!', {
-		// 			progressBar: true,
-		// 			closeButton: true,
-		// 			timeOut:2000,
-		// 		});
-		// 	</script>
-		// 	";
-		// 	die();
-		// }
-		// if (empty($payee_tin)) {
-		// 	echo "
-		// 	<script>
-		// 	toastr.error('TIN is required!', 'Oops!', {
-		// 			progressBar: true,
-		// 			closeButton: true,
-		// 			timeOut:2000,
-		// 		});
-		// 	</script>
-		// 	";
-		// 	die();
-		// }
-		// if (empty($payee_address)) {
-		// 	echo "
-		// 	<script>
-		// 	toastr.error('Address is required!', 'Oops!', {
-		// 			progressBar: true,
-		// 			closeButton: true,
-		// 			timeOut:2000,
-		// 		});
-		// 	</script>
-		// 	";
-		// 	die();
-		// }
+
 
 		if (empty($recid)) {
+			$accessquery = $this->db->query("
+				SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '5002' AND `is_active` = '1'
+			");
+			if ($accessquery->getNumRows() == 0) {
+				echo "
+				<script>
+				toastr.error('Saving Access Denied! Please Contact the Administrator.', 'Oops!', {
+						progressBar: true,
+						closeButton: true,
+						timeOut:2000,
+					});
+				</script>
+				";
+				die();
+			}
 			$query = $this->db->query("
 				INSERT INTO `tbl_payee` (
 					`payee_name`, 
 					`payee_account_num`, 
 					`payee_office`, 
 					`payee_tin`, 
+					`contact_no`,
 					`payee_address`, 
 					`disb_method`, 
 					`currency`, 
@@ -104,6 +74,7 @@ class MyPayeeModel extends Model
 					'$payee_account_num',
 					'$payee_office',
 					'$payee_tin',
+					'$contact_no',
 					'$payee_address',
 					'$disb_method',
 					'$currency',
@@ -114,12 +85,28 @@ class MyPayeeModel extends Model
 			$status = "Payee Saved successfully";
 			$color = "success";
 		}else{
+			$accessquery = $this->db->query("
+				SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '5003' AND `is_active` = '1'
+			");
+			if ($accessquery->getNumRows() == 0) {
+				echo "
+				<script>
+				toastr.error('Updating Access Denied! Please Contact the Administrator.', 'Oops!', {
+						progressBar: true,
+						closeButton: true,
+						timeOut:2000,
+					});
+				</script>
+				";
+				die();
+			}
 			$query = $this->db->query("
 				UPDATE tbl_payee SET 
 				`payee_name` = '$payee_name', 
 				`payee_account_num` = '$payee_account_num',
 				`payee_office` = '$payee_office',
 				`payee_tin` = '$payee_tin',
+				`contact_no` = '$contact_no',
 				`payee_address` = '$payee_address',
 				`disb_method` = '$disb_method',
 				`currency` = '$currency'
@@ -128,8 +115,7 @@ class MyPayeeModel extends Model
 			$status = "Payee Updated successfully";
 			$color = "info";
 		}
-
-
+		
 		if ($query) {
 			// Echo JavaScript to show the toast and then redirect
 			echo "
@@ -156,6 +142,23 @@ class MyPayeeModel extends Model
 	
 	public function payee_delete() { 
 		$recid = $this->request->getPostGet('recid');
+
+		$accessquery = $this->db->query("
+			SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '5004' AND `is_active` = '1'
+		");
+		if ($accessquery->getNumRows() == 0) {
+			echo "
+			<script>
+			toastr.error('Deleting Access Denied! Please Contact the Administrator.', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+
 
 		$query = $this->db->query("
 			DELETE FROM `tbl_payee` WHERE `recid` = '$recid'

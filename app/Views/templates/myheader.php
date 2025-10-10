@@ -5,6 +5,26 @@ $this->db = \Config\Database::connect();
 $this->session = session();
 $this->cuser = $this->session->get('__xsys_myuserzicas__');
 
+  $query = $this->db->query("
+  SELECT 
+      `full_name`, 
+      `division`,
+      `section`, 
+      `position`,
+      `username`, 
+      `hash_password`,
+      `hash_value`
+  FROM 
+      `myua_user` 
+  WHERE 
+      `username` = '$this->cuser'"
+  );
+
+  $data = $query->getRowArray();
+  $full_name = $data['full_name'];
+  $position = $data['position'];
+  $section = $data['section'];
+  $division = $data['division'];
 
 ?>
 <!DOCTYPE html>
@@ -24,9 +44,16 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
   <title>FODS</title>
   <style>
     .left-sidebar.with-vertical {
+      height: 100vh;
       overflow-y: auto;
-      max-height: 100vh;
     }
+
+    .left-sidebar.with-vertical::-webkit-scrollbar {
+      width: 1px;  /* hides scrollbar */
+      background: lightblue;
+    }
+
+
   </style>
 </head>
 <body>
@@ -70,7 +97,7 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
             </li>
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">MAINTENANCE</span>
+              <span class="hide-menu">Maintenance</span>
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="<?=site_url();?>mypayee?meaction=MAIN" aria-expanded="false">
@@ -78,6 +105,14 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
                   <i class="ti ti-user-check"></i>
                 </span>
                 <span class="hide-menu">Payee</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="<?=site_url();?>myproducts?meaction=MAIN" aria-expanded="false">
+                <span>
+                  <i class="ti ti-list-details"></i>
+                </span>
+                <span class="hide-menu">Supplies</span>
               </a>
             </li>
             <li class="sidebar-item">
@@ -139,14 +174,14 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
             <!-- ---------------------------------- -->
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Functions</span>
+              <span class="hide-menu">ORS</span>
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link sidebar-link" href="<?=site_url();?>myors?meaction=MAIN" aria-expanded="false">
                 <span class="rounded-3">
                   <i class="ti ti-clipboard-text"></i>
                 </span>
-                <span class="hide-menu">ORS</span>
+                <span class="hide-menu">ORS Entry</span>
               </a>
             </li>
             <li class="sidebar-item">
@@ -183,6 +218,42 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
                   <i class="ti ti-file"></i>
                 </span>
                 <span class="hide-menu">SAOB</span>
+              </a>
+            </li> 
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Procurement</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link sidebar-link" href="<?=site_url();?>myprocurement?meaction=PR-MAIN" aria-expanded="false">
+                <span class="rounded-3">
+                  <i class="ti ti-list-numbers"></i>
+                </span>
+                <span class="hide-menu">PPMP</span>
+              </a>
+            </li> 
+            <li class="sidebar-item">
+              <a class="sidebar-link sidebar-link" href="<?=site_url();?>myprocurement?meaction=PR-MAIN" aria-expanded="false">
+                <span class="rounded-3">
+                  <i class="ti ti-playlist-add"></i>
+                </span>
+                <span class="hide-menu">PR</span>
+              </a>
+            </li> 
+            <li class="sidebar-item">
+              <a class="sidebar-link sidebar-link" href="<?=site_url();?>myprocurement?meaction=PR-MAIN" aria-expanded="false">
+                <span class="rounded-3">
+                  <i class="ti ti-mist"></i>
+                </span>
+                <span class="hide-menu">RFQ</span>
+              </a>
+            </li> 
+            <li class="sidebar-item">
+              <a class="sidebar-link sidebar-link" href="<?=site_url();?>myprocurement?meaction=PR-MAIN" aria-expanded="false">
+                <span class="rounded-3">
+                  <i class="ti ti-menu"></i>
+                </span>
+                <span class="hide-menu">PO</span>
               </a>
             </li> 
           </ul>
@@ -257,14 +328,13 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
                           <img src="<?=base_url('assets/images/profile/user-1.jpg')?>" class="rounded-circle" width="80" height="80" alt="flexy-img" />
                           <div class="ms-3">
                             <h5 class="mb-1 fs-4"><?=$this->cuser;?></h5>
-                            <span class="mb-1 d-block">Administrator</span>
-                            <p class="mb-0 d-flex align-items-center gap-2">
-                              <i class="ti ti-mail fs-4"></i> info@flexy.com
-                            </p>
+                            <span class="mb-1 d-block"><?=$full_name;?></span>
+                            <span class="mb-1 d-block fs-2"><?=$position;?></span>
+                            <span class="mb-1 d-block fs-2"><?=$division . ' - ' . $section;?></span>
                           </div>
                         </div>
                         <div class="message-body">
-                          <a href="../main/page-user-profile.html" class="py-8 px-7 mt-8 d-flex align-items-center">
+                          <a href="" class="py-8 px-7 mt-8 d-flex align-items-center">
                             <span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">
                               <img src="<?=base_url('assets/images/svgs/icon-account.svg')?>" alt="flexy-img" width="24" height="24" />
                             </span>
@@ -273,7 +343,7 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
                               <span class="fs-3 d-block text-body-secondary">Account Settings</span>
                             </div>
                           </a>
-                          <a href="../main/app-email.html" class="py-8 px-7 d-flex align-items-center">
+                          <a href="" class="py-8 px-7 d-flex align-items-center">
                             <span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">
                               <img src="<?=base_url('assets/images/svgs/icon-inbox.svg')?>" alt="flexy-img" width="24" height="24" />
                             </span>
@@ -282,7 +352,7 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
                               <span class="fs-3 d-block text-body-secondary">Messages & Emails</span>
                             </div>
                           </a>
-                          <a href="../main/app-notes.html" class="py-8 px-7 d-flex align-items-center">
+                          <a href="" class="py-8 px-7 d-flex align-items-center">
                             <span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">
                               <img src="<?=base_url('assets/images/svgs/icon-tasks.svg')?>" alt="flexy-img" width="24" height="24" />
                             </span>
@@ -293,19 +363,6 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
                           </a>
                         </div>
                         <div class="d-grid py-4 px-7 pt-8">
-                          <div class="upgrade-plan bg-primary-subtle position-relative overflow-hidden rounded-2 p-4 mb-9">
-                            <div class="row">
-                              <div class="col-6">
-                                <h5 class="fs-4 mb-3 fw-semibold">Unlimited Access</h5>
-                                <button class="btn btn-primary">Upgrade</button>
-                              </div>
-                              <div class="col-6">
-                                <div class="m-n4 unlimited-img">
-                                  <img src="<?=base_url('assets/images/backgrounds/unlimited-bg.png')?>" alt="flexy-img" class="w-100" />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
                           <form action="<?= site_url('mylogout'); ?>" method="post" novalidate>
                               <!-- Add a CSRF token for security -->
                               <?= csrf_field(); ?>

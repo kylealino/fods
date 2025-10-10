@@ -7,6 +7,7 @@ $payee_name = "";
 $payee_account_num = "";
 $payee_office = "";
 $payee_tin = "";
+$contact_no = "";
 $payee_address = "";
 $disb_method = "";
 $currency = "";
@@ -19,7 +20,8 @@ if(!empty($recid) || !is_null($recid)) {
         `payee_name`, 
         `payee_account_num`, 
         `payee_office`, 
-        `payee_tin`, 
+        `payee_tin`,
+        `contact_no`, 
         `payee_address`, 
         `disb_method`, 
         `currency`
@@ -34,6 +36,7 @@ if(!empty($recid) || !is_null($recid)) {
     $payee_account_num = $data['payee_account_num'];
     $payee_office = $data['payee_office'];
     $payee_tin = $data['payee_tin'];
+    $contact_no = $data['contact_no'];
     $payee_address = $data['payee_address'];
     $disb_method = $data['disb_method'];
     $currency = $data['currency'];
@@ -113,6 +116,14 @@ echo view('templates/myheader.php');
                                 <input type="text" id="payee_tin" name="payee_tin" value="<?=$payee_tin;?>" class="form-control form-control-sm"/>
                             </div>
                         </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span>Contact No.:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" id="contact_no" name="contact_no" value="<?=$contact_no;?>" class="form-control form-control-sm"/>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-sm-6 my-2">
                         <div class="row mb-2">
@@ -120,7 +131,7 @@ echo view('templates/myheader.php');
                                 <span>Disbursement Method:</span>
                             </div>
                             <div class="col-sm-8">
-                                <select id="disb_method" name="disb_method" class="form-select form-select-sm" required>
+                                <select id="disb_method" name="disb_method" class="form-select form-select-sm">
                                     <?php if(!empty($recid)):?>
                                     <option value="<?=$disb_method;?>"><?=$disb_method;?></option>
                                     <?php endif;?>
@@ -136,7 +147,7 @@ echo view('templates/myheader.php');
                                 <span>Currency:</span>
                             </div>
                             <div class="col-sm-8">
-                                <select id="currency" name="currency" class="form-select form-select-sm" required>
+                                <select id="currency" name="currency" class="form-select form-select-sm">
                                 <?php if(!empty($recid)):?>
                                     <option value="<?=$currency;?>"><?=$currency;?></option>
                                     <?php endif;?>
@@ -245,7 +256,7 @@ echo view('templates/myheader.php');
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="<?=base_url('assets/js/maintenance/mypayee.js');?>"></script>
+<script src="<?=base_url('assets/js/maintenance/mypayee.js?v=2');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 <script>
     __mysys_payee_ent.__payee_saving();

@@ -10,7 +10,9 @@ class MyUACS extends BaseController
 	{
 		$this->request = \Config\Services::request();
         $this->myuacs = model('App\Models\MyUACSModel');
+        $this->session = session();
         $this->db = \Config\Database::connect();
+        $this->cuser = $this->session->get('__xsys_myuserzicas__');
 	}
 
     public function index() {
@@ -19,8 +21,15 @@ class MyUACS extends BaseController
     
         switch ($meaction) {
             case 'MAIN': 
-                return $this->loadMainView();
-                break;
+                $accessQuery = $this->db->query("
+                    SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '9001' AND `is_active` = '1'
+                ");
+                if ($accessQuery->getNumRows() > 0) {
+                    return $this->loadMainView();
+                    break;
+                }else {
+                    return view('errors/html/access-restricted');
+                }
     
             case 'MAIN-SAVE': 
                 $this->myuacs->uacs_save();

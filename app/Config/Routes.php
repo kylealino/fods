@@ -57,7 +57,14 @@ $routes->post('myorsapproval', 'MyOrsApproval::index',['filter' => 'myauthuser']
 $routes->get('myburs', 'MyBurs::index',['filter' => 'myauthuser']);
 $routes->post('myburs', 'MyBurs::index',['filter' => 'myauthuser']);
 
-
 //SAOB - SAOB module
 $routes->get('mysaobrpt', 'MySaobReport::index',['filter' => 'myauthuser']);
 $routes->post('mysaobrpt', 'MySaobReport::index',['filter' => 'myauthuser']);
+
+//PROCUREMENT - PROCUREMENT module
+$routes->get('myprocurement', 'MyProcurement::index',['filter' => 'myauthuser']);
+$routes->post('myprocurement', 'MyProcurement::index',['filter' => 'myauthuser']);
+
+//PRODUCTS - PRODUCTS module
+$routes->get('myproducts', 'MyProducts::index',['filter' => 'myauthuser']);
+$routes->post('myproducts', 'MyProducts::index',['filter' => 'myauthuser']);

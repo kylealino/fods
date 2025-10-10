@@ -235,7 +235,7 @@ echo view('templates/myheader.php');
                         </h6>
                     </div>
                     <div class="col-sm-6 text-end">
-                        <button type="button" id="btn_add_useraccess" name="btn_add_useraccess" class="btn_add_useraccess btn btn-sm btn-info mx-3">
+                        <button type="button" id="btn_add_useraccess" name="btn_add_useraccess" class="btn_add_useraccess btn btn-sm btn-warning mx-3">
                             Update User Access
                         </button>
                     </div>
@@ -243,8 +243,7 @@ echo view('templates/myheader.php');
             </div>						
             <div class="card-body p-0 px-4 py-2 my-2">
                 <div class="row">
-                    <div class="col-sm-6">
-                        <h6 class="mb-0 lh-base mb-2">Budget Allotment Access</h6>
+                    <div class="col-sm-12">
                         <table id="datatablesSimple" class="table table-bordered table-hover accessdata-list">
                             <thead>
                                 <tr>

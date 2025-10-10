@@ -23,6 +23,7 @@ function __mysys_payee_ent() {
 					var payee_account_num = document.getElementById("payee_account_num");
 					var payee_office = document.getElementById("payee_office");
 					var payee_tin = document.getElementById("payee_tin");
+					var contact_no = document.getElementById("contact_no");
 					var payee_address = document.getElementById("payee_address");
 					var disb_method = document.getElementById("disb_method");
 					var currency = document.getElementById("currency");
@@ -33,6 +34,7 @@ function __mysys_payee_ent() {
 						payee_account_num: payee_account_num.value,
 						payee_office: payee_office.value,
 						payee_tin: payee_tin.value,
+						contact_no: contact_no.value,
 						payee_address: payee_address.value,
 						disb_method: disb_method.value,
 						currency: currency.value,
@@ -114,52 +116,6 @@ function __mysys_payee_ent() {
 		});
 	};
 	
-	
-	// this.__delete_payee = function() {
-    //     document.getElementById('btn_delete').addEventListener('click', function (event) { 
-	// 		try { 
-	// 			var recid = document.getElementById("recid");
-	// 			var fname = document.getElementById("fname");
-	// 			var lname = document.getElementById("lname");
-				
-	// 			var mparam = { 
-	// 				recid: recid.value,
-	// 				fname: fname.value,
-	// 				lname: lname.value,
-	// 				meaction: 'MAIN-DELETE'
-	// 			}
-
-	// 			jQuery.ajax({ // default declaration of ajax parameters
-	// 				type: "POST",
-	// 				url: mesiteurl + 'mycrud',
-	// 				context: document.body,
-	// 				data: eval(mparam),
-	// 				global: false,
-	// 				cache: false,
-	// 				success: function(data) { //display html using divID
-	// 					jQuery('.me-mycrud-outp-msg').html(data);
-	// 					return false;
-	// 				},
-	// 				error: function(xhr, status, error) { // display global error on the menu function
-	// 					//__mysys_apps.mybs_simple_toast('memsgtoastcont','metoastmsglang','align-items-center text-bg-danger border-0','Hello, Error Loading Page [TRXMGT-AP-ITEM-TAXDED-ENT]' + error);
-	// 					toastr.error('[MYCRUD-ENT', "Hello, Error Loading Page..." + error, {
-	// 					closeButton: true,
-	// 					});
-	// 					return false;
-	// 				} 
-	// 			});  
-                            
-    //             } catch(err) {
-    //                 var mtxt = 'There was an error on this page.\n';
-    //                 mtxt += 'Error description: ' + err.message;
-    //                 mtxt += '\nClick OK to continue.';
-    //                 alert(mtxt);
-                    
-    //                 return false;
-        
-    //             }  //end try	
-	// 	}); 
-    // }
 
 }; //end main
 

@@ -1,0 +1,158 @@
+ERROR - 2025-10-10 09:17:35 --> mysqli_sql_exception: Unknown column 'added_by' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\tINSERT IN...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\tINSERT IN...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\tINSERT IN...')
+#3 C:\xampp\htdocs\fods\app\Models\MyProductsModel.php(64): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\tINSERT IN...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyProducts.php(36): App\Models\MyProductsModel->products_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyProducts->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProducts))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-10-10 09:17:35 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'added_by' in 'field list'
+[Method: POST, Route: myproducts]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyProductsModel.php(64): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `mst_products`(
+					`product_code`,
+					`product_desc`,
+					`uom`,
+					`price`,
+					`quantity`,
+					`remarks`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?)', [...])
+ 2 APPPATH\Controllers\MyProducts.php(36): App\Models\MyProductsModel->products_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyProducts->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProducts))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-10 09:17:35 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'added_by' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				INSERT INTO `mst_products`(
+					`product_code`,
+					`product_desc`,
+					`uom`,
+					`price`,
+					`quantity`,
+					`remarks`,
+					`added_by`
+				)
+				VALUES (\'testrarara\', \'asd\', \'sdasdas\', \'1\', \'1\', \'dasd\', \'ADMIN-KYLE\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				INSERT INTO `mst_products`(
+					`product_code`,
+					`product_desc`,
+					`uom`,
+					`price`,
+					`quantity`,
+					`remarks`,
+					`added_by`
+				)
+				VALUES (\'testrarara\', \'asd\', \'sdasdas\', \'1\', \'1\', \'dasd\', \'ADMIN-KYLE\')')
+ 3 APPPATH\Models\MyProductsModel.php(64): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `mst_products`(
+					`product_code`,
+					`product_desc`,
+					`uom`,
+					`price`,
+					`quantity`,
+					`remarks`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?)', [...])
+ 4 APPPATH\Controllers\MyProducts.php(36): App\Models\MyProductsModel->products_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyProducts->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProducts))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-10 09:17:35 --> [Caused by] mysqli_sql_exception: Unknown column 'added_by' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+				INSERT INTO `mst_products`(
+					`product_code`,
+					`product_desc`,
+					`uom`,
+					`price`,
+					`quantity`,
+					`remarks`,
+					`added_by`
+				)
+				VALUES (\'testrarara\', \'asd\', \'sdasdas\', \'1\', \'1\', \'dasd\', \'ADMIN-KYLE\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				INSERT INTO `mst_products`(
+					`product_code`,
+					`product_desc`,
+					`uom`,
+					`price`,
+					`quantity`,
+					`remarks`,
+					`added_by`
+				)
+				VALUES (\'testrarara\', \'asd\', \'sdasdas\', \'1\', \'1\', \'dasd\', \'ADMIN-KYLE\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				INSERT INTO `mst_products`(
+					`product_code`,
+					`product_desc`,
+					`uom`,
+					`price`,
+					`quantity`,
+					`remarks`,
+					`added_by`
+				)
+				VALUES (\'testrarara\', \'asd\', \'sdasdas\', \'1\', \'1\', \'dasd\', \'ADMIN-KYLE\')')
+ 4 APPPATH\Models\MyProductsModel.php(64): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `mst_products`(
+					`product_code`,
+					`product_desc`,
+					`uom`,
+					`price`,
+					`quantity`,
+					`remarks`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?)', [...])
+ 5 APPPATH\Controllers\MyProducts.php(36): App\Models\MyProductsModel->products_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyProducts->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProducts))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-10 09:19:23 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: myproducts]
+in APPPATH\Views\products\products-main.php on line 31.
+ 1 APPPATH\Views\products\products-main.php(31): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Views\\products\\products-main.php', 31)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\products\\products-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('products/products-main', [], true)
+ 5 APPPATH\Controllers\MyProducts.php(139): view('products/products-main', [...])
+ 6 APPPATH\Controllers\MyProducts.php(28): App\Controllers\MyProducts->loadProductsView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyProducts->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProducts))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-10 09:43:16 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "products/products-main.php"
+[Method: GET, Route: myproducts]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('products/products-main.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('products/products-main', [], true)
+ 3 APPPATH\Controllers\MyProducts.php(139): view('products/products-main', [...])
+ 4 APPPATH\Controllers\MyProducts.php(28): App\Controllers\MyProducts->loadProductsView()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyProducts->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProducts))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

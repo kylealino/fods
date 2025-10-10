@@ -11,6 +11,9 @@ class MyUserManagement extends BaseController
 		$this->request = \Config\Services::request();
         $this->myua = model('App\Models\MyUserManagementModel');
         $this->db = \Config\Database::connect();
+        $this->session = session();
+        $this->db = \Config\Database::connect();
+        $this->cuser = $this->session->get('__xsys_myuserzicas__');
 	}
 
     public function index() {
@@ -19,8 +22,15 @@ class MyUserManagement extends BaseController
     
         switch ($meaction) {
             case 'MAIN': 
-                return $this->loadMainView();
-                break;
+                $accessQuery = $this->db->query("
+                    SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '4001' AND `is_active` = '1'
+                ");
+                if ($accessQuery->getNumRows() > 0) {
+                    return $this->loadMainView();
+                    break;
+                }else {
+                    return view('errors/html/access-restricted');
+                }
     
             case 'MAIN-SAVE': 
                 $this->myua->user_save();

@@ -1,0 +1,158 @@
+ERROR - 2025-10-08 13:25:33 --> mysqli_sql_exception: MySQL server has gone away in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\t\t\tINSERT ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\t\t\tINSERT ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\t\t\tINSERT ...')
+#3 C:\xampp\htdocs\fods\app\Models\MyProcurementModel.php(104): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\t\t\tINSERT ...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyProcurement.php(30): App\Models\MyProcurementModel->pr_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyProcurement->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProcurement))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-10-08 13:25:33 --> CodeIgniter\Database\Exceptions\DatabaseException: MySQL server has gone away
+[Method: POST, Route: myprocurement]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyProcurementModel.php(104): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`item_desc`,
+							`unit`,
+							`quantity`,
+							`unit_cost`,
+							`total_cost`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 2 APPPATH\Controllers\MyProcurement.php(30): App\Models\MyProcurementModel->pr_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyProcurement->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProcurement))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-08 13:25:33 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: MySQL server has gone away
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`item_desc`,
+							`unit`,
+							`quantity`,
+							`unit_cost`,
+							`total_cost`,
+							`added_by`
+						)
+						VALUES (\'3\', \'test\', \'BLADE, for general purpose cutter/utility knife\', \'test\', \'2\', \'2000\', \'4000.00\', \'CDS-KYLE\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`item_desc`,
+							`unit`,
+							`quantity`,
+							`unit_cost`,
+							`total_cost`,
+							`added_by`
+						)
+						VALUES (\'3\', \'test\', \'BLADE, for general purpose cutter/utility knife\', \'test\', \'2\', \'2000\', \'4000.00\', \'CDS-KYLE\')')
+ 3 APPPATH\Models\MyProcurementModel.php(104): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`item_desc`,
+							`unit`,
+							`quantity`,
+							`unit_cost`,
+							`total_cost`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 4 APPPATH\Controllers\MyProcurement.php(30): App\Models\MyProcurementModel->pr_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyProcurement->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProcurement))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-08 13:25:33 --> [Caused by] mysqli_sql_exception: MySQL server has gone away
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`item_desc`,
+							`unit`,
+							`quantity`,
+							`unit_cost`,
+							`total_cost`,
+							`added_by`
+						)
+						VALUES (\'3\', \'test\', \'BLADE, for general purpose cutter/utility knife\', \'test\', \'2\', \'2000\', \'4000.00\', \'CDS-KYLE\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`item_desc`,
+							`unit`,
+							`quantity`,
+							`unit_cost`,
+							`total_cost`,
+							`added_by`
+						)
+						VALUES (\'3\', \'test\', \'BLADE, for general purpose cutter/utility knife\', \'test\', \'2\', \'2000\', \'4000.00\', \'CDS-KYLE\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`item_desc`,
+							`unit`,
+							`quantity`,
+							`unit_cost`,
+							`total_cost`,
+							`added_by`
+						)
+						VALUES (\'3\', \'test\', \'BLADE, for general purpose cutter/utility knife\', \'test\', \'2\', \'2000\', \'4000.00\', \'CDS-KYLE\')')
+ 4 APPPATH\Models\MyProcurementModel.php(104): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`item_desc`,
+							`unit`,
+							`quantity`,
+							`unit_cost`,
+							`total_cost`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 5 APPPATH\Controllers\MyProcurement.php(30): App\Models\MyProcurementModel->pr_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyProcurement->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProcurement))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-08 15:57:59 --> ErrorException: Undefined property: App\Controllers\MySaobReport::$cuser
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Controllers\MySaobReport.php on line 23.
+ 1 APPPATH\Controllers\MySaobReport.php(23): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\MySaobReport::$cuser', 'C:\\xampp\\htdocs\\fods\\app\\Controllers\\MySaobReport.php', 23)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-08 15:58:22 --> ErrorException: Undefined property: App\Controllers\MySaobReport::$session
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Controllers\MySaobReport.php on line 14.
+ 1 APPPATH\Controllers\MySaobReport.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\MySaobReport::$session', 'C:\\xampp\\htdocs\\fods\\app\\Controllers\\MySaobReport.php', 14)
+ 2 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\MySaobReport->__construct()
+ 3 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

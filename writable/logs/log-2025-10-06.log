@@ -1,0 +1,195 @@
+CRITICAL - 2025-10-06 16:30:40 --> ErrorException: Undefined variable $position
+[Method: POST, Route: myprocurement]
+in APPPATH\Models\MyProcurementModel.php on line 62.
+ 1 APPPATH\Models\MyProcurementModel.php(62): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $position', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MyProcurementModel.php', 62)
+ 2 APPPATH\Controllers\MyProcurement.php(30): App\Models\MyProcurementModel->pr_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyProcurement->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProcurement))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-10-06 16:31:24 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' at line 14 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\tINSERT IN...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\tINSERT IN...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\tINSERT IN...')
+#3 C:\xampp\htdocs\fods\app\Models\MyProcurementModel.php(64): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\tINSERT IN...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyProcurement.php(30): App\Models\MyProcurementModel->pr_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyProcurement->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProcurement))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-10-06 16:31:25 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' at line 14
+[Method: POST, Route: myprocurement]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyProcurementModel.php(64): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `tbl_pr_hd`(
+					`entity_name`,
+					`office`,
+					`prno`,
+					`responsibility_code`,
+					`fund_cluster`,
+					`pr_date`,
+					`end_user`,
+					`charge_to`,
+					`purpose`,
+					`estimated_cost`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 2 APPPATH\Controllers\MyProcurement.php(30): App\Models\MyProcurementModel->pr_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyProcurement->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProcurement))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-06 16:31:25 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' at line 14
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				INSERT INTO `tbl_pr_hd`(
+					`entity_name`,
+					`office`,
+					`prno`,
+					`responsibility_code`,
+					`fund_cluster`,
+					`pr_date`,
+					`end_user`,
+					`charge_to`,
+					`purpose`,
+					`estimated_cost`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				INSERT INTO `tbl_pr_hd`(
+					`entity_name`,
+					`office`,
+					`prno`,
+					`responsibility_code`,
+					`fund_cluster`,
+					`pr_date`,
+					`end_user`,
+					`charge_to`,
+					`purpose`,
+					`estimated_cost`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
+ 3 APPPATH\Models\MyProcurementModel.php(64): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `tbl_pr_hd`(
+					`entity_name`,
+					`office`,
+					`prno`,
+					`responsibility_code`,
+					`fund_cluster`,
+					`pr_date`,
+					`end_user`,
+					`charge_to`,
+					`purpose`,
+					`estimated_cost`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 4 APPPATH\Controllers\MyProcurement.php(30): App\Models\MyProcurementModel->pr_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyProcurement->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProcurement))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-06 16:31:25 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' at line 14
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+				INSERT INTO `tbl_pr_hd`(
+					`entity_name`,
+					`office`,
+					`prno`,
+					`responsibility_code`,
+					`fund_cluster`,
+					`pr_date`,
+					`end_user`,
+					`charge_to`,
+					`purpose`,
+					`estimated_cost`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				INSERT INTO `tbl_pr_hd`(
+					`entity_name`,
+					`office`,
+					`prno`,
+					`responsibility_code`,
+					`fund_cluster`,
+					`pr_date`,
+					`end_user`,
+					`charge_to`,
+					`purpose`,
+					`estimated_cost`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				INSERT INTO `tbl_pr_hd`(
+					`entity_name`,
+					`office`,
+					`prno`,
+					`responsibility_code`,
+					`fund_cluster`,
+					`pr_date`,
+					`end_user`,
+					`charge_to`,
+					`purpose`,
+					`estimated_cost`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
+ 4 APPPATH\Models\MyProcurementModel.php(64): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `tbl_pr_hd`(
+					`entity_name`,
+					`office`,
+					`prno`,
+					`responsibility_code`,
+					`fund_cluster`,
+					`pr_date`,
+					`end_user`,
+					`charge_to`,
+					`purpose`,
+					`estimated_cost`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 5 APPPATH\Controllers\MyProcurement.php(30): App\Models\MyProcurementModel->pr_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyProcurement->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProcurement))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-06 16:31:53 --> ErrorException: Undefined variable $project_id
+[Method: POST, Route: myprocurement]
+in APPPATH\Models\MyProcurementModel.php on line 203.
+ 1 APPPATH\Models\MyProcurementModel.php(203): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $project_id', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MyProcurementModel.php', 203)
+ 2 APPPATH\Controllers\MyProcurement.php(30): App\Models\MyProcurementModel->pr_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyProcurement->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProcurement))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-06 16:41:10 --> ErrorException: Undefined variable $position
+[Method: POST, Route: myprocurement]
+in APPPATH\Models\MyProcurementModel.php on line 138.
+ 1 APPPATH\Models\MyProcurementModel.php(138): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $position', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MyProcurementModel.php', 138)
+ 2 APPPATH\Controllers\MyProcurement.php(30): App\Models\MyProcurementModel->pr_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyProcurement->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProcurement))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
