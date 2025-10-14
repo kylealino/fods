@@ -35,6 +35,10 @@ class MyProcurement extends BaseController
 				return view('procurement/pr/pr-pdf');
 				break;
 
+            case 'RFQ-PRINT':
+				return view('procurement/pr/rfq-pdf');
+				break;
+
             case 'PR-SAVE': 
                 $this->myprocurement->pr_save();
                 return redirect()->to('mysaobrpt?meaction=MAIN');

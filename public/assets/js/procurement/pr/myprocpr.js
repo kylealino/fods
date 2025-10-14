@@ -252,12 +252,20 @@ function __mysys_proc_pr_ent() {
         });
     };
 
-	this.__showPdfInModal = function(pdfUrl) {
-		var pdfFrame = document.getElementById("pdfFrame");
-		var pdfModal = new bootstrap.Modal(document.getElementById("pdfModal"));
+	this.__showPdfInModalPR = function(pdfUrl) {
+		var pdfFramePR = document.getElementById("pdfFramePR");
+		var pdfModalPR = new bootstrap.Modal(document.getElementById("pdfModalPR"));
 
-		pdfFrame.src = pdfUrl;
-		pdfModal.show();
+		pdfFramePR.src = pdfUrl;
+		pdfModalPR.show();
+	};
+
+	this.__showPdfInModalRFQ = function(pdfUrl) {
+		var pdfFrameRFQ = document.getElementById("pdfFrameRFQ");
+		var pdfModalRFQ = new bootstrap.Modal(document.getElementById("pdfModalRFQ"));
+
+		pdfFrameRFQ.src = pdfUrl;
+		pdfModalRFQ.show();
 	};
 
 

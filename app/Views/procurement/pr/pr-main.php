@@ -349,11 +349,12 @@ echo view('templates/myheader.php');
                         <thead>
                             <tr>
                                 <th>Action</th>
-                                <th style="width: 200px;">PR No.</th>
+                                <th>PR No.</th>
                                 <th>Charge to</th>
                                 <th>Purpose</th>
                                 <th>End User</th>
                                 <th>Estimated Cost</th>
+                                <th>PR/RFQ Print</th>
                             </tr>
                         </thead>
                         <tbody class="align-middle">
@@ -374,11 +375,6 @@ echo view('templates/myheader.php');
                                         title="Edit Transaction">
                                         <i class="ti ti-edit"></i>
                                         </a>
-                                        <button class="btn btn-sm fs-6 text-warning p-0 border-0 bg-transparent" 
-                                                onclick="__mysys_proc_pr_ent.__showPdfInModal('<?= base_url('myprocurement?meaction=PR-PRINT&recid='.$dt_recid) ?>')" 
-                                                title="Print ORS">
-                                        <i class="ti ti-printer"></i>
-                                        </button>
                                     </div>
                                 </td>
                                 <td class="text-center"><?=$prno;?></td>
@@ -386,6 +382,20 @@ echo view('templates/myheader.php');
                                 <td class="text-center"><?=$purpose;?></td>
                                 <td class="text-center"><?=$end_user;?></td>
                                 <td class="text-center"><?= 'P'. number_format($estimated_cost,2);?></td>
+                                <td class="text-center align-middle">
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <button class="btn btn-sm fs-6 text-warning p-0 border-0 bg-transparent" 
+                                                onclick="__mysys_proc_pr_ent.__showPdfInModalPR('<?= base_url('myprocurement?meaction=PR-PRINT&recid='.$dt_recid) ?>')" 
+                                                title="Print ORS">
+                                        <i class="ti ti-printer"></i>
+                                        </button>
+                                        <button class="btn btn-sm fs-6 text-primary p-0 border-0 bg-transparent" 
+                                                onclick="__mysys_proc_pr_ent.__showPdfInModalRFQ('<?= base_url('myprocurement?meaction=RFQ-PRINT&recid='.$dt_recid) ?>')" 
+                                                title="Print RFQ">
+                                        <i class="ti ti-printer"></i>
+                                        </button>
+                                    </div>
+                                </td>
                             </tr>
                             <?php endforeach; endif;?>
                         </tbody>
@@ -399,8 +409,8 @@ echo view('templates/myheader.php');
     <div class="row me-myua-access-outp-msg mx-0">
     </div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+<!-- PR Modal -->
+<div class="modal fade" id="pdfModalPR" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
@@ -408,7 +418,22 @@ echo view('templates/myheader.php');
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <iframe id="pdfFrame" src="" style="width: 100%; height: 80vh;" frameborder="0"></iframe>
+        <iframe id="pdfFramePR" src="" style="width: 100%; height: 80vh;" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RFQ Modal -->
+<div class="modal fade" id="pdfModalRFQ" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="pdfModalLabel">RFQ Preview</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <iframe id="pdfFrameRFQ" src="" style="width: 100%; height: 80vh;" frameborder="0"></iframe>
       </div>
     </div>
   </div>
