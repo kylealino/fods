@@ -1,0 +1,15 @@
+CRITICAL - 2025-10-21 11:24:45 --> ErrorException: Undefined variable $productsdata
+[Method: GET, Route: myburs]
+in APPPATH\Views\burs\burs-main.php on line 1739.
+ 1 APPPATH\Views\burs\burs-main.php(1739): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $productsdata', 'C:\\xampp\\htdocs\\fods\\app\\Views\\burs\\burs-main.php', 1739)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\burs\\burs-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('burs/burs-main', [], true)
+ 5 APPPATH\Controllers\MyBurs.php(155): view('burs/burs-main', [...])
+ 6 APPPATH\Controllers\MyBurs.php(28): App\Controllers\MyBurs->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBurs->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBurs))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

@@ -2,6 +2,7 @@
 $this->request = \Config\Services::request();
 $this->db = \Config\Database::connect();
 $recid = $this->request->getPostGet('recid');
+$rfq_recid = $this->request->getPostGet('rfq_recid');
 $action = $this->request->getPostGet('action');
 $this->session = session();
 $this->cuser = $this->session->get('__xsys_myuserzicas__');
@@ -9,6 +10,7 @@ require APPPATH . 'ThirdParty/fpdf/fpdf.php';
 $currentDate = date("Y-m-d");
 $formattedDate = date("F j, Y", strtotime($currentDate));
 
+//PR DATA
 $query = $this->db->query("
 SELECT
     `entity_name`,
@@ -38,6 +40,29 @@ $end_user = $data['end_user'];
 $charge_to = $data['charge_to'];
 $purpose = $data['purpose'];
 $estimated_cost = $data['estimated_cost'];
+
+//RFQ DATA
+$query = $this->db->query("
+SELECT
+    `quotation_no`,
+    `company_name`,
+    `company_address`,
+    `delivery_period`,
+    `terms`,
+    `quotation_date`
+FROM
+    `tbl_pr_rfq`
+WHERE 
+    `recid` = '$rfq_recid'"
+);
+
+$data = $query->getRowArray();
+$quotation_no = $data['quotation_no'];
+$company_name = $data['company_name'];
+$company_address = $data['company_address'];
+$delivery_period = $data['delivery_period'];
+$terms = $data['terms'];
+$quotation_date = $data['quotation_date'];
 
 class PDF extends \FPDF {
     function Footer() {
@@ -110,13 +135,13 @@ $pdf->SetXY(12, $Y);
 $pdf->Cell(25, 5, 'Company Name:' , 0, 1, 'R');
 
 $pdf->SetXY(37, $Y);
-$pdf->Cell(90, 5, '' , 'B', 1, 'L');
+$pdf->Cell(90, 5, $company_name , 'B', 1, 'L');
 
 $pdf->SetXY(129, $Y);
 $pdf->Cell(30, 5, 'Date:' , 0, 1, 'R');
 
 $pdf->SetXY(170, $Y);
-$pdf->Cell(30, 5, '' , 'B', 1, 'L');
+$pdf->Cell(30, 5, $quotation_date , 'B', 1, 'L');
 
 $Y = $pdf->GetY();
 
@@ -124,13 +149,13 @@ $pdf->SetXY(8.5, $Y);
 $pdf->Cell(20, 5, 'Address:' , 0, 1, 'L');
 
 $pdf->SetXY(29, $Y);
-$pdf->Cell(98, 5, '', 'B', 1, 'L');
+$pdf->Cell(98, 5, $company_address, 'B', 1, 'L');
 
 $pdf->SetXY(140, $Y);
 $pdf->Cell(30, 5, 'Quotation #:' , 0, 1, 'R');
 
 $pdf->SetXY(170, $Y);
-$pdf->Cell(30, 5, '' , 'B', 1, 'L');
+$pdf->Cell(30, 5, $quotation_no , 'B', 1, 'L');
 
 $Y = $pdf->GetY();
 
@@ -281,6 +306,91 @@ foreach ($rw as $data) {
     $unit = $data['unit'];
 
 
+    if ($pdf->GetY() > 240) { // adjust threshold as needed
+        $pdf->AddPage();
+
+        // (optional) reprint your table header on new page here:
+        $pdf->SetFont('Arial', '', 9);
+
+        $Y =10;
+        $pdf->SetXY(10, $Y);
+        $pdf->Cell(15, 3.5, '' , 'LT', 1, 'C');
+
+        $pdf->SetXY(25, $Y);
+        $pdf->Cell(20, 3.5, '' , 'LT', 1, 'C');
+
+        $pdf->SetXY(45, $Y);
+        $pdf->Cell(65, 3.5, "" , 'LT', 1, 'C');
+
+        $pdf->SetXY(110, $Y);
+        $pdf->Cell(35, 3.5, "BIDDER'S" , 'LT', 1, 'C');
+
+        $pdf->SetXY(145, $Y);
+        $pdf->Cell(10, 3.5, '' , 'LT', 1, 'C');
+
+        $pdf->SetXY(155, $Y);
+        $pdf->Cell(15, 3.5, '' , 'LT', 1, 'C');
+
+        $pdf->SetXY(170, $Y);
+        $pdf->Cell(15, 3.5, '' , 'LT', 1, 'C');
+
+        $pdf->SetXY(185, $Y);
+        $pdf->Cell(15, 3.5, '' , 'RLT', 1, 'C');
+        //2ND LAYER -----------------------------------------------------------------
+        $Y = $pdf->GetY();
+        $pdf->SetXY(10, $Y);
+        $pdf->Cell(15, 3.5, 'ITEM NO.' , 'L', 1, 'C');
+
+        $pdf->SetXY(25, $Y);
+        $pdf->Cell(20, 3.5, 'ABC' , 'L', 1, 'C');
+
+        $pdf->SetXY(45, $Y);
+        $pdf->Cell(65, 3.5, "ITEM & DESCRIPTION/END-USER'S" , 'L', 1, 'C');
+
+        $pdf->SetXY(110, $Y);
+        $pdf->Cell(35, 3.5, 'SPECIFICATIONS' , 'L', 1, 'C');
+
+        $pdf->SetXY(145, $Y);
+        $pdf->Cell(10, 3.5, 'QTY' , 'L', 1, 'C');
+
+        $pdf->SetXY(155, $Y);
+        $pdf->Cell(15, 3.5, 'UNIT' , 'L', 1, 'C');
+
+        $pdf->SetXY(170, $Y);
+        $pdf->Cell(15, 3.5, 'UNIT' , 'L', 1, 'C');
+
+        $pdf->SetXY(185, $Y);
+        $pdf->Cell(15, 3.5, 'TOTAL' , 'LR', 1, 'C');
+
+        //3RD LAYER --------------------------------------------------------------------
+        $Y = $pdf->GetY();
+        $pdf->SetXY(10, $Y);
+        $pdf->Cell(15, 3.5, '' , 'LB', 1, 'C');
+
+        $pdf->SetXY(25, $Y);
+        $pdf->Cell(20, 3.5, 'PER ITEM' , 'LB', 1, 'C');
+
+        $pdf->SetXY(45, $Y);
+        $pdf->Cell(65, 3.5, "SPECIFICATIONS" , 'LB', 1, 'C');
+
+        $pdf->SetXY(110, $Y);
+        $pdf->Cell(35, 3.5, 'OFFER' , 'LB', 1, 'C');
+
+        $pdf->SetXY(145, $Y);
+        $pdf->Cell(10, 3.5, '' , 'LB', 1, 'C');
+
+        $pdf->SetXY(155, $Y);
+        $pdf->Cell(15, 3.5, '' , 'LB', 1, 'C');
+
+        $pdf->SetXY(170, $Y);
+        $pdf->Cell(15, 3.5, 'PRICE' , 'LB', 1, 'C');
+
+        $pdf->SetXY(185, $Y);
+        $pdf->Cell(15, 3.5, 'PRICE' , 'LBR', 1, 'C');
+
+       
+    }
+
     $startY = $pdf->GetY();
 
     // ITEM & DESCRIPTION MultiCell
@@ -390,7 +500,10 @@ $pdf->SetXY(25, $Y);
 $pdf->Cell(20, 3.5, '', 'L', 0, 'C');  // ABC
 
 $pdf->SetXY(45, $Y);
-$pdf->Cell(65, 3.5, 'End-User: LEA B. LANDICHO', 'L', 0, 'L');  // ITEM DESCRIPTION
+$pdf->Cell(65, 3.5, 'End-User:', 'L', 0, 'L');  // ITEM DESCRIPTION
+
+$pdf->SetXY(60, $Y);
+$pdf->Cell(45, 3.5, $end_user, 'B', 0, 'L');  // ITEM DESCRIPTION
 
 $pdf->SetXY(110, $Y);
 $pdf->Cell(35, 3.5, '', 'L', 0, 'C');  // SPECIFICATIONS
@@ -417,7 +530,10 @@ $pdf->SetXY(25, $Y);
 $pdf->Cell(20, 3.5, '', 'L', 0, 'C');  // ABC
 
 $pdf->SetXY(45, $Y);
-$pdf->Cell(65, 3.5, 'Delivery Period: __________________', 'L', 0, 'L');  // ITEM DESCRIPTION
+$pdf->Cell(65, 3.5, 'Delivery Period:', 'L', 0, 'L');  // ITEM DESCRIPTION
+
+$pdf->SetXY(70, $Y);
+$pdf->Cell(35, 3.5, $delivery_period, 'B', 0, 'L');  // ITEM DESCRIPTION
 
 $pdf->SetXY(110, $Y);
 $pdf->Cell(35, 3.5, '', 'L', 0, 'C');  // SPECIFICATIONS
@@ -444,7 +560,10 @@ $pdf->SetXY(25, $Y);
 $pdf->Cell(20, 3.5, '', 'LB', 0, 'C');  // ABC
 
 $pdf->SetXY(45, $Y);
-$pdf->Cell(65, 3.3, 'Terms of Payment: __________________', 'LB', 0, 'L');  // ITEM DESCRIPTION
+$pdf->Cell(65, 3.3, 'Terms of Payment:', 'LB', 0, 'L');  // ITEM DESCRIPTION
+
+$pdf->SetXY(75, $Y);
+$pdf->Cell(30, 3.3, $terms, 'B', 0, 'L');  // ITEM DESCRIPTION
 
 $pdf->SetXY(110, $Y);
 $pdf->Cell(35, 3.5, '', 'LB', 0, 'C');  // SPECIFICATIONS

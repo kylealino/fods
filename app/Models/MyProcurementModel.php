@@ -216,44 +216,58 @@ class MyProcurementModel extends Model
 		}
 		
 	}
-	
-	public function budget_approve() { 
+
+	public function pr_rfq_save() { 
 		$recid = $this->request->getPostGet('recid');
-		$approver = $this->request->getPostGet('approver');
-		$remarks = $this->request->getPostGet('remarks');
+		$prno = $this->request->getPostGet('prno');
+		$quotation_no = $this->request->getPostGet('quotation_no');
+		$quotation_date = $this->request->getPostGet('quotation_date');
+		$company_name = $this->request->getPostGet('company_name');
+		$company_address = $this->request->getPostGet('company_address');
+		$delivery_period = $this->request->getPostGet('delivery_period');
+		$terms = $this->request->getPostGet('terms');
 
-		$accessquery = $this->db->query("
-			SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '1005' AND `is_active` = '1'
-		");
-		if ($accessquery->getNumRows() == 0) {
-			echo "
-			<script>
-			toastr.error('Approve Access Denied! Please Contact the Administrator.', 'Oops!', {
-					progressBar: true,
-					closeButton: true,
-					timeOut:2000,
-				});
-			</script>
-			";
-			die();
-		}
-
+		//INSERTING HD DATA
 		$query = $this->db->query("
-			UPDATE tbl_budget_hd SET `is_pending` = '0', `is_approved` = '1',`approver` = '$approver', `remarks` = '$remarks' WHERE `recid` = '$recid'
-		");
-		$status = "Project budget approved!";
+			INSERT INTO `tbl_pr_rfq`(
+			`prno`, 
+			`quotation_no`, 
+			`company_name`, 
+			`company_address`, 
+			`delivery_period`, 
+			`terms`, 
+			`quotation_date`, 
+			`added_by`
+			)
+			VALUES (?, ?, ?, ?, ?, ?, ?, ?)", 
+			[
+				$prno,
+				$quotation_no,
+				$company_name,
+				$company_address,
+				$delivery_period,
+				$terms,
+				$quotation_date,
+				$this->cuser
+			]
+		);
+
+		$status = "RFQ Created Successfully!";
+		$color = "success";
 		
+
 		if ($query) {
 			// Echo JavaScript to show the toast and then redirect
 			echo "
 			<script>
-				toastr.success('{$status}!', 'Well Done!', {
+				document.getElementById('submitBtn').disabled = true;
+				toastr.$color('{$status}!', 'Well Done!', {
 						progressBar: true,
 						closeButton: true,
 						timeOut:2500,
 					});
 				setTimeout(function() {
-						window.location.href = 'mybudgetallotment?meaction=MAIN'; // Redirect to MAIN view
+						window.location.href = 'myprocurement?meaction=PR-MAIN&recid=$recid'; // Redirect to MAIN view
 					}, 2500); // 2-second delay for user to see the toast
 			</script>
 			";
@@ -265,234 +279,9 @@ class MyProcurementModel extends Model
 				  </script>";
 			exit;
 		}
+		
 	}
-
-	public function budget_disapprove() { 
-		$recid = $this->request->getPostGet('recid');
-		$approver = $this->request->getPostGet('approver');
-		$remarks = $this->request->getPostGet('remarks');
-
-		$accessquery = $this->db->query("
-			SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '1005' AND `is_active` = '1'
-		");
-		if ($accessquery->getNumRows() == 0) {
-			echo "
-			<script>
-			toastr.error('Disapprove Access Denied! Please Contact the Administrator.', 'Oops!', {
-					progressBar: true,
-					closeButton: true,
-					timeOut:2000,
-				});
-			</script>
-			";
-			die();
-		}
-
-		$query = $this->db->query("
-			UPDATE tbl_budget_hd SET `is_pending` = '0', `is_approved` = '0',`is_disapproved` = '1',`approver` = '$approver', `remarks` = '$remarks' WHERE `recid` = '$recid'
-		");
-		$status = "Project budget disapproved!";
-		
-		if ($query) {
-			// Echo JavaScript to show the toast and then redirect
-			echo "
-			<script>
-				toastr.success('{$status}!', 'Well Done!', {
-						progressBar: true,
-						closeButton: true,
-						timeOut:2500,
-					});
-				setTimeout(function() {
-						window.location.href = 'mybudgetallotment?meaction=MAIN'; // Redirect to MAIN view
-					}, 2500); // 2-second delay for user to see the toast
-			</script>
-			";
-			exit; // Stop further PHP execution after the toast
-		} else {
-			// If there's an error, show an alert message
-			echo "<script type='text/javascript'>
-					alert('An error occurred while executing the query.');
-				  </script>";
-			exit;
-		}
-	}
-
-	public function budget_attachment_upload() { 
-		$file = $this->request->getFile('userfile');
-        $trxno = $this->request->getPostGet('hd_trxno');
-
-        $query = $this->db->query("SELECT `recid` FROM tbl_budget_hd WHERE `trxno` = '$trxno' ");
-        if ($query->getNumRows() > 0) {
-            $rw = $query->getRowArray();
-            $recid = $rw['recid'];
-        } 
-
-        if (!$file || !$file->isValid()) {
-            return redirect()->to('mybudgetallotment?meaction=MAIN')
-                            ->with('error', 'No file selected or invalid file.');
-        }
-
-        $uploadPath = FCPATH . 'uploads/';
-
-        if (!is_dir($uploadPath)) {
-            mkdir($uploadPath, 0777, true);
-        }
-
-        $originalName = pathinfo($file->getName(), PATHINFO_FILENAME);
-
-        $newFileName = $originalName . '_' . $file->getRandomName();
-        $file->move($uploadPath, $newFileName);
-
-        $query = $this->db->query("
-        INSERT INTO `tbl_budget_attachments`(
-            `trxno`,
-            `file_name`,
-            `added_by`
-        )
-        VALUES(
-            '$trxno',
-            '$newFileName',
-            '{$this->cuser}'
-        )
-        ");
-
-        $status = 'File uploaded successfully';
-        $redirectUrl = 'mybudgetallotment?meaction=MAIN&recid=' . $recid;
-        
-		if ($query) {
-			// Echo JavaScript to show the toast and then redirect
-			echo "
-			<script>
-				toastr.success('{$status}!', 'Well Done!', {
-						progressBar: true,
-						closeButton: true,
-						timeOut:2500,
-					});
-				setTimeout(function() {
-						window.location.href = 'mybudgetallotment?meaction=MAIN&recid=$recid'; 
-					}, 2500); // 2-second delay for user to see the toast
-			</script>
-			";
-			exit; // Stop further PHP execution after the toast
-		} else {
-			// If there's an error, show an alert message
-			echo "<script type='text/javascript'>
-					alert('An error occurred while executing the query.');
-				  </script>";
-			exit;
-		}
-	}
-
-	public function get_ctr_budget($class,$supp,$dbname,$mfld='') { 
-		$accessquery = $this->db->query("
-		CREATE TABLE if not exists `myctr_budget` (
-		  `CTR_YEAR` varchar(4) DEFAULT '0000',
-		  `CTR_MONTH` varchar(2) DEFAULT '00',
-		  `CTR_DAY` varchar(2) DEFAULT '00',
-		  `CTRL_NO01` varchar(15) DEFAULT '00000000',
-		  `CTRL_NO02` varchar(15) DEFAULT '00000000',
-		  `CTRL_NO03` varchar(15) DEFAULT '00000000',
-		  `CTRL_NO04` varchar(15) DEFAULT '00000000',
-		  `CTRL_NO05` varchar(15) DEFAULT '00000000',
-		  `CTRL_NO06` varchar(15) DEFAULT '00000000',
-		  `CTRL_NO07` varchar(15) DEFAULT '00000000',
-		  `CTRL_NO08` varchar(15) DEFAULT '00000000',
-		  `CTRL_NO09` varchar(15) DEFAULT '00000000',
-		  `CTRL_NO10` varchar(15) DEFAULT '00000000',
-		  `CTRL_NO11` varchar(15) DEFAULT '00000000',
-		  `SS_CTR` varchar(15) DEFAULT '000000',
-		  UNIQUE KEY `ctr01` (`CTR_YEAR`,`CTR_MONTH`,`CTR_DAY`)
-		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-		");
-
-		$xfield = (empty($mfld) ? 'CTRL_NO01' : $mfld);
-		
-		$q = $this->db->query("select date(now()) XSYSDATE");
-		$rdate = $q->getRowArray();
-		$xsysdate = $rdate['XSYSDATE'];
-		$xsysdate_exp = explode('-', $xsysdate);
-		$xsysyear =  $xsysdate_exp[0];
-		$xsysmonth = $xsysdate_exp[1];
-		$xsysday = $xsysdate_exp[2];
-		
-		$qctr = $this->db->query("select {$xfield} from myctr_budget WHERE CTR_YEAR = '$xsysyear' AND CTR_MONTH = '$xsysmonth' AND CTR_DAY = '$xsysday'  limit 1");
-		if($qctr->getNumRows() == 0) {
-			$xnumb = '00001';
-			$query = $this->db->query( "insert into myctr_budget (CTR_YEAR,CTR_MONTH,CTR_DAY,{$xfield}) values('$xsysyear','$xsysmonth','$xsysday','$xnumb')");
-			$qctr->freeResult();
-		} else {
-			$qctr->freeResult();
-			$qctr = $this->db->query( "select {$xfield} MYFIELD from myctr_budget WHERE CTR_YEAR = '$xsysyear' AND CTR_MONTH = '$xsysmonth' AND CTR_DAY = '$xsysday' limit 1");
-			$rctr = $qctr->getRowArray();
-			if(trim($rctr['MYFIELD'],' ') == '') { 
-				$xnumb = '00001';
-			} else {
-				$xnumb = $rctr['MYFIELD'];
-				$qctr = $this->db->query("select ('{$xnumb}' + 1) XNUMB");
-				$rctr = $qctr->getRowArray();
-				$xnumb = trim($rctr['XNUMB'],' ');
-				$xnumb = str_pad($xnumb + 0,5,"0",STR_PAD_LEFT);
-				$query = $this->db->query("update myctr_budget set {$xfield} = '{$xnumb}'");
-			}
-		}
-		return  $class . '-' . $xnumb . '-' . $xsysmonth . $xsysday;//.$supp
-	} 
-
-	public function get_ctr_saob($class,$supp,$dbname,$mfld='') { 
-		$accessquery = $this->db->query("
-		CREATE TABLE if not exists `myctr_saob` (
-		  `CTR_YEAR` varchar(4) DEFAULT '0000',
-		  `CTR_MONTH` varchar(2) DEFAULT '00',
-		  `CTR_DAY` varchar(2) DEFAULT '00',
-		  `CTRL_NO01` varchar(15) DEFAULT '00000000',
-		  `CTRL_NO02` varchar(15) DEFAULT '00000000',
-		  `CTRL_NO03` varchar(15) DEFAULT '00000000',
-		  `CTRL_NO04` varchar(15) DEFAULT '00000000',
-		  `CTRL_NO05` varchar(15) DEFAULT '00000000',
-		  `CTRL_NO06` varchar(15) DEFAULT '00000000',
-		  `CTRL_NO07` varchar(15) DEFAULT '00000000',
-		  `CTRL_NO08` varchar(15) DEFAULT '00000000',
-		  `CTRL_NO09` varchar(15) DEFAULT '00000000',
-		  `CTRL_NO10` varchar(15) DEFAULT '00000000',
-		  `CTRL_NO11` varchar(15) DEFAULT '00000000',
-		  `SS_CTR` varchar(15) DEFAULT '000000',
-		  UNIQUE KEY `ctr01` (`CTR_YEAR`,`CTR_MONTH`,`CTR_DAY`)
-		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-		");
-
-		$xfield = (empty($mfld) ? 'CTRL_NO01' : $mfld);
-		
-		$q = $this->db->query("select date(now()) XSYSDATE");
-		$rdate = $q->getRowArray();
-		$xsysdate = $rdate['XSYSDATE'];
-		$xsysdate_exp = explode('-', $xsysdate);
-		$xsysyear =  $xsysdate_exp[0];
-		$xsysmonth = $xsysdate_exp[1];
-		$xsysday = $xsysdate_exp[2];
-		
-		$qctr = $this->db->query("select {$xfield} from myctr_saob WHERE CTR_YEAR = '$xsysyear' AND CTR_MONTH = '$xsysmonth' AND CTR_DAY = '$xsysday'  limit 1");
-		if($qctr->getNumRows() == 0) {
-			$xnumb = '00001';
-			$query = $this->db->query( "insert into myctr_saob (CTR_YEAR,CTR_MONTH,CTR_DAY,{$xfield}) values('$xsysyear','$xsysmonth','$xsysday','$xnumb')");
-			$qctr->freeResult();
-		} else {
-			$qctr->freeResult();
-			$qctr = $this->db->query( "select {$xfield} MYFIELD from myctr_saob WHERE CTR_YEAR = '$xsysyear' AND CTR_MONTH = '$xsysmonth' AND CTR_DAY = '$xsysday' limit 1");
-			$rctr = $qctr->getRowArray();
-			if(trim($rctr['MYFIELD'],' ') == '') { 
-				$xnumb = '00001';
-			} else {
-				$xnumb = $rctr['MYFIELD'];
-				$qctr = $this->db->query("select ('{$xnumb}' + 1) XNUMB");
-				$rctr = $qctr->getRowArray();
-				$xnumb = trim($rctr['XNUMB'],' ');
-				$xnumb = str_pad($xnumb + 0,5,"0",STR_PAD_LEFT);
-				$query = $this->db->query("update myctr_saob set {$xfield} = '{$xnumb}'");
-			}
-		}
-		return  $class . '-' . $xnumb . '-' . $xsysmonth . $xsysday;//.$supp
-	} 
-
 	
+
 } //end main class
 ?>

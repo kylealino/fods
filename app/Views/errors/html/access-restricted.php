@@ -57,8 +57,8 @@
 
 <div class="access-restricted-wrapper mb-4">
     <div class="message-box">
-        <h1>Access Restricted</h1>
-        <p>Sorry, you don't have permission to view this page.<br>Please contact the administrator for access.</p>
+        <h1 class="text-danger fw-bold">Access Restricted</h1>
+        <p>You do not have permission to view this page.<br>Please contact your system administrator to request access.</p>
         <a href="<?=site_url();?>mydashboard">Return to Homepage</a>
     </div>
 </div>

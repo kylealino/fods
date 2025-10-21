@@ -135,10 +135,10 @@ echo view('templates/myheader.php');
                                     <?php if(!empty($recid)):?>
                                     <option value="<?=$disb_method;?>"><?=$disb_method;?></option>
                                     <?php endif;?>
-                                    <option value="CASH">CASH</option>
-                                    <option value="BANK TRANSFER">BANK TRANSFER</option>
+                                    <option value="LDDAP-ADA">LDDAP-ADA</option>
+                                    <option value="LDDAP-IC">LDDAP-IC</option>
                                     <option value="CHECK">CHECK</option>
-                                    <option value="DIGITAL WALLET">DIGITAL WALLET</option>
+                                    <option value="ADA">ADA</option>
                                 </select>
                             </div>
                         </div>

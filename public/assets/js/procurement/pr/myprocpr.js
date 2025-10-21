@@ -147,6 +147,73 @@ function __mysys_proc_pr_ent() {
 		}
 		return result;
 	}
+
+	this.__add_rfq = function() {
+		const approveBtn = document.getElementById('btn_approve');
+		const confirmApproveBtn = document.getElementById('confirmApproveBtn');
+		var prno = document.getElementById("prno");
+		var quotation_no = document.getElementById("quotation_no");
+		var quotation_date = document.getElementById("quotation_date");
+		var company_name = document.getElementById("company_name");
+		var company_address = document.getElementById("company_address");
+		var delivery_period = document.getElementById("delivery_period");
+		var terms = document.getElementById("terms");
+		let recid = null; // store recid for use after confirmation
+	
+		approveBtn.addEventListener('click', function () {
+			recid = document.getElementById("recid");
+			prno = document.getElementById("prno");
+			quotation_no = document.getElementById("quotation_no");
+			quotation_date = document.getElementById("quotation_date");
+			company_name = document.getElementById("company_name");
+			company_address = document.getElementById("company_address");
+			delivery_period = document.getElementById("delivery_period");
+			terms = document.getElementById("terms");
+	
+			// Show the modal
+			const approveModal = new bootstrap.Modal(document.getElementById('confirmApproveModal'));
+			approveModal.show();
+		});
+	
+		confirmApproveBtn.addEventListener('click', function () {
+			if (!recid) return;
+	
+			const mparam = {
+				recid: recid.value,
+				prno: prno.value,
+				quotation_no: quotation_no.value,
+				quotation_date: quotation_date.value,
+				company_name: company_name.value,
+				company_address: company_address.value,
+				delivery_period: delivery_period.value,
+				terms: terms.value,
+				meaction: 'PR-RFQ-SAVE'
+			};
+	
+			jQuery.ajax({
+				type: "POST",
+				url: mesiteurl + 'myprocurement',
+				context: document.body,
+				data: eval(mparam),
+				global: false,
+				cache: false,
+				success: function(data) {
+					jQuery('.myprocpr-outp-msg').html(data);
+
+					// Close the approve modal after successful approval
+					const approveModal = bootstrap.Modal.getInstance(document.getElementById('confirmApproveModal'));
+					approveModal.hide();
+				},
+				error: function(xhr, status, error) {
+					alert('Error: ' + error);
+				}
+			});
+	
+			// Close the modal
+			const approveModal = bootstrap.Modal.getInstance(document.getElementById('confirmApproveModal'));
+			approveModal.hide();
+		});
+	};
 	
 	this.__pr_saving = function() { 
 		'use strict' 

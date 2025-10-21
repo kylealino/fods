@@ -2,7 +2,9 @@
 $this->request = \Config\Services::request();
 $this->mybudgetallotment = model('App\Models\MyBudgetAllotmentModel');
 $this->db = \Config\Database::connect();
+$this->session = session();
 $recid = $this->request->getPostGet('recid');
+$this->cuser = $this->session->get('__xsys_myuserzicas__');
 
 $entity_name = '';
 $office = '';
@@ -86,15 +88,26 @@ echo view('templates/myheader.php');
 
                 </div>
                 <div class="card-header bg-info p-1">
-                    <div class="row">
+                    <div class="row px-3">
                         <div class="col-sm-6 d-flex align-items-center text-start">
-                            <h6 class="mb-0 lh-base px-3 text-white fw-semibold d-flex align-items-center">
+                            <h6 class="mb-0 lh-base text-white fw-semibold d-flex align-items-center">
                                 <i class="ti ti-pencil fs-5 me-1"></i>
-                                <span class="pt-1">Entry</span>
+                                <span class="pt-1">End-User Entry</span>
                             </h6>
                         </div>
-                        <div class="col-sm-6 text-end ">
-
+                        <div class="col-sm-6 text-end">
+                            <?php if (strpos($this->cuser, 'PPT') !== false && !empty($recid) && !empty($prno)):?>
+                                <button type="button" id="btn_approve" name="btn_approve" class="btn_approve btn btn-sm btn-warning">
+                                    <i class="ti ti-plus fs-3 me-1"></i>
+                                    Add RFQ
+                                </button>
+                            <?php elseif(strpos($this->cuser, 'PPT') !== false && !empty($recid) && empty($prno)):?>
+                                <button type="button" id="btn_approve" disabled name="btn_approve" class="btn_approve btn btn-sm btn-warning">
+                                    <i class="ti ti-plus fs-3 me-1"></i>
+                                    Add RFQ
+                                </button>
+                            <?php else:?>
+                            <?php endif;?>
                         </div>
                     </div>
                 </div>						
@@ -104,11 +117,15 @@ echo view('templates/myheader.php');
                             <div class="col-sm-6">
                                 <div class="row mb-2">
                                     <div class="col-sm-4">
-                                        <span class="fw-bold">Entity Name:</span>
+                                        <span class="fw-bold">PR No.:</span>
                                     </div>
+                                    <??>
                                     <div class="col-sm-8">
-                                        <input type="hidden" id="recid" name="recid" value="<?=$recid;?>" class="form-control form-control-sm"/>
-                                        <input type="text" id="entity_name" name="entity_name" value="<?=$entity_name;?>" class="form-control form-control-sm"/>
+                                        <?php if (strpos($this->cuser, 'PPT') !== false):?>
+                                            <input type="text" id="prno" name="prno" value="<?=$prno;?>" class="form-control form-control-sm"/>
+                                        <?php else:?>
+                                            <input type="text" id="prno" name="prno" disabled value="<?=$prno;?>" class="form-control form-control-sm"/>
+                                        <?php endif;?>
                                     </div>
                                 </div>
                             </div>
@@ -125,10 +142,11 @@ echo view('templates/myheader.php');
                             <div class="col-sm-6">
                                 <div class="row mb-2">
                                     <div class="col-sm-4">
-                                        <span class="fw-bold">PR No.:</span>
+                                        <span class="fw-bold">Entity Name:</span>
                                     </div>
                                     <div class="col-sm-8">
-                                        <input type="text" id="prno" name="prno" value="<?=$prno;?>" class="form-control form-control-sm"/>
+                                        <input type="hidden" id="recid" name="recid" value="<?=$recid;?>" class="form-control form-control-sm"/>
+                                        <input type="text" id="entity_name" name="entity_name" value="<?=$entity_name;?>" class="form-control form-control-sm"/>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -325,7 +343,78 @@ echo view('templates/myheader.php');
                                 </button>
                             </div>
                         </div>
+
+                        <hr>
+
                     </form>
+                    <?php if (strpos($this->cuser, 'PPT') !== false && !empty($recid)):?>
+                    <div class="row">
+                        <div class="col-sm-12 d-flex align-items-center text-start bg-light mx-3">
+                            <h6 class="mb-0 lh-base fw-semibold d-flex align-items-center">
+                                <i class="ti ti-list fs-5 me-1 text-info"></i>
+                                <span class="pt-1 text-info">RFQ List</span>
+                            </h6>
+                        </div>
+                        <div class="col-sm-12">
+                            <table id="datatablesSimples" class="table table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Quotation No.</th>
+                                        <th>Company Name</th>
+                                        <th>Delivery Period</th>
+                                        <th>Terms of Payment</th>
+                                        <th>Quotation Date</th>
+                                        <th>RFQ Print</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="align-middle">
+                                    <?php if(!empty($recid)):
+                                        $query = $this->db->query("
+                                        SELECT
+                                            `recid`,
+                                            `quotation_no`,
+                                            `company_name`,
+                                            `company_address`,
+                                            `delivery_period`,
+                                            `terms`,
+                                            `quotation_date`
+                                        FROM
+                                            `tbl_pr_rfq`
+                                        WHERE
+                                            `prno` = '$prno'"
+                                        );
+                                        $result = $query->getResultArray();
+                                        foreach ($result as $data):
+                                            $rfq_recid = $data['recid'];
+                                            $quotation_no = $data['quotation_no'];
+                                            $company_name = $data['company_name'];
+                                            $company_address = $data['company_address'];
+                                            $delivery_period = $data['delivery_period'];
+                                            $terms = $data['terms'];
+                                            $quotation_date = $data['quotation_date'];
+                                    ?>
+                                    <tr>
+                                        <td class="text-center"><?=$quotation_no;?></td>
+                                        <td class="text-center"><?=$company_name;?></td>
+                                        <td class="text-center"><?=$delivery_period;?></td>
+                                        <td class="text-center"><?=$terms;?></td>
+                                        <td class="text-center"><?=$quotation_date;?></td>
+                                        <td class="text-center align-middle">
+                                            <div class="d-flex justify-content-center gap-2">
+                                                <button class="btn btn-sm fs-6 text-primary p-0 border-0 bg-transparent" 
+                                                        onclick="__mysys_proc_pr_ent.__showPdfInModalRFQ('<?= base_url('myprocurement?meaction=RFQ-PRINT&recid=') .$recid .'&rfq_recid=' . $rfq_recid ?>')" 
+                                                        title="Print RFQ">
+                                                <i class="ti ti-printer"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach; endif;?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <?php endif;?>
                 </div>
             </div>
         </div>
@@ -339,7 +428,7 @@ echo view('templates/myheader.php');
                         <div class="col-sm-6 d-flex align-items-center text-start">
                             <h6 class="mb-0 lh-base px-3 text-white fw-semibold d-flex align-items-center">
                                 <i class="ti ti-list fs-5 me-1"></i>
-                                <span class="pt-1">List</span>
+                                <span class="pt-1">PR List</span>
                             </h6>
                         </div>
                     </div>
@@ -354,7 +443,7 @@ echo view('templates/myheader.php');
                                 <th>Purpose</th>
                                 <th>End User</th>
                                 <th>Estimated Cost</th>
-                                <th>PR/RFQ Print</th>
+                                <th>PR Print</th>
                             </tr>
                         </thead>
                         <tbody class="align-middle">
@@ -387,11 +476,6 @@ echo view('templates/myheader.php');
                                         <button class="btn btn-sm fs-6 text-warning p-0 border-0 bg-transparent" 
                                                 onclick="__mysys_proc_pr_ent.__showPdfInModalPR('<?= base_url('myprocurement?meaction=PR-PRINT&recid='.$dt_recid) ?>')" 
                                                 title="Print ORS">
-                                        <i class="ti ti-printer"></i>
-                                        </button>
-                                        <button class="btn btn-sm fs-6 text-primary p-0 border-0 bg-transparent" 
-                                                onclick="__mysys_proc_pr_ent.__showPdfInModalRFQ('<?= base_url('myprocurement?meaction=RFQ-PRINT&recid='.$dt_recid) ?>')" 
-                                                title="Print RFQ">
                                         <i class="ti ti-printer"></i>
                                         </button>
                                     </div>
@@ -439,6 +523,77 @@ echo view('templates/myheader.php');
   </div>
 </div>
 
+<!-- APPROVAL -->
+<div class="modal fade" id="confirmApproveModal" tabindex="-1" aria-labelledby="confirmApproveModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-info text-white py-2">
+                <h5 class="modal-title text-white fs-4" id="confirmApproveModalLabel">RFQ Entry</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row mb-2">
+                            <div class="col-sm-4 d-flex align-items-center">
+                                <span class="fw-bold">Quotation No.:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" id="quotation_no" name="quotation_no" value="" class="form-control form-control-sm"/>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4 d-flex align-items-center text-nowrap">
+                                <span class="fw-bold ">Quotation Date:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="date" id="quotation_date" name="quotation_date" value="" class="form-control form-control-sm"/>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4 d-flex align-items-center">
+                                <span class="fw-bold">Company Name:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" id="company_name" name="company_name" value="" class="form-control form-control-sm"/>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4 d-flex align-items-center text-nowrap">
+                                <span class="fw-bold ">Company Address:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <textarea name="company_address" id="company_address" placeholder="" rows="2"  class="form-control form-control-sm  text-black company_address"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4 d-flex align-items-center">
+                                <span class="fw-bold">Delivery Period:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" id="delivery_period" name="delivery_period" value="" class="form-control form-control-sm"/>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4 d-flex align-items-center">
+                                <span class="fw-bold">Terms of Payment:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" id="terms" name="terms" value="" class="form-control form-control-sm"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm px-3" id="confirmApproveBtn">Add</button>
+                <button type="button" class="btn bg-secondary-subtle btn-sm" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 
@@ -476,8 +631,10 @@ $(function() {
 </script>
 
 <script>
-    __mysys_proc_pr_ent.__pr_saving();
     __mysys_proc_pr_ent.__combined_totals();
+    __mysys_proc_pr_ent.__pr_saving();
+    __mysys_proc_pr_ent.__add_rfq();
+    
 </script>
 
 

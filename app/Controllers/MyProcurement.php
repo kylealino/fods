@@ -41,18 +41,14 @@ class MyProcurement extends BaseController
 
             case 'PR-SAVE': 
                 $this->myprocurement->pr_save();
-                return redirect()->to('mysaobrpt?meaction=MAIN');
+                return redirect()->to('myprocurement?meaction=PR-MAIN');
                 break;
 
-            //  case 'MAIN-APPROVE': 
-            //     $this->mysaob->budget_approve();
-            //     return redirect()->to('myua?meaction=MAIN');
-            //     break;
+            case 'PR-RFQ-SAVE': 
+                $this->myprocurement->pr_rfq_save();
+                return redirect()->to('myprocurement?meaction=PR-MAIN');
+                break;
 
-            //   case 'MAIN-DISAPPROVE': 
-            //     $this->mysaob->budget_disapprove();
-            //     return redirect()->to('myua?meaction=MAIN');
-            //     break;
         }
     }
     

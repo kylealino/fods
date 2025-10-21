@@ -46,7 +46,7 @@ class MyPayee extends BaseController
 
     private function loadMainView() {
 
-        $query = $this->db->query("SELECT * FROM tbl_payee");
+        $query = $this->db->query("SELECT * FROM tbl_payee LIMIT 15");
         $results = $query->getResultArray();
     
         return view('payee/payee-main', [

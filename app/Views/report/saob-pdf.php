@@ -60,7 +60,7 @@ if ($month == 'January') {
     $og_date_to = $year . '-02-01';
 }elseif ($month == 'February') {
     $og_date_from = $year . '-01-01';
-    $og_date_to = $year . '-02-29';
+    $og_date_to = $year . '-03-01';
 }elseif ($month == 'March') {
     $og_date_from = $year . '-01-01';
     $og_date_to = $year . '-04-01';
