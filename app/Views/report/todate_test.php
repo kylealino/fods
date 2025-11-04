@@ -60,7 +60,7 @@ if ($month == 'January') {
     $og_date_to = $year . '-02-01';
 }elseif ($month == 'February') {
     $og_date_from = $year . '-01-01';
-    $og_date_to = $year . '-02-29';
+    $og_date_to = $year . '-03-01';
 }elseif ($month == 'March') {
     $og_date_from = $year . '-01-01';
     $og_date_to = $year . '-04-01';
@@ -385,7 +385,7 @@ $pdf->Cell(17, 5, '', 'R', 1, 'R'); // Percentage column
 $query = $this->db->query("
     SELECT
         SUM(
-            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid` AND code != '50103010-00'), 0) +
+            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid` AND code != '50103010-00' AND `code` != '50102990-14' AND `code` != '50104990-06' AND `code` != '50104990-14'), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`), 0)
         ) AS total_approved_budget
@@ -430,7 +430,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.program_title LIKE '%General Administration and support%' AND b.`code` != '50103010-00'
+        saob.program_title LIKE '%General Administration and support%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -543,7 +543,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.program_title LIKE '%General Administration and support%' AND b.`code` != '50103010-00'
+        saob.program_title LIKE '%General Administration and support%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -639,11 +639,11 @@ $query = $this->db->query("
         a.`program_title`,
         a.`project_title`,
         a.`recid`,
-        (SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid` AND code != '50103010-00') AS total_ps,
+        (SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid` AND `code` != '50103010-00' AND `code` != '50102990-14' AND `code` != '50104990-06' AND `code` != '50104990-14') AS total_ps,
         (SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`) AS total_mooe,
         (SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`) AS total_co,
         (
-            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid` AND code != '50103010-00'), 0) +
+            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid` AND `code` != '50103010-00' AND `code` != '50102990-14' AND `code` != '50104990-06' AND `code` != '50104990-14'), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`), 0)
         ) AS total_approved_budget
@@ -735,7 +735,7 @@ foreach ($hd_data as $hd_row) {
         LEFT JOIN 
             mst_uacs AS u ON b.code = u.uacs_code
         WHERE 
-            b.project_id = '$recid' AND b.`code` != '50103010-00'
+            b.project_id = '$recid' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
         ORDER BY 
             b.recid, b.particulars;
 
@@ -2004,7 +2004,7 @@ $Y = $pdf->GetY() +3.5;
 $query = $this->db->query("
     SELECT
         SUM(
-            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid` and code != '50103010-00'), 0) +
+            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE project_id = a.`recid` and code != '50103010-00' and code != '50102990-14' and code != '50104990-06'), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt WHERE project_id = a.`recid`), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_co_dt WHERE project_id = a.`recid`), 0)
         ) AS total_approved_budget
@@ -2049,7 +2049,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%' AND b.`code` != '50103010-00'
+        saob.project_title LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -2162,7 +2162,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%' AND b.`code` != '50103010-00'
+        saob.project_title LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -2590,7 +2590,7 @@ foreach ($hd_data as $hd_row) {
         LEFT JOIN 
             mst_uacs AS u ON b.code = u.uacs_code
         WHERE 
-            b.project_id = '$recid' AND b.`code` != '50103010-00'
+            b.project_id = '$recid' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
         ORDER BY 
             b.recid, b.particulars;
 
@@ -5188,7 +5188,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%' AND b.`code` != '50103010-00'
+        saob.project_title LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -5298,7 +5298,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%' AND b.`code` != '50103010-00'
+        saob.project_title LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -5722,7 +5722,7 @@ foreach ($hd_data as $hd_row) {
         LEFT JOIN 
             mst_uacs AS u ON b.code = u.uacs_code
         WHERE 
-            b.project_id = '$recid' AND b.`code` != '50103010-00'
+            b.project_id = '$recid' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
         ORDER BY 
             b.recid, b.particulars;
 
@@ -8311,7 +8311,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Technical Services on Food and Nutrition%' AND b.`code` != '50103010-00'
+        saob.project_title LIKE '%Technical Services on Food and Nutrition%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -8419,7 +8419,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Technical Services on Food and Nutrition%' AND b.`code` != '50103010-00'
+        saob.project_title LIKE '%Technical Services on Food and Nutrition%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -8598,7 +8598,7 @@ foreach ($hd_data as $hd_row) {
         LEFT JOIN 
             mst_uacs AS u ON b.code = u.uacs_code
         WHERE 
-            b.project_id = '$recid' AND b.`code` != '50103010-00'
+            b.project_id = '$recid' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
         ORDER BY 
             b.recid, b.particulars;
 
@@ -9816,8 +9816,624 @@ $pdf->Cell(22, 3.5, number_format($totalprogram_grand_unobligated,2), 'BRL', 0, 
 $pdf->SetXY(184, $Y);
 $pdf->Cell(17, 3.5, number_format($totalprogram_grand_percentage_minus, 2) . '%', 'BRL', 0, 'R'); // Percentage column
 
-//----------------------------------------------------------------- AUTOMATIC  APPROPRIATIONS ---------------------------------------------------------------------------------
+
 $Y = printTableHeader($pdf, $month);
+//----------------------------------------------------------------- SPECIAL PURPOSE FUND MPBF  (SARO-BMB-F-25-0014437 PBB FY 2023)---------------------------------------------------------------------------------
+$Y = $pdf->GetY();
+//SPF TOTAL
+$query = $this->db->query("
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        (SELECT sub_object_code FROM mst_uacs WHERE a.`code` = `uacs_code` LIMIT 1) AS `sub_object_code`,
+        (SELECT object_code FROM mst_uacs WHERE uacs_code = '50102990-14' AND object_code = 'General Administration And Support' LIMIT 1) AS `object_code`,
+        COALESCE(a.`approved_budget`,0.00) approved_budget,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= '$date_from' 
+            AND bhd.`ors_date` < '$date_to'
+            AND b.`program_title` LIKE '%General Administration and%'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+            ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= '$og_date_from' 
+            AND bhd.`ors_date` < '$og_date_to'
+            AND b.`program_title` LIKE '%General Administration and%'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = '50102990-14'
+        AND c.`program_title` LIKE '%General Administration and%';
+");
+$rw1 = $query->getRowArray();
+if ($rw1) {
+    $spf1_particulars = $rw1['particulars'];
+    $spf1_code = $rw1['code'];
+    $spf1_approved_budget = $rw1['approved_budget'];
+    $spf1_thismonth_amount = $rw1['thismonth_amount'];
+    $spf1_todate_amount = $rw1['todate_amount'];
+    $spf1_sub_object_code = $rw1['sub_object_code'];
+    $spf1_object_code = $rw1['object_code'];
+    $spf1_unobligated_amount = $spf1_approved_budget - $spf1_todate_amount;
+}else{
+    $spf1_particulars = 'Performance-Based Bonus(SARO-BMB-F-25-0014437 PBB FY 2023)';
+    $spf1_code = '50102990-14';
+    $spf1_approved_budget = 0.00;
+    $spf1_thismonth_amount = 0.00;
+    $spf1_todate_amount = 0.00;
+    $spf1_sub_object_code = '';
+    $spf1_object_code = 'General Administration and Support';
+    $spf1_unobligated_amount = $spf1_approved_budget - $spf1_todate_amount;
+}
+
+$query = $this->db->query("
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        (SELECT sub_object_code FROM mst_uacs WHERE a.`code` = `uacs_code` LIMIT 1) AS `sub_object_code`,
+        (SELECT object_code FROM mst_uacs WHERE uacs_code = '50102990-14' AND object_code = 'General Administration And Support' LIMIT 1) AS `object_code`,
+        COALESCE(a.`approved_budget`,0.00) approved_budget,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= '$date_from' 
+            AND bhd.`ors_date` < '$date_to'
+            AND b.`program_title` LIKE '%General Administration and%'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+            ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= '$og_date_from' 
+            AND bhd.`ors_date` < '$og_date_to'
+            AND b.`program_title` LIKE '%General Administration and%'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = '50104990-06'
+        AND c.`program_title` LIKE '%General Administration and%';
+");
+
+$rw2 = $query->getRowArray();
+if ($rw2) {
+    $spf2_particulars = $rw2['particulars'];
+    $spf2_code = $rw2['code'];
+    $spf2_approved_budget = $rw2['approved_budget'];
+    $spf2_thismonth_amount = $rw2['thismonth_amount'];
+    $spf2_todate_amount = $rw2['todate_amount'];
+    $spf2_sub_object_code = $rw2['sub_object_code'];
+    $spf2_object_code = $rw2['object_code'];
+    $spf2_unobligated_amount = $spf2_approved_budget - $spf2_todate_amount;
+}else{
+    $spf2_particulars = 'Lump-sum for Compensation Adjustment (SARO-BMB-F-25-0003316 2ND Tranche)';
+    $spf2_code = '50104990-06';
+    $spf2_approved_budget = 0.00;
+    $spf2_thismonth_amount = 0.00;
+    $spf2_todate_amount = 0.00;
+    $spf2_sub_object_code = '';
+    $spf2_object_code = '';
+    $spf2_unobligated_amount = $spf2_approved_budget - $spf2_todate_amount;
+}
+
+$spf_approved_budget = $spf1_approved_budget + $spf2_approved_budget;
+$spf_thismonth_amount = $spf1_thismonth_amount + $spf2_thismonth_amount;
+$spf_todate_amount = $spf1_todate_amount + $spf2_todate_amount;
+$spf_unobligated_amount = $spf1_unobligated_amount + $spf2_unobligated_amount;
+if (!$rw1 && !$rw2) {
+    $spf_percentage = 0.00;
+}else{
+    $spf_percentage = ($spf_todate_amount / $spf_approved_budget) * 100;
+}
+
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(5, 3.5, '', 'L', 0, 'L'); // First column
+$pdf->SetXY(15, $Y);
+$pdf->Cell(15, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(54, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'RL', 0, 'R'); // Percentage column
+
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', 'B', 8);
+$pdf->Cell(5, 3.5, 'SPECIAL PURPOSE FUND', 'L', 0, 'L'); // First column
+$pdf->SetXY(15, $Y);
+$pdf->Cell(15, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(54, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'RL', 0, 'R'); // Percentage column
+
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(5, 3.5, '', 'L', 0, 'L'); // First column
+$pdf->SetXY(15, $Y);
+$pdf->SetFont('Arial', 'B', 8);
+$pdf->Cell(5, 3.5, 'MPBF', 0, 0, 'L'); // First column
+$pdf->SetXY(15, $Y);
+$pdf->Cell(15, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(54, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'RL', 0, 'R'); // Percentage column
+
+
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->Cell(5, 3.5, '', 'L', 0, 'L'); // First column
+$pdf->SetXY(15, $Y);
+$pdf->Cell(15, 3.5, $spf1_object_code, 0, 0, 'L'); // First column
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(54, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, number_format($spf_approved_budget,2), 'BRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, number_format($spf_thismonth_amount,2), 'BRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, number_format($spf_todate_amount,2), 'BRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, number_format($spf_unobligated_amount,2), 'BRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, number_format($spf_percentage, 2) . '%', 'BRL', 0, 'R'); // Percentage column
+
+$Y = $pdf->GetY() + 3.5;  
+// First column (just borders, aligned with row height later)
+$pdf->SetXY(10, $Y);
+$pdf->Cell(15, 3.5, '', 'L', 0, 'L');
+
+// Multicell for particulars
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->MultiCell(54, 4.5, $spf1_particulars, 'R', 'L');
+
+// Get how much height was actually used
+$endY = $pdf->GetY();
+$rowHeight = $endY - $Y;  // dynamic height
+
+$pdf->SetXY(10, $Y);
+$pdf->Cell(15, $rowHeight, '', 'L', 0, 'L');
+
+// Now apply same row height to the rest of the cells
+$pdf->SetFont('Arial', '', 8);
+
+// Code column
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, $rowHeight, $spf1_code, 'RL', 0, 'R');
+
+// Approved budget
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf1_approved_budget,2), 'RL', 0, 'R');
+
+// This month
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf1_thismonth_amount,2), 'RL', 0, 'R');
+
+// To date
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf1_todate_amount,2), 'RL', 0, 'R');
+
+// Unobligated
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf1_unobligated_amount,2), 'RL', 0, 'R');
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, $rowHeight, '', 'RL', 0, 'R'); // Percentage column
+
+// Move cursor to end of row (so next row continues properly)
+$pdf->SetY($endY);
+
+//----------------------------------------------------------------- SPECIAL PURPOSE FUND (SARO-BMB-F-25-0003316 2ND Tranche)---------------------------------------------------------------------------------
+//SPF2 TOTAL
+$Y = $pdf->GetY();  
+// First column (just borders, aligned with row height later)
+$pdf->SetXY(10, $Y);
+$pdf->Cell(15, 3.5, '', 'L', 0, 'L');
+
+// Multicell for particulars
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->MultiCell(54, 4.5, $spf2_particulars, 'BR', 'L');
+
+// Get how much height was actually used
+$endY = $pdf->GetY();
+$rowHeight = $endY - $Y;  // dynamic height
+
+$pdf->SetXY(10, $Y);
+$pdf->Cell(15, $rowHeight, '', 'BL', 0, 'L');
+
+// Now apply same row height to the rest of the cells
+$pdf->SetFont('Arial', '', 8);
+
+// Code column
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, $rowHeight, $spf2_code, 'BRL', 0, 'R');
+
+// Approved budget
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf2_approved_budget,2), 'BRL', 0, 'R');
+
+// This month
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf2_thismonth_amount,2), 'BRL', 0, 'R');
+
+// To date
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf2_todate_amount,2), 'BRL', 0, 'R');
+
+// Unobligated
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf2_unobligated_amount,2), 'BRL', 0, 'R');
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, $rowHeight, '', 'BRL', 0, 'R'); // Percentage column
+
+// Move cursor to end of row (so next row continues properly)
+$pdf->SetY($endY);
+
+//----------------------------------------------------------------- TOTAL SPECIAL PURPOSE FUND -----------------------------------------------------------=------------
+
+$Y = $pdf->GetY();  
+$pdf->SetXY(10, $Y);
+$pdf->Cell(64, 3.5, '', 'TL', 0, 'L'); // First column
+
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, '', 'TR', 0, 'L'); // First column
+
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'TRL', 0, 'R'); // Percentage column
+
+$Y = $pdf->GetY() + 3.5;  
+
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', 'B', 8);
+$pdf->Cell(86, 3.5, 'TOTAL SPECIAL PURPOSE FUND', 'BRL', 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, number_format($spf_approved_budget,2), 'BRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, number_format($spf_thismonth_amount,2), 'BRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, number_format($spf_todate_amount,2), 'BRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, number_format($spf_unobligated_amount,2), 'BRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, number_format($spf_percentage, 2) . '%', 'BRL', 0, 'R'); // Percentage column
+
+
+//----------------------------------------------------------------- UNPROGRAMMED APPROPRIATIONS ---------------------------------------------------------------------------
+
+$Y = $pdf->GetY()+3.5;
+//SPF TOTAL
+$query = $this->db->query("
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        (SELECT sub_object_code FROM mst_uacs WHERE a.`code` = `uacs_code` LIMIT 1) AS `sub_object_code`,
+        (SELECT object_code FROM mst_uacs WHERE uacs_code = '50104990-99' AND object_code = 'General Administration And Support' LIMIT 1) AS `object_code`,
+        COALESCE(a.`approved_budget`,0.00) approved_budget,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= '$date_from' 
+            AND bhd.`ors_date` < '$date_to'
+            AND b.`program_title` LIKE '%General Administration and%'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+            ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= '$og_date_from' 
+            AND bhd.`ors_date` < '$og_date_to'
+            AND b.`program_title` LIKE '%General Administration and%'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = '50104990-99'
+        AND c.`program_title` LIKE '%General Administration and%';
+");
+$rw1 = $query->getRowArray();
+if ($rw1) {
+    $spf1_particulars = $rw1['particulars'];
+    $spf1_code = $rw1['code'];
+    $spf1_approved_budget = $rw1['approved_budget'];
+    $spf1_thismonth_amount = $rw1['thismonth_amount'];
+    $spf1_todate_amount = $rw1['todate_amount'];
+    $spf1_sub_object_code = $rw1['sub_object_code'];
+    $spf1_object_code = $rw1['object_code'];
+    $spf1_unobligated_amount = $spf1_approved_budget - $spf1_todate_amount;
+}else{
+    $spf1_particulars = 'General Management and Supervision(SARO-BMB-F-24-0012643/001508)';
+    $spf1_code = '50104990-14';
+    $spf1_approved_budget = 0.00;
+    $spf1_thismonth_amount = 0.00;
+    $spf1_todate_amount = 0.00;
+    $spf1_sub_object_code = '';
+    $spf1_object_code = 'General Administration and Support';
+    $spf1_unobligated_amount = $spf1_approved_budget - $spf1_todate_amount;
+}
+
+$unprogrammed_approved_budget = $spf1_approved_budget;
+$unprogrammed_thismonth_amount = $spf1_thismonth_amount;
+$unprogrammed_todate_amount = $spf1_todate_amount;
+$unprogrammed_unobligated_amount = $spf1_unobligated_amount;
+if (!$rw1) {
+    $unprogrammed_percentage = 0.00;
+}else{
+    $unprogrammed_percentage = ($unprogrammed_todate_amount / $unprogrammed_approved_budget) * 100;
+}
+
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(5, 3.5, '', 'L', 0, 'L'); // First column
+$pdf->SetXY(15, $Y);
+$pdf->Cell(15, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(54, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'RL', 0, 'R'); // Percentage column
+
+$Y = $pdf->GetY() + 3.5;  
+
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', 'B', 8);
+$pdf->Cell(5, 3.5, 'UNPROGRAMMED APPROPRIATIONS', 'L', 0, 'L'); // First column
+$pdf->SetXY(15, $Y);
+$pdf->Cell(15, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(54, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'RL', 0, 'R'); // Percentage column
+
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->Cell(5, 3.5, '', 'L', 0, 'L'); // First column
+$pdf->SetXY(15, $Y);
+$pdf->Cell(15, 3.5, $spf1_object_code, 0, 0, 'L'); // First column
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(54, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, number_format($unprogrammed_approved_budget,2), 'BRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, number_format($unprogrammed_thismonth_amount,2), 'BRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, number_format($unprogrammed_todate_amount,2), 'BRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, number_format($unprogrammed_unobligated_amount,2), 'BRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, number_format($unprogrammed_percentage, 2) . '%', 'BRL', 0, 'R'); // Percentage column
+
+$Y = $pdf->GetY() + 3.5;  
+// First column (just borders, aligned with row height later)
+$pdf->SetXY(10, $Y);
+$pdf->Cell(15, 3.5, '', 'L', 0, 'L');
+
+// Multicell for particulars
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->MultiCell(54, 4.5, $spf1_particulars, 'R', 'L');
+
+// Get how much height was actually used
+$endY = $pdf->GetY();
+$rowHeight = $endY - $Y;  // dynamic height
+
+$pdf->SetXY(10, $Y);
+$pdf->Cell(15, $rowHeight, '', 'L', 0, 'L');
+
+// Now apply same row height to the rest of the cells
+$pdf->SetFont('Arial', '', 8);
+
+// Code column
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, $rowHeight, $spf1_code, 'RL', 0, 'R');
+
+// Approved budget
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf1_approved_budget,2), 'RL', 0, 'R');
+
+// This month
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf1_thismonth_amount,2), 'RL', 0, 'R');
+
+// To date
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf1_todate_amount,2), 'RL', 0, 'R');
+
+// Unobligated
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf1_unobligated_amount,2), 'RL', 0, 'R');
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, $rowHeight, '', 'RL', 0, 'R'); // Percentage column
+
+// Move cursor to end of row (so next row continues properly)
+$pdf->SetY($endY);
+
+//----------------------------------------------------------------- TOTAL UNPROGRAMMED APPROPRIATIONS -----------------------------------------------------------------------
+$Y = $pdf->GetY();  
+$pdf->SetXY(10, $Y);
+$pdf->Cell(64, 3.5, '', 'TL', 0, 'L'); // First column
+
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, '', 'TR', 0, 'L'); // First column
+
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'TRL', 0, 'R'); // Percentage column
+
+$Y = $pdf->GetY() + 3.5;  
+
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', 'B', 8);
+$pdf->Cell(86, 3.5, 'TOTAL UNPROGRAMMED APPROPRIATIONS', 'BRL', 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, number_format($unprogrammed_approved_budget,2), 'BRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, number_format($unprogrammed_thismonth_amount,2), 'BRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, number_format($unprogrammed_todate_amount,2), 'BRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, number_format($unprogrammed_unobligated_amount,2), 'BRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, number_format($unprogrammed_percentage, 2) . '%', 'BRL', 0, 'R'); // Percentage column
+
+//----------------------------------------------------------------- AUTOMATIC  APPROPRIATIONS ---------------------------------------------------------------------------------
 //GENERAL TOTAL
 $query = $this->db->query("
     SELECT
@@ -9989,7 +10605,7 @@ $automatic_unobligated_amount = $general_unobligated_amount + $scientific_unobli
 $automatic_percentage = ($automatic_todate_amount / $automatic_approved_budget) * 100;
 
 
-$Y = $pdf->GetY() + 3.5;  
+$Y = $pdf->GetY()+3.5;  
 $pdf->SetXY(10, $Y);
 $pdf->Cell(64, 3.5, '', 'L', 0, 'L'); // First column
 
@@ -10198,10 +10814,10 @@ $pdf->SetXY(184, $Y);
 $pdf->Cell(17, 3.5, number_format($automatic_percentage, 2) . '%', 'BRL', 0, 'R'); // Percentage column
 
 //----------------------------------------------------------------- GRAND TOTAL CURRENT YEAR BUDGET ---------------------------------------------------------------------------
-$grandtotal_total_project_budget = $totalprogram_total_project_budget + $automatic_approved_budget;
-$grandtotal_thismonth_grand_total = $totalprogram_thismonth_grand_total + $automatic_thismonth_amount;
-$grandtotal_todate_grand_total = $totalprogram_todate_grand_total + $automatic_todate_amount;
-$grandtotal_grand_unobligated = $totalprogram_grand_unobligated + $automatic_unobligated_amount;
+$grandtotal_total_project_budget = $totalprogram_total_project_budget + $automatic_approved_budget + $spf_approved_budget + $unprogrammed_approved_budget;
+$grandtotal_thismonth_grand_total = $totalprogram_thismonth_grand_total + $automatic_thismonth_amount + $spf_thismonth_amount + $unprogrammed_thismonth_amount;
+$grandtotal_todate_grand_total = $totalprogram_todate_grand_total + $automatic_todate_amount + $spf_todate_amount + $unprogrammed_todate_amount;
+$grandtotal_grand_unobligated = $totalprogram_grand_unobligated + $automatic_unobligated_amount + $spf_unobligated_amount + $unprogrammed_unobligated_amount;
 $grandtotal_grand_percentage_minus = ($grandtotal_todate_grand_total / $grandtotal_total_project_budget) * 100;
 
 $Y = $pdf->GetY() + 3.5;  
@@ -10226,7 +10842,7 @@ $Y = $pdf->GetY() + 3.5;
 
 $pdf->SetXY(10, $Y);
 $pdf->SetFont('Arial', 'B', 8);
-$pdf->Cell(86, 3.5, 'GRAND TOTAL, CURRENT YEAR BUDGET', 'BRL', 0, 'L'); // First column
+$pdf->Cell(86, 3.5, 'GRAND TOTAL, CURRENT YEAR BUDGET' . $unprogrammed_approved_budget, 'BRL', 0, 'L'); // First column
 $pdf->SetFont('Arial', '', 8);
 $pdf->SetXY(96, $Y);
 $pdf->Cell(22, 3.5, number_format($grandtotal_total_project_budget,2), 'BRL', 0, 'R'); // Budget column
@@ -10496,7 +11112,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        b.`code` != '50103010-00'
+        b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -10673,11 +11289,11 @@ $query = $this->db->query("
         a.`program_title`,
         a.`project_title`,
         a.`recid`,
-        (SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE `code` != '50103010-00') AS total_ps,
+        (SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE `code` != '50103010-00' AND `code` != '50102990-14' AND `code` != '50104990-06' AND `code` != '50104990-14') AS total_ps,
         (SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt) AS total_mooe,
         (SELECT SUM(approved_budget) FROM tbl_saob_co_dt) AS total_co,
         SUM((
-            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE`code` != '50103010-00'), 0) +
+            COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_ps_dt WHERE `code` != '50103010-00' AND `code` != '50102990-14' AND `code` != '50104990-06' AND `code` != '50104990-14'), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_mooe_dt), 0) +
             COALESCE((SELECT SUM(approved_budget) FROM tbl_saob_co_dt), 0)
         )) AS total_approved_budget
@@ -10756,7 +11372,7 @@ foreach ($hd_data as $hd_row) {
         LEFT JOIN 
             mst_uacs AS u ON b.code = u.uacs_code
         WHERE 
-            b.`code` != '50103010-00'
+            b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
         GROUP BY 
             b.`code`, b.object_code
         ORDER BY 
@@ -11076,7 +11692,7 @@ foreach ($hd_data as $hd_row) {
     $pdf->SetXY(10, $Y);
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->MultiCell(64, 3.5, 'CURRENT YEAR BUDGET', 'R', 'L'); // Measure without border
-    $afterProjectY = $pdf->GetY();X
+    $afterProjectY = $pdf->GetY();
     $projectHeight = $afterProjectY - $Y;
 
     // Draw complete PROJECT TITLE row with ALL borders
@@ -11864,6 +12480,619 @@ $pdf->SetXY(184, $Y);
 $pdf->SetFont('Arial', '', 8);
 $pdf->Cell(17, 3.5, number_format($summary_grand_percentage_minus, 2) . '%', 'BL', 1, 'R'); // full width usage
 
+//------------------------------------------------------------------- TOTAL SPECIAL PURPOSE FUNDS ---------------------------------------------------------------------------
+$Y = $pdf->GetY();
+//SPF TOTAL
+$query = $this->db->query("
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        (SELECT sub_object_code FROM mst_uacs WHERE a.`code` = `uacs_code` LIMIT 1) AS `sub_object_code`,
+        (SELECT object_code FROM mst_uacs WHERE uacs_code = '50102990-14' AND object_code = 'General Administration And Support' LIMIT 1) AS `object_code`,
+        COALESCE(a.`approved_budget`,0.00) approved_budget,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= '$date_from' 
+            AND bhd.`ors_date` < '$date_to'
+            AND b.`program_title` LIKE '%General Administration and%'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+            ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= '$og_date_from' 
+            AND bhd.`ors_date` < '$og_date_to'
+            AND b.`program_title` LIKE '%General Administration and%'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = '50102990-14'
+        AND c.`program_title` LIKE '%General Administration and%';
+");
+$rw1 = $query->getRowArray();
+if ($rw1) {
+    $spf1_particulars = $rw1['particulars'];
+    $spf1_code = $rw1['code'];
+    $spf1_approved_budget = $rw1['approved_budget'];
+    $spf1_thismonth_amount = $rw1['thismonth_amount'];
+    $spf1_todate_amount = $rw1['todate_amount'];
+    $spf1_sub_object_code = $rw1['sub_object_code'];
+    $spf1_object_code = $rw1['object_code'];
+    $spf1_unobligated_amount = $spf1_approved_budget - $spf1_todate_amount;
+}else{
+    $spf1_particulars = 'Performance-Based Bonus(SARO-BMB-F-25-0014437 PBB FY 2023)';
+    $spf1_code = '50102990-14';
+    $spf1_approved_budget = 0.00;
+    $spf1_thismonth_amount = 0.00;
+    $spf1_todate_amount = 0.00;
+    $spf1_sub_object_code = '';
+    $spf1_object_code = 'General Administration and Support';
+    $spf1_unobligated_amount = $spf1_approved_budget - $spf1_todate_amount;
+}
+
+$query = $this->db->query("
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        (SELECT sub_object_code FROM mst_uacs WHERE a.`code` = `uacs_code` LIMIT 1) AS `sub_object_code`,
+        (SELECT object_code FROM mst_uacs WHERE uacs_code = '50102990-14' AND object_code = 'General Administration And Support' LIMIT 1) AS `object_code`,
+        COALESCE(a.`approved_budget`,0.00) approved_budget,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= '$date_from' 
+            AND bhd.`ors_date` < '$date_to'
+            AND b.`program_title` LIKE '%General Administration and%'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+            ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= '$og_date_from' 
+            AND bhd.`ors_date` < '$og_date_to'
+            AND b.`program_title` LIKE '%General Administration and%'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = '50104990-06'
+        AND c.`program_title` LIKE '%General Administration and%';
+");
+
+$rw2 = $query->getRowArray();
+if ($rw2) {
+    $spf2_particulars = $rw2['particulars'];
+    $spf2_code = $rw2['code'];
+    $spf2_approved_budget = $rw2['approved_budget'];
+    $spf2_thismonth_amount = $rw2['thismonth_amount'];
+    $spf2_todate_amount = $rw2['todate_amount'];
+    $spf2_sub_object_code = $rw2['sub_object_code'];
+    $spf2_object_code = $rw2['object_code'];
+    $spf2_unobligated_amount = $spf2_approved_budget - $spf2_todate_amount;
+}else{
+    $spf2_particulars = 'Lump-sum for Compensation Adjustment (SARO-BMB-F-25-0003316 2ND Tranche)';
+    $spf2_code = '50104990-06';
+    $spf2_approved_budget = 0.00;
+    $spf2_thismonth_amount = 0.00;
+    $spf2_todate_amount = 0.00;
+    $spf2_sub_object_code = '';
+    $spf2_object_code = '';
+    $spf2_unobligated_amount = $spf2_approved_budget - $spf2_todate_amount;
+}
+
+$spf_approved_budget = $spf1_approved_budget + $spf2_approved_budget;
+$spf_thismonth_amount = $spf1_thismonth_amount + $spf2_thismonth_amount;
+$spf_todate_amount = $spf1_todate_amount + $spf2_todate_amount;
+$spf_unobligated_amount = $spf1_unobligated_amount + $spf2_unobligated_amount;
+if (!$rw1 && !$rw2) {
+    $spf_percentage = 0.00;
+}else{
+    $spf_percentage = ($spf_todate_amount / $spf_approved_budget) * 100;
+}
+
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(5, 3.5, '', 'L', 0, 'L'); // First column
+$pdf->SetXY(15, $Y);
+$pdf->Cell(15, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(54, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'RL', 0, 'R'); // Percentage column
+
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', 'B', 8);
+$pdf->Cell(5, 3.5, 'SPECIAL PURPOSE FUND', 'L', 0, 'L'); // First column
+$pdf->SetXY(15, $Y);
+$pdf->Cell(15, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(54, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'RL', 0, 'R'); // Percentage column
+
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(5, 3.5, '', 'L', 0, 'L'); // First column
+$pdf->SetXY(15, $Y);
+$pdf->SetFont('Arial', 'B', 8);
+$pdf->Cell(5, 3.5, 'MPBF', 0, 0, 'L'); // First column
+$pdf->SetXY(15, $Y);
+$pdf->Cell(15, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(54, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'RL', 0, 'R'); // Percentage column
+
+
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->Cell(5, 3.5, '', 'L', 0, 'L'); // First column
+$pdf->SetXY(15, $Y);
+$pdf->Cell(15, 3.5, $spf1_object_code, 0, 0, 'L'); // First column
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(54, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, number_format($spf_approved_budget,2), 'BRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, number_format($spf_thismonth_amount,2), 'BRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, number_format($spf_todate_amount,2), 'BRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, number_format($spf_unobligated_amount,2), 'BRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, number_format($spf_percentage, 2) . '%', 'BRL', 0, 'R'); // Percentage column
+
+$Y = $pdf->GetY() + 3.5;  
+// First column (just borders, aligned with row height later)
+$pdf->SetXY(10, $Y);
+$pdf->Cell(15, 3.5, '', 'L', 0, 'L');
+
+// Multicell for particulars
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->MultiCell(54, 4.5, $spf1_particulars, 'R', 'L');
+
+// Get how much height was actually used
+$endY = $pdf->GetY();
+$rowHeight = $endY - $Y;  // dynamic height
+
+$pdf->SetXY(10, $Y);
+$pdf->Cell(15, $rowHeight, '', 'L', 0, 'L');
+
+// Now apply same row height to the rest of the cells
+$pdf->SetFont('Arial', '', 8);
+
+// Code column
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, $rowHeight, $spf1_code, 'RL', 0, 'R');
+
+// Approved budget
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf1_approved_budget,2), 'RL', 0, 'R');
+
+// This month
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf1_thismonth_amount,2), 'RL', 0, 'R');
+
+// To date
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf1_todate_amount,2), 'RL', 0, 'R');
+
+// Unobligated
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf1_unobligated_amount,2), 'RL', 0, 'R');
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, $rowHeight, '', 'RL', 0, 'R'); // Percentage column
+
+// Move cursor to end of row (so next row continues properly)
+$pdf->SetY($endY);
+
+//----------------------------------------------------------------- SPECIAL PURPOSE FUND (SARO-BMB-F-25-0003316 2ND Tranche)---------------------------------------------------------------------------------
+//SPF2 TOTAL
+$Y = $pdf->GetY();  
+// First column (just borders, aligned with row height later)
+$pdf->SetXY(10, $Y);
+$pdf->Cell(15, 3.5, '', 'L', 0, 'L');
+
+// Multicell for particulars
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->MultiCell(54, 4.5, $spf2_particulars, 'BR', 'L');
+
+// Get how much height was actually used
+$endY = $pdf->GetY();
+$rowHeight = $endY - $Y;  // dynamic height
+
+$pdf->SetXY(10, $Y);
+$pdf->Cell(15, $rowHeight, '', 'BL', 0, 'L');
+
+// Now apply same row height to the rest of the cells
+$pdf->SetFont('Arial', '', 8);
+
+// Code column
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, $rowHeight, $spf2_code, 'BRL', 0, 'R');
+
+// Approved budget
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf2_approved_budget,2), 'BRL', 0, 'R');
+
+// This month
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf2_thismonth_amount,2), 'BRL', 0, 'R');
+
+// To date
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf2_todate_amount,2), 'BRL', 0, 'R');
+
+// Unobligated
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf2_unobligated_amount,2), 'BRL', 0, 'R');
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, $rowHeight, '', 'BRL', 0, 'R'); // Percentage column
+
+// Move cursor to end of row (so next row continues properly)
+$pdf->SetY($endY);
+
+//----------------------------------------------------------------- TOTAL SPECIAL PURPOSE FUND -----------------------------------------------------------=------------
+
+$Y = $pdf->GetY();  
+$pdf->SetXY(10, $Y);
+$pdf->Cell(64, 3.5, '', 'TL', 0, 'L'); // First column
+
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, '', 'TR', 0, 'L'); // First column
+
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'TRL', 0, 'R'); // Percentage column
+
+$Y = $pdf->GetY() + 3.5;  
+
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', 'B', 8);
+$pdf->Cell(86, 3.5, 'TOTAL SPECIAL PURPOSE FUND', 'BRL', 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, number_format($spf_approved_budget,2), 'BRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, number_format($spf_thismonth_amount,2), 'BRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, number_format($spf_todate_amount,2), 'BRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, number_format($spf_unobligated_amount,2), 'BRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, number_format($spf_percentage, 2) . '%', 'BRL', 0, 'R'); // Percentage column
+
+
+//----------------------------------------------------------------- UNPROGRAMMED APPROPRIATIONS ---------------------------------------------------------------------------
+
+$Y = $pdf->GetY()+3.5;
+//SPF TOTAL
+$query = $this->db->query("
+    SELECT
+        a.`particulars`,
+        a.`code`,
+        (SELECT sub_object_code FROM mst_uacs WHERE a.`code` = `uacs_code` LIMIT 1) AS `sub_object_code`,
+        (SELECT object_code FROM mst_uacs WHERE uacs_code = '50104990-99' AND object_code = 'General Administration And Support' LIMIT 1) AS `object_code`,
+        COALESCE(a.`approved_budget`,0.00) approved_budget,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+                ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= '$date_from' 
+            AND bhd.`ors_date` < '$date_to'
+            AND b.`program_title` LIKE '%General Administration and%'
+        ), 0.00) AS thismonth_amount,
+        COALESCE((
+            SELECT SUM(b.`amount`)
+            FROM tbl_ors_direct_ps_dt b
+            JOIN tbl_ors_hd bhd 
+            ON b.`project_id` = bhd.`recid`
+            WHERE b.`uacs_code` = a.`code` 
+            AND bhd.`ors_date` >= '$og_date_from' 
+            AND bhd.`ors_date` < '$og_date_to'
+            AND b.`program_title` LIKE '%General Administration and%'
+        ), 0.00) AS todate_amount
+    FROM tbl_saob_ps_dt a
+    JOIN tbl_saob_hd c
+        ON a.`project_id` = c.`recid`
+    WHERE 
+        a.`code` = '50104990-99'
+        AND c.`program_title` LIKE '%General Administration and%';
+");
+$rw1 = $query->getRowArray();
+if ($rw1) {
+    $spf1_particulars = $rw1['particulars'];
+    $spf1_code = $rw1['code'];
+    $spf1_approved_budget = $rw1['approved_budget'];
+    $spf1_thismonth_amount = $rw1['thismonth_amount'];
+    $spf1_todate_amount = $rw1['todate_amount'];
+    $spf1_sub_object_code = $rw1['sub_object_code'];
+    $spf1_object_code = $rw1['object_code'];
+    $spf1_unobligated_amount = $spf1_approved_budget - $spf1_todate_amount;
+}else{
+    $spf1_particulars = 'General Management and Supervision(SARO-BMB-F-24-0012643/001508)';
+    $spf1_code = '50104990-14';
+    $spf1_approved_budget = 0.00;
+    $spf1_thismonth_amount = 0.00;
+    $spf1_todate_amount = 0.00;
+    $spf1_sub_object_code = '';
+    $spf1_object_code = 'General Administration and Support';
+    $spf1_unobligated_amount = $spf1_approved_budget - $spf1_todate_amount;
+}
+
+$unprogrammed_approved_budget = $spf1_approved_budget;
+$unprogrammed_thismonth_amount = $spf1_thismonth_amount;
+$unprogrammed_todate_amount = $spf1_todate_amount;
+$unprogrammed_unobligated_amount = $spf1_unobligated_amount;
+if (!$rw1) {
+    $unprogrammed_percentage = 0.00;
+}else{
+    $unprogrammed_percentage = ($unprogrammed_todate_amount / $unprogrammed_approved_budget) * 100;
+}
+
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(5, 3.5, '', 'L', 0, 'L'); // First column
+$pdf->SetXY(15, $Y);
+$pdf->Cell(15, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(54, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'RL', 0, 'R'); // Percentage column
+
+$Y = $pdf->GetY() + 3.5;  
+
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', 'B', 8);
+$pdf->Cell(5, 3.5, 'UNPROGRAMMED APPROPRIATIONS', 'L', 0, 'L'); // First column
+$pdf->SetXY(15, $Y);
+$pdf->Cell(15, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(54, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'RL', 0, 'R'); // Percentage column
+
+$Y = $pdf->GetY() + 3.5;  
+$pdf->SetXY(10, $Y);
+$pdf->Cell(5, 3.5, '', 'L', 0, 'L'); // First column
+$pdf->SetXY(15, $Y);
+$pdf->Cell(15, 3.5, $spf1_object_code, 0, 0, 'L'); // First column
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(54, 3.5, '', 0, 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, '', 'RL', 0, 'R'); // Budget column
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, number_format($unprogrammed_approved_budget,2), 'BRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, number_format($unprogrammed_thismonth_amount,2), 'BRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, number_format($unprogrammed_todate_amount,2), 'BRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, number_format($unprogrammed_unobligated_amount,2), 'BRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, number_format($unprogrammed_percentage, 2) . '%', 'BRL', 0, 'R'); // Percentage column
+
+$Y = $pdf->GetY() + 3.5;  
+// First column (just borders, aligned with row height later)
+$pdf->SetXY(10, $Y);
+$pdf->Cell(15, 3.5, '', 'L', 0, 'L');
+
+// Multicell for particulars
+$pdf->SetXY(20, $Y);
+$pdf->SetFont('Arial', '', 8);
+$pdf->MultiCell(54, 4.5, $spf1_particulars, 'R', 'L');
+
+// Get how much height was actually used
+$endY = $pdf->GetY();
+$rowHeight = $endY - $Y;  // dynamic height
+
+$pdf->SetXY(10, $Y);
+$pdf->Cell(15, $rowHeight, '', 'L', 0, 'L');
+
+// Now apply same row height to the rest of the cells
+$pdf->SetFont('Arial', '', 8);
+
+// Code column
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, $rowHeight, $spf1_code, 'RL', 0, 'R');
+
+// Approved budget
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf1_approved_budget,2), 'RL', 0, 'R');
+
+// This month
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf1_thismonth_amount,2), 'RL', 0, 'R');
+
+// To date
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf1_todate_amount,2), 'RL', 0, 'R');
+
+// Unobligated
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, $rowHeight, number_format($spf1_unobligated_amount,2), 'RL', 0, 'R');
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, $rowHeight, '', 'RL', 0, 'R'); // Percentage column
+
+// Move cursor to end of row (so next row continues properly)
+$pdf->SetY($endY);
+
+//----------------------------------------------------------------- TOTAL UNPROGRAMMED APPROPRIATIONS -----------------------------------------------------------------------
+$Y = $pdf->GetY();  
+$pdf->SetXY(10, $Y);
+$pdf->Cell(64, 3.5, '', 'TL', 0, 'L'); // First column
+
+$pdf->SetXY(74, $Y);
+$pdf->Cell(22, 3.5, '', 'TR', 0, 'L'); // First column
+
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, '', 'TRL', 0, 'R'); // Percentage column
+
+$Y = $pdf->GetY() + 3.5;  
+
+$pdf->SetXY(10, $Y);
+$pdf->SetFont('Arial', 'B', 8);
+$pdf->Cell(86, 3.5, 'TOTAL UNPROGRAMMED APPROPRIATIONS', 'BRL', 0, 'L'); // First column
+$pdf->SetFont('Arial', '', 8);
+$pdf->SetXY(96, $Y);
+$pdf->Cell(22, 3.5, number_format($unprogrammed_approved_budget,2), 'BRL', 0, 'R'); // Budget column
+
+$pdf->SetXY(118, $Y);
+$pdf->Cell(22, 3.5, number_format($unprogrammed_thismonth_amount,2), 'BRL', 0, 'R'); // This month column
+
+$pdf->SetXY(140, $Y);
+$pdf->Cell(22, 3.5, number_format($unprogrammed_todate_amount,2), 'BRL', 0, 'R'); // To date column
+
+$pdf->SetXY(162, $Y);
+$pdf->Cell(22, 3.5, number_format($unprogrammed_unobligated_amount,2), 'BRL', 0, 'R'); // Unobligated column
+
+$pdf->SetXY(184, $Y);
+$pdf->Cell(17, 3.5, number_format($unprogrammed_percentage, 2) . '%', 'BRL', 0, 'R'); // Percentage column
 
 //----------------------------------------------------------------- AUTOMATIC  APPROPRIATIONS ---------------------------------------------------------------------------------
 $Y = $pdf->GetY();
@@ -12037,6 +13266,7 @@ $automatic_todate_amount = $general_todate_amount + $scientific_todate_amount + 
 $automatic_unobligated_amount = $general_unobligated_amount + $scientific_unobligated_amount + $nutritional_unobligated_amount + $technical_unobligated_amount;
 $automatic_percentage = ($automatic_todate_amount / $automatic_approved_budget) * 100;
 
+$Y = $pdf->GetY() + 3.5;  
 
 $pdf->SetXY(10, $Y);
 $pdf->Cell(64, 3.5, '', 'L', 0, 'L'); // First column
@@ -12161,10 +13391,10 @@ $pdf->Cell(22, 3.5, number_format($automatic_unobligated_amount,2), 'BRL', 0, 'R
 $pdf->SetXY(184, $Y);
 $pdf->Cell(17, 3.5, number_format($automatic_percentage, 2) . '%', 'BRL', 0, 'R'); // Percentage column
 
-$grandtotal_total_project_budget = $totalprogram_total_project_budget + $automatic_approved_budget;
-$grandtotal_thismonth_grand_total = $totalprogram_thismonth_grand_total + $automatic_thismonth_amount;
-$grandtotal_todate_grand_total = $totalprogram_todate_grand_total + $automatic_todate_amount;
-$grandtotal_grand_unobligated = $totalprogram_grand_unobligated + $automatic_unobligated_amount;
+$grandtotal_total_project_budget = $totalprogram_total_project_budget + $automatic_approved_budget + $spf_approved_budget + $unprogrammed_approved_budget;
+$grandtotal_thismonth_grand_total = $totalprogram_thismonth_grand_total + $automatic_thismonth_amount + $spf_thismonth_amount + $unprogrammed_thismonth_amount;
+$grandtotal_todate_grand_total = $totalprogram_todate_grand_total + $automatic_todate_amount + $spf_todate_amount + $unprogrammed_todate_amount;
+$grandtotal_grand_unobligated = $totalprogram_grand_unobligated + $automatic_unobligated_amount + $spf_unobligated_amount + $unprogrammed_unobligated_amount;
 $grandtotal_grand_percentage_minus = ($grandtotal_todate_grand_total / $grandtotal_total_project_budget) * 100;
 
 $Y = $pdf->GetY() + 3.5;  

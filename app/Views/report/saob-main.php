@@ -1077,6 +1077,8 @@ echo view('templates/myheader.php');
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="<?=base_url('assets/js/report/mysaobreport.js?v=2');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
+
+</script>
 <script>
     __mysys_saob_rpt_ent.__saob_saving();
     __mysys_saob_rpt_ent.__combined_totals();

@@ -13397,6 +13397,13 @@ $grandtotal_todate_grand_total = $totalprogram_todate_grand_total + $automatic_t
 $grandtotal_grand_unobligated = $totalprogram_grand_unobligated + $automatic_unobligated_amount + $spf_unobligated_amount + $unprogrammed_unobligated_amount;
 $grandtotal_grand_percentage_minus = ($grandtotal_todate_grand_total / $grandtotal_total_project_budget) * 100;
 
+session()->set([
+    'grandtotal_total_project_budget' => $grandtotal_total_project_budget,
+    'grandtotal_todate_grand_total'   => $grandtotal_todate_grand_total,
+    'grandtotal_grand_unobligated'   => $grandtotal_grand_unobligated,
+    'grandtotal_grand_percentage_minus'   => $grandtotal_grand_percentage_minus,
+]);
+
 $Y = $pdf->GetY() + 3.5;  
 $pdf->SetXY(10, $Y);
 $pdf->Cell(86, 3.5, '', 'TRL', 0, 'L'); // First column
