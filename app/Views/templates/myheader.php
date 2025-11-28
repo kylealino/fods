@@ -261,7 +261,7 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
               </a>
             </li> 
             <li class="sidebar-item">
-              <a class="sidebar-link sidebar-link" href="<?=site_url();?>myprocurement?meaction=PR-MAIN" aria-expanded="false">
+              <a class="sidebar-link sidebar-link" href="<?=site_url();?>myabstract?meaction=MAIN" aria-expanded="false">
                 <span class="rounded-3">
                   <i class="ti ti-mist"></i>
                 </span>
@@ -392,14 +392,6 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
               </div>
             </div>
           </nav>
-          <!-- ---------------------------------- -->
-          <!-- End Vertical Layout Header -->
-          <!-- ---------------------------------- -->
-
-          <!-- ------------------------------- -->
-          <!-- apps Dropdown in Small screen -->
-          <!-- ------------------------------- -->
-          <!--  Mobilenavbar -->
 
         </div>
         <div class="app-header with-horizontal">

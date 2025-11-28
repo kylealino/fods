@@ -1,0 +1,508 @@
+ERROR - 2025-11-24 13:17:58 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?,
+					`transaction_no` = ?,
+					`abstract_date` = ?,
+					`bidder_1` = ...' at line 4 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\tUPDATE\r\n\t...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\tUPDATE\r\n\t...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\tUPDATE\r\n\t...')
+#3 C:\xampp\htdocs\fods\app\Models\MyAbstractModel.php(164): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\tUPDATE\r\n\t...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyAbstract.php(28): App\Models\MyAbstractModel->abstract_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-11-24 13:17:58 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?,
+					`transaction_no` = ?,
+					`abstract_date` = ?,
+					`bidder_1` = ...' at line 4
+[Method: POST, Route: myabstract]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyAbstractModel.php(164): CodeIgniter\Database\BaseConnection->query('
+				UPDATE
+					`tbl_abstract_hd`
+				SET
+					`prno` = ?,
+					`transaction_no` = ?,
+					`abstract_date` = ?,
+					`bidder_1` = ?,
+					`bidder_2` = ?,
+					`bidder_3` = ?,
+					`bidder_4` = ?,
+					`bidder_5` = ?,
+				WHERE recid = ?
+			', [...])
+ 2 APPPATH\Controllers\MyAbstract.php(28): App\Models\MyAbstractModel->abstract_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-24 13:17:58 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?,
+					`transaction_no` = ?,
+					`abstract_date` = ?,
+					`bidder_1` = ...' at line 4
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				UPDATE
+					`tbl_abstract_hd`
+				SET
+					`prno` = ?,
+					`transaction_no` = ?,
+					`abstract_date` = ?,
+					`bidder_1` = ?,
+					`bidder_2` = ?,
+					`bidder_3` = ?,
+					`bidder_4` = ?,
+					`bidder_5` = ?,
+				WHERE recid = ?
+			')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				UPDATE
+					`tbl_abstract_hd`
+				SET
+					`prno` = ?,
+					`transaction_no` = ?,
+					`abstract_date` = ?,
+					`bidder_1` = ?,
+					`bidder_2` = ?,
+					`bidder_3` = ?,
+					`bidder_4` = ?,
+					`bidder_5` = ?,
+				WHERE recid = ?
+			')
+ 3 APPPATH\Models\MyAbstractModel.php(164): CodeIgniter\Database\BaseConnection->query('
+				UPDATE
+					`tbl_abstract_hd`
+				SET
+					`prno` = ?,
+					`transaction_no` = ?,
+					`abstract_date` = ?,
+					`bidder_1` = ?,
+					`bidder_2` = ?,
+					`bidder_3` = ?,
+					`bidder_4` = ?,
+					`bidder_5` = ?,
+				WHERE recid = ?
+			', [...])
+ 4 APPPATH\Controllers\MyAbstract.php(28): App\Models\MyAbstractModel->abstract_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-24 13:17:58 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?,
+					`transaction_no` = ?,
+					`abstract_date` = ?,
+					`bidder_1` = ...' at line 4
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+				UPDATE
+					`tbl_abstract_hd`
+				SET
+					`prno` = ?,
+					`transaction_no` = ?,
+					`abstract_date` = ?,
+					`bidder_1` = ?,
+					`bidder_2` = ?,
+					`bidder_3` = ?,
+					`bidder_4` = ?,
+					`bidder_5` = ?,
+				WHERE recid = ?
+			', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				UPDATE
+					`tbl_abstract_hd`
+				SET
+					`prno` = ?,
+					`transaction_no` = ?,
+					`abstract_date` = ?,
+					`bidder_1` = ?,
+					`bidder_2` = ?,
+					`bidder_3` = ?,
+					`bidder_4` = ?,
+					`bidder_5` = ?,
+				WHERE recid = ?
+			')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				UPDATE
+					`tbl_abstract_hd`
+				SET
+					`prno` = ?,
+					`transaction_no` = ?,
+					`abstract_date` = ?,
+					`bidder_1` = ?,
+					`bidder_2` = ?,
+					`bidder_3` = ?,
+					`bidder_4` = ?,
+					`bidder_5` = ?,
+				WHERE recid = ?
+			')
+ 4 APPPATH\Models\MyAbstractModel.php(164): CodeIgniter\Database\BaseConnection->query('
+				UPDATE
+					`tbl_abstract_hd`
+				SET
+					`prno` = ?,
+					`transaction_no` = ?,
+					`abstract_date` = ?,
+					`bidder_1` = ?,
+					`bidder_2` = ?,
+					`bidder_3` = ?,
+					`bidder_4` = ?,
+					`bidder_5` = ?,
+				WHERE recid = ?
+			', [...])
+ 5 APPPATH\Controllers\MyAbstract.php(28): App\Models\MyAbstractModel->abstract_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-11-24 13:18:53 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+						VALUES ('1', '2025-10-022', '1', 'bottle', 'TONER CARTRIDGE, HP CF41...' at line 13 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\t\t\tINSERT ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\t\t\tINSERT ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\t\t\tINSERT ...')
+#3 C:\xampp\htdocs\fods\app\Models\MyAbstractModel.php(213): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\t\t\tINSERT ...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyAbstract.php(28): App\Models\MyAbstractModel->abstract_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-11-24 13:18:53 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+						VALUES ('1', '2025-10-022', '1', 'bottle', 'TONER CARTRIDGE, HP CF41...' at line 13
+[Method: POST, Route: myabstract]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyAbstractModel.php(213): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`,
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 2 APPPATH\Controllers\MyAbstract.php(28): App\Models\MyAbstractModel->abstract_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-24 13:18:53 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+						VALUES ('1', '2025-10-022', '1', 'bottle', 'TONER CARTRIDGE, HP CF41...' at line 13
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`,
+						)
+						VALUES (\'1\', \'2025-10-022\', \'1\', \'bottle\', \'TONER CARTRIDGE, HP CF413A (HP410A), Magenta\', \'11\', \'22\', \'33\', \'44\', \'55\', \'ADMIN-KYLE\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`,
+						)
+						VALUES (\'1\', \'2025-10-022\', \'1\', \'bottle\', \'TONER CARTRIDGE, HP CF413A (HP410A), Magenta\', \'11\', \'22\', \'33\', \'44\', \'55\', \'ADMIN-KYLE\')')
+ 3 APPPATH\Models\MyAbstractModel.php(213): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`,
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 4 APPPATH\Controllers\MyAbstract.php(28): App\Models\MyAbstractModel->abstract_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-24 13:18:53 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+						VALUES ('1', '2025-10-022', '1', 'bottle', 'TONER CARTRIDGE, HP CF41...' at line 13
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`,
+						)
+						VALUES (\'1\', \'2025-10-022\', \'1\', \'bottle\', \'TONER CARTRIDGE, HP CF413A (HP410A), Magenta\', \'11\', \'22\', \'33\', \'44\', \'55\', \'ADMIN-KYLE\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`,
+						)
+						VALUES (\'1\', \'2025-10-022\', \'1\', \'bottle\', \'TONER CARTRIDGE, HP CF413A (HP410A), Magenta\', \'11\', \'22\', \'33\', \'44\', \'55\', \'ADMIN-KYLE\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`,
+						)
+						VALUES (\'1\', \'2025-10-022\', \'1\', \'bottle\', \'TONER CARTRIDGE, HP CF413A (HP410A), Magenta\', \'11\', \'22\', \'33\', \'44\', \'55\', \'ADMIN-KYLE\')')
+ 4 APPPATH\Models\MyAbstractModel.php(213): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`,
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 5 APPPATH\Controllers\MyAbstract.php(28): App\Models\MyAbstractModel->abstract_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-11-24 13:19:10 --> mysqli_sql_exception: Unknown column 'bidder_dt1' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\t\t\tINSERT ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\t\t\tINSERT ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\t\t\tINSERT ...')
+#3 C:\xampp\htdocs\fods\app\Models\MyAbstractModel.php(213): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\t\t\tINSERT ...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyAbstract.php(28): App\Models\MyAbstractModel->abstract_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-11-24 13:19:10 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'bidder_dt1' in 'field list'
+[Method: POST, Route: myabstract]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyAbstractModel.php(213): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 2 APPPATH\Controllers\MyAbstract.php(28): App\Models\MyAbstractModel->abstract_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-24 13:19:10 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'bidder_dt1' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`
+						)
+						VALUES (\'1\', \'2025-10-022\', \'1\', \'bottle\', \'TONER CARTRIDGE, HP CF413A (HP410A), Magenta\', \'11\', \'22\', \'33\', \'44\', \'55\', \'ADMIN-KYLE\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`
+						)
+						VALUES (\'1\', \'2025-10-022\', \'1\', \'bottle\', \'TONER CARTRIDGE, HP CF413A (HP410A), Magenta\', \'11\', \'22\', \'33\', \'44\', \'55\', \'ADMIN-KYLE\')')
+ 3 APPPATH\Models\MyAbstractModel.php(213): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 4 APPPATH\Controllers\MyAbstract.php(28): App\Models\MyAbstractModel->abstract_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-24 13:19:10 --> [Caused by] mysqli_sql_exception: Unknown column 'bidder_dt1' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`
+						)
+						VALUES (\'1\', \'2025-10-022\', \'1\', \'bottle\', \'TONER CARTRIDGE, HP CF413A (HP410A), Magenta\', \'11\', \'22\', \'33\', \'44\', \'55\', \'ADMIN-KYLE\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`
+						)
+						VALUES (\'1\', \'2025-10-022\', \'1\', \'bottle\', \'TONER CARTRIDGE, HP CF413A (HP410A), Magenta\', \'11\', \'22\', \'33\', \'44\', \'55\', \'ADMIN-KYLE\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`
+						)
+						VALUES (\'1\', \'2025-10-022\', \'1\', \'bottle\', \'TONER CARTRIDGE, HP CF413A (HP410A), Magenta\', \'11\', \'22\', \'33\', \'44\', \'55\', \'ADMIN-KYLE\')')
+ 4 APPPATH\Models\MyAbstractModel.php(213): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 5 APPPATH\Controllers\MyAbstract.php(28): App\Models\MyAbstractModel->abstract_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-24 13:59:51 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: myabstract]
+in APPPATH\Views\procurement\abstract\abstract-pdf.php on line 60.
+ 1 APPPATH\Views\procurement\abstract\abstract-pdf.php(60): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-pdf.php', 60)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-pdf', [], true)
+ 5 APPPATH\Controllers\MyAbstract.php(33): view('procurement/abstract/abstract-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

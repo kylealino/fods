@@ -1,0 +1,822 @@
+ERROR - 2025-11-28 13:14:15 --> mysqli_sql_exception: Unknown column 'bidder_dt1' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\nSELECT\r\n    `...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\nSELECT\r\n    `...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\nSELECT\r\n    `...')
+#3 C:\xampp\htdocs\fods\app\Views\procurement\abstract\abstract-pdf.php(141): CodeIgniter\Database\BaseConnection->query('\r\nSELECT\r\n    `...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('procurement/abs...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyAbstract.php(33): view('procurement/abs...')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-11-28 13:14:15 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'bidder_dt1' in 'field list'
+[Method: GET, Route: myabstract]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\procurement\abstract\abstract-pdf.php(141): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    `recid`,
+    `pr_id`,
+    `prno`,
+    `quantity`,
+    `unit`,
+    `item_desc`,
+    `bidder_dt1`,
+    `bidder_dt2`,
+    `bidder_dt3`,
+    `bidder_dt4`,
+    `bidder_dt5`
+FROM
+    `tbl_pr_dt`
+WHERE 
+    `pr_id` = \'\'
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-pdf', [], true)
+ 5 APPPATH\Controllers\MyAbstract.php(33): view('procurement/abstract/abstract-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-28 13:14:15 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'bidder_dt1' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+SELECT
+    `recid`,
+    `pr_id`,
+    `prno`,
+    `quantity`,
+    `unit`,
+    `item_desc`,
+    `bidder_dt1`,
+    `bidder_dt2`,
+    `bidder_dt3`,
+    `bidder_dt4`,
+    `bidder_dt5`
+FROM
+    `tbl_pr_dt`
+WHERE 
+    `pr_id` = \'\'
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+SELECT
+    `recid`,
+    `pr_id`,
+    `prno`,
+    `quantity`,
+    `unit`,
+    `item_desc`,
+    `bidder_dt1`,
+    `bidder_dt2`,
+    `bidder_dt3`,
+    `bidder_dt4`,
+    `bidder_dt5`
+FROM
+    `tbl_pr_dt`
+WHERE 
+    `pr_id` = \'\'
+')
+ 3 APPPATH\Views\procurement\abstract\abstract-pdf.php(141): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    `recid`,
+    `pr_id`,
+    `prno`,
+    `quantity`,
+    `unit`,
+    `item_desc`,
+    `bidder_dt1`,
+    `bidder_dt2`,
+    `bidder_dt3`,
+    `bidder_dt4`,
+    `bidder_dt5`
+FROM
+    `tbl_pr_dt`
+WHERE 
+    `pr_id` = \'\'
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-pdf', [], true)
+ 7 APPPATH\Controllers\MyAbstract.php(33): view('procurement/abstract/abstract-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-28 13:14:15 --> [Caused by] mysqli_sql_exception: Unknown column 'bidder_dt1' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+SELECT
+    `recid`,
+    `pr_id`,
+    `prno`,
+    `quantity`,
+    `unit`,
+    `item_desc`,
+    `bidder_dt1`,
+    `bidder_dt2`,
+    `bidder_dt3`,
+    `bidder_dt4`,
+    `bidder_dt5`
+FROM
+    `tbl_pr_dt`
+WHERE 
+    `pr_id` = \'\'
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+SELECT
+    `recid`,
+    `pr_id`,
+    `prno`,
+    `quantity`,
+    `unit`,
+    `item_desc`,
+    `bidder_dt1`,
+    `bidder_dt2`,
+    `bidder_dt3`,
+    `bidder_dt4`,
+    `bidder_dt5`
+FROM
+    `tbl_pr_dt`
+WHERE 
+    `pr_id` = \'\'
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+SELECT
+    `recid`,
+    `pr_id`,
+    `prno`,
+    `quantity`,
+    `unit`,
+    `item_desc`,
+    `bidder_dt1`,
+    `bidder_dt2`,
+    `bidder_dt3`,
+    `bidder_dt4`,
+    `bidder_dt5`
+FROM
+    `tbl_pr_dt`
+WHERE 
+    `pr_id` = \'\'
+')
+ 4 APPPATH\Views\procurement\abstract\abstract-pdf.php(141): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    `recid`,
+    `pr_id`,
+    `prno`,
+    `quantity`,
+    `unit`,
+    `item_desc`,
+    `bidder_dt1`,
+    `bidder_dt2`,
+    `bidder_dt3`,
+    `bidder_dt4`,
+    `bidder_dt5`
+FROM
+    `tbl_pr_dt`
+WHERE 
+    `pr_id` = \'\'
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-pdf', [], true)
+ 8 APPPATH\Controllers\MyAbstract.php(33): view('procurement/abstract/abstract-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-28 13:18:59 --> ErrorException: Undefined array key "unit_cost"
+[Method: GET, Route: myabstract]
+in APPPATH\Views\procurement\abstract\abstract-pdf.php on line 148.
+ 1 APPPATH\Views\procurement\abstract\abstract-pdf.php(148): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "unit_cost"', 'C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-pdf.php', 148)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-pdf', [], true)
+ 5 APPPATH\Controllers\MyAbstract.php(33): view('procurement/abstract/abstract-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-28 13:20:32 --> ErrorException: Undefined variable $unit_cost
+[Method: GET, Route: myabstract]
+in APPPATH\Views\procurement\abstract\abstract-pdf.php on line 293.
+ 1 APPPATH\Views\procurement\abstract\abstract-pdf.php(293): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $unit_cost', 'C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-pdf.php', 293)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-pdf', [], true)
+ 5 APPPATH\Controllers\MyAbstract.php(33): view('procurement/abstract/abstract-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-11-28 13:32:51 --> mysqli_sql_exception: Unknown column 'bidder_dt1' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n             ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n             ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n             ...')
+#3 C:\xampp\htdocs\fods\app\Views\procurement\abstract\abstract-main.php(303): CodeIgniter\Database\BaseConnection->query('\r\n             ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('procurement/abs...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyAbstract.php(165): view('procurement/abs...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyAbstract.php(24): App\Controllers\MyAbstract->loadProductsView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2025-11-28 13:32:51 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'bidder_dt1' in 'field list'
+[Method: GET, Route: myabstract]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\procurement\abstract\abstract-main.php(303): CodeIgniter\Database\BaseConnection->query('
+                                                        SELECT
+                                                            `recid`,
+                                                            `pr_id`,
+                                                            `prno`,
+                                                            `quantity`,
+                                                            `unit`,
+                                                            `item_desc`,
+                                                            `bidder_dt1`,
+                                                            `bidder_dt2`,
+                                                            `bidder_dt3`,
+                                                            `bidder_dt4`,
+                                                            `bidder_dt5`
+                                                        FROM
+                                                            `tbl_pr_dt`
+                                                        WHERE 
+                                                            `prno` = \'2025-10-022\'')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-main', [], true)
+ 5 APPPATH\Controllers\MyAbstract.php(165): view('procurement/abstract/abstract-main', [...])
+ 6 APPPATH\Controllers\MyAbstract.php(24): App\Controllers\MyAbstract->loadProductsView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-28 13:32:51 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'bidder_dt1' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+                                                        SELECT
+                                                            `recid`,
+                                                            `pr_id`,
+                                                            `prno`,
+                                                            `quantity`,
+                                                            `unit`,
+                                                            `item_desc`,
+                                                            `bidder_dt1`,
+                                                            `bidder_dt2`,
+                                                            `bidder_dt3`,
+                                                            `bidder_dt4`,
+                                                            `bidder_dt5`
+                                                        FROM
+                                                            `tbl_pr_dt`
+                                                        WHERE 
+                                                            `prno` = \'2025-10-022\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+                                                        SELECT
+                                                            `recid`,
+                                                            `pr_id`,
+                                                            `prno`,
+                                                            `quantity`,
+                                                            `unit`,
+                                                            `item_desc`,
+                                                            `bidder_dt1`,
+                                                            `bidder_dt2`,
+                                                            `bidder_dt3`,
+                                                            `bidder_dt4`,
+                                                            `bidder_dt5`
+                                                        FROM
+                                                            `tbl_pr_dt`
+                                                        WHERE 
+                                                            `prno` = \'2025-10-022\'')
+ 3 APPPATH\Views\procurement\abstract\abstract-main.php(303): CodeIgniter\Database\BaseConnection->query('
+                                                        SELECT
+                                                            `recid`,
+                                                            `pr_id`,
+                                                            `prno`,
+                                                            `quantity`,
+                                                            `unit`,
+                                                            `item_desc`,
+                                                            `bidder_dt1`,
+                                                            `bidder_dt2`,
+                                                            `bidder_dt3`,
+                                                            `bidder_dt4`,
+                                                            `bidder_dt5`
+                                                        FROM
+                                                            `tbl_pr_dt`
+                                                        WHERE 
+                                                            `prno` = \'2025-10-022\'')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-main', [], true)
+ 7 APPPATH\Controllers\MyAbstract.php(165): view('procurement/abstract/abstract-main', [...])
+ 8 APPPATH\Controllers\MyAbstract.php(24): App\Controllers\MyAbstract->loadProductsView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-28 13:32:51 --> [Caused by] mysqli_sql_exception: Unknown column 'bidder_dt1' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+                                                        SELECT
+                                                            `recid`,
+                                                            `pr_id`,
+                                                            `prno`,
+                                                            `quantity`,
+                                                            `unit`,
+                                                            `item_desc`,
+                                                            `bidder_dt1`,
+                                                            `bidder_dt2`,
+                                                            `bidder_dt3`,
+                                                            `bidder_dt4`,
+                                                            `bidder_dt5`
+                                                        FROM
+                                                            `tbl_pr_dt`
+                                                        WHERE 
+                                                            `prno` = \'2025-10-022\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+                                                        SELECT
+                                                            `recid`,
+                                                            `pr_id`,
+                                                            `prno`,
+                                                            `quantity`,
+                                                            `unit`,
+                                                            `item_desc`,
+                                                            `bidder_dt1`,
+                                                            `bidder_dt2`,
+                                                            `bidder_dt3`,
+                                                            `bidder_dt4`,
+                                                            `bidder_dt5`
+                                                        FROM
+                                                            `tbl_pr_dt`
+                                                        WHERE 
+                                                            `prno` = \'2025-10-022\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+                                                        SELECT
+                                                            `recid`,
+                                                            `pr_id`,
+                                                            `prno`,
+                                                            `quantity`,
+                                                            `unit`,
+                                                            `item_desc`,
+                                                            `bidder_dt1`,
+                                                            `bidder_dt2`,
+                                                            `bidder_dt3`,
+                                                            `bidder_dt4`,
+                                                            `bidder_dt5`
+                                                        FROM
+                                                            `tbl_pr_dt`
+                                                        WHERE 
+                                                            `prno` = \'2025-10-022\'')
+ 4 APPPATH\Views\procurement\abstract\abstract-main.php(303): CodeIgniter\Database\BaseConnection->query('
+                                                        SELECT
+                                                            `recid`,
+                                                            `pr_id`,
+                                                            `prno`,
+                                                            `quantity`,
+                                                            `unit`,
+                                                            `item_desc`,
+                                                            `bidder_dt1`,
+                                                            `bidder_dt2`,
+                                                            `bidder_dt3`,
+                                                            `bidder_dt4`,
+                                                            `bidder_dt5`
+                                                        FROM
+                                                            `tbl_pr_dt`
+                                                        WHERE 
+                                                            `prno` = \'2025-10-022\'')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-main', [], true)
+ 8 APPPATH\Controllers\MyAbstract.php(165): view('procurement/abstract/abstract-main', [...])
+ 9 APPPATH\Controllers\MyAbstract.php(24): App\Controllers\MyAbstract->loadProductsView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-11-28 13:35:41 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+						VALUES ('2', '2025-07-389', '1', 'bottle', 'MRS agar, 500 g, pH = 5....' at line 13 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\t\t\tINSERT ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\t\t\tINSERT ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\t\t\tINSERT ...')
+#3 C:\xampp\htdocs\fods\app\Models\MyAbstractModel.php(136): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\t\t\tINSERT ...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyAbstract.php(28): App\Models\MyAbstractModel->abstract_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-11-28 13:35:41 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+						VALUES ('2', '2025-07-389', '1', 'bottle', 'MRS agar, 500 g, pH = 5....' at line 13
+[Method: POST, Route: myabstract]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyAbstractModel.php(136): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`,
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 2 APPPATH\Controllers\MyAbstract.php(28): App\Models\MyAbstractModel->abstract_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-28 13:35:41 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+						VALUES ('2', '2025-07-389', '1', 'bottle', 'MRS agar, 500 g, pH = 5....' at line 13
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`,
+						)
+						VALUES (\'2\', \'2025-07-389\', \'1\', \'bottle\', \'MRS agar, 500 g, pH = 5.6 +/- 0.2, according to ISO 15214\', \'111\', \'222\', \'\', \'\', \'\', \'ADMIN-KYLE\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`,
+						)
+						VALUES (\'2\', \'2025-07-389\', \'1\', \'bottle\', \'MRS agar, 500 g, pH = 5.6 +/- 0.2, according to ISO 15214\', \'111\', \'222\', \'\', \'\', \'\', \'ADMIN-KYLE\')')
+ 3 APPPATH\Models\MyAbstractModel.php(136): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`,
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 4 APPPATH\Controllers\MyAbstract.php(28): App\Models\MyAbstractModel->abstract_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-28 13:35:41 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+						VALUES ('2', '2025-07-389', '1', 'bottle', 'MRS agar, 500 g, pH = 5....' at line 13
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`,
+						)
+						VALUES (\'2\', \'2025-07-389\', \'1\', \'bottle\', \'MRS agar, 500 g, pH = 5.6 +/- 0.2, according to ISO 15214\', \'111\', \'222\', \'\', \'\', \'\', \'ADMIN-KYLE\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`,
+						)
+						VALUES (\'2\', \'2025-07-389\', \'1\', \'bottle\', \'MRS agar, 500 g, pH = 5.6 +/- 0.2, according to ISO 15214\', \'111\', \'222\', \'\', \'\', \'\', \'ADMIN-KYLE\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`,
+						)
+						VALUES (\'2\', \'2025-07-389\', \'1\', \'bottle\', \'MRS agar, 500 g, pH = 5.6 +/- 0.2, according to ISO 15214\', \'111\', \'222\', \'\', \'\', \'\', \'ADMIN-KYLE\')')
+ 4 APPPATH\Models\MyAbstractModel.php(136): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`,
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 5 APPPATH\Controllers\MyAbstract.php(28): App\Models\MyAbstractModel->abstract_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-11-28 13:36:12 --> mysqli_sql_exception: Unknown column 'bidder_dt1' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\t\t\tINSERT ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\t\t\tINSERT ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\t\t\tINSERT ...')
+#3 C:\xampp\htdocs\fods\app\Models\MyAbstractModel.php(136): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\t\t\tINSERT ...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyAbstract.php(28): App\Models\MyAbstractModel->abstract_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-11-28 13:36:12 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'bidder_dt1' in 'field list'
+[Method: POST, Route: myabstract]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyAbstractModel.php(136): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 2 APPPATH\Controllers\MyAbstract.php(28): App\Models\MyAbstractModel->abstract_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-28 13:36:12 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'bidder_dt1' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`
+						)
+						VALUES (\'2\', \'2025-07-389\', \'1\', \'bottle\', \'MRS agar, 500 g, pH = 5.6 +/- 0.2, according to ISO 15214\', \'111\', \'222\', \'\', \'\', \'\', \'ADMIN-KYLE\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`
+						)
+						VALUES (\'2\', \'2025-07-389\', \'1\', \'bottle\', \'MRS agar, 500 g, pH = 5.6 +/- 0.2, according to ISO 15214\', \'111\', \'222\', \'\', \'\', \'\', \'ADMIN-KYLE\')')
+ 3 APPPATH\Models\MyAbstractModel.php(136): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 4 APPPATH\Controllers\MyAbstract.php(28): App\Models\MyAbstractModel->abstract_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-28 13:36:12 --> [Caused by] mysqli_sql_exception: Unknown column 'bidder_dt1' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`
+						)
+						VALUES (\'2\', \'2025-07-389\', \'1\', \'bottle\', \'MRS agar, 500 g, pH = 5.6 +/- 0.2, according to ISO 15214\', \'111\', \'222\', \'\', \'\', \'\', \'ADMIN-KYLE\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`
+						)
+						VALUES (\'2\', \'2025-07-389\', \'1\', \'bottle\', \'MRS agar, 500 g, pH = 5.6 +/- 0.2, according to ISO 15214\', \'111\', \'222\', \'\', \'\', \'\', \'ADMIN-KYLE\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`
+						)
+						VALUES (\'2\', \'2025-07-389\', \'1\', \'bottle\', \'MRS agar, 500 g, pH = 5.6 +/- 0.2, according to ISO 15214\', \'111\', \'222\', \'\', \'\', \'\', \'ADMIN-KYLE\')')
+ 4 APPPATH\Models\MyAbstractModel.php(136): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_pr_dt`(
+							`pr_id`,
+							`prno`,
+							`quantity`,
+							`unit`,
+							`item_desc`,
+							`bidder_dt1`,
+							`bidder_dt2`,
+							`bidder_dt3`,
+							`bidder_dt4`,
+							`bidder_dt5`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 5 APPPATH\Controllers\MyAbstract.php(28): App\Models\MyAbstractModel->abstract_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-28 13:46:50 --> ErrorException: Allowed memory size of 536870912 bytes exhausted (tried to allocate 264241184 bytes)
+[Method: GET, Route: myabstract]
+in APPPATH\ThirdParty\fpdf\fpdf.php on line 1461.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2025-11-28 13:47:47 --> ErrorException: Undefined variable $currentY
+[Method: GET, Route: myabstract]
+in APPPATH\Views\procurement\abstract\abstract-pdf.php on line 260.
+ 1 APPPATH\Views\procurement\abstract\abstract-pdf.php(260): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $currentY', 'C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-pdf.php', 260)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-pdf', [], true)
+ 5 APPPATH\Controllers\MyAbstract.php(33): view('procurement/abstract/abstract-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-28 13:48:38 --> ErrorException: Undefined variable $currentY
+[Method: GET, Route: myabstract]
+in APPPATH\Views\procurement\abstract\abstract-pdf.php on line 260.
+ 1 APPPATH\Views\procurement\abstract\abstract-pdf.php(260): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $currentY', 'C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-pdf.php', 260)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-pdf', [], true)
+ 5 APPPATH\Controllers\MyAbstract.php(33): view('procurement/abstract/abstract-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-28 14:08:18 --> ErrorException: Undefined variable $bidder_dt1
+[Method: GET, Route: myabstract]
+in APPPATH\Views\procurement\abstract\abstract-pdf.php on line 114.
+ 1 APPPATH\Views\procurement\abstract\abstract-pdf.php(114): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $bidder_dt1', 'C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-pdf.php', 114)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-pdf', [], true)
+ 5 APPPATH\Controllers\MyAbstract.php(33): view('procurement/abstract/abstract-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-28 14:10:51 --> ErrorException: Undefined variable $quantity
+[Method: GET, Route: myabstract]
+in APPPATH\Views\procurement\abstract\abstract-pdf.php on line 178.
+ 1 APPPATH\Views\procurement\abstract\abstract-pdf.php(178): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $quantity', 'C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-pdf.php', 178)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-pdf', [], true)
+ 5 APPPATH\Controllers\MyAbstract.php(33): view('procurement/abstract/abstract-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-28 14:11:36 --> ErrorException: Undefined variable $quantity
+[Method: GET, Route: myabstract]
+in APPPATH\Views\procurement\abstract\abstract-pdf.php on line 178.
+ 1 APPPATH\Views\procurement\abstract\abstract-pdf.php(178): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $quantity', 'C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-pdf.php', 178)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-pdf', [], true)
+ 5 APPPATH\Controllers\MyAbstract.php(33): view('procurement/abstract/abstract-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

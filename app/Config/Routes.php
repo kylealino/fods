@@ -70,3 +70,7 @@ $routes->post('myprocurement', 'MyProcurement::index',['filter' => 'myauthuser']
 //PRODUCTS - PRODUCTS module
 $routes->get('myproducts', 'MyProducts::index',['filter' => 'myauthuser']);
 $routes->post('myproducts', 'MyProducts::index',['filter' => 'myauthuser']);
+
+//ABSTRACT - ABSTRACT module
+$routes->get('myabstract', 'MyAbstract::index',['filter' => 'myauthuser']);
+$routes->post('myabstract', 'MyAbstract::index',['filter' => 'myauthuser']);

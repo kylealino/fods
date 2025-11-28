@@ -107,6 +107,10 @@ echo view('templates/myheader.php');
                                     Add RFQ
                                 </button>
                             <?php else:?>
+                                <button type="button" id="btn_approve" disabled name="btn_approve" class="btn_approve btn btn-sm btn-warning d-none">
+                                    <i class="ti ti-plus fs-3 me-1"></i>
+                                    Add RFQ
+                                </button>
                             <?php endif;?>
                         </div>
                     </div>

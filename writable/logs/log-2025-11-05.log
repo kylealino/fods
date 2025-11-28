@@ -1,0 +1,45 @@
+CRITICAL - 2025-11-05 09:01:22 --> ErrorException: Undefined variable $productsdata
+[Method: GET, Route: myabstract]
+in APPPATH\Views\procurement\abstract\abstract-main.php on line 610.
+ 1 APPPATH\Views\procurement\abstract\abstract-main.php(610): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $productsdata', 'C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-main.php', 610)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-main', [], true)
+ 5 APPPATH\Controllers\MyAbstract.php(132): view('procurement/abstract/abstract-main', [])
+ 6 APPPATH\Controllers\MyAbstract.php(24): App\Controllers\MyAbstract->loadProductsView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-05 09:19:28 --> ErrorException: Undefined variable $prlistdata
+[Method: GET, Route: myabstract]
+in APPPATH\Views\procurement\abstract\abstract-main.php on line 632.
+ 1 APPPATH\Views\procurement\abstract\abstract-main.php(632): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $prlistdata', 'C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-main.php', 632)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-main', [], true)
+ 5 APPPATH\Controllers\MyAbstract.php(141): view('procurement/abstract/abstract-main', [...])
+ 6 APPPATH\Controllers\MyAbstract.php(24): App\Controllers\MyAbstract->loadProductsView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-05 09:19:35 --> ErrorException: Undefined variable $prlistdata
+[Method: GET, Route: myabstract]
+in APPPATH\Views\procurement\abstract\abstract-main.php on line 632.
+ 1 APPPATH\Views\procurement\abstract\abstract-main.php(632): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $prlistdata', 'C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-main.php', 632)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-main', [], true)
+ 5 APPPATH\Controllers\MyAbstract.php(141): view('procurement/abstract/abstract-main', [...])
+ 6 APPPATH\Controllers\MyAbstract.php(24): App\Controllers\MyAbstract->loadProductsView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

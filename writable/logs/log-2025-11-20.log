@@ -1,0 +1,75 @@
+CRITICAL - 2025-11-20 15:20:38 --> ErrorException: Undefined variable $estimated_cost
+[Method: GET, Route: myabstract]
+in APPPATH\Views\procurement\abstract\abstract-main.php on line 360.
+ 1 APPPATH\Views\procurement\abstract\abstract-main.php(360): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $estimated_cost', 'C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-main.php', 360)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-main', [], true)
+ 5 APPPATH\Controllers\MyAbstract.php(150): view('procurement/abstract/abstract-main', [...])
+ 6 APPPATH\Controllers\MyAbstract.php(24): App\Controllers\MyAbstract->loadProductsView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-20 15:20:44 --> ErrorException: Undefined variable $estimated_cost
+[Method: GET, Route: myabstract]
+in APPPATH\Views\procurement\abstract\abstract-main.php on line 360.
+ 1 APPPATH\Views\procurement\abstract\abstract-main.php(360): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $estimated_cost', 'C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-main.php', 360)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-main', [], true)
+ 5 APPPATH\Controllers\MyAbstract.php(150): view('procurement/abstract/abstract-main', [...])
+ 6 APPPATH\Controllers\MyAbstract.php(24): App\Controllers\MyAbstract->loadProductsView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-20 15:21:54 --> ErrorException: Undefined variable $productsdata
+[Method: GET, Route: myabstract]
+in APPPATH\Views\procurement\abstract\abstract-main.php on line 489.
+ 1 APPPATH\Views\procurement\abstract\abstract-main.php(489): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $productsdata', 'C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-main.php', 489)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-main', [], true)
+ 5 APPPATH\Controllers\MyAbstract.php(150): view('procurement/abstract/abstract-main', [...])
+ 6 APPPATH\Controllers\MyAbstract.php(24): App\Controllers\MyAbstract->loadProductsView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-20 15:22:30 --> ErrorException: Undefined variable $prlistdata
+[Method: GET, Route: myabstract]
+in APPPATH\Views\procurement\abstract\abstract-main.php on line 525.
+ 1 APPPATH\Views\procurement\abstract\abstract-main.php(525): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $prlistdata', 'C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-main.php', 525)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-main', [], true)
+ 5 APPPATH\Controllers\MyAbstract.php(150): view('procurement/abstract/abstract-main', [...])
+ 6 APPPATH\Controllers\MyAbstract.php(24): App\Controllers\MyAbstract->loadProductsView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-20 15:24:54 --> ErrorException: Undefined array key "recid"
+[Method: GET, Route: myabstract]
+in APPPATH\Views\procurement\abstract\abstract-main.php on line 337.
+ 1 APPPATH\Views\procurement\abstract\abstract-main.php(337): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "recid"', 'C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-main.php', 337)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\abstract\\abstract-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/abstract/abstract-main', [], true)
+ 5 APPPATH\Controllers\MyAbstract.php(153): view('procurement/abstract/abstract-main', [...])
+ 6 APPPATH\Controllers\MyAbstract.php(24): App\Controllers\MyAbstract->loadProductsView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyAbstract->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAbstract))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

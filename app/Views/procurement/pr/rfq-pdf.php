@@ -451,11 +451,16 @@ if ($pdf->PageNo() == 1) {
         $pdf->SetXY(170, $currentY);
         $pdf->Cell(15, 5, '', 'L', 0, 'C');  // UNIT 2
         $pdf->SetXY(185, $currentY);
-        $pdf->Cell(15, 5, '', 'LR', 1, 'C');  // TOTAL (the last cell with ln=1 for line break)
+        $pdf->Cell(15, 5, '', 'LR', 0, 'C');  // TOTAL (the last cell with ln=1 for line break)
+        $pdf->SetXY(10, $currentY);
+        $pdf->Cell(270, 5, '', 'B', 1, 'C');  // TOTAL (the last cell with ln=1 for line break)
+
 
         $currentY = $pdf->GetY();
     }
 }
+
+
 
 
 
