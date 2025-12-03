@@ -245,7 +245,7 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
               <span class="hide-menu">Procurement</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link sidebar-link" href="<?=site_url();?>myprocurement?meaction=PR-MAIN" aria-expanded="false">
+              <a class="sidebar-link sidebar-link" href="<?=site_url();?>myppmp?meaction=MAIN" aria-expanded="false">
                 <span class="rounded-3">
                   <i class="ti ti-list-numbers"></i>
                 </span>
