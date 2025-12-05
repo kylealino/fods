@@ -693,7 +693,7 @@ class MyBursModel extends Model
 						timeOut:2500,
 					});
 				setTimeout(function() {
-						window.location.href = 'myburs?meaction=MAIN&recid=$project_id'; // Redirect to MAIN view
+						window.location.href = 'myburs?meaction=MAIN'; // Redirect to MAIN view
 					}, 2500); // 2-second delay for user to see the toast
 			</script>
 			";
