@@ -297,35 +297,35 @@ foreach ($rw as $data) {
 }
 
 $currentY = $pdf->GetY();
+
 if ($pdf->PageNo() == 1) {
 
-    // Keep adding empty rows until Y reaches 200 (first page only)
+    // Fill empty rows until Y reaches 135 (FIRST PAGE ONLY)
     while ($currentY < 135) {
-        $pdf->SetXY(20, $currentY);
-        $pdf->Cell(15, 5, '', 'L', 0, 'C');  // ITEM NO.
-        $pdf->SetXY(35, $currentY);
-        $pdf->Cell(30, 5, '', 'L', 0, 'C');  // ABC
-        $pdf->SetXY(65, $currentY);
-        $pdf->Cell(60, 5, '', 'L', 0, 'L');  // ITEM & DESCRIPTION (empty)
-        $pdf->SetXY(125, $currentY);
-        $pdf->Cell(35, 5, '', 'L', 0, 'L');  // SPECIFICATIONS
-        $pdf->SetXY(160, $currentY);
-        $pdf->Cell(35, 5, '', 'L', 0, 'C');  // QTY
-        $pdf->SetXY(195, $currentY);
-        $pdf->Cell(35, 5, '', 'L', 0, 'C');  // UNIT 1
-        $pdf->SetXY(230, $currentY);
-        $pdf->Cell(35, 5, '', 'L', 0, 'C');  // UNIT 2
-        $pdf->SetXY(265, $currentY);
-        $pdf->Cell(35, 5, '', 'L', 0, 'C');  // TOTAL (the last cell with ln=1 for line break)
-        $pdf->SetXY(300, $currentY);
-        $pdf->Cell(35, 5, '', 'LR', 1, 'C');  // TOTAL (the last cell with ln=1 for line break)
+
+        $pdf->SetXY(20,  $currentY); $pdf->Cell(60, 5, '', 1, 0, 'C'); // AIR FRESHENER
+        $pdf->SetXY(80,  $currentY); $pdf->Cell(20, 5, '', 1, 0, 'C'); // Goods
+        $pdf->SetXY(100, $currentY); $pdf->Cell(15, 5, '', 1, 0, 'C'); // Qty
+        $pdf->SetXY(115, $currentY); $pdf->Cell(15, 5, '', 1, 0, 'C'); // Unit
+        $pdf->SetXY(130, $currentY); $pdf->Cell(20, 5, '', 1, 0, 'C'); // Unit Cost
+        $pdf->SetXY(150, $currentY); $pdf->Cell(20, 5, '', 1, 0, 'C'); // MOP
+        $pdf->SetXY(170, $currentY); $pdf->Cell(20, 5, '', 1, 0, 'C'); // Preproc
+        $pdf->SetXY(190, $currentY); $pdf->Cell(20, 5, '', 1, 0, 'C'); // Proc Start
+        $pdf->SetXY(210, $currentY); $pdf->Cell(20, 5, '', 1, 0, 'C'); // Proc End
+        $pdf->SetXY(230, $currentY); $pdf->Cell(30, 5, '', 1, 0, 'C'); // Expected Delivery
+        $pdf->SetXY(260, $currentY); $pdf->Cell(15, 5, '', 1, 0, 'C'); // Funding Source
+        $pdf->SetXY(275, $currentY); $pdf->Cell(20, 5, '', 1, 0, 'C'); // Estimated Budget
+        $pdf->SetXY(295, $currentY); $pdf->Cell(20, 5, '', 1, 0, 'C'); // Attached Doc
+        $pdf->SetXY(315, $currentY); $pdf->Cell(20, 5, '', 1, 1, 'C'); // Remarks (LAST)
 
         $currentY = $pdf->GetY();
-
     }
 }
+
+// Draw bottom border to close table
 $pdf->SetXY(20, $currentY);
-$pdf->Cell(315, 5, '', 'T', 0, 'C');  // ITEM NO.
+$pdf->Cell(315, 0, '', 'T');
+
 
 
 

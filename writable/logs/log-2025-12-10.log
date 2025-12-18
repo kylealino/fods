@@ -1,0 +1,272 @@
+ERROR - 2025-12-10 13:51:08 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' at line 21 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\t\t\tINSERT ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\t\t\tINSERT ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\t\t\tINSERT ...')
+#3 C:\xampp\htdocs\fods\app\Models\MyPPMPModel.php(149): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\t\t\tINSERT ...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyPPMP.php(28): App\Models\MyPPMPModel->ppmp_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-12-10 13:51:08 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' at line 21
+[Method: POST, Route: myppmp]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyPPMPModel.php(149): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_ppmp_dt`(
+							`ppmp_id`,
+							`ppmpno`,
+							`item_desc`,
+							`item_type`,
+							`quantity`,
+							`size`,
+							`unit_cost`,
+							`mop`,
+							`is_preproc`,
+							`proc_start`,
+							`proc_end`,
+							`expected_delivery_from`,
+							`expected_delivery_to`,
+							`funding_source`,
+							`estimated_budget`,
+							`attached_document`,
+							`remarks`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 2 APPPATH\Controllers\MyPPMP.php(28): App\Models\MyPPMPModel->ppmp_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-10 13:51:08 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' at line 21
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO `tbl_ppmp_dt`(
+							`ppmp_id`,
+							`ppmpno`,
+							`item_desc`,
+							`item_type`,
+							`quantity`,
+							`size`,
+							`unit_cost`,
+							`mop`,
+							`is_preproc`,
+							`proc_start`,
+							`proc_end`,
+							`expected_delivery_from`,
+							`expected_delivery_to`,
+							`funding_source`,
+							`estimated_budget`,
+							`attached_document`,
+							`remarks`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO `tbl_ppmp_dt`(
+							`ppmp_id`,
+							`ppmpno`,
+							`item_desc`,
+							`item_type`,
+							`quantity`,
+							`size`,
+							`unit_cost`,
+							`mop`,
+							`is_preproc`,
+							`proc_start`,
+							`proc_end`,
+							`expected_delivery_from`,
+							`expected_delivery_to`,
+							`funding_source`,
+							`estimated_budget`,
+							`attached_document`,
+							`remarks`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
+ 3 APPPATH\Models\MyPPMPModel.php(149): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_ppmp_dt`(
+							`ppmp_id`,
+							`ppmpno`,
+							`item_desc`,
+							`item_type`,
+							`quantity`,
+							`size`,
+							`unit_cost`,
+							`mop`,
+							`is_preproc`,
+							`proc_start`,
+							`proc_end`,
+							`expected_delivery_from`,
+							`expected_delivery_to`,
+							`funding_source`,
+							`estimated_budget`,
+							`attached_document`,
+							`remarks`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 4 APPPATH\Controllers\MyPPMP.php(28): App\Models\MyPPMPModel->ppmp_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-10 13:51:08 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' at line 21
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+						INSERT INTO `tbl_ppmp_dt`(
+							`ppmp_id`,
+							`ppmpno`,
+							`item_desc`,
+							`item_type`,
+							`quantity`,
+							`size`,
+							`unit_cost`,
+							`mop`,
+							`is_preproc`,
+							`proc_start`,
+							`proc_end`,
+							`expected_delivery_from`,
+							`expected_delivery_to`,
+							`funding_source`,
+							`estimated_budget`,
+							`attached_document`,
+							`remarks`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO `tbl_ppmp_dt`(
+							`ppmp_id`,
+							`ppmpno`,
+							`item_desc`,
+							`item_type`,
+							`quantity`,
+							`size`,
+							`unit_cost`,
+							`mop`,
+							`is_preproc`,
+							`proc_start`,
+							`proc_end`,
+							`expected_delivery_from`,
+							`expected_delivery_to`,
+							`funding_source`,
+							`estimated_budget`,
+							`attached_document`,
+							`remarks`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO `tbl_ppmp_dt`(
+							`ppmp_id`,
+							`ppmpno`,
+							`item_desc`,
+							`item_type`,
+							`quantity`,
+							`size`,
+							`unit_cost`,
+							`mop`,
+							`is_preproc`,
+							`proc_start`,
+							`proc_end`,
+							`expected_delivery_from`,
+							`expected_delivery_to`,
+							`funding_source`,
+							`estimated_budget`,
+							`attached_document`,
+							`remarks`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
+ 4 APPPATH\Models\MyPPMPModel.php(149): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_ppmp_dt`(
+							`ppmp_id`,
+							`ppmpno`,
+							`item_desc`,
+							`item_type`,
+							`quantity`,
+							`size`,
+							`unit_cost`,
+							`mop`,
+							`is_preproc`,
+							`proc_start`,
+							`proc_end`,
+							`expected_delivery_from`,
+							`expected_delivery_to`,
+							`funding_source`,
+							`estimated_budget`,
+							`attached_document`,
+							`remarks`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 5 APPPATH\Controllers\MyPPMP.php(28): App\Models\MyPPMPModel->ppmp_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-12-10 14:17:50 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', 'root', '', 'fods', 3306, '', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\fods\app\Controllers\MyPPMP.php(51): CodeIgniter\Database\BaseConnection->query('\r\n            S...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MyPPMP.php(24): App\Controllers\MyPPMP->loadPPMPView()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\fods\app\Controllers\MyPPMP.php(51): CodeIgniter\Database\BaseConnection->query('\r\n            S...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MyPPMP.php(24): App\Controllers\MyPPMP->loadPPMPView()
+#4 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#9 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#10 {main}
+CRITICAL - 2025-12-10 14:17:50 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: GET, Route: myppmp]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Controllers\MyPPMP.php(51): CodeIgniter\Database\BaseConnection->query('
+            SELECT
+                `recid`,
+                `product_code`,
+                `product_desc`,
+                `uom`,
+                `price`,
+                `quantity`,
+                `remarks`
+            FROM
+                `mst_products`
+            ORDER BY
+                `recid` DESC
+        ')
+ 3 APPPATH\Controllers\MyPPMP.php(24): App\Controllers\MyPPMP->loadPPMPView()
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

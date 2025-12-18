@@ -74,3 +74,7 @@ $routes->post('myproducts', 'MyProducts::index',['filter' => 'myauthuser']);
 //ABSTRACT - ABSTRACT module
 $routes->get('myabstract', 'MyAbstract::index',['filter' => 'myauthuser']);
 $routes->post('myabstract', 'MyAbstract::index',['filter' => 'myauthuser']);
+
+//PPMP - PPMP module
+$routes->get('myppmp', 'MyPPMP::index',['filter' => 'myauthuser']);
+$routes->post('myppmp', 'MyPPMP::index',['filter' => 'myauthuser']);

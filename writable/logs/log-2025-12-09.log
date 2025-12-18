@@ -1,0 +1,585 @@
+ERROR - 2025-12-09 09:42:12 --> mysqli_sql_exception: Table 'fods.tbl_reference_projects' doesn't exist in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n            S...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n            S...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n            S...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MyPPMP.php(67): CodeIgniter\Database\BaseConnection->query('\r\n            S...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MyPPMP.php(24): App\Controllers\MyPPMP->loadPPMPView()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-12-09 09:42:12 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'fods.tbl_reference_projects' doesn't exist
+[Method: GET, Route: myppmp]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MyPPMP.php(67): CodeIgniter\Database\BaseConnection->query('
+            SELECT
+                `recid`,
+                `project_title`
+            FROM
+                `tbl_reference_projects`
+            WHERE
+                `projects_title` = \'01\'
+            ORDER BY
+                `recid` DESC
+        ')
+ 2 APPPATH\Controllers\MyPPMP.php(24): App\Controllers\MyPPMP->loadPPMPView()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-09 09:42:12 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'fods.tbl_reference_projects' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+            SELECT
+                `recid`,
+                `project_title`
+            FROM
+                `tbl_reference_projects`
+            WHERE
+                `projects_title` = \'01\'
+            ORDER BY
+                `recid` DESC
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+            SELECT
+                `recid`,
+                `project_title`
+            FROM
+                `tbl_reference_projects`
+            WHERE
+                `projects_title` = \'01\'
+            ORDER BY
+                `recid` DESC
+        ')
+ 3 APPPATH\Controllers\MyPPMP.php(67): CodeIgniter\Database\BaseConnection->query('
+            SELECT
+                `recid`,
+                `project_title`
+            FROM
+                `tbl_reference_projects`
+            WHERE
+                `projects_title` = \'01\'
+            ORDER BY
+                `recid` DESC
+        ')
+ 4 APPPATH\Controllers\MyPPMP.php(24): App\Controllers\MyPPMP->loadPPMPView()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-09 09:42:12 --> [Caused by] mysqli_sql_exception: Table 'fods.tbl_reference_projects' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+            SELECT
+                `recid`,
+                `project_title`
+            FROM
+                `tbl_reference_projects`
+            WHERE
+                `projects_title` = \'01\'
+            ORDER BY
+                `recid` DESC
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+            SELECT
+                `recid`,
+                `project_title`
+            FROM
+                `tbl_reference_projects`
+            WHERE
+                `projects_title` = \'01\'
+            ORDER BY
+                `recid` DESC
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+            SELECT
+                `recid`,
+                `project_title`
+            FROM
+                `tbl_reference_projects`
+            WHERE
+                `projects_title` = \'01\'
+            ORDER BY
+                `recid` DESC
+        ')
+ 4 APPPATH\Controllers\MyPPMP.php(67): CodeIgniter\Database\BaseConnection->query('
+            SELECT
+                `recid`,
+                `project_title`
+            FROM
+                `tbl_reference_projects`
+            WHERE
+                `projects_title` = \'01\'
+            ORDER BY
+                `recid` DESC
+        ')
+ 5 APPPATH\Controllers\MyPPMP.php(24): App\Controllers\MyPPMP->loadPPMPView()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-12-09 09:43:02 --> mysqli_sql_exception: Unknown column 'projects_title' in 'where clause' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n            S...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n            S...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n            S...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MyPPMP.php(67): CodeIgniter\Database\BaseConnection->query('\r\n            S...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MyPPMP.php(24): App\Controllers\MyPPMP->loadPPMPView()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-12-09 09:43:02 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'projects_title' in 'where clause'
+[Method: GET, Route: myppmp]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MyPPMP.php(67): CodeIgniter\Database\BaseConnection->query('
+            SELECT
+                `recid`,
+                `project_title`
+            FROM
+                `tbl_reference_project`
+            WHERE
+                `projects_title` = \'01\'
+            ORDER BY
+                `recid` DESC
+        ')
+ 2 APPPATH\Controllers\MyPPMP.php(24): App\Controllers\MyPPMP->loadPPMPView()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-09 09:43:02 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'projects_title' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+            SELECT
+                `recid`,
+                `project_title`
+            FROM
+                `tbl_reference_project`
+            WHERE
+                `projects_title` = \'01\'
+            ORDER BY
+                `recid` DESC
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+            SELECT
+                `recid`,
+                `project_title`
+            FROM
+                `tbl_reference_project`
+            WHERE
+                `projects_title` = \'01\'
+            ORDER BY
+                `recid` DESC
+        ')
+ 3 APPPATH\Controllers\MyPPMP.php(67): CodeIgniter\Database\BaseConnection->query('
+            SELECT
+                `recid`,
+                `project_title`
+            FROM
+                `tbl_reference_project`
+            WHERE
+                `projects_title` = \'01\'
+            ORDER BY
+                `recid` DESC
+        ')
+ 4 APPPATH\Controllers\MyPPMP.php(24): App\Controllers\MyPPMP->loadPPMPView()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-09 09:43:02 --> [Caused by] mysqli_sql_exception: Unknown column 'projects_title' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+            SELECT
+                `recid`,
+                `project_title`
+            FROM
+                `tbl_reference_project`
+            WHERE
+                `projects_title` = \'01\'
+            ORDER BY
+                `recid` DESC
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+            SELECT
+                `recid`,
+                `project_title`
+            FROM
+                `tbl_reference_project`
+            WHERE
+                `projects_title` = \'01\'
+            ORDER BY
+                `recid` DESC
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+            SELECT
+                `recid`,
+                `project_title`
+            FROM
+                `tbl_reference_project`
+            WHERE
+                `projects_title` = \'01\'
+            ORDER BY
+                `recid` DESC
+        ')
+ 4 APPPATH\Controllers\MyPPMP.php(67): CodeIgniter\Database\BaseConnection->query('
+            SELECT
+                `recid`,
+                `project_title`
+            FROM
+                `tbl_reference_project`
+            WHERE
+                `projects_title` = \'01\'
+            ORDER BY
+                `recid` DESC
+        ')
+ 5 APPPATH\Controllers\MyPPMP.php(24): App\Controllers\MyPPMP->loadPPMPView()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-09 09:53:50 --> ErrorException: Undefined array key "prno"
+[Method: GET, Route: myppmp]
+in APPPATH\Views\procurement\ppmp\ppmp-main.php on line 605.
+ 1 APPPATH\Views\procurement\ppmp\ppmp-main.php(605): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "prno"', 'C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\ppmp\\ppmp-main.php', 605)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\ppmp\\ppmp-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/ppmp/ppmp-main', [], true)
+ 5 APPPATH\Controllers\MyPPMP.php(112): view('procurement/ppmp/ppmp-main', [...])
+ 6 APPPATH\Controllers\MyPPMP.php(24): App\Controllers\MyPPMP->loadPPMPView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-09 10:02:09 --> ErrorException: Undefined array key "responsibility_code"
+[Method: GET, Route: myppmp]
+in APPPATH\Views\procurement\ppmp\ppmp-main.php on line 625.
+ 1 APPPATH\Views\procurement\ppmp\ppmp-main.php(625): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "responsibility_code"', 'C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\ppmp\\ppmp-main.php', 625)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\ppmp\\ppmp-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/ppmp/ppmp-main', [], true)
+ 5 APPPATH\Controllers\MyPPMP.php(113): view('procurement/ppmp/ppmp-main', [...])
+ 6 APPPATH\Controllers\MyPPMP.php(24): App\Controllers\MyPPMP->loadPPMPView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-12-09 10:02:30 --> mysqli_sql_exception: Unknown column 'responsiblity_code' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n            S...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n            S...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n            S...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MyPPMP.php(67): CodeIgniter\Database\BaseConnection->query('\r\n            S...')
+#4 C:\xampp\htdocs\fods\app\Controllers\MyPPMP.php(24): App\Controllers\MyPPMP->loadPPMPView()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-12-09 10:02:30 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'responsiblity_code' in 'field list'
+[Method: GET, Route: myppmp]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MyPPMP.php(67): CodeIgniter\Database\BaseConnection->query('
+            SELECT
+                `recid`,
+                `project_title`,
+                `responsiblity_code`
+            FROM
+                `tbl_reference_project`
+            WHERE
+                `fundcluster_id` = \'1\'
+            ORDER BY
+                `recid` DESC
+            
+        ')
+ 2 APPPATH\Controllers\MyPPMP.php(24): App\Controllers\MyPPMP->loadPPMPView()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-09 10:02:30 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'responsiblity_code' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+            SELECT
+                `recid`,
+                `project_title`,
+                `responsiblity_code`
+            FROM
+                `tbl_reference_project`
+            WHERE
+                `fundcluster_id` = \'1\'
+            ORDER BY
+                `recid` DESC
+            
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+            SELECT
+                `recid`,
+                `project_title`,
+                `responsiblity_code`
+            FROM
+                `tbl_reference_project`
+            WHERE
+                `fundcluster_id` = \'1\'
+            ORDER BY
+                `recid` DESC
+            
+        ')
+ 3 APPPATH\Controllers\MyPPMP.php(67): CodeIgniter\Database\BaseConnection->query('
+            SELECT
+                `recid`,
+                `project_title`,
+                `responsiblity_code`
+            FROM
+                `tbl_reference_project`
+            WHERE
+                `fundcluster_id` = \'1\'
+            ORDER BY
+                `recid` DESC
+            
+        ')
+ 4 APPPATH\Controllers\MyPPMP.php(24): App\Controllers\MyPPMP->loadPPMPView()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-09 10:02:30 --> [Caused by] mysqli_sql_exception: Unknown column 'responsiblity_code' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+            SELECT
+                `recid`,
+                `project_title`,
+                `responsiblity_code`
+            FROM
+                `tbl_reference_project`
+            WHERE
+                `fundcluster_id` = \'1\'
+            ORDER BY
+                `recid` DESC
+            
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+            SELECT
+                `recid`,
+                `project_title`,
+                `responsiblity_code`
+            FROM
+                `tbl_reference_project`
+            WHERE
+                `fundcluster_id` = \'1\'
+            ORDER BY
+                `recid` DESC
+            
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+            SELECT
+                `recid`,
+                `project_title`,
+                `responsiblity_code`
+            FROM
+                `tbl_reference_project`
+            WHERE
+                `fundcluster_id` = \'1\'
+            ORDER BY
+                `recid` DESC
+            
+        ')
+ 4 APPPATH\Controllers\MyPPMP.php(67): CodeIgniter\Database\BaseConnection->query('
+            SELECT
+                `recid`,
+                `project_title`,
+                `responsiblity_code`
+            FROM
+                `tbl_reference_project`
+            WHERE
+                `fundcluster_id` = \'1\'
+            ORDER BY
+                `recid` DESC
+            
+        ')
+ 5 APPPATH\Controllers\MyPPMP.php(24): App\Controllers\MyPPMP->loadPPMPView()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-09 11:03:43 --> CodeIgniter\Database\Exceptions\DatabaseException: You must set the database table to be used with your query.
+[Method: POST, Route: myppmp]
+in SYSTEMPATH\Database\BaseConnection.php on line 941.
+ 1 SYSTEMPATH\Model.php(714): CodeIgniter\Database\BaseConnection->table(null)
+ 2 SYSTEMPATH\Model.php(920): CodeIgniter\Model->builder()
+ 3 APPPATH\Controllers\MyPPMP.php(28): CodeIgniter\Model->__call('ppmp_save', [])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-12-09 13:04:53 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+				VALUES ('TEASDASDA', 'CHRISTINE EDEN C. SEVILLA', '2026', 'Technical S...' at line 8 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\tINSERT IN...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\tINSERT IN...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\tINSERT IN...')
+#3 C:\xampp\htdocs\fods\app\Models\MyPPMPModel.php(84): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\tINSERT IN...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyPPMP.php(28): App\Models\MyPPMPModel->ppmp_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-12-09 13:04:53 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+				VALUES ('TEASDASDA', 'CHRISTINE EDEN C. SEVILLA', '2026', 'Technical S...' at line 8
+[Method: POST, Route: myppmp]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyPPMPModel.php(84): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `tbl_ppmp_hd`(
+					`ppmpno`,
+					`end_user`,
+					`fiscal_year`,
+					`project_title`,
+					`responsibility_code`,
+					`added_by`,
+				)
+				VALUES (?, ?, ?, ?, ?, ?)', [...])
+ 2 APPPATH\Controllers\MyPPMP.php(28): App\Models\MyPPMPModel->ppmp_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-09 13:04:53 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+				VALUES ('TEASDASDA', 'CHRISTINE EDEN C. SEVILLA', '2026', 'Technical S...' at line 8
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				INSERT INTO `tbl_ppmp_hd`(
+					`ppmpno`,
+					`end_user`,
+					`fiscal_year`,
+					`project_title`,
+					`responsibility_code`,
+					`added_by`,
+				)
+				VALUES (\'TEASDASDA\', \'CHRISTINE EDEN C. SEVILLA\', \'2026\', \'Technical Services on Food and Nutrition\', \'19-003-00-00000-4-2025\', \'ADMIN-KYLE\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				INSERT INTO `tbl_ppmp_hd`(
+					`ppmpno`,
+					`end_user`,
+					`fiscal_year`,
+					`project_title`,
+					`responsibility_code`,
+					`added_by`,
+				)
+				VALUES (\'TEASDASDA\', \'CHRISTINE EDEN C. SEVILLA\', \'2026\', \'Technical Services on Food and Nutrition\', \'19-003-00-00000-4-2025\', \'ADMIN-KYLE\')')
+ 3 APPPATH\Models\MyPPMPModel.php(84): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `tbl_ppmp_hd`(
+					`ppmpno`,
+					`end_user`,
+					`fiscal_year`,
+					`project_title`,
+					`responsibility_code`,
+					`added_by`,
+				)
+				VALUES (?, ?, ?, ?, ?, ?)', [...])
+ 4 APPPATH\Controllers\MyPPMP.php(28): App\Models\MyPPMPModel->ppmp_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-09 13:04:53 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+				VALUES ('TEASDASDA', 'CHRISTINE EDEN C. SEVILLA', '2026', 'Technical S...' at line 8
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+				INSERT INTO `tbl_ppmp_hd`(
+					`ppmpno`,
+					`end_user`,
+					`fiscal_year`,
+					`project_title`,
+					`responsibility_code`,
+					`added_by`,
+				)
+				VALUES (\'TEASDASDA\', \'CHRISTINE EDEN C. SEVILLA\', \'2026\', \'Technical Services on Food and Nutrition\', \'19-003-00-00000-4-2025\', \'ADMIN-KYLE\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				INSERT INTO `tbl_ppmp_hd`(
+					`ppmpno`,
+					`end_user`,
+					`fiscal_year`,
+					`project_title`,
+					`responsibility_code`,
+					`added_by`,
+				)
+				VALUES (\'TEASDASDA\', \'CHRISTINE EDEN C. SEVILLA\', \'2026\', \'Technical Services on Food and Nutrition\', \'19-003-00-00000-4-2025\', \'ADMIN-KYLE\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				INSERT INTO `tbl_ppmp_hd`(
+					`ppmpno`,
+					`end_user`,
+					`fiscal_year`,
+					`project_title`,
+					`responsibility_code`,
+					`added_by`,
+				)
+				VALUES (\'TEASDASDA\', \'CHRISTINE EDEN C. SEVILLA\', \'2026\', \'Technical Services on Food and Nutrition\', \'19-003-00-00000-4-2025\', \'ADMIN-KYLE\')')
+ 4 APPPATH\Models\MyPPMPModel.php(84): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `tbl_ppmp_hd`(
+					`ppmpno`,
+					`end_user`,
+					`fiscal_year`,
+					`project_title`,
+					`responsibility_code`,
+					`added_by`,
+				)
+				VALUES (?, ?, ?, ?, ?, ?)', [...])
+ 5 APPPATH\Controllers\MyPPMP.php(28): App\Models\MyPPMPModel->ppmp_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-09 13:05:15 --> ErrorException: Undefined variable $prno
+[Method: POST, Route: myppmp]
+in APPPATH\Models\MyPPMPModel.php on line 89.
+ 1 APPPATH\Models\MyPPMPModel.php(89): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $prno', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MyPPMPModel.php', 89)
+ 2 APPPATH\Controllers\MyPPMP.php(28): App\Models\MyPPMPModel->ppmp_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
