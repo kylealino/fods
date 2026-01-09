@@ -392,7 +392,7 @@ $query = $this->db->query("
     FROM
         `tbl_saob_hd` a
     WHERE 
-        a.`program_title` like '%General Administration and%'
+        a.`program_title` like '%General Administration and%' AND a.`current_year` = '$year'
     ORDER BY a.`recid`
 ");
 $rw = $query->getRowArray();
@@ -430,7 +430,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.program_title LIKE '%General Administration and support%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
+        saob.program_title LIKE '%General Administration and support%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -466,7 +466,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.program_title LIKE '%General Administration and support%'
+        saob.program_title LIKE '%General Administration and support%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -502,7 +502,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.program_title LIKE '%General Administration and support%'
+        saob.program_title LIKE '%General Administration and support%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -543,7 +543,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.program_title LIKE '%General Administration and support%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
+        saob.program_title LIKE '%General Administration and support%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -579,7 +579,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.program_title LIKE '%General Administration and support%'
+        saob.program_title LIKE '%General Administration and support%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -615,7 +615,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.program_title LIKE '%General Administration and support%'
+        saob.program_title LIKE '%General Administration and support%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -650,7 +650,7 @@ $query = $this->db->query("
     FROM
         `tbl_saob_hd` a
     WHERE 
-        a.`program_title` like '%General Administration and%'
+        a.`program_title` like '%General Administration and%' AND a.`current_year`= '$year'
     ORDER BY a.`recid`
 ");
 $hd_data = $query->getResultArray();
@@ -2011,7 +2011,7 @@ $query = $this->db->query("
     FROM
         `tbl_saob_hd` a
     WHERE 
-        a.`project_title` like '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%'
+        a.`project_title` like '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%' AND a.`current_year` = '$year'
     ORDER BY a.`recid`
 ");
 $rw = $query->getRowArray();
@@ -2049,7 +2049,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
+        saob.project_title LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -2085,7 +2085,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%'
+        saob.project_title LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -2121,7 +2121,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%'
+        saob.project_title LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -2162,7 +2162,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
+        saob.project_title LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -2198,7 +2198,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%'
+        saob.project_title LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -2234,7 +2234,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%'
+        saob.project_title LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -2258,7 +2258,7 @@ $query = $this->db->query("
     FROM
         `tbl_saob_hd` a
     WHERE 
-        a.`project_title` like '%Expanding the FNRI%'
+        a.`project_title` like '%Expanding the FNRI%' AND a.`current_year` = '$year'
     ORDER BY a.`recid`
 ");
 $rw = $query->getRowArray();
@@ -2296,7 +2296,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanding the FNRI%'
+        saob.project_title LIKE '%Expanding the FNRI%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -2332,7 +2332,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanding the FNRI%'
+        saob.project_title LIKE '%Expanding the FNRI%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -2368,7 +2368,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanding the FNRI%'
+        saob.project_title LIKE '%Expanding the FNRI%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -2407,7 +2407,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanding the FNRI%'
+        saob.project_title LIKE '%Expanding the FNRI%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -2443,7 +2443,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanding the FNRI%'
+        saob.project_title LIKE '%Expanding the FNRI%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -2479,7 +2479,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanding the FNRI%'
+        saob.project_title LIKE '%Expanding the FNRI%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -2515,7 +2515,7 @@ $query = $this->db->query("
     FROM
         `tbl_saob_hd` a
     WHERE 
-        a.`project_title` like '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%'
+        a.`project_title` like '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%' AND a.`current_year` = '$year'
     ORDER BY a.`recid`
 ");
 $hd_data = $query->getResultArray();
@@ -3701,7 +3701,7 @@ $query = $this->db->query("
     FROM
         `tbl_saob_hd` a
     WHERE 
-        a.`project_title` like '%Expanding the FNRI%'
+        a.`project_title` like '%Expanding the FNRI%' AND a.`current_year` = '$year'
     ORDER BY a.`recid`
 ");
 $rw = $query->getRowArray();
@@ -3739,7 +3739,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanding the FNRI%'
+        saob.project_title LIKE '%Expanding the FNRI%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -3775,7 +3775,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanding the FNRI%'
+        saob.project_title LIKE '%Expanding the FNRI%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -3811,7 +3811,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanding the FNRI%'
+        saob.project_title LIKE '%Expanding the FNRI%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -3852,7 +3852,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanding the FNRI%'
+        saob.project_title LIKE '%Expanding the FNRI%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -3888,7 +3888,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanding the FNRI%'
+        saob.project_title LIKE '%Expanding the FNRI%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -3924,7 +3924,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanding the FNRI%'
+        saob.project_title LIKE '%Expanding the FNRI%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -3953,7 +3953,7 @@ $query = $this->db->query("
     FROM
         `tbl_saob_hd` a
     WHERE 
-        a.`project_title` like '%Expanding the FNRI%'
+        a.`project_title` like '%Expanding the FNRI%' AND a.`current_year` = '$year'
     ORDER BY a.`recid`
 ");
 $hd_data = $query->getResultArray();
@@ -5150,7 +5150,7 @@ $query = $this->db->query("
     FROM
         `tbl_saob_hd` a
     WHERE 
-        a.`project_title` like '%Nutritional Assessment and Monitoring on Food and Nutrition%'
+        a.`project_title` like '%Nutritional Assessment and Monitoring on Food and Nutrition%' AND a.`current_year` = '$year'
     ORDER BY a.`recid`
 ");
 $rw = $query->getRowArray();
@@ -5188,7 +5188,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
+        saob.project_title LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -5224,7 +5224,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%'
+        saob.project_title LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -5260,7 +5260,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%'
+        saob.project_title LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -5298,7 +5298,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
+        saob.project_title LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -5334,7 +5334,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%'
+        saob.project_title LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -5370,7 +5370,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%'
+        saob.project_title LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -5394,7 +5394,7 @@ $query = $this->db->query("
     FROM
         `tbl_saob_hd` a
     WHERE 
-        a.`project_title` like '%Expanded National Nutrition Survey%'
+        a.`project_title` like '%Expanded National Nutrition Survey%' AND a.`current_year` = '$year'
     ORDER BY a.`recid`
 ");
 $rw = $query->getRowArray();
@@ -5430,7 +5430,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanded National Nutrition Survey%'
+        saob.project_title LIKE '%Expanded National Nutrition Survey%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -5466,7 +5466,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanded National Nutrition Survey%'
+        saob.project_title LIKE '%Expanded National Nutrition Survey%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -5502,7 +5502,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanded National Nutrition Survey%'
+        saob.project_title LIKE '%Expanded National Nutrition Survey%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -5540,7 +5540,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanded National Nutrition Survey%'
+        saob.project_title LIKE '%Expanded National Nutrition Survey%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -5576,7 +5576,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanded National Nutrition Survey%'
+        saob.project_title LIKE '%Expanded National Nutrition Survey%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -5612,7 +5612,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanded National Nutrition Survey%'
+        saob.project_title LIKE '%Expanded National Nutrition Survey%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -5647,8 +5647,8 @@ $query = $this->db->query("
     FROM
         `tbl_saob_hd` a
     WHERE 
-        a.`project_title` like '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%'
-    ORDER BY a.`recid`
+        a.`project_title` like '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%' AND a.`current_year` = '$year'
+    ORDER BY a.`recid` 
 ");
 $hd_data = $query->getResultArray();
 $total_all_sub_month = 0;
@@ -6833,7 +6833,7 @@ $query = $this->db->query("
     FROM
         `tbl_saob_hd` a
     WHERE 
-        a.`project_title` like '%Expanded National Nutrition Survey%'
+        a.`project_title` like '%Expanded National Nutrition Survey%' AND a.`current_year` = '$year'
     ORDER BY a.`recid`
 ");
 $rw = $query->getRowArray();
@@ -6871,7 +6871,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanded National Nutrition Survey%'
+        saob.project_title LIKE '%Expanded National Nutrition Survey%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -6907,7 +6907,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanded National Nutrition Survey%'
+        saob.project_title LIKE '%Expanded National Nutrition Survey%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -6943,7 +6943,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanded National Nutrition Survey%'
+        saob.project_title LIKE '%Expanded National Nutrition Survey%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -6984,7 +6984,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanded National Nutrition Survey%'
+        saob.project_title LIKE '%Expanded National Nutrition Survey%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -7020,7 +7020,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanded National Nutrition Survey%'
+        saob.project_title LIKE '%Expanded National Nutrition Survey%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -7056,7 +7056,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Expanded National Nutrition Survey%'
+        saob.project_title LIKE '%Expanded National Nutrition Survey%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -7085,7 +7085,7 @@ $query = $this->db->query("
     FROM
         `tbl_saob_hd` a
     WHERE 
-        a.`project_title` like '%Expanded National Nutrition Survey%'
+        a.`project_title` like '%Expanded National Nutrition Survey%' AND a.`current_year` = '$year'
     ORDER BY a.`recid`
 ");
 $hd_data = $query->getResultArray();
@@ -8273,7 +8273,7 @@ $query = $this->db->query("
     FROM
         `tbl_saob_hd` a
     WHERE 
-        a.`project_title` like '%Technical Services on Food and Nutrition%'
+        a.`project_title` like '%Technical Services on Food and Nutrition%' AND a.`current_year` = '$year'
     ORDER BY a.`recid`
 ");
 $rw = $query->getRowArray();
@@ -8311,7 +8311,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Technical Services on Food and Nutrition%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
+        saob.project_title LIKE '%Technical Services on Food and Nutrition%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -8347,7 +8347,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Technical Services on Food and Nutrition%'
+        saob.project_title LIKE '%Technical Services on Food and Nutrition%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -8383,7 +8383,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Technical Services on Food and Nutrition%'
+        saob.project_title LIKE '%Technical Services on Food and Nutrition%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -8419,7 +8419,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Technical Services on Food and Nutrition%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
+        saob.project_title LIKE '%Technical Services on Food and Nutrition%' AND b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -8453,7 +8453,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Technical Services on Food and Nutrition%'
+        saob.project_title LIKE '%Technical Services on Food and Nutrition%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -8489,7 +8489,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        saob.project_title LIKE '%Technical Services on Food and Nutrition%'
+        saob.project_title LIKE '%Technical Services on Food and Nutrition%' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -8524,7 +8524,7 @@ $query = $this->db->query("
     FROM
         `tbl_saob_hd` a
     WHERE 
-        a.`project_title` like '%Technical Services on Food and Nutrition%'
+        a.`project_title` like '%Technical Services on Food and Nutrition%' AND a.`current_year` = '$year'
     ORDER BY a.`recid`
 ");
 $hd_data = $query->getResultArray();
@@ -9853,7 +9853,7 @@ $query = $this->db->query("
         ON a.`project_id` = c.`recid`
     WHERE 
         a.`code` = '50102990-14'
-        AND c.`program_title` LIKE '%General Administration and%';
+        AND c.`program_title` LIKE '%General Administration and%' AND c.`current_year` = '$year'
 ");
 $rw1 = $query->getRowArray();
 if ($rw1) {
@@ -9908,7 +9908,7 @@ $query = $this->db->query("
         ON a.`project_id` = c.`recid`
     WHERE 
         a.`code` = '50104990-06'
-        AND c.`program_title` LIKE '%General Administration and%';
+        AND c.`program_title` LIKE '%General Administration and%' AND c.`current_year` = '$year'
 ");
 
 $rw2 = $query->getRowArray();
@@ -10229,7 +10229,7 @@ $query = $this->db->query("
         ON a.`project_id` = c.`recid`
     WHERE 
         a.`code` = '50104990-99'
-        AND c.`program_title` LIKE '%General Administration and%';
+        AND c.`program_title` LIKE '%General Administration and%' AND c.`current_year` = '$year'
 ");
 $rw1 = $query->getRowArray();
 if ($rw1) {
@@ -10465,7 +10465,7 @@ $query = $this->db->query("
         ON a.`project_id` = c.`recid`
     WHERE 
         a.`code` = '50103010-00'
-        AND c.`program_title` LIKE '%General Administration and%';
+        AND c.`program_title` LIKE '%General Administration and%' AND c.`current_year` = '$year'
 ");
 $rw = $query->getRowArray();
 $general_particulars = $rw['particulars'];
@@ -10506,7 +10506,7 @@ $query = $this->db->query("
         ON a.`project_id` = c.`recid`
     WHERE 
         a.`code` = '50103010-00'
-        AND c.`program_title` LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%';
+        AND c.`program_title` LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%' AND c.`current_year` = '$year'
 ");
 $rw = $query->getRowArray();
 $scientific_particulars = $rw['particulars'];
@@ -10547,7 +10547,7 @@ $query = $this->db->query("
         ON a.`project_id` = c.`recid`
     WHERE 
         a.`code` = '50103010-00'
-        AND c.`project_title` LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%';
+        AND c.`project_title` LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%' AND c.`current_year` = '$year'
 ");
 $rw = $query->getRowArray();
 $nutritional_particulars = $rw['particulars'];
@@ -10588,7 +10588,7 @@ $query = $this->db->query("
         ON a.`project_id` = c.`recid`
     WHERE 
         a.`code` = '50103010-00'
-        AND c.`project_title` LIKE '%Technical Services on Food and Nutrition%';
+        AND c.`project_title` LIKE '%Technical Services on Food and Nutrition%' AND c.`current_year` = '$year'
 ");
 $rw = $query->getRowArray();
 $technical_particulars = $rw['particulars'];
@@ -11077,6 +11077,8 @@ $query = $this->db->query("
         ) AS total_approved_budget
     FROM
         `tbl_saob_hd` a
+    WHERE
+        a.`current_year` = '$year'
     ORDER BY a.`recid`
 ");
 $rw = $query->getRowArray();
@@ -11112,7 +11114,7 @@ $query = $this->db->query("
         tbl_saob_hd saob
         on b.project_id = saob.recid
         WHERE
-        b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14'
+        b.`code` != '50103010-00' AND b.`code` != '50102990-14' AND b.`code` != '50104990-06' AND b.`code` != '50104990-14' AND saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -11145,6 +11147,8 @@ $query = $this->db->query("
         JOIN
         tbl_saob_hd saob
         on b.project_id = saob.recid
+        WHERE
+        saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -11177,6 +11181,8 @@ $query = $this->db->query("
         JOIN
         tbl_saob_hd saob
         on b.project_id = saob.recid
+        WHERE
+         saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -11209,6 +11215,8 @@ $query = $this->db->query("
         JOIN
         tbl_saob_hd saob
         on b.project_id = saob.recid
+        WHERE
+        saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -11239,6 +11247,8 @@ $query = $this->db->query("
         JOIN
         tbl_saob_hd saob
         on b.project_id = saob.recid
+        WHERE
+        saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -11271,6 +11281,8 @@ $query = $this->db->query("
         JOIN
         tbl_saob_hd saob
         on b.project_id = saob.recid
+        WHERE
+        saob.`current_year` = '$year'
     ) AS t;
 ");
 $rw = $query->getRowArray();
@@ -11299,6 +11311,8 @@ $query = $this->db->query("
         )) AS total_approved_budget
     FROM
         `tbl_saob_hd` a
+    WHERE
+        a.`current_year` = '$year'
     ORDER BY a.`recid`
 ");
 $hd_data = $query->getResultArray();
@@ -12515,7 +12529,7 @@ $query = $this->db->query("
         ON a.`project_id` = c.`recid`
     WHERE 
         a.`code` = '50102990-14'
-        AND c.`program_title` LIKE '%General Administration and%';
+        AND c.`program_title` LIKE '%General Administration and%' AND c.`current_year` = '$year'
 ");
 $rw1 = $query->getRowArray();
 if ($rw1) {
@@ -12570,7 +12584,7 @@ $query = $this->db->query("
         ON a.`project_id` = c.`recid`
     WHERE 
         a.`code` = '50104990-06'
-        AND c.`program_title` LIKE '%General Administration and%';
+        AND c.`program_title` LIKE '%General Administration and%' AND c.`current_year` = '$year'
 ");
 
 $rw2 = $query->getRowArray();
@@ -12890,7 +12904,7 @@ $query = $this->db->query("
         ON a.`project_id` = c.`recid`
     WHERE 
         a.`code` = '50104990-99'
-        AND c.`program_title` LIKE '%General Administration and%';
+        AND c.`program_title` LIKE '%General Administration and%' AND c.`current_year` = '$year'
 ");
 $rw1 = $query->getRowArray();
 if ($rw1) {
@@ -13127,7 +13141,7 @@ $query = $this->db->query("
         ON a.`project_id` = c.`recid`
     WHERE 
         a.`code` = '50103010-00'
-        AND c.`program_title` LIKE '%General Administration and%';
+        AND c.`program_title` LIKE '%General Administration and%' AND c.`current_year` = '$year'
 ");
 $rw = $query->getRowArray();
 $general_particulars = $rw['particulars'];
@@ -13168,7 +13182,7 @@ $query = $this->db->query("
         ON a.`project_id` = c.`recid`
     WHERE 
         a.`code` = '50103010-00'
-        AND c.`program_title` LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%';
+        AND c.`program_title` LIKE '%Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition%' AND c.`current_year` = '$year'
 ");
 $rw = $query->getRowArray();
 $scientific_particulars = $rw['particulars'];
@@ -13209,7 +13223,7 @@ $query = $this->db->query("
         ON a.`project_id` = c.`recid`
     WHERE 
         a.`code` = '50103010-00'
-        AND c.`project_title` LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%';
+        AND c.`project_title` LIKE '%NUTRITIONAL ASSESSMENT AND MONITORING ON FOOD AND NUTRITION%' AND c.`current_year` = '$year'
 ");
 $rw = $query->getRowArray();
 $nutritional_particulars = $rw['particulars'];
@@ -13250,7 +13264,7 @@ $query = $this->db->query("
         ON a.`project_id` = c.`recid`
     WHERE 
         a.`code` = '50103010-00'
-        AND c.`project_title` LIKE '%Technical Services on Food and Nutrition%';
+        AND c.`project_title` LIKE '%Technical Services on Food and Nutrition%' AND c.`current_year` = '$year'
 ");
 $rw = $query->getRowArray();
 $technical_particulars = $rw['particulars'];

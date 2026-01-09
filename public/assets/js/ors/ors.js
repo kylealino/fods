@@ -1015,12 +1015,12 @@ function __mysys_ors_ent() {
         $(this).closest('tr').find('.uacs').val(selectedCode);
     });
 
-    $(document).on('change', '.selProject', function() {
-        var selectedRC = $(this).find('option:selected').data('rc');
-        var selectedMFO = $(this).find('option:selected').data('mfo');
-        $(this).closest('tr').find('.responsibility_code').val(selectedRC);
-        $(this).closest('tr').find('.mfopaps_code').val(selectedMFO);
-    });
+    // $(document).on('change', '.selProject', function() {
+    //     var selectedRC = $(this).find('option:selected').data('rc');
+    //     var selectedMFO = $(this).find('option:selected').data('mfo');
+    //     $(this).closest('tr').find('.responsibility_code').val(selectedRC);
+    //     $(this).closest('tr').find('.mfopaps_code').val(selectedMFO);
+    // });
 
     $(document).on('change', '#payee_name', function() {
         var selected = $(this).find('option:selected');

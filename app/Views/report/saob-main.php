@@ -3,6 +3,7 @@ $this->request = \Config\Services::request();
 $this->mybudgetallotment = model('App\Models\MyBudgetAllotmentModel');
 $this->db = \Config\Database::connect();
 $recid = $this->request->getPostGet('recid');
+$reuse_recid = $this->request->getPostGet('reuse_recid');
 
 $program_title = '';
 $project_title = '';
@@ -70,6 +71,41 @@ if(!empty($recid) || !is_null($recid)) {
     $is_oct = $data['is_oct'];
     $is_nov = $data['is_nov'];
     $is_dec = $data['is_dec'];
+}
+
+if(!empty($reuse_recid) || !is_null($reuse_recid)) { 
+
+    $query = $this->db->query("
+    SELECT
+        `trxno`,
+        `program_title`,
+        `project_title`,
+        `department`,
+        `agency`,
+        `current_year`,
+        `is_jan`,
+        `is_feb`,
+        `is_mar`,
+        `is_apr`,
+        `is_may`,
+        `is_jun`,
+        `is_jul`,
+        `is_aug`,
+        `is_sep`,
+        `is_oct`,
+        `is_nov`,
+        `is_dec`
+    FROM
+        `tbl_saob_hd`
+    WHERE 
+        `recid` = '$reuse_recid'"
+    );
+
+    $data = $query->getRowArray();
+    $program_title = $data['program_title'];
+    $project_title = $data['project_title'];
+    $department = $data['department'];
+    $agency = $data['agency'];
 }
 
 echo view('templates/myheader.php');
@@ -174,11 +210,13 @@ echo view('templates/myheader.php');
                                         <?php if(!empty($recid)):?>
                                             <select name="current_year" id="current_year" class="form-select form-select-sm">
                                                 <option value="<?=$current_year;?>"><?=$current_year;?></option>
+                                                <option value="2026">2026</option>
                                                 <option value="2025">2025</option>
                                             </select>
                                         <?php else:?>
                                             <select name="current_year" id="current_year" class="form-select form-select-sm">
                                                 <option value="">-- Select Year --</option>
+                                                <option value="2026">2026</option>
                                                 <option value="2025">2025</option>
                                             </select>
                                         <?php endif;?>
@@ -480,6 +518,134 @@ echo view('templates/myheader.php');
                                                                 </td>
                                                             </tr>
                                                             <?php endforeach; endif;?>
+                                                            <?php if(!empty($reuse_recid)):
+                                                                $query = $this->db->query("
+                                                                SELECT
+                                                                    `recid`,
+                                                                    `object_code`,
+                                                                    `particulars`,
+                                                                    `code`,
+                                                                    `approved_budget`,
+                                                                    `revision`,
+                                                                    `proposed_revision`,
+                                                                    `january_revision`,
+                                                                    `february_revision`,
+                                                                    `march_revision`,
+                                                                    `april_revision`,
+                                                                    `may_revision`,
+                                                                    `june_revision`,
+                                                                    `july_revision`,
+                                                                    `august_revision`,
+                                                                    `september_revision`,
+                                                                    `october_revision`,
+                                                                    `november_revision`,
+                                                                    `december_revision`
+                                                                FROM
+                                                                    `tbl_saob_ps_dt`
+                                                                WHERE 
+                                                                    `project_id` = '$reuse_recid'"
+                                                                );
+                                                                $result = $query->getResultArray();
+                                                                foreach ($result as $data):
+                                                                    $dt_id = $data['recid'];
+                                                                    $object_code = $data['object_code'];
+                                                                    $particulars = $data['particulars'];
+                                                                    $code = $data['code'];
+                                                                    $approved_budget = $data['approved_budget'];
+                                                                    $revision = $data['revision'];
+                                                                    $proposed_revision = $data['proposed_revision'];
+                                                                    $january_revision = $data['january_revision'];
+                                                                    $february_revision = $data['february_revision'];
+                                                                    $march_revision = $data['march_revision'];
+                                                                    $april_revision = $data['april_revision'];
+                                                                    $may_revision = $data['may_revision'];
+                                                                    $june_revision = $data['june_revision'];
+                                                                    $july_revision = $data['july_revision'];
+                                                                    $august_revision = $data['august_revision'];
+                                                                    $september_revision = $data['september_revision'];
+                                                                    $october_revision = $data['october_revision'];
+                                                                    $november_revision = $data['november_revision'];
+                                                                    $december_revision = $data['december_revision'];
+
+                                                                    if ($is_jan == '1' && $is_feb == '0') {
+                                                                        $allotment_value = $january_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '0') {
+                                                                        $allotment_value = $february_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '0') {
+                                                                        $allotment_value = $march_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '0') {
+                                                                        $allotment_value = $april_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1' && $is_jul == '0') {
+                                                                        $allotment_value = $june_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '0') {
+                                                                        $allotment_value = $july_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '1' && $is_sep == '0') {
+                                                                        $allotment_value = $august_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '1' && $is_sep == '1' && $is_oct == '0') {
+                                                                        $allotment_value = $september_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '0') {
+                                                                        $allotment_value = $october_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '0') {
+                                                                        $allotment_value = $november_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '1') {
+                                                                        $allotment_value = $december_revision;
+                                                                    }
+
+                                                            ?>
+                                                            <tr>
+                                                                <td class="text-center align-middle">
+                                                                    <div class="d-inline-flex gap-1 justify-content-center">
+                                                                        <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                            href="javascript:void(0)"
+                                                                            onclick="$(this).closest('tr').remove();">
+                                                                            <i class="ti ti-trash"></i>
+                                                                        </a>
+                                                                        <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                            href="javascript:void(0)"
+                                                                            title="Add rows above"
+                                                                            onclick="__mysys_saob_rpt_ent.my_add_budget_line_above(this);">
+                                                                            <i class="ti ti-plus"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <select name="selObject" class="selObject form" style="width:300px; height:30px;">
+                                                                        <option selected value ="<?=$object_code;?>"><?=$object_code;?></option>
+                                                                        <?php foreach($psobjectdata as $data){
+                                                                            $object_code = $data['object_code'];
+                                                                        ?>
+                                                                            <option value="<?=$object_code?>"><?=$object_code?></option>
+                                                                        <?php }?>
+                                                                    </select>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
+                                                                        <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
+                                                                        <?php foreach($psuacsdata as $data){
+                                                                            $sub_object_code = $data['sub_object_code'];
+                                                                            $uacs_code = $data['uacs_code'];
+                                                                        ?>
+                                                                            <option value="<?=$sub_object_code?>"  data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
+                                                                        <?php }?>
+                                                                    </select>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="approved_budget" size="25" value="" step="any" <?= empty($is_jan) ? '' : 'disabled' ;?> data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="revised_allotment" disabled value="" size="25" step="any" name="revised_allotment" data-dtid=""  class="revised_allotment text-center" onchange="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="revision"  value="" size="25" step="any" name="revision" data-dtid="" class="revision text-center" disabled onchange="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="proposed_revision"  value="" size="25" step="any" name="proposed_revision" data-dtid="" class="proposed_revision text-center" disabled/>
+                                                                </td>
+                                                            </tr>
+                                                            <?php endforeach; endif;?>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -682,6 +848,136 @@ echo view('templates/myheader.php');
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
                                                                     <input type="number" id="revision"  value="<?=$revision;?>" size="25" step="any" name="revision" data-dtid="" class="revision text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="proposed_revision"  value="" size="25" step="any" name="proposed_revision" data-dtid="" class="proposed_revision text-center" disabled/>
+                                                                </td>
+                                                            </tr>
+                                                            <?php endforeach; endif;?>
+                                                            <?php if(!empty($reuse_recid)):
+                                                                $query = $this->db->query("
+                                                                SELECT
+                                                                    `recid`,
+                                                                    `object_code`,
+                                                                    `particulars`,
+                                                                    `code`,
+                                                                    `approved_budget`,
+                                                                    `revision`,
+                                                                    `proposed_revision`,
+                                                                    `january_revision`,
+                                                                    `february_revision`,
+                                                                    `march_revision`,
+                                                                    `april_revision`,
+                                                                    `may_revision`,
+                                                                    `june_revision`,
+                                                                    `july_revision`,
+                                                                    `august_revision`,
+                                                                    `september_revision`,
+                                                                    `october_revision`,
+                                                                    `november_revision`,
+                                                                    `december_revision`
+                                                                FROM
+                                                                    `tbl_saob_mooe_dt`
+                                                                WHERE 
+                                                                    `project_id` = '$reuse_recid'
+                                                                ORDER BY recid"
+                                                                
+                                                                );
+                                                                $result = $query->getResultArray();
+                                                                foreach ($result as $data):
+                                                                    $dt_id = $data['recid'];
+                                                                    $object_code = $data['object_code'];
+                                                                    $particulars = $data['particulars'];
+                                                                    $code = $data['code'];
+                                                                    $approved_budget = $data['approved_budget'];
+                                                                    $revision = $data['revision'];
+                                                                    $proposed_revision = $data['proposed_revision'];
+                                                                    $january_revision = $data['january_revision'];
+                                                                    $february_revision = $data['february_revision'];
+                                                                    $march_revision = $data['march_revision'];
+                                                                    $april_revision = $data['april_revision'];
+                                                                    $may_revision = $data['may_revision'];
+                                                                    $june_revision = $data['june_revision'];
+                                                                    $july_revision = $data['july_revision'];
+                                                                    $august_revision = $data['august_revision'];
+                                                                    $september_revision = $data['september_revision'];
+                                                                    $october_revision = $data['october_revision'];
+                                                                    $november_revision = $data['november_revision'];
+                                                                    $december_revision = $data['december_revision'];
+
+                                                                    if ($is_jan == '1' && $is_feb == '0') {
+                                                                        $allotment_value = $january_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1') {
+                                                                        $allotment_value = $february_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1') {
+                                                                        $allotment_value = $march_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1') {
+                                                                        $allotment_value = $april_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1') {
+                                                                        $allotment_value = $june_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1' && $is_jul) {
+                                                                        $allotment_value = $july_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1' && $is_jul && $is_aug == '1') {
+                                                                        $allotment_value = $august_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1' && $is_jul && $is_aug == '1' && $is_sep == '1') {
+                                                                        $allotment_value = $september_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1' && $is_jul && $is_aug == '1' && $is_sep == '1' && $is_oct == '1') {
+                                                                        $allotment_value = $october_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1' && $is_jul && $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1') {
+                                                                        $allotment_value = $november_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1' && $is_jul && $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '1') {
+                                                                        $allotment_value = $december_revision;
+                                                                    }
+
+                                                            ?>
+                                                            <tr>
+                                                                <td class="text-center align-middle">
+                                                                    <div class="d-inline-flex gap-1 justify-content-center">
+                                                                        <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                        href="javascript:void(0)"
+                                                                        onclick="$(this).closest('tr').remove();">
+                                                                            <i class="ti ti-trash"></i>
+                                                                        </a>
+                                                                        <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                        href="javascript:void(0)"
+                                                                        title="Add rows above"
+                                                                        onclick="__mysys_saob_rpt_ent.my_add_budget_mooe_line_above(this);">
+                                                                            <i class="ti ti-plus"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <select name="selObject" class="selObject form" style="width:300px; height:30px;">
+                                                                        <option selected value ="<?=$object_code;?>"><?=$object_code;?></option>
+                                                                        <?php foreach($mooeobjectdata as $data){
+                                                                            $object_code = $data['object_code'];
+                                                                        ?>
+                                                                            <option value="<?=$object_code?>"><?=$object_code?></option>
+                                                                        <?php }?>
+                                                                    </select>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
+                                                                        <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
+                                                                        <?php foreach($mooeuacsdata as $data){
+                                                                            $sub_object_code = $data['sub_object_code'];
+                                                                            $uacs_code = $data['uacs_code'];
+                                                                        ?>
+                                                                            <option value="<?=$sub_object_code?>"  data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
+                                                                        <?php }?>
+                                                                    </select>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="approved_budget"  value="" <?= empty($is_jan) ? '' : 'disabled' ;?> size="25" step="any" name="approved_budget" data-dtid="<?=$dt_id;?>"  class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="revised_allotment" disabled  value="" size="25" step="any" name="revised_allotment" data-dtid="" class="revised_allotment text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="revision"  value="" size="25" step="any" name="revision" data-dtid="" class="revision text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
                                                                     <input type="number" id="proposed_revision"  value="" size="25" step="any" name="proposed_revision" data-dtid="" class="proposed_revision text-center" disabled/>
@@ -893,12 +1189,140 @@ echo view('templates/myheader.php');
                                                                 </td>
                                                             </tr>
                                                             <?php endforeach; endif;?>
+                                                            <?php if(!empty($reuse_recid)):
+                                                                $query = $this->db->query("
+                                                                SELECT
+                                                                    `recid`,
+                                                                    `object_code`,
+                                                                    `particulars`,
+                                                                    `code`,
+                                                                    `approved_budget`,
+                                                                    `revision`,
+                                                                    `proposed_revision`,
+                                                                    `january_revision`,
+                                                                    `february_revision`,
+                                                                    `march_revision`,
+                                                                    `april_revision`,
+                                                                    `may_revision`,
+                                                                    `june_revision`,
+                                                                    `july_revision`,
+                                                                    `august_revision`,
+                                                                    `september_revision`,
+                                                                    `october_revision`,
+                                                                    `november_revision`,
+                                                                    `december_revision`
+                                                                FROM
+                                                                    `tbl_saob_co_dt`
+                                                                WHERE 
+                                                                    `project_id` = '$reuse_recid'"
+                                                                );
+                                                                $result = $query->getResultArray();
+                                                                foreach ($result as $data):
+                                                                    $dt_id = $data['recid'];
+                                                                    $object_code = $data['object_code'];
+                                                                    $particulars = $data['particulars'];
+                                                                    $code = $data['code'];
+                                                                    $approved_budget = $data['approved_budget'];
+                                                                    $revision = $data['revision'];
+                                                                    $proposed_revision = $data['proposed_revision'];
+                                                                    $january_revision = $data['january_revision'];
+                                                                    $february_revision = $data['february_revision'];
+                                                                    $march_revision = $data['march_revision'];
+                                                                    $april_revision = $data['april_revision'];
+                                                                    $may_revision = $data['may_revision'];
+                                                                    $june_revision = $data['june_revision'];
+                                                                    $july_revision = $data['july_revision'];
+                                                                    $august_revision = $data['august_revision'];
+                                                                    $september_revision = $data['september_revision'];
+                                                                    $october_revision = $data['october_revision'];
+                                                                    $november_revision = $data['november_revision'];
+                                                                    $december_revision = $data['december_revision'];
+
+                                                                    if ($is_jan == '1' && $is_feb == '0') {
+                                                                        $allotment_value = $january_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1') {
+                                                                        $allotment_value = $february_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1') {
+                                                                        $allotment_value = $march_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1') {
+                                                                        $allotment_value = $april_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1') {
+                                                                        $allotment_value = $june_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1' && $is_jul) {
+                                                                        $allotment_value = $july_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1' && $is_jul && $is_aug == '1') {
+                                                                        $allotment_value = $august_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1' && $is_jul && $is_aug == '1' && $is_sep == '1') {
+                                                                        $allotment_value = $september_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1' && $is_jul && $is_aug == '1' && $is_sep == '1' && $is_oct == '1') {
+                                                                        $allotment_value = $october_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1' && $is_jul && $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1') {
+                                                                        $allotment_value = $november_revision;
+                                                                    }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_jun == '1' && $is_jul && $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '1') {
+                                                                        $allotment_value = $december_revision;
+                                                                    }
+                                                            ?>
+                                                            <tr>
+                                                                <td class="text-center align-middle">
+                                                                    <div class="d-inline-flex gap-1 justify-content-center">
+                                                                        <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                            href="javascript:void(0)"
+                                                                            onclick="$(this).closest('tr').remove();">
+                                                                            <i class="ti ti-trash"></i>
+                                                                        </a>
+                                                                        <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                            href="javascript:void(0)"
+                                                                            title="Add rows above"
+                                                                            onclick="__mysys_saob_rpt_ent.my_add_budget_co_line_above(this);">
+                                                                            <i class="ti ti-plus"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <select name="selObject" class="selObject form" style="width:300px; height:30px;">
+                                                                        <option selected value ="<?=$object_code;?>"><?=$object_code;?></option>
+                                                                        <?php foreach($coobjectdata as $data){
+                                                                            $object_code = $data['object_code'];
+                                                                        ?>
+                                                                            <option value="<?=$object_code?>"><?=$object_code?></option>
+                                                                        <?php }?>
+                                                                    </select>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
+                                                                        <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
+                                                                        <?php foreach($couacsdata as $data){
+                                                                            $sub_object_code = $data['sub_object_code'];
+                                                                            $uacs_code = $data['uacs_code'];
+                                                                        ?>
+                                                                            <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
+                                                                        <?php }?>
+                                                                    </select>
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center">
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="approved_budget" value="" <?= empty($is_jan) ? '' : 'disabled' ;?> size="25" step="any" data-dtid="<?=$dt_id;?>"  name="approved_budget" class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="revised_allotment" disabled  value="" size="25" step="any" data-dtid=""  name="revised_allotment" class="revised_allotment text-center" onchange="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="revision"  value="" size="25" step="any" name="revision" data-dtid="" class="revision text-center" disabled onchange="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_co_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                </td>
+                                                                <td class="text-center align-middle" nowrap>
+                                                                    <input type="number" id="proposed_revision"  value="" size="25" step="any" name="proposed_revision" data-dtid="" class="proposed_revision text-center" disabled/>
+                                                                </td>
+                                                            </tr>
+                                                            <?php endforeach; endif;?>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="row mb-3">
                                         <div class="col-sm-6">
 
@@ -952,6 +1376,7 @@ echo view('templates/myheader.php');
                                 <th>Action</th>
                                 <th>Program Title</th>
                                 <th>Year</th>
+                                <th>Reuse</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -964,12 +1389,17 @@ echo view('templates/myheader.php');
                             ?>
                             <tr>
                                 <td class="text-center align-middle">
-                                    <a class="text-info nav-icon-hover" href="mysaobrpt?meaction=MAIN&recid=<?= $dt_recid ?>">
-                                        Review
+                                    <a class="text-info nav-icon-hover" href="mysaobrpt?meaction=MAIN&recid=<?= $dt_recid ?>" title="Edit Transaction">
+                                        <i class="ti ti-edit"></i>
                                     </a>
                                 </td>
                                 <td class="text-center"><?=$project_title;?></td>
                                 <td class="text-center"><?=$current_year;?></td>
+                                <td class="text-center">                                    
+                                    <a class="text-warning nav-icon-hover" href="mysaobrpt?meaction=MAIN&reuse_recid=<?= $dt_recid ?>" title="Reuse Transaction">
+                                        <i class="ti ti-arrow-bear-right"></i>
+                                    </a>
+                                </td>
                             </tr>
                             <?php endforeach; endif;?>
                         </tbody>
@@ -1075,7 +1505,9 @@ echo view('templates/myheader.php');
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="<?=base_url('assets/js/report/mysaobreport.js?v=2');?>"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+<script src="<?=base_url('assets/js/report/mysaobreport.js?v=3');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 
 </script>

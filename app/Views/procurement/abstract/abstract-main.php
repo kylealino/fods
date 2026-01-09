@@ -6,9 +6,10 @@ $this->session = session();
 $recid = $this->request->getPostGet('recid');
 $lnk_prno = $this->request->getPostGet('prno');
 $this->cuser = $this->session->get('__xsys_myuserzicas__');
-
+$today = new DateTime();
 $prno = '';
 $abstract_date = '';
+$availability_date = '';
 $transaction_no = '';
 $bidder_1 = '';
 $bidder_2 = '';
@@ -23,6 +24,7 @@ if(!empty($recid) || !is_null($recid)) {
         `prno`,
         `transaction_no`,
         `abstract_date`,
+        `availability_date`,
         `bidder_1`,
         `bidder_2`,
         `bidder_3`,
@@ -38,6 +40,7 @@ if(!empty($recid) || !is_null($recid)) {
     $prno = $data['prno'];
     $transaction_no = $data['transaction_no'];
     $abstract_date = $data['abstract_date'];
+    $availability_date = $data['availability_date'];
     $bidder_1 = $data['bidder_1'];
     $bidder_2 = $data['bidder_2'];
     $bidder_3 = $data['bidder_3'];
@@ -47,6 +50,10 @@ if(!empty($recid) || !is_null($recid)) {
 }else{
     $prno = $lnk_prno;
 }
+
+$allowed = new DateTime($availability_date);
+
+$canPrint = $today >= $allowed;
 
 echo view('templates/myheader.php');
 ?>
@@ -73,7 +80,7 @@ echo view('templates/myheader.php');
             <li class="breadcrumb-item">
                 <a class="text-muted text-decoration-none" href="<?=site_url();?>"><i class="ti ti-home fs-5"></i></a>
             </li>
-            <li class="breadcrumb-item" aria-current="page">Procurement</li>
+            <li class="breadcrumb-item" aria-current="page">Procurement </li>
             <li class="breadcrumb-item" aria-current="page"><span class="form-label fw-bold">Abstract</span></li>
             </ol>
         </nav>
@@ -130,6 +137,14 @@ echo view('templates/myheader.php');
                                         <input type="date" id="abstract_date" name="abstract_date" value="<?=$abstract_date;?>" class="form-control form-control-sm abstract_date"/>
                                     </div>
                                 </div>
+                                <div class="row mb-2">
+                                    <div class="col-sm-6">
+                                        <span class="fw-bold">Abstract Printing Availability Date:</span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="date" id="availability_date" name="availability_date" value="<?=$availability_date;?>" class="form-control form-control-sm availability_date"/>
+                                    </div>
+                                </div>
                             </div>
 
                             <hr>
@@ -140,6 +155,141 @@ echo view('templates/myheader.php');
                                         <div class="col-md-12 mb-2">
                                             <table id="abstract_line_items" class=" table-striped abstractdata-list">
                                                 <thead>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <!-- LEFT -->
+                                                            <label for="bidder_1" class="mb-0">Bidder 1 </label>
+                                                            <!-- RIGHT -->
+                                                            <div class="d-flex align-items-center gap-2">
+                                                                <a class="text-secondary fs-4 bg-hover-danger nav-icon-hover"
+                                                                data-bs-toggle="upload"
+                                                                data-bs-placement="top"
+                                                                title="Upload email reference"
+                                                                href="javascript:void(0)">
+                                                                    <i class="ti ti-upload"></i>
+                                                                </a>
+
+                                                            <input type="checkbox"
+                                                                class="one-only mb-1"
+                                                                name="option[]"
+                                                                value="1"
+                                                                data-bs-toggle="tooltip"
+                                                                data-bs-placement="top"
+                                                                title="Tag as Winner">
+
+                                                            </div>
+                                                        </div>
+                                                    </th>
+                                                    <th>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <!-- LEFT -->
+                                                            <label for="bidder_2" class="mb-0">Bidder 2 </label>
+
+                                                            <!-- RIGHT -->
+                                                            <div class="d-flex align-items-center gap-2">
+                                                                <a class="text-secondary fs-4 bg-hover-danger nav-icon-hover"
+                                                                data-bs-toggle="upload"
+                                                                data-bs-placement="top"
+                                                                title="Upload email reference"
+                                                                href="javascript:void(0)">
+                                                                    <i class="ti ti-upload"></i>
+                                                                </a>
+
+                                                            <input type="checkbox"
+                                                                class="one-only mb-1"
+                                                                name="option[]"
+                                                                value="2"
+                                                                data-bs-toggle="tooltip"
+                                                                data-bs-placement="top"
+                                                                title="Tag as Winner">
+
+                                                            </div>
+                                                        </div>
+                                                    </th>
+                                                    <th>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <!-- LEFT -->
+                                                            <label for="bidder_3" class="mb-0">Bidder 3 </label>
+
+                                                            <!-- RIGHT -->
+                                                            <div class="d-flex align-items-center gap-2">
+                                                                <a class="text-secondary fs-4 bg-hover-danger nav-icon-hover"
+                                                                data-bs-toggle="upload"
+                                                                data-bs-placement="top"
+                                                                title="Upload email reference"
+                                                                href="javascript:void(0)">
+                                                                    <i class="ti ti-upload"></i>
+                                                                </a>
+
+                                                            <input type="checkbox"
+                                                                class="one-only mb-1"
+                                                                name="option[]"
+                                                                value="3"
+                                                                data-bs-toggle="tooltip"
+                                                                data-bs-placement="top"
+                                                                title="Tag as Winner">
+
+                                                            </div>
+                                                        </div>
+                                                    </th>
+                                                    <th>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <!-- LEFT -->
+                                                            <label for="bidder_4" class="mb-0">Bidder 4 </label>
+
+                                                            <!-- RIGHT -->
+                                                            <div class="d-flex align-items-center gap-2">
+                                                                <a class="text-secondary fs-4 bg-hover-danger nav-icon-hover"
+                                                                data-bs-toggle="upload"
+                                                                data-bs-placement="top"
+                                                                title="Upload email reference"
+                                                                href="javascript:void(0)">
+                                                                    <i class="ti ti-upload"></i>
+                                                                </a>
+
+                                                            <input type="checkbox"
+                                                                class="one-only mb-1"
+                                                                name="option[]"
+                                                                value="4"
+                                                                data-bs-toggle="tooltip"
+                                                                data-bs-placement="top"
+                                                                title="Tag as Winner">
+
+                                                            </div>
+                                                        </div>
+                                                    </th>
+                                                    <th>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <!-- LEFT -->
+                                                            <label for="bidder_5" class="mb-0">Bidder 5 </label>
+
+                                                            <!-- RIGHT -->
+                                                            <div class="d-flex align-items-center gap-2">
+                                                                <a class="text-secondary fs-4 bg-hover-danger nav-icon-hover"
+                                                                data-bs-toggle="upload"
+                                                                data-bs-placement="top"
+                                                                title="Upload email reference"
+                                                                href="javascript:void(0)">
+                                                                    <i class="ti ti-upload"></i>
+                                                                </a>
+
+                                                            <input type="checkbox"
+                                                                class="one-only mb-1"
+                                                                name="option[]"
+                                                                value="5"
+                                                                data-bs-toggle="tooltip"
+                                                                data-bs-placement="top"
+                                                                title="Tag as Winner">
+
+                                                            </div>
+                                                        </div>
+                                                    </th>
+                                                </thead>
+                                                <thead>
                                                     <th class="text-center">
                                                         <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_trxjournalitem_add" href="javascript:__mysys_abstract_ent.my_add_abstract_line();"><i class="ti ti-new-section"></i></a>
                                                     </th>
@@ -147,27 +297,20 @@ echo view('templates/myheader.php');
                                                     <th class="text-center align-middle">Unit</th>
                                                     <th class="text-center align-middle" style="width:500px;">Article/Description</th>
                                                     <th  class="text-center">
-                                                        <label for="bidder_1">Bidder 1</label>
                                                         <input type="text" name="bidder_1" value="<?=$bidder_1;?>" placeholder="Company Name" id="bidder_1" class="text-center bidder_1">
                                                     </th>
                                                     <th class="text-center">
-                                                        <label for="bidder_2">Bidder 2</label>
                                                         <input type="text" name="bidder_2" value="<?=$bidder_2;?>" placeholder="Company Name" id="bidder_2" class="text-center bidder_2">
                                                     </th>
                                                     <th class="text-center">
-                                                        <label for="bidder_3">Bidder 3</label>
                                                         <input type="text" name="bidder_3" value="<?=$bidder_3;?>" placeholder="Company Name" id="bidder_3" class="text-center bidder_3">
                                                     </th>
                                                     <th class="text-center">
-                                                        <label for="bidder_4">Bidder 4</label>
                                                         <input type="text" name="bidder_4" value="<?=$bidder_4;?>" placeholder="Company Name" id="bidder_4" class="text-center bidder_4">
                                                     </th>
                                                     <th class="text-center">
-                                                        <label for="bidder_5">Bidder 5</label>
                                                         <input type="text" name="bidder_5" value="<?=$bidder_5;?>" placeholder="Company Name" id="bidder_5" class="text-center bidder_5">
                                                     </th>
-
-
                                                 </thead>
                                                 <tbody>
                                                     <tr style="display:none;">
@@ -391,12 +534,13 @@ echo view('templates/myheader.php');
                                 <th>PR No.</th>
                                 <th>Transaction No.</th>
                                 <th>Abstract Date</th>
-                                <th>Bidder 1</th>
+                                <th>Bidder 1 </th>
                                 <th>Bidder 2</th>
                                 <th>Bidder 3</th>
                                 <th>Bidder 4</th>
                                 <th>Bidder 5</th>
-                                <th>Print</th>
+                                <th>Abstract Print</th>
+                                <th>PO Print</th>
                             </tr>
                         </thead>
                         <tbody class="align-middle">
@@ -433,11 +577,36 @@ echo view('templates/myheader.php');
                                 <td class="text-center"><?=$bidder_5;?></td>
                                 <td class="text-center align-middle">
                                     <div class="d-flex justify-content-center gap-2">
-                                        <button class="btn btn-sm fs-6 text-warning p-0 border-0 bg-transparent" 
-                                                onclick="__mysys_abstract_ent.__showPdfInModal('<?= base_url('myabstract?meaction=ABSTRACT-PRINT&recid='.$dt_recid) ?>')" 
-                                                title="Print ORS">
-                                        <i class="ti ti-printer"></i>
-                                        </button>
+                                        <?php if($canPrint):?>
+                                            <button class="btn btn-sm fs-6 text-warning p-0 border-0 bg-transparent" 
+                                                    onclick="__mysys_abstract_ent.__showPdfInModal('<?= base_url('myabstract?meaction=ABSTRACT-PRINT&recid='.$dt_recid) ?>')" 
+                                                    title="Print ABSTRACT">
+                                            <i class="ti ti-printer"></i>
+                                            </button>
+                                        <?php else:?>
+                                            <button class="btn btn-sm fs-6 text-warning p-0 border-0 bg-transparent" 
+                                                    disabled
+                                                    title="Print ABSTRACT">
+                                            <i class="ti ti-printer"></i>
+                                            </button>
+                                        <?php endif;?>
+                                    </div>
+                                </td>
+                                <td class="text-center align-middle">
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <?php if($canPrint):?>
+                                            <button class="btn btn-sm fs-6 text-warning p-0 border-0 bg-transparent" 
+                                                    onclick="__mysys_abstract_ent.__showPOPdfInModal('<?= base_url('myabstract?meaction=PO-PRINT&recid='.$dt_recid) ?>')" 
+                                                    title="Print PO">
+                                            <i class="ti ti-printer"></i>
+                                            </button>
+                                        <?php else:?>
+                                            <button class="btn btn-sm fs-6 text-warning p-0 border-0 bg-transparent" 
+                                                    disabled 
+                                                    title="Print PO">
+                                            <i class="ti ti-printer"></i>
+                                            </button>
+                                        <?php endif;?>
                                     </div>
                                 </td>
                             </tr>
@@ -464,6 +633,20 @@ echo view('templates/myheader.php');
       </div>
       <div class="modal-body">
         <iframe id="pdfFrame" src="" style="width: 100%; height: 80vh;" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="pdfModalPO" tabindex="-1" aria-labelledby="pdfModalLabelPO" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="pdfModalLabelPO">PO Preview</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <iframe id="pdfFramePO" src="" style="width: 100%; height: 80vh;" frameborder="0"></iframe>
       </div>
     </div>
   </div>
@@ -633,6 +816,32 @@ $(function() {
                 }
             }).autocomplete("search", "");
         }
+    });
+});
+</script>
+<script>
+document.querySelectorAll('.one-only').forEach((checkbox) => {
+    checkbox.addEventListener('change', function () {
+        if (this.checked) {
+            document.querySelectorAll('.one-only').forEach(cb => {
+                if (cb !== this) cb.disabled = true;
+            });
+        } else {
+            document.querySelectorAll('.one-only').forEach(cb => {
+                cb.disabled = false;
+            });
+        }
+    });
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var tooltipTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        document.querySelectorAll('[data-bs-toggle="upload"]')
+    );
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
     });
 });
 </script>

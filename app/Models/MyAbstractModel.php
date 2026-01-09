@@ -22,6 +22,7 @@ class MyAbstractModel extends Model
 		$prno = $this->request->getPostGet('prno');
 		$transaction_no = $this->request->getPostGet('transaction_no');
 		$abstract_date = $this->request->getPostGet('abstract_date');
+		$availability_date = $this->request->getPostGet('availability_date');
 		$bidder_1 = $this->request->getPostGet('bidder_1');
 		$bidder_2 = $this->request->getPostGet('bidder_2');
 		$bidder_3 = $this->request->getPostGet('bidder_3');
@@ -29,8 +30,6 @@ class MyAbstractModel extends Model
 		$bidder_5 = $this->request->getPostGet('bidder_5');
 		$abstractdtdata = $this->request->getPostGet('abstractdtdata');
 
-		// var_dump($abstractdtdata);
-		// die();
 
 		if (empty($prno)) {
 			echo "
@@ -68,6 +67,7 @@ class MyAbstractModel extends Model
 					`prno`,
 					`transaction_no`,
 					`abstract_date`,
+					`availability_date`,
 					`bidder_1`,
 					`bidder_2`,
 					`bidder_3`,
@@ -75,11 +75,12 @@ class MyAbstractModel extends Model
 					`bidder_5`,
 					`added_by`
 				)
-				VALUES (?, ?, ?, ?,?, ?, ?, ?,?)", 
+				VALUES (?, ?, ?,?, ?,?, ?, ?, ?,?)", 
 				[
 					$prno,
 					$transaction_no,
 					$abstract_date,
+					$availability_date,
 					$bidder_1,
 					$bidder_2,
 					$bidder_3,
@@ -165,6 +166,7 @@ class MyAbstractModel extends Model
 					`prno` = ?,
 					`transaction_no` = ?,
 					`abstract_date` = ?,
+					`availability_date` = ?,
 					`bidder_1` = ?,
 					`bidder_2` = ?,
 					`bidder_3` = ?,
@@ -175,6 +177,7 @@ class MyAbstractModel extends Model
 				$prno,
 				$transaction_no,
 				$abstract_date,
+				$availability_date,
 				$bidder_1,
 				$bidder_2,
 				$bidder_3,

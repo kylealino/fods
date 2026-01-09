@@ -50,8 +50,6 @@ class MySaobReportModel extends Model
 		$cseqn =  $this->get_ctr_saob('LIB','fods','CTRL_NO01');//TRANSACTION NO
 		$trx = empty($trxno) ? $cseqn : $trxno;
 
-		// var_dump($budgetcodtdata);
-		// die();
 
 		if (empty($program_title)) {
 			echo "
@@ -100,8 +98,9 @@ class MySaobReportModel extends Model
 			</script>
 			";
 			die();
+			
 		}
-		
+
 		if (empty($budgetdtdata) && empty($budgetmooedtdata) && empty($budgetcodtdata)) {
 			echo "
 			<script>
@@ -206,23 +205,22 @@ class MySaobReportModel extends Model
 							`revised_allotment`,
 							`revision`,
 							`proposed_revision`,
-							`added_at`,
 							`added_by`
 						)
-						VALUES(
-							'$project_id',
-							'$project_title',
-							'$object_code',
-							'$particulars',
-							'$code',
-							'$approved_budget',
-							'$revised_allotment',
-							'$revision',
-							'$proposed_revision',
-							NOW(),
-							'{$this->cuser}'
-						)
-					");
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+						[
+							$project_id,
+							$project_title,
+							$object_code,
+							$particulars,
+							$code,
+							$approved_budget,
+							$revised_allotment,
+							$revision,
+							$proposed_revision,
+							$this->cuser
+						]
+					);
 					
 				}
 			}
@@ -251,23 +249,22 @@ class MySaobReportModel extends Model
 							`revised_allotment`,
 							`revision`,
 							`proposed_revision`,
-							`added_at`,
 							`added_by`
 						)
-						VALUES(
-							'$project_id',
-							'$project_title',
-							'$object_code',
-							'$particulars',
-							'$code',
-							'$approved_budget',
-							'$revised_allotment',
-							'$revision',
-							'$proposed_revision',
-							NOW(),
-							'{$this->cuser}'
-						)
-					");
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+						[
+							$project_id,
+							$project_title,
+							$object_code,
+							$particulars,
+							$code,
+							$approved_budget,
+							$revised_allotment,
+							$revision,
+							$proposed_revision,
+							$this->cuser
+						]
+					);
 				}
 			}
 
@@ -295,23 +292,22 @@ class MySaobReportModel extends Model
 							`revised_allotment`,
 							`revision`,
 							`proposed_revision`,
-							`added_at`,
 							`added_by`
 						)
-						VALUES(
-							'$project_id',
-							'$project_title',
-							'$object_code',
-							'$particulars',
-							'$code',
-							'$approved_budget',
-							'$revised_allotment',
-							'$revision',
-							'$proposed_revision',
-							NOW(),
-							'{$this->cuser}'
-						)
-					");
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+						[
+							$project_id,
+							$project_title,
+							$object_code,
+							$particulars,
+							$code,
+							$approved_budget,
+							$revised_allotment,
+							$revision,
+							$proposed_revision,
+							$this->cuser
+						]
+					);
 				}
 			}
 
@@ -385,223 +381,328 @@ class MySaobReportModel extends Model
 						if ($is_jan == '1' && $is_feb == '0' && $is_mar == '0' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
 							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
 							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_ps_dt`
-							SET
-								`project_id` = '$project_id',
-								`project_title` = '$project_title',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`january_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
+								UPDATE tbl_saob_ps_dt
+								SET
+									project_id = ?,
+									project_title = ?,
+									object_code = ?,
+									particulars = ?,
+									code = ?,
+									approved_budget = ?,
+									revised_allotment = ?,
+									january_revision = ?
+								WHERE recid = ?
+							", [
+								$project_id,
+								$project_title,
+								$object_code,
+								$particulars,
+								$code,
+								$approved_budget,
+								$revised_allotment,
+								$proposed_revision,
+								$dtid
+							]);
+
 						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '0' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
 							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
 							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_ps_dt`
-							SET
-								`project_id` = '$project_id',
-								`project_title` = '$project_title',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`february_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
+								UPDATE tbl_saob_ps_dt
+								SET
+									project_id = ?,
+									project_title = ?,
+									object_code = ?,
+									particulars = ?,
+									code = ?,
+									approved_budget = ?,
+									revised_allotment = ?,
+									february_revision = ?
+								WHERE recid = ?
+							", [
+								$project_id,
+								$project_title,
+								$object_code,
+								$particulars,
+								$code,
+								$approved_budget,
+								$revised_allotment,
+								$proposed_revision,
+								$dtid
+							]);
 						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
 							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
 							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_ps_dt`
-							SET
-								`project_id` = '$project_id',
-								`project_title` = '$project_title',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`march_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
+								UPDATE tbl_saob_ps_dt
+								SET
+									project_id = ?,
+									project_title = ?,
+									object_code = ?,
+									particulars = ?,
+									code = ?,
+									approved_budget = ?,
+									revised_allotment = ?,
+									march_revision = ?
+								WHERE recid = ?
+							", [
+								$project_id,
+								$project_title,
+								$object_code,
+								$particulars,
+								$code,
+								$approved_budget,
+								$revised_allotment,
+								$proposed_revision,
+								$dtid
+							]);
 						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
 							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
 							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_ps_dt`
-							SET
-								`project_id` = '$project_id',
-								`project_title` = '$project_title',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`april_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
+								UPDATE tbl_saob_ps_dt
+								SET
+									project_id = ?,
+									project_title = ?,
+									object_code = ?,
+									particulars = ?,
+									code = ?,
+									approved_budget = ?,
+									revised_allotment = ?,
+									april_revision = ?
+								WHERE recid = ?
+							", [
+								$project_id,
+								$project_title,
+								$object_code,
+								$particulars,
+								$code,
+								$approved_budget,
+								$revised_allotment,
+								$proposed_revision,
+								$dtid
+							]);
 						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '0' && $is_jul == '0'
 							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
 							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_ps_dt`
-							SET
-								`project_id` = '$project_id',
-								`project_title` = '$project_title',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`may_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
+								UPDATE tbl_saob_ps_dt
+								SET
+									project_id = ?,
+									project_title = ?,
+									object_code = ?,
+									particulars = ?,
+									code = ?,
+									approved_budget = ?,
+									revised_allotment = ?,
+									may_revision = ?
+								WHERE recid = ?
+							", [
+								$project_id,
+								$project_title,
+								$object_code,
+								$particulars,
+								$code,
+								$approved_budget,
+								$revised_allotment,
+								$proposed_revision,
+								$dtid
+							]);
 						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '0'
 							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
 							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_ps_dt`
-							SET
-								`project_id` = '$project_id',
-								`project_title` = '$project_title',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`june_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
+								UPDATE tbl_saob_ps_dt
+								SET
+									project_id = ?,
+									project_title = ?,
+									object_code = ?,
+									particulars = ?,
+									code = ?,
+									approved_budget = ?,
+									revised_allotment = ?,
+									june_revision = ?
+								WHERE recid = ?
+							", [
+								$project_id,
+								$project_title,
+								$object_code,
+								$particulars,
+								$code,
+								$approved_budget,
+								$revised_allotment,
+								$proposed_revision,
+								$dtid
+							]);
 						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
 							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
 							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_ps_dt`
-							SET
-								`project_id` = '$project_id',
-								`project_title` = '$project_title',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`july_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
+								UPDATE tbl_saob_ps_dt
+								SET
+									project_id = ?,
+									project_title = ?,
+									object_code = ?,
+									particulars = ?,
+									code = ?,
+									approved_budget = ?,
+									revised_allotment = ?,
+									july_revision = ?
+								WHERE recid = ?
+							", [
+								$project_id,
+								$project_title,
+								$object_code,
+								$particulars,
+								$code,
+								$approved_budget,
+								$revised_allotment,
+								$proposed_revision,
+								$dtid
+							]);
 						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
 							&& $is_aug == '1' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
 							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_ps_dt`
-							SET
-								`project_id` = '$project_id',
-								`project_title` = '$project_title',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`august_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
+								UPDATE tbl_saob_ps_dt
+								SET
+									project_id = ?,
+									project_title = ?,
+									object_code = ?,
+									particulars = ?,
+									code = ?,
+									approved_budget = ?,
+									revised_allotment = ?,
+									august_revision = ?
+								WHERE recid = ?
+							", [
+								$project_id,
+								$project_title,
+								$object_code,
+								$particulars,
+								$code,
+								$approved_budget,
+								$revised_allotment,
+								$proposed_revision,
+								$dtid
+							]);
 						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
 							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
 							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_ps_dt`
-							SET
-								`project_id` = '$project_id',
-								`project_title` = '$project_title',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`september_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
+								UPDATE tbl_saob_ps_dt
+								SET
+									project_id = ?,
+									project_title = ?,
+									object_code = ?,
+									particulars = ?,
+									code = ?,
+									approved_budget = ?,
+									revised_allotment = ?,
+									september_revision = ?
+								WHERE recid = ?
+							", [
+								$project_id,
+								$project_title,
+								$object_code,
+								$particulars,
+								$code,
+								$approved_budget,
+								$revised_allotment,
+								$proposed_revision,
+								$dtid
+							]);
 						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
 							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '0' && $is_dec == '0') {
 							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_ps_dt`
-							SET
-								`project_id` = '$project_id',
-								`project_title` = '$project_title',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`october_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
+								UPDATE tbl_saob_ps_dt
+								SET
+									project_id = ?,
+									project_title = ?,
+									object_code = ?,
+									particulars = ?,
+									code = ?,
+									approved_budget = ?,
+									revised_allotment = ?,
+									october_revision = ?
+								WHERE recid = ?
+							", [
+								$project_id,
+								$project_title,
+								$object_code,
+								$particulars,
+								$code,
+								$approved_budget,
+								$revised_allotment,
+								$proposed_revision,
+								$dtid
+							]);
 						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
 							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '0') {
 							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_ps_dt`
-							SET
-								`project_id` = '$project_id',
-								`project_title` = '$project_title',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`november_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
+								UPDATE tbl_saob_ps_dt
+								SET
+									project_id = ?,
+									project_title = ?,
+									object_code = ?,
+									particulars = ?,
+									code = ?,
+									approved_budget = ?,
+									revised_allotment = ?,
+									november_revision = ?
+								WHERE recid = ?
+							", [
+								$project_id,
+								$project_title,
+								$object_code,
+								$particulars,
+								$code,
+								$approved_budget,
+								$revised_allotment,
+								$proposed_revision,
+								$dtid
+							]);
 						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
 							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '1') {
 							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_ps_dt`
-							SET
-								`project_id` = '$project_id',
-								`project_title` = '$project_title',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`december_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
+								UPDATE tbl_saob_ps_dt
+								SET
+									project_id = ?,
+									project_title = ?,
+									object_code = ?,
+									particulars = ?,
+									code = ?,
+									approved_budget = ?,
+									revised_allotment = ?,
+									december_revision = ?
+								WHERE recid = ?
+							", [
+								$project_id,
+								$project_title,
+								$object_code,
+								$particulars,
+								$code,
+								$approved_budget,
+								$revised_allotment,
+								$proposed_revision,
+								$dtid
+							]);
 						}else{
 							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_ps_dt`
-							SET
-								`project_id` = '$project_id',
-								`project_title` = '$project_title',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`proposed_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
+								UPDATE tbl_saob_ps_dt
+								SET
+									project_id = ?,
+									project_title = ?,
+									object_code = ?,
+									particulars = ?,
+									code = ?,
+									approved_budget = ?,
+									revised_allotment = ?,
+									proposed_revision = ?
+								WHERE recid = ?
+							", [
+								$project_id,
+								$project_title,
+								$object_code,
+								$particulars,
+								$code,
+								$approved_budget,
+								$revised_allotment,
+								$proposed_revision,
+								$dtid
+							]);
 						}
 
 					}else{
@@ -2198,7 +2299,7 @@ class MySaobReportModel extends Model
 						timeOut:2500,
 					});
 				setTimeout(function() {
-						window.location.href = 'mysaobrpt?meaction=MAIN&recid=$project_id'; // Redirect to MAIN view
+						window.location.href = 'mysaobrpt?meaction=MAIN'; // Redirect to MAIN view
 					}, 2500); // 2-second delay for user to see the toast
 			</script>
 			";

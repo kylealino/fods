@@ -21,8 +21,16 @@ class MyAbstract extends BaseController
     
         switch ($meaction) {
             case 'MAIN': 
-                return $this->loadProductsView();
+                $accessQuery = $this->db->query("
+                    SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '12001' AND `is_active` = '1'
+                ");
+                if ($accessQuery->getNumRows() > 0) {
+                    return $this->loadProductsView();
+                }else {
+                    return view('errors/html/access-restricted');
+                }
                 break;
+
 
             case 'ABSTRACT-SAVE': 
                 $this->myabstract->abstract_save();
@@ -31,6 +39,10 @@ class MyAbstract extends BaseController
             
             case 'ABSTRACT-PRINT':
 				return view('procurement/abstract/abstract-pdf');
+				break;
+
+            case 'PO-PRINT':
+				return view('procurement/abstract/po-pdf');
 				break;
 
             //  case 'MAIN-APPROVE': 
