@@ -399,49 +399,25 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
-                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
-                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
-                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
-                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
-                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
-                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
-                                                            </select>
+                                                            <input type="text" id="program_title"  value="" size="60" placeholder="Enter program title"  name="program_title" class="program_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
-                                                                <option selected value ="">Choose...</option>
-                                                                <?php foreach($projectdata as $data){
-                                                                    $project_title = $data['project_title'];
-                                                                    $rc_code = $data['responsibility_code'];
-                                                                    $mfopaps_code = $data['mfopaps_code'];
-                                                                ?>
-                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="project_title"  value="" size="60" placeholder="Enter project title"  name="project_title" class="project_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <input type="text" id="responsibility_code"  value="" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="mfopaps_code"  value="" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                            <input type="text" id="mfopaps_code"  value="" size="25" name="mfopaps_code" class="mfopaps_code text-center" disabled/>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                                <option selected value ="">Choose...</option>
-                                                                <?php foreach($psuacsdata as $data){
-                                                                    $sub_object_code = $data['sub_object_code'];
-                                                                    $uacs_code = $data['uacs_code'];
-                                                                ?>
-                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="sub_object_code"  value="" size="60" placeholder="Enter sub-object code"  name="sub_object_code" class="sub_object_code psuacs_code">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                            <input type="text" id="uacs"  value="" size="25" name="uacs" class="uacs text-center" disabled/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="amount"  value="" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                            <input type="number" id="amount"  value="" size="25" step="any" name="amount" class="amount text-center"/>
                                                         </td>
                                                     </tr>
                                                     <?php if(!empty($recid)):
@@ -488,50 +464,25 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
-                                                                <option value="<?=$program_title;?>"><?=$program_title;?></option>
-                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
-                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
-                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
-                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
-                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
-                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
-                                                            </select>
+                                                            <input type="text" id="program_title"  value="<?=$program_title;?>" size="60" placeholder="Enter program title"  name="program_title" class="program_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
-                                                                <option selected value ="<?=$project_title?>"><?=$project_title?></option>
-                                                                <?php foreach($projectdata as $data){
-                                                                    $project_title = $data['project_title'];
-                                                                    $rc_code = $data['responsibility_code'];
-                                                                    $mfopaps_code_lckup = $data['mfopaps_code'];
-                                                                ?>
-                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code_lckup;?>"><?=$project_title?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="project_title"  value="<?=$project_title;?>" size="60" placeholder="Enter project title"  name="project_title" class="project_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <input type="text" id="responsibility_code"  value="<?=$responsibility_code;?>" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" class="mfopaps_code text-center" disabled/>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                                <option selected value ="<?=$sub_object_code;?>"><?=$sub_object_code;?></option>
-                                                                <?php foreach($psuacsdata as $data){
-                                                                    $sub_object_code = $data['sub_object_code'];
-                                                                    $lu_uacs_code = $data['uacs_code'];
-                                                                ?>
-                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$lu_uacs_code;?>"><?=$sub_object_code?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="sub_object_code"  value="<?=$sub_object_code;?>" size="60" placeholder="Enter sub-object code"  name="sub_object_code" class="psuacs_code sub_object_code">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="<?=$uacs_code;?>" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                            <input type="text" id="uacs"  value="<?=$uacs_code;?>" size="25" name="uacs" class="uacs text-center" disabled/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" class="amount text-center"/>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
@@ -572,49 +523,25 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
-                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
-                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
-                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
-                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
-                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
-                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
-                                                            </select>
+                                                            <input type="text" id="program_title"  value="" size="60" placeholder="Enter program title"  name="program_title" class="program_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
-                                                                <option selected value ="">Choose...</option>
-                                                                <?php foreach($projectdata as $data){
-                                                                    $project_title = $data['project_title'];
-                                                                    $responsibility_code = $data['responsibility_code'];
-                                                                    $mfopaps_code = $data['mfopaps_code'];
-                                                                ?>
-                                                                    <option value="<?=$project_title?>" data-rc="<?=$responsibility_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="project_title"  value="" size="60" placeholder="Enter project title"  name="project_title" class="project_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <input type="text" id="responsibility_code"  value="" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="mfopaps_code"  value="" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                            <input type="text" id="mfopaps_code"  value="" size="25" name="mfopaps_code" class="mfopaps_code text-center" disabled/>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                                <option selected value ="">Choose...</option>
-                                                                <?php foreach($psuacsdata as $data){
-                                                                    $sub_object_code = $data['sub_object_code'];
-                                                                    $uacs_code = $data['uacs_code'];
-                                                                ?>
-                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="sub_object_code"  value="" size="60" placeholder="Enter sub-object code"  name="sub_object_code" class="psuacs_code sub_object_code">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                            <input type="text" id="uacs"  value="" size="25" name="uacs" class="uacs text-center" disabled/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="amount"  value="" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                            <input type="number" id="amount"  value="" size="25" step="any" name="amount" class="amount text-center"/>
                                                         </td>
                                                     </tr>
                                                     <?php if(!empty($recid)):
@@ -661,50 +588,25 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
-                                                                <option value="<?=$program_title;?>"><?=$program_title;?></option>
-                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
-                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
-                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
-                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
-                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
-                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
-                                                            </select>
+                                                            <input type="text" id="program_title"  value="<?=$program_title;?>" size="60" placeholder="Enter program title"  name="program_title" class="program_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
-                                                                <option selected value ="<?=$project_title?>"><?=$project_title?></option>
-                                                                <?php foreach($projectdata as $data){
-                                                                    $project_title = $data['project_title'];
-                                                                    $rc_code = $data['responsibility_code'];
-                                                                    $mfopaps_code_lckup = $data['mfopaps_code'];
-                                                                ?>
-                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code_lckup;?>"><?=$project_title?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="project_title"  value="<?=$project_title;?>" size="60" placeholder="Enter project title"  name="project_title" class="project_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <input type="text" id="responsibility_code"  value="<?=$responsibility_code;?>" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" class="mfopaps_code text-center" disabled/>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                                <option selected value ="<?=$sub_object_code;?>"><?=$sub_object_code;?></option>
-                                                                <?php foreach($psuacsdata as $data){
-                                                                    $sub_object_code = $data['sub_object_code'];
-                                                                    $lu_uacs_code = $data['uacs_code'];
-                                                                ?>
-                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$lu_uacs_code;?>"><?=$sub_object_code?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="sub_object_code"  value="<?=$sub_object_code;?>" size="60" placeholder="Enter sub-object code"  name="sub_object_code" class="psuacs_code sub_object_code">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="<?=$uacs_code;?>" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                            <input type="text" id="uacs"  value="<?=$uacs_code;?>" size="25" name="uacs" class="uacs text-center" disabled/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" class="amount text-center"/>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
@@ -752,49 +654,25 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
-                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
-                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
-                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
-                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
-                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
-                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
-                                                            </select>
+                                                            <input type="text" id="program_title"  value="" size="60" placeholder="Enter program title"  name="program_title" class="program_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
-                                                                <option selected value ="">Choose...</option>
-                                                                <?php foreach($projectdata as $data){
-                                                                    $project_title = $data['project_title'];
-                                                                    $responsibility_code = $data['responsibility_code'];
-                                                                    $mfopaps_code = $data['mfopaps_code'];
-                                                                ?>
-                                                                    <option value="<?=$project_title?>" data-rc="<?=$responsibility_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="project_title"  value="" size="60" placeholder="Enter project title"  name="project_title" class="project_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <input type="text" id="responsibility_code"  value="" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="mfopaps_code"  value="" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                            <input type="text" id="mfopaps_code"  value="" size="25" name="mfopaps_code" class="mfopaps_code text-center" disabled/>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                                <option selected value ="">Choose...</option>
-                                                                <?php foreach($mooeuacsdata as $data){
-                                                                    $sub_object_code = $data['sub_object_code'];
-                                                                    $uacs_code = $data['uacs_code'];
-                                                                ?>
-                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="sub_object_code"  value="" size="60" placeholder="Enter sub-object code"  name="sub_object_code" class="mooeuacs_code sub_object_code">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                            <input type="text" id="uacs"  value="" size="25" name="uacs" class="uacs text-center" disabled/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="amount"  value="" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                            <input type="number" id="amount"  value="" size="25" step="any" name="amount" class="amount text-center"/>
                                                         </td>
                                                     </tr>
                                                     <?php if(!empty($recid)):
@@ -841,50 +719,25 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
-                                                                <option value="<?=$program_title;?>"><?=$program_title;?></option>
-                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
-                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
-                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
-                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
-                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
-                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
-                                                            </select>
+                                                            <input type="text" id="program_title"  value="<?=$program_title;?>" size="60" placeholder="Enter program title"  name="program_title" class="program_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
-                                                                <option selected value ="<?=$project_title?>"><?=$project_title?></option>
-                                                                <?php foreach($projectdata as $data){
-                                                                    $project_title = $data['project_title'];
-                                                                    $rc_code = $data['responsibility_code'];
-                                                                    $mfopaps_code_lckup = $data['mfopaps_code'];
-                                                                ?>
-                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code_lckup;?>"><?=$project_title?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="project_title"  value="<?=$project_title;?>" size="60" placeholder="Enter project title"  name="project_title" class="project_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <input type="text" id="responsibility_code"  value="<?=$responsibility_code;?>" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" class="mfopaps_code text-center" disabled/>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                                <option selected value ="<?=$sub_object_code;?>"><?=$sub_object_code;?></option>
-                                                                <?php foreach($mooeuacsdata as $data){
-                                                                    $sub_object_code = $data['sub_object_code'];
-                                                                    $lu_uacs_code = $data['uacs_code'];
-                                                                ?>
-                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$lu_uacs_code;?>"><?=$sub_object_code?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="sub_object_code"  value="<?=$sub_object_code;?>" size="60" placeholder="Enter sub-object code"  name="sub_object_code" class="mooeuacs_code sub_object_code">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="<?=$uacs_code;?>" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                            <input type="text" id="uacs"  value="<?=$uacs_code;?>" size="25" name="uacs" class="uacs text-center" disabled/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" class="amount text-center"/>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
@@ -924,49 +777,25 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
-                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
-                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
-                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
-                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
-                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
-                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
-                                                            </select>
+                                                            <input type="text" id="program_title"  value="" size="60" placeholder="Enter program title"  name="program_title" class="program_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
-                                                                <option selected value ="">Choose...</option>
-                                                                <?php foreach($projectdata as $data){
-                                                                    $project_title = $data['project_title'];
-                                                                    $responsibility_code = $data['responsibility_code'];
-                                                                    $mfopaps_code = $data['mfopaps_code'];
-                                                                ?>
-                                                                    <option value="<?=$project_title?>" data-rc="<?=$responsibility_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="project_title"  value="" size="60" placeholder="Enter project title"  name="project_title" class="project_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <input type="text" id="responsibility_code"  value="" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="mfopaps_code"  value="" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                            <input type="text" id="mfopaps_code"  value="" size="25" name="mfopaps_code" class="mfopaps_code text-center" disabled/>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                                <option selected value ="">Choose...</option>
-                                                                <?php foreach($mooeuacsdata as $data){
-                                                                    $sub_object_code = $data['sub_object_code'];
-                                                                    $uacs_code = $data['uacs_code'];
-                                                                ?>
-                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="sub_object_code"  value="" size="60" placeholder="Enter sub-object code"  name="sub_object_code" class="mooeuacs_code sub_object_code">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                            <input type="text" id="uacs"  value="" size="25" name="uacs" class="uacs text-center" disabled/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="amount"  value="" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                            <input type="number" id="amount"  value="" size="25" step="any" name="amount" class="amount text-center"/>
                                                         </td>
                                                     </tr>
                                                     <?php if(!empty($recid)):
@@ -1013,50 +842,25 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
-                                                                <option value="<?=$program_title;?>"><?=$program_title;?></option>
-                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
-                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
-                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
-                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
-                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
-                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
-                                                            </select>
+                                                            <input type="text" id="program_title"  value="<?=$program_title;?>" size="60" placeholder="Enter program title"  name="program_title" class="program_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
-                                                                <option selected value ="<?=$project_title?>"><?=$project_title?></option>
-                                                                <?php foreach($projectdata as $data){
-                                                                    $project_title = $data['project_title'];
-                                                                    $rc_code = $data['responsibility_code'];
-                                                                    $mfopaps_code_lckup = $data['mfopaps_code'];
-                                                                ?>
-                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code_lckup;?>"><?=$project_title?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="project_title"  value="<?=$project_title;?>" size="60" placeholder="Enter project title"  name="project_title" class="project_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <input type="text" id="responsibility_code"  value="<?=$responsibility_code;?>" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" class="mfopaps_code text-center" disabled/>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                                <option selected value ="<?=$sub_object_code;?>"><?=$sub_object_code;?></option>
-                                                                <?php foreach($mooeuacsdata as $data){
-                                                                    $sub_object_code = $data['sub_object_code'];
-                                                                    $lu_uacs_code = $data['uacs_code'];
-                                                                ?>
-                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$lu_uacs_code;?>"><?=$sub_object_code?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="sub_object_code"  value="<?=$sub_object_code;?>" size="60" placeholder="Enter sub-object code"  name="sub_object_code" class="mooeuacs_code sub_object_code">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="<?=$uacs_code;?>" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                            <input type="text" id="uacs"  value="<?=$uacs_code;?>" size="25" name="uacs" class="uacs text-center" disabled/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" class="amount text-center"/>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
@@ -1104,49 +908,25 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
-                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
-                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
-                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
-                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
-                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
-                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
-                                                            </select>
+                                                            <input type="text" id="program_title"  value="" size="60" placeholder="Enter program title"  name="program_title" class="program_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
-                                                                <option selected value ="">Choose...</option>
-                                                                <?php foreach($projectdata as $data){
-                                                                    $project_title = $data['project_title'];
-                                                                    $responsibility_code = $data['responsibility_code'];
-                                                                    $mfopaps_code = $data['mfopaps_code'];
-                                                                ?>
-                                                                    <option value="<?=$project_title?>" data-rc="<?=$responsibility_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="project_title"  value="" size="60" placeholder="Enter project title"  name="project_title" class="project_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <input type="text" id="responsibility_code"  value="" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="mfopaps_code"  value="" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                            <input type="text" id="mfopaps_code"  value="" size="25" name="mfopaps_code" class="mfopaps_code text-center" disabled/>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                                <option selected value ="">Choose...</option>
-                                                                <?php foreach($couacsdata as $data){
-                                                                    $sub_object_code = $data['sub_object_code'];
-                                                                    $uacs_code = $data['uacs_code'];
-                                                                ?>
-                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="sub_object_code"  value="" size="60" placeholder="Enter sub-object code"  name="sub_object_code" class="couacs_code sub_object_code">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                            <input type="text" id="uacs"  value="" size="25" name="uacs" class="uacs text-center" disabled/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="amount"  value="" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                            <input type="number" id="amount"  value="" size="25" step="any" name="amount" class="amount text-center"/>
                                                         </td>
                                                     </tr>
                                                     <?php if(!empty($recid)):
@@ -1193,50 +973,25 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
-                                                                <option value="<?=$program_title;?>"><?=$program_title;?></option>
-                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
-                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
-                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
-                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
-                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
-                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
-                                                            </select>
+                                                            <input type="text" id="program_title"  value="<?=$program_title;?>" size="60" placeholder="Enter program title"  name="program_title" class="program_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
-                                                                <option selected value ="<?=$project_title?>"><?=$project_title?></option>
-                                                                <?php foreach($projectdata as $data){
-                                                                    $project_title = $data['project_title'];
-                                                                    $rc_code = $data['responsibility_code'];
-                                                                    $mfopaps_code_lckup = $data['mfopaps_code'];
-                                                                ?>
-                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code_lckup;?>"><?=$project_title?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="project_title"  value="<?=$project_title;?>" size="60" placeholder="Enter project title"  name="project_title" class="project_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <input type="text" id="responsibility_code"  value="<?=$responsibility_code;?>" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" class="mfopaps_code text-center" disabled/>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                                <option selected value ="<?=$sub_object_code;?>"><?=$sub_object_code;?></option>
-                                                                <?php foreach($couacsdata as $data){
-                                                                    $sub_object_code = $data['sub_object_code'];
-                                                                    $lu_uacs_code = $data['uacs_code'];
-                                                                ?>
-                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$lu_uacs_code;?>"><?=$sub_object_code?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="sub_object_code"  value="<?=$sub_object_code;?>" size="60" placeholder="Enter sub-object code"  name="sub_object_code" class="couacs_code sub_object_code">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="<?=$uacs_code;?>" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                            <input type="text" id="uacs"  value="<?=$uacs_code;?>" size="25" name="uacs" class="uacs text-center" disabled/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" class="amount text-center"/>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
@@ -1276,49 +1031,25 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
-                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
-                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
-                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
-                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
-                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
-                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
-                                                            </select>
+                                                            <input type="text" id="program_title"  value="" size="60" placeholder="Enter program title"  name="program_title" class="program_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
-                                                                <option selected value ="">Choose...</option>
-                                                                <?php foreach($projectdata as $data){
-                                                                    $project_title = $data['project_title'];
-                                                                    $responsibility_code = $data['responsibility_code'];
-                                                                    $mfopaps_code = $data['mfopaps_code'];
-                                                                ?>
-                                                                    <option value="<?=$project_title?>" data-rc="<?=$responsibility_code;?>" data-mfo="<?=$mfopaps_code;?>"><?=$project_title?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="project_title"  value="" size="60" placeholder="Enter project title"  name="project_title" class="project_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <input type="text" id="responsibility_code"  value="" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="mfopaps_code"  value="" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                            <input type="text" id="mfopaps_code"  value="" size="25" name="mfopaps_code" class="mfopaps_code text-center" disabled/>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                                <option selected value ="">Choose...</option>
-                                                                <?php foreach($couacsdata as $data){
-                                                                    $sub_object_code = $data['sub_object_code'];
-                                                                    $uacs_code = $data['uacs_code'];
-                                                                ?>
-                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="sub_object_code"  value="" size="60" placeholder="Enter sub-object code"  name="sub_object_code" class="couacs_code sub_object_code">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                            <input type="text" id="uacs"  value="" size="25" name="uacs" class="uacs text-center" disabled/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="amount"  value="" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                            <input type="number" id="amount"  value="" size="25" step="any" name="amount" class="amount text-center"/>
                                                         </td>
                                                     </tr>
                                                     <?php if(!empty($recid)):
@@ -1365,50 +1096,25 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProgram" class="selProgram form" style="width:600px; height:30px;">
-                                                                <option value="<?=$program_title;?>"><?=$program_title;?></option>
-                                                                <option value="General Administration and Support Service">General Administration and Support Service</option>
-                                                                <option value="Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition">Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition</option>
-                                                                <option value="Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center">Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center</option>
-                                                                <option value="Nutritional Assessment and Monitoring on Food and Nutrition">Nutritional Assessment and Monitoring on Food and Nutrition</option>
-                                                                <option value="Expanded National Nutrition Survey">Expanded National Nutrition Survey</option>
-                                                                <option value="Technical Services on Food and Nutrition">Technical Services on Food and Nutrition</option>
-                                                            </select>
+                                                            <input type="text" id="program_title"  value="<?=$program_title;?>" size="60" placeholder="Enter program title"  name="program_title" class="program_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selProject" class="selProject form" style="width:600px; height:30px;">
-                                                                <option selected value ="<?=$project_title?>"><?=$project_title?></option>
-                                                                <?php foreach($projectdata as $data){
-                                                                    $project_title = $data['project_title'];
-                                                                    $rc_code = $data['responsibility_code'];
-                                                                    $mfopaps_code_lckup = $data['mfopaps_code'];
-                                                                ?>
-                                                                    <option value="<?=$project_title?>" data-rc="<?=$rc_code;?>" data-mfo="<?=$mfopaps_code_lckup;?>"><?=$project_title?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="project_title"  value="<?=$project_title;?>" size="60" placeholder="Enter project title"  name="project_title" class="project_title">
                                                         </td>
                                                         <td class="align-middle" nowrap>
                                                             <input type="text" id="responsibility_code"  value="<?=$responsibility_code;?>" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" data-dtid="" class="mfopaps_code text-center" disabled/>
+                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" class="mfopaps_code text-center" disabled/>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                                <option selected value ="<?=$sub_object_code;?>"><?=$sub_object_code;?></option>
-                                                                <?php foreach($couacsdata as $data){
-                                                                    $sub_object_code = $data['sub_object_code'];
-                                                                    $lu_uacs_code = $data['uacs_code'];
-                                                                ?>
-                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$lu_uacs_code;?>"><?=$sub_object_code?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                            <input type="text" id="sub_object_code"  value="<?=$sub_object_code;?>" size="60" placeholder="Enter sub-object code"  name="sub_object_code" class="couacs_code sub_object_code">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="uacs"  value="<?=$uacs_code;?>" size="25" name="uacs" data-dtid="" class="uacs text-center" disabled/>
+                                                            <input type="text" id="uacs"  value="<?=$uacs_code;?>" size="25" name="uacs" class="uacs text-center" disabled/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" data-dtid="" class="amount text-center"/>
+                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" class="amount text-center"/>
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; endif;?>
@@ -1577,16 +1283,18 @@ echo view('templates/myheader.php');
                     <table id="datatablesSimple" class="table table-bordered table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>Action</th>
-                                <th>Particulars</th>
-                                <th>Payee</th>
-                                <th>Total Amount</th>
+                                <th class="text-center">Action</th>
+                                <th class="text-center" style="width:250px;">Serial No.</th>
+                                <th class="text-center">Particulars</th>
+                                <th class="text-center">Payee</th>
+                                <th class="text-center">Total Amount</th>
                             </tr>
                         </thead>
                         <tbody class="align-middle">
                             <?php if(!empty($orshddata)):
                                 foreach ($orshddata as $data):
                                     $dt_recid = $data['recid'];
+                                    $serialno = $data['serialno'];
                                     $particulars = $data['particulars'];
                                     $payee_name = $data['payee_name'];
                                     $total_amount = $data['amount'];
@@ -1606,6 +1314,7 @@ echo view('templates/myheader.php');
                                         </button>
                                     </div>
                                 </td>
+                                <td class="text-center"><?=$serialno;?></td>
                                 <td class="text-center"><?=$particulars;?></td>
                                 <td class="text-center"><?=$payee_name;?></td>
                                 <td class="text-center"><?= 'P'. number_format($total_amount,2);?></td>
@@ -1757,8 +1466,194 @@ echo view('templates/myheader.php');
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
-<script src="<?=base_url('assets/js/ors/ors.js?v=4');?>"></script>
+<script src="<?=base_url('assets/js/ors/ors.js?v=6');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
+
+<!-- PROGRAM TITLE LOOKUP -->
+<script>
+<?php
+    $programs = [
+        'General Administration and Support Service',
+        'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition',
+        "Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center",
+        'Nutritional Assessment and Monitoring on Food and Nutrition',
+        'Expanded National Nutrition Survey',
+        'Technical Services on Food and Nutrition'
+    ];
+?>
+var programs = <?php echo json_encode($programs); ?>;
+$(function() {
+  // Initialize autocomplete for all existing textareas
+  $(".program_title").autocomplete({
+    source: programs
+  });
+
+  // Re-initialize whenever a new row is added dynamically
+  $(document).on("focus", ".program_title", function () {
+    if (!$(this).data("uiAutocomplete")) {
+      $(this).autocomplete({
+        source: programs
+      });
+    }
+  });
+});
+</script>
+
+<!-- PROJECT TITLE LOOKUP -->
+<script>
+<?php
+$projects = [];
+foreach ($projectdata as $data) {
+    $projects[$data['project_title']] = [
+        'rc' => $data['responsibility_code'],
+        'mfopaps' => $data['mfopaps_code']
+    ];
+}
+?>
+var projects = <?= json_encode($projects); ?>;
+var project_titles = Object.keys(projects);
+
+$(function () {
+
+  $(document).on("focus", ".project_title", function () {
+
+    if (!$(this).data("ui-autocomplete")) {
+
+      $(this).autocomplete({
+        source: project_titles,
+        select: function (event, ui) {
+
+          let row = $(this).closest('tr'); // change if not in table
+
+          row.find('.responsibility_code')
+             .val(projects[ui.item.value].rc);
+
+          row.find('.mfopaps_code')
+             .val(projects[ui.item.value].mfopaps);
+
+        }
+      });
+
+    }
+
+  });
+
+});
+</script>
+
+<!-- PSUACS TITLE LOOKUP -->
+ <?php
+$psuacs = [];
+foreach ($psuacsdata as $data) {
+    $psuacs[] = [
+        'label'     => $data['sub_object_code'], // shown in dropdown
+        'value'     => $data['sub_object_code'], // filled in input
+        'uacs_code' => $data['uacs_code'],        // mapped value
+    ];
+}
+?>
+<script>
+var psuacs = <?= json_encode($psuacs); ?>;
+
+$(document).on("focus", ".psuacs_code", function () {
+
+  if (!$(this).data("ui-autocomplete")) {
+
+    $(this).autocomplete({
+      source: psuacs,
+      select: function (event, ui) {
+
+        let row = $(this).closest('tr');
+
+        // Set selected values
+        $(this).val(ui.item.value);
+        row.find('.uacs').val(ui.item.uacs_code);
+
+        return false; // stop default behavior
+      }
+    });
+
+  }
+});
+</script>
+
+
+<!-- MOOEUACS TITLE LOOKUP -->
+ <?php
+$mooeuacs = [];
+foreach ($mooeuacsdata as $data) {
+    $mooeuacs[] = [
+        'label'     => $data['sub_object_code'], // what user sees
+        'value'     => $data['sub_object_code'], // what goes in input
+        'uacs_code' => $data['uacs_code'],        // extra data
+    ];
+}
+?>
+
+<script>
+var mooeuacs = <?= json_encode($mooeuacs); ?>;
+
+$(document).on("focus", ".mooeuacs_code", function () {
+
+  if (!$(this).data("ui-autocomplete")) {
+
+    $(this).autocomplete({
+      source: mooeuacs,
+      select: function (event, ui) {
+
+        let row = $(this).closest('tr');
+
+        // Set selected values
+        $(this).val(ui.item.value);
+        row.find('.uacs').val(ui.item.uacs_code);
+
+        return false; // prevent default replace
+      }
+    });
+
+  }
+});
+</script>
+
+
+<!-- CO TITLE LOOKUP -->
+ <?php
+$couacs = [];
+foreach ($couacsdata as $data) {
+    $couacs[] = [
+        'label'     => $data['sub_object_code'], // shown in dropdown
+        'value'     => $data['sub_object_code'], // inserted in input
+        'uacs_code' => $data['uacs_code'],        // mapped value
+    ];
+}
+?>
+
+<script>
+var couacs = <?= json_encode($couacs); ?>;
+
+$(document).on("focus", ".couacs_code", function () {
+
+  if (!$(this).data("ui-autocomplete")) {
+
+    $(this).autocomplete({
+      source: couacs,
+      select: function (event, ui) {
+
+        let row = $(this).closest('tr');
+
+        // Set selected values
+        $(this).val(ui.item.value);
+        row.find('.uacs').val(ui.item.uacs_code);
+
+        return false; // prevent default behavior
+      }
+    });
+
+  }
+});
+</script>
+
+
 
 <?php
 	echo $MDL_jsscript;

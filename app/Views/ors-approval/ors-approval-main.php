@@ -131,6 +131,7 @@ echo view('templates/myheader.php');
                     <table id="datatablesSimple" class="table table-bordered table-striped table-hover">
                         <thead>
                             <tr>
+                                <th>Serial No.</th>
                                 <th>Particulars</th>
                                 <th>Amount</th>
                                 <th>Action</th>
@@ -142,9 +143,11 @@ echo view('templates/myheader.php');
                                 foreach ($certifyadata as $data):
                                     $recid = $data['recid'];
                                     $particulars = $data['particulars'];
+                                    $serialno = $data['serialno'];
                                     $amount = $data['amount'];
                             ?>
                             <tr>
+                                <td class="text-center"><?=$serialno;?></td>
                                 <td class="text-center"><?=$particulars;?></td>
                                 <td class="text-center"><?= '₱'. number_format($amount,2);?></td>
                                 <td class="text-center align-middle">

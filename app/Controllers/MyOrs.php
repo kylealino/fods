@@ -96,6 +96,7 @@ class MyOrs extends BaseController
         $orshdquery = $this->db->query("
         SELECT 
         a.`recid`,
+        a.`serialno`,
         a.`particulars`,
         a.`funding_source`,
         a.`payee_name`,

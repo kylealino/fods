@@ -34,6 +34,7 @@ class MyOrsApproval extends BaseController
         SELECT 
             a.`recid`,
             a.`particulars`,
+            a.`serialno`,
             (
                 IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0) +
                 IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_ps_dt` WHERE project_id = a.recid), 0) +
