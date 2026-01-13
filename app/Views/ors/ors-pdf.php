@@ -179,19 +179,19 @@ $pdf->Cell(35, 9, 'Amount' , 1, 1, 'C');
 //DT BORDERING
 $Y+= 9;
 $pdf->SetXY(10, $Y);
-$pdf->Cell(37, 88.5, '' , 1, 1, 'C');//Responsibility Center
+$pdf->Cell(37, 107, '' , 1, 1, 'C');//Responsibility Center
 
 $pdf->SetXY(47, $Y);
-$pdf->Cell(58, 88.5, '' , 1, 1, 'C');//Particulars
+$pdf->Cell(58, 107, '' , 1, 1, 'C');//Particulars
 
 $pdf->SetXY(105, $Y);
-$pdf->Cell(30, 88.5, '' , 1, 1, 'C');//MFO/PAP
+$pdf->Cell(30, 107, '' , 1, 1, 'C');//MFO/PAP
 
 $pdf->SetXY(135, $Y);
-$pdf->Cell(30, 88.5, '' , 1, 1, 'C');//UACS Object Code
+$pdf->Cell(30, 107, '' , 1, 1, 'C');//UACS Object Code
 
 $pdf->SetXY(165, $Y);
-$pdf->Cell(35, 88.5, '' , 1, 1, 'C');//Amount
+$pdf->Cell(35, 107, '' , 1, 1, 'C');//Amount
 
 
 //HD
@@ -715,7 +715,7 @@ $Y += 2;
 $pdf->SetXY(47, $Y);
 $pdf->MultiCell(58, 4, $particulars, 0, 'L'); // full width usage
 
-$Y = 168;
+$Y = 186.5;
 $pdf->SetXY(10, $Y);
 $pdf->Cell(35, 3, '' , 0, 1, 'C');
 
@@ -728,19 +728,20 @@ $pdf->Cell(30, 3, '' , 0, 1, 'C');
 $pdf->SetXY(135, $Y);
 $pdf->Cell(30, 3, '' , 0, 1, 'C');
 
-$pdf->SetXY(165, $Y);
+$pdf->SetXY(155, $Y);
 $pdf->SetFont('Arial', 'B', 8);
-$pdf->Cell(35, 3, number_format($total_amount, 2) , 0, 1, 'C');
+$pdf->Cell(35, 3, number_format($total_amount, 2) , 0, 1, 'R');
 $pdf->SetFont('Arial', '', 8);
 
 
-$Y = 171.5;
+// $Y = 171.5;
+$Y = 190;
 
 //CERTIFY BORDERING
 $pdf->SetXY(10, $Y);
 $pdf->Cell(95, 60, '' , 1, 1, 'C'); //Certify A
 
-$CY = 171.5;
+$CY = 190;
 $pdf->SetXY(10, $CY);
 $pdf->SetFont('Arial', 'B', 8);
 $pdf->Cell(15, 10, 'A.' , 1, 1, 'L');
@@ -800,7 +801,7 @@ $pdf->Cell(65, 4, '' , 'B', 1, 'L');
 $pdf->SetXY(105, $Y);
 $pdf->Cell(95, 60, '' , 1, 1, 'C'); //Certify B
 
-$CY2 = 171.5;
+$CY2 = 190;
 $pdf->SetXY(105, $CY2);
 $pdf->SetFont('Arial', 'B', 8);
 $pdf->Cell(15, 10, 'B.' , 1, 1, 'L');
@@ -874,137 +875,137 @@ $pdf->SetFont('Arial', '', 8);
 $Y = $pdf->GetY();
 $pdf->SetXY(10, $Y);
 $pdf->SetFont('Arial', 'B', 8);
-$pdf->Cell(75, 5, 'Reference' , 1, 1, 'C');
+$pdf->Cell(75, 3, 'Reference' , 1, 1, 'C');
 
 $pdf->SetXY(85, $Y);
-$pdf->Cell(115, 5, 'Amount' , 1, 1, 'C');
+$pdf->Cell(115, 3, 'Amount' , 1, 1, 'C');
 $pdf->SetFont('Arial', '', 8);
 //ROW 1
 $Y = $pdf->GetY();
 $pdf->SetXY(10, $Y);
-$pdf->Cell(15, 5, '' , 'RL', 1, 'C');
+$pdf->Cell(15, 3, '' , 'RL', 1, 'C');
 
 $pdf->SetXY(25, $Y);
-$pdf->Cell(30, 5, '' , 'R', 1, 'C');
+$pdf->Cell(30, 3, '' , 'R', 1, 'C');
 
 $pdf->SetXY(55, $Y);
-$pdf->Cell(30, 5, '' , 'R', 1, 'C');
+$pdf->Cell(30, 3, '' , 'R', 1, 'C');
 
 $pdf->SetXY(85, $Y);
-$pdf->Cell(22, 5, '' , 'R', 1, 'C');
+$pdf->Cell(22, 3, '' , 'R', 1, 'C');
 
 $pdf->SetXY(107, $Y);
-$pdf->Cell(22, 5, '' , 'R', 1, 'C');
+$pdf->Cell(22, 3, '' , 'R', 1, 'C');
 
 $pdf->SetXY(129, $Y);
-$pdf->Cell(22, 5, '' , 'R', 1, 'C');
+$pdf->Cell(22, 3, '' , 'R', 1, 'C');
 
 $pdf->SetXY(151, $Y);
-$pdf->Cell(49, 5, 'Balance' , 'RB', 1, 'C');
+$pdf->Cell(49, 3, 'Balance' , 'RB', 1, 'C');
 
 //ROW 2
 $Y = $pdf->GetY();
 $pdf->SetXY(10, $Y);
-$pdf->Cell(15, 5, 'Date' , 'LR', 1, 'C');
+$pdf->Cell(15, 3, 'Date' , 'LR', 1, 'C');
 
 $pdf->SetXY(25, $Y);
-$pdf->Cell(30, 5, 'Particulars' , 'R', 1, 'C');
+$pdf->Cell(30, 3, 'Particulars' , 'R', 1, 'C');
 
 $pdf->SetXY(55, $Y);
-$pdf->Cell(30, 5, 'ORS/JEV/Check/' , 'R', 1, 'C');
+$pdf->Cell(30, 3, 'ORS/JEV/Check/' , 'R', 1, 'C');
 
 $pdf->SetXY(85, $Y);
-$pdf->Cell(22, 5, 'Obligation' , 'R', 1, 'C');
+$pdf->Cell(22, 3, 'Obligation' , 'R', 1, 'C');
 
 $pdf->SetXY(107, $Y);
-$pdf->Cell(22, 5, 'Payable' , 'R', 1, 'C');
+$pdf->Cell(22, 3, 'Payable' , 'R', 1, 'C');
 
 $pdf->SetXY(129, $Y);
-$pdf->Cell(22, 5, 'Payment' , 'R', 1, 'C');
+$pdf->Cell(22, 3, 'Payment' , 'R', 1, 'C');
 
 $pdf->SetXY(151, $Y);
-$pdf->Cell(15, 5, 'Not Yet' , 'R', 1, 'C');
+$pdf->Cell(15, 3, 'Not Yet' , 'R', 1, 'C');
 
 $pdf->SetXY(166, $Y);
-$pdf->Cell(34, 5, 'Due and' , 'R', 1, 'C');
+$pdf->Cell(34, 3, 'Due and' , 'R', 1, 'C');
 
 //ROW 3
 $Y = $pdf->GetY();
 $pdf->SetXY(10, $Y);
-$pdf->Cell(15, 5, '' , 'LR', 1, 'C');
+$pdf->Cell(15, 3, '' , 'LR', 1, 'C');
 
 $pdf->SetXY(25, $Y);
-$pdf->Cell(30, 5, '' , 'R', 1, 'C');
+$pdf->Cell(30, 3, '' , 'R', 1, 'C');
 
 $pdf->SetXY(55, $Y);
-$pdf->Cell(30, 5, 'ADA/TRA No.' , 'R', 1, 'C');
+$pdf->Cell(30, 3, 'ADA/TRA No.' , 'R', 1, 'C');
 
 $pdf->SetXY(85, $Y);
-$pdf->Cell(22, 5, '' , 'R', 1, 'C');
+$pdf->Cell(22, 3, '' , 'R', 1, 'C');
 
 $pdf->SetXY(107, $Y);
-$pdf->Cell(22, 5, '' , 'R', 1, 'C');
+$pdf->Cell(22, 3, '' , 'R', 1, 'C');
 
 $pdf->SetXY(129, $Y);
-$pdf->Cell(22, 5, '' , 'R', 1, 'C');
+$pdf->Cell(22, 3, '' , 'R', 1, 'C');
 
 $pdf->SetXY(151, $Y);
-$pdf->Cell(15, 5, 'Due' , 'R', 1, 'C');
+$pdf->Cell(15, 3, 'Due' , 'R', 1, 'C');
 
 $pdf->SetXY(166, $Y);
-$pdf->Cell(34, 5, 'Demandable' , 'RB', 1, 'C');
+$pdf->Cell(34, 3, 'Demandable' , 'RB', 1, 'C');
 
 //ROW 4
 $Y = $pdf->GetY();
 $pdf->SetXY(10, $Y);
-$pdf->Cell(15, 5, '' , 'RL', 1, 'C');
+$pdf->Cell(15, 3, '' , 'RL', 1, 'C');
 
 $pdf->SetXY(25, $Y);
-$pdf->Cell(30, 5, '' , 'R', 1, 'C');
+$pdf->Cell(30, 3, '' , 'R', 1, 'C');
 
 $pdf->SetXY(55, $Y);
-$pdf->Cell(30, 5, '' , 'R', 1, 'C');
+$pdf->Cell(30, 3, '' , 'R', 1, 'C');
 
 $pdf->SetXY(85, $Y);
-$pdf->Cell(22, 5, '(a)' , 1, 1, 'C');
+$pdf->Cell(22, 3, '(a)' , 1, 1, 'C');
 
 $pdf->SetXY(107, $Y);
-$pdf->Cell(22, 5, '(b)' , 1, 1, 'C');
+$pdf->Cell(22, 3, '(b)' , 1, 1, 'C');
 
 $pdf->SetXY(129, $Y);
-$pdf->Cell(22, 5, '(c)' , 1, 1, 'C');
+$pdf->Cell(22, 3, '(c)' , 1, 1, 'C');
 
 $pdf->SetXY(151, $Y);
-$pdf->Cell(15, 5, '(a-b)' , 1, 1, 'C');
+$pdf->Cell(15, 3, '(a-b)' , 1, 1, 'C');
 
 $pdf->SetXY(166, $Y);
-$pdf->Cell(34, 5, '(b-c)' , 1, 1, 'C');
+$pdf->Cell(34, 3, '(b-c)' , 1, 1, 'C');
 
 //ROW 4
 $Y = $pdf->GetY();
 $pdf->SetXY(10, $Y);
-$pdf->Cell(15, 15, '' , 1, 1, 'C');
+$pdf->Cell(15, 5, '' , 1, 1, 'C');
 
 $pdf->SetXY(25, $Y);
-$pdf->Cell(30, 15, '' , 1, 1, 'C');
+$pdf->Cell(30, 5, '' , 1, 1, 'C');
 
 $pdf->SetXY(55, $Y);
-$pdf->Cell(30, 15, '' , 1, 1, 'C');
+$pdf->Cell(30, 5, '' , 1, 1, 'C');
 
 $pdf->SetXY(85, $Y);
-$pdf->Cell(22, 15, '' , 1, 1, 'C');
+$pdf->Cell(22, 5, '' , 1, 1, 'C');
 
 $pdf->SetXY(107, $Y);
-$pdf->Cell(22, 15, '' , 1, 1, 'C');
+$pdf->Cell(22, 5, '' , 1, 1, 'C');
 
 $pdf->SetXY(129, $Y);
-$pdf->Cell(22, 15, '' , 1, 1, 'C');
+$pdf->Cell(22, 5, '' , 1, 1, 'C');
 
 $pdf->SetXY(151, $Y);
-$pdf->Cell(15, 15, '' , 1, 1, 'C');
+$pdf->Cell(15, 5, '' , 1, 1, 'C');
 
 $pdf->SetXY(166, $Y);
-$pdf->Cell(34, 15, '' , 1, 1, 'C');
+$pdf->Cell(34, 5, '' , 1, 1, 'C');
 
 $pdf->Output();
 exit;
