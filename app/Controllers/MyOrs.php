@@ -92,25 +92,74 @@ class MyOrs extends BaseController
         $couacsquery = $this->db->query("SELECT * FROM mst_uacs WHERE allotment_class = 'Capital Outlay' ORDER BY TRIM(sub_object_code) ASC");
         $couacsdata = $couacsquery->getResultArray();
 
+        // $orshdquery = $this->db->query("
+        // SELECT 
+        // a.`recid`,
+        // a.`serialno`,
+        // a.`particulars`,
+        // a.`funding_source`,
+        // a.`payee_name`,
+        // a.`payee_office`,
+        // a.`payee_address`,
+        // (
+        //     IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0) +
+        //     IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_ps_dt` WHERE project_id = a.recid), 0) +
+        //     IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_mooe_dt` WHERE project_id = a.recid), 0) +
+        //     IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
+        //     IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_co_dt` WHERE project_id = a.recid), 0) +
+        //     IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_co_dt` WHERE project_id = a.recid), 0)
+        // ) AS amount        
+        //  FROM tbl_ors_hd a ORDER BY a.`recid` DESC");
+        // $orshddata = $orshdquery->getResultArray();
 
         $orshdquery = $this->db->query("
         SELECT 
-        a.`recid`,
-        a.`serialno`,
-        a.`particulars`,
-        a.`funding_source`,
-        a.`payee_name`,
-        a.`payee_office`,
-        a.`payee_address`,
-        (
-            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0) +
-            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_ps_dt` WHERE project_id = a.recid), 0) +
-            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_mooe_dt` WHERE project_id = a.recid), 0) +
-            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
-            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_co_dt` WHERE project_id = a.recid), 0) +
-            IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_co_dt` WHERE project_id = a.recid), 0)
-        ) AS amount        
-         FROM tbl_ors_hd a ORDER BY a.`recid` DESC");
+            a.recid,
+            a.serialno,
+            a.particulars,
+            a.funding_source,
+            a.payee_name,
+            a.payee_office,
+            a.payee_address,
+            COALESCE(ps.amount,0)
+        + COALESCE(ips.amount,0)
+        + COALESCE(m.amount,0)
+        + COALESCE(im.amount,0)
+        + COALESCE(co.amount,0)
+        + COALESCE(ico.amount,0) AS amount
+        FROM tbl_ors_hd a
+        LEFT JOIN (
+            SELECT project_id, SUM(amount) amount
+            FROM tbl_ors_direct_ps_dt
+            GROUP BY project_id
+        ) ps ON ps.project_id = a.recid
+        LEFT JOIN (
+            SELECT project_id, SUM(amount) amount
+            FROM tbl_ors_indirect_ps_dt
+            GROUP BY project_id
+        ) ips ON ips.project_id = a.recid
+        LEFT JOIN (
+            SELECT project_id, SUM(amount) amount
+            FROM tbl_ors_direct_mooe_dt
+            GROUP BY project_id
+        ) m ON m.project_id = a.recid
+        LEFT JOIN (
+            SELECT project_id, SUM(amount) amount
+            FROM tbl_ors_indirect_mooe_dt
+            GROUP BY project_id
+        ) im ON im.project_id = a.recid
+        LEFT JOIN (
+            SELECT project_id, SUM(amount) amount
+            FROM tbl_ors_direct_co_dt
+            GROUP BY project_id
+        ) co ON co.project_id = a.recid
+        LEFT JOIN (
+            SELECT project_id, SUM(amount) amount
+            FROM tbl_ors_indirect_co_dt
+            GROUP BY project_id
+        ) ico ON ico.project_id = a.recid
+        ORDER BY a.recid DESC
+        ");
         $orshddata = $orshdquery->getResultArray();
 
         //reference/project title lookup
