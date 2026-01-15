@@ -945,6 +945,33 @@ function __mysys_saob_rpt_ent() {
 		placeholder.style.display = "none";
 	};
 
+	function monthToDateRange(month) {
+		const [year, m] = month.split('-');
+		const start = `${year}-${m}-01`;
+		const end   = new Date(year, m, 0).toISOString().slice(0, 10);
+		return { start, end };
+	}
+
+	this.__saob_export_csv_range  = function(pdfUrl) {
+
+		const from = document.getElementById("date_from").value;
+		const to   = document.getElementById("date_to").value;
+
+		if (!from || !to) {
+			toastr.error('Please select date range.', 'Oops!');
+			return;
+		}
+
+		const fromDate = monthToDateRange(from);
+		const toDate   = monthToDateRange(to);
+
+		let url = new URL(pdfUrl, window.location.origin);
+		url.searchParams.set('date_from', fromDate.start);
+		url.searchParams.set('date_to', toDate.end);
+
+		document.getElementById("pdfFrame").src = url.toString();
+	};
+
 	$(document).ready(function () {
         $('#datatablesSimple').DataTable({
             pageLength: 5,

@@ -1416,8 +1416,8 @@ echo view('templates/myheader.php');
                     <div class="row">
                         <div class="col-sm-6 d-flex align-items-center text-start">
                             <h6 class="mb-0 lh-base px-3 text-white fw-semibold d-flex align-items-center">
-                                <i class="ti ti-pencil fs-5 me-1"></i>
-                                <span class="pt-1">Extraction</span>
+                                <i class="ti ti-file"></i>
+                                <span class="pt-1 px-1">PDF Extraction</span>
                             </h6>
                         </div>
                         <div class="col-sm-6 text-end ">
@@ -1479,6 +1479,44 @@ echo view('templates/myheader.php');
 
                         </div>
                     </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header bg-info p-1">
+                    <div class="row">
+                        <div class="col-sm-6 d-flex align-items-center text-start">
+                            <h6 class="mb-0 lh-base px-3 text-white fw-semibold d-flex align-items-center">
+                                <i class="ti ti-file"></i>
+                                <span class="pt-1 px-1">CSV Extraction</span>
+                            </h6>
+                        </div>
+                        <div class="col-sm-6 text-end ">
+
+                        </div>
+                    </div>
+                </div>						
+                <div class="card-body p-0 px-4 py-2 my-2">
+                    <div class="row mb-2">
+                        <div class="col-sm-4">
+                            <input type="month" id="date_from" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-sm-4">
+                            <input type="month" id="date_to" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-sm-2">
+                            <button class="btn btn-success btn-sm"
+                                    onclick="__mysys_saob_rpt_ent.__saob_export_csv_range('<?= base_url('export-csv')?>')">
+                                Export CSV
+                            </button>
+                        </div>
+                    </div>                 
                 </div>
             </div>
         </div>

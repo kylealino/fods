@@ -78,3 +78,5 @@ $routes->post('myabstract', 'MyAbstract::index',['filter' => 'myauthuser']);
 //PPMP - PPMP module
 $routes->get('myppmp', 'MyPPMP::index',['filter' => 'myauthuser']);
 $routes->post('myppmp', 'MyPPMP::index',['filter' => 'myauthuser']);
+
+$routes->get('export-csv', 'MySaobReport::exportCsv');

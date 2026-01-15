@@ -4093,19 +4093,20 @@ foreach ($hd_data as $hd_row) {
                 FROM tbl_ors_direct_mooe_dt d 
                 JOIN
                 tbl_ors_hd hd ON d.`project_id` = hd.`recid`
-                WHERE d.sub_object_code = b.particulars AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND d.`program_title` like '%$program_like%'
+                WHERE d.sub_object_code = b.particulars AND d.`uacs_code` = b.`code` AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND d.`program_title` like '%$program_like%'
             ), 0) + COALESCE((
                 SELECT SUM(amount) 
                 FROM tbl_ors_indirect_mooe_dt i 
                 JOIN
                 tbl_ors_hd hd ON i.`project_id` = hd.`recid`
-                WHERE i.sub_object_code = b.particulars AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND i.`program_title` like '%$program_like%'
+                WHERE i.sub_object_code = b.particulars AND i.`uacs_code` = b.`code` AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND i.`program_title` like '%$program_like%'
             ), 0) AS total_sub_month,
             COALESCE((
                 SELECT SUM(amount) 
                 FROM tbl_ors_direct_mooe_dt d 
                 JOIN tbl_ors_hd hd ON d.project_id = hd.recid
                 WHERE d.sub_object_code = b.particulars
+                AND d.`uacs_code` = b.`code`
                 AND hd.`ors_date` >= '$og_date_from' 
                 AND hd.`ors_date` < '$og_date_to'
                 AND d.program_title LIKE '%$program_like%'
@@ -4115,6 +4116,7 @@ foreach ($hd_data as $hd_row) {
                 FROM tbl_ors_indirect_mooe_dt i 
                 JOIN tbl_ors_hd hd ON i.project_id = hd.recid
                 WHERE i.sub_object_code = b.particulars
+                AND i.`uacs_code` = b.`code`
                 AND hd.`ors_date` >= '$og_date_from' 
                 AND hd.`ors_date` < '$og_date_to'
                 AND i.program_title LIKE '%$program_like%'
@@ -4125,8 +4127,13 @@ foreach ($hd_data as $hd_row) {
             mst_uacs AS u ON b.code = u.uacs_code
         WHERE 
             b.project_id = '$recid'
+        GROUP BY
+        b.particulars,
+        b.code
         ORDER BY 
-            b.recid, b.particulars;
+            b.recid, b.particulars
+
+
 
     ");
     $mooe_data = $query->getResultArray();
@@ -4639,9 +4646,9 @@ foreach ($hd_data as $hd_row) {
         $query = $this->db->query("
             SELECT COALESCE(SUM(amount),0) AS total_amount  
             FROM (
-                SELECT dmooe.`amount` FROM tbl_ors_direct_mooe_dt dmooe JOIN tbl_ors_hd hd on dmooe.`project_id` = hd.`recid` WHERE dmooe.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND dmooe.`program_title` like '%$program_like%'
+                SELECT dmooe.`amount` FROM tbl_ors_direct_mooe_dt dmooe JOIN tbl_ors_hd hd on dmooe.`project_id` = hd.`recid` WHERE dmooe.`sub_object_code` = '$sub_object_code'  AND dmooe.`uacs_code` = '$uacs_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND dmooe.`program_title` like '%$program_like%'
                 UNION ALL
-                SELECT idmooe.`amount` FROM tbl_ors_indirect_mooe_dt idmooe JOIN tbl_ors_hd hd on idmooe.`project_id` = hd.`recid` WHERE idmooe.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND idmooe.`program_title` like '%$program_like%'
+                SELECT idmooe.`amount` FROM tbl_ors_indirect_mooe_dt idmooe JOIN tbl_ors_hd hd on idmooe.`project_id` = hd.`recid` WHERE idmooe.`sub_object_code` = '$sub_object_code' AND idmooe.`uacs_code` = '$uacs_code' AND hd.`ors_date` >= '$date_from' AND hd.`ors_date` < '$date_to' AND idmooe.`program_title` like '%$program_like%'
             ) AS combined
         ");
 
@@ -4651,9 +4658,9 @@ foreach ($hd_data as $hd_row) {
         $query = $this->db->query("
             SELECT COALESCE(SUM(amount),0) AS total_amount  
             FROM (
-                SELECT dmooe.`amount` FROM tbl_ors_direct_mooe_dt dmooe JOIN tbl_ors_hd hd on dmooe.`project_id` = hd.`recid` WHERE dmooe.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$og_date_from' AND hd.`ors_date` < '$og_date_to' AND dmooe.`program_title` like '%$program_like%'
+                SELECT dmooe.`amount` FROM tbl_ors_direct_mooe_dt dmooe JOIN tbl_ors_hd hd on dmooe.`project_id` = hd.`recid` WHERE dmooe.`sub_object_code` = '$sub_object_code' AND dmooe.`uacs_code` = '$uacs_code' AND hd.`ors_date` >= '$og_date_from' AND hd.`ors_date` < '$og_date_to' AND dmooe.`program_title` like '%$program_like%'
                 UNION ALL
-                SELECT idmooe.`amount` FROM tbl_ors_indirect_mooe_dt idmooe JOIN tbl_ors_hd hd on idmooe.`project_id` = hd.`recid` WHERE idmooe.`sub_object_code` = '$sub_object_code' AND hd.`ors_date` >= '$og_date_from' AND hd.`ors_date` < '$og_date_to' AND idmooe.`program_title` like '%$program_like%'
+                SELECT idmooe.`amount` FROM tbl_ors_indirect_mooe_dt idmooe JOIN tbl_ors_hd hd on idmooe.`project_id` = hd.`recid` WHERE idmooe.`sub_object_code` = '$sub_object_code' AND idmooe.`uacs_code` = '$uacs_code' AND hd.`ors_date` >= '$og_date_from' AND hd.`ors_date` < '$og_date_to' AND idmooe.`program_title` like '%$program_like%'
             ) AS combined
         ");
 

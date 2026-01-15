@@ -52,7 +52,82 @@ class MySaobReport extends BaseController
         }
     }
     
+    public function exportCsv(){
+        $from = $this->request->getGet('date_from');
+        $to   = $this->request->getGet('date_to');
 
+        if (!$from || !$to) {
+            return;
+        }
+
+        $sql = "
+            SELECT
+                hd.recid            AS ors_recid,
+                hd.serialno,
+                hd.ors_date,
+                d.program_title,
+                d.project_title,
+                d.responsibility_code,
+                d.mfopaps_code,
+                d.sub_object_code,
+                d.uacs_code,
+                d.amount,
+                d.added_at,
+                d.added_by
+            FROM tbl_ors_hd hd
+            JOIN (
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_ps_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_ps_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_mooe_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_mooe_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_co_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_co_dt
+            ) d ON d.project_id = hd.recid
+            WHERE hd.ors_date BETWEEN ? AND ?
+            ORDER BY hd.recid DESC, d.added_at ASC
+        ";
+
+        $query = $this->db->query($sql, [$from, $to]);
+        $data  = $query->getResultArray();
+
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="SAOB_'.$from.'_to_'.$to.'.csv"');
+
+        $out = fopen('php://output', 'w');
+
+        if (!empty($data)) {
+            fputcsv($out, array_keys($data[0]));
+            foreach ($data as $row) {
+                fputcsv($out, $row);
+            }
+        }
+
+        fclose($out);
+        exit;
+    }
+    
     private function loadMainView() {
 
         //budget table dt fetching
