@@ -1,0 +1,478 @@
+ERROR - 2026-01-20 11:13:14 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 50 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\report\saob-pdf.php(5838): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(35): view('report/saob-pdf')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2026-01-20 11:13:14 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 50
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\report\saob-pdf.php(5838): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_mooe_dt d 
+                JOIN
+                tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+                WHERE d.sub_object_code = b.particulars AND d.`uacs_code` = b.`code` AND hd.`ors_date` >= \'2025-02-01\' AND hd.`ors_date` < \'2025-03-01\' AND d.`program_title` like \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_mooe_dt i 
+                JOIN
+                tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+                WHERE i.sub_object_code = b.particulars AND i.`uacs_code` = b.`code` AND hd.`ors_date` >= \'2025-02-01\' AND hd.`ors_date` < \'2025-03-01\' AND i.`program_title` like \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) AS total_sub_month,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_mooe_dt d 
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                 AND d.`uacs_code` = b.`code`
+                AND hd.`ors_date` >= \'2025-01-01\' 
+                AND hd.`ors_date` < \'2025-03-01\'
+                AND d.program_title LIKE \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0)
+            + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_mooe_dt i 
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND i.`uacs_code` = b.`code`
+                AND hd.`ors_date` >= \'2025-01-01\' 
+                AND hd.`ors_date` < \'2025-03-01\'
+                AND i.program_title LIKE \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) AS total_sub_all
+        FROM 
+            tbl_saob_mooe_dt AS b
+        LEFT JOIN 
+            mst_uacs AS u ON b.code = u.uacs_code
+        WHERE 
+            b.project_id = \'44\'
+        GROUP BY
+            b.code,
+            b.particulars
+        ORDER BY 
+            b.recid, b.particulars,b.object_code,;
+
+    ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(35): view('report/saob-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-01-20 11:13:14 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 50
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_mooe_dt d 
+                JOIN
+                tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+                WHERE d.sub_object_code = b.particulars AND d.`uacs_code` = b.`code` AND hd.`ors_date` >= \'2025-02-01\' AND hd.`ors_date` < \'2025-03-01\' AND d.`program_title` like \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_mooe_dt i 
+                JOIN
+                tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+                WHERE i.sub_object_code = b.particulars AND i.`uacs_code` = b.`code` AND hd.`ors_date` >= \'2025-02-01\' AND hd.`ors_date` < \'2025-03-01\' AND i.`program_title` like \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) AS total_sub_month,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_mooe_dt d 
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                 AND d.`uacs_code` = b.`code`
+                AND hd.`ors_date` >= \'2025-01-01\' 
+                AND hd.`ors_date` < \'2025-03-01\'
+                AND d.program_title LIKE \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0)
+            + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_mooe_dt i 
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND i.`uacs_code` = b.`code`
+                AND hd.`ors_date` >= \'2025-01-01\' 
+                AND hd.`ors_date` < \'2025-03-01\'
+                AND i.program_title LIKE \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) AS total_sub_all
+        FROM 
+            tbl_saob_mooe_dt AS b
+        LEFT JOIN 
+            mst_uacs AS u ON b.code = u.uacs_code
+        WHERE 
+            b.project_id = \'44\'
+        GROUP BY
+            b.code,
+            b.particulars
+        ORDER BY 
+            b.recid, b.particulars,b.object_code,;
+
+    ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_mooe_dt d 
+                JOIN
+                tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+                WHERE d.sub_object_code = b.particulars AND d.`uacs_code` = b.`code` AND hd.`ors_date` >= \'2025-02-01\' AND hd.`ors_date` < \'2025-03-01\' AND d.`program_title` like \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_mooe_dt i 
+                JOIN
+                tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+                WHERE i.sub_object_code = b.particulars AND i.`uacs_code` = b.`code` AND hd.`ors_date` >= \'2025-02-01\' AND hd.`ors_date` < \'2025-03-01\' AND i.`program_title` like \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) AS total_sub_month,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_mooe_dt d 
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                 AND d.`uacs_code` = b.`code`
+                AND hd.`ors_date` >= \'2025-01-01\' 
+                AND hd.`ors_date` < \'2025-03-01\'
+                AND d.program_title LIKE \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0)
+            + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_mooe_dt i 
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND i.`uacs_code` = b.`code`
+                AND hd.`ors_date` >= \'2025-01-01\' 
+                AND hd.`ors_date` < \'2025-03-01\'
+                AND i.program_title LIKE \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) AS total_sub_all
+        FROM 
+            tbl_saob_mooe_dt AS b
+        LEFT JOIN 
+            mst_uacs AS u ON b.code = u.uacs_code
+        WHERE 
+            b.project_id = \'44\'
+        GROUP BY
+            b.code,
+            b.particulars
+        ORDER BY 
+            b.recid, b.particulars,b.object_code,;
+
+    ')
+ 3 APPPATH\Views\report\saob-pdf.php(5838): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_mooe_dt d 
+                JOIN
+                tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+                WHERE d.sub_object_code = b.particulars AND d.`uacs_code` = b.`code` AND hd.`ors_date` >= \'2025-02-01\' AND hd.`ors_date` < \'2025-03-01\' AND d.`program_title` like \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_mooe_dt i 
+                JOIN
+                tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+                WHERE i.sub_object_code = b.particulars AND i.`uacs_code` = b.`code` AND hd.`ors_date` >= \'2025-02-01\' AND hd.`ors_date` < \'2025-03-01\' AND i.`program_title` like \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) AS total_sub_month,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_mooe_dt d 
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                 AND d.`uacs_code` = b.`code`
+                AND hd.`ors_date` >= \'2025-01-01\' 
+                AND hd.`ors_date` < \'2025-03-01\'
+                AND d.program_title LIKE \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0)
+            + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_mooe_dt i 
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND i.`uacs_code` = b.`code`
+                AND hd.`ors_date` >= \'2025-01-01\' 
+                AND hd.`ors_date` < \'2025-03-01\'
+                AND i.program_title LIKE \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) AS total_sub_all
+        FROM 
+            tbl_saob_mooe_dt AS b
+        LEFT JOIN 
+            mst_uacs AS u ON b.code = u.uacs_code
+        WHERE 
+            b.project_id = \'44\'
+        GROUP BY
+            b.code,
+            b.particulars
+        ORDER BY 
+            b.recid, b.particulars,b.object_code,;
+
+    ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 7 APPPATH\Controllers\MySaobReport.php(35): view('report/saob-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-01-20 11:13:14 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 50
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_mooe_dt d 
+                JOIN
+                tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+                WHERE d.sub_object_code = b.particulars AND d.`uacs_code` = b.`code` AND hd.`ors_date` >= \'2025-02-01\' AND hd.`ors_date` < \'2025-03-01\' AND d.`program_title` like \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_mooe_dt i 
+                JOIN
+                tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+                WHERE i.sub_object_code = b.particulars AND i.`uacs_code` = b.`code` AND hd.`ors_date` >= \'2025-02-01\' AND hd.`ors_date` < \'2025-03-01\' AND i.`program_title` like \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) AS total_sub_month,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_mooe_dt d 
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                 AND d.`uacs_code` = b.`code`
+                AND hd.`ors_date` >= \'2025-01-01\' 
+                AND hd.`ors_date` < \'2025-03-01\'
+                AND d.program_title LIKE \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0)
+            + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_mooe_dt i 
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND i.`uacs_code` = b.`code`
+                AND hd.`ors_date` >= \'2025-01-01\' 
+                AND hd.`ors_date` < \'2025-03-01\'
+                AND i.program_title LIKE \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) AS total_sub_all
+        FROM 
+            tbl_saob_mooe_dt AS b
+        LEFT JOIN 
+            mst_uacs AS u ON b.code = u.uacs_code
+        WHERE 
+            b.project_id = \'44\'
+        GROUP BY
+            b.code,
+            b.particulars
+        ORDER BY 
+            b.recid, b.particulars,b.object_code,;
+
+    ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_mooe_dt d 
+                JOIN
+                tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+                WHERE d.sub_object_code = b.particulars AND d.`uacs_code` = b.`code` AND hd.`ors_date` >= \'2025-02-01\' AND hd.`ors_date` < \'2025-03-01\' AND d.`program_title` like \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_mooe_dt i 
+                JOIN
+                tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+                WHERE i.sub_object_code = b.particulars AND i.`uacs_code` = b.`code` AND hd.`ors_date` >= \'2025-02-01\' AND hd.`ors_date` < \'2025-03-01\' AND i.`program_title` like \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) AS total_sub_month,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_mooe_dt d 
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                 AND d.`uacs_code` = b.`code`
+                AND hd.`ors_date` >= \'2025-01-01\' 
+                AND hd.`ors_date` < \'2025-03-01\'
+                AND d.program_title LIKE \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0)
+            + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_mooe_dt i 
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND i.`uacs_code` = b.`code`
+                AND hd.`ors_date` >= \'2025-01-01\' 
+                AND hd.`ors_date` < \'2025-03-01\'
+                AND i.program_title LIKE \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) AS total_sub_all
+        FROM 
+            tbl_saob_mooe_dt AS b
+        LEFT JOIN 
+            mst_uacs AS u ON b.code = u.uacs_code
+        WHERE 
+            b.project_id = \'44\'
+        GROUP BY
+            b.code,
+            b.particulars
+        ORDER BY 
+            b.recid, b.particulars,b.object_code,;
+
+    ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_mooe_dt d 
+                JOIN
+                tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+                WHERE d.sub_object_code = b.particulars AND d.`uacs_code` = b.`code` AND hd.`ors_date` >= \'2025-02-01\' AND hd.`ors_date` < \'2025-03-01\' AND d.`program_title` like \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_mooe_dt i 
+                JOIN
+                tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+                WHERE i.sub_object_code = b.particulars AND i.`uacs_code` = b.`code` AND hd.`ors_date` >= \'2025-02-01\' AND hd.`ors_date` < \'2025-03-01\' AND i.`program_title` like \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) AS total_sub_month,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_mooe_dt d 
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                 AND d.`uacs_code` = b.`code`
+                AND hd.`ors_date` >= \'2025-01-01\' 
+                AND hd.`ors_date` < \'2025-03-01\'
+                AND d.program_title LIKE \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0)
+            + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_mooe_dt i 
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND i.`uacs_code` = b.`code`
+                AND hd.`ors_date` >= \'2025-01-01\' 
+                AND hd.`ors_date` < \'2025-03-01\'
+                AND i.program_title LIKE \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) AS total_sub_all
+        FROM 
+            tbl_saob_mooe_dt AS b
+        LEFT JOIN 
+            mst_uacs AS u ON b.code = u.uacs_code
+        WHERE 
+            b.project_id = \'44\'
+        GROUP BY
+            b.code,
+            b.particulars
+        ORDER BY 
+            b.recid, b.particulars,b.object_code,;
+
+    ')
+ 4 APPPATH\Views\report\saob-pdf.php(5838): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_mooe_dt d 
+                JOIN
+                tbl_ors_hd hd ON d.`project_id` = hd.`recid`
+                WHERE d.sub_object_code = b.particulars AND d.`uacs_code` = b.`code` AND hd.`ors_date` >= \'2025-02-01\' AND hd.`ors_date` < \'2025-03-01\' AND d.`program_title` like \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_mooe_dt i 
+                JOIN
+                tbl_ors_hd hd ON i.`project_id` = hd.`recid`
+                WHERE i.sub_object_code = b.particulars AND i.`uacs_code` = b.`code` AND hd.`ors_date` >= \'2025-02-01\' AND hd.`ors_date` < \'2025-03-01\' AND i.`program_title` like \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) AS total_sub_month,
+            COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_direct_mooe_dt d 
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                 AND d.`uacs_code` = b.`code`
+                AND hd.`ors_date` >= \'2025-01-01\' 
+                AND hd.`ors_date` < \'2025-03-01\'
+                AND d.program_title LIKE \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0)
+            + COALESCE((
+                SELECT SUM(amount) 
+                FROM tbl_ors_indirect_mooe_dt i 
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND i.`uacs_code` = b.`code`
+                AND hd.`ors_date` >= \'2025-01-01\' 
+                AND hd.`ors_date` < \'2025-03-01\'
+                AND i.program_title LIKE \'%Nutritional Assessment and Monitoring on Food and Nutrition%\'
+            ), 0) AS total_sub_all
+        FROM 
+            tbl_saob_mooe_dt AS b
+        LEFT JOIN 
+            mst_uacs AS u ON b.code = u.uacs_code
+        WHERE 
+            b.project_id = \'44\'
+        GROUP BY
+            b.code,
+            b.particulars
+        ORDER BY 
+            b.recid, b.particulars,b.object_code,;
+
+    ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-pdf', [], true)
+ 8 APPPATH\Controllers\MySaobReport.php(35): view('report/saob-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
