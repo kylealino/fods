@@ -9808,7 +9808,7 @@ $pdf->SetXY(184, $Y);
 $pdf->Cell(17, 3.5, number_format($totalprogram_grand_percentage_minus, 2) . '%', 'BRL', 0, 'R'); // Percentage column
 
 //----------------------------------------------------------------- TOTAL CURRENT YEAR APPROPRIATIONS -----------------------------------------------------------=------------
-if ($Y > 265) {
+if ($Y > 260) {
     $pdf->AddPage();
 }
 

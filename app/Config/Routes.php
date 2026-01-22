@@ -11,7 +11,8 @@ $routes->add('mylogin-auth', 'MyLogIn::auth');
 $routes->add('mylogout', 'MyLogIn::logout');
 $routes->get('mydashboard', 'MyDashboard::index',['filter' => 'myauthuser']);
 $routes->get('dashboard/saob-session-data', 'MyDashboard::getSaobSessionData');
-
+$routes->get('myaccount', 'MyAccount::index',['filter' => 'myauthuser']);
+$routes->get('mydashboarddev', 'MyDashboardDev::index',['filter' => 'myauthuser']);
 
 //User Management - User module
 $routes->get('myua', 'MyUserManagement::index',['filter' => 'myauthuser']);

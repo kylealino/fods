@@ -204,35 +204,7 @@ echo view('templates/myheader.php');
                                 <span class="fw-bold">Project Title:</span>
                             </div>
                             <div class="col-sm-10">
-                                <?php if(!empty($recid)):?>
-                                    <select name="selProjectTitle" id="selProjectTitle" class="form-select select2 form-select-sm show-tick">
-                                        <option selected value="<?=$project_title;?>"><?=$project_title;?></option>
-                                        <?php foreach($projectdata as $data): ?>
-                                            <option 
-                                                value="<?= $data['project_title'] ?>"
-                                                data-fund="<?= $data['fund_cluster_code'] ?>"
-                                                data-division="<?= $data['division_name'] ?>"
-                                                data-responsibility="<?= $data['responsibility_code'] ?>"
-                                            >
-                                                <?= $data['project_title'] ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                <?php else:?>
-                                    <select name="selProjectTitle" id="selProjectTitle" class="form-select select2 form-select-sm show-tick">
-                                        <option selected value="">Choose...</option>
-                                        <?php foreach($projectdata as $data): ?>
-                                            <option 
-                                                value="<?= $data['project_title'] ?>"
-                                                data-fund="<?= $data['fund_cluster_code'] ?>"
-                                                data-division="<?= $data['division_name'] ?>"
-                                                data-responsibility="<?= $data['responsibility_code'] ?>"
-                                            >
-                                                <?= $data['project_title'] ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                <?php endif;?>
+                                <input type="text" id="project_title"  value="<?=$project_title;?>" placeholder="Enter project title"  name="project_title" class="project_title form-control form-control-sm">
                             </div>
                         </div>
                     </div>
@@ -253,22 +225,6 @@ echo view('templates/myheader.php');
                                 <input type="text" id="division_name" name="division_name" value="<?=$division_name;?>" class="form-control form-control-sm" readonly />
                             </div>
                         </div>
-                       <div class="row mb-2">
-                            <div class="col-sm-4">
-                                <span class="fw-bold">Duration:</span>
-                            </div>
-                            <div class="col-sm-5">
-                                <input type="text" id="project_duration" name="project_duration" readonly class="form-control form-control-sm" />
-                            </div>
-                            <div class="col-sm-3 d-flex align-items-center">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" onchange="__mysys_budget_allotment_ent.__toggleExtensionFields(this)" id="with_extension" <?= ($with_extension == 1) ? 'checked': '';?>/>
-                                    <label class="form-check-label small" for="with_extension">
-                                        With Extension
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row mb-2">
                             <div class="col-sm-4">
                                 <span class="fw-bold">From:</span>
@@ -283,6 +239,22 @@ echo view('templates/myheader.php');
                             </div>
                             <div class="col-sm-8">
                                 <input type="date" id="duration_to" name="duration_to" value="<?=$duration_to;?>" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span class="fw-bold">Duration:</span>
+                            </div>
+                            <div class="col-sm-5">
+                                <input type="text" id="project_duration" name="project_duration" readonly class="form-control form-control-sm" />
+                            </div>
+                            <div class="col-sm-3 d-flex align-items-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" onchange="__mysys_budget_allotment_ent.__toggleExtensionFields(this)" id="with_extension" <?= ($with_extension == 1) ? 'checked': '';?>/>
+                                    <label class="form-check-label small" for="with_extension">
+                                        With Extension
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <div id="extension_fields" style="display: none;">
@@ -542,18 +514,10 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
+                                                            <input type="text" id="expense_item"  value="" size="60"  name="expense_item" class="expense_item">
                                                         </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                                <option selected value ="">Choose...</option>
-                                                                <?php foreach($psuacsdata as $data){
-                                                                    $sub_object_code = $data['sub_object_code'];
-                                                                    $uacs_code = $data['uacs_code'];
-                                                                ?>
-                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="sub_object_code"  value="" size="60" placeholder="Enter sub-object code"  name="sub_object_code" class="psuacs_code sub_object_code">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
@@ -620,18 +584,10 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
+                                                            <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="60"  name="expense_item" class="expense_item">
                                                         </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
-                                                                <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
-                                                                <?php foreach($psuacsdata as $data){
-                                                                    $sub_object_code = $data['sub_object_code'];
-                                                                    $uacs_code = $data['uacs_code'];
-                                                                ?>
-                                                                    <option value="<?=$sub_object_code?>"  data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="sub_object_code"  value="<?=$particulars;?>" size="60" placeholder="Enter sub-object code"  name="sub_object_code" class="psuacs_code sub_object_code">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
@@ -691,18 +647,10 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
+                                                            <input type="text" id="expense_item"  value="" size="60"  name="expense_item" class="expense_item">
                                                         </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                                <option selected value ="">Choose...</option>
-                                                                <?php foreach($psuacsdata as $data){
-                                                                    $sub_object_code = $data['sub_object_code'];
-                                                                    $uacs_code = $data['uacs_code'];
-                                                                ?>
-                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="sub_object_code"  value="" size="60" placeholder="Enter sub-object code"  name="sub_object_code" class="psuacs_code sub_object_code">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
@@ -769,18 +717,10 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
+                                                            <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="60"  name="expense_item" class="expense_item">
                                                         </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
-                                                                <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
-                                                                <?php foreach($psuacsdata as $data){
-                                                                    $sub_object_code = $data['sub_object_code'];
-                                                                    $uacs_code = $data['uacs_code'];
-                                                                ?>
-                                                                    <option value="<?=$sub_object_code?>"  data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="sub_object_code"  value="<?=$particulars;?>" size="60" placeholder="Enter sub-object code"  name="sub_object_code" class="psuacs_code sub_object_code">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
@@ -849,18 +789,10 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
+                                                            <input type="text" id="expense_item"  value="" size="60"  name="expense_item" class="expense_item">
                                                         </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                                <option selected value ="">Choose...</option>
-                                                                <?php foreach($mooeuacsdata as $data){
-                                                                    $sub_object_code = $data['sub_object_code'];
-                                                                    $uacs_code = $data['uacs_code'];
-                                                                ?>
-                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="sub_object_code"  value="" size="60" placeholder="Enter sub-object code"  name="sub_object_code" class="mooeuacs_code sub_object_code">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
@@ -927,18 +859,10 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
+                                                            <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="60"  name="expense_item" class="expense_item">
                                                         </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
-                                                                <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
-                                                                <?php foreach($mooeuacsdata as $data){
-                                                                    $sub_object_code = $data['sub_object_code'];
-                                                                    $uacs_code = $data['uacs_code'];
-                                                                ?>
-                                                                    <option value="<?=$sub_object_code?>"  data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="sub_object_code"  value="<?=$particulars;?>" size="60" placeholder="Enter sub-object code"  name="sub_object_code" class="mooeuacs_code sub_object_code">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
@@ -997,18 +921,10 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="expense_item"  value="" size="25"  name="expense_item" class="expense_item text-center">
+                                                            <input type="text" id="expense_item"  value="" size="60"  name="expense_item" class="expense_item">
                                                         </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form" style="width:300px; height:30px;">
-                                                                <option selected value ="">Choose...</option>
-                                                                <?php foreach($mooeuacsdata as $data){
-                                                                    $sub_object_code = $data['sub_object_code'];
-                                                                    $uacs_code = $data['uacs_code'];
-                                                                ?>
-                                                                    <option value="<?=$sub_object_code?>" data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="sub_object_code"  value="" size="60" placeholder="Enter sub-object code"  name="sub_object_code" class="mooeuacs_code sub_object_code">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center" disabled>
@@ -1075,18 +991,10 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
-                                                            <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="25"  name="expense_item" class="expense_item text-center">
+                                                            <input type="text" id="expense_item"  value="<?=$expense_item;?>" size="60"  name="expense_item" class="expense_item">
                                                         </td>
-                                                        <td class="text-center align-middle" nowrap>
-                                                            <select name="selUacs" class="selUacs form"  style="width:300px; height:30px;">
-                                                                <option selected value ="<?=$particulars;?>"><?=$particulars;?></option>
-                                                                <?php foreach($mooeuacsdata as $data){
-                                                                    $sub_object_code = $data['sub_object_code'];
-                                                                    $uacs_code = $data['uacs_code'];
-                                                                ?>
-                                                                    <option value="<?=$sub_object_code?>"  data-uacs="<?=$uacs_code;?>"><?=$sub_object_code?></option>
-                                                                <?php }?>
-                                                            </select>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="sub_object_code"  value="<?=$particulars;?>" size="60" placeholder="Enter sub-object code"  name="sub_object_code" class="mooeuacs_code sub_object_code">
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center" disabled>
@@ -1691,7 +1599,7 @@ echo view('templates/myheader.php');
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
-<script src="<?=base_url('assets/js/budget/mybudgetallotment.js?v=6');?>"></script>
+<script src="<?=base_url('assets/js/budget/mybudgetallotment.js?v=7');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 
 <!-- Bootstrap JS (and Popper.js) -->
@@ -1799,10 +1707,6 @@ echo view('templates/myheader.php');
     
     });
 
-    $(document).on('change', '.selUacs', function() {
-        var selectedCode = $(this).find('option:selected').data('uacs');
-        $(this).closest('tr').find('.uacs').val(selectedCode);
-    });
 
     $(document).on('change', '#selProjectTitle', function() {
         var selected = $(this).find('option:selected');
@@ -1825,6 +1729,117 @@ echo view('templates/myheader.php');
 
 
 
+</script>
+
+<!-- PROJECT TITLE LOOKUP -->
+<script>
+<?php
+$projects = [];
+foreach ($projectdata as $data) {
+    $projects[$data['project_title']] = [
+        'rc'       => $data['responsibility_code'],
+        'division' => $data['division_name'],
+        'fund'     => $data['fund_cluster_code']
+    ];
+}
+?>
+const projects = <?= json_encode($projects); ?>;
+const project_titles = Object.keys(projects);
+
+$(function () {
+
+  $('.project_title').autocomplete({
+    source: project_titles,
+    minLength: 1,
+    select: function (event, ui) {
+
+      const selected = projects[ui.item.value];
+
+      if (!selected) return;
+
+      $('#responsibility_code').val(selected.rc ?? '');
+      $('#division_name').val(selected.division ?? '');
+      $('#fund_cluster_code').val(selected.fund ?? '');
+
+    }
+  });
+
+});
+</script>
+
+
+<!-- PSUACS TITLE LOOKUP -->
+ <?php
+$psuacs = [];
+foreach ($psuacsdata as $data) {
+    $psuacs[] = [
+        'label'     => $data['sub_object_code'], // shown in dropdown
+        'value'     => $data['sub_object_code'], // filled in input
+        'uacs_code' => $data['uacs_code'],        // mapped value
+    ];
+}
+?>
+<script>
+var psuacs = <?= json_encode($psuacs); ?>;
+
+$(document).on("focus", ".psuacs_code", function () {
+
+  if (!$(this).data("ui-autocomplete")) {
+
+    $(this).autocomplete({
+      source: psuacs,
+      select: function (event, ui) {
+
+        let row = $(this).closest('tr');
+
+        // Set selected values
+        $(this).val(ui.item.value);
+        row.find('.uacs').val(ui.item.uacs_code);
+
+        return false; // stop default behavior
+      }
+    });
+
+  }
+});
+</script>
+
+
+<!-- MOOEUACS TITLE LOOKUP -->
+ <?php
+$mooeuacs = [];
+foreach ($mooeuacsdata as $data) {
+    $mooeuacs[] = [
+        'label'     => $data['sub_object_code'], // what user sees
+        'value'     => $data['sub_object_code'], // what goes in input
+        'uacs_code' => $data['uacs_code'],        // extra data
+    ];
+}
+?>
+
+<script>
+var mooeuacs = <?= json_encode($mooeuacs); ?>;
+
+$(document).on("focus", ".mooeuacs_code", function () {
+
+  if (!$(this).data("ui-autocomplete")) {
+
+    $(this).autocomplete({
+      source: mooeuacs,
+      select: function (event, ui) {
+
+        let row = $(this).closest('tr');
+
+        // Set selected values
+        $(this).val(ui.item.value);
+        row.find('.uacs').val(ui.item.uacs_code);
+
+        return false; // prevent default replace
+      }
+    });
+
+  }
+});
 </script>
 <?php
     echo view('templates/myfooter.php');
