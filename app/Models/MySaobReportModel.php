@@ -2292,7 +2292,7 @@ class MySaobReportModel extends Model
 			// Echo JavaScript to show the toast and then redirect
 			echo "
 			<script>
-				document.getElementById('submitBtn').disabled = true;
+				document.getElementById('submitBtnMain').disabled = true;
 				toastr.$color('{$status}!', 'Well Done!', {
 						progressBar: true,
 						closeButton: true,
@@ -2590,6 +2590,182 @@ class MySaobReportModel extends Model
 		return  $class . '-' . $xnumb . '-' . $xsysmonth . $xsysday;//.$supp
 	} 
 
+	public function savings_save() { 
+		$project_id = $this->request->getPostGet('project_id');
+		$program_title = $this->request->getPostGet('sprogram_title');
+		$savings_date = $this->request->getPostGet('savings_date');
+
+		$savingsdtdata = $this->request->getPostGet('savingsdtdata');
+
+		if (empty($savings_date)) {
+			return $this->response->setJSON([
+				'status'  => 'success',
+				'message' => 'Savings Recorded Successfully!'
+			]);
+			die();
+		}
+
+
+		if (empty($savingsdtdata)) {
+			echo "
+			<script>
+			toastr.error('No particulars found!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+
+		if (!empty($project_id) && empty($savings_date)) {
+			// $accessquery = $this->db->query("
+			// 	SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '1002' AND `is_active` = '1'
+			// ");
+			// if ($accessquery->getNumRows() == 0) {
+			// 	echo "
+			// 	<script>
+			// 	toastr.error('Saving Access Denied! Please Contact the Administrator.', 'Oops!', {
+			// 			progressBar: true,
+			// 			closeButton: true,
+			// 			timeOut:2000,
+			// 		});
+			// 	</script>
+			// 	";
+			// 	die();
+			// }
+
+			//INSERTING PS DT DATA
+			if (!empty($savingsdtdata)) {
+				for($aa = 0; $aa < count($savingsdtdata); $aa++){
+					$medata = explode("x|x",$savingsdtdata[$aa]);
+					$project_title = $medata[0]; 
+					$responsibility_code = $medata[1]; 
+					$project_leader = $medata[2]; 
+					$declared_savings = $medata[3]; 
+					$other_expenses = $medata[4]; 
+					$cna = $medata[5];  
+					$total_obligations = $medata[6]; 
+					$balance_savings = $medata[7]; 
+
+					$query = $this->db->query("
+						INSERT INTO `tbl_saob_savings`(
+							`project_id`,
+							`program_title`,
+							`project_title`,
+							`responsibility_code`,
+							`project_leader`,
+							`declared_savings`,
+							`other_expenses`,
+							`cna`,
+							`total_obligations`,
+							`balance_savings`,
+							`savings_date`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+						[
+							$project_id,
+							$program_title,
+							$project_title,
+							$responsibility_code,
+							$project_leader,
+							$declared_savings,
+							$other_expenses,
+							$cna,
+							$total_obligations,
+							$balance_savings,
+							$savings_date,
+							$this->cuser
+						]
+					);
+					
+				}
+			}
+
+			$status = "Savings Recorded Successfully!";
+			$color = "success";
+		}else{
+			if (!empty($savingsdtdata)) {
+				$query = $this->db->query("DELETE FROM tbl_saob_savings WHERE `project_id` = '$project_id' AND `savings_date` = '$savings_date'");
+				for($aa = 0; $aa < count($savingsdtdata); $aa++){
+					$medata = explode("x|x",$savingsdtdata[$aa]);
+					$project_title = $medata[0]; 
+					$responsibility_code = $medata[1]; 
+					$project_leader = $medata[2]; 
+					$declared_savings = $medata[3]; 
+					$other_expenses = $medata[4]; 
+					$cna = $medata[5];  
+					$total_obligations = $medata[6]; 
+					$balance_savings = $medata[7]; 
+
+					$query = $this->db->query("
+						INSERT INTO `tbl_saob_savings`(
+							`project_id`,
+							`program_title`,
+							`project_title`,
+							`responsibility_code`,
+							`project_leader`,
+							`declared_savings`,
+							`other_expenses`,
+							`cna`,
+							`total_obligations`,
+							`balance_savings`,
+							`savings_date`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+						[
+							$project_id,
+							$program_title,
+							$project_title,
+							$responsibility_code,
+							$project_leader,
+							$declared_savings,
+							$other_expenses,
+							$cna,
+							$total_obligations,
+							$balance_savings,
+							$savings_date,
+							$this->cuser
+						]
+					);
+					
+				}
+			}else{
+				$query = $this->db->query("DELETE FROM tbl_saob_savings WHERE `project_id` = '$project_id' AND `savings_date` = '$savings_date'");
+			}
+			$status = "Savings Updated Successfully!";
+			$color = "info";
+		}
+
+
+		if ($query) {
+			// Echo JavaScript to show the toast and then redirect
+			echo "
+			<script>
+				document.getElementById('submitBtnSavings').disabled = true;
+				toastr.$color('{$status}!', 'Well Done!', {
+						progressBar: true,
+						closeButton: true,
+						timeOut:2500,
+					});
+				setTimeout(function() {
+						window.location.href = 'mysaobrpt?meaction=MAIN'; // Redirect to MAIN view
+					}, 2500); // 2-second delay for user to see the toast
+			</script>
+			";
+			exit; // Stop further PHP execution after the toast
+		} else {
+			// If there's an error, show an alert message
+			echo "<script type='text/javascript'>
+					alert('An error occurred while executing the query.');
+				  </script>";
+			exit;
+		}
+		
+	}
 	
 } //end main class
 ?>

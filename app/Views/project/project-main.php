@@ -5,6 +5,7 @@ $recid = $this->request->getPostGet('recid');
 
 $project_title = "";
 $responsibility_code = "";
+$project_leader = "";
 $mfopaps_code = "";
 $fund_cluster_code = "";
 $fundcluster_id = "";
@@ -22,6 +23,7 @@ if(!empty($recid) || !is_null($recid)) {
         a.`division_id`,
         c.`division_name`,
         a.`responsibility_code`,
+        a.`project_leader`,
         a.`project_title`,
         a.`mfopaps_code`
     FROM
@@ -45,6 +47,7 @@ if(!empty($recid) || !is_null($recid)) {
     $division_name = $data['division_name'];
     $division_id = $data['division_id'];
     $responsibility_code = $data['responsibility_code'];
+    $project_leader = $data['project_leader'];
     $mfopaps_code = $data['mfopaps_code'];
 
 }
@@ -165,8 +168,6 @@ echo view('templates/myheader.php');
                                 <?php endif;?>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6">
                         <div class="row mb-2">
                             <div class="col-sm-4">
                                 <span>Responsibility Code:</span>
@@ -176,6 +177,8 @@ echo view('templates/myheader.php');
                                 <input type="text" id="responsibility_code" name="responsibility_code" value="<?=$responsibility_code;?>" class="form-control form-control-sm" />
                             </div>
                         </div>
+                    </div>
+                    <div class="col-sm-6">
                         <div class="row mb-2">
                             <div class="col-sm-4">
                                 <span>MFO/PAPS:</span>
@@ -204,6 +207,14 @@ echo view('templates/myheader.php');
                                         <?php endforeach; ?>
                                     </select>
                                 <?php endif;?>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span>Project Leader:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" id="project_leader" name="project_leader" value="<?=$project_leader;?>" class="form-control form-control-sm" />
                             </div>
                         </div>
                     </div>

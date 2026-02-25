@@ -1,0 +1,41 @@
+CRITICAL - 2026-02-02 09:34:30 --> ErrorException: Undefined variable $recid
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Controllers\MySaobReport.php on line 240.
+ 1 APPPATH\Controllers\MySaobReport.php(240): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $recid', 'C:\\xampp\\htdocs\\fods\\app\\Controllers\\MySaobReport.php', 240)
+ 2 APPPATH\Controllers\MySaobReport.php(31): App\Controllers\MySaobReport->loadMainView()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-02 13:29:49 --> ErrorException: Undefined array key "project$project_leader"
+[Method: GET, Route: myproject]
+in APPPATH\Views\project\project-main.php on line 50.
+ 1 APPPATH\Views\project\project-main.php(50): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "project$project_leader"', 'C:\\xampp\\htdocs\\fods\\app\\Views\\project\\project-main.php', 50)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\project\\project-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('project/project-main', [], true)
+ 5 APPPATH\Controllers\MyProject.php(105): view('project/project-main', [...])
+ 6 APPPATH\Controllers\MyProject.php(28): App\Controllers\MyProject->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyProject->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProject))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-02 14:22:50 --> ErrorException: Undefined array key "project_leader"
+[Method: GET, Route: mybudgetallotment]
+in APPPATH\Views\budget\budget-allotment-main.php on line 1743.
+ 1 APPPATH\Views\budget\budget-allotment-main.php(1743): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "project_leader"', 'C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-allotment-main.php', 1743)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\budget\\budget-allotment-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('budget/budget-allotment-main', [], true)
+ 5 APPPATH\Controllers\MyBudgetAllotment.php(133): view('budget/budget-allotment-main', [...])
+ 6 APPPATH\Controllers\MyBudgetAllotment.php(28): App\Controllers\MyBudgetAllotment->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyBudgetAllotment->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyBudgetAllotment))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

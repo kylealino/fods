@@ -472,6 +472,11 @@ echo view('templates/myheader.php');
                                 III. Capital Outlay
                                 </a>
                             </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link rounded-pill px-3 fs-3 fw-semibold" data-bs-toggle="tab" href="#ac-pill" role="tab">
+                                IV. Admin Cost
+                                </a>
+                            </li>
                         </ul>
 
                         <!-- Tab panes -->
@@ -1277,6 +1282,101 @@ echo view('templates/myheader.php');
                                 </div>
                             </div>
 
+                            
+                            <!-- AC TAB CONTENT -->
+                            <div class="tab-pane p-3 pb-0" id="ac-pill" role="tabpanel">
+                                <div class="row">
+                                    <div class="table-responsive pe-2 ps-0">
+                                        <div class="col-md-12 mb-2">
+                                            <table id="budget_ac_line_items" class="table-sm table-striped budgetacdata-list">
+                                                <thead>
+                                                    <th class="text-center">
+                                                        <a class="text-info px-2 fs-7 bg-hover-primary nav-icon-hover position-relative z-index-5" id="btn_budgetacitem_add" href="javascript:__mysys_budget_allotment_ent.my_add_budget_ac_line();"><i class="ti ti-new-section"></i></a>
+                                                    </th>
+                                                    <th class="text-center align-middle">Expense Item</th>
+                                                    <th class="text-center align-middle">UACS.</th>
+                                                    <th class="text-center align-middle">Approved Budget</th>
+                                                </thead>
+                                                <tbody class="align-middle">
+                                                    <tr style="display:none;">
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                    href="javascript:void(0)"
+                                                                    onclick="$(this).closest('tr').remove();">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </a>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                    href="javascript:void(0)"
+                                                                    title="Add rows above"
+                                                                    onclick="__mysys_budget_allotment_ent.my_add_budget_ac_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="text" id="particulars"  value="" style="width:300px; height:30px;"  name="particulars" class="particulars text-center">
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="text" id="uacs"  value="" size="25"  name="uacs" class="uacs text-center">
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="approved_budget"  value="" size="25" step="any" data-dtid="" name="approved_budget"  class="approved_budget text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php if(!empty($recid)):
+                                                        $query = $this->db->query("
+                                                        SELECT
+                                                            `recid`,
+                                                            `particulars`,
+                                                            `code`,
+                                                            `approved_budget`
+                                                        FROM
+                                                            `tbl_budget_savings_dt`
+                                                        WHERE 
+                                                            `project_id` = '$recid'"
+                                                        );
+                                                        $result = $query->getResultArray();
+                                                        foreach ($result as $data):
+                                                            $dt_id = $data['recid'];
+                                                            $particulars = $data['particulars'];
+                                                            $code = $data['code'];
+                                                            $approved_budget = $data['approved_budget'];
+                                                    ?>
+                                                    <tr>
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                    href="javascript:void(0)"
+                                                                    onclick="$(this).closest('tr').remove();">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </a>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                    href="javascript:void(0)"
+                                                                    title="Add rows above"
+                                                                    onclick="__mysys_budget_allotment_ent.my_add_budget_ac_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="text" id="particulars"  value="<?=$particulars;?>" style="width:300px; height:30px;"  name="particulars" class="particulars text-center">
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="text" id="uacs"  value="<?=$code;?>" size="25"  name="uacs" class="uacs text-center">
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="approved_budget"  value="<?=$approved_budget;?>" size="25" step="any" data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php endforeach; endif;?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <hr>
 
                             <div class="row mb-3">
@@ -1599,7 +1699,7 @@ echo view('templates/myheader.php');
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
-<script src="<?=base_url('assets/js/budget/mybudgetallotment.js?v=7');?>"></script>
+<script src="<?=base_url('assets/js/budget/mybudgetallotment.js?v=8');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 
 <!-- Bootstrap JS (and Popper.js) -->
@@ -1739,7 +1839,8 @@ foreach ($projectdata as $data) {
     $projects[$data['project_title']] = [
         'rc'       => $data['responsibility_code'],
         'division' => $data['division_name'],
-        'fund'     => $data['fund_cluster_code']
+        'fund'     => $data['fund_cluster_code'],
+        'leader'     => $data['project_leader']
     ];
 }
 ?>
@@ -1760,6 +1861,7 @@ $(function () {
       $('#responsibility_code').val(selected.rc ?? '');
       $('#division_name').val(selected.division ?? '');
       $('#fund_cluster_code').val(selected.fund ?? '');
+      $('#project_leader').val(selected.leader ?? '');
 
     }
   });

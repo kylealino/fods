@@ -61,6 +61,7 @@ class MyBudgetAllotmentModel extends Model
 		$extended_to = $this->request->getPostGet('extended_to');
 		$lddap_refno = $this->request->getPostGet('lddap_refno');
 
+		$budgetacdtdata = $this->request->getPostGet('budgetacdtdata');
 
 		// var_dump('TTTTTTTTTTTTTTTTTTTTT');
 		// var_dump($budgetdtindirectdata);
@@ -567,6 +568,36 @@ class MyBudgetAllotmentModel extends Model
 				}
 			}
 
+			if (!empty($budgetacdtdata)) {
+				//this is for normal saving and updating
+				for($aa = 0; $aa < count($budgetacdtdata); $aa++){
+					$medata = explode("x|x",$budgetacdtdata[$aa]);
+					$particulars = $medata[0]; 
+					$code = $medata[1]; 
+					$approved_budget = $medata[2]; 
+					$dtid = $medata[3]; 
+
+					$query = $this->db->query("
+						INSERT INTO `tbl_budget_savings_dt` (
+							`project_id`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?)
+					", [
+						$project_id,
+						$particulars,
+						$code,
+						$approved_budget,
+						$this->cuser
+					]);
+					
+
+				}
+			}
+
 			$status = "Project Budget Allotment Saved Successfully!";
 			$color = "success";
 		}else{
@@ -925,6 +956,39 @@ class MyBudgetAllotmentModel extends Model
 				}
 			}else{
 				$query = $this->db->query("DELETE FROM tbl_budget_indirect_co_dt WHERE `project_id` = '$project_id'");
+			}
+
+			//INSERTING AC DT DATA
+			if (!empty($budgetacdtdata)) {
+				$query = $this->db->query("DELETE FROM tbl_budget_savings_dt WHERE `project_id` = '$project_id'");
+				//this is for normal saving and updating
+				for($aa = 0; $aa < count($budgetacdtdata); $aa++){
+					$medata = explode("x|x",$budgetacdtdata[$aa]);
+					$particulars = $medata[0]; 
+					$code = $medata[1]; 
+					$approved_budget = $medata[2]; 
+					$dtid = $medata[3]; 
+
+					$query = $this->db->query("
+						INSERT INTO `tbl_budget_savings_dt` (
+							`project_id`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?)
+					", [
+						$project_id,
+						$particulars,
+						$code,
+						$approved_budget,
+						$this->cuser
+					]);
+
+				}
+			}else{
+				$query = $this->db->query("DELETE FROM tbl_budget_savings_dt WHERE `project_id` = '$project_id'");
 			}
 
 			$status = "Project Budget Allotment Updated Successfully!";

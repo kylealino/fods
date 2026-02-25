@@ -1,0 +1,56 @@
+CRITICAL - 2026-02-06 14:40:40 --> ErrorException: Undefined variable $project
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 308.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(308): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $project', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php', 308)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-06 16:10:04 --> ErrorException: Undefined variable $project_title
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 289.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(289): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $project_title', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php', 289)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-06 16:10:14 --> ErrorException: Undefined variable $responsibility_code
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 315.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(315): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $responsibility_code', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php', 315)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-06 16:11:21 --> ErrorException: Undefined variable $responsibility_code
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 315.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(315): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $responsibility_code', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php', 315)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

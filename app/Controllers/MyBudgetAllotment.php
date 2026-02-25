@@ -63,29 +63,66 @@ class MyBudgetAllotment extends BaseController
     private function loadMainView() {
 
         //budget table dt fetching
+
         $budgetdtquery = $this->db->query("
         SELECT 
-            a.`recid`,
-            a.`trxno`,
-            a.`project_title`,
-            a.`responsibility_code`,
-            a.`fund_cluster_code`,
-            a.`division_name`,
-            a.`is_pending`,
-            a.`is_approved`,
-            a.`is_disapproved`,
-            a.`added_at`,
-            (
-                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_ps_dt` WHERE project_id = a.recid), 0) +
-                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_ps_dt` WHERE project_id = a.recid), 0) +
-                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_mooe_dt` WHERE project_id = a.recid), 0) +
-                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
-                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_indirect_co_dt` WHERE project_id = a.recid), 0) +
-                IFNULL((SELECT SUM(`approved_budget`) FROM `tbl_budget_direct_co_dt` WHERE project_id = a.recid), 0)
-            ) AS approved_budget
-        FROM
-            tbl_budget_hd a
+            a.recid,
+            a.trxno,
+            a.project_title,
+            a.responsibility_code,
+            a.fund_cluster_code,
+            a.division_name,
+            a.is_pending,
+            a.is_approved,
+            a.is_disapproved,
+            a.added_at,
+            
+            IFNULL(dps.total,0) +
+            IFNULL(ips.total,0) +
+            IFNULL(dm.total,0) +
+            IFNULL(im.total,0) +
+            IFNULL(ico.total,0) +
+            IFNULL(dco.total,0) AS approved_budget
+
+        FROM tbl_budget_hd a
+
+        LEFT JOIN (
+            SELECT project_id, SUM(approved_budget) total
+            FROM tbl_budget_direct_ps_dt
+            GROUP BY project_id
+        ) dps ON dps.project_id = a.recid
+
+        LEFT JOIN (
+            SELECT project_id, SUM(approved_budget) total
+            FROM tbl_budget_indirect_ps_dt
+            GROUP BY project_id
+        ) ips ON ips.project_id = a.recid
+
+        LEFT JOIN (
+            SELECT project_id, SUM(approved_budget) total
+            FROM tbl_budget_direct_mooe_dt
+            GROUP BY project_id
+        ) dm ON dm.project_id = a.recid
+
+        LEFT JOIN (
+            SELECT project_id, SUM(approved_budget) total
+            FROM tbl_budget_indirect_mooe_dt
+            GROUP BY project_id
+        ) im ON im.project_id = a.recid
+
+        LEFT JOIN (
+            SELECT project_id, SUM(approved_budget) total
+            FROM tbl_budget_indirect_co_dt
+            GROUP BY project_id
+        ) ico ON ico.project_id = a.recid
+
+        LEFT JOIN (
+            SELECT project_id, SUM(approved_budget) total
+            FROM tbl_budget_direct_co_dt
+            GROUP BY project_id
+        ) dco ON dco.project_id = a.recid
         ");
+
         $budgetdtdata = $budgetdtquery->getResultArray();
 
         //hd lookup data
@@ -109,6 +146,7 @@ class MyBudgetAllotment extends BaseController
             a.`division_id`,
             c.`division_name`,
             a.`responsibility_code`,
+            a.`project_leader`,
             a.`project_title`
         FROM
             `tbl_reference_project` a

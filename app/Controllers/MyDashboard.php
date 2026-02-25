@@ -17,11 +17,13 @@ class MyDashboard extends BaseController
         }
 
         // Check if cuser starts with "NAMD"
-        if (str_starts_with($this->cuser, 'BS')) {
-            return view('MyDashboard');       // For users starting with NAMD
-        } else {
-            return view('MyDashboardDev');    // For all others
-        }
+        // if (str_starts_with($this->cuser, 'BS')) {
+        //     return view('MyDashboard');       // For users starting with NAMD
+        // } else {
+        //     return view('MyDashboardDev');    // For all others
+        // }
+
+        return view('MyDashboardDev'); 
     }
 
     public function getSaobSessionData() {

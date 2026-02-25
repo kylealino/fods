@@ -508,6 +508,72 @@ function __mysys_budget_allotment_ent() {
 		}
 	}
 
+	this.my_add_budget_ac_line= function () {
+		try {
+			// Get the total number of rows, excluding the footer row
+			var rowCount = jQuery('#budget_ac_line_items tbody tr').length;
+			var mid = generateRandomID(10) + (rowCount + 1);
+	
+			// Clone the last data row (not the footer)
+			var clonedRow = jQuery('#budget_ac_line_items tbody tr:eq(' + (rowCount - 1) + ')').clone();
+	
+			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col1' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=text]').eq(1).attr('id', 'col2' + mid); // ID for second text field
+			jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
+
+			// Now reset only the debit and credit fields (input[type=number])
+			
+			jQuery(clonedRow).find('input[type=text]').eq(0).val('');  // Clear credit value
+			jQuery(clonedRow).find('input[type=text]').eq(1).val('');  // Clear credit value
+			jQuery(clonedRow).find('input[type=number]').eq(0).val('').attr('data-dtid', '');  // Clear credit value
+			// Insert the cloned row before the last row (footer row)
+			jQuery('#budget_ac_line_items tbody').append(clonedRow);
+
+			// Make the new row visible
+			jQuery(clonedRow).css({ 'display': '' });
+	
+			// Set the ID for the new row
+			jQuery(clonedRow).attr('id', 'tr_rec_' + mid);
+	
+			// Focus on the first input field of the cloned row
+			var xobjArtItem = jQuery(clonedRow).find('input[type=text]').eq(0).attr('id');
+			jQuery('#' + xobjArtItem).focus();
+	
+		} catch (err) {
+			var mtxt = 'There was an error on this page.\\n';
+			mtxt += 'Error description: ' + err.message;
+			mtxt += '\\nClick OK to continue.';
+			alert(mtxt);
+			return false;
+		}
+	}
+
+	this.my_add_budget_ac_line_above = function (elem) {
+		try {
+			var rowCount = jQuery('#budget_ac_line_items tbody tr').length;
+			var mid = generateRandomID(10) + (rowCount + 1);
+
+			// Clone the hidden template row
+			var templateRow = jQuery('#budget_ac_line_items tbody tr:hidden:first').clone();
+
+			// Set new IDs and clear values
+			jQuery(templateRow).find('input[type=text]').eq(0).val('').attr('id', 'col1' + mid);
+			jQuery(templateRow).find('input[type=text]').eq(1).val('').attr('id', 'col2' + mid);
+			jQuery(templateRow).find('input[type=number]').eq(0).attr('id', 'col3' + mid); // ID for date field
+
+			// Insert above the clicked row
+			var currentRow = jQuery(elem).closest('tr');
+			templateRow.css('display', '').attr('id', 'tr_rec_' + mid);
+			templateRow.insertAfter(currentRow);
+
+			// Optional: focus the first input field
+			jQuery(templateRow).find('input[type=text]').eq(0).focus();
+
+		} catch (err) {
+			alert('Error: ' + err.message);
+		}
+	}
+
 	function generateRandomID(length) {
 		const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 		let result = '';
@@ -691,6 +757,21 @@ function __mysys_budget_allotment_ent() {
 						budgetindirectcodtdata.push(coindirectdata);
 					}
 
+					var rowcount4 = jQuery('.budgetacdata-list tr').length;
+					var budgetacdtdata = [];
+					var acdata = '';
+	
+					for (var aa = 2; aa < rowcount4; aa++) {
+						var clonedRow = jQuery('.budgetacdata-list tr:eq(' + aa + ')'); 
+						var particulars = clonedRow.find('input[type=text]').eq(0).val();
+						var uacs = clonedRow.find('input[type=text]').eq(1).val();
+						var approved_budget = clonedRow.find('input[type=number]').eq(0).val();  
+						var dtid = clonedRow.find('input[type=number]').eq(0).attr('data-dtid');
+						
+						acdata = particulars + 'x|x' + uacs + 'x|x' + approved_budget + 'x|x' + dtid;
+						budgetacdtdata.push(acdata);
+					}
+
 					var mparam = { 
 						recid: recid.value,
 						trxno: trxno.value,
@@ -716,6 +797,7 @@ function __mysys_budget_allotment_ent() {
 						budgetmooeindirectdtdata: budgetmooeindirectdtdata,
 						budgetcodtdata: budgetcodtdata,
 						budgetindirectcodtdata: budgetindirectcodtdata,
+						budgetacdtdata: budgetacdtdata,
 						//checkboxes
 						is_realign1: is_realign1,
 						is_realign2: is_realign2,

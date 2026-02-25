@@ -24,6 +24,7 @@ class MyProjectModel extends Model
 		$division_name = $this->request->getPostGet('division_name');
 		$division_id = $this->request->getPostGet('division_id');
 		$responsibility_code = $this->request->getPostGet('responsibility_code');
+		$project_leader = $this->request->getPostGet('project_leader');
 		$mfopaps_code = $this->request->getPostGet('mfopaps_code');
 
 		if (empty($project_title)) {
@@ -74,6 +75,18 @@ class MyProjectModel extends Model
 			";
 			die();
 		}
+		if (empty($project_leader)) {
+			echo "
+			<script>
+			toastr.error('Project Leader is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
 
 
 		if (empty($recid)) {
@@ -82,18 +95,20 @@ class MyProjectModel extends Model
 					fundcluster_id,
 					division_id,
 					responsibility_code,
+					project_leader,
 					mfopaps_code,
 					project_title,
 					added_on,
 					added_by,
 					active_status
 				) VALUES (
-					?, ?, ?, ?, ?, NOW(), ?, '1'
+					?, ?, ?, ?, ?, ?, NOW(), ?, '1'
 				)
 			", [
 				$fundcluster_id,
 				$division_id,
 				$responsibility_code,
+				$project_leader,
 				$mfopaps_code,
 				$project_title,
 				$this->cuser
@@ -108,6 +123,7 @@ class MyProjectModel extends Model
 					fundcluster_id = ?,
 					division_id = ?,
 					responsibility_code = ?,
+					project_leader = ?,
 					mfopaps_code = ?,
 					project_title = ?
 				WHERE recid = ?
@@ -115,6 +131,7 @@ class MyProjectModel extends Model
 				$fundcluster_id,
 				$division_id,
 				$responsibility_code,
+				$project_leader,
 				$mfopaps_code,
 				$project_title,
 				$recid

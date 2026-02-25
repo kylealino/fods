@@ -1,0 +1,1332 @@
+ERROR - 2026-02-25 10:30:10 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippine...' at line 75 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\nSELECT\r\n    b...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\nSELECT\r\n    b...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\nSELECT\r\n    b...')
+#3 C:\xampp\htdocs\fods\app\Views\report\saob-savings-pdf.php(537): CodeIgniter\Database\BaseConnection->query('\r\nSELECT\r\n    b...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('report/saob-sav...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(52): view('report/saob-sav...')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2026-02-25 10:30:10 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippine...' at line 75
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(537): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    budget.program_title,
+    budget.project_title,
+    (SELECT d.`division_name` AS `unit_division` FROM `tbl_division` d JOIN `tbl_reference_project` project on d.recid = project.division_id WHERE project.`project_title` = budget.`project_title`) AS `unit_division`,
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* ========================= TOTAL ALLOTMENT ========================= */
+    (
+        COALESCE((SELECT SUM(dps.approved_budget)
+                  FROM tbl_budget_direct_ps_dt dps
+                  JOIN tbl_budget_hd hd ON dps.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idps.approved_budget)
+                  FROM tbl_budget_indirect_ps_dt idps
+                  JOIN tbl_budget_hd hd ON idps.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(dmooe.approved_budget)
+                  FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idmooe.approved_budget)
+                  FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(dco.approved_budget)
+                  FROM tbl_budget_direct_co_dt dco
+                  JOIN tbl_budget_hd hd ON dco.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idco.approved_budget)
+                  FROM tbl_budget_indirect_co_dt idco
+                  JOIN tbl_budget_hd hd ON idco.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+    ) AS allotment,
+
+    /* ========================= ADMIN COST ========================= */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+
+    /* ========================= THIS MONTH (DEC 2025) ========================= */
+    (
+        COALESCE((SELECT SUM(dps.amount)
+                  FROM tbl_ors_direct_ps_dt dps
+                  JOIN tbl_ors_hd hd ON dps.project_id = hd.recid
+                  WHERE dps.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+        +
+        COALESCE((SELECT SUM(dmooe.amount)
+                  FROM tbl_ors_direct_mooe_dt dmooe
+                  JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+                  WHERE dmooe.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS this_month,
+
+    /* ========================= TO DATE (JAN–DEC 2025) ========================= */
+    (
+        COALESCE((SELECT SUM(dps.amount)
+                  FROM tbl_ors_direct_ps_dt dps
+                  JOIN tbl_ors_hd hd ON dps.project_id = hd.recid
+                  WHERE dps.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+        +
+        COALESCE((SELECT SUM(dmooe.amount)
+                  FROM tbl_ors_direct_mooe_dt dmooe
+                  JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+                  WHERE dmooe.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+                  
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+ORDER BY 
+    CASE 
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 0
+        ELSE 1
+    END,
+    budget.responsibility_code ASC
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-25 10:30:10 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippine...' at line 75
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+SELECT
+    budget.program_title,
+    budget.project_title,
+    (SELECT d.`division_name` AS `unit_division` FROM `tbl_division` d JOIN `tbl_reference_project` project on d.recid = project.division_id WHERE project.`project_title` = budget.`project_title`) AS `unit_division`,
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* ========================= TOTAL ALLOTMENT ========================= */
+    (
+        COALESCE((SELECT SUM(dps.approved_budget)
+                  FROM tbl_budget_direct_ps_dt dps
+                  JOIN tbl_budget_hd hd ON dps.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idps.approved_budget)
+                  FROM tbl_budget_indirect_ps_dt idps
+                  JOIN tbl_budget_hd hd ON idps.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(dmooe.approved_budget)
+                  FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idmooe.approved_budget)
+                  FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(dco.approved_budget)
+                  FROM tbl_budget_direct_co_dt dco
+                  JOIN tbl_budget_hd hd ON dco.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idco.approved_budget)
+                  FROM tbl_budget_indirect_co_dt idco
+                  JOIN tbl_budget_hd hd ON idco.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+    ) AS allotment,
+
+    /* ========================= ADMIN COST ========================= */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+
+    /* ========================= THIS MONTH (DEC 2025) ========================= */
+    (
+        COALESCE((SELECT SUM(dps.amount)
+                  FROM tbl_ors_direct_ps_dt dps
+                  JOIN tbl_ors_hd hd ON dps.project_id = hd.recid
+                  WHERE dps.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+        +
+        COALESCE((SELECT SUM(dmooe.amount)
+                  FROM tbl_ors_direct_mooe_dt dmooe
+                  JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+                  WHERE dmooe.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS this_month,
+
+    /* ========================= TO DATE (JAN–DEC 2025) ========================= */
+    (
+        COALESCE((SELECT SUM(dps.amount)
+                  FROM tbl_ors_direct_ps_dt dps
+                  JOIN tbl_ors_hd hd ON dps.project_id = hd.recid
+                  WHERE dps.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+        +
+        COALESCE((SELECT SUM(dmooe.amount)
+                  FROM tbl_ors_direct_mooe_dt dmooe
+                  JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+                  WHERE dmooe.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+                  
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+ORDER BY 
+    CASE 
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 0
+        ELSE 1
+    END,
+    budget.responsibility_code ASC
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+SELECT
+    budget.program_title,
+    budget.project_title,
+    (SELECT d.`division_name` AS `unit_division` FROM `tbl_division` d JOIN `tbl_reference_project` project on d.recid = project.division_id WHERE project.`project_title` = budget.`project_title`) AS `unit_division`,
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* ========================= TOTAL ALLOTMENT ========================= */
+    (
+        COALESCE((SELECT SUM(dps.approved_budget)
+                  FROM tbl_budget_direct_ps_dt dps
+                  JOIN tbl_budget_hd hd ON dps.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idps.approved_budget)
+                  FROM tbl_budget_indirect_ps_dt idps
+                  JOIN tbl_budget_hd hd ON idps.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(dmooe.approved_budget)
+                  FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idmooe.approved_budget)
+                  FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(dco.approved_budget)
+                  FROM tbl_budget_direct_co_dt dco
+                  JOIN tbl_budget_hd hd ON dco.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idco.approved_budget)
+                  FROM tbl_budget_indirect_co_dt idco
+                  JOIN tbl_budget_hd hd ON idco.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+    ) AS allotment,
+
+    /* ========================= ADMIN COST ========================= */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+
+    /* ========================= THIS MONTH (DEC 2025) ========================= */
+    (
+        COALESCE((SELECT SUM(dps.amount)
+                  FROM tbl_ors_direct_ps_dt dps
+                  JOIN tbl_ors_hd hd ON dps.project_id = hd.recid
+                  WHERE dps.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+        +
+        COALESCE((SELECT SUM(dmooe.amount)
+                  FROM tbl_ors_direct_mooe_dt dmooe
+                  JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+                  WHERE dmooe.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS this_month,
+
+    /* ========================= TO DATE (JAN–DEC 2025) ========================= */
+    (
+        COALESCE((SELECT SUM(dps.amount)
+                  FROM tbl_ors_direct_ps_dt dps
+                  JOIN tbl_ors_hd hd ON dps.project_id = hd.recid
+                  WHERE dps.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+        +
+        COALESCE((SELECT SUM(dmooe.amount)
+                  FROM tbl_ors_direct_mooe_dt dmooe
+                  JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+                  WHERE dmooe.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+                  
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+ORDER BY 
+    CASE 
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 0
+        ELSE 1
+    END,
+    budget.responsibility_code ASC
+')
+ 3 APPPATH\Views\report\saob-savings-pdf.php(537): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    budget.program_title,
+    budget.project_title,
+    (SELECT d.`division_name` AS `unit_division` FROM `tbl_division` d JOIN `tbl_reference_project` project on d.recid = project.division_id WHERE project.`project_title` = budget.`project_title`) AS `unit_division`,
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* ========================= TOTAL ALLOTMENT ========================= */
+    (
+        COALESCE((SELECT SUM(dps.approved_budget)
+                  FROM tbl_budget_direct_ps_dt dps
+                  JOIN tbl_budget_hd hd ON dps.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idps.approved_budget)
+                  FROM tbl_budget_indirect_ps_dt idps
+                  JOIN tbl_budget_hd hd ON idps.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(dmooe.approved_budget)
+                  FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idmooe.approved_budget)
+                  FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(dco.approved_budget)
+                  FROM tbl_budget_direct_co_dt dco
+                  JOIN tbl_budget_hd hd ON dco.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idco.approved_budget)
+                  FROM tbl_budget_indirect_co_dt idco
+                  JOIN tbl_budget_hd hd ON idco.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+    ) AS allotment,
+
+    /* ========================= ADMIN COST ========================= */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+
+    /* ========================= THIS MONTH (DEC 2025) ========================= */
+    (
+        COALESCE((SELECT SUM(dps.amount)
+                  FROM tbl_ors_direct_ps_dt dps
+                  JOIN tbl_ors_hd hd ON dps.project_id = hd.recid
+                  WHERE dps.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+        +
+        COALESCE((SELECT SUM(dmooe.amount)
+                  FROM tbl_ors_direct_mooe_dt dmooe
+                  JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+                  WHERE dmooe.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS this_month,
+
+    /* ========================= TO DATE (JAN–DEC 2025) ========================= */
+    (
+        COALESCE((SELECT SUM(dps.amount)
+                  FROM tbl_ors_direct_ps_dt dps
+                  JOIN tbl_ors_hd hd ON dps.project_id = hd.recid
+                  WHERE dps.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+        +
+        COALESCE((SELECT SUM(dmooe.amount)
+                  FROM tbl_ors_direct_mooe_dt dmooe
+                  JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+                  WHERE dmooe.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+                  
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+ORDER BY 
+    CASE 
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 0
+        ELSE 1
+    END,
+    budget.responsibility_code ASC
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 7 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-25 10:30:10 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippine...' at line 75
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+SELECT
+    budget.program_title,
+    budget.project_title,
+    (SELECT d.`division_name` AS `unit_division` FROM `tbl_division` d JOIN `tbl_reference_project` project on d.recid = project.division_id WHERE project.`project_title` = budget.`project_title`) AS `unit_division`,
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* ========================= TOTAL ALLOTMENT ========================= */
+    (
+        COALESCE((SELECT SUM(dps.approved_budget)
+                  FROM tbl_budget_direct_ps_dt dps
+                  JOIN tbl_budget_hd hd ON dps.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idps.approved_budget)
+                  FROM tbl_budget_indirect_ps_dt idps
+                  JOIN tbl_budget_hd hd ON idps.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(dmooe.approved_budget)
+                  FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idmooe.approved_budget)
+                  FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(dco.approved_budget)
+                  FROM tbl_budget_direct_co_dt dco
+                  JOIN tbl_budget_hd hd ON dco.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idco.approved_budget)
+                  FROM tbl_budget_indirect_co_dt idco
+                  JOIN tbl_budget_hd hd ON idco.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+    ) AS allotment,
+
+    /* ========================= ADMIN COST ========================= */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+
+    /* ========================= THIS MONTH (DEC 2025) ========================= */
+    (
+        COALESCE((SELECT SUM(dps.amount)
+                  FROM tbl_ors_direct_ps_dt dps
+                  JOIN tbl_ors_hd hd ON dps.project_id = hd.recid
+                  WHERE dps.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+        +
+        COALESCE((SELECT SUM(dmooe.amount)
+                  FROM tbl_ors_direct_mooe_dt dmooe
+                  JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+                  WHERE dmooe.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS this_month,
+
+    /* ========================= TO DATE (JAN–DEC 2025) ========================= */
+    (
+        COALESCE((SELECT SUM(dps.amount)
+                  FROM tbl_ors_direct_ps_dt dps
+                  JOIN tbl_ors_hd hd ON dps.project_id = hd.recid
+                  WHERE dps.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+        +
+        COALESCE((SELECT SUM(dmooe.amount)
+                  FROM tbl_ors_direct_mooe_dt dmooe
+                  JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+                  WHERE dmooe.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+                  
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+ORDER BY 
+    CASE 
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 0
+        ELSE 1
+    END,
+    budget.responsibility_code ASC
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+SELECT
+    budget.program_title,
+    budget.project_title,
+    (SELECT d.`division_name` AS `unit_division` FROM `tbl_division` d JOIN `tbl_reference_project` project on d.recid = project.division_id WHERE project.`project_title` = budget.`project_title`) AS `unit_division`,
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* ========================= TOTAL ALLOTMENT ========================= */
+    (
+        COALESCE((SELECT SUM(dps.approved_budget)
+                  FROM tbl_budget_direct_ps_dt dps
+                  JOIN tbl_budget_hd hd ON dps.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idps.approved_budget)
+                  FROM tbl_budget_indirect_ps_dt idps
+                  JOIN tbl_budget_hd hd ON idps.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(dmooe.approved_budget)
+                  FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idmooe.approved_budget)
+                  FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(dco.approved_budget)
+                  FROM tbl_budget_direct_co_dt dco
+                  JOIN tbl_budget_hd hd ON dco.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idco.approved_budget)
+                  FROM tbl_budget_indirect_co_dt idco
+                  JOIN tbl_budget_hd hd ON idco.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+    ) AS allotment,
+
+    /* ========================= ADMIN COST ========================= */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+
+    /* ========================= THIS MONTH (DEC 2025) ========================= */
+    (
+        COALESCE((SELECT SUM(dps.amount)
+                  FROM tbl_ors_direct_ps_dt dps
+                  JOIN tbl_ors_hd hd ON dps.project_id = hd.recid
+                  WHERE dps.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+        +
+        COALESCE((SELECT SUM(dmooe.amount)
+                  FROM tbl_ors_direct_mooe_dt dmooe
+                  JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+                  WHERE dmooe.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS this_month,
+
+    /* ========================= TO DATE (JAN–DEC 2025) ========================= */
+    (
+        COALESCE((SELECT SUM(dps.amount)
+                  FROM tbl_ors_direct_ps_dt dps
+                  JOIN tbl_ors_hd hd ON dps.project_id = hd.recid
+                  WHERE dps.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+        +
+        COALESCE((SELECT SUM(dmooe.amount)
+                  FROM tbl_ors_direct_mooe_dt dmooe
+                  JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+                  WHERE dmooe.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+                  
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+ORDER BY 
+    CASE 
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 0
+        ELSE 1
+    END,
+    budget.responsibility_code ASC
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+SELECT
+    budget.program_title,
+    budget.project_title,
+    (SELECT d.`division_name` AS `unit_division` FROM `tbl_division` d JOIN `tbl_reference_project` project on d.recid = project.division_id WHERE project.`project_title` = budget.`project_title`) AS `unit_division`,
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* ========================= TOTAL ALLOTMENT ========================= */
+    (
+        COALESCE((SELECT SUM(dps.approved_budget)
+                  FROM tbl_budget_direct_ps_dt dps
+                  JOIN tbl_budget_hd hd ON dps.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idps.approved_budget)
+                  FROM tbl_budget_indirect_ps_dt idps
+                  JOIN tbl_budget_hd hd ON idps.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(dmooe.approved_budget)
+                  FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idmooe.approved_budget)
+                  FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(dco.approved_budget)
+                  FROM tbl_budget_direct_co_dt dco
+                  JOIN tbl_budget_hd hd ON dco.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idco.approved_budget)
+                  FROM tbl_budget_indirect_co_dt idco
+                  JOIN tbl_budget_hd hd ON idco.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+    ) AS allotment,
+
+    /* ========================= ADMIN COST ========================= */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+
+    /* ========================= THIS MONTH (DEC 2025) ========================= */
+    (
+        COALESCE((SELECT SUM(dps.amount)
+                  FROM tbl_ors_direct_ps_dt dps
+                  JOIN tbl_ors_hd hd ON dps.project_id = hd.recid
+                  WHERE dps.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+        +
+        COALESCE((SELECT SUM(dmooe.amount)
+                  FROM tbl_ors_direct_mooe_dt dmooe
+                  JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+                  WHERE dmooe.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS this_month,
+
+    /* ========================= TO DATE (JAN–DEC 2025) ========================= */
+    (
+        COALESCE((SELECT SUM(dps.amount)
+                  FROM tbl_ors_direct_ps_dt dps
+                  JOIN tbl_ors_hd hd ON dps.project_id = hd.recid
+                  WHERE dps.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+        +
+        COALESCE((SELECT SUM(dmooe.amount)
+                  FROM tbl_ors_direct_mooe_dt dmooe
+                  JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+                  WHERE dmooe.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+                  
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+ORDER BY 
+    CASE 
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 0
+        ELSE 1
+    END,
+    budget.responsibility_code ASC
+')
+ 4 APPPATH\Views\report\saob-savings-pdf.php(537): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    budget.program_title,
+    budget.project_title,
+    (SELECT d.`division_name` AS `unit_division` FROM `tbl_division` d JOIN `tbl_reference_project` project on d.recid = project.division_id WHERE project.`project_title` = budget.`project_title`) AS `unit_division`,
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* ========================= TOTAL ALLOTMENT ========================= */
+    (
+        COALESCE((SELECT SUM(dps.approved_budget)
+                  FROM tbl_budget_direct_ps_dt dps
+                  JOIN tbl_budget_hd hd ON dps.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idps.approved_budget)
+                  FROM tbl_budget_indirect_ps_dt idps
+                  JOIN tbl_budget_hd hd ON idps.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(dmooe.approved_budget)
+                  FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idmooe.approved_budget)
+                  FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(dco.approved_budget)
+                  FROM tbl_budget_direct_co_dt dco
+                  JOIN tbl_budget_hd hd ON dco.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+        + COALESCE((SELECT SUM(idco.approved_budget)
+                  FROM tbl_budget_indirect_co_dt idco
+                  JOIN tbl_budget_hd hd ON idco.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+    ) AS allotment,
+
+    /* ========================= ADMIN COST ========================= */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+
+    /* ========================= THIS MONTH (DEC 2025) ========================= */
+    (
+        COALESCE((SELECT SUM(dps.amount)
+                  FROM tbl_ors_direct_ps_dt dps
+                  JOIN tbl_ors_hd hd ON dps.project_id = hd.recid
+                  WHERE dps.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+        +
+        COALESCE((SELECT SUM(dmooe.amount)
+                  FROM tbl_ors_direct_mooe_dt dmooe
+                  JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+                  WHERE dmooe.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS this_month,
+
+    /* ========================= TO DATE (JAN–DEC 2025) ========================= */
+    (
+        COALESCE((SELECT SUM(dps.amount)
+                  FROM tbl_ors_direct_ps_dt dps
+                  JOIN tbl_ors_hd hd ON dps.project_id = hd.recid
+                  WHERE dps.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+        +
+        COALESCE((SELECT SUM(dmooe.amount)
+                  FROM tbl_ors_direct_mooe_dt dmooe
+                  JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+                  WHERE dmooe.project_title = budget.project_title
+                  AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+                  
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Expanding the FNRI\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+ORDER BY 
+    CASE 
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 0
+        ELSE 1
+    END,
+    budget.responsibility_code ASC
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 8 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-02-25 11:16:30 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'hd.ors_date BETWEEN '2026-01-01' AND '2026-01-31'),0)
+      + COALESCE((SELE...' at line 35 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\nSELECT\r\n    b...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\nSELECT\r\n    b...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\nSELECT\r\n    b...')
+#3 C:\xampp\htdocs\fods\app\Views\report\saob-savings-pdf.php(537): CodeIgniter\Database\BaseConnection->query('\r\nSELECT\r\n    b...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('report/saob-sav...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(52): view('report/saob-sav...')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2026-02-25 11:16:30 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'hd.ors_date BETWEEN '2026-01-01' AND '2026-01-31'),0)
+      + COALESCE((SELE...' at line 35
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(537): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    budget.program_title,
+    budget.project_title,
+
+    (SELECT d.division_name
+     FROM tbl_division d
+     JOIN tbl_reference_project project 
+        ON d.recid = project.division_id
+     WHERE project.project_title = budget.project_title
+    ) AS unit_division,
+
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* TOTAL ALLOTMENT */
+      (
+            COALESCE((SELECT SUM(dmooe.approved_budget) FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+            + COALESCE((SELECT SUM(idmooe.approved_budget) FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+      ) AS allotment,
+
+    /* ADMIN COST */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+    /* THIS MONTH */
+
+   (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+         JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+         WHERE dmooe.project_title = budget.project_title hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+         JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+         WHERE idmooe.project_title = budget.project_title hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+   ) AS this_month,
+
+    /* TO DATE (Jan to Selected Month) */
+    (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+            JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+            WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+            JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+            WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+
+ORDER BY 
+    CASE 
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 0
+        ELSE 1
+    END,
+    budget.responsibility_code ASC
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-25 11:16:30 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'hd.ors_date BETWEEN '2026-01-01' AND '2026-01-31'),0)
+      + COALESCE((SELE...' at line 35
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+SELECT
+    budget.program_title,
+    budget.project_title,
+
+    (SELECT d.division_name
+     FROM tbl_division d
+     JOIN tbl_reference_project project 
+        ON d.recid = project.division_id
+     WHERE project.project_title = budget.project_title
+    ) AS unit_division,
+
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* TOTAL ALLOTMENT */
+      (
+            COALESCE((SELECT SUM(dmooe.approved_budget) FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+            + COALESCE((SELECT SUM(idmooe.approved_budget) FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+      ) AS allotment,
+
+    /* ADMIN COST */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+    /* THIS MONTH */
+
+   (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+         JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+         WHERE dmooe.project_title = budget.project_title hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+         JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+         WHERE idmooe.project_title = budget.project_title hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+   ) AS this_month,
+
+    /* TO DATE (Jan to Selected Month) */
+    (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+            JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+            WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+            JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+            WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+
+ORDER BY 
+    CASE 
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 0
+        ELSE 1
+    END,
+    budget.responsibility_code ASC
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+SELECT
+    budget.program_title,
+    budget.project_title,
+
+    (SELECT d.division_name
+     FROM tbl_division d
+     JOIN tbl_reference_project project 
+        ON d.recid = project.division_id
+     WHERE project.project_title = budget.project_title
+    ) AS unit_division,
+
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* TOTAL ALLOTMENT */
+      (
+            COALESCE((SELECT SUM(dmooe.approved_budget) FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+            + COALESCE((SELECT SUM(idmooe.approved_budget) FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+      ) AS allotment,
+
+    /* ADMIN COST */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+    /* THIS MONTH */
+
+   (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+         JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+         WHERE dmooe.project_title = budget.project_title hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+         JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+         WHERE idmooe.project_title = budget.project_title hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+   ) AS this_month,
+
+    /* TO DATE (Jan to Selected Month) */
+    (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+            JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+            WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+            JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+            WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+
+ORDER BY 
+    CASE 
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 0
+        ELSE 1
+    END,
+    budget.responsibility_code ASC
+')
+ 3 APPPATH\Views\report\saob-savings-pdf.php(537): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    budget.program_title,
+    budget.project_title,
+
+    (SELECT d.division_name
+     FROM tbl_division d
+     JOIN tbl_reference_project project 
+        ON d.recid = project.division_id
+     WHERE project.project_title = budget.project_title
+    ) AS unit_division,
+
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* TOTAL ALLOTMENT */
+      (
+            COALESCE((SELECT SUM(dmooe.approved_budget) FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+            + COALESCE((SELECT SUM(idmooe.approved_budget) FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+      ) AS allotment,
+
+    /* ADMIN COST */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+    /* THIS MONTH */
+
+   (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+         JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+         WHERE dmooe.project_title = budget.project_title hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+         JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+         WHERE idmooe.project_title = budget.project_title hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+   ) AS this_month,
+
+    /* TO DATE (Jan to Selected Month) */
+    (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+            JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+            WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+            JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+            WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+
+ORDER BY 
+    CASE 
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 0
+        ELSE 1
+    END,
+    budget.responsibility_code ASC
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 7 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-25 11:16:30 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'hd.ors_date BETWEEN '2026-01-01' AND '2026-01-31'),0)
+      + COALESCE((SELE...' at line 35
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+SELECT
+    budget.program_title,
+    budget.project_title,
+
+    (SELECT d.division_name
+     FROM tbl_division d
+     JOIN tbl_reference_project project 
+        ON d.recid = project.division_id
+     WHERE project.project_title = budget.project_title
+    ) AS unit_division,
+
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* TOTAL ALLOTMENT */
+      (
+            COALESCE((SELECT SUM(dmooe.approved_budget) FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+            + COALESCE((SELECT SUM(idmooe.approved_budget) FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+      ) AS allotment,
+
+    /* ADMIN COST */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+    /* THIS MONTH */
+
+   (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+         JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+         WHERE dmooe.project_title = budget.project_title hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+         JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+         WHERE idmooe.project_title = budget.project_title hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+   ) AS this_month,
+
+    /* TO DATE (Jan to Selected Month) */
+    (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+            JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+            WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+            JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+            WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+
+ORDER BY 
+    CASE 
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 0
+        ELSE 1
+    END,
+    budget.responsibility_code ASC
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+SELECT
+    budget.program_title,
+    budget.project_title,
+
+    (SELECT d.division_name
+     FROM tbl_division d
+     JOIN tbl_reference_project project 
+        ON d.recid = project.division_id
+     WHERE project.project_title = budget.project_title
+    ) AS unit_division,
+
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* TOTAL ALLOTMENT */
+      (
+            COALESCE((SELECT SUM(dmooe.approved_budget) FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+            + COALESCE((SELECT SUM(idmooe.approved_budget) FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+      ) AS allotment,
+
+    /* ADMIN COST */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+    /* THIS MONTH */
+
+   (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+         JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+         WHERE dmooe.project_title = budget.project_title hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+         JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+         WHERE idmooe.project_title = budget.project_title hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+   ) AS this_month,
+
+    /* TO DATE (Jan to Selected Month) */
+    (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+            JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+            WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+            JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+            WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+
+ORDER BY 
+    CASE 
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 0
+        ELSE 1
+    END,
+    budget.responsibility_code ASC
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+SELECT
+    budget.program_title,
+    budget.project_title,
+
+    (SELECT d.division_name
+     FROM tbl_division d
+     JOIN tbl_reference_project project 
+        ON d.recid = project.division_id
+     WHERE project.project_title = budget.project_title
+    ) AS unit_division,
+
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* TOTAL ALLOTMENT */
+      (
+            COALESCE((SELECT SUM(dmooe.approved_budget) FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+            + COALESCE((SELECT SUM(idmooe.approved_budget) FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+      ) AS allotment,
+
+    /* ADMIN COST */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+    /* THIS MONTH */
+
+   (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+         JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+         WHERE dmooe.project_title = budget.project_title hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+         JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+         WHERE idmooe.project_title = budget.project_title hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+   ) AS this_month,
+
+    /* TO DATE (Jan to Selected Month) */
+    (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+            JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+            WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+            JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+            WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+
+ORDER BY 
+    CASE 
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 0
+        ELSE 1
+    END,
+    budget.responsibility_code ASC
+')
+ 4 APPPATH\Views\report\saob-savings-pdf.php(537): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    budget.program_title,
+    budget.project_title,
+
+    (SELECT d.division_name
+     FROM tbl_division d
+     JOIN tbl_reference_project project 
+        ON d.recid = project.division_id
+     WHERE project.project_title = budget.project_title
+    ) AS unit_division,
+
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* TOTAL ALLOTMENT */
+      (
+            COALESCE((SELECT SUM(dmooe.approved_budget) FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+            + COALESCE((SELECT SUM(idmooe.approved_budget) FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+      ) AS allotment,
+
+    /* ADMIN COST */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+    /* THIS MONTH */
+
+   (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+         JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+         WHERE dmooe.project_title = budget.project_title hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+         JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+         WHERE idmooe.project_title = budget.project_title hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+   ) AS this_month,
+
+    /* TO DATE (Jan to Selected Month) */
+    (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+            JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+            WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+            JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+            WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+
+ORDER BY 
+    CASE 
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 0
+        ELSE 1
+    END,
+    budget.responsibility_code ASC
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 8 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-25 13:21:40 --> ErrorException: Undefined variable $rw
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 371.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(371): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $rw', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php', 371)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-25 13:22:19 --> ErrorException: Undefined variable $page_break_y
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 373.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(373): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $page_break_y', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php', 373)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

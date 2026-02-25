@@ -1345,7 +1345,7 @@ echo view('templates/myheader.php');
                         </div>
                         <div class="row mb-2">  
                             <div class="col-sm-12 text-end">
-                                <button type="submit" id="submitBtn" class="btn bg-<?= empty($recid) ? 'success' : 'info' ?>-subtle text-<?= empty($recid) ? 'success' : 'info' ?> btn-sm"><i class="ti ti-brand-doctrine mt-1 fs-4 me-1"></i>
+                                <button type="submit" id="submitBtnMain" class="btn bg-<?= empty($recid) ? 'success' : 'info' ?>-subtle text-<?= empty($recid) ? 'success' : 'info' ?> btn-sm"><i class="ti ti-brand-doctrine mt-1 fs-4 me-1"></i>
                                     <?= empty($recid) ? 'Save' : 'Update' ?>
                                 </button>
                             </div>
@@ -1356,6 +1356,7 @@ echo view('templates/myheader.php');
         </div>
     </div>
 
+    <!-- RECORD LIST -->
     <div class="row mb-2">
         <div class="col-sm-12">
             <div class="card">
@@ -1374,7 +1375,7 @@ echo view('templates/myheader.php');
                         <thead>
                             <tr>
                                 <th>Action</th>
-                                <th>Program Title</th>
+                                <th>Program/Project Title</th>
                                 <th>Year</th>
                                 <th>Reuse</th>
                             </tr>
@@ -1384,6 +1385,7 @@ echo view('templates/myheader.php');
                                 foreach ($saobhddata as $data):
                                     $dt_recid = $data['recid'];
                                     $hdtrxno = $data['trxno'];
+                                    $program_title = $data['program_title'];
                                     $project_title = $data['project_title'];
                                     $current_year = $data['current_year'];
                             ?>
@@ -1409,6 +1411,8 @@ echo view('templates/myheader.php');
         </div>
     </div>
 
+
+    <!-- PDF EXTRACTION -->
     <div class="row mb-2">
         <div class="col-sm-12">
             <div class="card">
@@ -1447,6 +1451,7 @@ echo view('templates/myheader.php');
                         <div class="col-sm-4">
                             <select name="year" id="year" class="form-select form-select-sm">
                                 <option value="">-- Select Year --</option>
+                                <option value="2026">2026</option>
                                 <option value="2025">2025</option>
                                 <option value="2024">2024</option>
                                 <option value="2023">2023</option>
@@ -1484,6 +1489,7 @@ echo view('templates/myheader.php');
         </div>
     </div>
 
+    <!-- ORS CSV EXTRACTION -->
     <div class="row mb-2">
         <div class="col-sm-12">
             <div class="card">
@@ -1492,7 +1498,7 @@ echo view('templates/myheader.php');
                         <div class="col-sm-6 d-flex align-items-center text-start">
                             <h6 class="mb-0 lh-base px-3 text-white fw-semibold d-flex align-items-center">
                                 <i class="ti ti-file"></i>
-                                <span class="pt-1 px-1">CSV Extraction</span>
+                                <span class="pt-1 px-1">ORS Extraction</span>
                             </h6>
                         </div>
                         <div class="col-sm-6 text-end ">
@@ -1522,6 +1528,58 @@ echo view('templates/myheader.php');
         </div>
     </div>
 
+    <!-- MONTHLY CSV EXTRACTION -->
+    <div class="row mb-2">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header bg-info p-1">
+                    <div class="row">
+                        <div class="col-sm-6 d-flex align-items-center text-start">
+                            <h6 class="mb-0 lh-base px-3 text-white fw-semibold d-flex align-items-center">
+                                <i class="ti ti-file"></i>
+                                <span class="pt-1 px-1">Monthly Report Extraction</span>
+                            </h6>
+                        </div>
+                        <div class="col-sm-6 text-end ">
+
+                        </div>
+                    </div>
+                </div>						
+                <div class="card-body p-0 px-4 py-2 my-2">
+                    <div class="row mb-2 align-items-end">
+                        <!-- Program Title -->
+                        <div class="col-sm-4">
+                            <label class="fw-bold">Program Title:</label>
+                            <input type="text" id="monthly_program_title" placeholder="Select program title" name="monthly_program_title" 
+                                class="form-control form-control-sm"/>
+                        </div>
+                        <!-- Month + Icons -->
+                        <div class="col-sm-4">
+                            <label class="fw-bold">Select Month:</label>
+                            <div class="d-flex align-items-center gap-2">
+                                <input type="month" id="month_year" 
+                                    class="form-control form-control-sm">
+                                <!-- CSV Icon -->
+                                <button class="btn btn-sm text-success p-0 border-0 bg-transparent"
+                                    onclick="__mysys_saob_rpt_ent.__saob_export_csv_month('<?= base_url('monthly-export-csv')?>')"
+                                    title="Export CSV file">
+                                    <i class="ti ti-file-analytics fs-8"></i>
+                                </button>
+                                <!-- Print Icon -->
+                                <button class="btn btn-sm text-secondary p-0 border-0 bg-transparent"
+                                    onclick="__mysys_saob_rpt_ent.__printSavings('<?= base_url('mysaobrpt') ?>')" 
+                                    title="Print Monthly Status">
+                                    <i class="ti ti-printer fs-8"></i>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row me-myua-access-outp-msg mx-0">
     </div>
 </div>
@@ -1540,18 +1598,100 @@ echo view('templates/myheader.php');
   </div>
 </div>
 
+<div class="modal fade" id="pdfModalSavings" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Monthly Status Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe id="pdfSavings" src="" style="width: 100%; height: 80vh;" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
-<script src="<?=base_url('assets/js/report/mysaobreport.js?v=3');?>"></script>
+<script src="<?=base_url('assets/js/report/mysaobreport.js?v=5');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 
 </script>
 <script>
     __mysys_saob_rpt_ent.__saob_saving();
     __mysys_saob_rpt_ent.__combined_totals();
+</script>
+
+<!-- PROJECT TITLE LOOKUP -->
+<script>
+<?php
+$projects = [];
+foreach ($projectdata as $data) {
+    $projects[$data['project_title']] = [
+        'rc' => $data['responsibility_code']
+    ];
+}
+?>
+var projects = <?= json_encode($projects); ?>;
+var project_titles = Object.keys(projects);
+
+$(function () {
+
+  $(document).on("focus", ".project_title", function () {
+
+    if (!$(this).data("ui-autocomplete")) {
+
+      $(this).autocomplete({
+        source: project_titles,
+        select: function (event, ui) {
+
+          let row = $(this).closest('tr'); // change if not in table
+
+          row.find('.responsibility_code')
+             .val(projects[ui.item.value].rc);
+
+        }
+      });
+
+    }
+
+  });
+
+});
+</script>
+
+<!-- PROGRAM TITLE LOOKUP -->
+<script>
+<?php
+    $programs = [
+        'General Administration and Support Service',
+        'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition',
+        "Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center",
+        'Nutritional Assessment and Monitoring on Food and Nutrition',
+        'Expanded National Nutrition Survey',
+        'Technical Services on Food and Nutrition'
+    ];
+?>
+var programs = <?php echo json_encode($programs); ?>;
+$(function() {
+  // Initialize autocomplete for all existing textareas
+  $("#monthly_program_title").autocomplete({
+    source: programs
+  });
+
+  // Re-initialize whenever a new row is added dynamically
+  $(document).on("focus", "#monthly_program_title", function () {
+    if (!$(this).data("uiAutocomplete")) {
+      $(this).autocomplete({
+        source: programs
+      });
+    }
+  });
+});
 </script>
 
 <?php
