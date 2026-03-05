@@ -1,0 +1,1066 @@
+ERROR - 2026-02-27 10:23:13 --> mysqli_sql_exception: Unknown column 'budget.project_title' in 'where clause' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n   SELECT\r\n  ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n   SELECT\r\n  ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n   SELECT\r\n  ...')
+#3 C:\xampp\htdocs\fods\app\Views\report\saob-savings-pdf.php(664): CodeIgniter\Database\BaseConnection->query('\r\n   SELECT\r\n  ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('report/saob-sav...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(52): view('report/saob-sav...')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2026-02-27 10:23:13 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'budget.project_title' in 'where clause'
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(664): CodeIgniter\Database\BaseConnection->query('
+   SELECT
+      project.division_name AS unit_division
+   FROM tbl_budget_hd project
+   WHERE budget.project_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition (2026)\'
+
+   ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-27 10:23:13 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'budget.project_title' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+   SELECT
+      project.division_name AS unit_division
+   FROM tbl_budget_hd project
+   WHERE budget.project_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition (2026)\'
+
+   ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+   SELECT
+      project.division_name AS unit_division
+   FROM tbl_budget_hd project
+   WHERE budget.project_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition (2026)\'
+
+   ')
+ 3 APPPATH\Views\report\saob-savings-pdf.php(664): CodeIgniter\Database\BaseConnection->query('
+   SELECT
+      project.division_name AS unit_division
+   FROM tbl_budget_hd project
+   WHERE budget.project_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition (2026)\'
+
+   ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 7 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-27 10:23:13 --> [Caused by] mysqli_sql_exception: Unknown column 'budget.project_title' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+   SELECT
+      project.division_name AS unit_division
+   FROM tbl_budget_hd project
+   WHERE budget.project_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition (2026)\'
+
+   ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+   SELECT
+      project.division_name AS unit_division
+   FROM tbl_budget_hd project
+   WHERE budget.project_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition (2026)\'
+
+   ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+   SELECT
+      project.division_name AS unit_division
+   FROM tbl_budget_hd project
+   WHERE budget.project_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition (2026)\'
+
+   ')
+ 4 APPPATH\Views\report\saob-savings-pdf.php(664): CodeIgniter\Database\BaseConnection->query('
+   SELECT
+      project.division_name AS unit_division
+   FROM tbl_budget_hd project
+   WHERE budget.project_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition (2026)\'
+
+   ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 8 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-02-27 10:23:44 --> mysqli_sql_exception: Unknown column 'budget.project_title' in 'where clause' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n   SELECT\r\n  ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n   SELECT\r\n  ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n   SELECT\r\n  ...')
+#3 C:\xampp\htdocs\fods\app\Views\report\saob-savings-pdf.php(664): CodeIgniter\Database\BaseConnection->query('\r\n   SELECT\r\n  ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('report/saob-sav...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(52): view('report/saob-sav...')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2026-02-27 10:23:44 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'budget.project_title' in 'where clause'
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(664): CodeIgniter\Database\BaseConnection->query('
+   SELECT
+      project.division_name AS unit_division
+   FROM tbl_budget_hd project
+   WHERE budget.project_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition (2026)\'
+
+   ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-27 10:23:44 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'budget.project_title' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+   SELECT
+      project.division_name AS unit_division
+   FROM tbl_budget_hd project
+   WHERE budget.project_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition (2026)\'
+
+   ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+   SELECT
+      project.division_name AS unit_division
+   FROM tbl_budget_hd project
+   WHERE budget.project_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition (2026)\'
+
+   ')
+ 3 APPPATH\Views\report\saob-savings-pdf.php(664): CodeIgniter\Database\BaseConnection->query('
+   SELECT
+      project.division_name AS unit_division
+   FROM tbl_budget_hd project
+   WHERE budget.project_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition (2026)\'
+
+   ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 7 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-27 10:23:44 --> [Caused by] mysqli_sql_exception: Unknown column 'budget.project_title' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+   SELECT
+      project.division_name AS unit_division
+   FROM tbl_budget_hd project
+   WHERE budget.project_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition (2026)\'
+
+   ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+   SELECT
+      project.division_name AS unit_division
+   FROM tbl_budget_hd project
+   WHERE budget.project_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition (2026)\'
+
+   ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+   SELECT
+      project.division_name AS unit_division
+   FROM tbl_budget_hd project
+   WHERE budget.project_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition (2026)\'
+
+   ')
+ 4 APPPATH\Views\report\saob-savings-pdf.php(664): CodeIgniter\Database\BaseConnection->query('
+   SELECT
+      project.division_name AS unit_division
+   FROM tbl_budget_hd project
+   WHERE budget.project_title = \'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition (2026)\'
+
+   ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 8 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-27 13:53:18 --> TypeError: number_format(): Argument #1 ($num) must be of type float, string given
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 726.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(726): number_format('3,940,000.00', 2)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-27 13:53:22 --> TypeError: number_format(): Argument #1 ($num) must be of type float, string given
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 726.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(726): number_format('3,940,000.00', 2)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-27 13:53:46 --> TypeError: number_format(): Argument #1 ($num) must be of type float, string given
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 726.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(726): number_format('3,940,000.00', 2)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-27 13:54:43 --> TypeError: number_format(): Argument #1 ($num) must be of type float, string given
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 727.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(727): number_format('3,940,000.00', 2)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-27 14:21:24 --> ParseError: syntax error, unexpected identifier "Expanding", expecting ")"
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 646.
+ 1 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 3 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-02-27 14:28:04 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '%Expanding the FNRI%
+             THEN 4
+             
+        WHEN budget...' at line 62 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\nSELECT\r\n    b...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\nSELECT\r\n    b...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\nSELECT\r\n    b...')
+#3 C:\xampp\htdocs\fods\app\Views\report\saob-savings-pdf.php(659): CodeIgniter\Database\BaseConnection->query('\r\nSELECT\r\n    b...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('report/saob-sav...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(52): view('report/saob-sav...')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2026-02-27 14:28:04 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '%Expanding the FNRI%
+             THEN 4
+             
+        WHEN budget...' at line 62
+[Method: GET, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(659): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    budget.program_title,
+    budget.project_title,
+    budget.division_name AS unit_division,
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* TOTAL ALLOTMENT */
+      (
+            COALESCE((SELECT SUM(dmooe.approved_budget) FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+            + COALESCE((SELECT SUM(idmooe.approved_budget) FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+      ) AS allotment,
+
+    /* ADMIN COST */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+    /* THIS MONTH */
+
+   (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+         JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+         WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+         JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+         WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+   ) AS this_month,
+
+    /* TO DATE (Jan to Selected Month) */
+    (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+            JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+            WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+            JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+            WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Expanding the FNRI\\\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+
+ORDER BY 
+    CASE 
+        /* Group 1: Admin/Support Units (FAD/MIS) */
+        WHEN budget.responsibility_code LIKE \'%-3-4(FAD)-%\' THEN 0
+        WHEN budget.responsibility_code LIKE \'%-3-4(MIS)-%\' THEN 1
+        
+        /* Group 2: The 2-3 series Manual sequencing */
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-1-2026\' THEN 2
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-2-2026\' THEN 3
+        
+        /* Moving these two AFTER 2-3-2 ONLY for the specific Nutrigenomics program */
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-2026\' 
+             AND budget.program_title = %Expanding the FNRI%
+             THEN 4
+             
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-3-2026\' 
+             AND budget.program_title LIKE %Expanding the FNRI%
+             THEN 5
+        
+        /* Group 3: Other specific codes */
+        WHEN budget.responsibility_code LIKE \'%-3-3-2026\' THEN 6
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 7
+        ELSE 8
+    END ASC,
+
+    /* Secondary sort for the rest of the list */
+    CAST(
+        SUBSTRING_INDEX(
+            SUBSTRING_INDEX(budget.responsibility_code, \'-\', -2),
+        \'-\', 1
+        ) AS UNSIGNED
+    ) ASC,
+
+    /* Tertiary sort: year */
+    CAST(
+        SUBSTRING_INDEX(budget.responsibility_code, \'-\', -1)
+    AS UNSIGNED) ASC
+ 
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-27 14:28:04 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '%Expanding the FNRI%
+             THEN 4
+             
+        WHEN budget...' at line 62
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+SELECT
+    budget.program_title,
+    budget.project_title,
+    budget.division_name AS unit_division,
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* TOTAL ALLOTMENT */
+      (
+            COALESCE((SELECT SUM(dmooe.approved_budget) FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+            + COALESCE((SELECT SUM(idmooe.approved_budget) FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+      ) AS allotment,
+
+    /* ADMIN COST */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+    /* THIS MONTH */
+
+   (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+         JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+         WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+         JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+         WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+   ) AS this_month,
+
+    /* TO DATE (Jan to Selected Month) */
+    (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+            JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+            WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+            JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+            WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Expanding the FNRI\\\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+
+ORDER BY 
+    CASE 
+        /* Group 1: Admin/Support Units (FAD/MIS) */
+        WHEN budget.responsibility_code LIKE \'%-3-4(FAD)-%\' THEN 0
+        WHEN budget.responsibility_code LIKE \'%-3-4(MIS)-%\' THEN 1
+        
+        /* Group 2: The 2-3 series Manual sequencing */
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-1-2026\' THEN 2
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-2-2026\' THEN 3
+        
+        /* Moving these two AFTER 2-3-2 ONLY for the specific Nutrigenomics program */
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-2026\' 
+             AND budget.program_title = %Expanding the FNRI%
+             THEN 4
+             
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-3-2026\' 
+             AND budget.program_title LIKE %Expanding the FNRI%
+             THEN 5
+        
+        /* Group 3: Other specific codes */
+        WHEN budget.responsibility_code LIKE \'%-3-3-2026\' THEN 6
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 7
+        ELSE 8
+    END ASC,
+
+    /* Secondary sort for the rest of the list */
+    CAST(
+        SUBSTRING_INDEX(
+            SUBSTRING_INDEX(budget.responsibility_code, \'-\', -2),
+        \'-\', 1
+        ) AS UNSIGNED
+    ) ASC,
+
+    /* Tertiary sort: year */
+    CAST(
+        SUBSTRING_INDEX(budget.responsibility_code, \'-\', -1)
+    AS UNSIGNED) ASC
+ 
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+SELECT
+    budget.program_title,
+    budget.project_title,
+    budget.division_name AS unit_division,
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* TOTAL ALLOTMENT */
+      (
+            COALESCE((SELECT SUM(dmooe.approved_budget) FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+            + COALESCE((SELECT SUM(idmooe.approved_budget) FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+      ) AS allotment,
+
+    /* ADMIN COST */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+    /* THIS MONTH */
+
+   (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+         JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+         WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+         JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+         WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+   ) AS this_month,
+
+    /* TO DATE (Jan to Selected Month) */
+    (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+            JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+            WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+            JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+            WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Expanding the FNRI\\\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+
+ORDER BY 
+    CASE 
+        /* Group 1: Admin/Support Units (FAD/MIS) */
+        WHEN budget.responsibility_code LIKE \'%-3-4(FAD)-%\' THEN 0
+        WHEN budget.responsibility_code LIKE \'%-3-4(MIS)-%\' THEN 1
+        
+        /* Group 2: The 2-3 series Manual sequencing */
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-1-2026\' THEN 2
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-2-2026\' THEN 3
+        
+        /* Moving these two AFTER 2-3-2 ONLY for the specific Nutrigenomics program */
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-2026\' 
+             AND budget.program_title = %Expanding the FNRI%
+             THEN 4
+             
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-3-2026\' 
+             AND budget.program_title LIKE %Expanding the FNRI%
+             THEN 5
+        
+        /* Group 3: Other specific codes */
+        WHEN budget.responsibility_code LIKE \'%-3-3-2026\' THEN 6
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 7
+        ELSE 8
+    END ASC,
+
+    /* Secondary sort for the rest of the list */
+    CAST(
+        SUBSTRING_INDEX(
+            SUBSTRING_INDEX(budget.responsibility_code, \'-\', -2),
+        \'-\', 1
+        ) AS UNSIGNED
+    ) ASC,
+
+    /* Tertiary sort: year */
+    CAST(
+        SUBSTRING_INDEX(budget.responsibility_code, \'-\', -1)
+    AS UNSIGNED) ASC
+ 
+')
+ 3 APPPATH\Views\report\saob-savings-pdf.php(659): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    budget.program_title,
+    budget.project_title,
+    budget.division_name AS unit_division,
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* TOTAL ALLOTMENT */
+      (
+            COALESCE((SELECT SUM(dmooe.approved_budget) FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+            + COALESCE((SELECT SUM(idmooe.approved_budget) FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+      ) AS allotment,
+
+    /* ADMIN COST */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+    /* THIS MONTH */
+
+   (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+         JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+         WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+         JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+         WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+   ) AS this_month,
+
+    /* TO DATE (Jan to Selected Month) */
+    (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+            JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+            WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+            JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+            WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Expanding the FNRI\\\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+
+ORDER BY 
+    CASE 
+        /* Group 1: Admin/Support Units (FAD/MIS) */
+        WHEN budget.responsibility_code LIKE \'%-3-4(FAD)-%\' THEN 0
+        WHEN budget.responsibility_code LIKE \'%-3-4(MIS)-%\' THEN 1
+        
+        /* Group 2: The 2-3 series Manual sequencing */
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-1-2026\' THEN 2
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-2-2026\' THEN 3
+        
+        /* Moving these two AFTER 2-3-2 ONLY for the specific Nutrigenomics program */
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-2026\' 
+             AND budget.program_title = %Expanding the FNRI%
+             THEN 4
+             
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-3-2026\' 
+             AND budget.program_title LIKE %Expanding the FNRI%
+             THEN 5
+        
+        /* Group 3: Other specific codes */
+        WHEN budget.responsibility_code LIKE \'%-3-3-2026\' THEN 6
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 7
+        ELSE 8
+    END ASC,
+
+    /* Secondary sort for the rest of the list */
+    CAST(
+        SUBSTRING_INDEX(
+            SUBSTRING_INDEX(budget.responsibility_code, \'-\', -2),
+        \'-\', 1
+        ) AS UNSIGNED
+    ) ASC,
+
+    /* Tertiary sort: year */
+    CAST(
+        SUBSTRING_INDEX(budget.responsibility_code, \'-\', -1)
+    AS UNSIGNED) ASC
+ 
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 7 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-27 14:28:04 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '%Expanding the FNRI%
+             THEN 4
+             
+        WHEN budget...' at line 62
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+SELECT
+    budget.program_title,
+    budget.project_title,
+    budget.division_name AS unit_division,
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* TOTAL ALLOTMENT */
+      (
+            COALESCE((SELECT SUM(dmooe.approved_budget) FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+            + COALESCE((SELECT SUM(idmooe.approved_budget) FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+      ) AS allotment,
+
+    /* ADMIN COST */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+    /* THIS MONTH */
+
+   (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+         JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+         WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+         JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+         WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+   ) AS this_month,
+
+    /* TO DATE (Jan to Selected Month) */
+    (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+            JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+            WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+            JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+            WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Expanding the FNRI\\\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+
+ORDER BY 
+    CASE 
+        /* Group 1: Admin/Support Units (FAD/MIS) */
+        WHEN budget.responsibility_code LIKE \'%-3-4(FAD)-%\' THEN 0
+        WHEN budget.responsibility_code LIKE \'%-3-4(MIS)-%\' THEN 1
+        
+        /* Group 2: The 2-3 series Manual sequencing */
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-1-2026\' THEN 2
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-2-2026\' THEN 3
+        
+        /* Moving these two AFTER 2-3-2 ONLY for the specific Nutrigenomics program */
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-2026\' 
+             AND budget.program_title = %Expanding the FNRI%
+             THEN 4
+             
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-3-2026\' 
+             AND budget.program_title LIKE %Expanding the FNRI%
+             THEN 5
+        
+        /* Group 3: Other specific codes */
+        WHEN budget.responsibility_code LIKE \'%-3-3-2026\' THEN 6
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 7
+        ELSE 8
+    END ASC,
+
+    /* Secondary sort for the rest of the list */
+    CAST(
+        SUBSTRING_INDEX(
+            SUBSTRING_INDEX(budget.responsibility_code, \'-\', -2),
+        \'-\', 1
+        ) AS UNSIGNED
+    ) ASC,
+
+    /* Tertiary sort: year */
+    CAST(
+        SUBSTRING_INDEX(budget.responsibility_code, \'-\', -1)
+    AS UNSIGNED) ASC
+ 
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+SELECT
+    budget.program_title,
+    budget.project_title,
+    budget.division_name AS unit_division,
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* TOTAL ALLOTMENT */
+      (
+            COALESCE((SELECT SUM(dmooe.approved_budget) FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+            + COALESCE((SELECT SUM(idmooe.approved_budget) FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+      ) AS allotment,
+
+    /* ADMIN COST */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+    /* THIS MONTH */
+
+   (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+         JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+         WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+         JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+         WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+   ) AS this_month,
+
+    /* TO DATE (Jan to Selected Month) */
+    (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+            JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+            WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+            JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+            WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Expanding the FNRI\\\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+
+ORDER BY 
+    CASE 
+        /* Group 1: Admin/Support Units (FAD/MIS) */
+        WHEN budget.responsibility_code LIKE \'%-3-4(FAD)-%\' THEN 0
+        WHEN budget.responsibility_code LIKE \'%-3-4(MIS)-%\' THEN 1
+        
+        /* Group 2: The 2-3 series Manual sequencing */
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-1-2026\' THEN 2
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-2-2026\' THEN 3
+        
+        /* Moving these two AFTER 2-3-2 ONLY for the specific Nutrigenomics program */
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-2026\' 
+             AND budget.program_title = %Expanding the FNRI%
+             THEN 4
+             
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-3-2026\' 
+             AND budget.program_title LIKE %Expanding the FNRI%
+             THEN 5
+        
+        /* Group 3: Other specific codes */
+        WHEN budget.responsibility_code LIKE \'%-3-3-2026\' THEN 6
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 7
+        ELSE 8
+    END ASC,
+
+    /* Secondary sort for the rest of the list */
+    CAST(
+        SUBSTRING_INDEX(
+            SUBSTRING_INDEX(budget.responsibility_code, \'-\', -2),
+        \'-\', 1
+        ) AS UNSIGNED
+    ) ASC,
+
+    /* Tertiary sort: year */
+    CAST(
+        SUBSTRING_INDEX(budget.responsibility_code, \'-\', -1)
+    AS UNSIGNED) ASC
+ 
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+SELECT
+    budget.program_title,
+    budget.project_title,
+    budget.division_name AS unit_division,
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* TOTAL ALLOTMENT */
+      (
+            COALESCE((SELECT SUM(dmooe.approved_budget) FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+            + COALESCE((SELECT SUM(idmooe.approved_budget) FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+      ) AS allotment,
+
+    /* ADMIN COST */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+    /* THIS MONTH */
+
+   (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+         JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+         WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+         JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+         WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+   ) AS this_month,
+
+    /* TO DATE (Jan to Selected Month) */
+    (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+            JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+            WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+            JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+            WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Expanding the FNRI\\\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+
+ORDER BY 
+    CASE 
+        /* Group 1: Admin/Support Units (FAD/MIS) */
+        WHEN budget.responsibility_code LIKE \'%-3-4(FAD)-%\' THEN 0
+        WHEN budget.responsibility_code LIKE \'%-3-4(MIS)-%\' THEN 1
+        
+        /* Group 2: The 2-3 series Manual sequencing */
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-1-2026\' THEN 2
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-2-2026\' THEN 3
+        
+        /* Moving these two AFTER 2-3-2 ONLY for the specific Nutrigenomics program */
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-2026\' 
+             AND budget.program_title = %Expanding the FNRI%
+             THEN 4
+             
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-3-2026\' 
+             AND budget.program_title LIKE %Expanding the FNRI%
+             THEN 5
+        
+        /* Group 3: Other specific codes */
+        WHEN budget.responsibility_code LIKE \'%-3-3-2026\' THEN 6
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 7
+        ELSE 8
+    END ASC,
+
+    /* Secondary sort for the rest of the list */
+    CAST(
+        SUBSTRING_INDEX(
+            SUBSTRING_INDEX(budget.responsibility_code, \'-\', -2),
+        \'-\', 1
+        ) AS UNSIGNED
+    ) ASC,
+
+    /* Tertiary sort: year */
+    CAST(
+        SUBSTRING_INDEX(budget.responsibility_code, \'-\', -1)
+    AS UNSIGNED) ASC
+ 
+')
+ 4 APPPATH\Views\report\saob-savings-pdf.php(659): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    budget.program_title,
+    budget.project_title,
+    budget.division_name AS unit_division,
+    budget.responsibility_code,
+    budget.project_leader,
+
+    /* TOTAL ALLOTMENT */
+      (
+            COALESCE((SELECT SUM(dmooe.approved_budget) FROM tbl_budget_direct_mooe_dt dmooe
+                  JOIN tbl_budget_hd hd ON dmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+            + COALESCE((SELECT SUM(idmooe.approved_budget) FROM tbl_budget_indirect_mooe_dt idmooe
+                  JOIN tbl_budget_hd hd ON idmooe.project_id = hd.recid
+                  WHERE hd.project_title = budget.project_title),0)
+      ) AS allotment,
+
+    /* ADMIN COST */
+    COALESCE((SELECT SUM(approved_budget)
+              FROM tbl_budget_savings_dt
+              WHERE project_id = budget.recid),0) AS admin_cost,
+
+    /* THIS MONTH */
+
+   (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+         JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+         WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+         JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+         WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+   ) AS this_month,
+
+    /* TO DATE (Jan to Selected Month) */
+    (
+      + COALESCE((SELECT SUM(dmooe.amount) FROM tbl_ors_direct_mooe_dt dmooe
+            JOIN tbl_ors_hd hd ON dmooe.project_id = hd.recid
+            WHERE dmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+      + COALESCE((SELECT SUM(idmooe.amount) FROM tbl_ors_indirect_mooe_dt idmooe
+            JOIN tbl_ors_hd hd ON idmooe.project_id = hd.recid
+            WHERE idmooe.project_title = budget.project_title AND hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-31\'),0)
+    ) AS todate
+
+
+FROM tbl_budget_hd budget
+WHERE budget.program_title = \'Expanding the FNRI\\\'s Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center\'
+AND budget.duration_from <= \'2026-01-31\'
+AND budget.duration_to   >= \'2026-01-01\'
+
+ORDER BY 
+    CASE 
+        /* Group 1: Admin/Support Units (FAD/MIS) */
+        WHEN budget.responsibility_code LIKE \'%-3-4(FAD)-%\' THEN 0
+        WHEN budget.responsibility_code LIKE \'%-3-4(MIS)-%\' THEN 1
+        
+        /* Group 2: The 2-3 series Manual sequencing */
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-1-2026\' THEN 2
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-2-2026\' THEN 3
+        
+        /* Moving these two AFTER 2-3-2 ONLY for the specific Nutrigenomics program */
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-2026\' 
+             AND budget.program_title = %Expanding the FNRI%
+             THEN 4
+             
+        WHEN budget.responsibility_code LIKE \'%-00000-2-3-3-2026\' 
+             AND budget.program_title LIKE %Expanding the FNRI%
+             THEN 5
+        
+        /* Group 3: Other specific codes */
+        WHEN budget.responsibility_code LIKE \'%-3-3-2026\' THEN 6
+        WHEN budget.responsibility_code = \'19-003-00-00000-2-2026\' THEN 7
+        ELSE 8
+    END ASC,
+
+    /* Secondary sort for the rest of the list */
+    CAST(
+        SUBSTRING_INDEX(
+            SUBSTRING_INDEX(budget.responsibility_code, \'-\', -2),
+        \'-\', 1
+        ) AS UNSIGNED
+    ) ASC,
+
+    /* Tertiary sort: year */
+    CAST(
+        SUBSTRING_INDEX(budget.responsibility_code, \'-\', -1)
+    AS UNSIGNED) ASC
+ 
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 8 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

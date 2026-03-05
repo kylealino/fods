@@ -1,0 +1,1148 @@
+ERROR - 2026-03-04 14:13:43 --> mysqli_sql_exception: Unknown column 'b.program_title' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(574): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...', Array)
+#4 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->saobExportCsv()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#9 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#10 {main}
+CRITICAL - 2026-03-04 14:13:43 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'b.program_title' in 'field list'
+[Method: GET, Route: saob-export-csv]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MySaobReport.php(574): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            b.program_title,
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+
+            /* ================= THIS MONTH ================= */
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_direct_ps_dt d
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                AND hd.ors_date >= ?
+                AND hd.ors_date <= ?
+                AND d.project_title LIKE \'%General Administration and%\'
+            ), 0)
+            +
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_indirect_ps_dt i
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND hd.ors_date >= ?
+                AND hd.ors_date <= ?
+                AND i.project_title LIKE \'%General Administration and%\'
+            ), 0) AS total_sub_month,
+
+            /* ================= WHOLE YEAR ================= */
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_direct_ps_dt d
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                AND hd.ors_date >= ?
+                AND hd.ors_date <= ?
+                AND d.project_title LIKE \'%General Administration and%\'
+            ), 0)
+            +
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_indirect_ps_dt i
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND hd.ors_date >= ?
+                AND hd.ors_date <= ?
+                AND i.project_title LIKE \'%General Administration and%\'
+            ), 0) AS total_sub_all
+
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_ps_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+
+        WHERE 
+            b.code NOT IN (\'50103010-00\',\'50102990-14\',\'50104990-06\',\'50104990-14\')
+            AND a.program_title LIKE \'%General Administration and%\'
+            AND a.current_year = ?
+
+        ORDER BY 
+            u.allotment_class ASC, 
+            /* CUSTOM SEQUENCE LOGIC */
+            CASE 
+                WHEN b.object_code LIKE \'Salaries and Wages%\' THEN 0
+                WHEN b.object_code LIKE \'Other Compensation%\' THEN 1
+                WHEN b.object_code LIKE \'Personnel Benefit Contributions%\' THEN 2
+                ELSE 3 
+            END ASC,
+            /* INTERNAL SORTING */
+            b.recid ASC;
+        ', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->saobExportCsv()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-04 14:13:43 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'b.program_title' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            b.program_title,
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+
+            /* ================= THIS MONTH ================= */
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_direct_ps_dt d
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                AND hd.ors_date >= \'2026-01-01\'
+                AND hd.ors_date <= \'2026-01-31\'
+                AND d.project_title LIKE \'%General Administration and%\'
+            ), 0)
+            +
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_indirect_ps_dt i
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND hd.ors_date >= \'2026-01-01\'
+                AND hd.ors_date <= \'2026-01-31\'
+                AND i.project_title LIKE \'%General Administration and%\'
+            ), 0) AS total_sub_month,
+
+            /* ================= WHOLE YEAR ================= */
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_direct_ps_dt d
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                AND hd.ors_date >= \'2026-01-01\'
+                AND hd.ors_date <= \'2026-12-31\'
+                AND d.project_title LIKE \'%General Administration and%\'
+            ), 0)
+            +
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_indirect_ps_dt i
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND hd.ors_date >= \'2026-01-01\'
+                AND hd.ors_date <= \'2026-12-31\'
+                AND i.project_title LIKE \'%General Administration and%\'
+            ), 0) AS total_sub_all
+
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_ps_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+
+        WHERE 
+            b.code NOT IN (\'50103010-00\',\'50102990-14\',\'50104990-06\',\'50104990-14\')
+            AND a.program_title LIKE \'%General Administration and%\'
+            AND a.current_year = \'2026\'
+
+        ORDER BY 
+            u.allotment_class ASC, 
+            /* CUSTOM SEQUENCE LOGIC */
+            CASE 
+                WHEN b.object_code LIKE \'Salaries and Wages%\' THEN 0
+                WHEN b.object_code LIKE \'Other Compensation%\' THEN 1
+                WHEN b.object_code LIKE \'Personnel Benefit Contributions%\' THEN 2
+                ELSE 3 
+            END ASC,
+            /* INTERNAL SORTING */
+            b.recid ASC;
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            b.program_title,
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+
+            /* ================= THIS MONTH ================= */
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_direct_ps_dt d
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                AND hd.ors_date >= \'2026-01-01\'
+                AND hd.ors_date <= \'2026-01-31\'
+                AND d.project_title LIKE \'%General Administration and%\'
+            ), 0)
+            +
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_indirect_ps_dt i
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND hd.ors_date >= \'2026-01-01\'
+                AND hd.ors_date <= \'2026-01-31\'
+                AND i.project_title LIKE \'%General Administration and%\'
+            ), 0) AS total_sub_month,
+
+            /* ================= WHOLE YEAR ================= */
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_direct_ps_dt d
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                AND hd.ors_date >= \'2026-01-01\'
+                AND hd.ors_date <= \'2026-12-31\'
+                AND d.project_title LIKE \'%General Administration and%\'
+            ), 0)
+            +
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_indirect_ps_dt i
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND hd.ors_date >= \'2026-01-01\'
+                AND hd.ors_date <= \'2026-12-31\'
+                AND i.project_title LIKE \'%General Administration and%\'
+            ), 0) AS total_sub_all
+
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_ps_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+
+        WHERE 
+            b.code NOT IN (\'50103010-00\',\'50102990-14\',\'50104990-06\',\'50104990-14\')
+            AND a.program_title LIKE \'%General Administration and%\'
+            AND a.current_year = \'2026\'
+
+        ORDER BY 
+            u.allotment_class ASC, 
+            /* CUSTOM SEQUENCE LOGIC */
+            CASE 
+                WHEN b.object_code LIKE \'Salaries and Wages%\' THEN 0
+                WHEN b.object_code LIKE \'Other Compensation%\' THEN 1
+                WHEN b.object_code LIKE \'Personnel Benefit Contributions%\' THEN 2
+                ELSE 3 
+            END ASC,
+            /* INTERNAL SORTING */
+            b.recid ASC;
+        ')
+ 3 APPPATH\Controllers\MySaobReport.php(574): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            b.program_title,
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+
+            /* ================= THIS MONTH ================= */
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_direct_ps_dt d
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                AND hd.ors_date >= ?
+                AND hd.ors_date <= ?
+                AND d.project_title LIKE \'%General Administration and%\'
+            ), 0)
+            +
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_indirect_ps_dt i
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND hd.ors_date >= ?
+                AND hd.ors_date <= ?
+                AND i.project_title LIKE \'%General Administration and%\'
+            ), 0) AS total_sub_month,
+
+            /* ================= WHOLE YEAR ================= */
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_direct_ps_dt d
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                AND hd.ors_date >= ?
+                AND hd.ors_date <= ?
+                AND d.project_title LIKE \'%General Administration and%\'
+            ), 0)
+            +
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_indirect_ps_dt i
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND hd.ors_date >= ?
+                AND hd.ors_date <= ?
+                AND i.project_title LIKE \'%General Administration and%\'
+            ), 0) AS total_sub_all
+
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_ps_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+
+        WHERE 
+            b.code NOT IN (\'50103010-00\',\'50102990-14\',\'50104990-06\',\'50104990-14\')
+            AND a.program_title LIKE \'%General Administration and%\'
+            AND a.current_year = ?
+
+        ORDER BY 
+            u.allotment_class ASC, 
+            /* CUSTOM SEQUENCE LOGIC */
+            CASE 
+                WHEN b.object_code LIKE \'Salaries and Wages%\' THEN 0
+                WHEN b.object_code LIKE \'Other Compensation%\' THEN 1
+                WHEN b.object_code LIKE \'Personnel Benefit Contributions%\' THEN 2
+                ELSE 3 
+            END ASC,
+            /* INTERNAL SORTING */
+            b.recid ASC;
+        ', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->saobExportCsv()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-04 14:13:43 --> [Caused by] mysqli_sql_exception: Unknown column 'b.program_title' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            b.program_title,
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+
+            /* ================= THIS MONTH ================= */
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_direct_ps_dt d
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                AND hd.ors_date >= \'2026-01-01\'
+                AND hd.ors_date <= \'2026-01-31\'
+                AND d.project_title LIKE \'%General Administration and%\'
+            ), 0)
+            +
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_indirect_ps_dt i
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND hd.ors_date >= \'2026-01-01\'
+                AND hd.ors_date <= \'2026-01-31\'
+                AND i.project_title LIKE \'%General Administration and%\'
+            ), 0) AS total_sub_month,
+
+            /* ================= WHOLE YEAR ================= */
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_direct_ps_dt d
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                AND hd.ors_date >= \'2026-01-01\'
+                AND hd.ors_date <= \'2026-12-31\'
+                AND d.project_title LIKE \'%General Administration and%\'
+            ), 0)
+            +
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_indirect_ps_dt i
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND hd.ors_date >= \'2026-01-01\'
+                AND hd.ors_date <= \'2026-12-31\'
+                AND i.project_title LIKE \'%General Administration and%\'
+            ), 0) AS total_sub_all
+
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_ps_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+
+        WHERE 
+            b.code NOT IN (\'50103010-00\',\'50102990-14\',\'50104990-06\',\'50104990-14\')
+            AND a.program_title LIKE \'%General Administration and%\'
+            AND a.current_year = \'2026\'
+
+        ORDER BY 
+            u.allotment_class ASC, 
+            /* CUSTOM SEQUENCE LOGIC */
+            CASE 
+                WHEN b.object_code LIKE \'Salaries and Wages%\' THEN 0
+                WHEN b.object_code LIKE \'Other Compensation%\' THEN 1
+                WHEN b.object_code LIKE \'Personnel Benefit Contributions%\' THEN 2
+                ELSE 3 
+            END ASC,
+            /* INTERNAL SORTING */
+            b.recid ASC;
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            b.program_title,
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+
+            /* ================= THIS MONTH ================= */
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_direct_ps_dt d
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                AND hd.ors_date >= \'2026-01-01\'
+                AND hd.ors_date <= \'2026-01-31\'
+                AND d.project_title LIKE \'%General Administration and%\'
+            ), 0)
+            +
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_indirect_ps_dt i
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND hd.ors_date >= \'2026-01-01\'
+                AND hd.ors_date <= \'2026-01-31\'
+                AND i.project_title LIKE \'%General Administration and%\'
+            ), 0) AS total_sub_month,
+
+            /* ================= WHOLE YEAR ================= */
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_direct_ps_dt d
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                AND hd.ors_date >= \'2026-01-01\'
+                AND hd.ors_date <= \'2026-12-31\'
+                AND d.project_title LIKE \'%General Administration and%\'
+            ), 0)
+            +
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_indirect_ps_dt i
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND hd.ors_date >= \'2026-01-01\'
+                AND hd.ors_date <= \'2026-12-31\'
+                AND i.project_title LIKE \'%General Administration and%\'
+            ), 0) AS total_sub_all
+
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_ps_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+
+        WHERE 
+            b.code NOT IN (\'50103010-00\',\'50102990-14\',\'50104990-06\',\'50104990-14\')
+            AND a.program_title LIKE \'%General Administration and%\'
+            AND a.current_year = \'2026\'
+
+        ORDER BY 
+            u.allotment_class ASC, 
+            /* CUSTOM SEQUENCE LOGIC */
+            CASE 
+                WHEN b.object_code LIKE \'Salaries and Wages%\' THEN 0
+                WHEN b.object_code LIKE \'Other Compensation%\' THEN 1
+                WHEN b.object_code LIKE \'Personnel Benefit Contributions%\' THEN 2
+                ELSE 3 
+            END ASC,
+            /* INTERNAL SORTING */
+            b.recid ASC;
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            b.program_title,
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+
+            /* ================= THIS MONTH ================= */
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_direct_ps_dt d
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                AND hd.ors_date >= \'2026-01-01\'
+                AND hd.ors_date <= \'2026-01-31\'
+                AND d.project_title LIKE \'%General Administration and%\'
+            ), 0)
+            +
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_indirect_ps_dt i
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND hd.ors_date >= \'2026-01-01\'
+                AND hd.ors_date <= \'2026-01-31\'
+                AND i.project_title LIKE \'%General Administration and%\'
+            ), 0) AS total_sub_month,
+
+            /* ================= WHOLE YEAR ================= */
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_direct_ps_dt d
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                AND hd.ors_date >= \'2026-01-01\'
+                AND hd.ors_date <= \'2026-12-31\'
+                AND d.project_title LIKE \'%General Administration and%\'
+            ), 0)
+            +
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_indirect_ps_dt i
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND hd.ors_date >= \'2026-01-01\'
+                AND hd.ors_date <= \'2026-12-31\'
+                AND i.project_title LIKE \'%General Administration and%\'
+            ), 0) AS total_sub_all
+
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_ps_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+
+        WHERE 
+            b.code NOT IN (\'50103010-00\',\'50102990-14\',\'50104990-06\',\'50104990-14\')
+            AND a.program_title LIKE \'%General Administration and%\'
+            AND a.current_year = \'2026\'
+
+        ORDER BY 
+            u.allotment_class ASC, 
+            /* CUSTOM SEQUENCE LOGIC */
+            CASE 
+                WHEN b.object_code LIKE \'Salaries and Wages%\' THEN 0
+                WHEN b.object_code LIKE \'Other Compensation%\' THEN 1
+                WHEN b.object_code LIKE \'Personnel Benefit Contributions%\' THEN 2
+                ELSE 3 
+            END ASC,
+            /* INTERNAL SORTING */
+            b.recid ASC;
+        ')
+ 4 APPPATH\Controllers\MySaobReport.php(574): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            b.program_title,
+            u.allotment_class,
+            b.object_code,
+            b.particulars AS sub_object_code,
+            b.code AS uacs_code,
+            b.approved_budget,
+
+            /* ================= THIS MONTH ================= */
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_direct_ps_dt d
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                AND hd.ors_date >= ?
+                AND hd.ors_date <= ?
+                AND d.project_title LIKE \'%General Administration and%\'
+            ), 0)
+            +
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_indirect_ps_dt i
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND hd.ors_date >= ?
+                AND hd.ors_date <= ?
+                AND i.project_title LIKE \'%General Administration and%\'
+            ), 0) AS total_sub_month,
+
+            /* ================= WHOLE YEAR ================= */
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_direct_ps_dt d
+                JOIN tbl_ors_hd hd ON d.project_id = hd.recid
+                WHERE d.sub_object_code = b.particulars
+                AND hd.ors_date >= ?
+                AND hd.ors_date <= ?
+                AND d.project_title LIKE \'%General Administration and%\'
+            ), 0)
+            +
+            COALESCE((
+                SELECT SUM(amount)
+                FROM tbl_ors_indirect_ps_dt i
+                JOIN tbl_ors_hd hd ON i.project_id = hd.recid
+                WHERE i.sub_object_code = b.particulars
+                AND hd.ors_date >= ?
+                AND hd.ors_date <= ?
+                AND i.project_title LIKE \'%General Administration and%\'
+            ), 0) AS total_sub_all
+
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_ps_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+
+        WHERE 
+            b.code NOT IN (\'50103010-00\',\'50102990-14\',\'50104990-06\',\'50104990-14\')
+            AND a.program_title LIKE \'%General Administration and%\'
+            AND a.current_year = ?
+
+        ORDER BY 
+            u.allotment_class ASC, 
+            /* CUSTOM SEQUENCE LOGIC */
+            CASE 
+                WHEN b.object_code LIKE \'Salaries and Wages%\' THEN 0
+                WHEN b.object_code LIKE \'Other Compensation%\' THEN 1
+                WHEN b.object_code LIKE \'Personnel Benefit Contributions%\' THEN 2
+                ELSE 3 
+            END ASC,
+            /* INTERNAL SORTING */
+            b.recid ASC;
+        ', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->saobExportCsv()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-03-04 14:26:53 --> mysqli_sql_exception: Table 'u' from one of the SELECTs cannot be used in ORDER clause in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        /* ==...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        /* ==...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        /* ==...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(562): CodeIgniter\Database\BaseConnection->query('\r\n        /* ==...', Array)
+#4 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->saobExportCsv()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#9 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#10 {main}
+CRITICAL - 2026-03-04 14:26:53 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'u' from one of the SELECTs cannot be used in ORDER clause
+[Method: GET, Route: saob-export-csv]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MySaobReport.php(562): CodeIgniter\Database\BaseConnection->query('
+        /* ================= PS DATA ================= */
+        SELECT
+            a.program_title, u.allotment_class, b.object_code,
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
+            /* THIS MONTH PS */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_month,
+            /* WHOLE YEAR PS */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_all
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_ps_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+        WHERE b.code NOT IN (\'50103010-00\',\'50102990-14\',\'50104990-06\',\'50104990-14\')
+        AND a.program_title LIKE \'%General Administration and%\' AND a.current_year = ?
+
+        UNION ALL
+
+        /* ================= MOOE DATA ================= */
+        SELECT
+            a.program_title, u.allotment_class, b.object_code,
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
+            /* THIS MONTH MOOE */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_month,
+            /* WHOLE YEAR MOOE */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_all
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_mooe_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+        WHERE a.program_title LIKE \'%General Administration and%\' AND a.current_year = ?
+
+        ORDER BY 
+            /* 1. Force Personnel Services (PS) to be 0 and MOOE to be 1 */
+            CASE 
+                WHEN u.allotment_class LIKE \'Personnel Services%\' THEN 0 
+                WHEN u.allotment_class LIKE \'Maintenance%\' THEN 1 
+                ELSE 2 
+            END ASC, 
+            
+            /* 2. Maintain your custom PS sequence within the PS group */
+            CASE 
+                WHEN b.object_code LIKE \'Salaries and Wages%\' THEN 0
+                WHEN b.object_code LIKE \'Other Compensation%\' THEN 1
+                WHEN b.object_code LIKE \'Personnel Benefit Contributions%\' THEN 2
+                ELSE 3 
+            END ASC,
+            
+            /* 3. Secondary internal sorting */
+            b.object_code ASC,
+            b.uacs_code ASC
+        ', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->saobExportCsv()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-04 14:26:53 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'u' from one of the SELECTs cannot be used in ORDER clause
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        /* ================= PS DATA ================= */
+        SELECT
+            a.program_title, u.allotment_class, b.object_code,
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
+            /* THIS MONTH PS */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-01-31\' AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-01-31\' AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_month,
+            /* WHOLE YEAR PS */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-12-31\' AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-12-31\' AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_all
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_ps_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+        WHERE b.code NOT IN (\'50103010-00\',\'50102990-14\',\'50104990-06\',\'50104990-14\')
+        AND a.program_title LIKE \'%General Administration and%\' AND a.current_year = \'2026\'
+
+        UNION ALL
+
+        /* ================= MOOE DATA ================= */
+        SELECT
+            a.program_title, u.allotment_class, b.object_code,
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
+            /* THIS MONTH MOOE */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-01-31\' AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-01-31\' AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_month,
+            /* WHOLE YEAR MOOE */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-12-31\' AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-12-31\' AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_all
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_mooe_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+        WHERE a.program_title LIKE \'%General Administration and%\' AND a.current_year = \'2026\'
+
+        ORDER BY 
+            /* 1. Force Personnel Services (PS) to be 0 and MOOE to be 1 */
+            CASE 
+                WHEN u.allotment_class LIKE \'Personnel Services%\' THEN 0 
+                WHEN u.allotment_class LIKE \'Maintenance%\' THEN 1 
+                ELSE 2 
+            END ASC, 
+            
+            /* 2. Maintain your custom PS sequence within the PS group */
+            CASE 
+                WHEN b.object_code LIKE \'Salaries and Wages%\' THEN 0
+                WHEN b.object_code LIKE \'Other Compensation%\' THEN 1
+                WHEN b.object_code LIKE \'Personnel Benefit Contributions%\' THEN 2
+                ELSE 3 
+            END ASC,
+            
+            /* 3. Secondary internal sorting */
+            b.object_code ASC,
+            b.uacs_code ASC
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        /* ================= PS DATA ================= */
+        SELECT
+            a.program_title, u.allotment_class, b.object_code,
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
+            /* THIS MONTH PS */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-01-31\' AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-01-31\' AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_month,
+            /* WHOLE YEAR PS */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-12-31\' AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-12-31\' AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_all
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_ps_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+        WHERE b.code NOT IN (\'50103010-00\',\'50102990-14\',\'50104990-06\',\'50104990-14\')
+        AND a.program_title LIKE \'%General Administration and%\' AND a.current_year = \'2026\'
+
+        UNION ALL
+
+        /* ================= MOOE DATA ================= */
+        SELECT
+            a.program_title, u.allotment_class, b.object_code,
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
+            /* THIS MONTH MOOE */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-01-31\' AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-01-31\' AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_month,
+            /* WHOLE YEAR MOOE */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-12-31\' AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-12-31\' AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_all
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_mooe_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+        WHERE a.program_title LIKE \'%General Administration and%\' AND a.current_year = \'2026\'
+
+        ORDER BY 
+            /* 1. Force Personnel Services (PS) to be 0 and MOOE to be 1 */
+            CASE 
+                WHEN u.allotment_class LIKE \'Personnel Services%\' THEN 0 
+                WHEN u.allotment_class LIKE \'Maintenance%\' THEN 1 
+                ELSE 2 
+            END ASC, 
+            
+            /* 2. Maintain your custom PS sequence within the PS group */
+            CASE 
+                WHEN b.object_code LIKE \'Salaries and Wages%\' THEN 0
+                WHEN b.object_code LIKE \'Other Compensation%\' THEN 1
+                WHEN b.object_code LIKE \'Personnel Benefit Contributions%\' THEN 2
+                ELSE 3 
+            END ASC,
+            
+            /* 3. Secondary internal sorting */
+            b.object_code ASC,
+            b.uacs_code ASC
+        ')
+ 3 APPPATH\Controllers\MySaobReport.php(562): CodeIgniter\Database\BaseConnection->query('
+        /* ================= PS DATA ================= */
+        SELECT
+            a.program_title, u.allotment_class, b.object_code,
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
+            /* THIS MONTH PS */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_month,
+            /* WHOLE YEAR PS */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_all
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_ps_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+        WHERE b.code NOT IN (\'50103010-00\',\'50102990-14\',\'50104990-06\',\'50104990-14\')
+        AND a.program_title LIKE \'%General Administration and%\' AND a.current_year = ?
+
+        UNION ALL
+
+        /* ================= MOOE DATA ================= */
+        SELECT
+            a.program_title, u.allotment_class, b.object_code,
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
+            /* THIS MONTH MOOE */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_month,
+            /* WHOLE YEAR MOOE */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_all
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_mooe_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+        WHERE a.program_title LIKE \'%General Administration and%\' AND a.current_year = ?
+
+        ORDER BY 
+            /* 1. Force Personnel Services (PS) to be 0 and MOOE to be 1 */
+            CASE 
+                WHEN u.allotment_class LIKE \'Personnel Services%\' THEN 0 
+                WHEN u.allotment_class LIKE \'Maintenance%\' THEN 1 
+                ELSE 2 
+            END ASC, 
+            
+            /* 2. Maintain your custom PS sequence within the PS group */
+            CASE 
+                WHEN b.object_code LIKE \'Salaries and Wages%\' THEN 0
+                WHEN b.object_code LIKE \'Other Compensation%\' THEN 1
+                WHEN b.object_code LIKE \'Personnel Benefit Contributions%\' THEN 2
+                ELSE 3 
+            END ASC,
+            
+            /* 3. Secondary internal sorting */
+            b.object_code ASC,
+            b.uacs_code ASC
+        ', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->saobExportCsv()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-04 14:26:53 --> [Caused by] mysqli_sql_exception: Table 'u' from one of the SELECTs cannot be used in ORDER clause
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        /* ================= PS DATA ================= */
+        SELECT
+            a.program_title, u.allotment_class, b.object_code,
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
+            /* THIS MONTH PS */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-01-31\' AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-01-31\' AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_month,
+            /* WHOLE YEAR PS */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-12-31\' AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-12-31\' AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_all
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_ps_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+        WHERE b.code NOT IN (\'50103010-00\',\'50102990-14\',\'50104990-06\',\'50104990-14\')
+        AND a.program_title LIKE \'%General Administration and%\' AND a.current_year = \'2026\'
+
+        UNION ALL
+
+        /* ================= MOOE DATA ================= */
+        SELECT
+            a.program_title, u.allotment_class, b.object_code,
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
+            /* THIS MONTH MOOE */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-01-31\' AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-01-31\' AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_month,
+            /* WHOLE YEAR MOOE */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-12-31\' AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-12-31\' AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_all
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_mooe_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+        WHERE a.program_title LIKE \'%General Administration and%\' AND a.current_year = \'2026\'
+
+        ORDER BY 
+            /* 1. Force Personnel Services (PS) to be 0 and MOOE to be 1 */
+            CASE 
+                WHEN u.allotment_class LIKE \'Personnel Services%\' THEN 0 
+                WHEN u.allotment_class LIKE \'Maintenance%\' THEN 1 
+                ELSE 2 
+            END ASC, 
+            
+            /* 2. Maintain your custom PS sequence within the PS group */
+            CASE 
+                WHEN b.object_code LIKE \'Salaries and Wages%\' THEN 0
+                WHEN b.object_code LIKE \'Other Compensation%\' THEN 1
+                WHEN b.object_code LIKE \'Personnel Benefit Contributions%\' THEN 2
+                ELSE 3 
+            END ASC,
+            
+            /* 3. Secondary internal sorting */
+            b.object_code ASC,
+            b.uacs_code ASC
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        /* ================= PS DATA ================= */
+        SELECT
+            a.program_title, u.allotment_class, b.object_code,
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
+            /* THIS MONTH PS */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-01-31\' AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-01-31\' AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_month,
+            /* WHOLE YEAR PS */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-12-31\' AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-12-31\' AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_all
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_ps_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+        WHERE b.code NOT IN (\'50103010-00\',\'50102990-14\',\'50104990-06\',\'50104990-14\')
+        AND a.program_title LIKE \'%General Administration and%\' AND a.current_year = \'2026\'
+
+        UNION ALL
+
+        /* ================= MOOE DATA ================= */
+        SELECT
+            a.program_title, u.allotment_class, b.object_code,
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
+            /* THIS MONTH MOOE */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-01-31\' AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-01-31\' AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_month,
+            /* WHOLE YEAR MOOE */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-12-31\' AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-12-31\' AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_all
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_mooe_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+        WHERE a.program_title LIKE \'%General Administration and%\' AND a.current_year = \'2026\'
+
+        ORDER BY 
+            /* 1. Force Personnel Services (PS) to be 0 and MOOE to be 1 */
+            CASE 
+                WHEN u.allotment_class LIKE \'Personnel Services%\' THEN 0 
+                WHEN u.allotment_class LIKE \'Maintenance%\' THEN 1 
+                ELSE 2 
+            END ASC, 
+            
+            /* 2. Maintain your custom PS sequence within the PS group */
+            CASE 
+                WHEN b.object_code LIKE \'Salaries and Wages%\' THEN 0
+                WHEN b.object_code LIKE \'Other Compensation%\' THEN 1
+                WHEN b.object_code LIKE \'Personnel Benefit Contributions%\' THEN 2
+                ELSE 3 
+            END ASC,
+            
+            /* 3. Secondary internal sorting */
+            b.object_code ASC,
+            b.uacs_code ASC
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        /* ================= PS DATA ================= */
+        SELECT
+            a.program_title, u.allotment_class, b.object_code,
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
+            /* THIS MONTH PS */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-01-31\' AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-01-31\' AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_month,
+            /* WHOLE YEAR PS */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-12-31\' AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-12-31\' AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_all
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_ps_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+        WHERE b.code NOT IN (\'50103010-00\',\'50102990-14\',\'50104990-06\',\'50104990-14\')
+        AND a.program_title LIKE \'%General Administration and%\' AND a.current_year = \'2026\'
+
+        UNION ALL
+
+        /* ================= MOOE DATA ================= */
+        SELECT
+            a.program_title, u.allotment_class, b.object_code,
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
+            /* THIS MONTH MOOE */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-01-31\' AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-01-31\' AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_month,
+            /* WHOLE YEAR MOOE */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-12-31\' AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= \'2026-01-01\' AND hd.ors_date <= \'2026-12-31\' AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_all
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_mooe_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+        WHERE a.program_title LIKE \'%General Administration and%\' AND a.current_year = \'2026\'
+
+        ORDER BY 
+            /* 1. Force Personnel Services (PS) to be 0 and MOOE to be 1 */
+            CASE 
+                WHEN u.allotment_class LIKE \'Personnel Services%\' THEN 0 
+                WHEN u.allotment_class LIKE \'Maintenance%\' THEN 1 
+                ELSE 2 
+            END ASC, 
+            
+            /* 2. Maintain your custom PS sequence within the PS group */
+            CASE 
+                WHEN b.object_code LIKE \'Salaries and Wages%\' THEN 0
+                WHEN b.object_code LIKE \'Other Compensation%\' THEN 1
+                WHEN b.object_code LIKE \'Personnel Benefit Contributions%\' THEN 2
+                ELSE 3 
+            END ASC,
+            
+            /* 3. Secondary internal sorting */
+            b.object_code ASC,
+            b.uacs_code ASC
+        ')
+ 4 APPPATH\Controllers\MySaobReport.php(562): CodeIgniter\Database\BaseConnection->query('
+        /* ================= PS DATA ================= */
+        SELECT
+            a.program_title, u.allotment_class, b.object_code,
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
+            /* THIS MONTH PS */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_month,
+            /* WHOLE YEAR PS */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_all
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_ps_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+        WHERE b.code NOT IN (\'50103010-00\',\'50102990-14\',\'50104990-06\',\'50104990-14\')
+        AND a.program_title LIKE \'%General Administration and%\' AND a.current_year = ?
+
+        UNION ALL
+
+        /* ================= MOOE DATA ================= */
+        SELECT
+            a.program_title, u.allotment_class, b.object_code,
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
+            /* THIS MONTH MOOE */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_month,
+            /* WHOLE YEAR MOOE */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE \'%General Administration and%\'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE \'%General Administration and%\'), 0)) AS total_sub_all
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_mooe_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+        WHERE a.program_title LIKE \'%General Administration and%\' AND a.current_year = ?
+
+        ORDER BY 
+            /* 1. Force Personnel Services (PS) to be 0 and MOOE to be 1 */
+            CASE 
+                WHEN u.allotment_class LIKE \'Personnel Services%\' THEN 0 
+                WHEN u.allotment_class LIKE \'Maintenance%\' THEN 1 
+                ELSE 2 
+            END ASC, 
+            
+            /* 2. Maintain your custom PS sequence within the PS group */
+            CASE 
+                WHEN b.object_code LIKE \'Salaries and Wages%\' THEN 0
+                WHEN b.object_code LIKE \'Other Compensation%\' THEN 1
+                WHEN b.object_code LIKE \'Personnel Benefit Contributions%\' THEN 2
+                ELSE 3 
+            END ASC,
+            
+            /* 3. Secondary internal sorting */
+            b.object_code ASC,
+            b.uacs_code ASC
+        ', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->saobExportCsv()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

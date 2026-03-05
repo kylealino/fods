@@ -1,0 +1,211 @@
+CRITICAL - 2026-03-02 14:21:37 --> ErrorException: Undefined variable $monthInput
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 253.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(253): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $monthInput', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php', 253)
+ 2 APPPATH\Views\report\saob-savings-pdf.php(297): draw_saob_savings_table_header(Object(PDF))
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 6 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-02 14:27:52 --> ErrorException: Undefined variable $monthName
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 253.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(253): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $monthName', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php', 253)
+ 2 APPPATH\Views\report\saob-savings-pdf.php(297): draw_saob_savings_table_header(Object(PDF))
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 6 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-02 14:28:29 --> ErrorException: Undefined variable $monthName
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 254.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(254): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $monthName', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php', 254)
+ 2 APPPATH\Views\report\saob-savings-pdf.php(298): draw_saob_savings_table_header(Object(PDF))
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 6 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-02 14:29:12 --> ErrorException: Undefined variable $monthName
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 255.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(255): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $monthName', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php', 255)
+ 2 APPPATH\Views\report\saob-savings-pdf.php(299): draw_saob_savings_table_header(Object(PDF))
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 6 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-02 14:29:46 --> ErrorException: Undefined variable $monthName
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 255.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(255): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $monthName', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php', 255)
+ 2 APPPATH\Views\report\saob-savings-pdf.php(299): draw_saob_savings_table_header(Object(PDF))
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 6 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-02 14:30:00 --> ErrorException: Undefined variable $monthName
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 255.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(255): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $monthName', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php', 255)
+ 2 APPPATH\Views\report\saob-savings-pdf.php(299): draw_saob_savings_table_header(Object(PDF))
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 6 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-02 14:35:49 --> ErrorException: Undefined variable $monthInput
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 94.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(94): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $monthInput', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php', 94)
+ 2 APPPATH\Views\report\saob-savings-pdf.php(300): draw_saob_savings_table_header(Object(PDF))
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 6 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-02 14:36:35 --> ErrorException: Undefined variable $monthName
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 258.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(258): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $monthName', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php', 258)
+ 2 APPPATH\Views\report\saob-savings-pdf.php(302): draw_saob_savings_table_header(Object(PDF))
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 6 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-02 14:43:08 --> ArgumentCountError: Too few arguments to function draw_saob_savings_table_header(), 1 passed in C:\xampp\htdocs\fods\app\Views\report\saob-savings-pdf.php on line 302 and at least 2 expected
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 89.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(302): draw_saob_savings_table_header(Object(PDF))
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-02 14:55:48 --> ErrorException: A non-numeric value encountered
+[Method: GET, Route: mysaobrpt]
+in APPPATH\ThirdParty\fpdf\fpdf.php on line 584.
+ 1 APPPATH\ThirdParty\fpdf\fpdf.php(584): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'C:\\xampp\\htdocs\\fods\\app\\ThirdParty\\fpdf\\fpdf.php', 584)
+ 2 APPPATH\Views\report\saob-savings-pdf.php(102): FPDF->Cell(32, 3, '', 'LT', 1, 'C', true)
+ 3 APPPATH\Views\report\saob-savings-pdf.php(703): draw_saob_savings_table_header(Object(PDF), 10, '2026-02')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 7 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-02 16:27:12 --> ArgumentCountError: Too few arguments to function draw_saob_savings_table_header(), 2 passed in C:\xampp\htdocs\fods\app\Views\report\saob-savings-pdf.php on line 299 and exactly 3 expected
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 89.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(299): draw_saob_savings_table_header(Object(PDF), 'test')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-02 16:29:52 --> ErrorException: Constant expression contains invalid operations
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 89.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2026-03-02 16:30:20 --> ErrorException: Undefined variable $monthInput
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 94.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(94): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $monthInput', 'C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php', 94)
+ 2 APPPATH\Views\report\saob-savings-pdf.php(300): draw_saob_savings_table_header(Object(PDF))
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 6 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-02 16:31:08 --> ArgumentCountError: Too few arguments to function draw_saob_savings_table_header(), 1 passed in C:\xampp\htdocs\fods\app\Views\report\saob-savings-pdf.php on line 300 and exactly 4 expected
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 89.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(300): draw_saob_savings_table_header(Object(PDF))
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-02 16:31:18 --> ArgumentCountError: Too few arguments to function draw_saob_savings_table_header(), 1 passed in C:\xampp\htdocs\fods\app\Views\report\saob-savings-pdf.php on line 300 and exactly 4 expected
+[Method: GET, Route: mysaobrpt]
+in APPPATH\Views\report\saob-savings-pdf.php on line 89.
+ 1 APPPATH\Views\report\saob-savings-pdf.php(300): draw_saob_savings_table_header(Object(PDF))
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\report\\saob-savings-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('report/saob-savings-pdf', [], true)
+ 5 APPPATH\Controllers\MySaobReport.php(52): view('report/saob-savings-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

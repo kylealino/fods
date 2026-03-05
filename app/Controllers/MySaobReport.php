@@ -74,8 +74,9 @@ class MySaobReport extends BaseController
 
         $sql = "
             SELECT
-                hd.recid            AS ors_recid,
+                hd.recid AS ors_recid,
                 hd.serialno,
+                hd.payee_name,
                 hd.ors_date,
                 d.program_title,
                 d.project_title,
@@ -433,6 +434,152 @@ class MySaobReport extends BaseController
             'Program Title', 'Project Title', 'Responsibility Code',
             'Project Leader', 'Allotment',
             'Admin Cost', 'Revised Allotment', 'This Month', 'Up to Date', 'Balance', 'Percent of Utilization'
+        ]);
+
+        while ($row = $query->getUnbufferedRow('array')) {
+            fputcsv($out, $row);
+        }
+
+        fclose($out);
+        exit;
+    }
+
+    public function saobExportCsv(){
+        $month = $this->request->getGet('month'); // January - December
+        $year  = $this->request->getGet('year');  // e.g. 2026
+
+        if (!$month || !$year) {
+            return redirect()->back()->with('Oops', 'Please select month and year.');
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Convert Month + Year to Date Ranges
+        |--------------------------------------------------------------------------
+        */
+        $monthNumber = date('m', strtotime($month));
+
+        $from = date('Y-m-d', strtotime("$year-$monthNumber-01"));
+        $to   = date('Y-m-t', strtotime($from)); // last day of selected month
+
+        $year_start = "$year-01-01";
+        $year_end   = "$year-12-31";
+
+        /*
+        |--------------------------------------------------------------------------
+        | SQL (Using ? Bindings)
+        |--------------------------------------------------------------------------
+        */
+        $sql = "
+        /* ================= PS DATA ================= */
+        SELECT
+            a.program_title, u.allotment_class, b.object_code,
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
+            /* THIS MONTH PS */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE '%General Administration and%'), 0)) AS total_sub_month,
+            /* WHOLE YEAR PS */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE '%General Administration and%'), 0)) AS total_sub_all
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_ps_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+        WHERE b.code NOT IN ('50103010-00','50102990-14','50104990-06','50104990-14')
+        AND a.program_title LIKE '%General Administration and%' AND a.current_year = ?
+
+        UNION ALL
+
+        /* ================= MOOE DATA ================= */
+        SELECT
+            a.program_title, u.allotment_class, b.object_code,
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
+            /* THIS MONTH MOOE */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE '%General Administration and%'), 0)) AS total_sub_month,
+            /* WHOLE YEAR MOOE */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE '%General Administration and%'), 0)) AS total_sub_all
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_mooe_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+        WHERE a.program_title LIKE '%General Administration and%' AND a.current_year = ?
+
+        ORDER BY 
+            /* 1. Primary Sort: Weight the Allotment Class to force PS (0) before MOOE (1) */
+            CASE 
+                WHEN allotment_class LIKE 'Personnel Services%' THEN 0 
+                WHEN allotment_class LIKE 'Maintenance%' THEN 1 
+                ELSE 2 
+            END ASC, 
+            
+            /* 2. Secondary Sort: Priority within the PS group */
+            CASE 
+                WHEN object_code LIKE 'Salaries and Wages%' THEN 0
+                WHEN object_code LIKE 'Other Compensation%' THEN 1
+                WHEN object_code LIKE 'Personnel Benefit Contributions%' THEN 2
+                ELSE 3 
+            END ASC,
+            
+            /* 3. Final Sort: By UACS code for numerical order within groups */
+            uacs_code ASC;
+        ";
+
+        /*
+        |--------------------------------------------------------------------------
+        | Bindings (Order MUST match ? sequence in SQL)
+        |--------------------------------------------------------------------------
+        */
+        $bindings = [
+            // --- PS SECTION ---
+            $from, $to,             // This Month Direct/Indirect PS
+            $from, $to,
+            $year_start, $year_end, // Whole Year Direct/Indirect PS
+            $year_start, $year_end,
+            $year,                  // Current Year PS
+
+            // --- MOOE SECTION ---
+            $from, $to,             // This Month Direct/Indirect MOOE
+            $from, $to,
+            $year_start, $year_end, // Whole Year Direct/Indirect MOOE
+            $year_start, $year_end,
+            $year                   // Current Year MOOE
+        ];
+
+        /*
+        |--------------------------------------------------------------------------
+        | Execute Query
+        |--------------------------------------------------------------------------
+        */
+        $query = $this->db->query($sql, $bindings);
+
+        /*
+        |--------------------------------------------------------------------------
+        | CSV Export
+        |--------------------------------------------------------------------------
+        */
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="SAOB_REPORT_'.$from.'_to_'.$to.'.csv"');
+
+        $out = fopen('php://output', 'w');
+
+        // Header row
+        fputcsv($out, [
+            'Program Title',
+            'Allotment Class',
+            'Object Code',
+            'Sub Object Code',
+            'UACS Code',
+            'Approved Budget',
+            'This Month',
+            'To Date'
         ]);
 
         while ($row = $query->getUnbufferedRow('array')) {
