@@ -376,6 +376,24 @@ foreach ($unique_mfo_list_mooeid as $mfo) {
     $IDMOOEY = $pdf->GetY($IDMOOEY);
 }
 
+$previous_rc = null;
+foreach ($unique_rc_list_mooeid as $rc) {
+    $pdf->SetXY(10, $IDMOOEY);
+    $pdf->MultiCell(38, 4, $rc, 0, 'L'); // full width usage
+    
+    // If current RC is not the same as previous, add 5 to y-coordinate
+    if ($rc !== $previous_rc) {
+        $IDMOOEY += 5;
+    }
+    $previous_rc = $rc;
+}
+
+foreach ($unique_mfo_list_mooeid as $mfo) {
+    $pdf->SetXY(105, $IDMOOEY_MFO);
+    $pdf->MultiCell(30, 4, $mfo, 0, 'L'); // full width usage
+    $IDMOOEY_MFO = $pdf->GetY($IDMOOEY_MFO);
+}
+
 
 //-----------------------------------------------------  UACS CODE AND AMOUNT DT FETCHING    ----------------------------------------------------------------------------------
 

@@ -196,8 +196,9 @@ echo view('templates/myheader.php');
                                 <span class="fw-bold">Program Title:</span>
                             </div>
                             <div class="col-sm-10">
-                                <textarea name="program_title" id="program_title" placeholder="" rows="4" class="form-control form-control-sm"><?=$program_title;?></textarea>
+                                <input type="text" id="program_title"  value="<?=$program_title;?>" placeholder="Enter program title"  name="program_title" class="program_title form-control form-control-sm">
                             </div>
+                            
                         </div>
                         <div class="row">
                             <div class="col-sm-2">
@@ -1941,6 +1942,36 @@ $(document).on("focus", ".mooeuacs_code", function () {
     });
 
   }
+});
+</script>
+
+<!-- PROGRAM TITLE LOOKUP -->
+<script>
+<?php
+    $programs = [
+        'General Administration and Support Service',
+        'Scientific Research and Development Services on Basic and Applied Researches on Food and Nutrition',
+        "Expanding the FNRI's Nutrigenomics Laboratory: Towards Establishment of a World Class Philippines Nutrigenomics Center",
+        'Nutritional Assessment and Monitoring on Food and Nutrition',
+        'Expanded National Nutrition Survey',
+        'Technical Services on Food and Nutrition'
+    ];
+?>
+var programs = <?php echo json_encode($programs); ?>;
+$(function() {
+  // Initialize autocomplete for all existing textareas
+  $("#program_title").autocomplete({
+    source: programs
+  });
+
+  // Re-initialize whenever a new row is added dynamically
+  $(document).on("focus", "#program_title", function () {
+    if (!$(this).data("uiAutocomplete")) {
+      $(this).autocomplete({
+        source: programs
+      });
+    }
+  });
 });
 </script>
 <?php

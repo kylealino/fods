@@ -3,11 +3,7 @@
 // -------------------------------------------------------------------------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
   ("use strict");
-    document.getElementById("month").value = "January";
-    document.getElementById("year").value = "2025";
 
-    var pdfUrl = "<?= base_url('mysaobrpt?meaction=SAOB-PDF') ?>";
-    __mysys_saob_rpt_ent.__saob_print(pdfUrl);
   // -----------------------------------------------------------------------
   // Products Performance
   // -----------------------------------------------------------------------

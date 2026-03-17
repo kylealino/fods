@@ -290,7 +290,7 @@ $pdf->MultiCell(
     53,
     3,
     'Project Title value value value value value value value value value value value',
-    1,
+    'BL',
     'L'
 );
 

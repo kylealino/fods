@@ -149,7 +149,6 @@ echo view('templates/myheader.php');
                                                 <?php endforeach; ?>
                                             </select>
                                         <?php endif;?>
-                                        <input type="text" id="program_title" name="program_title" value="<?=$program_title;?>" class="form-control form-control-sm"/>
                                     </div>
                                 </div>
                             </div>

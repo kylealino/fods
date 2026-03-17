@@ -11,18 +11,18 @@ $department = '';
 $trxno = '';
 $agency = '';
 $current_year = '';
-$is_jan = '';
-$is_feb = '';
-$is_mar = '';
-$is_apr = '';
-$is_may = '';
-$is_jun = '';
-$is_jul = '';
-$is_aug = '';
-$is_sep = '';
-$is_oct = '';
-$is_nov = '';
-$is_dec = '';
+$is_jan = 0;
+$is_feb = 0;
+$is_mar = 0;
+$is_apr = 0;
+$is_may = 0;
+$is_jun = 0;
+$is_jul = 0;
+$is_aug = 0;
+$is_sep = 0;
+$is_oct = 0;
+$is_nov = 0;
+$is_dec = 0;
 $todate_realignment = 0.00;
 if(!empty($recid) || !is_null($recid)) { 
 
@@ -258,23 +258,23 @@ echo view('templates/myheader.php');
                                     <div class="col-sm-8">
                                         <div class="d-flex gap-3">
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="is_jun" <?= $is_jun == '1' ? 'checked': '';?>>
+                                                <input class="form-check-input" type="checkbox" id="is_jun" <?= $is_jun == '1' ? 'checked disabled': '';?>>
                                                 <label class="form-check-label" for="is_jun">Jun</label>
                                             </div>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="is_jul" <?= $is_jul == '1' ? 'checked': '';?>>
+                                                <input class="form-check-input" type="checkbox" id="is_jul" <?= $is_jul == '1' ? 'checked disabled': '';?>>
                                                 <label class="form-check-label" for="is_jul">Jul</label>
                                             </div>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="is_aug" <?= $is_aug == '1' ? 'checked': '';?>>
+                                                <input class="form-check-input" type="checkbox" id="is_aug" <?= $is_aug == '1' ? 'checked disabled': '';?>>
                                                 <label class="form-check-label" for="is_aug">Aug</label>
                                             </div>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="is_sep" <?= $is_sep == '1' ? 'checked': '';?>>
+                                                <input class="form-check-input" type="checkbox" id="is_sep" <?= $is_sep == '1' ? 'checked disabled': '';?>>
                                                 <label class="form-check-label" for="is_sep">Sep</label>
                                             </div>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="is_oct" <?= $is_oct == '1' ? 'checked': '';?>>
+                                                <input class="form-check-input" type="checkbox" id="is_oct" <?= $is_oct == '1' ? 'checked disabled': '';?>>
                                                 <label class="form-check-label" for="is_oct">Oct</label>
                                             </div>
                                         </div>
@@ -387,7 +387,7 @@ echo view('templates/myheader.php');
                                                                     <input type="number" id="realignment"  value="" size="25" step="any" name="realignment" data-dtid="" class="realignment text-center" onchange="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
-                                                                    <input type="number" id="revised_allotment"  value="" size="25" step="any" name="revised_allotment" data-dtid="" class="revised_allotment text-center" disabled/>
+                                                                    <input type="number" id="revised_allotment"  value="" size="25" step="any" name="revised_allotment" data-dtid="" class="revised_allotment text-center" disabled onchange="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
                                                                 </td>
                                                             </tr>
                                                             <?php if(!empty($recid)):
@@ -437,40 +437,42 @@ echo view('templates/myheader.php');
 
 
                                                                     if ($is_jan == '1' && $is_feb == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision;
+                                                                        $todate_realignment = $january_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '1' && $is_sep == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '1' && $is_sep == '1' && $is_oct == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision + $october_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision + $october_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision + $october_revision + $november_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision + $october_revision + $november_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '1') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision + $october_revision + $november_revision + $december_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision + $october_revision + $november_revision + $december_revision;
+                                                                    }else{
+                                                                        $todate_realignment = 0.00;
                                                                     }
 
                                                             ?>
@@ -518,13 +520,25 @@ echo view('templates/myheader.php');
                                                                     <input type="number" id="approved_budget" size="25" value="<?=$approved_budget;?>" step="any" <?= empty($is_jan) ? '' : 'disabled' ;?> data-dtid="<?=$dt_id;?>" name="approved_budget" class="approved_budget text-center" onchange="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
-                                                                    <input type="number" id="todate_realignment" disabled value="<?=$todate_realignment;?>" size="25" step="any" name="todate_realignment" data-dtid=""  class="revised_allotment text-center" onchange="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                    <input type="number" id="todate_realignment" disabled value="<?=$todate_realignment;?>" size="25" step="any" name="todate_realignment" data-dtid=""  class="todate_realignment text-center" onchange="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
                                                                     <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" disabled onchange="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
-                                                                    <input type="number" id="revised_allotment"  value="" size="25" step="any" name="revised_allotment" data-dtid="" class="revised_allotment text-center" disabled/>
+                                                                    <input type="number" id="revised_allotment"  value="" size="25" step="any" name="revised_allotment" class="revised_allotment text-center" disabled onchange="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_ps_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
+                                                                    <input type="hidden" id="january_revision"  value="<?=$january_revision;?>" size="25" step="any" name="january_revision" class="january_revision text-center"/>
+                                                                    <input type="hidden" id="february_revision"  value="<?=$february_revision;?>" size="25" step="any" name="february_revision" class="february_revision text-center"/>
+                                                                    <input type="hidden" id="march_revision"  value="<?=$march_revision;?>" size="25" step="any" name="march_revision" class="march_revision text-center"/>
+                                                                    <input type="hidden" id="april_revision"  value="<?=$april_revision;?>" size="25" step="any" name="april_revision" class="april_revision text-center"/>
+                                                                    <input type="hidden" id="may_revision"  value="<?=$may_revision;?>" size="25" step="any" name="may_revision" class="may_revision text-center"/>
+                                                                    <input type="hidden" id="june_revision"  value="<?=$june_revision;?>" size="25" step="any" name="june_revision" class="june_revision text-center"/>
+                                                                    <input type="hidden" id="july_revision"  value="<?=$july_revision;?>" size="25" step="any" name="july_revision" class="july_revision text-center"/>
+                                                                    <input type="hidden" id="august_revision"  value="<?=$august_revision;?>" size="25" step="any" name="august_revision" class="august_revision text-center"/>
+                                                                    <input type="hidden" id="september_revision"  value="<?=$september_revision;?>" size="25" step="any" name="september_revision" class="september_revision text-center"/>
+                                                                    <input type="hidden" id="october_revision"  value="<?=$october_revision;?>" size="25" step="any" name="october_revision" class="october_revision text-center"/>
+                                                                    <input type="hidden" id="november_revision"  value="<?=$november_revision;?>" size="25" step="any" name="november_revision" class="november_revision text-center"/>
+                                                                    <input type="hidden" id="december_revision"  value="<?=$december_revision;?>" size="25" step="any" name="december_revision" class="december_revision text-center"/>
                                                                 </td>
                                                             </tr>
                                                             <?php endforeach; endif;?>
@@ -755,40 +769,42 @@ echo view('templates/myheader.php');
                                                                     $december_revision = $data['december_revision'];
 
                                                                     if ($is_jan == '1' && $is_feb == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision;
+                                                                        $todate_realignment = $january_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '1' && $is_sep == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '1' && $is_sep == '1' && $is_oct == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision + $october_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision + $october_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision + $october_revision + $november_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision + $october_revision + $november_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '1') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision + $october_revision + $november_revision + $december_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision + $october_revision + $november_revision + $december_revision;
+                                                                    }else{
+                                                                        $todate_realignment = 0.00;
                                                                     }
 
                                                             ?>
@@ -839,10 +855,22 @@ echo view('templates/myheader.php');
                                                                     <input type="number" id="todate_realignment" disabled  value="<?= $todate_realignment ?>" size="25" step="any" name="todate_realignment" data-dtid="" class="todate_realignment text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
-                                                                    <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                    <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" disabled class="proposed_realignment text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
-                                                                    <input type="number" id="proposed_revision"  value="" size="25" step="any" name="proposed_revision" data-dtid="" class="proposed_revision text-center" disabled/>
+                                                                    <input type="number" id="revised_allotment"  value="" size="25" step="any" name="revised_allotment" data-dtid="" class="revised_allotment text-center" disabled/>
+                                                                    <input type="hidden" id="january_revision"  value="<?=$january_revision;?>" size="25" step="any" name="january_revision" class="january_revision text-center"/>
+                                                                    <input type="hidden" id="february_revision"  value="<?=$february_revision;?>" size="25" step="any" name="february_revision" class="february_revision text-center"/>
+                                                                    <input type="hidden" id="march_revision"  value="<?=$march_revision;?>" size="25" step="any" name="march_revision" class="march_revision text-center"/>
+                                                                    <input type="hidden" id="april_revision"  value="<?=$april_revision;?>" size="25" step="any" name="april_revision" class="april_revision text-center"/>
+                                                                    <input type="hidden" id="may_revision"  value="<?=$may_revision;?>" size="25" step="any" name="may_revision" class="may_revision text-center"/>
+                                                                    <input type="hidden" id="june_revision"  value="<?=$june_revision;?>" size="25" step="any" name="june_revision" class="june_revision text-center"/>
+                                                                    <input type="hidden" id="july_revision"  value="<?=$july_revision;?>" size="25" step="any" name="july_revision" class="july_revision text-center"/>
+                                                                    <input type="hidden" id="august_revision"  value="<?=$august_revision;?>" size="25" step="any" name="august_revision" class="august_revision text-center"/>
+                                                                    <input type="hidden" id="september_revision"  value="<?=$september_revision;?>" size="25" step="any" name="september_revision" class="september_revision text-center"/>
+                                                                    <input type="hidden" id="october_revision"  value="<?=$october_revision;?>" size="25" step="any" name="october_revision" class="october_revision text-center"/>
+                                                                    <input type="hidden" id="november_revision"  value="<?=$november_revision;?>" size="25" step="any" name="november_revision" class="november_revision text-center"/>
+                                                                    <input type="hidden" id="december_revision"  value="<?=$december_revision;?>" size="25" step="any" name="december_revision" class="december_revision text-center"/>
                                                                 </td>
                                                             </tr>
                                                             <?php endforeach; endif;?>
@@ -941,7 +969,7 @@ echo view('templates/myheader.php');
                                                                     <input type="number" id="todate_realignment" disabled  value="" size="25" step="any" name="todate_realignment" data-dtid="" class="todate_realignment text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();"/>
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
-                                                                    <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid="" class="proposed_realignment text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
+                                                                    <input type="number" id="proposed_realignment"  value="" size="25" step="any" name="proposed_realignment" data-dtid=""  class="proposed_realignment text-center" onchange="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" onmouseout="__mysys_saob_rpt_ent.__direct_mooe_totals(); __mysys_saob_rpt_ent.__combined_totals();" />
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
                                                                     <input type="number" id="revised_allotment"  value="" size="25" step="any" name="revised_allotment" data-dtid="" class="revised_allotment text-center" disabled/>
@@ -1073,40 +1101,42 @@ echo view('templates/myheader.php');
                                                                     $december_revision = $data['december_revision'];
 
                                                                     if ($is_jan == '1' && $is_feb == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision;
+                                                                        $todate_realignment = $january_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '1' && $is_sep == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '1' && $is_sep == '1' && $is_oct == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision + $october_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision + $october_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '0') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision + $october_revision + $november_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision + $october_revision + $november_revision;
 
                                                                     }elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1' && $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '1') {
-                                                                        $todate_realignment = $approved_budget + $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision + $october_revision + $november_revision + $december_revision;
+                                                                        $todate_realignment = $january_revision + $february_revision + $march_revision + $april_revision + $may_revision + $june_revision + $july_revision + $august_revision + $september_revision + $october_revision + $november_revision + $december_revision;
+                                                                    }else{
+                                                                        $todate_realignment = 0.00;
                                                                     }
                                                             ?>
                                                             <tr>
@@ -1160,6 +1190,18 @@ echo view('templates/myheader.php');
                                                                 </td>
                                                                 <td class="text-center align-middle" nowrap>
                                                                     <input type="number" id="revised_allotment"  value="" size="25" step="any" name="revised_allotment" data-dtid="" class="revised_allotment text-center" disabled/>
+                                                                    <input type="hidden" id="january_revision"  value="<?=$january_revision;?>" size="25" step="any" name="january_revision" class="january_revision text-center"/>
+                                                                    <input type="hidden" id="february_revision"  value="<?=$february_revision;?>" size="25" step="any" name="february_revision" class="february_revision text-center"/>
+                                                                    <input type="hidden" id="march_revision"  value="<?=$march_revision;?>" size="25" step="any" name="march_revision" class="march_revision text-center"/>
+                                                                    <input type="hidden" id="april_revision"  value="<?=$april_revision;?>" size="25" step="any" name="april_revision" class="april_revision text-center"/>
+                                                                    <input type="hidden" id="may_revision"  value="<?=$may_revision;?>" size="25" step="any" name="may_revision" class="may_revision text-center"/>
+                                                                    <input type="hidden" id="june_revision"  value="<?=$june_revision;?>" size="25" step="any" name="june_revision" class="june_revision text-center"/>
+                                                                    <input type="hidden" id="july_revision"  value="<?=$july_revision;?>" size="25" step="any" name="july_revision" class="july_revision text-center"/>
+                                                                    <input type="hidden" id="august_revision"  value="<?=$august_revision;?>" size="25" step="any" name="august_revision" class="august_revision text-center"/>
+                                                                    <input type="hidden" id="september_revision"  value="<?=$september_revision;?>" size="25" step="any" name="september_revision" class="september_revision text-center"/>
+                                                                    <input type="hidden" id="october_revision"  value="<?=$october_revision;?>" size="25" step="any" name="october_revision" class="october_revision text-center"/>
+                                                                    <input type="hidden" id="november_revision"  value="<?=$november_revision;?>" size="25" step="any" name="november_revision" class="november_revision text-center"/>
+                                                                    <input type="hidden" id="december_revision"  value="<?=$december_revision;?>" size="25" step="any" name="december_revision" class="december_revision text-center"/>
                                                                 </td>
                                                             </tr>
                                                             <?php endforeach; endif;?>
@@ -1571,7 +1613,7 @@ echo view('templates/myheader.php');
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
-<script src="<?=base_url('assets/js/report/mysaobreport.js?v=5');?>"></script>
+<script src="<?=base_url('assets/js/report/mysaobreport.js?v=6');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 
 </script>

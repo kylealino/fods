@@ -1,0 +1,20 @@
+CRITICAL - 2026-03-10 16:47:31 --> ErrorException: Undefined property: App\Controllers\UacsApi::$db
+[Method: GET, Route: api/uacs]
+in APPPATH\Controllers\UacsApi.php on line 13.
+ 1 APPPATH\Controllers\UacsApi.php(13): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\UacsApi::$db', 'C:\\xampp\\htdocs\\fods\\app\\Controllers\\UacsApi.php', 13)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\UacsApi->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UacsApi))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-10 16:47:35 --> ErrorException: Undefined property: App\Controllers\UacsApi::$db
+[Method: GET, Route: api/uacs]
+in APPPATH\Controllers\UacsApi.php on line 13.
+ 1 APPPATH\Controllers\UacsApi.php(13): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\UacsApi::$db', 'C:\\xampp\\htdocs\\fods\\app\\Controllers\\UacsApi.php', 13)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\UacsApi->index()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UacsApi))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

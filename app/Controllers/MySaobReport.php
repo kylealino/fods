@@ -74,19 +74,19 @@ class MySaobReport extends BaseController
 
         $sql = "
             SELECT
-                hd.recid AS ors_recid,
-                hd.serialno,
-                hd.payee_name,
                 hd.ors_date,
+                hd.payee_name,
+                hd.serialno,
+                hd.particulars,
                 d.program_title,
                 d.project_title,
                 d.responsibility_code,
                 d.mfopaps_code,
+                (SELECT allotment_class FROM mst_uacs WHERE sub_object_code = d.sub_object_code LIMIT 1) AS allotment_class,
+                (SELECT object_code FROM mst_uacs WHERE sub_object_code = d.sub_object_code LIMIT 1) AS object_code,
                 d.sub_object_code,
                 d.uacs_code,
-                d.amount,
-                d.added_at,
-                d.added_by
+                d.amount
             FROM tbl_ors_hd hd
             JOIN (
                 SELECT project_id, program_title, project_title, responsibility_code,
@@ -119,7 +119,10 @@ class MySaobReport extends BaseController
                 FROM tbl_ors_indirect_co_dt
             ) d ON d.project_id = hd.recid
             WHERE hd.ors_date BETWEEN ? AND ?
-            ORDER BY hd.recid DESC, d.added_at ASC
+            ORDER BY
+                hd.ors_date ASC,
+                /* 1. Extract the last numeric part of the serial number (e.g., 0070) and sort it numerically */
+                CAST(SUBSTRING_INDEX(hd.serialno, '-', -1) AS UNSIGNED) ASC
         ";
 
         $query = $this->db->query($sql, [$from, $to]);
@@ -373,7 +376,7 @@ class MySaobReport extends BaseController
 
 
         FROM tbl_budget_hd budget
-        WHERE budget.program_title = ?
+        WHERE budget.program_title LIKE ?
         AND budget.duration_from <= ?   -- project starts on or before $to
         AND budget.duration_to   >= ?   -- project ends on or after $from
         ";
@@ -471,20 +474,295 @@ class MySaobReport extends BaseController
         |--------------------------------------------------------------------------
         */
         $sql = "
+        /* ================= General Administration and Support Services ================= */
         /* ================= PS DATA ================= */
         SELECT
             a.program_title, u.allotment_class, b.object_code,
-            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
-            /* THIS MONTH PS */
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget, 
+            /* TOTAL PER QUARTER */
+            b.january_revision, b.february_revision, b.march_revision,
+            (COALESCE(b.january_revision,0)
+            + COALESCE(b.february_revision,0)
+            + COALESCE(b.march_revision,0)) AS first_quarter_total,
+            b.april_revision, b.may_revision, b.june_revision,
+            (COALESCE(b.april_revision,0)
+            + COALESCE(b.may_revision,0)
+            + COALESCE(b.june_revision,0)) AS second_quarter_total,
+            b.july_revision, b.august_revision, b.september_revision,
+            (COALESCE(b.july_revision,0)
+            + COALESCE(b.august_revision,0)
+            + COALESCE(b.september_revision,0)) AS third_quarter_total,
+            b.october_revision, b.november_revision, b.december_revision,
+            (COALESCE(b.october_revision,0)
+            + COALESCE(b.november_revision,0)
+            + COALESCE(b.december_revision,0)) AS forth_quarter_total,
+            /* TOTAL REALIGNMENT */
+            (
+                COALESCE(b.january_revision,0) + COALESCE(b.february_revision,0) + COALESCE(b.march_revision,0) +
+                COALESCE(b.april_revision,0) + COALESCE(b.may_revision,0) + COALESCE(b.june_revision,0) +
+                COALESCE(b.july_revision,0) + COALESCE(b.august_revision,0) + COALESCE(b.september_revision,0) +
+                COALESCE(b.october_revision,0) + COALESCE(b.november_revision,0) + COALESCE(b.december_revision,0)
+            ) AS total_realignment,
+            /* REVISED ALLOTMENT */
+            b.approved_budget + 
+            (
+                COALESCE(b.january_revision,0) + COALESCE(b.february_revision,0) + COALESCE(b.march_revision,0) +
+                COALESCE(b.april_revision,0) + COALESCE(b.may_revision,0) + COALESCE(b.june_revision,0) +
+                COALESCE(b.july_revision,0) + COALESCE(b.august_revision,0) + COALESCE(b.september_revision,0) +
+                COALESCE(b.october_revision,0) + COALESCE(b.november_revision,0) + COALESCE(b.december_revision,0)
+            ) AS revised_allotment,
+
+            /* ORS 1ST QUARTER */
             (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
-            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE '%General Administration and%'), 0) +
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-01-01' AND LAST_DAY('$year-01-01') AND d.project_title LIKE '%General Administration and%'), 0) +
             COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
-            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE '%General Administration and%'), 0)) AS total_sub_month,
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-01-01' AND LAST_DAY('$year-01-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_january,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-02-01' AND LAST_DAY('$year-02-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-02-01' AND LAST_DAY('$year-02-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_february,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-03-01' AND LAST_DAY('$year-03-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-03-01' AND LAST_DAY('$year-03-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_march,
+            
+            /* ORS 1ST QUARTER TOTAL */
+            (
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-01-01' AND LAST_DAY('$year-01-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-01-01' AND LAST_DAY('$year-01-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-02-01' AND LAST_DAY('$year-02-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-02-01' AND LAST_DAY('$year-02-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-03-01' AND LAST_DAY('$year-03-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-03-01' AND LAST_DAY('$year-03-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            ) AS ors_first_quarter_total,
+
+            /* ORS 2ND QUARTER */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-04-01' AND LAST_DAY('$year-04-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-04-01' AND LAST_DAY('$year-04-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_april,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-05-01' AND LAST_DAY('$year-05-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-05-01' AND LAST_DAY('$year-05-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_may,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-06-01' AND LAST_DAY('$year-06-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-06-01' AND LAST_DAY('$year-06-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_june,
+
+            /* ORS 2ND QUARTER TOTAL */
+            (
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-04-01' AND LAST_DAY('$year-04-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-04-01' AND LAST_DAY('$year-04-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-05-01' AND LAST_DAY('$year-05-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-05-01' AND LAST_DAY('$year-05-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-06-01' AND LAST_DAY('$year-06-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-06-01' AND LAST_DAY('$year-06-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            ) AS ors_second_quarter_total,
+
+
+            /* ORS 3RD QUARTER */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-07-01' AND LAST_DAY('$year-07-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-07-01' AND LAST_DAY('$year-07-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_july,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-08-01' AND LAST_DAY('$year-08-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-08-01' AND LAST_DAY('$year-08-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_august,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-09-01' AND LAST_DAY('$year-09-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-09-01' AND LAST_DAY('$year-09-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_september,
+
+            /* ORS 3RD QUARTER TOTAL */
+            (
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-07-01' AND LAST_DAY('$year-07-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-07-01' AND LAST_DAY('$year-07-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-08-01' AND LAST_DAY('$year-08-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-08-01' AND LAST_DAY('$year-08-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-09-01' AND LAST_DAY('$year-09-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-09-01' AND LAST_DAY('$year-09-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            ) AS ors_third_quarter_total,
+
+            /* ORS 4TH QUARTER */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-10-01' AND LAST_DAY('$year-10-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-10-01' AND LAST_DAY('$year-10-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_october,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-11-01' AND LAST_DAY('$year-11-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-11-01' AND LAST_DAY('$year-11-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_november,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-12-01' AND LAST_DAY('$year-12-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-12-01' AND LAST_DAY('$year-12-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_december,
+
+            /* ORS 4TH QUARTER TOTAL */
+            (
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-10-01' AND LAST_DAY('$year-10-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-10-01' AND LAST_DAY('$year-10-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-11-01' AND LAST_DAY('$year-11-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-11-01' AND LAST_DAY('$year-11-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-12-01' AND LAST_DAY('$year-12-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-12-01' AND LAST_DAY('$year-12-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            ) AS ors_forth_quarter_total,
+
             /* WHOLE YEAR PS */
             (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
             WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE '%General Administration and%'), 0) +
             COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
-            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE '%General Administration and%'), 0)) AS total_sub_all
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE '%General Administration and%'), 0)) AS total_sub_all,
+            
+            /* UNOBLIGATED BALANCE */
+            (
+                -- Revised Allotment
+                b.approved_budget + 
+                (
+                    COALESCE(b.january_revision,0) + COALESCE(b.february_revision,0) + COALESCE(b.march_revision,0) +
+                    COALESCE(b.april_revision,0) + COALESCE(b.may_revision,0) + COALESCE(b.june_revision,0) +
+                    COALESCE(b.july_revision,0) + COALESCE(b.august_revision,0) + COALESCE(b.september_revision,0) +
+                    COALESCE(b.october_revision,0) + COALESCE(b.november_revision,0) + COALESCE(b.december_revision,0)
+                )
+                -- Minus total_sub_all
+                - 
+                (
+                    COALESCE(
+                        (SELECT SUM(amount) 
+                        FROM tbl_ors_direct_ps_dt d 
+                        JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+                        WHERE d.sub_object_code = b.particulars 
+                        AND hd.ors_date >= ? AND hd.ors_date <= ? 
+                        AND d.project_title LIKE '%General Administration and%'), 0
+                    ) +
+                    COALESCE(
+                        (SELECT SUM(amount) 
+                        FROM tbl_ors_indirect_ps_dt i 
+                        JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+                        WHERE i.sub_object_code = b.particulars 
+                        AND hd.ors_date >= ? AND hd.ors_date <= ? 
+                        AND i.project_title LIKE '%General Administration and%'), 0
+                    )
+                )
+            ) AS unobligated_balance
+
         FROM tbl_saob_hd a
         JOIN tbl_saob_ps_dt b ON a.recid = b.project_id
         LEFT JOIN mst_uacs u ON b.code = u.uacs_code
@@ -497,20 +775,877 @@ class MySaobReport extends BaseController
         SELECT
             a.program_title, u.allotment_class, b.object_code,
             b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
-            /* THIS MONTH MOOE */
+            /* TOTAL PER QUARTER */
+            b.january_revision, b.february_revision, b.march_revision,
+            (COALESCE(b.january_revision,0)
+            + COALESCE(b.february_revision,0)
+            + COALESCE(b.march_revision,0)) AS first_quarter_total,
+            b.april_revision, b.may_revision, b.june_revision,
+            (COALESCE(b.april_revision,0)
+            + COALESCE(b.may_revision,0)
+            + COALESCE(b.june_revision,0)) AS second_quarter_total,
+            b.july_revision, b.august_revision, b.september_revision,
+            (COALESCE(b.july_revision,0)
+            + COALESCE(b.august_revision,0)
+            + COALESCE(b.september_revision,0)) AS third_quarter_total,
+            b.october_revision, b.november_revision, b.december_revision,
+            (COALESCE(b.october_revision,0)
+            + COALESCE(b.november_revision,0)
+            + COALESCE(b.december_revision,0)) AS forth_quarter_total,
+            /* TOTAL REALIGNMENT */
+            (
+                COALESCE(b.january_revision,0) + COALESCE(b.february_revision,0) + COALESCE(b.march_revision,0) +
+                COALESCE(b.april_revision,0) + COALESCE(b.may_revision,0) + COALESCE(b.june_revision,0) +
+                COALESCE(b.july_revision,0) + COALESCE(b.august_revision,0) + COALESCE(b.september_revision,0) +
+                COALESCE(b.october_revision,0) + COALESCE(b.november_revision,0) + COALESCE(b.december_revision,0)
+            ) AS total_realignment,
+            /* REVISED ALLOTMENT */
+            b.approved_budget + 
+            (
+                COALESCE(b.january_revision,0) + COALESCE(b.february_revision,0) + COALESCE(b.march_revision,0) +
+                COALESCE(b.april_revision,0) + COALESCE(b.may_revision,0) + COALESCE(b.june_revision,0) +
+                COALESCE(b.july_revision,0) + COALESCE(b.august_revision,0) + COALESCE(b.september_revision,0) +
+                COALESCE(b.october_revision,0) + COALESCE(b.november_revision,0) + COALESCE(b.december_revision,0)
+            ) AS revised_allotment,
+            /* ORS 1ST QUARTER */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-01-01' AND LAST_DAY('$year-01-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-01-01' AND LAST_DAY('$year-01-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_january,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-02-01' AND LAST_DAY('$year-02-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-02-01' AND LAST_DAY('$year-02-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_february,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-03-01' AND LAST_DAY('$year-03-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-03-01' AND LAST_DAY('$year-03-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_march,
+
+            /* ORS 1ST QUARTER TOTAL */
+            (
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-01-01' AND LAST_DAY('$year-01-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-01-01' AND LAST_DAY('$year-01-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-02-01' AND LAST_DAY('$year-02-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-02-01' AND LAST_DAY('$year-02-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-03-01' AND LAST_DAY('$year-03-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-03-01' AND LAST_DAY('$year-03-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            ) AS ors_first_quarter_total,
+
+            /* ORS 2ND QUARTER */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-04-01' AND LAST_DAY('$year-04-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-04-01' AND LAST_DAY('$year-04-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_april,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-05-01' AND LAST_DAY('$year-05-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-05-01' AND LAST_DAY('$year-05-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_may,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-06-01' AND LAST_DAY('$year-06-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-06-01' AND LAST_DAY('$year-06-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_june,
+
+            /* ORS 2ND QUARTER TOTAL */
+            (
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-04-01' AND LAST_DAY('$year-04-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-04-01' AND LAST_DAY('$year-04-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-05-01' AND LAST_DAY('$year-05-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-05-01' AND LAST_DAY('$year-05-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-06-01' AND LAST_DAY('$year-06-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-06-01' AND LAST_DAY('$year-06-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            ) AS ors_second_quarter_total,
+
+            /* ORS 3RD QUARTER */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-07-01' AND LAST_DAY('$year-07-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-07-01' AND LAST_DAY('$year-07-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_july,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-08-01' AND LAST_DAY('$year-08-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-08-01' AND LAST_DAY('$year-08-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_august,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-09-01' AND LAST_DAY('$year-09-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-09-01' AND LAST_DAY('$year-09-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_september,
+
+            /* ORS 3RD QUARTER TOTAL */
+            (
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-07-01' AND LAST_DAY('$year-07-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-07-01' AND LAST_DAY('$year-07-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-08-01' AND LAST_DAY('$year-08-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-08-01' AND LAST_DAY('$year-08-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-09-01' AND LAST_DAY('$year-09-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-09-01' AND LAST_DAY('$year-09-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            ) AS ors_third_quarter_total,
+
+            /* ORS 4TH QUARTER */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-10-01' AND LAST_DAY('$year-10-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-10-01' AND LAST_DAY('$year-10-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_october,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-11-01' AND LAST_DAY('$year-11-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-11-01' AND LAST_DAY('$year-11-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_november,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-12-01' AND LAST_DAY('$year-12-01') AND d.project_title LIKE '%General Administration and%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-12-01' AND LAST_DAY('$year-12-01') AND i.project_title LIKE '%General Administration and%'), 0)) AS total_ors_december,
+
+            /* ORS 4TH QUARTER TOTAL */
+            (
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-10-01' AND LAST_DAY('$year-10-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-10-01' AND LAST_DAY('$year-10-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-11-01' AND LAST_DAY('$year-11-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-11-01' AND LAST_DAY('$year-11-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-12-01' AND LAST_DAY('$year-12-01')
+            AND d.project_title LIKE '%General Administration and%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-12-01' AND LAST_DAY('$year-12-01')
+            AND i.project_title LIKE '%General Administration and%'),0)
+            ) AS ors_forth_quarter_total,
+
+            /* WHOLE YEAR PS */
             (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
             WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE '%General Administration and%'), 0) +
-            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
-            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE '%General Administration and%'), 0)) AS total_sub_month,
-            /* WHOLE YEAR MOOE */
-            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_mooe_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
-            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE '%General Administration and%'), 0) +
-            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
-            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE '%General Administration and%'), 0)) AS total_sub_all
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE '%General Administration and%'), 0)) AS total_sub_all,
+
+            (
+                -- Revised Allotment
+                b.approved_budget + 
+                (
+                    COALESCE(b.january_revision,0) + COALESCE(b.february_revision,0) + COALESCE(b.march_revision,0) +
+                    COALESCE(b.april_revision,0) + COALESCE(b.may_revision,0) + COALESCE(b.june_revision,0) +
+                    COALESCE(b.july_revision,0) + COALESCE(b.august_revision,0) + COALESCE(b.september_revision,0) +
+                    COALESCE(b.october_revision,0) + COALESCE(b.november_revision,0) + COALESCE(b.december_revision,0)
+                )
+                -- Minus total_sub_all
+                - 
+                (
+                    COALESCE(
+                        (SELECT SUM(amount) 
+                        FROM tbl_ors_direct_mooe_dt d 
+                        JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+                        WHERE d.sub_object_code = b.particulars 
+                        AND hd.ors_date >= ? AND hd.ors_date <= ? 
+                        AND d.project_title LIKE '%General Administration and%'), 0
+                    ) +
+                    COALESCE(
+                        (SELECT SUM(amount) 
+                        FROM tbl_ors_indirect_ps_dt i 
+                        JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+                        WHERE i.sub_object_code = b.particulars 
+                        AND hd.ors_date >= ? AND hd.ors_date <= ? 
+                        AND i.project_title LIKE '%General Administration and%'), 0
+                    )
+                )
+            ) AS unobligated_balance
+             
         FROM tbl_saob_hd a
         JOIN tbl_saob_mooe_dt b ON a.recid = b.project_id
         LEFT JOIN mst_uacs u ON b.code = u.uacs_code
         WHERE a.program_title LIKE '%General Administration and%' AND a.current_year = ?
+
+        UNION ALL
+
+        /* ================= Relocation and Construction of New DOST-FNRI ================= */
+        /* ================= CO DATA ================= */
+        SELECT
+            a.program_title, u.allotment_class, b.object_code,
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
+            /* TOTAL PER QUARTER */
+            b.january_revision, b.february_revision, b.march_revision,
+            (COALESCE(b.january_revision,0)
+            + COALESCE(b.february_revision,0)
+            + COALESCE(b.march_revision,0)) AS first_quarter_total,
+            b.april_revision, b.may_revision, b.june_revision,
+            (COALESCE(b.april_revision,0)
+            + COALESCE(b.may_revision,0)
+            + COALESCE(b.june_revision,0)) AS second_quarter_total,
+            b.july_revision, b.august_revision, b.september_revision,
+            (COALESCE(b.july_revision,0)
+            + COALESCE(b.august_revision,0)
+            + COALESCE(b.september_revision,0)) AS third_quarter_total,
+            b.october_revision, b.november_revision, b.december_revision,
+            (COALESCE(b.october_revision,0)
+            + COALESCE(b.november_revision,0)
+            + COALESCE(b.december_revision,0)) AS forth_quarter_total,
+            /* TOTAL REALIGNMENT */
+            (
+                COALESCE(b.january_revision,0) + COALESCE(b.february_revision,0) + COALESCE(b.march_revision,0) +
+                COALESCE(b.april_revision,0) + COALESCE(b.may_revision,0) + COALESCE(b.june_revision,0) +
+                COALESCE(b.july_revision,0) + COALESCE(b.august_revision,0) + COALESCE(b.september_revision,0) +
+                COALESCE(b.october_revision,0) + COALESCE(b.november_revision,0) + COALESCE(b.december_revision,0)
+            ) AS total_realignment,
+            /* REVISED ALLOTMENT */
+            b.approved_budget + 
+            (
+                COALESCE(b.january_revision,0) + COALESCE(b.february_revision,0) + COALESCE(b.march_revision,0) +
+                COALESCE(b.april_revision,0) + COALESCE(b.may_revision,0) + COALESCE(b.june_revision,0) +
+                COALESCE(b.july_revision,0) + COALESCE(b.august_revision,0) + COALESCE(b.september_revision,0) +
+                COALESCE(b.october_revision,0) + COALESCE(b.november_revision,0) + COALESCE(b.december_revision,0)
+            ) AS revised_allotment,
+            /* ORS 1ST QUARTER */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-01-01' AND LAST_DAY('$year-01-01') AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-01-01' AND LAST_DAY('$year-01-01') AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0)) AS total_ors_january,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-02-01' AND LAST_DAY('$year-02-01') AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-02-01' AND LAST_DAY('$year-02-01') AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0)) AS total_ors_february,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-03-01' AND LAST_DAY('$year-03-01') AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-03-01' AND LAST_DAY('$year-03-01') AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0)) AS total_ors_march,
+
+            /* ORS 1ST QUARTER TOTAL */
+            (
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-01-01' AND LAST_DAY('$year-01-01')
+            AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-01-01' AND LAST_DAY('$year-01-01')
+            AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-02-01' AND LAST_DAY('$year-02-01')
+            AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-02-01' AND LAST_DAY('$year-02-01')
+            AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-03-01' AND LAST_DAY('$year-03-01')
+            AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-03-01' AND LAST_DAY('$year-03-01')
+            AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            ) AS ors_first_quarter_total,
+
+            /* ORS 2ND QUARTER */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-04-01' AND LAST_DAY('$year-04-01') AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-04-01' AND LAST_DAY('$year-04-01') AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0)) AS total_ors_april,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-05-01' AND LAST_DAY('$year-05-01') AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-05-01' AND LAST_DAY('$year-05-01') AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0)) AS total_ors_may,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-06-01' AND LAST_DAY('$year-06-01') AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-06-01' AND LAST_DAY('$year-06-01') AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0)) AS total_ors_june,
+
+            /* ORS 2ND QUARTER TOTAL */
+            (
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-04-01' AND LAST_DAY('$year-04-01')
+            AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-04-01' AND LAST_DAY('$year-04-01')
+            AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-05-01' AND LAST_DAY('$year-05-01')
+            AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-05-01' AND LAST_DAY('$year-05-01')
+            AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-06-01' AND LAST_DAY('$year-06-01')
+            AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-06-01' AND LAST_DAY('$year-06-01')
+            AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            ) AS ors_second_quarter_total,
+
+            /* ORS 3RD QUARTER */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-07-01' AND LAST_DAY('$year-07-01') AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-07-01' AND LAST_DAY('$year-07-01') AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0)) AS total_ors_july,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-08-01' AND LAST_DAY('$year-08-01') AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-08-01' AND LAST_DAY('$year-08-01') AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0)) AS total_ors_august,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-09-01' AND LAST_DAY('$year-09-01') AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-09-01' AND LAST_DAY('$year-09-01') AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0)) AS total_ors_september,
+
+            /* ORS 3RD QUARTER TOTAL */
+            (
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-07-01' AND LAST_DAY('$year-07-01')
+            AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-07-01' AND LAST_DAY('$year-07-01')
+            AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-08-01' AND LAST_DAY('$year-08-01')
+            AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-08-01' AND LAST_DAY('$year-08-01')
+            AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-09-01' AND LAST_DAY('$year-09-01')
+            AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-09-01' AND LAST_DAY('$year-09-01')
+            AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            ) AS ors_third_quarter_total,
+
+            /* ORS 4TH QUARTER */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-10-01' AND LAST_DAY('$year-10-01') AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-10-01' AND LAST_DAY('$year-10-01') AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0)) AS total_ors_october,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-11-01' AND LAST_DAY('$year-11-01') AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-11-01' AND LAST_DAY('$year-11-01') AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0)) AS total_ors_november,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-12-01' AND LAST_DAY('$year-12-01') AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-12-01' AND LAST_DAY('$year-12-01') AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0)) AS total_ors_december,
+
+            /* ORS 4TH QUARTER TOTAL */
+            (
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-10-01' AND LAST_DAY('$year-10-01')
+            AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-10-01' AND LAST_DAY('$year-10-01')
+            AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-11-01' AND LAST_DAY('$year-11-01')
+            AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-11-01' AND LAST_DAY('$year-11-01')
+            AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-12-01' AND LAST_DAY('$year-12-01')
+            AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-12-01' AND LAST_DAY('$year-12-01')
+            AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'),0)
+            ) AS ors_forth_quarter_total,
+
+            /* WHOLE YEAR PS */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_co_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0)) AS total_sub_all,
+
+            (
+                -- Revised Allotment
+                b.approved_budget + 
+                (
+                    COALESCE(b.january_revision,0) + COALESCE(b.february_revision,0) + COALESCE(b.march_revision,0) +
+                    COALESCE(b.april_revision,0) + COALESCE(b.may_revision,0) + COALESCE(b.june_revision,0) +
+                    COALESCE(b.july_revision,0) + COALESCE(b.august_revision,0) + COALESCE(b.september_revision,0) +
+                    COALESCE(b.october_revision,0) + COALESCE(b.november_revision,0) + COALESCE(b.december_revision,0)
+                )
+                -- Minus total_sub_all
+                - 
+                (
+                    COALESCE(
+                        (SELECT SUM(amount) 
+                        FROM tbl_ors_direct_co_dt d 
+                        JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+                        WHERE d.sub_object_code = b.particulars 
+                        AND hd.ors_date >= ? AND hd.ors_date <= ? 
+                        AND d.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0
+                    ) +
+                    COALESCE(
+                        (SELECT SUM(amount) 
+                        FROM tbl_ors_indirect_ps_dt i 
+                        JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+                        WHERE i.sub_object_code = b.particulars 
+                        AND hd.ors_date >= ? AND hd.ors_date <= ? 
+                        AND i.project_title LIKE '%Relocation and Construction of New DOST-FNRI%'), 0
+                    )
+                )
+            ) AS unobligated_balance
+             
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_co_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+        WHERE a.project_title LIKE '%Relocation and Construction of New DOST-FNRI%' AND a.current_year = ?
+
+        UNION ALL
+
+        /* ================= Administration of Personnel Benefits ================= */
+        /* ================= PS DATA ================= */
+        SELECT
+            a.program_title, u.allotment_class, b.object_code,
+            b.particulars AS sub_object_code, b.code AS uacs_code, b.approved_budget,
+            /* TOTAL PER QUARTER */
+            b.january_revision, b.february_revision, b.march_revision,
+            (COALESCE(b.january_revision,0)
+            + COALESCE(b.february_revision,0)
+            + COALESCE(b.march_revision,0)) AS first_quarter_total,
+            b.april_revision, b.may_revision, b.june_revision,
+            (COALESCE(b.april_revision,0)
+            + COALESCE(b.may_revision,0)
+            + COALESCE(b.june_revision,0)) AS second_quarter_total,
+            b.july_revision, b.august_revision, b.september_revision,
+            (COALESCE(b.july_revision,0)
+            + COALESCE(b.august_revision,0)
+            + COALESCE(b.september_revision,0)) AS third_quarter_total,
+            b.october_revision, b.november_revision, b.december_revision,
+            (COALESCE(b.october_revision,0)
+            + COALESCE(b.november_revision,0)
+            + COALESCE(b.december_revision,0)) AS forth_quarter_total,
+            /* TOTAL REALIGNMENT */
+            (
+                COALESCE(b.january_revision,0) + COALESCE(b.february_revision,0) + COALESCE(b.march_revision,0) +
+                COALESCE(b.april_revision,0) + COALESCE(b.may_revision,0) + COALESCE(b.june_revision,0) +
+                COALESCE(b.july_revision,0) + COALESCE(b.august_revision,0) + COALESCE(b.september_revision,0) +
+                COALESCE(b.october_revision,0) + COALESCE(b.november_revision,0) + COALESCE(b.december_revision,0)
+            ) AS total_realignment,
+            /* REVISED ALLOTMENT */
+            b.approved_budget + 
+            (
+                COALESCE(b.january_revision,0) + COALESCE(b.february_revision,0) + COALESCE(b.march_revision,0) +
+                COALESCE(b.april_revision,0) + COALESCE(b.may_revision,0) + COALESCE(b.june_revision,0) +
+                COALESCE(b.july_revision,0) + COALESCE(b.august_revision,0) + COALESCE(b.september_revision,0) +
+                COALESCE(b.october_revision,0) + COALESCE(b.november_revision,0) + COALESCE(b.december_revision,0)
+            ) AS revised_allotment,
+            /* ORS 1ST QUARTER */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-01-01' AND LAST_DAY('$year-01-01') AND d.project_title LIKE '%Administration of Personnel Benefits%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-01-01' AND LAST_DAY('$year-01-01') AND i.project_title LIKE '%Administration of Personnel Benefits%'), 0)) AS total_ors_january,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-02-01' AND LAST_DAY('$year-02-01') AND d.project_title LIKE '%Administration of Personnel Benefits%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-02-01' AND LAST_DAY('$year-02-01') AND i.project_title LIKE '%Administration of Personnel Benefits%'), 0)) AS total_ors_february,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-03-01' AND LAST_DAY('$year-03-01') AND d.project_title LIKE '%Administration of Personnel Benefits%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-03-01' AND LAST_DAY('$year-03-01') AND i.project_title LIKE '%Administration of Personnel Benefits%'), 0)) AS total_ors_march,
+
+            /* ORS 1ST QUARTER TOTAL */
+            (
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-01-01' AND LAST_DAY('$year-01-01')
+            AND d.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-01-01' AND LAST_DAY('$year-01-01')
+            AND i.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-02-01' AND LAST_DAY('$year-02-01')
+            AND d.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-02-01' AND LAST_DAY('$year-02-01')
+            AND i.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-03-01' AND LAST_DAY('$year-03-01')
+            AND d.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-03-01' AND LAST_DAY('$year-03-01')
+            AND i.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            ) AS ors_first_quarter_total,
+
+            /* ORS 2ND QUARTER */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-04-01' AND LAST_DAY('$year-04-01') AND d.project_title LIKE '%Administration of Personnel Benefits%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-04-01' AND LAST_DAY('$year-04-01') AND i.project_title LIKE '%Administration of Personnel Benefits%'), 0)) AS total_ors_april,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-05-01' AND LAST_DAY('$year-05-01') AND d.project_title LIKE '%Administration of Personnel Benefits%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-05-01' AND LAST_DAY('$year-05-01') AND i.project_title LIKE '%Administration of Personnel Benefits%'), 0)) AS total_ors_may,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-06-01' AND LAST_DAY('$year-06-01') AND d.project_title LIKE '%Administration of Personnel Benefits%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-06-01' AND LAST_DAY('$year-06-01') AND i.project_title LIKE '%Administration of Personnel Benefits%'), 0)) AS total_ors_june,
+
+            /* ORS 2ND QUARTER TOTAL */
+            (
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-04-01' AND LAST_DAY('$year-04-01')
+            AND d.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-04-01' AND LAST_DAY('$year-04-01')
+            AND i.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-05-01' AND LAST_DAY('$year-05-01')
+            AND d.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-05-01' AND LAST_DAY('$year-05-01')
+            AND i.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-06-01' AND LAST_DAY('$year-06-01')
+            AND d.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-06-01' AND LAST_DAY('$year-06-01')
+            AND i.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            ) AS ors_second_quarter_total,
+
+            /* ORS 3RD QUARTER */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-07-01' AND LAST_DAY('$year-07-01') AND d.project_title LIKE '%Administration of Personnel Benefits%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-07-01' AND LAST_DAY('$year-07-01') AND i.project_title LIKE '%Administration of Personnel Benefits%'), 0)) AS total_ors_july,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-08-01' AND LAST_DAY('$year-08-01') AND d.project_title LIKE '%Administration of Personnel Benefits%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-08-01' AND LAST_DAY('$year-08-01') AND i.project_title LIKE '%Administration of Personnel Benefits%'), 0)) AS total_ors_august,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-09-01' AND LAST_DAY('$year-09-01') AND d.project_title LIKE '%Administration of Personnel Benefits%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-09-01' AND LAST_DAY('$year-09-01') AND i.project_title LIKE '%Administration of Personnel Benefits%'), 0)) AS total_ors_september,
+
+            /* ORS 3RD QUARTER TOTAL */
+            (
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-07-01' AND LAST_DAY('$year-07-01')
+            AND d.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-07-01' AND LAST_DAY('$year-07-01')
+            AND i.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-08-01' AND LAST_DAY('$year-08-01')
+            AND d.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-08-01' AND LAST_DAY('$year-08-01')
+            AND i.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-09-01' AND LAST_DAY('$year-09-01')
+            AND d.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-09-01' AND LAST_DAY('$year-09-01')
+            AND i.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            ) AS ors_third_quarter_total,
+
+            /* ORS 4TH QUARTER */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-10-01' AND LAST_DAY('$year-10-01') AND d.project_title LIKE '%Administration of Personnel Benefits%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-10-01' AND LAST_DAY('$year-10-01') AND i.project_title LIKE '%Administration of Personnel Benefits%'), 0)) AS total_ors_october,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-11-01' AND LAST_DAY('$year-11-01') AND d.project_title LIKE '%Administration of Personnel Benefits%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-11-01' AND LAST_DAY('$year-11-01') AND i.project_title LIKE '%Administration of Personnel Benefits%'), 0)) AS total_ors_november,
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-12-01' AND LAST_DAY('$year-12-01') AND d.project_title LIKE '%Administration of Personnel Benefits%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date BETWEEN '$year-12-01' AND LAST_DAY('$year-12-01') AND i.project_title LIKE '%Administration of Personnel Benefits%'), 0)) AS total_ors_december,
+
+            /* ORS 4TH QUARTER TOTAL */
+            (
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-10-01' AND LAST_DAY('$year-10-01')
+            AND d.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-10-01' AND LAST_DAY('$year-10-01')
+            AND i.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-11-01' AND LAST_DAY('$year-11-01')
+            AND d.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-11-01' AND LAST_DAY('$year-11-01')
+            AND i.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d 
+            JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-12-01' AND LAST_DAY('$year-12-01')
+            AND d.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_mooe_dt i 
+            JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars 
+            AND hd.ors_date BETWEEN '$year-12-01' AND LAST_DAY('$year-12-01')
+            AND i.project_title LIKE '%Administration of Personnel Benefits%'),0)
+            ) AS ors_forth_quarter_total,
+
+            /* WHOLE YEAR PS */
+            (COALESCE((SELECT SUM(amount) FROM tbl_ors_direct_ps_dt d JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+            WHERE d.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND d.project_title LIKE '%Administration of Personnel Benefits%'), 0) +
+            COALESCE((SELECT SUM(amount) FROM tbl_ors_indirect_ps_dt i JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+            WHERE i.sub_object_code = b.particulars AND hd.ors_date >= ? AND hd.ors_date <= ? AND i.project_title LIKE '%Administration of Personnel Benefits%'), 0)) AS total_sub_all,
+
+            (
+                -- Revised Allotment
+                b.approved_budget + 
+                (
+                    COALESCE(b.january_revision,0) + COALESCE(b.february_revision,0) + COALESCE(b.march_revision,0) +
+                    COALESCE(b.april_revision,0) + COALESCE(b.may_revision,0) + COALESCE(b.june_revision,0) +
+                    COALESCE(b.july_revision,0) + COALESCE(b.august_revision,0) + COALESCE(b.september_revision,0) +
+                    COALESCE(b.october_revision,0) + COALESCE(b.november_revision,0) + COALESCE(b.december_revision,0)
+                )
+                -- Minus total_sub_all
+                - 
+                (
+                    COALESCE(
+                        (SELECT SUM(amount) 
+                        FROM tbl_ors_direct_ps_dt d 
+                        JOIN tbl_ors_hd hd ON d.project_id = hd.recid 
+                        WHERE d.sub_object_code = b.particulars 
+                        AND hd.ors_date >= ? AND hd.ors_date <= ? 
+                        AND d.project_title LIKE '%Administration of Personnel Benefits%'), 0
+                    ) +
+                    COALESCE(
+                        (SELECT SUM(amount) 
+                        FROM tbl_ors_indirect_ps_dt i 
+                        JOIN tbl_ors_hd hd ON i.project_id = hd.recid 
+                        WHERE i.sub_object_code = b.particulars 
+                        AND hd.ors_date >= ? AND hd.ors_date <= ? 
+                        AND i.project_title LIKE '%Administration of Personnel Benefits%'), 0
+                    )
+                )
+            ) AS unobligated_balance
+             
+        FROM tbl_saob_hd a
+        JOIN tbl_saob_ps_dt b ON a.recid = b.project_id
+        LEFT JOIN mst_uacs u ON b.code = u.uacs_code
+        WHERE a.project_title LIKE '%Administration of Personnel Benefits%' AND a.current_year = ?
 
         ORDER BY 
             /* 1. Primary Sort: Weight the Allotment Class to force PS (0) before MOOE (1) */
@@ -538,19 +1673,39 @@ class MySaobReport extends BaseController
         |--------------------------------------------------------------------------
         */
         $bindings = [
-            // --- PS SECTION ---
-            $from, $to,             // This Month Direct/Indirect PS
-            $from, $to,
+            // --- GF PS SECTION ---
+
+            $year_start, $year_end, // Whole Year Direct/Indirect PS
+            $year_start, $year_end,
+            // Current Year PS
+
             $year_start, $year_end, // Whole Year Direct/Indirect PS
             $year_start, $year_end,
             $year,                  // Current Year PS
 
-            // --- MOOE SECTION ---
-            $from, $to,             // This Month Direct/Indirect MOOE
-            $from, $to,
+            // --- GF MOOE SECTION ---
             $year_start, $year_end, // Whole Year Direct/Indirect MOOE
+            $year_start, $year_end,            // Current Year MOOE
+
+            $year_start, $year_end, // Whole Year Direct/Indirect PS
             $year_start, $year_end,
-            $year                   // Current Year MOOE
+            $year,                  // Current Year PS
+
+            // --- CO RELOCATION SECTION ---
+            $year_start, $year_end, // Whole Year Direct/Indirect MOOE
+            $year_start, $year_end,            // Current Year MOOE
+
+            $year_start, $year_end, // Whole Year Direct/Indirect PS
+            $year_start, $year_end,
+            $year,                  // Current Year PS
+
+            // --- PS ADMINISTRATION SECTION ---
+            $year_start, $year_end, // Whole Year Direct/Indirect MOOE
+            $year_start, $year_end,            // Current Year MOOE
+
+            $year_start, $year_end, // Whole Year Direct/Indirect PS
+            $year_start, $year_end,
+            $year,                  // Current Year PS
         ];
 
         /*
@@ -572,14 +1727,57 @@ class MySaobReport extends BaseController
 
         // Header row
         fputcsv($out, [
-            'Program Title',
-            'Allotment Class',
-            'Object Code',
-            'Sub Object Code',
-            'UACS Code',
-            'Approved Budget',
-            'This Month',
-            'To Date'
+        'Program Title',
+        'Allotment Class',
+        'Object Code',
+        'Sub Object Code',
+        'UACS Code',
+        'Approved Budget',
+
+        'Realignment-January',
+        'Realignment-February',
+        'Realignment-March',
+        '1st Quarter',
+
+        'Realignment-April',
+        'Realignment-May',
+        'Realignment-June',
+        '2nd Quarter',
+
+        'Realignment-July',
+        'Realignment-August',
+        'Realignment-September',
+        '3rd Quarter',
+
+        'Realignment-October',
+        'Realignment-November',
+        'Realignment-December',
+        '4th Quarter',
+
+        'Realignment',
+        'Revised Allotment',
+
+        'ORS January',
+        'ORS February',
+        'ORS March',
+        '1st Quarter',
+
+        'ORS April',
+        'ORS May',
+        'ORS June',
+        '2nd Quarter',
+
+        'ORS July',
+        'ORS August',
+        'ORS September',
+        '3rd Quarter',
+
+        'ORS October',
+        'ORS November',
+        'ORS December',
+        '4th Quarter',
+        'Obligation To Date',
+        'Unobligated Balance'
         ]);
 
         while ($row = $query->getUnbufferedRow('array')) {

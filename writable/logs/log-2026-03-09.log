@@ -1,0 +1,664 @@
+ERROR - 2026-03-09 11:19:07 --> mysqli_sql_exception: Subquery returns more than 1 row in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n            S...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n            S...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n            S...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(125): CodeIgniter\Database\BaseConnection->query('\r\n            S...', Array)
+#4 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->exportCsv()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#9 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#10 {main}
+CRITICAL - 2026-03-09 11:19:07 --> CodeIgniter\Database\Exceptions\DatabaseException: Subquery returns more than 1 row
+[Method: GET, Route: export-csv]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MySaobReport.php(125): CodeIgniter\Database\BaseConnection->query('
+            SELECT
+                hd.ors_date,
+                hd.payee_name,
+                hd.serialno,
+                hd.particulars,
+                d.program_title,
+                d.project_title,
+                d.responsibility_code,
+                d.mfopaps_code,
+                (SELECT allotment_class FROM mst_uacs WHERE sub_object_code = d.sub_object_code) AS allotment_class,
+                (SELECT object_code FROM mst_uacs WHERE sub_object_code = d.sub_object_code) AS object_code,
+                d.sub_object_code,
+                d.uacs_code,
+                d.amount
+            FROM tbl_ors_hd hd
+            JOIN (
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_ps_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_ps_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_mooe_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_mooe_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_co_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_co_dt
+            ) d ON d.project_id = hd.recid
+            WHERE hd.ors_date BETWEEN ? AND ?
+            ORDER BY hd.recid DESC, d.added_at ASC
+        ', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->exportCsv()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-09 11:19:07 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Subquery returns more than 1 row
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+            SELECT
+                hd.ors_date,
+                hd.payee_name,
+                hd.serialno,
+                hd.particulars,
+                d.program_title,
+                d.project_title,
+                d.responsibility_code,
+                d.mfopaps_code,
+                (SELECT allotment_class FROM mst_uacs WHERE sub_object_code = d.sub_object_code) AS allotment_class,
+                (SELECT object_code FROM mst_uacs WHERE sub_object_code = d.sub_object_code) AS object_code,
+                d.sub_object_code,
+                d.uacs_code,
+                d.amount
+            FROM tbl_ors_hd hd
+            JOIN (
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_ps_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_ps_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_mooe_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_mooe_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_co_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_co_dt
+            ) d ON d.project_id = hd.recid
+            WHERE hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-30\'
+            ORDER BY hd.recid DESC, d.added_at ASC
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+            SELECT
+                hd.ors_date,
+                hd.payee_name,
+                hd.serialno,
+                hd.particulars,
+                d.program_title,
+                d.project_title,
+                d.responsibility_code,
+                d.mfopaps_code,
+                (SELECT allotment_class FROM mst_uacs WHERE sub_object_code = d.sub_object_code) AS allotment_class,
+                (SELECT object_code FROM mst_uacs WHERE sub_object_code = d.sub_object_code) AS object_code,
+                d.sub_object_code,
+                d.uacs_code,
+                d.amount
+            FROM tbl_ors_hd hd
+            JOIN (
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_ps_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_ps_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_mooe_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_mooe_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_co_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_co_dt
+            ) d ON d.project_id = hd.recid
+            WHERE hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-30\'
+            ORDER BY hd.recid DESC, d.added_at ASC
+        ')
+ 3 APPPATH\Controllers\MySaobReport.php(125): CodeIgniter\Database\BaseConnection->query('
+            SELECT
+                hd.ors_date,
+                hd.payee_name,
+                hd.serialno,
+                hd.particulars,
+                d.program_title,
+                d.project_title,
+                d.responsibility_code,
+                d.mfopaps_code,
+                (SELECT allotment_class FROM mst_uacs WHERE sub_object_code = d.sub_object_code) AS allotment_class,
+                (SELECT object_code FROM mst_uacs WHERE sub_object_code = d.sub_object_code) AS object_code,
+                d.sub_object_code,
+                d.uacs_code,
+                d.amount
+            FROM tbl_ors_hd hd
+            JOIN (
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_ps_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_ps_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_mooe_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_mooe_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_co_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_co_dt
+            ) d ON d.project_id = hd.recid
+            WHERE hd.ors_date BETWEEN ? AND ?
+            ORDER BY hd.recid DESC, d.added_at ASC
+        ', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->exportCsv()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-09 11:19:07 --> [Caused by] mysqli_sql_exception: Subquery returns more than 1 row
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+            SELECT
+                hd.ors_date,
+                hd.payee_name,
+                hd.serialno,
+                hd.particulars,
+                d.program_title,
+                d.project_title,
+                d.responsibility_code,
+                d.mfopaps_code,
+                (SELECT allotment_class FROM mst_uacs WHERE sub_object_code = d.sub_object_code) AS allotment_class,
+                (SELECT object_code FROM mst_uacs WHERE sub_object_code = d.sub_object_code) AS object_code,
+                d.sub_object_code,
+                d.uacs_code,
+                d.amount
+            FROM tbl_ors_hd hd
+            JOIN (
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_ps_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_ps_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_mooe_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_mooe_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_co_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_co_dt
+            ) d ON d.project_id = hd.recid
+            WHERE hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-30\'
+            ORDER BY hd.recid DESC, d.added_at ASC
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+            SELECT
+                hd.ors_date,
+                hd.payee_name,
+                hd.serialno,
+                hd.particulars,
+                d.program_title,
+                d.project_title,
+                d.responsibility_code,
+                d.mfopaps_code,
+                (SELECT allotment_class FROM mst_uacs WHERE sub_object_code = d.sub_object_code) AS allotment_class,
+                (SELECT object_code FROM mst_uacs WHERE sub_object_code = d.sub_object_code) AS object_code,
+                d.sub_object_code,
+                d.uacs_code,
+                d.amount
+            FROM tbl_ors_hd hd
+            JOIN (
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_ps_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_ps_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_mooe_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_mooe_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_co_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_co_dt
+            ) d ON d.project_id = hd.recid
+            WHERE hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-30\'
+            ORDER BY hd.recid DESC, d.added_at ASC
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+            SELECT
+                hd.ors_date,
+                hd.payee_name,
+                hd.serialno,
+                hd.particulars,
+                d.program_title,
+                d.project_title,
+                d.responsibility_code,
+                d.mfopaps_code,
+                (SELECT allotment_class FROM mst_uacs WHERE sub_object_code = d.sub_object_code) AS allotment_class,
+                (SELECT object_code FROM mst_uacs WHERE sub_object_code = d.sub_object_code) AS object_code,
+                d.sub_object_code,
+                d.uacs_code,
+                d.amount
+            FROM tbl_ors_hd hd
+            JOIN (
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_ps_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_ps_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_mooe_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_mooe_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_co_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_co_dt
+            ) d ON d.project_id = hd.recid
+            WHERE hd.ors_date BETWEEN \'2026-01-01\' AND \'2026-01-30\'
+            ORDER BY hd.recid DESC, d.added_at ASC
+        ')
+ 4 APPPATH\Controllers\MySaobReport.php(125): CodeIgniter\Database\BaseConnection->query('
+            SELECT
+                hd.ors_date,
+                hd.payee_name,
+                hd.serialno,
+                hd.particulars,
+                d.program_title,
+                d.project_title,
+                d.responsibility_code,
+                d.mfopaps_code,
+                (SELECT allotment_class FROM mst_uacs WHERE sub_object_code = d.sub_object_code) AS allotment_class,
+                (SELECT object_code FROM mst_uacs WHERE sub_object_code = d.sub_object_code) AS object_code,
+                d.sub_object_code,
+                d.uacs_code,
+                d.amount
+            FROM tbl_ors_hd hd
+            JOIN (
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_ps_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_ps_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_mooe_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_mooe_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_direct_co_dt
+
+                UNION ALL
+                SELECT project_id, program_title, project_title, responsibility_code,
+                    mfopaps_code, sub_object_code, uacs_code, amount, added_at, added_by
+                FROM tbl_ors_indirect_co_dt
+            ) d ON d.project_id = hd.recid
+            WHERE hd.ors_date BETWEEN ? AND ?
+            ORDER BY hd.recid DESC, d.added_at ASC
+        ', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->exportCsv()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-03-09 13:23:44 --> mysqli_sql_exception: Table 'fods-03032026.tmp_saob_co_dt' doesn't exist in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\t\t\tINSERT ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\t\t\tINSERT ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\t\t\tINSERT ...')
+#3 C:\xampp\htdocs\fods\app\Models\MySaobReportModel.php(807): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\t\t\tINSERT ...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MySaobReport.php(42): App\Models\MySaobReportModel->saob_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-03-09 13:23:44 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'fods-03032026.tmp_saob_co_dt' doesn't exist
+[Method: POST, Route: mysaobrpt]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MySaobReportModel.php(807): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO tmp_saob_co_dt (
+							`project_id`,
+							`project_title`,
+							`object_code`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revised_allotment`,
+							`january_revision`,
+							`february_revision`,
+							`march_revision`,
+							`april_revision`,
+							`may_revision`,
+							`june_revision`,
+							`july_revision`,
+							`august_revision`,
+							`september_revision`,
+							`october_revision`,
+							`november_revision`,
+							`december_revision`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 2 APPPATH\Controllers\MySaobReport.php(42): App\Models\MySaobReportModel->saob_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-09 13:23:44 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'fods-03032026.tmp_saob_co_dt' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO tmp_saob_co_dt (
+							`project_id`,
+							`project_title`,
+							`object_code`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revised_allotment`,
+							`january_revision`,
+							`february_revision`,
+							`march_revision`,
+							`april_revision`,
+							`may_revision`,
+							`june_revision`,
+							`july_revision`,
+							`august_revision`,
+							`september_revision`,
+							`october_revision`,
+							`november_revision`,
+							`december_revision`,
+							`added_by`
+						)
+						VALUES (\'47\', \'General Administration and Support Services\', \'Building and Other Structures Outlay\', \' Buildings \', \'50604040-01\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'ADMIN-KYLE\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO tmp_saob_co_dt (
+							`project_id`,
+							`project_title`,
+							`object_code`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revised_allotment`,
+							`january_revision`,
+							`february_revision`,
+							`march_revision`,
+							`april_revision`,
+							`may_revision`,
+							`june_revision`,
+							`july_revision`,
+							`august_revision`,
+							`september_revision`,
+							`october_revision`,
+							`november_revision`,
+							`december_revision`,
+							`added_by`
+						)
+						VALUES (\'47\', \'General Administration and Support Services\', \'Building and Other Structures Outlay\', \' Buildings \', \'50604040-01\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'ADMIN-KYLE\')')
+ 3 APPPATH\Models\MySaobReportModel.php(807): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO tmp_saob_co_dt (
+							`project_id`,
+							`project_title`,
+							`object_code`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revised_allotment`,
+							`january_revision`,
+							`february_revision`,
+							`march_revision`,
+							`april_revision`,
+							`may_revision`,
+							`june_revision`,
+							`july_revision`,
+							`august_revision`,
+							`september_revision`,
+							`october_revision`,
+							`november_revision`,
+							`december_revision`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 4 APPPATH\Controllers\MySaobReport.php(42): App\Models\MySaobReportModel->saob_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-09 13:23:44 --> [Caused by] mysqli_sql_exception: Table 'fods-03032026.tmp_saob_co_dt' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+						INSERT INTO tmp_saob_co_dt (
+							`project_id`,
+							`project_title`,
+							`object_code`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revised_allotment`,
+							`january_revision`,
+							`february_revision`,
+							`march_revision`,
+							`april_revision`,
+							`may_revision`,
+							`june_revision`,
+							`july_revision`,
+							`august_revision`,
+							`september_revision`,
+							`october_revision`,
+							`november_revision`,
+							`december_revision`,
+							`added_by`
+						)
+						VALUES (\'47\', \'General Administration and Support Services\', \'Building and Other Structures Outlay\', \' Buildings \', \'50604040-01\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'ADMIN-KYLE\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO tmp_saob_co_dt (
+							`project_id`,
+							`project_title`,
+							`object_code`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revised_allotment`,
+							`january_revision`,
+							`february_revision`,
+							`march_revision`,
+							`april_revision`,
+							`may_revision`,
+							`june_revision`,
+							`july_revision`,
+							`august_revision`,
+							`september_revision`,
+							`october_revision`,
+							`november_revision`,
+							`december_revision`,
+							`added_by`
+						)
+						VALUES (\'47\', \'General Administration and Support Services\', \'Building and Other Structures Outlay\', \' Buildings \', \'50604040-01\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'ADMIN-KYLE\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO tmp_saob_co_dt (
+							`project_id`,
+							`project_title`,
+							`object_code`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revised_allotment`,
+							`january_revision`,
+							`february_revision`,
+							`march_revision`,
+							`april_revision`,
+							`may_revision`,
+							`june_revision`,
+							`july_revision`,
+							`august_revision`,
+							`september_revision`,
+							`october_revision`,
+							`november_revision`,
+							`december_revision`,
+							`added_by`
+						)
+						VALUES (\'47\', \'General Administration and Support Services\', \'Building and Other Structures Outlay\', \' Buildings \', \'50604040-01\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'0.00\', \'ADMIN-KYLE\')')
+ 4 APPPATH\Models\MySaobReportModel.php(807): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO tmp_saob_co_dt (
+							`project_id`,
+							`project_title`,
+							`object_code`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revised_allotment`,
+							`january_revision`,
+							`february_revision`,
+							`march_revision`,
+							`april_revision`,
+							`may_revision`,
+							`june_revision`,
+							`july_revision`,
+							`august_revision`,
+							`september_revision`,
+							`october_revision`,
+							`november_revision`,
+							`december_revision`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 5 APPPATH\Controllers\MySaobReport.php(42): App\Models\MySaobReportModel->saob_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MySaobReport->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MySaobReport))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

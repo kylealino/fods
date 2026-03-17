@@ -85,18 +85,18 @@ class MyBudgetAllotmentModel extends Model
 			";
 			die();
 		}
-		if (empty($program_title)) {
-			echo "
-			<script>
-			toastr.error('Program title is required!', 'Oops!', {
-					progressBar: true,
-					closeButton: true,
-					timeOut:2000,
-				});
-			</script>
-			";
-			die();
-		}
+		// if (empty($program_title)) {
+		// 	echo "
+		// 	<script>
+		// 	toastr.error('Program title is required!', 'Oops!', {
+		// 			progressBar: true,
+		// 			closeButton: true,
+		// 			timeOut:2000,
+		// 		});
+		// 	</script>
+		// 	";
+		// 	die();
+		// }
 		if (empty($duration_from)) {
 			echo "
 			<script>

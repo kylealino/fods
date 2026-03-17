@@ -235,7 +235,7 @@ echo view('templates/myheader.php');
                                         <span>Particulars</span>
                                     </div>
                                     <div class="col-sm-8">
-                                        <textarea name="particulars" id="particulars" placeholder="" rows="4" class="form-control form-control-sm"><?=$particulars;?></textarea>
+                                        <textarea name="particulars" id="particulars" placeholder="" rows="4" class="form-control form-control-sm"><?= empty($recid) ? 'TO OBLIGATE PAYMENT ' : $particulars; ?></textarea>
                                     </div>
                                 </div>
                             </div>

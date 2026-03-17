@@ -113,7 +113,7 @@ class MySaobReportModel extends Model
 			";
 			die();
 		}
-		if ($total_approved_combined !== $total_proposed_combined) {
+		if ($total_approved_combined !== $total_proposed_combined ) {
 			echo "
 			<script>
 			toastr.error('Approved budget must be equal to Proposed Realignment!', 'Oops!', {
@@ -366,1922 +366,502 @@ class MySaobReportModel extends Model
 
 			//UPDATE OR INSERT OF NEW ROW DATA
 			if (!empty($budgetdtdata)) {
+				$this->db->query("CREATE TEMPORARY TABLE tmp_saob_ps_dt LIKE tbl_saob_ps_dt");
 				for($aa = 0; $aa < count($budgetdtdata); $aa++){
 					$medata = explode("x|x",$budgetdtdata[$aa]);
 					$object_code = $medata[0]; 
 					$particulars = $medata[1]; 
 					$code = $medata[2]; 
 					$approved_budget = $medata[3]; 
-					$revised_allotment = $medata[4]; 
-					$revision = $medata[5];  
-					$proposed_revision = $medata[6]; 
-					$dtid = $medata[7]; 
+					$todate_realignment = $medata[4]; 
+					$proposed_realignment = $medata[5];  
+					$revised_allotment = $medata[6];
+					$january_revision = $medata[7];
+					$february_revision = $medata[8];
+					$march_revision = $medata[9];
+					$april_revision = $medata[10];
+					$may_revision = $medata[11];
+					$june_revision = $medata[12];
+					$july_revision = $medata[13];
+					$august_revision = $medata[14];
+					$september_revision = $medata[15];
+					$october_revision = $medata[16];
+					$november_revision = $medata[17];
+					$december_revision = $medata[18];
 
-					if (!empty($dtid)) {
-						if ($is_jan == '1' && $is_feb == '0' && $is_mar == '0' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								UPDATE tbl_saob_ps_dt
-								SET
-									project_id = ?,
-									project_title = ?,
-									object_code = ?,
-									particulars = ?,
-									code = ?,
-									approved_budget = ?,
-									revised_allotment = ?,
-									january_revision = ?
-								WHERE recid = ?
-							", [
-								$project_id,
-								$project_title,
-								$object_code,
-								$particulars,
-								$code,
-								$approved_budget,
-								$revised_allotment,
-								$proposed_revision,
-								$dtid
-							]);
+					// JANUARY
+					if ($is_jan==1 && $is_feb==0 && $is_mar==0 && $is_apr==0 && $is_may==0 && $is_jun==0 && $is_jul==0 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $january_revision = $proposed_realignment; }
 
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '0' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								UPDATE tbl_saob_ps_dt
-								SET
-									project_id = ?,
-									project_title = ?,
-									object_code = ?,
-									particulars = ?,
-									code = ?,
-									approved_budget = ?,
-									revised_allotment = ?,
-									february_revision = ?
-								WHERE recid = ?
-							", [
-								$project_id,
-								$project_title,
-								$object_code,
-								$particulars,
-								$code,
-								$approved_budget,
-								$revised_allotment,
-								$proposed_revision,
-								$dtid
-							]);
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								UPDATE tbl_saob_ps_dt
-								SET
-									project_id = ?,
-									project_title = ?,
-									object_code = ?,
-									particulars = ?,
-									code = ?,
-									approved_budget = ?,
-									revised_allotment = ?,
-									march_revision = ?
-								WHERE recid = ?
-							", [
-								$project_id,
-								$project_title,
-								$object_code,
-								$particulars,
-								$code,
-								$approved_budget,
-								$revised_allotment,
-								$proposed_revision,
-								$dtid
-							]);
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								UPDATE tbl_saob_ps_dt
-								SET
-									project_id = ?,
-									project_title = ?,
-									object_code = ?,
-									particulars = ?,
-									code = ?,
-									approved_budget = ?,
-									revised_allotment = ?,
-									april_revision = ?
-								WHERE recid = ?
-							", [
-								$project_id,
-								$project_title,
-								$object_code,
-								$particulars,
-								$code,
-								$approved_budget,
-								$revised_allotment,
-								$proposed_revision,
-								$dtid
-							]);
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								UPDATE tbl_saob_ps_dt
-								SET
-									project_id = ?,
-									project_title = ?,
-									object_code = ?,
-									particulars = ?,
-									code = ?,
-									approved_budget = ?,
-									revised_allotment = ?,
-									may_revision = ?
-								WHERE recid = ?
-							", [
-								$project_id,
-								$project_title,
-								$object_code,
-								$particulars,
-								$code,
-								$approved_budget,
-								$revised_allotment,
-								$proposed_revision,
-								$dtid
-							]);
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								UPDATE tbl_saob_ps_dt
-								SET
-									project_id = ?,
-									project_title = ?,
-									object_code = ?,
-									particulars = ?,
-									code = ?,
-									approved_budget = ?,
-									revised_allotment = ?,
-									june_revision = ?
-								WHERE recid = ?
-							", [
-								$project_id,
-								$project_title,
-								$object_code,
-								$particulars,
-								$code,
-								$approved_budget,
-								$revised_allotment,
-								$proposed_revision,
-								$dtid
-							]);
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								UPDATE tbl_saob_ps_dt
-								SET
-									project_id = ?,
-									project_title = ?,
-									object_code = ?,
-									particulars = ?,
-									code = ?,
-									approved_budget = ?,
-									revised_allotment = ?,
-									july_revision = ?
-								WHERE recid = ?
-							", [
-								$project_id,
-								$project_title,
-								$object_code,
-								$particulars,
-								$code,
-								$approved_budget,
-								$revised_allotment,
-								$proposed_revision,
-								$dtid
-							]);
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								UPDATE tbl_saob_ps_dt
-								SET
-									project_id = ?,
-									project_title = ?,
-									object_code = ?,
-									particulars = ?,
-									code = ?,
-									approved_budget = ?,
-									revised_allotment = ?,
-									august_revision = ?
-								WHERE recid = ?
-							", [
-								$project_id,
-								$project_title,
-								$object_code,
-								$particulars,
-								$code,
-								$approved_budget,
-								$revised_allotment,
-								$proposed_revision,
-								$dtid
-							]);
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								UPDATE tbl_saob_ps_dt
-								SET
-									project_id = ?,
-									project_title = ?,
-									object_code = ?,
-									particulars = ?,
-									code = ?,
-									approved_budget = ?,
-									revised_allotment = ?,
-									september_revision = ?
-								WHERE recid = ?
-							", [
-								$project_id,
-								$project_title,
-								$object_code,
-								$particulars,
-								$code,
-								$approved_budget,
-								$revised_allotment,
-								$proposed_revision,
-								$dtid
-							]);
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								UPDATE tbl_saob_ps_dt
-								SET
-									project_id = ?,
-									project_title = ?,
-									object_code = ?,
-									particulars = ?,
-									code = ?,
-									approved_budget = ?,
-									revised_allotment = ?,
-									october_revision = ?
-								WHERE recid = ?
-							", [
-								$project_id,
-								$project_title,
-								$object_code,
-								$particulars,
-								$code,
-								$approved_budget,
-								$revised_allotment,
-								$proposed_revision,
-								$dtid
-							]);
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '0') {
-							$query = $this->db->query("
-								UPDATE tbl_saob_ps_dt
-								SET
-									project_id = ?,
-									project_title = ?,
-									object_code = ?,
-									particulars = ?,
-									code = ?,
-									approved_budget = ?,
-									revised_allotment = ?,
-									november_revision = ?
-								WHERE recid = ?
-							", [
-								$project_id,
-								$project_title,
-								$object_code,
-								$particulars,
-								$code,
-								$approved_budget,
-								$revised_allotment,
-								$proposed_revision,
-								$dtid
-							]);
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '1') {
-							$query = $this->db->query("
-								UPDATE tbl_saob_ps_dt
-								SET
-									project_id = ?,
-									project_title = ?,
-									object_code = ?,
-									particulars = ?,
-									code = ?,
-									approved_budget = ?,
-									revised_allotment = ?,
-									december_revision = ?
-								WHERE recid = ?
-							", [
-								$project_id,
-								$project_title,
-								$object_code,
-								$particulars,
-								$code,
-								$approved_budget,
-								$revised_allotment,
-								$proposed_revision,
-								$dtid
-							]);
-						}else{
-							$query = $this->db->query("
-								UPDATE tbl_saob_ps_dt
-								SET
-									project_id = ?,
-									project_title = ?,
-									object_code = ?,
-									particulars = ?,
-									code = ?,
-									approved_budget = ?,
-									revised_allotment = ?,
-									proposed_revision = ?
-								WHERE recid = ?
-							", [
-								$project_id,
-								$project_title,
-								$object_code,
-								$particulars,
-								$code,
-								$approved_budget,
-								$revised_allotment,
-								$proposed_revision,
-								$dtid
-							]);
-						}
+					// FEBRUARY
+					if ($is_jan==1 && $is_feb==1 && $is_mar==0 && $is_apr==0 && $is_may==0 && $is_jun==0 && $is_jul==0 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $february_revision = $proposed_realignment; }
 
-					}else{
-						if ($is_jan == '1' && $is_feb == '0' && $is_mar == '0' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_ps_dt` (
-									`project_id`,
-									`project_title`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`january_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$project_title',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '0' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_ps_dt` (
-									`project_id`,
-									`project_title`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`february_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$project_title',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_ps_dt` (
-									`project_id`,
-									`project_title`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`march_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$project_title',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_ps_dt` (
-									`project_id`,
-									`project_title`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`april_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$project_title',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_ps_dt` (
-									`project_id`,
-									`project_title`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`may_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$project_title',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_ps_dt` (
-									`project_id`,
-									`project_title`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`june_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$project_title',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_ps_dt` (
-									`project_id`,
-									`project_title`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`july_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$project_title',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_ps_dt` (
-									`project_id`,
-									`project_title`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`august_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$project_title',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_ps_dt` (
-									`project_id`,
-									`project_title`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`september_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$project_title',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_ps_dt` (
-									`project_id`,
-									`project_title`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`october_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$project_title',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_ps_dt` (
-									`project_id`,
-									`project_title`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`november_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$project_title',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '1') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_ps_dt` (
-									`project_id`,
-									`project_title`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`december_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$project_title',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}else{
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_ps_dt`(
-									`project_id`,
-									`project_title`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`proposed_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$project_title',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$revised_allotment',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}
+					// MARCH
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==0 && $is_may==0 && $is_jun==0 && $is_jul==0 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $march_revision = $proposed_realignment; }
 
-					}
+					// APRIL
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==0 && $is_jun==0 && $is_jul==0 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $april_revision = $proposed_realignment; }
+
+					// MAY
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==0 && $is_jul==0 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $may_revision = $proposed_realignment; }
+
+					// JUNE
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==0 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $june_revision = $proposed_realignment; }
+
+					// JULY
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==1 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $july_revision = $proposed_realignment; }
+
+					// AUGUST
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==1 && $is_aug==1 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $august_revision = $proposed_realignment; }
+
+					// SEPTEMBER
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==1 && $is_aug==1 && $is_sep==1 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $september_revision = $proposed_realignment; }
+
+					// OCTOBER
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==1 && $is_aug==1 && $is_sep==1 && $is_oct==1 && $is_nov==0 && $is_dec==0) { $october_revision = $proposed_realignment; }
+
+					// NOVEMBER
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==1 && $is_aug==1 && $is_sep==1 && $is_oct==1 && $is_nov==1 && $is_dec==0) { $november_revision = $proposed_realignment; }
+
+					// DECEMBER
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==1 && $is_aug==1 && $is_sep==1 && $is_oct==1 && $is_nov==1 && $is_dec==1) { $december_revision = $proposed_realignment; }
+					
+					$query = $this->db->query("
+						INSERT INTO tmp_saob_ps_dt (
+							`project_id`,
+							`project_title`,
+							`object_code`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revised_allotment`,
+							`january_revision`,
+							`february_revision`,
+							`march_revision`,
+							`april_revision`,
+							`may_revision`,
+							`june_revision`,
+							`july_revision`,
+							`august_revision`,
+							`september_revision`,
+							`october_revision`,
+							`november_revision`,
+							`december_revision`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+						[
+							$project_id,
+							$project_title,
+							$object_code,
+							$particulars,
+							$code,
+							$approved_budget,
+							$revised_allotment,
+							$january_revision,
+							$february_revision,
+							$march_revision,
+							$april_revision,
+							$may_revision,
+							$june_revision,
+							$july_revision,
+							$august_revision,
+							$september_revision,
+							$october_revision,
+							$november_revision,
+							$december_revision,
+							$this->cuser
+						]
+					);
 
 				}
+
+				$query = $this->db->query("DELETE FROM tbl_saob_ps_dt WHERE `project_id` = '$project_id'");
+
+				$this->db->query("
+					INSERT INTO tbl_saob_ps_dt (
+						project_id,
+						project_title,
+						object_code,
+						particulars,
+						code,
+						approved_budget,
+						revised_allotment,
+						january_revision,
+						february_revision,
+						march_revision,
+						april_revision,
+						may_revision,
+						june_revision,
+						july_revision,
+						august_revision,
+						september_revision,
+						october_revision,
+						november_revision,
+						december_revision,
+						added_by
+					)
+					SELECT
+						project_id,
+						project_title,
+						object_code,
+						particulars,
+						code,
+						approved_budget,
+						revised_allotment,
+						january_revision,
+						february_revision,
+						march_revision,
+						april_revision,
+						may_revision,
+						june_revision,
+						july_revision,
+						august_revision,
+						september_revision,
+						october_revision,
+						november_revision,
+						december_revision,
+						added_by
+					FROM tmp_saob_ps_dt
+					WHERE project_id = '$project_id'
+				");
+
+				$query = $this->db->query("DELETE FROM tmp_saob_ps_dt WHERE `project_id` = '$project_id'");
+			}else{
+				$query = $this->db->query("DELETE FROM tbl_saob_ps_dt WHERE `project_id` = '$project_id'");
 			}
 
 			//INSERTING MOOE DT DATA
 			if (!empty($budgetmooedtdata)) {
+				$this->db->query("CREATE TEMPORARY TABLE tmp_saob_mooe_dt LIKE tbl_saob_mooe_dt");
+
 				for($aa = 0; $aa < count($budgetmooedtdata); $aa++){
 					$medata = explode("x|x",$budgetmooedtdata[$aa]);
 					$object_code = $medata[0]; 
 					$particulars = $medata[1]; 
 					$code = $medata[2]; 
 					$approved_budget = $medata[3]; 
-					$revised_allotment = $medata[4]; 
-					$revision = $medata[5];  
-					$proposed_revision = $medata[6]; 
-					$dtid = $medata[7]; 
+					$todate_realignment = $medata[4]; 
+					$proposed_realignment = $medata[5];  
+					$revised_allotment = $medata[6];
+					$january_revision = $medata[7];
+					$february_revision = $medata[8];
+					$march_revision = $medata[9];
+					$april_revision = $medata[10];
+					$may_revision = $medata[11];
+					$june_revision = $medata[12];
+					$july_revision = $medata[13];
+					$august_revision = $medata[14];
+					$september_revision = $medata[15];
+					$october_revision = $medata[16];
+					$november_revision = $medata[17];
+					$december_revision = $medata[18];
 
-					if (!empty($dtid)) {
-						if ($is_jan == '1' && $is_feb == '0' && $is_mar == '0' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_mooe_dt`
-							SET
-								`project_id` = '$project_id',
-								`project_title` = '$project_title',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`january_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '0' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_mooe_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`february_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_mooe_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`march_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_mooe_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`april_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_mooe_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`may_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_mooe_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`june_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_mooe_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`july_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_mooe_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`august_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_mooe_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`september_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_mooe_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`october_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_mooe_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`november_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '1') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_mooe_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`december_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}else{
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_mooe_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`proposed_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}
+					// JANUARY
+					if ($is_jan==1 && $is_feb==0 && $is_mar==0 && $is_apr==0 && $is_may==0 && $is_jun==0 && $is_jul==0 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $january_revision = $proposed_realignment; }
 
-					}else{
-						if ($is_jan == '1' && $is_feb == '0' && $is_mar == '0' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_mooe_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`january_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '0' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_mooe_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`february_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_mooe_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`march_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_mooe_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`april_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_mooe_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`may_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_mooe_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`june_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_mooe_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`july_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_mooe_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`august_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_mooe_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`september_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_mooe_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`october_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_mooe_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`november_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '1') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_mooe_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`december_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}else{
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_mooe_dt`(
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`proposed_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$revised_allotment',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}
+					// FEBRUARY
+					if ($is_jan==1 && $is_feb==1 && $is_mar==0 && $is_apr==0 && $is_may==0 && $is_jun==0 && $is_jul==0 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $february_revision = $proposed_realignment; }
 
-					}
+					// MARCH
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==0 && $is_may==0 && $is_jun==0 && $is_jul==0 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $march_revision = $proposed_realignment; }
+
+					// APRIL
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==0 && $is_jun==0 && $is_jul==0 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $april_revision = $proposed_realignment; }
+
+					// MAY
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==0 && $is_jul==0 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $may_revision = $proposed_realignment; }
+
+					// JUNE
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==0 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $june_revision = $proposed_realignment; }
+
+					// JULY
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==1 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $july_revision = $proposed_realignment; }
+
+					// AUGUST
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==1 && $is_aug==1 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $august_revision = $proposed_realignment; }
+
+					// SEPTEMBER
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==1 && $is_aug==1 && $is_sep==1 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $september_revision = $proposed_realignment; }
+
+					// OCTOBER
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==1 && $is_aug==1 && $is_sep==1 && $is_oct==1 && $is_nov==0 && $is_dec==0) { $october_revision = $proposed_realignment; }
+
+					// NOVEMBER
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==1 && $is_aug==1 && $is_sep==1 && $is_oct==1 && $is_nov==1 && $is_dec==0) { $november_revision = $proposed_realignment; }
+
+					// DECEMBER
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==1 && $is_aug==1 && $is_sep==1 && $is_oct==1 && $is_nov==1 && $is_dec==1) { $december_revision = $proposed_realignment; }
+					
+					$query = $this->db->query("
+						INSERT INTO tmp_saob_mooe_dt (
+							`project_id`,
+							`project_title`,
+							`object_code`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revised_allotment`,
+							`january_revision`,
+							`february_revision`,
+							`march_revision`,
+							`april_revision`,
+							`may_revision`,
+							`june_revision`,
+							`july_revision`,
+							`august_revision`,
+							`september_revision`,
+							`october_revision`,
+							`november_revision`,
+							`december_revision`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+						[
+							$project_id,
+							$project_title,
+							$object_code,
+							$particulars,
+							$code,
+							$approved_budget,
+							$revised_allotment,
+							$january_revision,
+							$february_revision,
+							$march_revision,
+							$april_revision,
+							$may_revision,
+							$june_revision,
+							$july_revision,
+							$august_revision,
+							$september_revision,
+							$october_revision,
+							$november_revision,
+							$december_revision,
+							$this->cuser
+						]
+					);
 
 				}
+
+				$query = $this->db->query("DELETE FROM tbl_saob_mooe_dt WHERE `project_id` = '$project_id'");
+
+				$this->db->query("
+					INSERT INTO tbl_saob_mooe_dt (
+						project_id,
+						project_title,
+						object_code,
+						particulars,
+						code,
+						approved_budget,
+						revised_allotment,
+						january_revision,
+						february_revision,
+						march_revision,
+						april_revision,
+						may_revision,
+						june_revision,
+						july_revision,
+						august_revision,
+						september_revision,
+						october_revision,
+						november_revision,
+						december_revision,
+						added_by
+					)
+					SELECT
+						project_id,
+						project_title,
+						object_code,
+						particulars,
+						code,
+						approved_budget,
+						revised_allotment,
+						january_revision,
+						february_revision,
+						march_revision,
+						april_revision,
+						may_revision,
+						june_revision,
+						july_revision,
+						august_revision,
+						september_revision,
+						october_revision,
+						november_revision,
+						december_revision,
+						added_by
+					FROM tmp_saob_mooe_dt
+					WHERE project_id = '$project_id'
+				");
+
+				$query = $this->db->query("DELETE FROM tmp_saob_mooe_dt WHERE `project_id` = '$project_id'");
+
+			}else{
+				$query = $this->db->query("DELETE FROM tbl_saob_mooe_dt WHERE `project_id` = '$project_id'");
 			}
 
 			//INSERTING CO DT DATA
 			if (!empty($budgetcodtdata)) {
+				$this->db->query("CREATE TEMPORARY TABLE tmp_saob_co_dt LIKE tbl_saob_mooe_dt");
 				for($aa = 0; $aa < count($budgetcodtdata); $aa++){
 					$medata = explode("x|x",$budgetcodtdata[$aa]);
 					$object_code = $medata[0]; 
 					$particulars = $medata[1]; 
 					$code = $medata[2]; 
 					$approved_budget = $medata[3]; 
-					$revised_allotment = $medata[4]; 
-					$revision = $medata[5];  
-					$proposed_revision = $medata[6]; 
-					$dtid = $medata[7]; 
+					$todate_realignment = $medata[4]; 
+					$proposed_realignment = $medata[5];  
+					$revised_allotment = $medata[6];
+					$january_revision = $medata[7];
+					$february_revision = $medata[8];
+					$march_revision = $medata[9];
+					$april_revision = $medata[10];
+					$may_revision = $medata[11];
+					$june_revision = $medata[12];
+					$july_revision = $medata[13];
+					$august_revision = $medata[14];
+					$september_revision = $medata[15];
+					$october_revision = $medata[16];
+					$november_revision = $medata[17];
+					$december_revision = $medata[18];
 
-					if (!empty($dtid)) {
-						if ($is_jan == '1' && $is_feb == '0' && $is_mar == '0' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_co_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`january_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '0' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_co_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`february_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_co_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`march_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_co_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`april_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_co_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`may_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_co_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`june_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_co_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`july_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_co_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`august_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_co_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`september_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_co_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`october_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '0') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_co_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`november_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '1') {
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_co_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`december_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}else{
-							$query = $this->db->query("
-							UPDATE
-								`tbl_saob_co_dt`
-							SET
-								`project_id` = '$project_id',
-								`object_code` = '$object_code',
-								`particulars` = '$particulars',
-								`code` = '$code',
-								`approved_budget` = '$approved_budget',
-								`revised_allotment` = '$revised_allotment',
-								`proposed_revision` = '$proposed_revision'
-							WHERE
-								`recid` = '$dtid'
-							");
-						}
+					// JANUARY
+					if ($is_jan==1 && $is_feb==0 && $is_mar==0 && $is_apr==0 && $is_may==0 && $is_jun==0 && $is_jul==0 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $january_revision = $proposed_realignment; }
 
-					}else{
-						if ($is_jan == '1' && $is_feb == '0' && $is_mar == '0' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_co_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`january_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '0' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_co_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`february_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '0' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_co_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`march_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '0' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_co_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`april_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '0' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_co_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`may_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '0'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_co_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`june_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '0' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_co_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`july_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '0' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_co_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`august_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '0' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_co_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`september_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '0' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_co_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`october_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '0') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_co_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`november_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}elseif ($is_jan == '1' && $is_feb == '1' && $is_mar == '1' && $is_apr == '1' && $is_may == '1' && $is_jun == '1' && $is_jul == '1'
-							&& $is_aug == '1' && $is_sep == '1' && $is_oct == '1' && $is_nov == '1' && $is_dec == '1') {
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_co_dt` (
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`revision`,
-									`december_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$proposed_revision',
-									'0.0000',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}else{
-							$query = $this->db->query("
-								INSERT INTO `tbl_saob_co_dt`(
-									`project_id`,
-									`object_code`,
-									`particulars`,
-									`code`,
-									`approved_budget`,
-									`revised_allotment`,
-									`proposed_revision`,
-									`added_at`,
-									`added_by`
-								)
-								VALUES(
-									'$project_id',
-									'$object_code',
-									'$particulars',
-									'$code',
-									'$approved_budget',
-									'$revised_allotment',
-									'$proposed_revision',
-									NOW(),
-									'{$this->cuser}'
-								)
-							");
-						}
+					// FEBRUARY
+					if ($is_jan==1 && $is_feb==1 && $is_mar==0 && $is_apr==0 && $is_may==0 && $is_jun==0 && $is_jul==0 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $february_revision = $proposed_realignment; }
 
-					}
+					// MARCH
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==0 && $is_may==0 && $is_jun==0 && $is_jul==0 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $march_revision = $proposed_realignment; }
+
+					// APRIL
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==0 && $is_jun==0 && $is_jul==0 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $april_revision = $proposed_realignment; }
+
+					// MAY
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==0 && $is_jul==0 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $may_revision = $proposed_realignment; }
+
+					// JUNE
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==0 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $june_revision = $proposed_realignment; }
+
+					// JULY
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==1 && $is_aug==0 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $july_revision = $proposed_realignment; }
+
+					// AUGUST
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==1 && $is_aug==1 && $is_sep==0 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $august_revision = $proposed_realignment; }
+
+					// SEPTEMBER
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==1 && $is_aug==1 && $is_sep==1 && $is_oct==0 && $is_nov==0 && $is_dec==0) { $september_revision = $proposed_realignment; }
+
+					// OCTOBER
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==1 && $is_aug==1 && $is_sep==1 && $is_oct==1 && $is_nov==0 && $is_dec==0) { $october_revision = $proposed_realignment; }
+
+					// NOVEMBER
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==1 && $is_aug==1 && $is_sep==1 && $is_oct==1 && $is_nov==1 && $is_dec==0) { $november_revision = $proposed_realignment; }
+
+					// DECEMBER
+					if ($is_jan==1 && $is_feb==1 && $is_mar==1 && $is_apr==1 && $is_may==1 && $is_jun==1 && $is_jul==1 && $is_aug==1 && $is_sep==1 && $is_oct==1 && $is_nov==1 && $is_dec==1) { $december_revision = $proposed_realignment; }
+					
+					
+					$query = $this->db->query("
+						INSERT INTO tmp_saob_co_dt (
+							`project_id`,
+							`project_title`,
+							`object_code`,
+							`particulars`,
+							`code`,
+							`approved_budget`,
+							`revised_allotment`,
+							`january_revision`,
+							`february_revision`,
+							`march_revision`,
+							`april_revision`,
+							`may_revision`,
+							`june_revision`,
+							`july_revision`,
+							`august_revision`,
+							`september_revision`,
+							`october_revision`,
+							`november_revision`,
+							`december_revision`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+						[
+							$project_id,
+							$project_title,
+							$object_code,
+							$particulars,
+							$code,
+							$approved_budget,
+							$revised_allotment,
+							$january_revision,
+							$february_revision,
+							$march_revision,
+							$april_revision,
+							$may_revision,
+							$june_revision,
+							$july_revision,
+							$august_revision,
+							$september_revision,
+							$october_revision,
+							$november_revision,
+							$december_revision,
+							$this->cuser
+						]
+					);
 				}
+
+				$query = $this->db->query("DELETE FROM tbl_saob_co_dt WHERE `project_id` = '$project_id'");
+
+				$this->db->query("
+					INSERT INTO tbl_saob_co_dt (
+						project_id,
+						project_title,
+						object_code,
+						particulars,
+						code,
+						approved_budget,
+						revised_allotment,
+						january_revision,
+						february_revision,
+						march_revision,
+						april_revision,
+						may_revision,
+						june_revision,
+						july_revision,
+						august_revision,
+						september_revision,
+						october_revision,
+						november_revision,
+						december_revision,
+						added_by
+					)
+					SELECT
+						project_id,
+						project_title,
+						object_code,
+						particulars,
+						code,
+						approved_budget,
+						revised_allotment,
+						january_revision,
+						february_revision,
+						march_revision,
+						april_revision,
+						may_revision,
+						june_revision,
+						july_revision,
+						august_revision,
+						september_revision,
+						october_revision,
+						november_revision,
+						december_revision,
+						added_by
+					FROM tmp_saob_co_dt
+					WHERE project_id = '$project_id'
+				");
+
+				$query = $this->db->query("DELETE FROM tmp_saob_co_dt WHERE `project_id` = '$project_id'");
+			}else{
+				$query = $this->db->query("DELETE FROM tbl_saob_co_dt WHERE `project_id` = '$project_id'");
 			}
 
 			$status = "SAOB Updated Successfully!";
