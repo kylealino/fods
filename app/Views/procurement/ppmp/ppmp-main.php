@@ -11,6 +11,10 @@ $end_user = '';
 $fiscal_year = '';
 $project_title = '';
 $responsibility_code = '';
+$is_indicative = '';
+$is_final = '';
+$prepared_by = '';
+$submitted_by = '';
 
 if(!empty($recid) || !is_null($recid)) { 
     $query = $this->db->query("
@@ -20,7 +24,11 @@ if(!empty($recid) || !is_null($recid)) {
         `end_user`,
         `fiscal_year`,
         `project_title`,
-        `responsibility_code`
+        `responsibility_code`,
+        `is_indicative`,
+        `is_final`,
+        `prepared_by`,
+        `submitted_by`
     FROM
         `tbl_ppmp_hd`
     WHERE 
@@ -33,6 +41,10 @@ if(!empty($recid) || !is_null($recid)) {
     $fiscal_year = $data['fiscal_year'];
     $project_title = $data['project_title'];
     $responsibility_code = $data['responsibility_code'];
+    $is_indicative = $data['is_indicative'];
+    $is_final = $data['is_final'];
+    $prepared_by = $data['prepared_by'];
+    $submitted_by = $data['submitted_by'];
 
 }
 
@@ -124,24 +136,56 @@ echo view('templates/myheader.php');
                                         </select>
                                     </div>
                                 </div>
+                                <div class="row mb-2">
+                                    <div class="col-sm-4">
+                                        <span class="fw-bold">Prepared by:</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="prepared_by" id="prepared_by" value="<?=$prepared_by;?>" placeholder="Enter prepared by" class="form-control form-control-sm prepared_by"/>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-sm-4">
+                                        <span class="fw-bold">Submitted by:</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text"  name="submitted_by" id="submitted_by" value="<?=$submitted_by;?>" placeholder="Select Authorized Signatory"  class="form-control form-control-sm submitted_by"/>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="col-sm-6">
                                 <div class="row mb-2">
                                     <div class="col-sm-4">
-                                        <span class="fw-bold">Project, Programs & Activities:</span>
+                                        <span class="fw-bold">RC Code.:</span>
                                     </div>
                                     <div class="col-sm-8">
-                                        <input type="text"  name="project_title" id="project_title" value="<?=$project_title;?>" placeholder="Select Project Title" class="form-control form-control-sm project_title"/>
+                                        <input type="text"  name="responsibility_code" id="responsibility_code" value="<?=$responsibility_code;?>" placeholder="Select RC Code" class="form-control form-control-sm responsibility_code"/>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-sm-4">
-                                        <span class="fw-bold">RC Code.:</span>
+                                        <span class="fw-bold">Project, Programs & Activities:</span>
                                     </div>
-                                    <??>
                                     <div class="col-sm-8">
-                                        <input type="text"  name="responsibility_code" id="responsibility_code" value="<?=$responsibility_code;?>" disabled class="form-control form-control-sm responsibility_code"/>
+                                        <input type="text"  name="project_title" id="project_title" value="<?=$project_title;?>" disabled class="form-control form-control-sm project_title"/>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-sm-4">
+
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="d-flex gap-3">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="is_indicative" <?= $is_indicative == '1' ? 'checked': '';?>>
+                                                <label class="form-check-label" for="is_indicative">Indicative</label>
+                                            </div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="is_final" <?= $is_final == '1' ? 'checked': '';?>>
+                                                <label class="form-check-label" for="is_final">Final</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -386,7 +430,6 @@ echo view('templates/myheader.php');
                                 <th>Fiscal Year</th>
                                 <th>Project Title</th>
                                 <th>Responsibility Code</th>
-                                <th>Print</th>
                             </tr>
                         </thead>
                         <tbody class="align-middle">
@@ -408,15 +451,6 @@ echo view('templates/myheader.php');
                                         title="Edit Transaction">
                                         <i class="ti ti-edit"></i>
                                         </a>
-                                    </div>
-                                </td>
-                                <td class="text-center"><?=$ppmpno;?></td>
-                                <td class="text-center"><?=$end_user;?></td>
-                                <td class="text-center"><?=$fiscal_year;?></td>
-                                <td class="text-center"><?=$project_title;?></td>
-                                <td class="text-center"><?=$responsibility_code;?></td>
-                                <td class="text-center align-middle">
-                                    <div class="d-flex justify-content-center gap-2">
                                         <button class="btn btn-sm fs-6 text-warning p-0 border-0 bg-transparent" 
                                                 onclick="__mysys_ppmp_ent.__showPdfInModal('<?= base_url('myppmp?meaction=PPMP-PRINT&recid='.$dt_recid) ?>')" 
                                                 title="Print PPMP">
@@ -424,6 +458,12 @@ echo view('templates/myheader.php');
                                         </button>
                                     </div>
                                 </td>
+                                <td class="text-center"><?=$ppmpno;?></td>
+                                <td class="text-center"><?=$end_user;?></td>
+                                <td class="text-center"><?=$fiscal_year;?></td>
+                                <td class="text-center"><?=$project_title;?></td>
+                                <td class="text-center"><?=$responsibility_code;?></td>
+
                             </tr>
                             <?php endforeach; endif;?>
                         </tbody>
@@ -541,7 +581,7 @@ echo view('templates/myheader.php');
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
-<script src="<?=base_url('assets/js/procurement/ppmp/myppmp.js?v=1');?>"></script>
+<script src="<?=base_url('assets/js/procurement/ppmp/myppmp.js?v=3');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 
 <script>
@@ -601,23 +641,59 @@ $(function() {
 <?php
 $project_map = [];
 foreach ($projectsdata as $data) {
-    $project_map[$data['project_title']] = $data['responsibility_code'];
+    $project_map[$data['responsibility_code']] = $data['project_title'];
 }
 ?>
 var project_map = <?= json_encode($project_map); ?>;
 
 $(function() {
-    $("#project_title").autocomplete({
+    $("#responsibility_code").autocomplete({
         source: Object.keys(project_map),
         minLength: 0,
         select: function (event, ui) {
-            $("#responsibility_code").val(project_map[ui.item.value]);
+            $("#project_title").val(project_map[ui.item.value]);
         }
     }).focus(function () {
         $(this).autocomplete("search", "");
     });
 });
 </script>
+
+
+<script>
+<?php
+    $signatories = [];
+    foreach ($signatoriesdata as $data) {
+        $signatories[] = $data['full_name'];
+    }
+?>
+var signatories = <?php echo json_encode($signatories); ?>;
+
+$(function() {
+  function initAutocomplete(el) {
+    $(el).autocomplete({
+      source: signatories,
+      minLength: 0 // allows showing results without typing
+    }).on("focus", function () {
+      $(this).autocomplete("search", ""); // show all options on click
+    });
+  }
+
+  // Initialize existing fields
+  $(".submitted_by").each(function() {
+    initAutocomplete(this);
+  });
+
+  // Initialize dynamically added fields
+  $(document).on("focus", ".submitted_by", function () {
+    if (!$(this).data("uiAutocomplete")) {
+      initAutocomplete(this);
+    }
+  });
+});
+</script>
+
+
 
 
 <?php

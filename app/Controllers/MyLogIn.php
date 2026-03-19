@@ -17,34 +17,36 @@ class MyLogIn extends BaseController
         echo view('mylogin');
     } 
 
-    public function auth()
-    {
-        $meusername = $this->request->getPostGet('MyUsername');
-        $password = $this->request->getPostGet('MyPassword');
-        $data = $this->Verify_User($meusername)->getRowArray();
+public function auth()
+{
+    $meusername = $this->request->getPostGet('MyUsername');
+    $password = $this->request->getPostGet('MyPassword');
+    $data = $this->Verify_User($meusername)->getRowArray();
 
-        if($data) {
-
-            $passdb = $data['hash_password'];
-            $verify_pass = $this->Verify_Password($passdb, $password);
-            if($verify_pass) { 
-                $ses_data = array(
+    if($data) {
+        $passdb = $data['hash_password'];
+        $verify_pass = $this->Verify_Password($passdb, $password);
+        if($verify_pass) { 
+            $ses_data = array(
                 '__xsys_myuserzicas_is_logged__' => TRUE,
                 '__xsys_myuserzicas__' => $meusername 
-                );
+            );
 
-                $this->session->set($ses_data);
-                return redirect()->to('/mydashboard');
-
-            } else {
-                $this->session->setFlashdata('mesyszicas_memsg_login', 'Wrong Password');
-                return redirect()->to('/');
-            }
+            $this->session->set($ses_data);
+            return redirect()->to('/mydashboard');
         } else {
-            $this->session->setFlashdata('mesyszicas_memsg_login', 'User Name not Found');
+            // Set flashdata and debug
+            $this->session->setFlashdata('mesyszicas_memsg_login', 'Wrong Password');
+            log_message('error', 'Flashdata set: Wrong Password'); // Check logs
             return redirect()->to('/');
         }
+    } else {
+        // Set flashdata and debug
+        $this->session->setFlashdata('mesyszicas_memsg_login', 'User Name not Found');
+        log_message('error', 'Flashdata set: User Name not Found'); // Check logs
+        return redirect()->to('/');
     }
+}
   
     public function logout()
     {

@@ -129,12 +129,25 @@ class MyPPMP extends BaseController
         ");
         $ppmplistdata = $ppmplistdataquery->getResultArray();
 
+        $signatoriesdataquery = $this->db->query("
+            SELECT
+                `full_name`
+            FROM
+                `myua_user`
+            WHERE
+                `is_ppmp_signatory` = 1
+            ORDER BY
+                `recid` DESC
+        ");
+        $signatoriesdata = $signatoriesdataquery->getResultArray();
+
         return view('procurement/ppmp/ppmp-main', [
             'productsdata' => $productsdata,
             'projectsdata' => $projectsdata,
             'prlistdata' => $prlistdata,
             'ppmplistdata' => $ppmplistdata,
             'abstractlistdata' => $abstractlistdata,
+            'signatoriesdata' => $signatoriesdata,
         ]);
     }
     

@@ -142,7 +142,10 @@ function __mysys_ppmp_ent() {
 					var fiscal_year = document.getElementById("fiscal_year");
 					var project_title = document.getElementById("project_title");
 					var responsibility_code = document.getElementById("responsibility_code");
-	
+					let is_indicative = document.getElementById("is_indicative").checked ? 1 : 0;
+					let is_final = document.getElementById("is_final").checked ? 1 : 0;
+					var prepared_by = document.getElementById("prepared_by");
+					var submitted_by = document.getElementById("submitted_by");
 					var rowcount1 = jQuery('.ppmpdata-list tr').length;
 					var ppmpdtdata = [];
 					var ppmpdata = '';
@@ -174,7 +177,6 @@ function __mysys_ppmp_ent() {
 						ppmpdtdata.push(ppmpdata);
 					}
 
-
 					var mparam = { 
 						recid: recid.value,
 						ppmpno: ppmpno.value,
@@ -182,7 +184,12 @@ function __mysys_ppmp_ent() {
 						fiscal_year: fiscal_year.value,
 						project_title: project_title.value,
 						responsibility_code: responsibility_code.value,
+						prepared_by: prepared_by.value,
+						submitted_by: submitted_by.value,
 						ppmpdtdata: ppmpdtdata,
+						is_indicative: is_indicative,
+						is_final: is_final,
+						
 						meaction: 'PPMP-SAVE'
 					}
 

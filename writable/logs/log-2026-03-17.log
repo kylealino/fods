@@ -1,0 +1,561 @@
+ERROR - 2026-03-17 14:26:02 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM
+        `tbl_ppmp_hd`
+    WHERE 
+        `recid` = '4'' at line 10 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT\r\n ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT\r\n ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT\r\n ...')
+#3 C:\xampp\htdocs\fods\app\Views\procurement\ppmp\ppmp-main.php(31): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT\r\n ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('procurement/ppm...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyPPMP.php(137): view('procurement/ppm...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyPPMP.php(28): App\Controllers\MyPPMP->loadPPMPView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-03-17 14:26:02 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM
+        `tbl_ppmp_hd`
+    WHERE 
+        `recid` = '4'' at line 10
+[Method: GET, Route: myppmp]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\procurement\ppmp\ppmp-main.php(31): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `recid`,
+        `ppmpno`,
+        `end_user`,
+        `fiscal_year`,
+        `project_title`,
+        `responsibility_code`,
+        `is_indicative`,
+        `is_final`,
+    FROM
+        `tbl_ppmp_hd`
+    WHERE 
+        `recid` = \'4\'')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\ppmp\\ppmp-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/ppmp/ppmp-main', [], true)
+ 5 APPPATH\Controllers\MyPPMP.php(137): view('procurement/ppmp/ppmp-main', [...])
+ 6 APPPATH\Controllers\MyPPMP.php(28): App\Controllers\MyPPMP->loadPPMPView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-17 14:26:02 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM
+        `tbl_ppmp_hd`
+    WHERE 
+        `recid` = '4'' at line 10
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        `recid`,
+        `ppmpno`,
+        `end_user`,
+        `fiscal_year`,
+        `project_title`,
+        `responsibility_code`,
+        `is_indicative`,
+        `is_final`,
+    FROM
+        `tbl_ppmp_hd`
+    WHERE 
+        `recid` = \'4\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        `recid`,
+        `ppmpno`,
+        `end_user`,
+        `fiscal_year`,
+        `project_title`,
+        `responsibility_code`,
+        `is_indicative`,
+        `is_final`,
+    FROM
+        `tbl_ppmp_hd`
+    WHERE 
+        `recid` = \'4\'')
+ 3 APPPATH\Views\procurement\ppmp\ppmp-main.php(31): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `recid`,
+        `ppmpno`,
+        `end_user`,
+        `fiscal_year`,
+        `project_title`,
+        `responsibility_code`,
+        `is_indicative`,
+        `is_final`,
+    FROM
+        `tbl_ppmp_hd`
+    WHERE 
+        `recid` = \'4\'')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\ppmp\\ppmp-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/ppmp/ppmp-main', [], true)
+ 7 APPPATH\Controllers\MyPPMP.php(137): view('procurement/ppmp/ppmp-main', [...])
+ 8 APPPATH\Controllers\MyPPMP.php(28): App\Controllers\MyPPMP->loadPPMPView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-17 14:26:02 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM
+        `tbl_ppmp_hd`
+    WHERE 
+        `recid` = '4'' at line 10
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT
+        `recid`,
+        `ppmpno`,
+        `end_user`,
+        `fiscal_year`,
+        `project_title`,
+        `responsibility_code`,
+        `is_indicative`,
+        `is_final`,
+    FROM
+        `tbl_ppmp_hd`
+    WHERE 
+        `recid` = \'4\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        `recid`,
+        `ppmpno`,
+        `end_user`,
+        `fiscal_year`,
+        `project_title`,
+        `responsibility_code`,
+        `is_indicative`,
+        `is_final`,
+    FROM
+        `tbl_ppmp_hd`
+    WHERE 
+        `recid` = \'4\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        `recid`,
+        `ppmpno`,
+        `end_user`,
+        `fiscal_year`,
+        `project_title`,
+        `responsibility_code`,
+        `is_indicative`,
+        `is_final`,
+    FROM
+        `tbl_ppmp_hd`
+    WHERE 
+        `recid` = \'4\'')
+ 4 APPPATH\Views\procurement\ppmp\ppmp-main.php(31): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `recid`,
+        `ppmpno`,
+        `end_user`,
+        `fiscal_year`,
+        `project_title`,
+        `responsibility_code`,
+        `is_indicative`,
+        `is_final`,
+    FROM
+        `tbl_ppmp_hd`
+    WHERE 
+        `recid` = \'4\'')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\ppmp\\ppmp-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/ppmp/ppmp-main', [], true)
+ 8 APPPATH\Controllers\MyPPMP.php(137): view('procurement/ppmp/ppmp-main', [...])
+ 9 APPPATH\Controllers\MyPPMP.php(28): App\Controllers\MyPPMP->loadPPMPView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-03-17 14:26:23 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '`is_final` = '0'
+				WHERE recid = '4'' at line 10 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\tUPDATE\r\n\t...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\tUPDATE\r\n\t...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\tUPDATE\r\n\t...')
+#3 C:\xampp\htdocs\fods\app\Models\MyPPMPModel.php(246): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\tUPDATE\r\n\t...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyPPMP.php(35): App\Models\MyPPMPModel->ppmp_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-03-17 14:26:23 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '`is_final` = '0'
+				WHERE recid = '4'' at line 10
+[Method: POST, Route: myppmp]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyPPMPModel.php(246): CodeIgniter\Database\BaseConnection->query('
+				UPDATE
+					`tbl_ppmp_hd`
+				SET
+					`ppmpno` = ?,
+					`end_user` = ?,
+					`fiscal_year` = ?,
+					`project_title` = ?,
+					`responsibility_code` = ?,
+					`is_indicative` = ?
+					`is_final` = ?
+				WHERE recid = ?
+			', [...])
+ 2 APPPATH\Controllers\MyPPMP.php(35): App\Models\MyPPMPModel->ppmp_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-17 14:26:23 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '`is_final` = '0'
+				WHERE recid = '4'' at line 10
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				UPDATE
+					`tbl_ppmp_hd`
+				SET
+					`ppmpno` = \'test\',
+					`end_user` = \'test\',
+					`fiscal_year` = \'2026\',
+					`project_title` = \'Tracing Raw Materials through Advance Capacity Establishment : Barcoding Facility for Food Authenticity and Safety (2026)\',
+					`responsibility_code` = \'19-003-00-00000-2-3-10-2026\',
+					`is_indicative` = \'1\'
+					`is_final` = \'0\'
+				WHERE recid = \'4\'
+			')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				UPDATE
+					`tbl_ppmp_hd`
+				SET
+					`ppmpno` = \'test\',
+					`end_user` = \'test\',
+					`fiscal_year` = \'2026\',
+					`project_title` = \'Tracing Raw Materials through Advance Capacity Establishment : Barcoding Facility for Food Authenticity and Safety (2026)\',
+					`responsibility_code` = \'19-003-00-00000-2-3-10-2026\',
+					`is_indicative` = \'1\'
+					`is_final` = \'0\'
+				WHERE recid = \'4\'
+			')
+ 3 APPPATH\Models\MyPPMPModel.php(246): CodeIgniter\Database\BaseConnection->query('
+				UPDATE
+					`tbl_ppmp_hd`
+				SET
+					`ppmpno` = ?,
+					`end_user` = ?,
+					`fiscal_year` = ?,
+					`project_title` = ?,
+					`responsibility_code` = ?,
+					`is_indicative` = ?
+					`is_final` = ?
+				WHERE recid = ?
+			', [...])
+ 4 APPPATH\Controllers\MyPPMP.php(35): App\Models\MyPPMPModel->ppmp_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-17 14:26:23 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '`is_final` = '0'
+				WHERE recid = '4'' at line 10
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+				UPDATE
+					`tbl_ppmp_hd`
+				SET
+					`ppmpno` = \'test\',
+					`end_user` = \'test\',
+					`fiscal_year` = \'2026\',
+					`project_title` = \'Tracing Raw Materials through Advance Capacity Establishment : Barcoding Facility for Food Authenticity and Safety (2026)\',
+					`responsibility_code` = \'19-003-00-00000-2-3-10-2026\',
+					`is_indicative` = \'1\'
+					`is_final` = \'0\'
+				WHERE recid = \'4\'
+			', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				UPDATE
+					`tbl_ppmp_hd`
+				SET
+					`ppmpno` = \'test\',
+					`end_user` = \'test\',
+					`fiscal_year` = \'2026\',
+					`project_title` = \'Tracing Raw Materials through Advance Capacity Establishment : Barcoding Facility for Food Authenticity and Safety (2026)\',
+					`responsibility_code` = \'19-003-00-00000-2-3-10-2026\',
+					`is_indicative` = \'1\'
+					`is_final` = \'0\'
+				WHERE recid = \'4\'
+			')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				UPDATE
+					`tbl_ppmp_hd`
+				SET
+					`ppmpno` = \'test\',
+					`end_user` = \'test\',
+					`fiscal_year` = \'2026\',
+					`project_title` = \'Tracing Raw Materials through Advance Capacity Establishment : Barcoding Facility for Food Authenticity and Safety (2026)\',
+					`responsibility_code` = \'19-003-00-00000-2-3-10-2026\',
+					`is_indicative` = \'1\'
+					`is_final` = \'0\'
+				WHERE recid = \'4\'
+			')
+ 4 APPPATH\Models\MyPPMPModel.php(246): CodeIgniter\Database\BaseConnection->query('
+				UPDATE
+					`tbl_ppmp_hd`
+				SET
+					`ppmpno` = ?,
+					`end_user` = ?,
+					`fiscal_year` = ?,
+					`project_title` = ?,
+					`responsibility_code` = ?,
+					`is_indicative` = ?
+					`is_final` = ?
+				WHERE recid = ?
+			', [...])
+ 5 APPPATH\Controllers\MyPPMP.php(35): App\Models\MyPPMPModel->ppmp_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-03-17 14:41:20 --> mysqli_sql_exception: Unknown column 'prepared_by' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT\r\n ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT\r\n ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT\r\n ...')
+#3 C:\xampp\htdocs\fods\app\Views\procurement\ppmp\ppmp-main.php(33): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT\r\n ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('procurement/ppm...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyPPMP.php(137): view('procurement/ppm...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyPPMP.php(28): App\Controllers\MyPPMP->loadPPMPView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-03-17 14:41:20 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'prepared_by' in 'field list'
+[Method: GET, Route: myppmp]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\procurement\ppmp\ppmp-main.php(33): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `recid`,
+        `ppmpno`,
+        `end_user`,
+        `fiscal_year`,
+        `project_title`,
+        `responsibility_code`,
+        `is_indicative`,
+        `is_final`,
+        `prepared_by`
+    FROM
+        `tbl_ppmp_hd`
+    WHERE 
+        `recid` = \'4\'')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\ppmp\\ppmp-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/ppmp/ppmp-main', [], true)
+ 5 APPPATH\Controllers\MyPPMP.php(137): view('procurement/ppmp/ppmp-main', [...])
+ 6 APPPATH\Controllers\MyPPMP.php(28): App\Controllers\MyPPMP->loadPPMPView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-17 14:41:20 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'prepared_by' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        `recid`,
+        `ppmpno`,
+        `end_user`,
+        `fiscal_year`,
+        `project_title`,
+        `responsibility_code`,
+        `is_indicative`,
+        `is_final`,
+        `prepared_by`
+    FROM
+        `tbl_ppmp_hd`
+    WHERE 
+        `recid` = \'4\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        `recid`,
+        `ppmpno`,
+        `end_user`,
+        `fiscal_year`,
+        `project_title`,
+        `responsibility_code`,
+        `is_indicative`,
+        `is_final`,
+        `prepared_by`
+    FROM
+        `tbl_ppmp_hd`
+    WHERE 
+        `recid` = \'4\'')
+ 3 APPPATH\Views\procurement\ppmp\ppmp-main.php(33): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `recid`,
+        `ppmpno`,
+        `end_user`,
+        `fiscal_year`,
+        `project_title`,
+        `responsibility_code`,
+        `is_indicative`,
+        `is_final`,
+        `prepared_by`
+    FROM
+        `tbl_ppmp_hd`
+    WHERE 
+        `recid` = \'4\'')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\ppmp\\ppmp-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/ppmp/ppmp-main', [], true)
+ 7 APPPATH\Controllers\MyPPMP.php(137): view('procurement/ppmp/ppmp-main', [...])
+ 8 APPPATH\Controllers\MyPPMP.php(28): App\Controllers\MyPPMP->loadPPMPView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-17 14:41:20 --> [Caused by] mysqli_sql_exception: Unknown column 'prepared_by' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT
+        `recid`,
+        `ppmpno`,
+        `end_user`,
+        `fiscal_year`,
+        `project_title`,
+        `responsibility_code`,
+        `is_indicative`,
+        `is_final`,
+        `prepared_by`
+    FROM
+        `tbl_ppmp_hd`
+    WHERE 
+        `recid` = \'4\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        `recid`,
+        `ppmpno`,
+        `end_user`,
+        `fiscal_year`,
+        `project_title`,
+        `responsibility_code`,
+        `is_indicative`,
+        `is_final`,
+        `prepared_by`
+    FROM
+        `tbl_ppmp_hd`
+    WHERE 
+        `recid` = \'4\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        `recid`,
+        `ppmpno`,
+        `end_user`,
+        `fiscal_year`,
+        `project_title`,
+        `responsibility_code`,
+        `is_indicative`,
+        `is_final`,
+        `prepared_by`
+    FROM
+        `tbl_ppmp_hd`
+    WHERE 
+        `recid` = \'4\'')
+ 4 APPPATH\Views\procurement\ppmp\ppmp-main.php(33): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `recid`,
+        `ppmpno`,
+        `end_user`,
+        `fiscal_year`,
+        `project_title`,
+        `responsibility_code`,
+        `is_indicative`,
+        `is_final`,
+        `prepared_by`
+    FROM
+        `tbl_ppmp_hd`
+    WHERE 
+        `recid` = \'4\'')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\ppmp\\ppmp-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/ppmp/ppmp-main', [], true)
+ 8 APPPATH\Controllers\MyPPMP.php(137): view('procurement/ppmp/ppmp-main', [...])
+ 9 APPPATH\Controllers\MyPPMP.php(28): App\Controllers\MyPPMP->loadPPMPView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-17 14:49:12 --> ErrorException: include(1/DejaVuSans.ttf): Failed to open stream: No such file or directory
+[Method: GET, Route: myppmp]
+in APPPATH\ThirdParty\fpdf\fpdf.php on line 1137.
+ 1 APPPATH\ThirdParty\fpdf\fpdf.php(1137): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(1/DejaVuSans.ttf): Failed to open stream: No such file or directory', 'C:\\xampp\\htdocs\\fods\\app\\ThirdParty\\fpdf\\fpdf.php', 1137)
+ 2 APPPATH\ThirdParty\fpdf\fpdf.php(1137): include()
+ 3 APPPATH\ThirdParty\fpdf\fpdf.php(461): FPDF->_loadfont('1/DejaVuSans.ttf')
+ 4 APPPATH\Views\procurement\ppmp\ppmp-pdf.php(57): FPDF->AddFont('dejavu', '', 'DejaVuSans.ttf', '1/')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\ppmp\\ppmp-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/ppmp/ppmp-pdf', [], true)
+ 8 APPPATH\Controllers\MyPPMP.php(40): view('procurement/ppmp/ppmp-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-17 14:49:51 --> ErrorException: include(1/DejaVuSans.ttf): Failed to open stream: No such file or directory
+[Method: GET, Route: myppmp]
+in APPPATH\ThirdParty\fpdf\fpdf.php on line 1137.
+ 1 APPPATH\ThirdParty\fpdf\fpdf.php(1137): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(1/DejaVuSans.ttf): Failed to open stream: No such file or directory', 'C:\\xampp\\htdocs\\fods\\app\\ThirdParty\\fpdf\\fpdf.php', 1137)
+ 2 APPPATH\ThirdParty\fpdf\fpdf.php(1137): include()
+ 3 APPPATH\ThirdParty\fpdf\fpdf.php(461): FPDF->_loadfont('1/DejaVuSans.ttf')
+ 4 APPPATH\Views\procurement\ppmp\ppmp-pdf.php(57): FPDF->AddFont('dejavu', '', 'DejaVuSans.ttf', '1/')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\ppmp\\ppmp-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/ppmp/ppmp-pdf', [], true)
+ 8 APPPATH\Controllers\MyPPMP.php(40): view('procurement/ppmp/ppmp-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-03-17 14:49:59 --> ErrorException: include(1/DejaVuSans.ttf): Failed to open stream: No such file or directory
+[Method: GET, Route: myppmp]
+in APPPATH\ThirdParty\fpdf\fpdf.php on line 1137.
+ 1 APPPATH\ThirdParty\fpdf\fpdf.php(1137): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(1/DejaVuSans.ttf): Failed to open stream: No such file or directory', 'C:\\xampp\\htdocs\\fods\\app\\ThirdParty\\fpdf\\fpdf.php', 1137)
+ 2 APPPATH\ThirdParty\fpdf\fpdf.php(1137): include()
+ 3 APPPATH\ThirdParty\fpdf\fpdf.php(461): FPDF->_loadfont('1/DejaVuSans.ttf')
+ 4 APPPATH\Views\procurement\ppmp\ppmp-pdf.php(57): FPDF->AddFont('dejavu', '', 'DejaVuSans.ttf', '1/')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\procurement\\ppmp\\ppmp-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('procurement/ppmp/ppmp-pdf', [], true)
+ 8 APPPATH\Controllers\MyPPMP.php(40): view('procurement/ppmp/ppmp-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyPPMP->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyPPMP))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

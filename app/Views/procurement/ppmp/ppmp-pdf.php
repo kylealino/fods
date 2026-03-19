@@ -17,7 +17,11 @@ SELECT
     `end_user`,
     `fiscal_year`,
     `project_title`,
-    `responsibility_code`
+    `responsibility_code`,
+    `is_indicative`,
+    `is_final`,
+    `prepared_by`,
+    `submitted_by`
 FROM
     `tbl_ppmp_hd`
 WHERE 
@@ -30,25 +34,37 @@ $end_user = $data['end_user'];
 $fiscal_year = $data['fiscal_year'];
 $project_title = $data['project_title'];
 $responsibility_code = $data['responsibility_code'];
-
+$is_indicative = $data['is_indicative'];
+$is_final = $data['is_final'];
+$prepared_by = $data['prepared_by'];
+$submitted_by = $data['submitted_by'];
 
 class PDF extends \FPDF {
     function Footer() {
-        // Position 15 mm from bottom
+        // Position from bottom
         $this->SetY(-15);
-        $this->SetFont('Arial', 'I', 8);
 
-        // Right-aligned page number
-        $this->Cell(330, 10, 'Page ' . $this->PageNo() . ' of {nb}', 0, 0, 'R');
+        // --- Centered disclaimer ---
+        $this->SetFont('Arial', '', 6);
+        $this->Cell(0, 5, 
+            'Reproduction of this CONTROLLED DOCUMENT is STRICTLY PROHIBITED without permission from the Document Custodian. The DOCUMENTED INFORMATION WHEN PRINTED IS deemed UNCONTROLLED.', 
+            0, 0, 'C'
+        );
+
+        // --- Page number (right side, same line) ---
+        $this->SetXY(-40, -15); // move to right edge
+        $this->SetFont('Arial', 'I', 8);
+        $this->Cell(30, 5, 
+            'Page ' . $this->PageNo() . ' of {nb}', 
+            0, 0, 'R'
+        );
     }
 }
-
 
 $pdf = new PDF('L', 'mm', 'LEGAL');
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetTitle('PPMP - Print');
-
 $pdf->SetXY(0, 8);
 
 $Y = 4;
@@ -87,17 +103,25 @@ $pdf->Cell(30, 4, 'PROJECT PROCUREMENT MANAGEMENT PLAN (PPMP)' , 0, 1, 'C');
 //CHECKBOX
 $Y = $pdf->GetY()+4;
 $pdf->SetFont('Arial', 'B', 8);
+$pdf->SetFont('ZapfDingbats','',10);
 $pdf->SetXY(145, $Y);
-$pdf->Cell(6, 5, '' , 1, 1, 'L');
+$pdf->Cell(6, 5, ($is_indicative == 1 ? chr(51) : ''), 1, 0, 'C');
 
+// BACK TO NORMAL FONT for text
+$pdf->SetFont('Arial','',10);
 $pdf->SetXY(151, $Y);
-$pdf->Cell(6, 5, 'INDICATIVE' , 0, 1, 'L');
+$pdf->Cell(30, 5, 'INDICATIVE', 0, 0, 'L');
 
-$pdf->SetXY(200, $Y);
-$pdf->Cell(6, 5, '' , 1, 1, 'L');
 
-$pdf->SetXY(206, $Y);
-$pdf->Cell(6, 5, 'FINAL' , 0, 1, 'L');
+// FINAL checkbox
+$pdf->SetFont('ZapfDingbats','',10);
+$pdf->SetXY(195, $Y);
+$pdf->Cell(6, 5, ($is_final == 1 ? chr(51) : ''), 1, 0, 'C');
+
+// BACK TO NORMAL FONT again
+$pdf->SetFont('Arial','',10);
+$pdf->SetXY(201, $Y);
+$pdf->Cell(30, 5, 'FINAL', 0, 1, 'L');
 
 $Y = $pdf->GetY()+4;
 $pdf->SetFont('Arial', '', 9);
@@ -403,6 +427,9 @@ foreach ($rw as $data) {
         $expected_delivery_period = '';
     }
 
+    $proc_start = date('m/Y', strtotime($proc_start));
+    $proc_end = date('m/Y', strtotime($proc_end));
+
     if ($funding_source == 'General Fund') {
         $funding_source = '101';
     }elseif ($funding_source == 'Trust Fund') {
@@ -515,10 +542,10 @@ $pdf->Cell(65, 5, 'Submitted by:' , 0, 1, 'L');
 $Y = $pdf->GetY()+3;
 $pdf->SetFont('Arial', '', 7);
 $pdf->SetXY(20, $Y);
-$pdf->Cell(60, 3, 'MARLON O. BALITAON' , 'B', 1, 'C');
+$pdf->Cell(60, 3, $prepared_by , 'B', 1, 'C');
 
 $pdf->SetXY(190, $Y);
-$pdf->Cell(65, 3, 'MILDRED O. GUIRINDOLA, Ph.D.' , 'B', 1, 'C');
+$pdf->Cell(65, 3, $submitted_by , 'B', 1, 'C');
 
 $Y = $pdf->GetY();
 $pdf->SetFont('Arial', '', 5.5);
@@ -535,12 +562,6 @@ $pdf->Cell(60, 3, 'End-User' , 0, 1, 'C');
 
 $pdf->SetXY(190, $Y);
 $pdf->Cell(65, 3, 'Division/Section Chief/Project Leader' , 0, 1, 'C');
-
-$Y = $pdf->GetY()+7;
-$pdf->SetFont('Arial', '', 6);
-$pdf->SetXY(20, $Y);
-$pdf->Cell(315, 3, 'Reproduction of this CONTROLLED DOCUMENT is STRICTLY PROHIBITED without permission from the Document Custodian. The DOCUMENTED INFORMATION WHEN PRINTED IS deemed UNCONTROLLED.' , 0, 1, 'C');
-
 
 $pdf->Output();
 exit;

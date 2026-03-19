@@ -481,7 +481,7 @@ echo view('templates/myheader.php');
                                                                     <div class="d-inline-flex gap-1 justify-content-center">
                                                                         <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
                                                                             href="javascript:void(0)"
-                                                                            onclick="$(this).closest('tr').remove();">
+                                                                            onclick="">
                                                                             <i class="ti ti-trash"></i>
                                                                         </a>
                                                                         <a class="text-success fs-5 bg-hover-primary nav-icon-hover"

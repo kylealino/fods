@@ -25,26 +25,96 @@ class MyPPMPModel extends Model
 		$project_title = $this->request->getPostGet('project_title');
 		$responsibility_code = $this->request->getPostGet('responsibility_code');
 		$ppmpdtdata = $this->request->getPostGet('ppmpdtdata');
+		$is_indicative = $this->request->getPostGet('is_indicative');
+		$is_final = $this->request->getPostGet('is_final');
+		$prepared_by = $this->request->getPostGet('prepared_by');
+		$submitted_by = $this->request->getPostGet('submitted_by');
 
-		// var_dump(
-		// 	$ppmpdtdata
-		// );
-		// die();
-
-		// if (empty($prno)) {
-		// 	echo "
-		// 	<script>
-		// 	toastr.error('PR NO is required!', 'Oops!', {
-		// 			progressBar: true,
-		// 			closeButton: true,
-		// 			timeOut:2000,
-		// 		});
-		// 	</script>
-		// 	";
-		// 	die();
-		// }
+		if (empty($ppmpno)) {
+			echo "
+			<script>
+			toastr.error('PPMP NO is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($end_user)) {
+			echo "
+			<script>
+			toastr.error('End user is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($fiscal_year)) {
+			echo "
+			<script>
+			toastr.error('Fiscal year is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($responsibility_code)) {
+			echo "
+			<script>
+			toastr.error('Responsibility code is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($prepared_by)) {
+			echo "
+			<script>
+			toastr.error('Prepared by is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($submitted_by)) {
+			echo "
+			<script>
+			toastr.error('Submitted by is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($ppmpdtdata)) {
+			echo "
+			<script>
+			toastr.error('No items found!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
 		
-
 		if (empty($recid)) {
 			// $accessquery = $this->db->query("
 			// 	SELECT `recid`FROM tbl_user_access WHERE `username` = '{$this->cuser}' AND `access_code` = '10002' AND `is_active` = '1'
@@ -62,22 +132,30 @@ class MyPPMPModel extends Model
 			// 	die();
 			// }
 			//INSERTING HD DATA
-			$query = $this->db->query("
-				INSERT INTO `tbl_ppmp_hd`(
+			$query = $this->db->query(
+				"INSERT INTO `tbl_ppmp_hd`(
 					`ppmpno`,
 					`end_user`,
 					`fiscal_year`,
 					`project_title`,
 					`responsibility_code`,
+					`is_indicative`,
+					`is_final`,
+					`prepared_by`,
+					`submitted_by`,
 					`added_by`
 				)
-				VALUES (?, ?, ?, ?, ?, ?)", 
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 				[
 					$ppmpno,
 					$end_user,
 					$fiscal_year,
 					$project_title,
 					$responsibility_code,
+					$is_indicative,
+					$is_final,
+					$prepared_by,
+					$submitted_by,
 					$this->cuser
 				]
 			);
@@ -182,7 +260,11 @@ class MyPPMPModel extends Model
 					`end_user` = ?,
 					`fiscal_year` = ?,
 					`project_title` = ?,
-					`responsibility_code` = ?
+					`responsibility_code` = ?,
+					`is_indicative` = ?,
+					`is_final` = ?,
+					`prepared_by` = ?,
+					`submitted_by` = ?
 				WHERE recid = ?
 			", [
 				$ppmpno,
@@ -190,6 +272,10 @@ class MyPPMPModel extends Model
 				$fiscal_year,
 				$project_title,
 				$responsibility_code,
+				$is_indicative,
+				$is_final,
+				$prepared_by,
+				$submitted_by,
 				$recid
 			]);
 
