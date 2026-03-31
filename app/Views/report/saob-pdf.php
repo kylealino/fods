@@ -1127,7 +1127,6 @@ foreach ($hd_data as $hd_row) {
         $Y = $afterTextY;
         
     }
-
     // PROJECT TITLE SECTION (for all cases)
     $startY = $Y;
 
@@ -1658,7 +1657,7 @@ foreach ($hd_data as $hd_row) {
     if ($project_title == 'Relocation and Construction of New DOST-FNRI') {
         $Y = $pdf->GetY()+5;
     }elseif($project_title == 'General Administration and Support Services'){
-        $Y = $pdf->GetY()+7;
+        $Y = $pdf->GetY()+5;
     }else{
         $Y = $pdf->GetY()+7;
     }
@@ -8014,7 +8013,14 @@ foreach ($hd_data as $hd_row) {
     $last_sub_object_code = '';
     $last_object_code = '';
 
-    $Y = $pdf->GetY();
+   
+    if ($year == '2026') {
+         $Y = $pdf->GetY() +5.5;
+    }else{
+         $Y = $pdf->GetY();
+    }
+    $pdf->SetXY(10, $Y);
+    $pdf->Cell(191, 3.5, '', 'TRL', 0, 'C');
     foreach ($co_data as $co_row) {
         $allotment_class = $co_row['allotment_class'];
         $object_code = $co_row['object_code'];
@@ -10879,6 +10885,7 @@ $pdf->Cell(22, 3.5, '', 'TRL', 0, 'R'); // Unobligated column
 
 $pdf->SetXY(184, $Y);
 $pdf->Cell(17, 3.5, '', 'TRL', 0, 'R'); // Percentage column
+
 $Y = $pdf->GetY() + 3.5;  
 
 $pdf->SetXY(10, $Y);
@@ -10902,6 +10909,9 @@ $pdf->Cell(17, 3.5, number_format($grandtotal_grand_percentage_minus, 2) . '%', 
 
 //----------------------------------------------------------------------- SIGNATORIES -----------------------------------------------------------------------------------------
 
+if ($year == '2026') {
+    $pdf->AddPage();
+}
 $Y = $pdf->GetY() + 3.5;  
 $pdf->SetXY(10, $Y);
 $pdf->Cell(15, 3.5, '', 'L', 0, 'L'); // First column

@@ -55,12 +55,12 @@ public function auth()
     }
 
     public function Verify_User($cuser='') { 
-		$q = $this->db->query("select `username`,`hash_password` FROM myua_user where username = '{$cuser}' limit 1 ");
+		$q = $this->db->query("select `username`,`hash_password` FROM myua_user where username = ? limit 1 ",[$cuser]);
 		return $q;
 	}
 
     public function Verify_Password($cuserpassdb='',$cuserpass='') { 
-		$query = $this->db->query("select if('{$cuserpassdb}' = sha2('{$cuserpass}',512),1,0) metruefalse limit 1 ");
+		$query = $this->db->query("select if(? = sha2(?,512),1,0) metruefalse limit 1 ",[$cuserpassdb,$cuserpass]);
 		$row = $query->getRowArray();
 		$query->freeResult();
 		return $row['metruefalse'];
