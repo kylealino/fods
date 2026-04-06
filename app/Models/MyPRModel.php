@@ -2,7 +2,7 @@
 namespace App\Models;
 use CodeIgniter\Model;
 
-class MyProcurementModel extends Model
+class MyPRModel extends Model
 {
 
     protected $db;
@@ -31,6 +31,8 @@ class MyProcurementModel extends Model
 		$estimated_cost = $this->request->getPostGet('estimated_cost');
 		$estimated_cost = (float) str_replace(',', '', $estimated_cost);
 		$prdtdata = $this->request->getPostGet('prdtdata');
+		$ppmp_list = $this->request->getPostGet('ppmp_list');
+
 
 		if (empty($recid)) {
 
@@ -65,12 +67,28 @@ class MyProcurementModel extends Model
 				]
 			);
 
-			//PROJECT ID FETCHING
-			$query = $this->db->query("
-			SELECT `recid` FROM tbl_pr_hd WHERE `prno` = '$prno'
-			");
-			$rw = $query->getRowArray();
-			$project_id = $rw['recid'];
+			$project_id = $this->db->insertID();
+
+			if (!empty($ppmp_list)) {
+				foreach($ppmp_list as $ppmp) {
+					$this->db->query("
+						INSERT INTO tbl_pr_ppmp 
+						(
+							pr_id, 
+							prno, 
+							ppmpno, 
+							added_by
+						)
+						VALUES (?,?,?,?)",
+						[
+							$project_id,
+							$prno,
+							$ppmp,
+							$this->cuser
+						]
+					);
+				}
+			}
 
 			if (!empty($prdtdata)) {
 				for($aa = 0; $aa < count($prdtdata); $aa++){
@@ -107,6 +125,7 @@ class MyProcurementModel extends Model
 					
 				}
 			}
+
 
 			$status = "PR Saved Successfully!";
 			$color = "success";
@@ -146,6 +165,30 @@ class MyProcurementModel extends Model
 			");
 			$rw = $query->getRowArray();
 			$project_id = $rw['recid'];
+
+			if (!empty($ppmp_list)) {
+				$query = $this->db->query("DELETE FROM tbl_pr_ppmp WHERE `pr_id` = '$project_id'");
+				foreach($ppmp_list as $ppmp) {
+					$this->db->query("
+						INSERT INTO tbl_pr_ppmp 
+						(
+							pr_id, 
+							prno, 
+							ppmpno, 
+							added_by
+						)
+						VALUES (?,?,?,?)",
+						[
+							$project_id,
+							$prno,
+							$ppmp,
+							$this->cuser
+						]
+					);
+				}
+			}else{
+				$query = $this->db->query("DELETE FROM tbl_pr_ppmp WHERE `pr_id` = '$project_id'");
+			}
 
 			//UPDATE OR INSERT OF NEW ROW DATA
 			if (!empty($prdtdata)) {
@@ -202,7 +245,7 @@ class MyProcurementModel extends Model
 						timeOut:2500,
 					});
 				setTimeout(function() {
-						window.location.href = 'myprocurement?meaction=PR-MAIN&recid=$project_id'; // Redirect to MAIN view
+						window.location.href = 'mypr?meaction=PR-MAIN&recid=$project_id'; // Redirect to MAIN view
 					}, 2500); // 2-second delay for user to see the toast
 			</script>
 			";

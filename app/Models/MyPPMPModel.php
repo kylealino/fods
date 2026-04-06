@@ -160,11 +160,7 @@ class MyPPMPModel extends Model
 				]
 			);
 
-			$query = $this->db->query("
-			SELECT `recid` FROM tbl_ppmp_hd WHERE `ppmpno` = '$ppmpno'
-			");
-			$rw = $query->getRowArray();
-			$project_id = $rw['recid'];
+			$project_id = $this->db->insertID();
 
 			if (!empty($ppmpdtdata)) {
 				for($aa = 0; $aa < count($ppmpdtdata); $aa++){

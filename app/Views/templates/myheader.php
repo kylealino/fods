@@ -405,7 +405,7 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
               </a>
             </li> 
             <li class="sidebar-item">
-              <a class="sidebar-link sidebar-link" href="<?=site_url();?>myprocurement?meaction=PR-MAIN" aria-expanded="false">
+              <a class="sidebar-link sidebar-link" href="<?=site_url();?>mypr?meaction=PR-MAIN" aria-expanded="false">
                 <span class="rounded-3">
                   <i class="ti ti-playlist-add"></i>
                 </span>

@@ -17,6 +17,7 @@ $pr_date = '';
 $end_user = '';
 $charge_to = '';
 $purpose = '';
+$ppmp_list = [];
 
 if(!empty($recid) || !is_null($recid)) { 
     $query = $this->db->query("
@@ -49,6 +50,18 @@ if(!empty($recid) || !is_null($recid)) {
     $position = $data['position'];
     $charge_to = $data['charge_to'];
     $purpose = $data['purpose'];
+
+    $query_ppmp = $this->db->query("
+        SELECT ppmpno 
+        FROM tbl_pr_ppmp 
+        WHERE pr_id = '$recid'
+    ");
+
+    $result_ppmp = $query_ppmp->getResultArray();
+
+    foreach($result_ppmp as $row){
+        $ppmp_list[] = $row['ppmpno'];
+    }
 }
 
 echo view('templates/myheader.php');
@@ -116,7 +129,7 @@ echo view('templates/myheader.php');
                     </div>
                 </div>						
                 <div class="card-body p-0 px-4 py-2 my-2">
-                    <form action="<?=site_url();?>myprocurement?meaction=PR-SAVE" method="post" class="myprocurement-validation">
+                    <form action="<?=site_url();?>mypr?meaction=PR-SAVE" method="post" class="mypr-validation">
                         <div class="row mb-2">
                             <div class="col-sm-6">
                                 <div class="row mb-2">
@@ -212,6 +225,43 @@ echo view('templates/myheader.php');
                                 </div>
                             </div>
           
+                            <hr>
+
+                            <div class="col-sm-12">
+                                <div class="row mb-3 align-items-end">
+
+                                    <!-- LEFT SIDE -->
+                                    <div class="col-sm-6">
+                                        <label class="fw-bold mb-1">PPMP No.</label>
+                                        <div class="input-group input-group-sm">
+                                            <select id="ppmp_lookup" class="form-control">
+                                                <option value="">-- Select PPMP --</option>
+                                                <?php
+                                                $query = $this->db->query("SELECT ppmpno FROM tbl_ppmp_hd ORDER BY ppmpno ASC");
+                                                $result = $query->getResultArray();
+                                                foreach($result as $row):
+                                                ?>
+                                                    <option value="<?=$row['ppmpno'];?>"><?=$row['ppmpno'];?></option>
+                                                <?php endforeach;?>
+                                            </select>
+
+                                            <button type="button" id="btn_add_ppmp" class="btn btn-primary">
+                                                <i class="ti ti-plus"></i> Add
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- RIGHT SIDE -->
+                                    <div class="col-sm-6">
+                                        <label class="fw-bold mb-1">Selected PPMP</label>
+                                        <div id="selected_ppmp_list" class="form-control form-control-sm d-flex flex-wrap gap-1" style="min-height:30px;">
+                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            
                             <hr>
 
                             <div class="col-sm-12">
@@ -406,7 +456,7 @@ echo view('templates/myheader.php');
                                         <td class="text-center align-middle">
                                             <div class="d-flex justify-content-center gap-2">
                                                 <button class="btn btn-sm fs-6 text-primary p-0 border-0 bg-transparent" 
-                                                        onclick="__mysys_proc_pr_ent.__showPdfInModalRFQ('<?= base_url('myprocurement?meaction=RFQ-PRINT&recid=') .$recid .'&rfq_recid=' . $rfq_recid ?>')" 
+                                                        onclick="__mysys_proc_pr_ent.__showPdfInModalRFQ('<?= base_url('mypr?meaction=RFQ-PRINT&recid=') .$recid .'&rfq_recid=' . $rfq_recid ?>')" 
                                                         title="Print RFQ">
                                                 <i class="ti ti-printer"></i>
                                                 </button>
@@ -464,7 +514,7 @@ echo view('templates/myheader.php');
                                 <td class="text-center align-middle">
                                     <div class="d-flex justify-content-center gap-2">
                                         <a class="text-info nav-icon-hover fs-6" 
-                                        href="myprocurement?meaction=PR-MAIN&recid=<?= $dt_recid ?>" 
+                                        href="mypr?meaction=PR-MAIN&recid=<?= $dt_recid ?>" 
                                         title="Edit Transaction">
                                         <i class="ti ti-edit"></i>
                                         </a>
@@ -478,7 +528,7 @@ echo view('templates/myheader.php');
                                 <td class="text-center align-middle">
                                     <div class="d-flex justify-content-center gap-2">
                                         <button class="btn btn-sm fs-6 text-warning p-0 border-0 bg-transparent" 
-                                                onclick="__mysys_proc_pr_ent.__showPdfInModalPR('<?= base_url('myprocurement?meaction=PR-PRINT&recid='.$dt_recid) ?>')" 
+                                                onclick="__mysys_proc_pr_ent.__showPdfInModalPR('<?= base_url('mypr?meaction=PR-PRINT&recid='.$dt_recid) ?>')" 
                                                 title="Print ORS">
                                         <i class="ti ti-printer"></i>
                                         </button>
@@ -606,7 +656,7 @@ echo view('templates/myheader.php');
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
 
-<script src="<?=base_url('assets/js/procurement/pr/myprocpr.js?v=1');?>"></script>
+<script src="<?=base_url('assets/js/procurement/pr/mypr.js?v=1');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 <script>
 <?php
@@ -641,7 +691,105 @@ $(function() {
     
 </script>
 
+<script>
 
+
+var selectedPPMP = <?= json_encode($ppmp_list); ?>;
+
+$(document).ready(function() {
+
+    // render existing PPMP from DB
+    if (selectedPPMP.length > 0) {
+        renderSelectedPPMP();
+
+        var baseUrl = $('#__siteurl').data('mesiteurl');
+        loadPPMPItems(baseUrl);
+    }
+
+});
+
+$(document).on('click', '#btn_add_ppmp', function() {
+
+    var baseUrl = $('#__siteurl').data('mesiteurl');
+    var ppmp = $('#ppmp_lookup').val();
+
+    if (!ppmp) {
+        alert('Select PPMP first');
+        return;
+    }
+
+    // prevent duplicate
+    if (selectedPPMP.includes(ppmp)) {
+        alert('Already added');
+        return;
+    }
+
+    selectedPPMP.push(ppmp);
+
+    renderSelectedPPMP();
+
+    loadPPMPItems(baseUrl);
+});
+
+function renderSelectedPPMP() {
+    var html = '';
+
+    selectedPPMP.forEach(function(ppmp) {
+        html += `
+            <span class="badge bg-primary me-1" data-ppmp="${ppmp}">
+                ${ppmp}
+                <a href="javascript:void(0)" onclick="removePPMP('${ppmp}')" 
+                class="ms-1 text-white">&times;</a>
+            </span>
+        `;
+    });
+
+    $('#selected_ppmp_list').html(html);
+}
+
+function removePPMP(ppmp) {
+    selectedPPMP = selectedPPMP.filter(p => p !== ppmp);
+    renderSelectedPPMP();
+
+    var baseUrl = $('#__siteurl').data('mesiteurl');
+    loadPPMPItems(baseUrl);
+}
+
+function loadPPMPItems(baseUrl) {
+
+    if (selectedPPMP.length === 0) {
+        $('#pr_line_items tbody tr').not(':first').remove();
+        return;
+    }
+
+    $.ajax({
+        url: baseUrl + 'mypr?meaction=LOAD-PPMP',
+        type: 'POST',
+        data: {ppmpno: selectedPPMP},
+        dataType: 'json',
+        success: function(res) {
+
+            $('#pr_line_items tbody tr').not(':first').remove();
+            var rowTemplate = $('#pr_line_items tbody tr:first');
+
+            $.each(res, function(i, row) {
+
+                var newRow = rowTemplate.clone().show();
+
+                newRow.find('.item_desc').val(row.item_desc);
+                newRow.find('.unit').val(row.unit);
+                newRow.find('.quantity').val(row.quantity);
+                newRow.find('.unit_cost').val(row.unit_cost);
+                newRow.find('.total_cost').val(row.total_cost);
+
+                $('#pr_line_items tbody').append(newRow);
+            });
+
+            __mysys_proc_pr_ent.__combined_totals();
+        }
+    });
+}
+</script>
 
 <?php
     echo view('templates/myfooter.php');

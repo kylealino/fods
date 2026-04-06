@@ -64,9 +64,9 @@ $routes->post('myburs', 'MyBurs::index',['filter' => 'myauthuser']);
 $routes->get('mysaobrpt', 'MySaobReport::index',['filter' => 'myauthuser']);
 $routes->post('mysaobrpt', 'MySaobReport::index',['filter' => 'myauthuser']);
 
-//PROCUREMENT - PROCUREMENT module
-$routes->get('myprocurement', 'MyProcurement::index',['filter' => 'myauthuser']);
-$routes->post('myprocurement', 'MyProcurement::index',['filter' => 'myauthuser']);
+//PR - PR module
+$routes->get('mypr', 'MyPR::index',['filter' => 'myauthuser']);
+$routes->post('mypr', 'MyPR::index',['filter' => 'myauthuser']);
 
 //PRODUCTS - PRODUCTS module
 $routes->get('myproducts', 'MyProducts::index',['filter' => 'myauthuser']);
