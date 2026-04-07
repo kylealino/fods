@@ -159,12 +159,7 @@ class MyPRModel extends Model
 				$recid
 			]);
 
-			//PROJECT ID FETCHING
-			$query = $this->db->query("
-			SELECT `recid` FROM tbl_pr_hd WHERE `prno` = '$prno'
-			");
-			$rw = $query->getRowArray();
-			$project_id = $rw['recid'];
+			$project_id = $recid;
 
 			if (!empty($ppmp_list)) {
 				$query = $this->db->query("DELETE FROM tbl_pr_ppmp WHERE `pr_id` = '$project_id'");

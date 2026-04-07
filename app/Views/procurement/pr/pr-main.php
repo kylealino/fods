@@ -656,7 +656,7 @@ echo view('templates/myheader.php');
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
 
-<script src="<?=base_url('assets/js/procurement/pr/mypr.js?v=1');?>"></script>
+<script src="<?=base_url('assets/js/procurement/pr/mypr.js?v=2');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 <script>
 <?php
