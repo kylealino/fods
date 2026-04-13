@@ -142,35 +142,23 @@ class MyDisbursementModel extends Model
 			if (!empty($budgetdtdata)) {
 				for($aa = 0; $aa < count($budgetdtdata); $aa++){
 					$medata = explode("x|x",$budgetdtdata[$aa]);
-					$program_title = $medata[0]; 
-					$project_title = $medata[1]; 
-					$responsibility_code = $medata[2]; 
-					$mfopaps_code = $medata[3];
-					$sub_object_code = $medata[4];  
-					$uacs_code = $medata[5]; 
-					$amount = $medata[6]; 
+					$responsibility_code = $medata[0]; 
+					$mfopaps_code = $medata[1];
+					$amount = $medata[2]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_disbursement_direct_ps_dt (
 							`project_id`,
-							`program_title`,
-							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
-							`sub_object_code`,
-							`uacs_code`,
 							`amount`,
 							`added_by`
 						)
-						VALUES (?,?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?,?, ?, ?, ?)", 
 						[
 							$project_id,
-							$program_title,
-							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
-							$sub_object_code,
-							$uacs_code,
 							$amount,
 							$this->cuser
 						]
@@ -182,35 +170,23 @@ class MyDisbursementModel extends Model
 			if (!empty($budgetdtindirectdata)) {
 				for($aa = 0; $aa < count($budgetdtindirectdata); $aa++){
 					$medata = explode("x|x",$budgetdtindirectdata[$aa]);
-					$program_title = $medata[0]; 
-					$project_title = $medata[1]; 
-					$responsibility_code = $medata[2]; 
-					$mfopaps_code = $medata[3];
-					$sub_object_code = $medata[4];  
-					$uacs_code = $medata[5]; 
-					$amount = $medata[6]; 
+					$responsibility_code = $medata[0]; 
+					$mfopaps_code = $medata[1];
+					$amount = $medata[2]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_disbursement_indirect_ps_dt (
 							`project_id`,
-							`program_title`,
-							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
-							`sub_object_code`,
-							`uacs_code`,
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?)", 
 						[
 							$project_id,
-							$program_title,
-							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
-							$sub_object_code,
-							$uacs_code,
 							$amount,
 							$this->cuser
 						]
@@ -224,35 +200,23 @@ class MyDisbursementModel extends Model
 				//this is for normal saving and updating
 				for($aa = 0; $aa < count($budgetmooedtdata); $aa++){
 					$medata = explode("x|x",$budgetmooedtdata[$aa]);
-					$program_title = $medata[0]; 
-					$project_title = $medata[1]; 
-					$responsibility_code = $medata[2]; 
-					$mfopaps_code = $medata[3];
-					$sub_object_code = $medata[4];  
-					$uacs_code = $medata[5]; 
-					$amount = $medata[6]; 
+					$responsibility_code = $medata[0]; 
+					$mfopaps_code = $medata[13];
+					$amount = $medata[2]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_disbursement_direct_mooe_dt (
 							`project_id`,
-							`program_title`,
-							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
-							`sub_object_code`,
-							`uacs_code`,
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?)", 
 						[
 							$project_id,
-							$program_title,
-							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
-							$sub_object_code,
-							$uacs_code,
 							$amount,
 							$this->cuser
 						]
@@ -266,35 +230,23 @@ class MyDisbursementModel extends Model
 				//this is for normal saving and updating
 				for($aa = 0; $aa < count($budgetmooeindirectdtdata); $aa++){
 					$medata = explode("x|x",$budgetmooeindirectdtdata[$aa]);
-					$program_title = $medata[0]; 
-					$project_title = $medata[1]; 
-					$responsibility_code = $medata[2]; 
-					$mfopaps_code = $medata[3];
-					$sub_object_code = $medata[4];  
-					$uacs_code = $medata[5]; 
-					$amount = $medata[6]; 
+					$responsibility_code = $medata[0]; 
+					$mfopaps_code = $medata[1];
+					$amount = $medata[2]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_disbursement_indirect_mooe_dt (
 							`project_id`,
-							`program_title`,
-							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
-							`sub_object_code`,
-							`uacs_code`,
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?)", 
 						[
 							$project_id,
-							$program_title,
-							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
-							$sub_object_code,
-							$uacs_code,
 							$amount,
 							$this->cuser
 						]
@@ -308,35 +260,23 @@ class MyDisbursementModel extends Model
 				//this is for normal saving and updating
 				for($aa = 0; $aa < count($budgetcodtdata); $aa++){
 					$medata = explode("x|x",$budgetcodtdata[$aa]);
-					$program_title = $medata[0]; 
-					$project_title = $medata[1]; 
-					$responsibility_code = $medata[2]; 
-					$mfopaps_code = $medata[3];
-					$sub_object_code = $medata[4];  
-					$uacs_code = $medata[5]; 
-					$amount = $medata[6]; 
+					$responsibility_code = $medata[0]; 
+					$mfopaps_code = $medata[1];
+					$amount = $medata[2]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_disbursement_direct_co_dt (
 							`project_id`,
-							`program_title`,
-							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
-							`sub_object_code`,
-							`uacs_code`,
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?)", 
 						[
 							$project_id,
-							$program_title,
-							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
-							$sub_object_code,
-							$uacs_code,
 							$amount,
 							$this->cuser
 						]
@@ -349,35 +289,23 @@ class MyDisbursementModel extends Model
 				//this is for normal saving and updating
 				for($aa = 0; $aa < count($budgetindirectcodtdata); $aa++){
 					$medata = explode("x|x",$budgetindirectcodtdata[$aa]);
-					$program_title = $medata[0]; 
-					$project_title = $medata[1]; 
-					$responsibility_code = $medata[2]; 
-					$mfopaps_code = $medata[3];
-					$sub_object_code = $medata[4];  
-					$uacs_code = $medata[5]; 
-					$amount = $medata[6]; 
+					$responsibility_code = $medata[0]; 
+					$mfopaps_code = $medata[1];
+					$amount = $medata[2]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_disbursement_indirect_co_dt (
 							`project_id`,
-							`program_title`,
-							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
-							`sub_object_code`,
-							`uacs_code`,
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?)", 
 						[
 							$project_id,
-							$program_title,
-							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
-							$sub_object_code,
-							$uacs_code,
 							$amount,
 							$this->cuser
 						]
@@ -424,36 +352,24 @@ class MyDisbursementModel extends Model
 			if (!empty($budgetdtdata)) {
 				$query = $this->db->query("DELETE FROM tbl_disbursement_direct_ps_dt WHERE `project_id` = '$project_id'");
 				for($aa = 0; $aa < count($budgetdtdata); $aa++){
-					$medata = explode("x|x",$budgetdtdata[$aa]);
-					$program_title = $medata[0]; 
-					$project_title = $medata[1]; 
-					$responsibility_code = $medata[2]; 
-					$mfopaps_code = $medata[3];
-					$sub_object_code = $medata[4];  
-					$uacs_code = $medata[5]; 
-					$amount = $medata[6]; 
+					$medata = explode("x|x",$budgetdtdata[$aa]); 
+					$responsibility_code = $medata[0]; 
+					$mfopaps_code = $medata[1];
+					$amount = $medata[2]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_disbursement_direct_ps_dt (
-							`program_title`,
 							`project_id`,
-							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
-							`sub_object_code`,
-							`uacs_code`,
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?,)", 
 						[
-							$program_title,
 							$project_id,
-							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
-							$sub_object_code,
-							$uacs_code,
 							$amount,
 							$this->cuser
 						]
@@ -468,35 +384,23 @@ class MyDisbursementModel extends Model
 				$query = $this->db->query("DELETE FROM tbl_disbursement_indirect_ps_dt WHERE `project_id` = '$project_id'");
 				for($aa = 0; $aa < count($budgetdtindirectdata); $aa++){
 					$medata = explode("x|x",$budgetdtindirectdata[$aa]);
-					$program_title = $medata[0]; 
-					$project_title = $medata[1]; 
-					$responsibility_code = $medata[2]; 
-					$mfopaps_code = $medata[3];
-					$sub_object_code = $medata[4];  
-					$uacs_code = $medata[5]; 
-					$amount = $medata[6]; 
+					$responsibility_code = $medata[0]; 
+					$mfopaps_code = $medata[1];
+					$amount = $medata[2]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_disbursement_indirect_ps_dt (
 							`project_id`,
-							`program_title`,
-							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
-							`sub_object_code`,
-							`uacs_code`,
 							`amount`,
 							`added_by`
 						)
 						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
 						[
 							$project_id,
-							$program_title,
-							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
-							$sub_object_code,
-							$uacs_code,
 							$amount,
 							$this->cuser
 						]
@@ -511,35 +415,23 @@ class MyDisbursementModel extends Model
 				$query = $this->db->query("DELETE FROM tbl_disbursement_direct_mooe_dt WHERE `project_id` = '$project_id'");
 				for($aa = 0; $aa < count($budgetmooedtdata); $aa++){
 					$medata = explode("x|x",$budgetmooedtdata[$aa]);
-					$program_title = $medata[0]; 
-					$project_title = $medata[1]; 
-					$responsibility_code = $medata[2]; 
-					$mfopaps_code = $medata[3];
-					$sub_object_code = $medata[4];  
-					$uacs_code = $medata[5]; 
-					$amount = $medata[6]; 
+					$responsibility_code = $medata[0]; 
+					$mfopaps_code = $medata[1];
+					$amount = $medata[2]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_disbursement_direct_mooe_dt (
 							`project_id`,
-							`program_title`,
-							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
-							`sub_object_code`,
-							`uacs_code`,
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?)", 
 						[
 							$project_id,
-							$program_title,
-							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
-							$sub_object_code,
-							$uacs_code,
 							$amount,
 							$this->cuser
 						]
@@ -555,35 +447,23 @@ class MyDisbursementModel extends Model
 				$query = $this->db->query("DELETE FROM tbl_disbursement_indirect_mooe_dt WHERE `project_id` = '$project_id'");
 				for($aa = 0; $aa < count($budgetmooeindirectdtdata); $aa++){
 					$medata = explode("x|x",$budgetmooeindirectdtdata[$aa]);
-					$program_title = $medata[0]; 
-					$project_title = $medata[1]; 
-					$responsibility_code = $medata[2]; 
-					$mfopaps_code = $medata[3];
-					$sub_object_code = $medata[4];  
-					$uacs_code = $medata[5]; 
-					$amount = $medata[6]; 
+					$responsibility_code = $medata[0]; 
+					$mfopaps_code = $medata[1];
+					$amount = $medata[2]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_disbursement_indirect_mooe_dt (
 							`project_id`,
-							`program_title`,
-							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
-							`sub_object_code`,
-							`uacs_code`,
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?)", 
 						[
 							$project_id,
-							$program_title,
-							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
-							$sub_object_code,
-							$uacs_code,
 							$amount,
 							$this->cuser
 						]
@@ -599,35 +479,23 @@ class MyDisbursementModel extends Model
 				$query = $this->db->query("DELETE FROM tbl_disbursement_direct_co_dt WHERE `project_id` = '$project_id'");
 				for($aa = 0; $aa < count($budgetcodtdata); $aa++){
 					$medata = explode("x|x",$budgetcodtdata[$aa]);
-					$program_title = $medata[0]; 
-					$project_title = $medata[1]; 
-					$responsibility_code = $medata[2]; 
-					$mfopaps_code = $medata[3];
-					$sub_object_code = $medata[4];  
-					$uacs_code = $medata[5]; 
-					$amount = $medata[6]; 
+					$responsibility_code = $medata[0]; 
+					$mfopaps_code = $medata[1];
+					$amount = $medata[2]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_disbursement_direct_co_dt (
 							`project_id`,
-							`program_title`,
-							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
-							`sub_object_code`,
-							`uacs_code`,
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?)", 
 						[
 							$project_id,
-							$program_title,
-							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
-							$sub_object_code,
-							$uacs_code,
 							$amount,
 							$this->cuser
 						]
@@ -643,35 +511,22 @@ class MyDisbursementModel extends Model
 				$query = $this->db->query("DELETE FROM tbl_disbursement_indirect_co_dt WHERE `project_id` = '$project_id'");
 				for($aa = 0; $aa < count($budgetindirectcodtdata); $aa++){
 					$medata = explode("x|x",$budgetindirectcodtdata[$aa]);
-					$program_title = $medata[0]; 
-					$project_title = $medata[1]; 
-					$responsibility_code = $medata[2]; 
-					$mfopaps_code = $medata[3];
-					$sub_object_code = $medata[4];  
-					$uacs_code = $medata[5]; 
-					$amount = $medata[6]; 
+					$responsibility_code = $medata[0]; 
+					$mfopaps_code = $medata[1];
+					$amount = $medata[2]; 
 
 					$query = $this->db->query("
 						INSERT INTO tbl_disbursement_indirect_co_dt (
-							`project_id`,
-							`program_title`,
-							`project_title`,
 							`responsibility_code`,
 							`mfopaps_code`,
-							`sub_object_code`,
-							`uacs_code`,
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?)", 
 						[
 							$project_id,
-							$program_title,
-							$project_title,
 							$responsibility_code,
 							$mfopaps_code,
-							$sub_object_code,
-							$uacs_code,
 							$amount,
 							$this->cuser
 						]

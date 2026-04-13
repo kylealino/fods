@@ -15,19 +15,11 @@ function __mysys_disbursement_ent() {
 
 			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col1' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=text]').eq(1).attr('id', 'col2' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(2).attr('id', 'col3' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(3).attr('id', 'col4' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(4).attr('id', 'col5' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(5).attr('id', 'col6' + mid); // ID for date field
             jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col6' + mid); // ID for date field
 			// Now reset only the debit and credit fields (input[type=number])
 			
 			jQuery(clonedRow).find('input[type=text]').eq(0).val('');  // Clear credit value
 			jQuery(clonedRow).find('input[type=text]').eq(1).val('');
-            jQuery(clonedRow).find('input[type=text]').eq(2).val('');
-			jQuery(clonedRow).find('input[type=text]').eq(3).val('');
-			jQuery(clonedRow).find('input[type=text]').eq(4).val('');
-			jQuery(clonedRow).find('input[type=text]').eq(5).val('');
 			jQuery(clonedRow).find('input[type=number]').eq(0).val('');
 	
 			// Insert the cloned row before the last row (footer row)
@@ -62,7 +54,7 @@ function __mysys_disbursement_ent() {
 
 			// Set new IDs and clear values
 			jQuery(templateRow).find('input[type=text]').each(function (i) {
-				jQuery(this).val('').attr('id', 'col' + (6 + i) + mid);
+				jQuery(this).val('').attr('id', 'col' + (2 + i) + mid);
 			});
             jQuery(templateRow).find('input[type=number]').eq(0).val('').attr('id', 'col1' + mid);
 
@@ -91,19 +83,11 @@ function __mysys_disbursement_ent() {
 	
 			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col1' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=text]').eq(1).attr('id', 'col2' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(2).attr('id', 'col3' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(3).attr('id', 'col4' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(4).attr('id', 'col5' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(5).attr('id', 'col6' + mid); // ID for date field
             jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col6' + mid); // ID for date field
 			// Now reset only the debit and credit fields (input[type=number])
 			
 			jQuery(clonedRow).find('input[type=text]').eq(0).val('');  // Clear credit value
 			jQuery(clonedRow).find('input[type=text]').eq(1).val('');
-            jQuery(clonedRow).find('input[type=text]').eq(2).val('');
-			jQuery(clonedRow).find('input[type=text]').eq(3).val('');
-			jQuery(clonedRow).find('input[type=text]').eq(4).val('');
-			jQuery(clonedRow).find('input[type=text]').eq(5).val('');
 			jQuery(clonedRow).find('input[type=number]').eq(0).val('');
 	
 			// Insert the cloned row before the last row (footer row)
@@ -138,7 +122,7 @@ function __mysys_disbursement_ent() {
 
 			// Set new IDs and clear values
 			jQuery(templateRow).find('input[type=text]').each(function (i) {
-				jQuery(this).val('').attr('id', 'col' + (6 + i) + mid);
+				jQuery(this).val('').attr('id', 'col' + (2 + i) + mid);
 			});
             jQuery(templateRow).find('input[type=number]').eq(0).val('').attr('id', 'col1' + mid);
 
@@ -168,19 +152,11 @@ function __mysys_disbursement_ent() {
 	
 			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col1' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=text]').eq(1).attr('id', 'col2' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(2).attr('id', 'col3' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(3).attr('id', 'col4' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(4).attr('id', 'col5' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(5).attr('id', 'col6' + mid); // ID for date field
             jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col6' + mid); // ID for date field
 			// Now reset only the debit and credit fields (input[type=number])
 			
 			jQuery(clonedRow).find('input[type=text]').eq(0).val('');  // Clear credit value
 			jQuery(clonedRow).find('input[type=text]').eq(1).val('');
-            jQuery(clonedRow).find('input[type=text]').eq(2).val('');
-			jQuery(clonedRow).find('input[type=text]').eq(3).val('');
-			jQuery(clonedRow).find('input[type=text]').eq(4).val('');
-			jQuery(clonedRow).find('input[type=text]').eq(5).val('');
 			jQuery(clonedRow).find('input[type=number]').eq(0).val('');
 	
 			// Insert the cloned row before the last row (footer row)
@@ -215,7 +191,7 @@ function __mysys_disbursement_ent() {
 
 			// Set new IDs and clear values
 			jQuery(templateRow).find('input[type=text]').each(function (i) {
-				jQuery(this).val('').attr('id', 'col' + (6 + i) + mid);
+				jQuery(this).val('').attr('id', 'col' + (2 + i) + mid);
 			});
             jQuery(templateRow).find('input[type=number]').eq(0).val('').attr('id', 'col1' + mid);
 
@@ -243,19 +219,11 @@ function __mysys_disbursement_ent() {
 	
 			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col1' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=text]').eq(1).attr('id', 'col2' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(2).attr('id', 'col3' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(3).attr('id', 'col4' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(4).attr('id', 'col5' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(5).attr('id', 'col6' + mid); // ID for date field
             jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col6' + mid); // ID for date field
 			// Now reset only the debit and credit fields (input[type=number])
 			
 			jQuery(clonedRow).find('input[type=text]').eq(0).val('');  // Clear credit value
 			jQuery(clonedRow).find('input[type=text]').eq(1).val('');
-            jQuery(clonedRow).find('input[type=text]').eq(2).val('');
-			jQuery(clonedRow).find('input[type=text]').eq(3).val('');
-			jQuery(clonedRow).find('input[type=text]').eq(4).val('');
-			jQuery(clonedRow).find('input[type=text]').eq(5).val('');
 			jQuery(clonedRow).find('input[type=number]').eq(0).val('');
 
 			// Insert the cloned row before the last row (footer row)
@@ -289,7 +257,7 @@ function __mysys_disbursement_ent() {
 			var templateRow = jQuery('#budget_mooe_line_items tbody tr:hidden:first').clone();
 
 			jQuery(templateRow).find('input[type=text]').each(function (i) {
-				jQuery(this).val('').attr('id', 'col' + (6 + i) + mid);
+				jQuery(this).val('').attr('id', 'col' + (2 + i) + mid);
 			});
             jQuery(templateRow).find('input[type=number]').eq(0).val('').attr('id', 'col1' + mid);
 
@@ -319,19 +287,11 @@ function __mysys_disbursement_ent() {
 	
 			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col1' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=text]').eq(1).attr('id', 'col2' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(2).attr('id', 'col3' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(3).attr('id', 'col4' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(4).attr('id', 'col5' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(5).attr('id', 'col6' + mid); // ID for date field
             jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col6' + mid); // ID for date field
 			// Now reset only the debit and credit fields (input[type=number])
 			
 			jQuery(clonedRow).find('input[type=text]').eq(0).val('');  // Clear credit value
 			jQuery(clonedRow).find('input[type=text]').eq(1).val('');
-            jQuery(clonedRow).find('input[type=text]').eq(2).val('');
-			jQuery(clonedRow).find('input[type=text]').eq(3).val('');
-			jQuery(clonedRow).find('input[type=text]').eq(4).val('');
-			jQuery(clonedRow).find('input[type=text]').eq(5).val('');
 			jQuery(clonedRow).find('input[type=number]').eq(0).val('');
 	
 			// Insert the cloned row before the last row (footer row)
@@ -366,7 +326,7 @@ function __mysys_disbursement_ent() {
 
 			// Set new IDs and clear values
 			jQuery(templateRow).find('input[type=text]').each(function (i) {
-				jQuery(this).val('').attr('id', 'col' + (6 + i) + mid);
+				jQuery(this).val('').attr('id', 'col' + (2 + i) + mid);
 			});
             jQuery(templateRow).find('input[type=number]').eq(0).val('').attr('id', 'col1' + mid);
 
@@ -397,10 +357,6 @@ function __mysys_disbursement_ent() {
 	
 			jQuery(clonedRow).find('input[type=text]').eq(0).attr('id', 'col1' + mid); // ID for date field
 			jQuery(clonedRow).find('input[type=text]').eq(1).attr('id', 'col2' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(2).attr('id', 'col3' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(3).attr('id', 'col4' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(4).attr('id', 'col5' + mid); // ID for date field
-			jQuery(clonedRow).find('input[type=text]').eq(5).attr('id', 'col6' + mid); // ID for date field
             jQuery(clonedRow).find('input[type=number]').eq(0).attr('id', 'col6' + mid); // ID for date field
 			// Now reset only the debit and credit fields (input[type=number])
 			
@@ -443,7 +399,7 @@ function __mysys_disbursement_ent() {
 			var templateRow = jQuery('#budget_indirect_co_line_items tbody tr:hidden:first').clone();
 
 			jQuery(templateRow).find('input[type=text]').each(function (i) {
-				jQuery(this).val('').attr('id', 'col' + (6 + i) + mid);
+				jQuery(this).val('').attr('id', 'col' + (2 + i) + mid);
 			});
             jQuery(templateRow).find('input[type=number]').eq(0).val('').attr('id', 'col1' + mid);
 
@@ -506,19 +462,13 @@ function __mysys_disbursement_ent() {
 	
 					for (var aa = 2; aa < rowcount1; aa++) {
 						var clonedRow = jQuery('.budgetdata-list tr:eq(' + aa + ')'); 
-						var program_title = clonedRow.find('input[type=text]').eq(0).val();
-						var project_title = clonedRow.find('input[type=text]').eq(1).val();
-						var responsibility_code = clonedRow.find('input[type=text]').eq(2).val();
-						var mfopaps_code = clonedRow.find('input[type=text]').eq(3).val();
-						var subobject_code = clonedRow.find('input[type=text]').eq(4).val();
-						var uacs_code = clonedRow.find('input[type=text]').eq(5).val();
+						var responsibility_code = clonedRow.find('input[type=text]').eq(0).val();
+						var mfopaps_code = clonedRow.find('input[type=text]').eq(1).val();
 						var amount = clonedRow.find('input[type=number]').eq(0).val();  
 						
-						psdata = program_title + 'x|x' + project_title + 'x|x' + responsibility_code + 'x|x' + mfopaps_code + 'x|x' + subobject_code + 'x|x' + uacs_code + 'x|x' + amount;
+						psdata = responsibility_code + 'x|x' + mfopaps_code + 'x|x' + amount;
 						budgetdtdata.push(psdata);
 					}
-
-					console.log(budgetdtdata);
 
 					var rowcount2 = jQuery('.budgetdata-indirect-list tr').length;
 					var budgetdtindirectdata = [];
@@ -526,15 +476,11 @@ function __mysys_disbursement_ent() {
 	
 					for (var aa = 2; aa < rowcount2; aa++) {
 						var clonedRow = jQuery('.budgetdata-indirect-list tr:eq(' + aa + ')'); 
-						var program_title = clonedRow.find('input[type=text]').eq(0).val();
-						var project_title = clonedRow.find('input[type=text]').eq(1).val();
-						var responsibility_code = clonedRow.find('input[type=text]').eq(2).val();
-						var mfopaps_code = clonedRow.find('input[type=text]').eq(3).val();
-						var subobject_code = clonedRow.find('input[type=text]').eq(4).val();
-						var uacs_code = clonedRow.find('input[type=text]').eq(5).val();
+						var responsibility_code = clonedRow.find('input[type=text]').eq(0).val();
+						var mfopaps_code = clonedRow.find('input[type=text]').eq(1).val();
 						var amount = clonedRow.find('input[type=number]').eq(0).val();  
 						
-						psindirectdata = program_title + 'x|x' + project_title + 'x|x' + responsibility_code + 'x|x' + mfopaps_code + 'x|x' + subobject_code + 'x|x' + uacs_code + 'x|x' + amount;
+						psindirectdata = responsibility_code + 'x|x' + mfopaps_code + 'x|x' + amount;
 						budgetdtindirectdata.push(psindirectdata);
 					}
 
@@ -545,12 +491,8 @@ function __mysys_disbursement_ent() {
 	
 					for (var aa = 2; aa < rowcount3; aa++) {
 						var clonedRow = jQuery('.budgetmooedata-list tr:eq(' + aa + ')'); 
-						var program_title = clonedRow.find('input[type=text]').eq(0).val();
-						var project_title = clonedRow.find('input[type=text]').eq(1).val();
-						var responsibility_code = clonedRow.find('input[type=text]').eq(2).val();
-						var mfopaps_code = clonedRow.find('input[type=text]').eq(3).val();
-						var subobject_code = clonedRow.find('input[type=text]').eq(4).val();
-						var uacs_code = clonedRow.find('input[type=text]').eq(5).val();
+						var responsibility_code = clonedRow.find('input[type=text]').eq(0).val();
+						var mfopaps_code = clonedRow.find('input[type=text]').eq(1).val();
 						var amount = clonedRow.find('input[type=number]').eq(0).val();  
 						
 						mooedata = program_title + 'x|x' + project_title + 'x|x' + responsibility_code + 'x|x' + mfopaps_code + 'x|x' + subobject_code + 'x|x' + uacs_code + 'x|x' + amount;
@@ -564,15 +506,11 @@ function __mysys_disbursement_ent() {
 	
 					for (var aa = 2; aa < rowcount4; aa++) {
 						var clonedRow = jQuery('.budgetmooedata-indirect-list tr:eq(' + aa + ')'); 
-						var program_title = clonedRow.find('input[type=text]').eq(0).val();
-						var project_title = clonedRow.find('input[type=text]').eq(1).val();
-						var responsibility_code = clonedRow.find('input[type=text]').eq(2).val();
-						var mfopaps_code = clonedRow.find('input[type=text]').eq(3).val();
-						var subobject_code = clonedRow.find('input[type=text]').eq(4).val();
-						var uacs_code = clonedRow.find('input[type=text]').eq(5).val();
+						var responsibility_code = clonedRow.find('input[type=text]').eq(0).val();
+						var mfopaps_code = clonedRow.find('input[type=text]').eq(1).val();
 						var amount = clonedRow.find('input[type=number]').eq(0).val();  
 						
-						mooeindirectdata = program_title + 'x|x' + project_title + 'x|x' + responsibility_code + 'x|x' + mfopaps_code + 'x|x' + subobject_code + 'x|x' + uacs_code + 'x|x' + amount;
+						mooeindirectdata = responsibility_code + 'x|x' + mfopaps_code + 'x|x' + amount;
 						budgetmooeindirectdtdata.push(mooeindirectdata);
 					}
 
@@ -583,15 +521,11 @@ function __mysys_disbursement_ent() {
 	
 					for (var aa = 2; aa < rowcount5; aa++) {
 						var clonedRow = jQuery('.budgetcodata-list tr:eq(' + aa + ')'); 
-						var program_title = clonedRow.find('input[type=text]').eq(0).val();
-						var project_title = clonedRow.find('input[type=text]').eq(1).val();
-						var responsibility_code = clonedRow.find('input[type=text]').eq(2).val();
-						var mfopaps_code = clonedRow.find('input[type=text]').eq(3).val();
-						var subobject_code = clonedRow.find('input[type=text]').eq(4).val();
-						var uacs_code = clonedRow.find('input[type=text]').eq(5).val();
+						var responsibility_code = clonedRow.find('input[type=text]').eq(0).val();
+						var mfopaps_code = clonedRow.find('input[type=text]').eq(1).val();
 						var amount = clonedRow.find('input[type=number]').eq(0).val();  
 						
-						codata = program_title + 'x|x' + project_title + 'x|x' + responsibility_code + 'x|x' + mfopaps_code + 'x|x' + subobject_code + 'x|x' + uacs_code + 'x|x' + amount;
+						codata = responsibility_code + 'x|x' + mfopaps_code + 'x|x' + amount;
 						budgetcodtdata.push(codata);
 					}
 
@@ -601,15 +535,11 @@ function __mysys_disbursement_ent() {
 	
 					for (var aa = 2; aa < rowcount6; aa++) {
 						var clonedRow = jQuery('.budgetcodata-indirect-list tr:eq(' + aa + ')'); 
-						var program_title = clonedRow.find('input[type=text]').eq(0).val();
-						var project_title = clonedRow.find('input[type=text]').eq(1).val();
-						var responsibility_code = clonedRow.find('input[type=text]').eq(2).val();
-						var mfopaps_code = clonedRow.find('input[type=text]').eq(3).val();
-						var subobject_code = clonedRow.find('input[type=text]').eq(4).val();
-						var uacs_code = clonedRow.find('input[type=text]').eq(5).val();
+						var responsibility_code = clonedRow.find('input[type=text]').eq(0).val();
+						var mfopaps_code = clonedRow.find('input[type=text]').eq(1).val();
 						var amount = clonedRow.find('input[type=number]').eq(0).val();  
 						
-						coindirectdata = program_title + 'x|x' + project_title + 'x|x' + responsibility_code + 'x|x' + mfopaps_code + 'x|x' + subobject_code + 'x|x' + uacs_code + 'x|x' + amount;
+						coindirectdata = responsibility_code + 'x|x' + mfopaps_code + 'x|x' + amount;
 						budgetindirectcodtdata.push(coindirectdata);
 					}
 
