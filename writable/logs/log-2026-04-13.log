@@ -1,0 +1,403 @@
+ERROR - 2026-04-13 08:29:54 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', 'root', '', 'fods-03032026', 3306, '', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\fods\app\Controllers\MyLogIn.php(58): CodeIgniter\Database\BaseConnection->query('select `usernam...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('ADMIN-KYLE')
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\fods\app\Controllers\MyLogIn.php(58): CodeIgniter\Database\BaseConnection->query('select `usernam...', Array)
+#3 C:\xampp\htdocs\fods\app\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('ADMIN-KYLE')
+#4 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#9 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#10 {main}
+CRITICAL - 2026-04-13 08:29:54 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: POST, Route: mylogin-auth]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Controllers\MyLogIn.php(58): CodeIgniter\Database\BaseConnection->query('select `username`,`hash_password` FROM myua_user where username = ? limit 1 ', [...])
+ 3 APPPATH\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('ADMIN-KYLE')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-13 08:45:50 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', 'root', '', 'fods-03032026', 3306, '', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\fods\app\Controllers\MyLogIn.php(58): CodeIgniter\Database\BaseConnection->query('select `usernam...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User(NULL)
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\fods\app\Controllers\MyLogIn.php(58): CodeIgniter\Database\BaseConnection->query('select `usernam...', Array)
+#3 C:\xampp\htdocs\fods\app\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User(NULL)
+#4 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#9 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#10 {main}
+CRITICAL - 2026-04-13 08:45:50 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: GET, Route: mylogin-auth]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Controllers\MyLogIn.php(58): CodeIgniter\Database\BaseConnection->query('select `username`,`hash_password` FROM myua_user where username = ? limit 1 ', [...])
+ 3 APPPATH\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User(null)
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-13 08:45:53 --> Flashdata set: User Name not Found
+CRITICAL - 2026-04-13 14:00:41 --> ErrorException: Undefined variable $payeedata
+[Method: GET, Route: mydisbursement]
+in APPPATH\Views\disbursement\disbursement-main.php on line 301.
+ 1 APPPATH\Views\disbursement\disbursement-main.php(301): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $payeedata', 'C:\\xampp\\htdocs\\fods\\app\\Views\\disbursement\\disbursement-main.php', 301)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\disbursement\\disbursement-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('disbursement/disbursement-main', [], true)
+ 5 APPPATH\Controllers\MyDisbursement.php(66): view('disbursement/disbursement-main', [])
+ 6 APPPATH\Controllers\MyDisbursement.php(24): App\Controllers\MyDisbursement->loadDisbursementView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-13 14:05:28 --> ErrorException: Undefined variable $disbursementhdquery
+[Method: GET, Route: mydisbursement]
+in APPPATH\Controllers\MyDisbursement.php on line 156.
+ 1 APPPATH\Controllers\MyDisbursement.php(156): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $disbursementhdquery', 'C:\\xampp\\htdocs\\fods\\app\\Controllers\\MyDisbursement.php', 156)
+ 2 APPPATH\Controllers\MyDisbursement.php(24): App\Controllers\MyDisbursement->loadMainView()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-13 14:50:03 --> ErrorException: Undefined variable $seriallistdata
+[Method: GET, Route: mydisbursement]
+in APPPATH\Views\disbursement\disbursement-main.php on line 1195.
+ 1 APPPATH\Views\disbursement\disbursement-main.php(1195): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $seriallistdata', 'C:\\xampp\\htdocs\\fods\\app\\Views\\disbursement\\disbursement-main.php', 1195)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\disbursement\\disbursement-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('disbursement/disbursement-main', [], true)
+ 5 APPPATH\Controllers\MyDisbursement.php(212): view('disbursement/disbursement-main', [...])
+ 6 APPPATH\Controllers\MyDisbursement.php(24): App\Controllers\MyDisbursement->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-13 15:15:04 --> mysqli_sql_exception: Table 'fods-03032026.tbl_or_hd' doesn't exist in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT\r\n ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT\r\n ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT\r\n ...')
+#3 C:\xampp\htdocs\fods\app\Views\disbursement\disbursement-main.php(156): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT\r\n ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('disbursement/di...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyDisbursement.php(214): view('disbursement/di...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyDisbursement.php(24): App\Controllers\MyDisbursement->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-13 15:15:04 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'fods-03032026.tbl_or_hd' doesn't exist
+[Method: GET, Route: mydisbursement]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\disbursement\disbursement-main.php(156): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `ors_date`,
+        `particulars`,
+        `funding_source`,
+        `payee_name`,
+        `payee_office`,
+        `payee_address`,
+        `certified_a`,
+        `certified_b`,
+        `position_a`,
+        `position_b`,
+        `serialno`,
+        `is_pending`,
+        `is_approved_certa`,
+        `is_disapproved_certa`,
+        `is_approved_certb`,
+        `is_disapproved_certb`,
+        `certa_remarks`,
+        `certb_remarks`,
+        `certa_approver`,
+        `certb_approver`
+    FROM
+        `tbl_or_hd`
+    WHERE 
+        `recid` = \'1963\'')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\disbursement\\disbursement-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('disbursement/disbursement-main', [], true)
+ 5 APPPATH\Controllers\MyDisbursement.php(214): view('disbursement/disbursement-main', [...])
+ 6 APPPATH\Controllers\MyDisbursement.php(24): App\Controllers\MyDisbursement->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-13 15:15:04 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'fods-03032026.tbl_or_hd' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        `ors_date`,
+        `particulars`,
+        `funding_source`,
+        `payee_name`,
+        `payee_office`,
+        `payee_address`,
+        `certified_a`,
+        `certified_b`,
+        `position_a`,
+        `position_b`,
+        `serialno`,
+        `is_pending`,
+        `is_approved_certa`,
+        `is_disapproved_certa`,
+        `is_approved_certb`,
+        `is_disapproved_certb`,
+        `certa_remarks`,
+        `certb_remarks`,
+        `certa_approver`,
+        `certb_approver`
+    FROM
+        `tbl_or_hd`
+    WHERE 
+        `recid` = \'1963\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        `ors_date`,
+        `particulars`,
+        `funding_source`,
+        `payee_name`,
+        `payee_office`,
+        `payee_address`,
+        `certified_a`,
+        `certified_b`,
+        `position_a`,
+        `position_b`,
+        `serialno`,
+        `is_pending`,
+        `is_approved_certa`,
+        `is_disapproved_certa`,
+        `is_approved_certb`,
+        `is_disapproved_certb`,
+        `certa_remarks`,
+        `certb_remarks`,
+        `certa_approver`,
+        `certb_approver`
+    FROM
+        `tbl_or_hd`
+    WHERE 
+        `recid` = \'1963\'')
+ 3 APPPATH\Views\disbursement\disbursement-main.php(156): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `ors_date`,
+        `particulars`,
+        `funding_source`,
+        `payee_name`,
+        `payee_office`,
+        `payee_address`,
+        `certified_a`,
+        `certified_b`,
+        `position_a`,
+        `position_b`,
+        `serialno`,
+        `is_pending`,
+        `is_approved_certa`,
+        `is_disapproved_certa`,
+        `is_approved_certb`,
+        `is_disapproved_certb`,
+        `certa_remarks`,
+        `certb_remarks`,
+        `certa_approver`,
+        `certb_approver`
+    FROM
+        `tbl_or_hd`
+    WHERE 
+        `recid` = \'1963\'')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\disbursement\\disbursement-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('disbursement/disbursement-main', [], true)
+ 7 APPPATH\Controllers\MyDisbursement.php(214): view('disbursement/disbursement-main', [...])
+ 8 APPPATH\Controllers\MyDisbursement.php(24): App\Controllers\MyDisbursement->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-13 15:15:04 --> [Caused by] mysqli_sql_exception: Table 'fods-03032026.tbl_or_hd' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT
+        `ors_date`,
+        `particulars`,
+        `funding_source`,
+        `payee_name`,
+        `payee_office`,
+        `payee_address`,
+        `certified_a`,
+        `certified_b`,
+        `position_a`,
+        `position_b`,
+        `serialno`,
+        `is_pending`,
+        `is_approved_certa`,
+        `is_disapproved_certa`,
+        `is_approved_certb`,
+        `is_disapproved_certb`,
+        `certa_remarks`,
+        `certb_remarks`,
+        `certa_approver`,
+        `certb_approver`
+    FROM
+        `tbl_or_hd`
+    WHERE 
+        `recid` = \'1963\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        `ors_date`,
+        `particulars`,
+        `funding_source`,
+        `payee_name`,
+        `payee_office`,
+        `payee_address`,
+        `certified_a`,
+        `certified_b`,
+        `position_a`,
+        `position_b`,
+        `serialno`,
+        `is_pending`,
+        `is_approved_certa`,
+        `is_disapproved_certa`,
+        `is_approved_certb`,
+        `is_disapproved_certb`,
+        `certa_remarks`,
+        `certb_remarks`,
+        `certa_approver`,
+        `certb_approver`
+    FROM
+        `tbl_or_hd`
+    WHERE 
+        `recid` = \'1963\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        `ors_date`,
+        `particulars`,
+        `funding_source`,
+        `payee_name`,
+        `payee_office`,
+        `payee_address`,
+        `certified_a`,
+        `certified_b`,
+        `position_a`,
+        `position_b`,
+        `serialno`,
+        `is_pending`,
+        `is_approved_certa`,
+        `is_disapproved_certa`,
+        `is_approved_certb`,
+        `is_disapproved_certb`,
+        `certa_remarks`,
+        `certb_remarks`,
+        `certa_approver`,
+        `certb_approver`
+    FROM
+        `tbl_or_hd`
+    WHERE 
+        `recid` = \'1963\'')
+ 4 APPPATH\Views\disbursement\disbursement-main.php(156): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `ors_date`,
+        `particulars`,
+        `funding_source`,
+        `payee_name`,
+        `payee_office`,
+        `payee_address`,
+        `certified_a`,
+        `certified_b`,
+        `position_a`,
+        `position_b`,
+        `serialno`,
+        `is_pending`,
+        `is_approved_certa`,
+        `is_disapproved_certa`,
+        `is_approved_certb`,
+        `is_disapproved_certb`,
+        `certa_remarks`,
+        `certb_remarks`,
+        `certa_approver`,
+        `certb_approver`
+    FROM
+        `tbl_or_hd`
+    WHERE 
+        `recid` = \'1963\'')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\disbursement\\disbursement-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('disbursement/disbursement-main', [], true)
+ 8 APPPATH\Controllers\MyDisbursement.php(214): view('disbursement/disbursement-main', [...])
+ 9 APPPATH\Controllers\MyDisbursement.php(24): App\Controllers\MyDisbursement->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-13 15:21:44 --> ParseError: syntax error, unexpected end of file, expecting "elseif" or "else" or "endif"
+[Method: GET, Route: mydisbursement]
+in APPPATH\Views\disbursement\disbursement-main.php on line 1501.
+ 1 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('disbursement/disbursement-main', [], true)
+ 3 APPPATH\Controllers\MyDisbursement.php(214): view('disbursement/disbursement-main', [...])
+ 4 APPPATH\Controllers\MyDisbursement.php(24): App\Controllers\MyDisbursement->loadMainView()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
