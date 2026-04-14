@@ -74,7 +74,6 @@ class MyDisbursement extends BaseController
         GROUP BY
             `serialno`
         ORDER BY `recid` DESC
-        LIMIT 15
         ");
         $serialdata = $serialquery->getResultArray();
 
@@ -90,35 +89,6 @@ class MyDisbursement extends BaseController
         ");
         $payeedata = $payeedata->getResultArray();
 
-
-        $psuacsquery = $this->db->query("SELECT * FROM mst_uacs WHERE allotment_class = 'Personnel Services' ORDER BY TRIM(sub_object_code) ASC");
-        $psuacsdata = $psuacsquery->getResultArray();
-
-        $mooeuacsquery = $this->db->query("SELECT * FROM mst_uacs WHERE allotment_class = 'Maintenance and Other Operating Expenses' ORDER BY TRIM(sub_object_code) ASC");
-        $mooeuacsdata = $mooeuacsquery->getResultArray();
-
-        $couacsquery = $this->db->query("SELECT * FROM mst_uacs WHERE allotment_class = 'Capital Outlay' ORDER BY TRIM(sub_object_code) ASC");
-        $couacsdata = $couacsquery->getResultArray();
-
-        // $orshdquery = $this->db->query("
-        // SELECT 
-        // a.`recid`,
-        // a.`serialno`,
-        // a.`particulars`,
-        // a.`funding_source`,
-        // a.`payee_name`,
-        // a.`payee_office`,
-        // a.`payee_address`,
-        // (
-        //     IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_ps_dt` WHERE project_id = a.recid), 0) +
-        //     IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_ps_dt` WHERE project_id = a.recid), 0) +
-        //     IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_mooe_dt` WHERE project_id = a.recid), 0) +
-        //     IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_mooe_dt` WHERE project_id = a.recid), 0) +
-        //     IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_indirect_co_dt` WHERE project_id = a.recid), 0) +
-        //     IFNULL((SELECT SUM(`amount`) FROM `tbl_ors_direct_co_dt` WHERE project_id = a.recid), 0)
-        // ) AS amount        
-        //  FROM tbl_ors_hd a ORDER BY a.`recid` DESC");
-        // $orshddata = $orshdquery->getResultArray();
 
         $disbursementhdquery = $this->db->query("
         SELECT 
@@ -203,9 +173,6 @@ class MyDisbursement extends BaseController
 
 
         return view('disbursement/disbursement-main', [
-            'psuacsdata' => $psuacsdata,
-            'mooeuacsdata' => $mooeuacsdata,
-            'couacsdata' => $couacsdata,
             'payeedata' => $payeedata,
             'serialdata' => $serialdata,
             'projectdata' => $projectdata,

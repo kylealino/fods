@@ -450,8 +450,8 @@ function __mysys_disbursement_ent() {
 					var payee_address = document.getElementById("payee_address");
 					var certified_a = document.getElementById("certified_a");
 					var position_a = document.getElementById("position_a");
-					var certified_b = document.getElementById("certified_b");
-					var position_b = document.getElementById("position_b");
+					var dvno = document.getElementById("dvno");
+					var fund_cluster_code = document.getElementById("fund_cluster_code");
 					var disbursement_date = document.getElementById("disbursement_date");
 
 
@@ -495,7 +495,7 @@ function __mysys_disbursement_ent() {
 						var mfopaps_code = clonedRow.find('input[type=text]').eq(1).val();
 						var amount = clonedRow.find('input[type=number]').eq(0).val();  
 						
-						mooedata = program_title + 'x|x' + project_title + 'x|x' + responsibility_code + 'x|x' + mfopaps_code + 'x|x' + subobject_code + 'x|x' + uacs_code + 'x|x' + amount;
+						mooedata = responsibility_code + 'x|x' + mfopaps_code + 'x|x' + amount;
 						budgetmooedtdata.push(mooedata);
 					}
 
@@ -553,8 +553,8 @@ function __mysys_disbursement_ent() {
 						payee_address: payee_address.value,
 						certified_a: certified_a.value,
 						position_a: position_a.value,
-						certified_b: certified_b.value,
-						position_b: position_b.value,
+						dvno: dvno.value,
+						fund_cluster_code: fund_cluster_code.value,
 						budgetdtdata: budgetdtdata,
 						budgetdtindirectdata: budgetdtindirectdata,
 						budgetmooedtdata: budgetmooedtdata,

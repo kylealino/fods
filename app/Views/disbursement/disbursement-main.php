@@ -17,6 +17,8 @@ $certified_b = '';
 $position_a = '';
 $position_b = '';
 $serialno = '';
+$dvno = '';
+$fund_cluster_code = '';
 $is_pending = '';
 $is_approved_certa = '';
 $is_disapproved_certa = '';
@@ -44,6 +46,8 @@ if(!empty($recid) || !is_null($recid)) {
         `position_a`,
         `position_b`,
         `serialno`,
+        `dvno`,
+        `fund_cluster_code`,
         `is_pending`,
         `is_approved_certa`,
         `is_disapproved_certa`,
@@ -71,6 +75,8 @@ if(!empty($recid) || !is_null($recid)) {
     $certified_b = $data['certified_b'];
     $position_b = $data['position_b'];
     $serialno = $data['serialno'];
+    $dvno = $data['dvno'];
+    $fund_cluster_code = $data['fund_cluster_code'];
     $is_pending = $data['is_pending'];
     $is_approved_certa = $data['is_approved_certa'];
     $is_disapproved_certa = $data['is_disapproved_certa'];
@@ -141,6 +147,8 @@ if(!empty($ors_id) || !is_null($ors_id)) {
         `position_a`,
         `position_b`,
         `serialno`,
+        '' AS `dvno`,
+        '' AS `fund_cluster_code`,
         `is_pending`,
         `is_approved_certa`,
         `is_disapproved_certa`,
@@ -168,6 +176,8 @@ if(!empty($ors_id) || !is_null($ors_id)) {
     $certified_b = $data['certified_b'];
     $position_b = $data['position_b'];
     $serialno = $data['serialno'];
+    $dvno = $data['dvno'];
+    $fund_cluster_code = $data['fund_cluster_code'];
     $is_pending = $data['is_pending'];
     $is_approved_certa = $data['is_approved_certa'];
     $is_disapproved_certa = $data['is_disapproved_certa'];
@@ -333,7 +343,7 @@ echo view('templates/myheader.php');
                                         <span>Particulars</span>
                                     </div>
                                     <div class="col-sm-8">
-                                        <textarea name="particulars" id="particulars" placeholder="" rows="4" class="form-control form-control-sm"><?= (empty($recid) && !empty($ors_id)) ? $particulars : ''; ?></textarea>
+                                        <textarea name="particulars" id="particulars" placeholder="" rows="4" class="form-control form-control-sm"><?= (!empty($recid) || !empty($ors_id)) ? $particulars : ''; ?></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -367,6 +377,24 @@ echo view('templates/myheader.php');
                             <div class="col-sm-12">
                                 <div class="row mb-2">
                                     <div class="col-sm-4">
+                                        <span>Fund Cluster:</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <select name="" id="fund_cluster_code" class="form-select form-select-sm">
+                                        <?php if(!empty($recid)):?>
+                                            <option value="<?=$fund_cluster_code;?>"><?=$fund_cluster_code;?></option>
+                                        <?php else:?>
+                                            <option value="">Choose...</option>
+                                        <?php endif;?>
+                                            <option value="01">01</option>
+                                            <option value="07">07</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="row mb-2">
+                                    <div class="col-sm-4">
                                         <span>Date</span>
                                     </div>
                                     <div class="col-sm-8">
@@ -382,46 +410,12 @@ echo view('templates/myheader.php');
                                 <span class="fw-bold">Payee:</span>
                             </div>
                             <div class="col-sm-8">
-                                <?php if(!empty($recid)):?>
-                                    <select name="payee_name" id="payee_name" class="form-control select2 form-select-sm show-tick">
-                                        <option selected value="<?=$payee_name;?>"><?=$payee_name;?></option>
-                                        <?php foreach($payeedata as $data): ?>
-                                            <option 
-                                                value="<?= $data['payee_name'] ?>"
-                                                data-office="<?= $data['payee_office'] ?>"
-                                                data-address="<?= $data['payee_address'] ?>"
-                                            >
-                                                <?= $data['payee_name'] ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                <?php elseif(!empty($ors_id)):?>
-                                    <select name="payee_name" id="payee_name" class="form-control select2 form-select-sm show-tick">
-                                        <option selected value="<?=$payee_name;?>"><?=$payee_name;?></option>
-                                        <?php foreach($payeedata as $data): ?>
-                                            <option 
-                                                value="<?= $data['payee_name'] ?>"
-                                                data-office="<?= $data['payee_office'] ?>"
-                                                data-address="<?= $data['payee_address'] ?>"
-                                            >
-                                                <?= $data['payee_name'] ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                <?php else:?>
-                                    <select name="payee_name" id="payee_name" class="form-control select2 form-select-sm show-tick">
-                                        <option selected value="">Choose...</option>
-                                        <?php foreach($payeedata as $data): ?>
-                                            <option 
-                                                value="<?= $data['payee_name'] ?>"
-                                                data-office="<?= $data['payee_office'] ?>"
-                                                data-address="<?= $data['payee_address'] ?>"
-                                            >
-                                                <?= $data['payee_name'] ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                <?php endif;?>
+                                <input type="text" 
+                                    name="payee_name" 
+                                    id="payee_name"
+                                    class="form-control form-control-sm payee_name"
+                                    value="<?= (!empty($recid) || !empty($ors_id)) ? $payee_name : '' ?>"
+                                    placeholder="Type or select payee...">
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -429,7 +423,9 @@ echo view('templates/myheader.php');
                                 <span class="fw-bold">Office:</span>
                             </div>
                             <div class="col-sm-8">
-                                <input type="text" id="payee_office" name="payee_office" value="<?=$payee_office;?>" class="form-control form-control-sm " disabled />
+                                <input type="text" id="payee_office" name="payee_office"
+                                    value="<?=$payee_office;?>"
+                                    class="form-control form-control-sm" disabled />
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -437,7 +433,9 @@ echo view('templates/myheader.php');
                                 <span class="fw-bold">Address:</span>
                             </div>
                             <div class="col-sm-8">
-                                <input type="text" id="payee_address" name="payee_address" value="<?=$payee_address;?>" class="form-control form-control-sm"  disabled/>
+                                <input type="text" id="payee_address" name="payee_address"
+                                    value="<?=$payee_address;?>"
+                                    class="form-control form-control-sm" disabled />
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -446,6 +444,14 @@ echo view('templates/myheader.php');
                             </div>
                             <div class="col-sm-8">
                                 <input type="text" id="serialno" name="serialno" value="<?=$serialno;?>" class="form-control form-control-sm"/>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span class="fw-bold">DV No.:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" id="dvno" name="dvno" value="<?=$dvno;?>" class="form-control form-control-sm"/>
                             </div>
                         </div>
                     </div>
@@ -1208,10 +1214,10 @@ echo view('templates/myheader.php');
                                                             </div>
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="responsibility_code"  value="" size="35"  name="responsibility_code" class="responsibility_code text-center" disabled>
+                                                            <input type="text" id="responsibility_code"  value="" size="35"  name="responsibility_code" class="responsibility_code text-center">
                                                         </td>
                                                         <td class="align-middle" nowrap>
-                                                            <input type="text" id="mfopaps_code"  value="" size="25" name="mfopaps_code" class="mfopaps_code text-center" disabled/>
+                                                            <input type="text" id="mfopaps_code"  value="" size="25" name="mfopaps_code" class="mfopaps_code text-center"/>
                                                         </td>
                                                         <td class="text-center align-middle" nowrap>
                                                             <input type="number" id="amount"  value="" size="25" step="any" name="amount" class="amount text-center"/>
@@ -1601,6 +1607,49 @@ echo view('templates/myheader.php');
 <script src="<?=base_url('assets/js/disbursement/disbursement.js?v=1');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 
+
+<!-- PROJECT TITLE LOOKUP -->
+<script>
+<?php
+$projects = [];
+foreach ($projectdata as $data) {
+    $projects[$data['responsibility_code']] = [
+        'mfopaps' => $data['mfopaps_code']
+    ];
+}
+?>
+var projects = <?= json_encode($projects); ?>;
+var rc_codes = Object.keys(projects);
+
+$(function () {
+
+  $(document).on("focus", ".responsibility_code", function () {
+
+    if (!$(this).data("ui-autocomplete")) {
+
+      $(this).autocomplete({
+        source: rc_codes,
+        select: function (event, ui) {
+
+          let row = $(this).closest('tr');
+
+          // set RC (selected value)
+          row.find('.responsibility_code').val(ui.item.value);
+
+          // set corresponding MFO/PAPs
+          row.find('.mfopaps_code')
+             .val(projects[ui.item.value].mfopaps);
+
+        }
+      });
+
+    }
+
+  });
+
+});
+</script>
+
 <script>
 <?php
     $serialdata_js = [];
@@ -1658,118 +1707,43 @@ $(function() {
 </script>
 
 
-<!-- PSUACS TITLE LOOKUP -->
- <?php
-$psuacs = [];
-foreach ($psuacsdata as $data) {
-    $psuacs[] = [
-        'label'     => $data['sub_object_code'], // shown in dropdown
-        'value'     => $data['sub_object_code'], // filled in input
-        'uacs_code' => $data['uacs_code'],        // mapped value
-    ];
-}
-?>
 <script>
-var psuacs = <?= json_encode($psuacs); ?>;
+<?php
+$payee_js = [];
 
-$(document).on("focus", ".psuacs_code", function () {
-
-  if (!$(this).data("ui-autocomplete")) {
-
-    $(this).autocomplete({
-      source: psuacs,
-      select: function (event, ui) {
-
-        let row = $(this).closest('tr');
-
-        // Set selected values
-        $(this).val(ui.item.value);
-        row.find('.uacs').val(ui.item.uacs_code);
-
-        return false; // stop default behavior
-      }
-    });
-
-  }
-});
-</script>
-
-
-<!-- MOOEUACS TITLE LOOKUP -->
- <?php
-$mooeuacs = [];
-foreach ($mooeuacsdata as $data) {
-    $mooeuacs[] = [
-        'label'     => $data['sub_object_code'], // what user sees
-        'value'     => $data['sub_object_code'], // what goes in input
-        'uacs_code' => $data['uacs_code'],        // extra data
+foreach ($payeedata as $data) {
+    $payee_js[] = [
+        'label'   => $data['payee_name'],
+        'value'   => $data['payee_name'],
+        'office'  => $data['payee_office'],
+        'address' => $data['payee_address']
     ];
 }
 ?>
 
-<script>
-var mooeuacs = <?= json_encode($mooeuacs); ?>;
+var payees = <?= json_encode($payee_js); ?>;
 
-$(document).on("focus", ".mooeuacs_code", function () {
+$(function () {
 
-  if (!$(this).data("ui-autocomplete")) {
+    $("#payee_name").autocomplete({
+        source: payees,
+        minLength: 0,
 
-    $(this).autocomplete({
-      source: mooeuacs,
-      select: function (event, ui) {
+        select: function (event, ui) {
 
-        let row = $(this).closest('tr');
+            // set payee
+            $("#payee_name").val(ui.item.value);
 
-        // Set selected values
-        $(this).val(ui.item.value);
-        row.find('.uacs').val(ui.item.uacs_code);
-
-        return false; // prevent default replace
-      }
+            // auto-fill visible fields
+            $("#payee_office").val(ui.item.office);
+            $("#payee_address").val(ui.item.address);
+        }
+    }).focus(function () {
+        $(this).autocomplete("search", "");
     });
 
-  }
 });
 </script>
-
-
-<!-- CO TITLE LOOKUP -->
- <?php
-$couacs = [];
-foreach ($couacsdata as $data) {
-    $couacs[] = [
-        'label'     => $data['sub_object_code'], // shown in dropdown
-        'value'     => $data['sub_object_code'], // inserted in input
-        'uacs_code' => $data['uacs_code'],        // mapped value
-    ];
-}
-?>
-
-<script>
-var couacs = <?= json_encode($couacs); ?>;
-
-$(document).on("focus", ".couacs_code", function () {
-
-  if (!$(this).data("ui-autocomplete")) {
-
-    $(this).autocomplete({
-      source: couacs,
-      select: function (event, ui) {
-
-        let row = $(this).closest('tr');
-
-        // Set selected values
-        $(this).val(ui.item.value);
-        row.find('.uacs').val(ui.item.uacs_code);
-
-        return false; // prevent default behavior
-      }
-    });
-
-  }
-});
-</script>
-
 
 
 <?php

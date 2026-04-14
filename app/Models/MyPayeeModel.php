@@ -26,6 +26,18 @@ class MyPayeeModel extends Model
 		$payee_address = $this->request->getPostGet('payee_address');
 		$disb_method = $this->request->getPostGet('disb_method');
 		$currency = $this->request->getPostGet('currency');
+		$is_vatable = $this->request->getPostGet('is_vatable');
+		$vat_percent = $this->request->getPostGet('vat_percent');
+		$ewt_percent = $this->request->getPostGet('ewt_percent');
+		$pt_percent = $this->request->getPostGet('pt_percent');
+
+		// var_dump(
+		// 	$is_vatable,
+		// 	$vat_percent,
+		// 	$ewt_percent,
+		// 	$pt_percent
+		// );
+		// die();
 
 		if (empty($payee_name)) {
 			echo "
@@ -66,22 +78,29 @@ class MyPayeeModel extends Model
 					`contact_no`,
 					`payee_address`, 
 					`disb_method`, 
-					`currency`, 
-					`added_on`, 
+					`currency`,
+					`is_vatable`,
+					`vat_percent`,
+					`ewt_percent`,
+					`pt_percent`,
 					`added_by`
-				) VALUES (
-					'$payee_name',
-					'$payee_account_num',
-					'$payee_office',
-					'$payee_tin',
-					'$contact_no',
-					'$payee_address',
-					'$disb_method',
-					'$currency',
-					NOW(),
-					'{$this->cuser}'
-				)
-			");
+				) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+				  [
+					$payee_name,
+					$payee_account_num,
+					$payee_office,
+					$payee_tin,
+					$contact_no,
+					$payee_address,
+					$disb_method,
+					$currency,
+					$is_vatable,
+					$vat_percent,
+					$ewt_percent,
+					$pt_percent,
+					$this->cuser
+				]
+			);
 			$status = "Payee Saved successfully";
 			$color = "success";
 		}else{
@@ -102,16 +121,36 @@ class MyPayeeModel extends Model
 			}
 			$query = $this->db->query("
 				UPDATE tbl_payee SET 
-				`payee_name` = '$payee_name', 
-				`payee_account_num` = '$payee_account_num',
-				`payee_office` = '$payee_office',
-				`payee_tin` = '$payee_tin',
-				`contact_no` = '$contact_no',
-				`payee_address` = '$payee_address',
-				`disb_method` = '$disb_method',
-				`currency` = '$currency'
-				WHERE `recid` = '$recid'
-			");
+				`payee_name` = ?,
+				`payee_account_num` = ?,
+				`payee_office` = ?,
+				`payee_tin` = ?,
+				`contact_no` = ?,
+				`payee_address` = ?,
+				`disb_method` = ?,
+				`currency` = ?,
+				`is_vatable` = ?,
+				`vat_percent` = ?,
+				`ewt_percent` = ?,
+				`pt_percent` = ?
+				WHERE `recid` = ?
+				",
+				[
+					$payee_name,
+					$payee_account_num,
+					$payee_office,
+					$payee_tin,
+					$contact_no,
+					$payee_address,
+					$disb_method,
+					$currency,
+					$is_vatable,
+					$vat_percent,
+					$ewt_percent,
+					$pt_percent,
+					$recid
+				]
+			);
 			$status = "Payee Updated successfully";
 			$color = "info";
 		}

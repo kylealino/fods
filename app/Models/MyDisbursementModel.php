@@ -26,8 +26,8 @@ class MyDisbursementModel extends Model
 		$payee_address = $this->request->getPostGet('payee_address');
 		$certified_a = $this->request->getPostGet('certified_a');
 		$position_a = $this->request->getPostGet('position_a');
-		$certified_b = $this->request->getPostGet('certified_b');
-		$position_b = $this->request->getPostGet('position_b');
+		$dvno = $this->request->getPostGet('dvno');
+		$fund_cluster_code = $this->request->getPostGet('fund_cluster_code');
 		$budgetdtdata = $this->request->getPostGet('budgetdtdata');
 		$budgetdtindirectdata = $this->request->getPostGet('budgetdtindirectdata');
 		$budgetmooedtdata = $this->request->getPostGet('budgetmooedtdata');
@@ -36,6 +36,28 @@ class MyDisbursementModel extends Model
 		$budgetindirectcodtdata = $this->request->getPostGet('budgetindirectcodtdata');
 		$disbursement_date = $this->request->getPostGet('disbursement_date');
 		
+
+		// var_dump(
+		// 	// $serialno,
+		// 	// $particulars,
+		// 	// $funding_source,
+		// 	// $payee_name,
+		// 	// $payee_office,
+		// 	// $payee_address,
+		// 	// $certified_a,
+		// 	// $position_a,
+		// 	// $disbursement_date
+
+		// 	$budgetdtdata,
+		// 	$budgetdtindirectdata,
+		// 	$budgetmooedtdata,
+		// 	$budgetmooeindirectdtdata,
+		// 	$budgetcodtdata,
+		// 	$budgetindirectcodtdata
+		// );
+
+		// die();
+
 		// var_dump($disbursement_date);
 		// die();
 		
@@ -114,8 +136,8 @@ class MyDisbursementModel extends Model
 					`payee_address`,
 					`certified_a`,
 					`position_a`,
-					`certified_b`,
-					`position_b`,
+					`dvno`,
+					`fund_cluster_code`,
 					`added_by`,
 					`disbursement_date`
 				)
@@ -129,8 +151,8 @@ class MyDisbursementModel extends Model
 					$payee_address,
 					$certified_a,
 					$position_a,
-					$certified_b,
-					$position_b,
+					$dvno,
+					$fund_cluster_code,
 					$this->cuser,
 					$disbursement_date
 				]
@@ -201,7 +223,7 @@ class MyDisbursementModel extends Model
 				for($aa = 0; $aa < count($budgetmooedtdata); $aa++){
 					$medata = explode("x|x",$budgetmooedtdata[$aa]);
 					$responsibility_code = $medata[0]; 
-					$mfopaps_code = $medata[13];
+					$mfopaps_code = $medata[1];
 					$amount = $medata[2]; 
 
 					$query = $this->db->query("
@@ -328,8 +350,8 @@ class MyDisbursementModel extends Model
 					`payee_address` = ?,
 					`certified_a` = ?,
 					`position_a` = ?,
-					`certified_b` = ?,
-					`position_b` = ?,
+					`dvno` = ?,
+					`fund_cluster_code` = ?,
 					`disbursement_date` = ?
 				WHERE recid = ?
 			", [
@@ -341,8 +363,8 @@ class MyDisbursementModel extends Model
 				$payee_address,
 				$certified_a,
 				$position_a,
-				$certified_b,
-				$position_b,
+				$dvno,
+				$fund_cluster_code,
 				$disbursement_date,
 				$recid
 			]);
@@ -365,7 +387,7 @@ class MyDisbursementModel extends Model
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?,)", 
+						VALUES (?, ?, ?, ?, ?)", 
 						[
 							$project_id,
 							$responsibility_code,
@@ -396,7 +418,7 @@ class MyDisbursementModel extends Model
 							`amount`,
 							`added_by`
 						)
-						VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)", 
+						VALUES (?, ?, ?, ?, ?)", 
 						[
 							$project_id,
 							$responsibility_code,
@@ -517,6 +539,7 @@ class MyDisbursementModel extends Model
 
 					$query = $this->db->query("
 						INSERT INTO tbl_disbursement_indirect_co_dt (
+							`project_id`,
 							`responsibility_code`,
 							`mfopaps_code`,
 							`amount`,

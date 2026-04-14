@@ -1,0 +1,1194 @@
+ERROR - 2026-04-14 14:07:57 --> mysqli_sql_exception: Column 'certified_b' cannot be null in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\tINSERT IN...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\tINSERT IN...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\tINSERT IN...')
+#3 C:\xampp\htdocs\fods\app\Models\MyDisbursementModel.php(147): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\tINSERT IN...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-04-14 14:07:57 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'certified_b' cannot be null
+[Method: POST, Route: mydisbursement]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyDisbursementModel.php(147): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO tbl_disbursement_hd (
+					`serialno`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`,
+					`disbursement_date`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 2 APPPATH\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-14 14:07:57 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'certified_b' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				INSERT INTO tbl_disbursement_hd (
+					`serialno`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`,
+					`disbursement_date`
+				)
+				VALUES (\'01-101101-2026-02-0124\', \'TO OBLIGATE PAYMENT OF SALARY FEBRUARY 2026\', \'101101\', \'CARISSA T. SALDANA-TANDA\', \'DOST-FNRI\', \'\', \'ALEXIS M. ORTIZ\', \'CHIEF ADMINISTRATIVE OFFICER\', NULL, NULL, \'ADMIN-KYLE\', \'2026-02-26\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				INSERT INTO tbl_disbursement_hd (
+					`serialno`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`,
+					`disbursement_date`
+				)
+				VALUES (\'01-101101-2026-02-0124\', \'TO OBLIGATE PAYMENT OF SALARY FEBRUARY 2026\', \'101101\', \'CARISSA T. SALDANA-TANDA\', \'DOST-FNRI\', \'\', \'ALEXIS M. ORTIZ\', \'CHIEF ADMINISTRATIVE OFFICER\', NULL, NULL, \'ADMIN-KYLE\', \'2026-02-26\')')
+ 3 APPPATH\Models\MyDisbursementModel.php(147): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO tbl_disbursement_hd (
+					`serialno`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`,
+					`disbursement_date`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 4 APPPATH\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-14 14:07:57 --> [Caused by] mysqli_sql_exception: Column 'certified_b' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+				INSERT INTO tbl_disbursement_hd (
+					`serialno`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`,
+					`disbursement_date`
+				)
+				VALUES (\'01-101101-2026-02-0124\', \'TO OBLIGATE PAYMENT OF SALARY FEBRUARY 2026\', \'101101\', \'CARISSA T. SALDANA-TANDA\', \'DOST-FNRI\', \'\', \'ALEXIS M. ORTIZ\', \'CHIEF ADMINISTRATIVE OFFICER\', NULL, NULL, \'ADMIN-KYLE\', \'2026-02-26\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				INSERT INTO tbl_disbursement_hd (
+					`serialno`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`,
+					`disbursement_date`
+				)
+				VALUES (\'01-101101-2026-02-0124\', \'TO OBLIGATE PAYMENT OF SALARY FEBRUARY 2026\', \'101101\', \'CARISSA T. SALDANA-TANDA\', \'DOST-FNRI\', \'\', \'ALEXIS M. ORTIZ\', \'CHIEF ADMINISTRATIVE OFFICER\', NULL, NULL, \'ADMIN-KYLE\', \'2026-02-26\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				INSERT INTO tbl_disbursement_hd (
+					`serialno`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`,
+					`disbursement_date`
+				)
+				VALUES (\'01-101101-2026-02-0124\', \'TO OBLIGATE PAYMENT OF SALARY FEBRUARY 2026\', \'101101\', \'CARISSA T. SALDANA-TANDA\', \'DOST-FNRI\', \'\', \'ALEXIS M. ORTIZ\', \'CHIEF ADMINISTRATIVE OFFICER\', NULL, NULL, \'ADMIN-KYLE\', \'2026-02-26\')')
+ 4 APPPATH\Models\MyDisbursementModel.php(147): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO tbl_disbursement_hd (
+					`serialno`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`,
+					`disbursement_date`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 5 APPPATH\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-14 14:17:43 --> mysqli_sql_exception: Column 'certified_b' cannot be null in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\tINSERT IN...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\tINSERT IN...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\tINSERT IN...')
+#3 C:\xampp\htdocs\fods\app\Models\MyDisbursementModel.php(157): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\tINSERT IN...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-04-14 14:17:43 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'certified_b' cannot be null
+[Method: POST, Route: mydisbursement]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyDisbursementModel.php(157): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO tbl_disbursement_hd (
+					`serialno`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`,
+					`disbursement_date`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 2 APPPATH\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-14 14:17:43 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'certified_b' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				INSERT INTO tbl_disbursement_hd (
+					`serialno`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`,
+					`disbursement_date`
+				)
+				VALUES (\'01-101101-2026-02-0124\', \'TO OBLIGATE PAYMENT OF SALARY FEBRUARY 2026\', \'101101\', \'CARISSA T. SALDANA-TANDA\', \'DOST-FNRI\', \'\', \'ALEXIS M. ORTIZ\', \'CHIEF ADMINISTRATIVE OFFICER\', NULL, NULL, \'ADMIN-KYLE\', \'2026-02-26\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				INSERT INTO tbl_disbursement_hd (
+					`serialno`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`,
+					`disbursement_date`
+				)
+				VALUES (\'01-101101-2026-02-0124\', \'TO OBLIGATE PAYMENT OF SALARY FEBRUARY 2026\', \'101101\', \'CARISSA T. SALDANA-TANDA\', \'DOST-FNRI\', \'\', \'ALEXIS M. ORTIZ\', \'CHIEF ADMINISTRATIVE OFFICER\', NULL, NULL, \'ADMIN-KYLE\', \'2026-02-26\')')
+ 3 APPPATH\Models\MyDisbursementModel.php(157): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO tbl_disbursement_hd (
+					`serialno`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`,
+					`disbursement_date`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 4 APPPATH\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-14 14:17:43 --> [Caused by] mysqli_sql_exception: Column 'certified_b' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+				INSERT INTO tbl_disbursement_hd (
+					`serialno`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`,
+					`disbursement_date`
+				)
+				VALUES (\'01-101101-2026-02-0124\', \'TO OBLIGATE PAYMENT OF SALARY FEBRUARY 2026\', \'101101\', \'CARISSA T. SALDANA-TANDA\', \'DOST-FNRI\', \'\', \'ALEXIS M. ORTIZ\', \'CHIEF ADMINISTRATIVE OFFICER\', NULL, NULL, \'ADMIN-KYLE\', \'2026-02-26\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				INSERT INTO tbl_disbursement_hd (
+					`serialno`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`,
+					`disbursement_date`
+				)
+				VALUES (\'01-101101-2026-02-0124\', \'TO OBLIGATE PAYMENT OF SALARY FEBRUARY 2026\', \'101101\', \'CARISSA T. SALDANA-TANDA\', \'DOST-FNRI\', \'\', \'ALEXIS M. ORTIZ\', \'CHIEF ADMINISTRATIVE OFFICER\', NULL, NULL, \'ADMIN-KYLE\', \'2026-02-26\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				INSERT INTO tbl_disbursement_hd (
+					`serialno`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`,
+					`disbursement_date`
+				)
+				VALUES (\'01-101101-2026-02-0124\', \'TO OBLIGATE PAYMENT OF SALARY FEBRUARY 2026\', \'101101\', \'CARISSA T. SALDANA-TANDA\', \'DOST-FNRI\', \'\', \'ALEXIS M. ORTIZ\', \'CHIEF ADMINISTRATIVE OFFICER\', NULL, NULL, \'ADMIN-KYLE\', \'2026-02-26\')')
+ 4 APPPATH\Models\MyDisbursementModel.php(157): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO tbl_disbursement_hd (
+					`serialno`,
+					`particulars`,
+					`funding_source`,
+					`payee_name`,
+					`payee_office`,
+					`payee_address`,
+					`certified_a`,
+					`position_a`,
+					`certified_b`,
+					`position_b`,
+					`added_by`,
+					`disbursement_date`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 5 APPPATH\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-14 14:18:38 --> mysqli_sql_exception: Unknown column 'mfopaps_code' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\t\t\tINSERT ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\t\t\tINSERT ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\t\t\tINSERT ...')
+#3 C:\xampp\htdocs\fods\app\Models\MyDisbursementModel.php(179): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\t\t\tINSERT ...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-04-14 14:18:38 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mfopaps_code' in 'field list'
+[Method: POST, Route: mydisbursement]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyDisbursementModel.php(179): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO tbl_disbursement_direct_ps_dt (
+							`project_id`,
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (?,?, ?, ?, ?)', [...])
+ 2 APPPATH\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-14 14:18:38 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mfopaps_code' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO tbl_disbursement_direct_ps_dt (
+							`project_id`,
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (1,\'19-003-00-00000-4-2026\', \'168003020200000\', \'42602.87\', \'ADMIN-KYLE\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO tbl_disbursement_direct_ps_dt (
+							`project_id`,
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (1,\'19-003-00-00000-4-2026\', \'168003020200000\', \'42602.87\', \'ADMIN-KYLE\')')
+ 3 APPPATH\Models\MyDisbursementModel.php(179): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO tbl_disbursement_direct_ps_dt (
+							`project_id`,
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (?,?, ?, ?, ?)', [...])
+ 4 APPPATH\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-14 14:18:38 --> [Caused by] mysqli_sql_exception: Unknown column 'mfopaps_code' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+						INSERT INTO tbl_disbursement_direct_ps_dt (
+							`project_id`,
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (1,\'19-003-00-00000-4-2026\', \'168003020200000\', \'42602.87\', \'ADMIN-KYLE\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO tbl_disbursement_direct_ps_dt (
+							`project_id`,
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (1,\'19-003-00-00000-4-2026\', \'168003020200000\', \'42602.87\', \'ADMIN-KYLE\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO tbl_disbursement_direct_ps_dt (
+							`project_id`,
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (1,\'19-003-00-00000-4-2026\', \'168003020200000\', \'42602.87\', \'ADMIN-KYLE\')')
+ 4 APPPATH\Models\MyDisbursementModel.php(179): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO tbl_disbursement_direct_ps_dt (
+							`project_id`,
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (?,?, ?, ?, ?)', [...])
+ 5 APPPATH\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-14 14:19:43 --> ErrorException: Undefined array key 13
+[Method: POST, Route: mydisbursement]
+in APPPATH\Models\MyDisbursementModel.php on line 220.
+ 1 APPPATH\Models\MyDisbursementModel.php(220): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 13', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MyDisbursementModel.php', 220)
+ 2 APPPATH\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-14 14:22:07 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 8 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\t\t\tINSERT ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\t\t\tINSERT ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\t\t\tINSERT ...')
+#3 C:\xampp\htdocs\fods\app\Models\MyDisbursementModel.php(386): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\t\t\tINSERT ...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-04-14 14:22:07 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 8
+[Method: POST, Route: mydisbursement]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyDisbursementModel.php(386): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO tbl_disbursement_direct_ps_dt (
+							`project_id`,
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?,)', [...])
+ 2 APPPATH\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-14 14:22:07 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 8
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO tbl_disbursement_direct_ps_dt (
+							`project_id`,
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (\'3\', \'19-003-00-00000-4-2026\', \'168003020200000\', \'42602.87\', \'ADMIN-KYLE\',)')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO tbl_disbursement_direct_ps_dt (
+							`project_id`,
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (\'3\', \'19-003-00-00000-4-2026\', \'168003020200000\', \'42602.87\', \'ADMIN-KYLE\',)')
+ 3 APPPATH\Models\MyDisbursementModel.php(386): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO tbl_disbursement_direct_ps_dt (
+							`project_id`,
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?,)', [...])
+ 4 APPPATH\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-14 14:22:07 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 8
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+						INSERT INTO tbl_disbursement_direct_ps_dt (
+							`project_id`,
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (\'3\', \'19-003-00-00000-4-2026\', \'168003020200000\', \'42602.87\', \'ADMIN-KYLE\',)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO tbl_disbursement_direct_ps_dt (
+							`project_id`,
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (\'3\', \'19-003-00-00000-4-2026\', \'168003020200000\', \'42602.87\', \'ADMIN-KYLE\',)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO tbl_disbursement_direct_ps_dt (
+							`project_id`,
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (\'3\', \'19-003-00-00000-4-2026\', \'168003020200000\', \'42602.87\', \'ADMIN-KYLE\',)')
+ 4 APPPATH\Models\MyDisbursementModel.php(386): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO tbl_disbursement_direct_ps_dt (
+							`project_id`,
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?,)', [...])
+ 5 APPPATH\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-14 14:24:21 --> mysqli_sql_exception: Column count doesn't match value count at row 1 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\t\t\tINSERT ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\t\t\tINSERT ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\t\t\tINSERT ...')
+#3 C:\xampp\htdocs\fods\app\Models\MyDisbursementModel.php(543): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\t\t\tINSERT ...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-04-14 14:24:21 --> CodeIgniter\Database\Exceptions\DatabaseException: Column count doesn't match value count at row 1
+[Method: POST, Route: mydisbursement]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyDisbursementModel.php(543): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO tbl_disbursement_indirect_co_dt (
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?)', [...])
+ 2 APPPATH\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-14 14:24:21 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column count doesn't match value count at row 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO tbl_disbursement_indirect_co_dt (
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (\'3\', \'6\', \'6\', \'6.00\', \'ADMIN-KYLE\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO tbl_disbursement_indirect_co_dt (
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (\'3\', \'6\', \'6\', \'6.00\', \'ADMIN-KYLE\')')
+ 3 APPPATH\Models\MyDisbursementModel.php(543): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO tbl_disbursement_indirect_co_dt (
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?)', [...])
+ 4 APPPATH\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-14 14:24:21 --> [Caused by] mysqli_sql_exception: Column count doesn't match value count at row 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+						INSERT INTO tbl_disbursement_indirect_co_dt (
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (\'3\', \'6\', \'6\', \'6.00\', \'ADMIN-KYLE\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO tbl_disbursement_indirect_co_dt (
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (\'3\', \'6\', \'6\', \'6.00\', \'ADMIN-KYLE\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO tbl_disbursement_indirect_co_dt (
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (\'3\', \'6\', \'6\', \'6.00\', \'ADMIN-KYLE\')')
+ 4 APPPATH\Models\MyDisbursementModel.php(543): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO tbl_disbursement_indirect_co_dt (
+							`responsibility_code`,
+							`mfopaps_code`,
+							`amount`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?)', [...])
+ 5 APPPATH\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-14 14:46:20 --> ErrorException: Undefined variable $dvno
+[Method: GET, Route: mydisbursement]
+in APPPATH\Views\disbursement\disbursement-main.php on line 484.
+ 1 APPPATH\Views\disbursement\disbursement-main.php(484): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $dvno', 'C:\\xampp\\htdocs\\fods\\app\\Views\\disbursement\\disbursement-main.php', 484)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\disbursement\\disbursement-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('disbursement/disbursement-main', [], true)
+ 5 APPPATH\Controllers\MyDisbursement.php(214): view('disbursement/disbursement-main', [...])
+ 6 APPPATH\Controllers\MyDisbursement.php(24): App\Controllers\MyDisbursement->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-14 14:53:05 --> ErrorException: Undefined variable $dvno
+[Method: GET, Route: mydisbursement]
+in APPPATH\Views\disbursement\disbursement-main.php on line 484.
+ 1 APPPATH\Views\disbursement\disbursement-main.php(484): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $dvno', 'C:\\xampp\\htdocs\\fods\\app\\Views\\disbursement\\disbursement-main.php', 484)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\disbursement\\disbursement-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('disbursement/disbursement-main', [], true)
+ 5 APPPATH\Controllers\MyDisbursement.php(214): view('disbursement/disbursement-main', [...])
+ 6 APPPATH\Controllers\MyDisbursement.php(24): App\Controllers\MyDisbursement->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-14 14:53:47 --> mysqli_sql_exception: Unknown column 'dvno' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT\r\n ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT\r\n ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT\r\n ...')
+#3 C:\xampp\htdocs\fods\app\Views\disbursement\disbursement-main.php(164): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT\r\n ...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('disbursement/di...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyDisbursement.php(214): view('disbursement/di...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyDisbursement.php(24): App\Controllers\MyDisbursement->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-14 14:53:47 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'dvno' in 'field list'
+[Method: GET, Route: mydisbursement]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\disbursement\disbursement-main.php(164): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `ors_date`,
+        `particulars`,
+        `funding_source`,
+        `payee_name`,
+        `payee_office`,
+        `payee_address`,
+        `certified_a`,
+        `certified_b`,
+        `position_a`,
+        `position_b`,
+        `serialno`,
+        `dvno`,
+        `fund_cluster_code`,
+        `is_pending`,
+        `is_approved_certa`,
+        `is_disapproved_certa`,
+        `is_approved_certb`,
+        `is_disapproved_certb`,
+        `certa_remarks`,
+        `certb_remarks`,
+        `certa_approver`,
+        `certb_approver`
+    FROM
+        `tbl_ors_hd`
+    WHERE 
+        `recid` = \'1966\'')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\disbursement\\disbursement-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('disbursement/disbursement-main', [], true)
+ 5 APPPATH\Controllers\MyDisbursement.php(214): view('disbursement/disbursement-main', [...])
+ 6 APPPATH\Controllers\MyDisbursement.php(24): App\Controllers\MyDisbursement->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-14 14:53:47 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'dvno' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        `ors_date`,
+        `particulars`,
+        `funding_source`,
+        `payee_name`,
+        `payee_office`,
+        `payee_address`,
+        `certified_a`,
+        `certified_b`,
+        `position_a`,
+        `position_b`,
+        `serialno`,
+        `dvno`,
+        `fund_cluster_code`,
+        `is_pending`,
+        `is_approved_certa`,
+        `is_disapproved_certa`,
+        `is_approved_certb`,
+        `is_disapproved_certb`,
+        `certa_remarks`,
+        `certb_remarks`,
+        `certa_approver`,
+        `certb_approver`
+    FROM
+        `tbl_ors_hd`
+    WHERE 
+        `recid` = \'1966\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        `ors_date`,
+        `particulars`,
+        `funding_source`,
+        `payee_name`,
+        `payee_office`,
+        `payee_address`,
+        `certified_a`,
+        `certified_b`,
+        `position_a`,
+        `position_b`,
+        `serialno`,
+        `dvno`,
+        `fund_cluster_code`,
+        `is_pending`,
+        `is_approved_certa`,
+        `is_disapproved_certa`,
+        `is_approved_certb`,
+        `is_disapproved_certb`,
+        `certa_remarks`,
+        `certb_remarks`,
+        `certa_approver`,
+        `certb_approver`
+    FROM
+        `tbl_ors_hd`
+    WHERE 
+        `recid` = \'1966\'')
+ 3 APPPATH\Views\disbursement\disbursement-main.php(164): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `ors_date`,
+        `particulars`,
+        `funding_source`,
+        `payee_name`,
+        `payee_office`,
+        `payee_address`,
+        `certified_a`,
+        `certified_b`,
+        `position_a`,
+        `position_b`,
+        `serialno`,
+        `dvno`,
+        `fund_cluster_code`,
+        `is_pending`,
+        `is_approved_certa`,
+        `is_disapproved_certa`,
+        `is_approved_certb`,
+        `is_disapproved_certb`,
+        `certa_remarks`,
+        `certb_remarks`,
+        `certa_approver`,
+        `certb_approver`
+    FROM
+        `tbl_ors_hd`
+    WHERE 
+        `recid` = \'1966\'')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\disbursement\\disbursement-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('disbursement/disbursement-main', [], true)
+ 7 APPPATH\Controllers\MyDisbursement.php(214): view('disbursement/disbursement-main', [...])
+ 8 APPPATH\Controllers\MyDisbursement.php(24): App\Controllers\MyDisbursement->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-14 14:53:47 --> [Caused by] mysqli_sql_exception: Unknown column 'dvno' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT
+        `ors_date`,
+        `particulars`,
+        `funding_source`,
+        `payee_name`,
+        `payee_office`,
+        `payee_address`,
+        `certified_a`,
+        `certified_b`,
+        `position_a`,
+        `position_b`,
+        `serialno`,
+        `dvno`,
+        `fund_cluster_code`,
+        `is_pending`,
+        `is_approved_certa`,
+        `is_disapproved_certa`,
+        `is_approved_certb`,
+        `is_disapproved_certb`,
+        `certa_remarks`,
+        `certb_remarks`,
+        `certa_approver`,
+        `certb_approver`
+    FROM
+        `tbl_ors_hd`
+    WHERE 
+        `recid` = \'1966\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT
+        `ors_date`,
+        `particulars`,
+        `funding_source`,
+        `payee_name`,
+        `payee_office`,
+        `payee_address`,
+        `certified_a`,
+        `certified_b`,
+        `position_a`,
+        `position_b`,
+        `serialno`,
+        `dvno`,
+        `fund_cluster_code`,
+        `is_pending`,
+        `is_approved_certa`,
+        `is_disapproved_certa`,
+        `is_approved_certb`,
+        `is_disapproved_certb`,
+        `certa_remarks`,
+        `certb_remarks`,
+        `certa_approver`,
+        `certb_approver`
+    FROM
+        `tbl_ors_hd`
+    WHERE 
+        `recid` = \'1966\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT
+        `ors_date`,
+        `particulars`,
+        `funding_source`,
+        `payee_name`,
+        `payee_office`,
+        `payee_address`,
+        `certified_a`,
+        `certified_b`,
+        `position_a`,
+        `position_b`,
+        `serialno`,
+        `dvno`,
+        `fund_cluster_code`,
+        `is_pending`,
+        `is_approved_certa`,
+        `is_disapproved_certa`,
+        `is_approved_certb`,
+        `is_disapproved_certb`,
+        `certa_remarks`,
+        `certb_remarks`,
+        `certa_approver`,
+        `certb_approver`
+    FROM
+        `tbl_ors_hd`
+    WHERE 
+        `recid` = \'1966\'')
+ 4 APPPATH\Views\disbursement\disbursement-main.php(164): CodeIgniter\Database\BaseConnection->query('
+    SELECT
+        `ors_date`,
+        `particulars`,
+        `funding_source`,
+        `payee_name`,
+        `payee_office`,
+        `payee_address`,
+        `certified_a`,
+        `certified_b`,
+        `position_a`,
+        `position_b`,
+        `serialno`,
+        `dvno`,
+        `fund_cluster_code`,
+        `is_pending`,
+        `is_approved_certa`,
+        `is_disapproved_certa`,
+        `is_approved_certb`,
+        `is_disapproved_certb`,
+        `certa_remarks`,
+        `certb_remarks`,
+        `certa_approver`,
+        `certb_approver`
+    FROM
+        `tbl_ors_hd`
+    WHERE 
+        `recid` = \'1966\'')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\disbursement\\disbursement-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('disbursement/disbursement-main', [], true)
+ 8 APPPATH\Controllers\MyDisbursement.php(214): view('disbursement/disbursement-main', [...])
+ 9 APPPATH\Controllers\MyDisbursement.php(24): App\Controllers\MyDisbursement->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-14 14:58:38 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?,
+					`serialno` = ?,
+					`funding_source` = ?,
+					`payee_name` = ?,...' at line 3 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\tUPDATE tb...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\tUPDATE tb...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\tUPDATE tb...')
+#3 C:\xampp\htdocs\fods\app\Models\MyDisbursementModel.php(367): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\tUPDATE tb...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-04-14 14:58:38 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?,
+					`serialno` = ?,
+					`funding_source` = ?,
+					`payee_name` = ?,...' at line 3
+[Method: POST, Route: mydisbursement]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyDisbursementModel.php(367): CodeIgniter\Database\BaseConnection->query('
+				UPDATE tbl_disbursement_hd
+				SET
+					`particulars` = ?,
+					`serialno` = ?,
+					`funding_source` = ?,
+					`payee_name` = ?,
+					`payee_office` = ?,
+					`payee_address` = ?,
+					`certified_a` = ?,
+					`position_a` = ?,
+					`dvno` = ?,
+					`fund_cluster_code` = ?,
+					`disbursement_date` = ?
+				WHERE recid = ?
+			', [...])
+ 2 APPPATH\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-14 14:58:38 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?,
+					`serialno` = ?,
+					`funding_source` = ?,
+					`payee_name` = ?,...' at line 3
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				UPDATE tbl_disbursement_hd
+				SET
+					`particulars` = ?,
+					`serialno` = ?,
+					`funding_source` = ?,
+					`payee_name` = ?,
+					`payee_office` = ?,
+					`payee_address` = ?,
+					`certified_a` = ?,
+					`position_a` = ?,
+					`dvno` = ?,
+					`fund_cluster_code` = ?,
+					`disbursement_date` = ?
+				WHERE recid = ?
+			')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				UPDATE tbl_disbursement_hd
+				SET
+					`particulars` = ?,
+					`serialno` = ?,
+					`funding_source` = ?,
+					`payee_name` = ?,
+					`payee_office` = ?,
+					`payee_address` = ?,
+					`certified_a` = ?,
+					`position_a` = ?,
+					`dvno` = ?,
+					`fund_cluster_code` = ?,
+					`disbursement_date` = ?
+				WHERE recid = ?
+			')
+ 3 APPPATH\Models\MyDisbursementModel.php(367): CodeIgniter\Database\BaseConnection->query('
+				UPDATE tbl_disbursement_hd
+				SET
+					`particulars` = ?,
+					`serialno` = ?,
+					`funding_source` = ?,
+					`payee_name` = ?,
+					`payee_office` = ?,
+					`payee_address` = ?,
+					`certified_a` = ?,
+					`position_a` = ?,
+					`dvno` = ?,
+					`fund_cluster_code` = ?,
+					`disbursement_date` = ?
+				WHERE recid = ?
+			', [...])
+ 4 APPPATH\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-14 14:58:38 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?,
+					`serialno` = ?,
+					`funding_source` = ?,
+					`payee_name` = ?,...' at line 3
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+				UPDATE tbl_disbursement_hd
+				SET
+					`particulars` = ?,
+					`serialno` = ?,
+					`funding_source` = ?,
+					`payee_name` = ?,
+					`payee_office` = ?,
+					`payee_address` = ?,
+					`certified_a` = ?,
+					`position_a` = ?,
+					`dvno` = ?,
+					`fund_cluster_code` = ?,
+					`disbursement_date` = ?
+				WHERE recid = ?
+			', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				UPDATE tbl_disbursement_hd
+				SET
+					`particulars` = ?,
+					`serialno` = ?,
+					`funding_source` = ?,
+					`payee_name` = ?,
+					`payee_office` = ?,
+					`payee_address` = ?,
+					`certified_a` = ?,
+					`position_a` = ?,
+					`dvno` = ?,
+					`fund_cluster_code` = ?,
+					`disbursement_date` = ?
+				WHERE recid = ?
+			')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				UPDATE tbl_disbursement_hd
+				SET
+					`particulars` = ?,
+					`serialno` = ?,
+					`funding_source` = ?,
+					`payee_name` = ?,
+					`payee_office` = ?,
+					`payee_address` = ?,
+					`certified_a` = ?,
+					`position_a` = ?,
+					`dvno` = ?,
+					`fund_cluster_code` = ?,
+					`disbursement_date` = ?
+				WHERE recid = ?
+			')
+ 4 APPPATH\Models\MyDisbursementModel.php(367): CodeIgniter\Database\BaseConnection->query('
+				UPDATE tbl_disbursement_hd
+				SET
+					`particulars` = ?,
+					`serialno` = ?,
+					`funding_source` = ?,
+					`payee_name` = ?,
+					`payee_office` = ?,
+					`payee_address` = ?,
+					`certified_a` = ?,
+					`position_a` = ?,
+					`dvno` = ?,
+					`fund_cluster_code` = ?,
+					`disbursement_date` = ?
+				WHERE recid = ?
+			', [...])
+ 5 APPPATH\Controllers\MyDisbursement.php(28): App\Models\MyDisbursementModel->disbursement_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-14 16:51:36 --> ErrorException: Undefined variable $psuacsdata
+[Method: GET, Route: mydisbursement]
+in APPPATH\Views\disbursement\disbursement-main.php on line 1713.
+ 1 APPPATH\Views\disbursement\disbursement-main.php(1713): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $psuacsdata', 'C:\\xampp\\htdocs\\fods\\app\\Views\\disbursement\\disbursement-main.php', 1713)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\disbursement\\disbursement-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('disbursement/disbursement-main', [], true)
+ 5 APPPATH\Controllers\MyDisbursement.php(181): view('disbursement/disbursement-main', [...])
+ 6 APPPATH\Controllers\MyDisbursement.php(24): App\Controllers\MyDisbursement->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyDisbursement->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyDisbursement))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

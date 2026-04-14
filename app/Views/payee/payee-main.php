@@ -13,6 +13,11 @@ $disb_method = "";
 $currency = "";
 $counter = 1;
 
+$is_vatable = "";
+$vat_percent = "";
+$ewt_percent = "";
+$pt_percent = "";
+
 if(!empty($recid) || !is_null($recid)) { 
 
     $query = $this->db->query("
@@ -24,7 +29,11 @@ if(!empty($recid) || !is_null($recid)) {
         `contact_no`, 
         `payee_address`, 
         `disb_method`, 
-        `currency`
+        `currency`,
+        `is_vatable`,
+        `vat_percent`,
+        `ewt_percent`,
+        `pt_percent`
     FROM 
         `tbl_payee` 
     WHERE 
@@ -40,6 +49,10 @@ if(!empty($recid) || !is_null($recid)) {
     $payee_address = $data['payee_address'];
     $disb_method = $data['disb_method'];
     $currency = $data['currency'];
+    $is_vatable = $data['is_vatable'];
+    $vat_percent = $data['vat_percent'];
+    $ewt_percent = $data['ewt_percent'];
+    $pt_percent = $data['pt_percent'];
 
 }
 echo view('templates/myheader.php');
@@ -124,6 +137,14 @@ echo view('templates/myheader.php');
                                 <input type="text" id="contact_no" name="contact_no" value="<?=$contact_no;?>" class="form-control form-control-sm"/>
                             </div>
                         </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span>Address:</span>
+                            </div>
+                            <div class="col-sm-8">
+                            <textarea name="payee_address" id="payee_address" placeholder="" rows="3" class="form-control form-control-sm"><?=$payee_address;?></textarea>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-sm-6 my-2">
                         <div class="row mb-2">
@@ -156,12 +177,62 @@ echo view('templates/myheader.php');
                                 </select>
                             </div>
                         </div>
+                        <hr>
                         <div class="row mb-2">
                             <div class="col-sm-4">
-                                <span>Address:</span>
+                                <span>is Vatable?</span>
                             </div>
                             <div class="col-sm-8">
-                            <textarea name="payee_address" id="payee_address" placeholder="" rows="3" class="form-control form-control-sm"><?=$payee_address;?></textarea>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" 
+                                        type="checkbox" 
+                                        id="is_vatable" 
+                                        name="is_vatable" 
+                                        value="1"
+                                        <?= (isset($is_vatable) && $is_vatable == 1) ? 'checked' : '' ?>>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- VAT FIELD -->
+                        <div class="row mb-2 vat-field">
+                            <div class="col-sm-4">
+                                <span>VAT (%):</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="number" step="0.01" id="vat_percent" name="vat_percent"
+                                    value="<?= $vat_percent ?? '' ?>"
+                                    placeholder="e.g. 12"
+                                    class="form-control form-control-sm">
+                                <small class="text-muted">Standard VAT: 12%</small>
+                            </div>
+                        </div>
+
+                        <!-- EWT FIELD -->
+                        <div class="row mb-2 ewt-field">
+                            <div class="col-sm-4">
+                                <span>EWT (%):</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="number" step="0.01" id="ewt_percent" name="ewt_percent"
+                                    value="<?= $ewt_percent ?? '' ?>"
+                                    placeholder="e.g. 1, 2, 5"
+                                    class="form-control form-control-sm">
+                                <small class="text-muted">Depends on ATC (e.g. 1%, 2%, 5%)</small>
+                            </div>
+                        </div>
+
+                        <!-- PT FIELD -->
+                        <div class="row mb-2 pt-field">
+                            <div class="col-sm-4">
+                                <span>PT (%):</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="number" step="0.01" id="pt_percent" name="pt_percent"
+                                    value="<?= $pt_percent ?? '' ?>"
+                                    placeholder="e.g. 5"
+                                    class="form-control form-control-sm">
+                                <small class="text-muted">Percentage Tax (if non-vatable, usually 5%)</small>
                             </div>
                         </div>
                     </div>
@@ -268,6 +339,57 @@ echo view('templates/myheader.php');
       search: "Search:"
     }
   });
+});
+</script>
+
+<script>
+$(function () {
+
+    function toggleTaxFields() {
+        if ($("#is_vatable").is(":checked")) {
+
+            // SHOW VAT + EWT
+            $(".vat-field").show();
+            $(".ewt-field").show();
+
+            // HIDE PT
+            $(".pt-field").hide();
+
+            // ✅ CLEAR PT VALUE
+            $("#pt_percent").val('');
+
+            // Optional default VAT
+            if (!$("#vat_percent").val()) {
+                $("#vat_percent").val();
+            }
+
+        } else {
+
+            // HIDE VAT
+            $(".vat-field").hide();
+
+            // SHOW EWT + PT
+            $(".ewt-field").show();
+            $(".pt-field").show();
+
+            // ✅ CLEAR VAT VALUE
+            $("#vat_percent").val('');
+
+            // Optional default PT
+            if (!$("#pt_percent").val()) {
+                $("#pt_percent").val();
+            }
+        }
+    }
+
+    // On page load
+    toggleTaxFields();
+
+    // On checkbox change
+    $("#is_vatable").on("change", function () {
+        toggleTaxFields();
+    });
+
 });
 </script>
 <?php
