@@ -32,7 +32,7 @@ $status_msg = "";
 $status_color_b= "";
 $status_msg_b = "";
 
-if(!empty($recid) || !is_null($recid)) { 
+if((!empty($recid) || !is_null($recid)) && (empty($ors_id))) { 
     $query = $this->db->query("
     SELECT
         `disbursement_date`,
@@ -523,7 +523,7 @@ echo view('templates/myheader.php');
                                                             <input type="number" id="amount"  value="" size="25" step="any" name="amount" class="amount text-center"/>
                                                         </td>
                                                     </tr>
-                                                    <?php if(!empty($recid)):
+                                                    <?php if(!empty($recid) && empty($ors_id)):
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
@@ -534,6 +534,54 @@ echo view('templates/myheader.php');
                                                             `tbl_disbursement_direct_ps_dt`
                                                         WHERE 
                                                             `project_id` = '$recid'
+                                                        GROUP BY 
+                                                            `responsibility_code`
+                                                        ");
+                                                        $result = $query->getResultArray();
+                                                        foreach ($result as $data):
+                                                            $dt_id = $data['recid'];
+                                                            $responsibility_code = $data['responsibility_code'];
+                                                            $mfopaps_code = $data['mfopaps_code'];
+                                                            $amount = $data['amount'];
+                                                    ?>
+                                                    <tr>
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                onclick="$(this).closest('tr').remove();">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </a>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                title="Add rows above"
+                                                                onclick="__mysys_disbursement_ent.my_add_budget_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="responsibility_code"  value="<?=$responsibility_code;?>" size="35"  name="responsibility_code" class="responsibility_code text-center">
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" class="mfopaps_code text-center"/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" class="amount text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php endforeach; endif;?>
+                                                    <?php if(!empty($ors_id) && !empty($recid)):
+                                                        $query = $this->db->query("
+                                                        SELECT
+                                                            `recid`,
+                                                            `responsibility_code`,
+                                                            `mfopaps_code`,
+                                                            SUM(`amount`) AS amount
+                                                        FROM
+                                                            `tbl_ors_direct_ps_dt`
+                                                        WHERE 
+                                                            `project_id` = '$ors_id'
                                                         GROUP BY 
                                                             `responsibility_code`
                                                         ");
@@ -661,7 +709,7 @@ echo view('templates/myheader.php');
                                                             <input type="number" id="amount"  value="" size="25" step="any" name="amount" class="amount text-center"/>
                                                         </td>
                                                     </tr>
-                                                    <?php if(!empty($recid)):
+                                                    <?php if(!empty($recid) && empty($ors_id)):
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
@@ -672,6 +720,54 @@ echo view('templates/myheader.php');
                                                             `tbl_disbursement_indirect_ps_dt`
                                                         WHERE 
                                                             `project_id` = '$recid'
+                                                        GROUP BY 
+                                                            `responsibility_code`"
+                                                        );
+                                                        $result = $query->getResultArray();
+                                                        foreach ($result as $data):
+                                                            $dt_id = $data['recid'];
+                                                            $responsibility_code = $data['responsibility_code'];
+                                                            $mfopaps_code = $data['mfopaps_code'];
+                                                            $amount = $data['amount'];
+                                                    ?>
+                                                    <tr>
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                onclick="$(this).closest('tr').remove();">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </a>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                title="Add rows above"
+                                                                onclick="__mysys_disbursement_ent.my_add_budget_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="responsibility_code"  value="<?=$responsibility_code;?>" size="35"  name="responsibility_code" class="responsibility_code text-center">
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" class="mfopaps_code text-center"/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" class="amount text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php endforeach; endif;?>
+                                                    <?php if(!empty($ors_id) && !empty($recid)):
+                                                        $query = $this->db->query("
+                                                        SELECT
+                                                            `recid`,
+                                                            `responsibility_code`,
+                                                            `mfopaps_code`,
+                                                            SUM(`amount`) AS amount
+                                                        FROM
+                                                            `tbl_ors_indirect_ps_dt`
+                                                        WHERE 
+                                                            `project_id` = '$ors_id'
                                                         GROUP BY 
                                                             `responsibility_code`"
                                                         );
@@ -806,7 +902,7 @@ echo view('templates/myheader.php');
                                                             <input type="number" id="amount"  value="" size="25" step="any" name="amount" class="amount text-center"/>
                                                         </td>
                                                     </tr>
-                                                    <?php if(!empty($recid)):
+                                                    <?php if(!empty($recid) && empty($ors_id)):
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
@@ -817,6 +913,54 @@ echo view('templates/myheader.php');
                                                             `tbl_disbursement_direct_mooe_dt`
                                                         WHERE 
                                                             `project_id` = '$recid'
+                                                        GROUP BY 
+                                                            `responsibility_code`
+                                                        ");
+                                                        $result = $query->getResultArray();
+                                                        foreach ($result as $data):
+                                                            $dt_id = $data['recid'];
+                                                            $responsibility_code = $data['responsibility_code'];
+                                                            $mfopaps_code = $data['mfopaps_code'];
+                                                            $amount = $data['amount'];
+                                                    ?>
+                                                    <tr>
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                onclick="$(this).closest('tr').remove();">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </a>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                title="Add rows above"
+                                                                onclick="__mysys_disbursement_ent.my_add_budget_mooe_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="responsibility_code"  value="<?=$responsibility_code;?>" size="35"  name="responsibility_code" class="responsibility_code text-center">
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" class="mfopaps_code text-center"/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" class="amount text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php endforeach; endif;?>
+                                                    <?php if(!empty($ors_id)&& !empty($recid)):
+                                                        $query = $this->db->query("
+                                                        SELECT
+                                                            `recid`,
+                                                            `responsibility_code`,
+                                                            `mfopaps_code`,
+                                                            SUM(`amount`) AS amount
+                                                        FROM
+                                                            `tbl_ors_direct_mooe_dt`
+                                                        WHERE 
+                                                            `project_id` = '$ors_id'
                                                         GROUP BY 
                                                             `responsibility_code`
                                                         ");
@@ -943,7 +1087,7 @@ echo view('templates/myheader.php');
                                                             <input type="number" id="amount"  value="" size="25" step="any" name="amount" class="amount text-center"/>
                                                         </td>
                                                     </tr>
-                                                    <?php if(!empty($recid)):
+                                                    <?php if(!empty($recid) && empty($ors_id)):
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
@@ -954,6 +1098,53 @@ echo view('templates/myheader.php');
                                                             `tbl_disbursement_indirect_mooe_dt`
                                                         WHERE 
                                                             `project_id` = '$recid'
+                                                        GROUP BY 
+                                                            `responsibility_code`
+                                                        ");
+                                                        $result = $query->getResultArray();
+                                                        foreach ($result as $data):
+                                                            $responsibility_code = $data['responsibility_code'];
+                                                            $mfopaps_code = $data['mfopaps_code'];
+                                                            $amount = $data['amount'];
+                                                    ?>
+                                                    <tr>
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                onclick="$(this).closest('tr').remove();">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </a>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                title="Add rows above"
+                                                                onclick="__mysys_disbursement_ent.my_add_budget_indirect_mooe_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="responsibility_code"  value="<?=$responsibility_code;?>" size="35"  name="responsibility_code" class="responsibility_code text-center">
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" class="mfopaps_code text-center"/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" class="amount text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php endforeach; endif;?>
+                                                    <?php if(!empty($ors_id) && !empty($recid)):
+                                                        $query = $this->db->query("
+                                                        SELECT
+                                                            `recid`,
+                                                            `responsibility_code`,
+                                                            `mfopaps_code`,
+                                                            SUM(`amount`) AS amount
+                                                        FROM
+                                                            `tbl_ors_indirect_mooe_dt`
+                                                        WHERE 
+                                                            `project_id` = '$ors_id'
                                                         GROUP BY 
                                                             `responsibility_code`
                                                         ");
@@ -1086,7 +1277,7 @@ echo view('templates/myheader.php');
                                                             <input type="number" id="amount"  value="" size="25" step="any" name="amount" class="amount text-center"/>
                                                         </td>
                                                     </tr>
-                                                    <?php if(!empty($recid)):
+                                                    <?php if(!empty($recid) && empty($ors_id)):
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
@@ -1097,6 +1288,54 @@ echo view('templates/myheader.php');
                                                             `tbl_disbursement_direct_co_dt`
                                                         WHERE 
                                                             `project_id` = '$recid'
+                                                        GROUP BY 
+                                                            `responsibility_code`
+                                                        ");
+                                                        $result = $query->getResultArray();
+                                                        foreach ($result as $data):
+                                                            $dt_id = $data['recid'];
+                                                            $responsibility_code = $data['responsibility_code'];
+                                                            $mfopaps_code = $data['mfopaps_code'];
+                                                            $amount = $data['amount'];
+                                                    ?>
+                                                    <tr>
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                onclick="$(this).closest('tr').remove();">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </a>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                title="Add rows above"
+                                                                onclick="__mysys_disbursement_ent.my_add_budget_co_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="responsibility_code"  value="<?=$responsibility_code;?>" size="35"  name="responsibility_code" class="responsibility_code text-center">
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" class="mfopaps_code text-center"/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" class="amount text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php endforeach; endif;?>
+                                                    <?php if(!empty($ors_id)&& !empty($recid)):
+                                                        $query = $this->db->query("
+                                                        SELECT
+                                                            `recid`,
+                                                            `responsibility_code`,
+                                                            `mfopaps_code`,
+                                                            SUM(`amount`) AS amount
+                                                        FROM
+                                                            `tbl_ors_direct_co_dt`
+                                                        WHERE 
+                                                            `project_id` = '$ors_id'
                                                         GROUP BY 
                                                             `responsibility_code`
                                                         ");
@@ -1223,7 +1462,7 @@ echo view('templates/myheader.php');
                                                             <input type="number" id="amount"  value="" size="25" step="any" name="amount" class="amount text-center"/>
                                                         </td>
                                                     </tr>
-                                                    <?php if(!empty($recid)):
+                                                    <?php if(!empty($recid) && empty($ors_id)):
                                                         $query = $this->db->query("
                                                         SELECT
                                                             `recid`,
@@ -1234,6 +1473,54 @@ echo view('templates/myheader.php');
                                                             `tbl_disbursement_indirect_co_dt`
                                                         WHERE 
                                                             `project_id` = '$recid'
+                                                        GROUP BY 
+                                                            `responsibility_code`
+                                                        ");
+                                                        $result = $query->getResultArray();
+                                                        foreach ($result as $data):
+                                                            $dt_id = $data['recid'];
+                                                            $responsibility_code = $data['responsibility_code'];
+                                                            $mfopaps_code = $data['mfopaps_code'];
+                                                            $amount = $data['amount'];
+                                                    ?>
+                                                    <tr>
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex gap-1 justify-content-center">
+                                                                <a class="text-danger fs-5 bg-hover-danger nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                onclick="$(this).closest('tr').remove();">
+                                                                    <i class="ti ti-trash"></i>
+                                                                </a>
+                                                                <a class="text-success fs-5 bg-hover-primary nav-icon-hover"
+                                                                href="javascript:void(0)"
+                                                                title="Add rows above"
+                                                                onclick="__mysys_disbursement_ent.my_add_budget_indirect_co_line_above(this);">
+                                                                    <i class="ti ti-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="responsibility_code"  value="<?=$responsibility_code;?>" size="35"  name="responsibility_code" class="responsibility_code text-center">
+                                                        </td>
+                                                        <td class="align-middle" nowrap>
+                                                            <input type="text" id="mfopaps_code"  value="<?=$mfopaps_code;?>" size="25" name="mfopaps_code" class="mfopaps_code text-center"/>
+                                                        </td>
+                                                        <td class="text-center align-middle" nowrap>
+                                                            <input type="number" id="amount"  value="<?=$amount;?>" size="25" step="any" name="amount" class="amount text-center"/>
+                                                        </td>
+                                                    </tr>
+                                                    <?php endforeach; endif;?>
+                                                    <?php if(!empty($ors_id) && !empty($recid)):
+                                                        $query = $this->db->query("
+                                                        SELECT
+                                                            `recid`,
+                                                            `responsibility_code`,
+                                                            `mfopaps_code`,
+                                                            SUM(`amount`) AS amount
+                                                        FROM
+                                                            `tbl_ors_indirect_co_dt`
+                                                        WHERE 
+                                                            `project_id` = '$ors_id'
                                                         GROUP BY 
                                                             `responsibility_code`
                                                         ");
@@ -1327,7 +1614,7 @@ echo view('templates/myheader.php');
 
                             </div>
                         </div>
-                    </div>
+                    </dwiv>
                 </div>
 
                 <hr class="fw-bolder">
@@ -1464,7 +1751,7 @@ echo view('templates/myheader.php');
                                         <i class="ti ti-edit"></i>
                                         </a>
                                         <button class="btn btn-sm fs-6 text-warning p-0 border-0 bg-transparent" 
-                                                onclick="__mysys_disbursement_ent.__showPdfInModal('<?= base_url('mydisbursement?meaction=PRINT-DIRBURSEMENT&recid='.$dt_recid) ?>')" 
+                                                onclick="__mysys_disbursement_ent.__showPdfInModal('<?= base_url('mydisbursement?meaction=PRINT-DISBURSEMENT&recid='.$dt_recid) ?>')" 
                                                 title="Print DV">
                                         <i class="ti ti-printer"></i>
                                         </button>
@@ -1675,10 +1962,12 @@ $(function() {
         select: function(event, ui) {
 
             var ors_id = ui.item.ors_id;
+            var recid = $("#recid").val(); // 👈 get from hidden input
 
-            // Redirect using ORS ID
             window.location.href = mesiteurl + 
-                'mydisbursement?meaction=MAIN&ors_id=' + encodeURIComponent(ors_id);
+                'mydisbursement?meaction=MAIN'
+                + '&ors_id=' + encodeURIComponent(ors_id)
+                + '&recid=' + encodeURIComponent(recid);
         }
     }).focus(function() {
         $(this).autocomplete("search", "");
