@@ -344,7 +344,7 @@ $ewt_amount = 0;
 $pt_amount  = 0;
 
 // 🔥 define base (IMPORTANT)
-$base_amount = $total_amount * 0.8515; // or computed base
+$base_amount = round(($total_amount * 0.8515), 0); // nearest peso
 
 if ($is_vatable == 1) {
 
