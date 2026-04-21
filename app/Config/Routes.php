@@ -89,3 +89,8 @@ $routes->get('saob-export-csv', 'MySaobReport::saobExportCsv');
 //DISBURSEMENT - DISBURSEMENT module
 $routes->get('mydisbursement', 'MyDisbursement::index',['filter' => 'myauthuser']);
 $routes->post('mydisbursement', 'MyDisbursement::index',['filter' => 'myauthuser']);
+
+//Cashier
+//LDDAP-ADA - LDDAP-ADA module
+$routes->get('mylddapada', 'MyLDDAPADA::index',['filter' => 'myauthuser']);
+$routes->post('mylddapada', 'MyLDDAPADA::index',['filter' => 'myauthuser']);

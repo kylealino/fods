@@ -1709,67 +1709,67 @@ echo view('templates/myheader.php');
         </div>
     </div>
 
-    <div class="row mb-2">
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-header bg-info p-1">
-                    <div class="row">
-                        <div class="col-sm-6 d-flex align-items-center text-start">
-                            <h6 class="mb-0 lh-base px-3 text-white fw-semibold d-flex align-items-center">
-                                <i class="ti ti-list fs-5 me-1"></i>
-                                <span class="pt-1">List</span>
-                            </h6>
-                        </div>
+</div>
+
+<div class="row mb-2">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header bg-info p-1">
+                <div class="row">
+                    <div class="col-sm-6 d-flex align-items-center text-start">
+                        <h6 class="mb-0 lh-base px-3 text-white fw-semibold d-flex align-items-center">
+                            <i class="ti ti-list fs-5 me-1"></i>
+                            <span class="pt-1">List</span>
+                        </h6>
                     </div>
-                </div>						
-                <div class="card-body p-0 px-4 py-2 my-2">
-                    <table id="datatablesSimple" class="table table-bordered table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th class="text-center">Action</th>
-                                <th class="text-center" style="width:250px;">Serial No.</th>
-                                <th class="text-center">Particulars</th>
-                                <th class="text-center">Payee</th>
-                                <th class="text-center">Total Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody class="align-middle">
-                            <?php if(!empty($disbursementhddata)):
-                                foreach ($disbursementhddata as $data):
-                                    $dt_recid = $data['recid'];
-                                    $serialno = $data['serialno'];
-                                    $particulars = $data['particulars'];
-                                    $payee_name = $data['payee_name'];
-                                    $total_amount = $data['amount'];
-                            ?>
-                            <tr>
-                                <td class="text-center align-middle">
-                                    <div class="d-flex justify-content-center gap-2">
-                                        <a class="text-info nav-icon-hover fs-6" 
-                                        href="mydisbursement?meaction=MAIN&recid=<?= $dt_recid ?>" 
-                                        title="Edit Transaction">
-                                        <i class="ti ti-edit"></i>
-                                        </a>
-                                        <button class="btn btn-sm fs-6 text-warning p-0 border-0 bg-transparent" 
-                                                onclick="__mysys_disbursement_ent.__showPdfInModal('<?= base_url('mydisbursement?meaction=PRINT-DISBURSEMENT&recid='.$dt_recid) ?>')" 
-                                                title="Print DV">
-                                        <i class="ti ti-printer"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                                <td class="text-center"><?=$serialno;?></td>
-                                <td class="text-center"><?=$particulars;?></td>
-                                <td class="text-center"><?=$payee_name;?></td>
-                                <td class="text-center"><?= 'P'. number_format($total_amount,2);?></td>
-                            </tr>
-                            <?php endforeach; endif;?>
-                        </tbody>
-                    </table>
                 </div>
+            </div>						
+            <div class="card-body p-0 px-4 py-2 my-2">
+                <table id="datatablesSimple" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Action</th>
+                            <th class="text-center" style="width:250px;">Serial No.</th>
+                            <th class="text-center">Particulars</th>
+                            <th class="text-center">Payee</th>
+                            <th class="text-center">Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody class="align-middle">
+                        <?php if(!empty($disbursementhddata)):
+                            foreach ($disbursementhddata as $data):
+                                $dt_recid = $data['recid'];
+                                $serialno = $data['serialno'];
+                                $particulars = $data['particulars'];
+                                $payee_name = $data['payee_name'];
+                                $total_amount = $data['amount'];
+                        ?>
+                        <tr>
+                            <td class="text-center align-middle">
+                                <div class="d-flex justify-content-center gap-2">
+                                    <a class="text-info nav-icon-hover fs-6" 
+                                    href="mydisbursement?meaction=MAIN&recid=<?= $dt_recid ?>" 
+                                    title="Edit Transaction">
+                                    <i class="ti ti-edit"></i>
+                                    </a>
+                                    <button class="btn btn-sm fs-6 text-warning p-0 border-0 bg-transparent" 
+                                            onclick="__mysys_disbursement_ent.__showPdfInModal('<?= base_url('mydisbursement?meaction=PRINT-DISBURSEMENT&recid='.$dt_recid) ?>')" 
+                                            title="Print DV">
+                                    <i class="ti ti-printer"></i>
+                                    </button>
+                                </div>
+                            </td>
+                            <td class="text-center"><?=$serialno;?></td>
+                            <td class="text-center"><?=$particulars;?></td>
+                            <td class="text-center"><?=$payee_name;?></td>
+                            <td class="text-center"><?= 'P'. number_format($total_amount,2);?></td>
+                        </tr>
+                        <?php endforeach; endif;?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-
 </div>
 
 <!-- APPROVAL -->

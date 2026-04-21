@@ -427,9 +427,21 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
             <li class="sidebar-item">
               <a class="sidebar-link sidebar-link" href="<?=site_url();?>mydisbursement?meaction=MAIN" aria-expanded="false">
                 <span class="rounded-3">
-                  <i class="ti ti-mist"></i>
+                  <i class="ti ti-file"></i>
                 </span>
                 <span class="hide-menu">Disbursement</span>
+              </a>
+            </li> 
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Cashier</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link sidebar-link" href="<?=site_url();?>mylddapada?meaction=MAIN" aria-expanded="false">
+                <span class="rounded-3">
+                  <i class="ti ti-cash"></i>
+                </span>
+                <span class="hide-menu">LDDAP-ADA</span>
               </a>
             </li> 
           </ul>
