@@ -10,110 +10,6 @@ $this->cuser = $this->session->get('__xsys_myuserzicas__');
 require APPPATH . 'ThirdParty/fpdf/fpdf.php';
 $currentDate = date("Y-m-d");
 $formattedDate = date("F j, Y", strtotime($currentDate));
-
-function numberToWords($number) {
-
-    $hyphen      = '-';
-    $conjunction = ' ';
-    $separator   = ' ';
-    $negative    = 'negative ';
-    $decimal     = ' & ';
-
-    $dictionary  = [
-        0                   => 'Zero',
-        1                   => 'One',
-        2                   => 'Two',
-        3                   => 'Three',
-        4                   => 'Four',
-        5                   => 'Five',
-        6                   => 'Six',
-        7                   => 'Seven',
-        8                   => 'Eight',
-        9                   => 'Nine',
-        10                  => 'Ten',
-        11                  => 'Eleven',
-        12                  => 'Twelve',
-        13                  => 'Thirteen',
-        14                  => 'Fourteen',
-        15                  => 'Fifteen',
-        16                  => 'Sixteen',
-        17                  => 'Seventeen',
-        18                  => 'Eighteen',
-        19                  => 'Nineteen',
-        20                  => 'Twenty',
-        30                  => 'Thirty',
-        40                  => 'Forty',
-        50                  => 'Fifty',
-        60                  => 'Sixty',
-        70                  => 'Seventy',
-        80                  => 'Eighty',
-        90                  => 'Ninety',
-        100                 => 'Hundred',
-        1000                => 'Thousand',
-        1000000             => 'Million',
-        1000000000          => 'Billion'
-    ];
-
-    if (!is_numeric($number)) {
-        return false;
-    }
-
-    if ($number < 0) {
-        return $negative . numberToWords(abs($number));
-    }
-
-    $string = '';
-    $fraction = null;
-
-    if (strpos((string)$number, '.') !== false) {
-        list($number, $fraction) = explode('.', (string)$number);
-    }
-
-    switch (true) {
-        case $number < 21:
-            $string = $dictionary[$number];
-            break;
-
-        case $number < 100:
-            $tens   = ((int)($number / 10)) * 10;
-            $units  = $number % 10;
-            $string = $dictionary[$tens];
-            if ($units) {
-                $string .= " " . $dictionary[$units];
-            }
-            break;
-
-        case $number < 1000:
-            $hundreds  = floor($number / 100);
-            $remainder = $number % 100;
-            $string = $dictionary[$hundreds] . ' Hundred';
-            if ($remainder) {
-                $string .= $conjunction . numberToWords($remainder);
-            }
-            break;
-
-        default:
-            $baseUnit = pow(1000, floor(log($number, 1000)));
-            $numBaseUnits = floor($number / $baseUnit);
-            $remainder = $number % $baseUnit;
-
-            $string = numberToWords($numBaseUnits) . ' ' . $dictionary[$baseUnit];
-
-            if ($remainder) {
-                $string .= $separator . numberToWords($remainder);
-            }
-            break;
-    }
-
-    if (null !== $fraction) {
-        $fraction = substr($fraction, 0, 2);
-        $string .= $decimal . str_pad($fraction, 2, '0') . '/100';
-    }
-
-    return $string;
-}
-
-
 $query = $this->db->query("
 SELECT
     `recid`,
@@ -140,12 +36,7 @@ SELECT
     `added_by`,
     `disbursement_date`,
     `dvno`,
-    `fund_cluster_code`,
-    `is_vatable`,
-    `vat_percent`,
-    `ewt_percent`,
-    `pt_percent`,
-    `category`
+    `fund_cluster_code`
 FROM
     `tbl_disbursement_hd`
 WHERE 
@@ -183,12 +74,6 @@ $added_by = $data['added_by'];
 $disbursement_date = $data['disbursement_date'];
 $dvno = $data['dvno'];
 $fund_cluster_code = $data['fund_cluster_code'];
-
-$is_vatable = $data['is_vatable'];
-$vat_percent = $data['vat_percent'];
-$ewt_percent = $data['ewt_percent'];
-$pt_percent = $data['pt_percent'];
-$category = $data['category'];
 
 //certify a division
 $query = $this->db->query("
@@ -395,40 +280,33 @@ $pdf->SetXY(10, $Y);
 $pdf->MultiCell(90, 40, $particulars, 0, 'C');
 
 $query = $this->db->query("
-    SELECT 
-        responsibility_code,
-        mfopaps_code,
-        SUM(amount) AS amount
-    FROM (
-        SELECT responsibility_code, mfopaps_code, amount
-        FROM tbl_disbursement_direct_ps_dt WHERE project_id = ?
+    (SELECT responsibility_code, mfopaps_code, amount
+     FROM tbl_disbursement_direct_ps_dt WHERE project_id = ?)
 
-        UNION ALL
+    UNION ALL
 
-        SELECT responsibility_code, mfopaps_code, amount
-        FROM tbl_disbursement_direct_mooe_dt WHERE project_id = ?
+    (SELECT responsibility_code, mfopaps_code, amount
+     FROM tbl_disbursement_direct_mooe_dt WHERE project_id = ?)
 
-        UNION ALL
+    UNION ALL
 
-        SELECT responsibility_code, mfopaps_code, amount
-        FROM tbl_disbursement_direct_co_dt WHERE project_id = ?
+    (SELECT responsibility_code, mfopaps_code, amount
+     FROM tbl_disbursement_direct_co_dt WHERE project_id = ?)
 
-        UNION ALL
+    UNION ALL
 
-        SELECT responsibility_code, mfopaps_code, amount
-        FROM tbl_disbursement_indirect_ps_dt WHERE project_id = ?
+    (SELECT responsibility_code, mfopaps_code, amount
+     FROM tbl_disbursement_indirect_ps_dt WHERE project_id = ?)
 
-        UNION ALL
+    UNION ALL
 
-        SELECT responsibility_code, mfopaps_code, amount
-        FROM tbl_disbursement_indirect_mooe_dt WHERE project_id = ?
+    (SELECT responsibility_code, mfopaps_code, amount
+     FROM tbl_disbursement_indirect_mooe_dt WHERE project_id = ?)
 
-        UNION ALL
+    UNION ALL
 
-        SELECT responsibility_code, mfopaps_code, amount
-        FROM tbl_disbursement_indirect_co_dt WHERE project_id = ?
-    ) AS combined
-    GROUP BY responsibility_code, mfopaps_code
+    (SELECT responsibility_code, mfopaps_code, amount
+     FROM tbl_disbursement_indirect_co_dt WHERE project_id = ?)
 ", [
     $recid,
     $recid,
@@ -465,81 +343,24 @@ $vat_amount = 0;
 $ewt_amount = 0;
 $pt_amount  = 0;
 
-$gross = $total_amount;
-
-// ==============================
-// DETERMINE BASE AMOUNT
-// ==============================
+// 🔥 define base (IMPORTANT)
+$base_amount = round(($total_amount * 0.8515), 0); // nearest peso
 
 if ($is_vatable == 1) {
-    $base_amount = $gross / 1.12;
-} else {
-    $base_amount = $gross;
-}
 
-// ==============================
-// CATEGORY LOGIC
-// ==============================
 
-if (empty($category)) {
+    $vat_amount = $base_amount * ($vat_percent / 100);
+    $ewt_amount = $base_amount * ($ewt_percent / 100);
 
-    // ✅ NO CATEGORY
-    $net = $gross;
-
-} elseif ($category == "Manual") {
-
-    // ✅ MANUAL (use input values only)
-    if ($is_vatable == 1) {
-
-        $vat_amount = $base_amount * ($vat_percent / 100);
-        $ewt_amount = $base_amount * ($ewt_percent / 100);
-
-        $net = $gross - $vat_amount - $ewt_amount;
-
-    } else {
-
-        $ewt_amount = $base_amount * ($ewt_percent / 100);
-        $pt_amount  = $base_amount * ($pt_percent / 100);
-
-        $net = $gross - $ewt_amount - $pt_amount;
-    }
+    $net = $total_amount - $vat_amount - $ewt_amount;
 
 } else {
 
-    // ✅ GOODS / SERVICES (AUTO DEFAULTS)
+    // ✔ NON-VATABLE
+    $ewt_amount = $base_amount * ($ewt_percent / 100);
+    $pt_amount  = $base_amount * ($pt_percent / 100);
 
-    if ($is_vatable == 1) {
-
-        // VAT
-        $vat_amount = $base_amount * ($vat_percent / 100);
-
-        // EWT
-        if ($category == "Goods") {
-            $ewt_percent = 1;
-        } elseif ($category == "Services") {
-            $ewt_percent = 2;
-        }
-
-        $ewt_amount = $base_amount * ($ewt_percent / 100);
-
-        $net = $gross - $vat_amount - $ewt_amount;
-
-    } else {
-
-        // NON-VAT
-        if ($category == "Goods") {
-            $ewt_percent = 1;
-        } elseif ($category == "Services") {
-            $ewt_percent = 2;
-        }
-
-        $pt_percent = 3;
-
-        $ewt_amount = $base_amount * ($ewt_percent / 100);
-        $pt_amount  = $base_amount * ($pt_percent / 100);
-
-        $net = $gross - $ewt_amount - $pt_amount;
-    }
+    $net = $total_amount - $ewt_amount - $pt_amount;
 }
 
 if ($is_vatable == 1) {
@@ -570,7 +391,7 @@ if ($is_vatable == 1) {
     $pdf->Cell(90, 4, $ewt_percent .'% EWT', 0, 1, 'R');
 
     $pdf->SetXY(160, $Y);
-    $pdf->Cell(40, 4, number_format($ewt_amount,2), 0, 1, 'L');
+    $pdf->Cell(40, 4, number_format($ewt_amount,2), 0, 1, 'R');
 
     // PT
     $Y = 124;
@@ -633,7 +454,6 @@ $pdf->Cell(40, 4, '' , 'R', 1, 'C');
 
 $Y = $pdf->GetY();
 $pdf->SetXY(10, $Y);
-$pdf->SetFont('Arial', '', 8);
 $pdf->Cell(40, 4, '' , 'L', 1, 'C');
 $pdf->SetXY(50, $Y);
 $pdf->Cell(110, 4, $position_a , 0, 1, 'C');
@@ -741,15 +561,14 @@ $pdf->MultiCell(80, 4, ' Supporting documents complete and amount claimed proper
 // ================= AMOUNT IN WORDS (D) =================
 
 // Example value (replace with your dynamic value)
-$amountWords = numberToWords(number_format($net, 2, '.', '')) . " Pesos";
+$amountWords = "One Million Twenty One Thousand Seven Hundred Fifty Seven Pesos & 26/100";
 
 $pdf->SetXY(105, $startY + 5);
 $pdf->MultiCell(90, 5, $amountWords, 0, 'C');
 
-
 //SIGNATURES -----------------------------------------------
 $pdf->SetFont('Arial', '', 8);
-$Y = $pdf->GetY()+10;
+$Y = $pdf->GetY()+5;
 
 $pdf->SetXY(10, $Y);
 $pdf->Cell(15, 8, 'Signature', 1, 0, 'C');

@@ -1,5 +1,5 @@
-var __mysys_disbursement_ent = new __mysys_disbursement_ent();
-function __mysys_disbursement_ent() {  
+var __mysys_lddapada_ent = new __mysys_lddapada_ent();
+function __mysys_lddapada_ent() {  
 	const mesiteurl = $('#__siteurl').attr('data-mesiteurl');
 
 	//PS
@@ -425,10 +425,10 @@ function __mysys_disbursement_ent() {
 		return result;
 	}
 	
-	this.__disbursement_saving = function() { 
+	this.__lddapada_saving = function() { 
 		'use strict' 
 		// Fetch all the forms we want to apply custom Bootstrap validation styles to
-		var forms = document.querySelectorAll('.mydisbursement-validation')
+		var forms = document.querySelectorAll('.mylddapada-validation')
 		// Loop over them and prevent submission
 		Array.prototype.slice.call(forms)
 		.forEach(function (form) {
@@ -442,154 +442,55 @@ function __mysys_disbursement_ent() {
 					event.stopPropagation();
 
 					var recid = document.getElementById("recid");
-					var serialno = document.getElementById("serialno");
-					var particulars = document.getElementById("particulars");
-					var funding_source = document.getElementById("funding_source");
-					var payee_name = document.getElementById("payee_name");
-					var payee_office = document.getElementById("payee_office");
-					var payee_address = document.getElementById("payee_address");
-					var certified_a = document.getElementById("certified_a");
-					var position_a = document.getElementById("position_a");
-					var dvno = document.getElementById("dvno");
+					var lddapadano = document.getElementById("lddapadano");
+					var mds_branch = document.getElementById("mds_branch");
+					var mds_accountno = document.getElementById("mds_accountno");
+					var lddapada_date = document.getElementById("lddapada_date");
 					var fund_cluster_code = document.getElementById("fund_cluster_code");
-					var disbursement_date = document.getElementById("disbursement_date");
-
-					let is_vatable = document.getElementById("is_vatable").checked ? 1 : 0;
-					var vat_percent = document.getElementById("vat_percent");
-					var ewt_percent = document.getElementById("ewt_percent");
-					var pt_percent = document.getElementById("pt_percent");
-					var category = document.getElementById("category");
-					var gross_amount = document.getElementById("gross_amount");
-					var total_deduction = document.getElementById("total_deduction");
-					var net_amount = document.getElementById("net_amount");
+					var funding_source = document.getElementById("funding_source");
 
 					// Prepare PS data DIRECT --
-					var rowcount1 = jQuery('.budgetdata-list tr').length;
-					var budgetdtdata = [];
+					var rowcount1 = jQuery('.dvdata-list tr').length;
+					var dvdtdata = [];
 					var psdata = '';
 	
 					for (var aa = 2; aa < rowcount1; aa++) {
-						var clonedRow = jQuery('.budgetdata-list tr:eq(' + aa + ')'); 
-						var responsibility_code = clonedRow.find('input[type=text]').eq(0).val();
-						var mfopaps_code = clonedRow.find('input[type=text]').eq(1).val();
-						var amount = clonedRow.find('input[type=number]').eq(0).val();  
+						var clonedRow = jQuery('.dvdata-list tr:eq(' + aa + ')'); 
+						var dvno = clonedRow.find('input[type=text]').eq(0).val();
+						var payee_name = clonedRow.find('input[type=text]').eq(1).val();
+						var payee_account_num = clonedRow.find('input[type=text]').eq(2).val();
+						var serialno = clonedRow.find('input[type=text]').eq(3).val();
+						var uacs_code = clonedRow.find('input[type=text]').eq(4).val();
+						var gross_amount = clonedRow.find('input[type=number]').eq(0).val();
+						var total_deduction = clonedRow.find('input[type=number]').eq(1).val();
+						var net_amount = clonedRow.find('input[type=number]').eq(2).val();  
+						var remarks = clonedRow.find('textarea').eq(0).val(); 
 						
-						psdata = responsibility_code + 'x|x' + mfopaps_code + 'x|x' + amount;
-						budgetdtdata.push(psdata);
-					}
-
-					var rowcount2 = jQuery('.budgetdata-indirect-list tr').length;
-					var budgetdtindirectdata = [];
-					var psindirectdata = '';
-	
-					for (var aa = 2; aa < rowcount2; aa++) {
-						var clonedRow = jQuery('.budgetdata-indirect-list tr:eq(' + aa + ')'); 
-						var responsibility_code = clonedRow.find('input[type=text]').eq(0).val();
-						var mfopaps_code = clonedRow.find('input[type=text]').eq(1).val();
-						var amount = clonedRow.find('input[type=number]').eq(0).val();  
-						
-						psindirectdata = responsibility_code + 'x|x' + mfopaps_code + 'x|x' + amount;
-						budgetdtindirectdata.push(psindirectdata);
-					}
-
-					// Prepare MOEE data
-					var rowcount3 = jQuery('.budgetmooedata-list tr').length;
-					var budgetmooedtdata = [];
-					var mooedata = '';
-	
-					for (var aa = 2; aa < rowcount3; aa++) {
-						var clonedRow = jQuery('.budgetmooedata-list tr:eq(' + aa + ')'); 
-						var responsibility_code = clonedRow.find('input[type=text]').eq(0).val();
-						var mfopaps_code = clonedRow.find('input[type=text]').eq(1).val();
-						var amount = clonedRow.find('input[type=number]').eq(0).val();  
-						
-						mooedata = responsibility_code + 'x|x' + mfopaps_code + 'x|x' + amount;
-						budgetmooedtdata.push(mooedata);
-					}
-
-					// Prepare MOEE data
-					var rowcount4 = jQuery('.budgetmooedata-indirect-list tr').length;
-					var budgetmooeindirectdtdata = [];
-					var mooeindirectdata = '';
-	
-					for (var aa = 2; aa < rowcount4; aa++) {
-						var clonedRow = jQuery('.budgetmooedata-indirect-list tr:eq(' + aa + ')'); 
-						var responsibility_code = clonedRow.find('input[type=text]').eq(0).val();
-						var mfopaps_code = clonedRow.find('input[type=text]').eq(1).val();
-						var amount = clonedRow.find('input[type=number]').eq(0).val();  
-						
-						mooeindirectdata = responsibility_code + 'x|x' + mfopaps_code + 'x|x' + amount;
-						budgetmooeindirectdtdata.push(mooeindirectdata);
-					}
-
-					// Prepare CO data
-					var rowcount5 = jQuery('.budgetcodata-list tr').length;
-					var budgetcodtdata = [];
-					var codata = '';
-	
-					for (var aa = 2; aa < rowcount5; aa++) {
-						var clonedRow = jQuery('.budgetcodata-list tr:eq(' + aa + ')'); 
-						var responsibility_code = clonedRow.find('input[type=text]').eq(0).val();
-						var mfopaps_code = clonedRow.find('input[type=text]').eq(1).val();
-						var amount = clonedRow.find('input[type=number]').eq(0).val();  
-						
-						codata = responsibility_code + 'x|x' + mfopaps_code + 'x|x' + amount;
-						budgetcodtdata.push(codata);
-					}
-
-					var rowcount6 = jQuery('.budgetcodata-indirect-list tr').length;
-					var budgetindirectcodtdata = [];
-					var coindirectdata = '';
-	
-					for (var aa = 2; aa < rowcount6; aa++) {
-						var clonedRow = jQuery('.budgetcodata-indirect-list tr:eq(' + aa + ')'); 
-						var responsibility_code = clonedRow.find('input[type=text]').eq(0).val();
-						var mfopaps_code = clonedRow.find('input[type=text]').eq(1).val();
-						var amount = clonedRow.find('input[type=number]').eq(0).val();  
-						
-						coindirectdata = responsibility_code + 'x|x' + mfopaps_code + 'x|x' + amount;
-						budgetindirectcodtdata.push(coindirectdata);
+						psdata = dvno + 'x|x' + payee_name + 'x|x' + payee_account_num + 'x|x' + serialno + 'x|x' + uacs_code + 'x|x' + gross_amount + 'x|x' + total_deduction + 'x|x' + net_amount + 'x|x' + remarks;
+						dvdtdata.push(psdata);
 					}
 
 					var mparam = { 
 						recid: recid.value,
-						serialno: serialno.value,
-						particulars: particulars.value,
-						funding_source: funding_source.value,
-						payee_name: payee_name.value,
-						payee_office: payee_office.value,
-						payee_address: payee_address.value,
-						certified_a: certified_a.value,
-						position_a: position_a.value,
-						dvno: dvno.value,
+						lddapadano: lddapadano.value,
+						mds_branch: mds_branch.value,
+						mds_accountno: mds_accountno.value,
+						lddapada_date: lddapada_date.value,
 						fund_cluster_code: fund_cluster_code.value,
-						budgetdtdata: budgetdtdata,
-						budgetdtindirectdata: budgetdtindirectdata,
-						budgetmooedtdata: budgetmooedtdata,
-						budgetmooeindirectdtdata: budgetmooeindirectdtdata,
-						budgetcodtdata: budgetcodtdata,
-						budgetindirectcodtdata: budgetindirectcodtdata,
-						disbursement_date: disbursement_date.value,
-						category: category.value,
-						vat_percent: vat_percent.value,
-						ewt_percent: ewt_percent.value,
-						pt_percent: pt_percent.value,
-						gross_amount: gross_amount.value,
-						total_deduction: total_deduction.value,
-						net_amount: net_amount.value,
-						is_vatable: is_vatable,
+						funding_source: funding_source.value,
+						dvdtdata:dvdtdata,
 						meaction: 'MAIN-SAVE'
 					}
 
 					jQuery.ajax({ // default declaration of ajax parameters
 						type: "POST",
-						url: mesiteurl + 'mydisbursement',
+						url: mesiteurl + 'mylddapada',
 						context: document.body,
 						data: eval(mparam),
 						global: false,
 						cache: false,
 						success: function(data) {
-							jQuery('.mydisbursement-outp-msg').html(data);
+							jQuery('.mylddapada-outp-msg').html(data);
 							return false;
 						},
 						error: function(xhr, status, error) { // display global error on the menu function
@@ -750,13 +651,13 @@ function __mysys_disbursement_ent() {
 	
 			jQuery.ajax({
 				type: "POST",
-				url: mesiteurl + 'mydisbursement',
+				url: mesiteurl + 'mylddapada',
 				context: document.body,
 				data: eval(mparam),
 				global: false,
 				cache: false,
 				success: function(data) {
-					jQuery('.mydisbursement-outp-msg').html(data);
+					jQuery('.mylddapada-outp-msg').html(data);
 
 					// Close the approve modal after successful approval
 					const approveModal = bootstrap.Modal.getInstance(document.getElementById('confirmApproveModal'));
@@ -802,13 +703,13 @@ function __mysys_disbursement_ent() {
 	
 			jQuery.ajax({
 				type: "POST",
-				url: mesiteurl + 'mydisbursement',
+				url: mesiteurl + 'mylddapada',
 				context: document.body,
 				data: mparam,
 				global: false,
 				cache: false,
 				success: function(data) {
-					jQuery('.mydisbursement-outp-msg').html(data);
+					jQuery('.mylddapada-outp-msg').html(data);
 
 					// Close the approve modal after successful approval
 					const approveModal = bootstrap.Modal.getInstance(document.getElementById('confirmDisapproveModal'));
@@ -855,13 +756,13 @@ function __mysys_disbursement_ent() {
 	
 			jQuery.ajax({
 				type: "POST",
-				url: mesiteurl + 'mydisbursement',
+				url: mesiteurl + 'mylddapada',
 				context: document.body,
 				data: eval(mparam),
 				global: false,
 				cache: false,
 				success: function(data) {
-					jQuery('.mydisbursement-outp-msg').html(data);
+					jQuery('.mylddapada-outp-msg').html(data);
 
 					// Close the approve modal after successful approval
 					const approveModal = bootstrap.Modal.getInstance(document.getElementById('confirmApproveModal'));
@@ -907,13 +808,13 @@ function __mysys_disbursement_ent() {
 	
 			jQuery.ajax({
 				type: "POST",
-				url: mesiteurl + 'mydisbursement',
+				url: mesiteurl + 'mylddapada',
 				context: document.body,
 				data: mparam,
 				global: false,
 				cache: false,
 				success: function(data) {
-					jQuery('.mydisbursement-outp-msg').html(data);
+					jQuery('.mylddapada-outp-msg').html(data);
 
 					// Close the approve modal after successful approval
 					const approveModal = bootstrap.Modal.getInstance(document.getElementById('confirmDisapproveModal'));

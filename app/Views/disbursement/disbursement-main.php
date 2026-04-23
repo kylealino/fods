@@ -32,6 +32,12 @@ $status_msg = "";
 $status_color_b= "";
 $status_msg_b = "";
 
+$is_vatable = "";
+$vat_percent = "";
+$ewt_percent = "";
+$pt_percent = "";
+$category = "";
+
 if((!empty($recid) || !is_null($recid)) && (empty($ors_id))) { 
     $query = $this->db->query("
     SELECT
@@ -56,7 +62,12 @@ if((!empty($recid) || !is_null($recid)) && (empty($ors_id))) {
         `certa_remarks`,
         `certb_remarks`,
         `certa_approver`,
-        `certb_approver`
+        `certb_approver`,
+        `is_vatable`,
+        `vat_percent`,
+        `ewt_percent`,
+        `pt_percent`,
+        `category`
     FROM
         `tbl_disbursement_hd`
     WHERE 
@@ -86,6 +97,11 @@ if((!empty($recid) || !is_null($recid)) && (empty($ors_id))) {
     $certb_remarks = $data['certb_remarks'];
     $certa_approver = $data['certa_approver'];
     $certb_approver = $data['certb_approver'];
+    $is_vatable = $data['is_vatable'];
+    $vat_percent = $data['vat_percent'];
+    $ewt_percent = $data['ewt_percent'];
+    $pt_percent = $data['pt_percent'];
+    $category = $data['category'];
 
     if ($action == 'certifya_appr_pending') {
         $MDL_jsscript = "
@@ -403,8 +419,6 @@ echo view('templates/myheader.php');
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6">
                         <div class="row mb-2">
                             <div class="col-sm-4">
                                 <span class="fw-bold">Payee:</span>
@@ -438,6 +452,8 @@ echo view('templates/myheader.php');
                                     class="form-control form-control-sm" disabled />
                             </div>
                         </div>
+                    </div>
+                    <div class="col-sm-6">
                         <div class="row mb-2">
                             <div class="col-sm-4">
                                 <span class="fw-bold">Serial No.:</span>
@@ -452,6 +468,123 @@ echo view('templates/myheader.php');
                             </div>
                             <div class="col-sm-8">
                                 <input type="text" id="dvno" name="dvno" value="<?=$dvno;?>" class="form-control form-control-sm"/>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row mb-2">
+                            <div class="col-sm-12">
+                                <div class="row mb-2">
+                                    <div class="col-sm-4">
+                                        <span>Category:</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <select name="" id="category" class="form-select form-select-sm">
+                                        <?php if(!empty($recid)):?>
+                                            <option value="<?=$category;?>"><?=$category;?></option>
+                                        <?php elseif(!empty($ors_id)):?>
+                                            <option value="<?=$category;?>"><?=$category;?></option>
+                                        <?php else:?>
+                                            <option value="">Choose...</option>
+                                        <?php endif;?>
+                                            <option value="Goods">Goods</option>
+                                            <option value="Services">Services</option>
+                                            <option value="Manual">Manual</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span>is Vatable?</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" 
+                                        type="checkbox" 
+                                        id="is_vatable" 
+                                        name="is_vatable" 
+                                        value="1"
+                                        <?= (isset($is_vatable) && $is_vatable == 1) ? 'checked' : '' ?>>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- VAT FIELD -->
+                        <div class="row mb-2 vat-field">
+                            <div class="col-sm-4">
+                                <span>VAT (%):</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="number" step="0.01" id="vat_percent" name="vat_percent"
+                                    value="<?= $vat_percent ?? '' ?>"
+                                    placeholder="e.g. 12"
+                                    class="form-control form-control-sm">
+                                <small class="text-muted">Standard VAT: 12%</small>
+                            </div>
+                        </div>
+
+                        <!-- EWT FIELD -->
+                        <div class="row mb-2 ewt-field">
+                            <div class="col-sm-4">
+                                <span>EWT (%):</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="number" step="0.01" id="ewt_percent" name="ewt_percent"
+                                    value="<?= $ewt_percent ?? '' ?>"
+                                    placeholder="e.g. 1, 2, 5"
+                                    class="form-control form-control-sm">
+                                <small class="text-muted">Depends on ATC (e.g. 1%, 2%, 5%)</small>
+                            </div>
+                        </div>
+
+                        <!-- PT FIELD -->
+                        <div class="row mb-2 pt-field">
+                            <div class="col-sm-4">
+                                <span>PT (%):</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="number" step="0.01" id="pt_percent" name="pt_percent"
+                                    value="<?= $pt_percent ?? '' ?>"
+                                    placeholder="e.g. 5"
+                                    class="form-control form-control-sm">
+                                <small class="text-muted">Percentage Tax (if non-vatable, usually 5%)</small>
+                            </div>
+                        </div>
+
+                        <hr>
+                        
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span class="fw-semibold">Gross Amount:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-text">₱</span>
+                                    <input type="text" id="gross_amount"
+                                        class="form-control text-end fw-bold"
+                                        readonly>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <input type="hidden" id="total_deduction" name="total_deduction">
+
+
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <span class="fw-semibold">Net Amount Payable:</span>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-text">₱</span>
+                                    <input type="text" id="net_amount"
+                                        class="form-control text-end fw-bold text-success"
+                                        readonly>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1894,6 +2027,167 @@ echo view('templates/myheader.php');
 <script src="<?=base_url('assets/js/disbursement/disbursement.js?v=1');?>"></script>
 <script src="<?=base_url('assets/js/mysysapps.js');?>"></script>
 
+<script>
+$(function () {
+
+    function computeGross() {
+        let total = 0;
+        $(".amount").each(function () {
+            total += parseFloat($(this).val()) || 0;
+        });
+        $("#gross_amount").val(total.toFixed(2));
+        return total;
+    }
+
+    function resetTaxes() {
+        $("#vat_percent").val('');
+        $("#ewt_percent").val('');
+        $("#pt_percent").val('');
+    }
+
+    function applyTaxRules() {
+
+        let gross = computeGross();
+        let category = $("#category").val();
+        let isVat = $("#is_vatable").is(":checked");
+
+        // DEFAULT
+        if (!category) {
+            resetTaxes();
+            $("#net_amount").val(gross.toFixed(2));
+            $("#total_deduction").val(0); // 👈 ADD
+            return;
+        }
+
+        let net = 0;
+        let vat = 0;
+        let ewt = 0;
+        let pt = 0;
+        let totalDeduction = 0;
+
+        // =========================
+        // MANUAL MODE (CPA RULE)
+        // =========================
+        if (category === "Manual") {
+
+            let vatPercent = parseFloat($("#vat_percent").val()) || 0;
+            let ewtPercent = parseFloat($("#ewt_percent").val()) || 0;
+            let ptPercent  = parseFloat($("#pt_percent").val()) || 0;
+
+            if (isVat) {
+                net = gross / 1.12;
+                vat = net * (vatPercent / 100);
+                ewt = net * (ewtPercent / 100);
+
+                $("#pt_percent").val('');
+            } else {
+                net = gross;
+                pt = gross * (ptPercent / 100);
+                ewt = gross * (ewtPercent / 100);
+
+                $("#vat_percent").val('');
+            }
+
+            let netPayable = gross - vat - ewt - pt;
+            totalDeduction = vat + ewt + pt; // 👈 FIX (removed duplicate let)
+
+            $("#net_amount").val(netPayable.toFixed(2));
+            $("#total_deduction").val(totalDeduction.toFixed(2)); // 👈 ADD
+            return;
+        }
+
+        // =========================
+        // AUTO MODE (GOODS/SERVICES)
+        // =========================
+        if (isVat) {
+
+            net = gross / 1.12;
+
+            $("#vat_percent").val(5);
+            vat = net * 0.05;
+
+            if (category === "Goods") {
+                $("#ewt_percent").val(1);
+                ewt = net * 0.01;
+            } else if (category === "Services") {
+                $("#ewt_percent").val(2);
+                ewt = net * 0.02;
+            }
+
+            $("#pt_percent").val('');
+
+        } else {
+
+            net = gross;
+
+            $("#vat_percent").val('');
+
+            if (category === "Goods") {
+                $("#ewt_percent").val(1);
+                ewt = gross * 0.01;
+            } else if (category === "Services") {
+                $("#ewt_percent").val(2);
+                ewt = gross * 0.02;
+            }
+
+            $("#pt_percent").val(3);
+            pt = gross * 0.03;
+        }
+
+        // FINAL
+        let netPayable = gross - vat - ewt - pt;
+        totalDeduction = vat + ewt + pt; // 👈 ADD
+
+        $("#net_amount").val(netPayable.toFixed(2));
+        $("#total_deduction").val(totalDeduction.toFixed(2)); // 👈 ADD
+    }
+
+    function toggleFields() {
+        if ($("#is_vatable").is(":checked")) {
+            $(".vat-field").show();
+            $(".ewt-field").show();
+            $(".pt-field").hide();
+        } else {
+            $(".vat-field").hide();
+            $(".ewt-field").show();
+            $(".pt-field").show();
+        }
+    }
+
+    // VALIDATION
+    $("#is_vatable").on("change", function () {
+
+        let category = $("#category").val();
+
+        if (!category) {
+            $(this).prop("checked", false);
+
+            toastr.warning("Select category first before enabling VAT.", "Validation", {
+                progressBar: true,
+                closeButton: true,
+                timeOut: 2000
+            });
+
+            return;
+        }
+
+        toggleFields();
+        applyTaxRules();
+    });
+
+    $("#category").on("change", function () {
+        applyTaxRules();
+    });
+
+    $(document).on("input", ".amount, #vat_percent, #ewt_percent, #pt_percent", function () {
+        applyTaxRules();
+    });
+
+    // INIT
+    toggleFields();
+    applyTaxRules();
+});
+</script>
 
 <!-- PROJECT TITLE LOOKUP -->
 <script>

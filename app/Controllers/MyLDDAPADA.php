@@ -9,7 +9,7 @@ class MyLDDAPADA extends BaseController
     public function __construct()
 	{
 		$this->request = \Config\Services::request();
-        $this->myldddapada = model('App\Models\MyMyLDDAPADAModel');
+        $this->mylddapada = model('App\Models\MyLDDAPADAModel');
         $this->db = \Config\Database::connect();
         $this->session = session();
         $this->cuser = $this->session->get('__xsys_myuserzicas__');
@@ -25,38 +25,107 @@ class MyLDDAPADA extends BaseController
                 break;
     
             case 'MAIN-SAVE': 
-                $this->myldddapada->disbursement_save();
+                $this->mylddapada->lddapada_save();
                 return redirect()->to('mylddapada?meaction=MAIN');
                 break;
 
-             case 'MAIN-APPROVE-A': 
-                $this->myldddapada->disbursement_certifya_approve();
-                return redirect()->to('mylddapada?meaction=MAIN');
+            case 'PRINT-LDDAPADA': 
+                return view('lddapada/lddapada-pdf');
                 break;
 
-            case 'MAIN-DISAPPROVE-A': 
-                $this->myldddapada->disbursement_certifya_disapprove();
-                return redirect()->to('mylddapada?meaction=MAIN');
-                break;
-
-            case 'MAIN-APPROVE-B': 
-                $this->myldddapada->disbursement_certifyb_approve();
-                return redirect()->to('mylddapada?meaction=MAIN');
-                break;
-
-            case 'MAIN-DISAPPROVE-B': 
-                $this->myldddapada->disbursement_certifyb_disapprove();
-                return redirect()->to('mylddapada?meaction=MAIN');
-                break;
+            case 'LOAD-DV':
+            // Get the selected DV numbers
+            $dvno = $this->request->getPostGet('dvno');
             
-            case 'MAIN-UPLOAD': 
-                $this->myldddapada->budget_attachment_upload();
-                return redirect()->to('mylddapada?meaction=MAIN');
-                break;
+            // Debug: Log received values
+            log_message('debug', 'LOAD-DV called - dvno: ' . print_r($dvno, true));
             
-            case 'PRINT-DISBURSEMENT': 
-                return view('disbursement/disbursement-pdf');
-                break;
+            // Validate input
+            if (empty($dvno)) {
+                echo json_encode(['error' => 'No DV numbers selected']);
+                exit;
+            }
+            
+            // Prepare DVNO list for IN clause
+            if (is_array($dvno)) {
+                $escapedDvnos = array_map([$this->db, 'escapeString'], $dvno);
+                $in = "'" . implode("','", $escapedDvnos) . "'";
+            } else {
+                $in = "'" . $this->db->escapeString($dvno) . "'";
+            }
+            
+            // STEP 1: Get serialno and project_id from the selected DVNO
+            // Assuming tbl_disbursement_hd has serialno field that links to tbl_ors_hd
+            $dvquery = $this->db->query("
+                SELECT DISTINCT
+                    a.serialno,
+                    b.recid AS project_id
+                FROM tbl_disbursement_hd a
+                LEFT JOIN tbl_ors_hd b ON b.serialno = a.serialno
+                WHERE a.dvno IN ($in)
+                LIMIT 1
+            ");
+            
+            $dvdata = $dvquery->getRowArray();
+            
+            if (!$dvdata) {
+                echo json_encode(['error' => 'No data found for selected DV numbers']);
+                exit;
+            }
+            
+            $serialno = $dvdata['serialno'];
+            $project_id = $dvdata['project_id'];
+            
+            // Debug: Log found values
+            log_message('debug', 'Found serialno: ' . $serialno . ', project_id: ' . $project_id);
+            
+            // STEP 2: Get UACS code for the project_id
+            $uacsSubquery = "
+                SELECT uacs_code FROM (
+                    SELECT uacs_code, amount FROM tbl_ors_direct_ps_dt WHERE project_id = '$project_id'
+                    UNION ALL
+                    SELECT uacs_code, amount FROM tbl_ors_direct_mooe_dt WHERE project_id = '$project_id'
+                    UNION ALL
+                    SELECT uacs_code, amount FROM tbl_ors_direct_co_dt WHERE project_id = '$project_id'
+                    UNION ALL
+                    SELECT uacs_code, amount FROM tbl_ors_indirect_ps_dt WHERE project_id = '$project_id'
+                    UNION ALL
+                    SELECT uacs_code, amount FROM tbl_ors_indirect_mooe_dt WHERE project_id = '$project_id'
+                    UNION ALL
+                    SELECT uacs_code, amount FROM tbl_ors_indirect_co_dt WHERE project_id = '$project_id'
+                ) AS all_uacs
+                ORDER BY amount DESC
+                LIMIT 1
+            ";
+            
+            // STEP 3: Main query
+            $query = $this->db->query("
+                SELECT
+                    a.payee_name,
+                    a.dvno,
+                    (SELECT payee_account_num 
+                    FROM tbl_payee 
+                    WHERE payee_name = a.payee_name) AS payee_account_num,
+                    a.serialno,
+                    COALESCE(($uacsSubquery), '') AS uacs_code,
+                    a.gross_amount,
+                    a.total_deduction,
+                    a.net_amount,
+                    a.dvno
+                FROM tbl_disbursement_hd a
+                WHERE a.dvno IN ($in)
+            ");
+            
+            $results = $query->getResultArray();
+            
+            // Add the project_id to each result (optional)
+            foreach ($results as &$row) {
+                $row['project_id'] = $project_id;
+            }
+            
+            echo json_encode($results);
+            exit;
+            break;
             
         }
     }
@@ -65,120 +134,36 @@ class MyLDDAPADA extends BaseController
     private function loadMainView() {
 
         //serialno lookup
-        $serialquery = $this->db->query("
+        $dvquery = $this->db->query("
         SELECT
-            `serialno`,
-            `recid` AS ors_id
+            `recid`,
+            `dvno`
         FROM
-            `tbl_ors_hd`
-        GROUP BY
-            `serialno`
+            `tbl_disbursement_hd`
         ORDER BY `recid` DESC
         ");
-        $serialdata = $serialquery->getResultArray();
+        $dvdata = $dvquery->getResultArray();
 
-        //payee lookup
-        $payeedata = $this->db->query("
+        $dvhdquery = $this->db->query("
         SELECT
-            `payee_name`,
-            `payee_office`,
-            `payee_address`
+            a.`recid`,
+            a.`lddapadano`,
+            a.`mds_branch`,
+            a.`mds_accountno`,
+            a.`lddapada_date`,
+            a.`fund_cluster_code`,
+            a.`funding_source`
         FROM
-            `tbl_payee`
-        ORDER BY `payee_name` ASC
+            `tbl_lddapada_hd` a
+        ORDER BY recid DESC
         ");
-        $payeedata = $payeedata->getResultArray();
+        $dvhddata = $dvhdquery->getResultArray();
 
 
-        $disbursementhdquery = $this->db->query("
-        SELECT 
-            a.recid,
-            a.serialno,
-            a.particulars,
-            a.funding_source,
-            a.payee_name,
-            a.payee_office,
-            a.payee_address,
-            COALESCE(ps.amount,0)
-        + COALESCE(ips.amount,0)
-        + COALESCE(m.amount,0)
-        + COALESCE(im.amount,0)
-        + COALESCE(co.amount,0)
-        + COALESCE(ico.amount,0) AS amount
-        FROM tbl_disbursement_hd a
-        LEFT JOIN (
-            SELECT project_id, SUM(amount) amount
-            FROM tbl_disbursement_direct_ps_dt
-            GROUP BY project_id
-        ) ps ON ps.project_id = a.recid
-        LEFT JOIN (
-            SELECT project_id, SUM(amount) amount
-            FROM tbl_disbursement_indirect_ps_dt
-            GROUP BY project_id
-        ) ips ON ips.project_id = a.recid
-        LEFT JOIN (
-            SELECT project_id, SUM(amount) amount
-            FROM tbl_disbursement_direct_mooe_dt
-            GROUP BY project_id
-        ) m ON m.project_id = a.recid
-        LEFT JOIN (
-            SELECT project_id, SUM(amount) amount
-            FROM tbl_disbursement_indirect_mooe_dt
-            GROUP BY project_id
-        ) im ON im.project_id = a.recid
-        LEFT JOIN (
-            SELECT project_id, SUM(amount) amount
-            FROM tbl_disbursement_direct_co_dt
-            GROUP BY project_id
-        ) co ON co.project_id = a.recid
-        LEFT JOIN (
-            SELECT project_id, SUM(amount) amount
-            FROM tbl_disbursement_indirect_co_dt
-            GROUP BY project_id
-        ) ico ON ico.project_id = a.recid
-        ORDER BY a.recid DESC
-        ");
-        $disbursementhddata = $disbursementhdquery->getResultArray();
 
-        //reference/project title lookup
-        $projectquery = $this->db->query("
-        SELECT
-            a.`fundcluster_id`,
-            b.`fund_cluster_code`,
-            a.`division_id`,
-            c.`division_name`,
-            a.`responsibility_code`,
-            a.`project_title`,
-            a.`mfopaps_code`
-        FROM
-            `tbl_reference_project` a
-        JOIN
-            `tbl_fundcluster`b
-        ON 
-            a.fundcluster_id = b.`recid`
-        JOIN
-            `tbl_division` c
-        ON
-            a.`division_id` = c.recid
-        WHERE a.`fundcluster_id` = '1'
-        ORDER BY a.`project_title` DESC
-        ");
-        $projectdata = $projectquery->getResultArray();
-
-        $certifyaquery = $this->db->query("SELECT * FROM myua_user WHERE cert_tag = '1' ORDER BY recid DESC");
-        $certifyadata = $certifyaquery->getResultArray();
-
-        $certifybquery = $this->db->query("SELECT * FROM myua_user WHERE cert_tag = '2' ORDER BY recid DESC");
-        $certifybdata = $certifybquery->getResultArray();
-
-
-        return view('disbursement/disbursement-main', [
-            'payeedata' => $payeedata,
-            'serialdata' => $serialdata,
-            'projectdata' => $projectdata,
-            'disbursementhddata' => $disbursementhddata,
-            'certifyadata' => $certifyadata,
-            'certifybdata' => $certifybdata,
+        return view('cashier/lddapada-main', [
+            'dvdata' => $dvdata,
+            'dvhddata' => $dvhddata,
         ]);
     }
     

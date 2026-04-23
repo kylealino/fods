@@ -35,7 +35,21 @@ class MyDisbursementModel extends Model
 		$budgetcodtdata = $this->request->getPostGet('budgetcodtdata');
 		$budgetindirectcodtdata = $this->request->getPostGet('budgetindirectcodtdata');
 		$disbursement_date = $this->request->getPostGet('disbursement_date');
-		
+		$category = $this->request->getPostGet('category');
+		$is_vatable = $this->request->getPostGet('is_vatable');
+		$vat_percent = $this->request->getPostGet('vat_percent');
+		$ewt_percent = $this->request->getPostGet('ewt_percent');
+		$pt_percent = $this->request->getPostGet('pt_percent');
+		$gross_amount = $this->request->getPostGet('gross_amount');
+		$total_deduction = $this->request->getPostGet('total_deduction');
+		$net_amount = $this->request->getPostGet('net_amount');
+
+		// var_dump(
+		// 	$gross_amount,
+		// 	$total_deduction,
+		// 	$net_amount
+		// );
+		// die();
 
 		// var_dump(
 		// 	// $serialno,
@@ -138,10 +152,18 @@ class MyDisbursementModel extends Model
 					`position_a`,
 					`dvno`,
 					`fund_cluster_code`,
+					`is_vatable`,
+					`vat_percent`,
+					`ewt_percent`,
+					`pt_percent`,
+					`category`,
 					`added_by`,
-					`disbursement_date`
+					`disbursement_date`,
+					`gross_amount`,
+					`total_deduction`,
+					`net_amount`
 				)
-				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
 				[
 					$serialno,
 					$particulars,
@@ -153,8 +175,16 @@ class MyDisbursementModel extends Model
 					$position_a,
 					$dvno,
 					$fund_cluster_code,
+					$is_vatable,
+					$vat_percent,
+					$ewt_percent,
+					$pt_percent,
+					$category,
 					$this->cuser,
-					$disbursement_date
+					$disbursement_date,
+					$gross_amount,
+					$total_deduction,
+					$net_amount
 				]
 			);
 
@@ -352,7 +382,15 @@ class MyDisbursementModel extends Model
 					`position_a` = ?,
 					`dvno` = ?,
 					`fund_cluster_code` = ?,
-					`disbursement_date` = ?
+					`is_vatable` = ?,
+					`vat_percent` = ?,
+					`ewt_percent` = ?,
+					`pt_percent` = ?,
+					`category` = ?,
+					`disbursement_date` = ?,
+					`gross_amount` = ?,
+					`total_deduction` = ?,
+					`net_amount` = ?
 				WHERE recid = ?
 			", [
 				$particulars,
@@ -365,7 +403,15 @@ class MyDisbursementModel extends Model
 				$position_a,
 				$dvno,
 				$fund_cluster_code,
+				$is_vatable,
+				$vat_percent,
+				$ewt_percent,
+				$pt_percent,
+				$category,
 				$disbursement_date,
+				$gross_amount,
+				$total_deduction,
+				$net_amount,
 				$recid
 			]);
 

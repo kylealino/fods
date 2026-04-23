@@ -1,0 +1,3725 @@
+CRITICAL - 2026-04-21 13:35:36 --> ErrorException: Undefined variable $serialno
+[Method: GET, Route: mylddapada]
+in APPPATH\Views\cashier\lddapada-main.php on line 105.
+ 1 APPPATH\Views\cashier\lddapada-main.php(105): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $serialno', 'C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php', 105)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(156): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:36:44 --> ErrorException: Undefined variable $lddapadano
+[Method: GET, Route: mylddapada]
+in APPPATH\Views\cashier\lddapada-main.php on line 121.
+ 1 APPPATH\Views\cashier\lddapada-main.php(121): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $lddapadano', 'C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php', 121)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(156): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:40:04 --> Error: Call to a member function lddapada_save() on null
+[Method: POST, Route: mylddapada]
+in APPPATH\Controllers\MyLDDAPADA.php on line 28.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:41:15 --> Error: Call to a member function lddapada_save() on null
+[Method: POST, Route: mylddapada]
+in APPPATH\Controllers\MyLDDAPADA.php on line 28.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:41:24 --> Error: Call to a member function lddapada_save() on null
+[Method: POST, Route: mylddapada]
+in APPPATH\Controllers\MyLDDAPADA.php on line 28.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 13:52:14 --> mysqli_sql_exception: Unknown column 'lddapadano' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(59): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(153): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-21 13:52:14 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'lddapadano' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(59): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `lddapadano`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:52:14 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'lddapadano' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `lddapadano`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `lddapadano`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 APPPATH\Views\cashier\lddapada-main.php(59): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `lddapadano`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:52:14 --> [Caused by] mysqli_sql_exception: Unknown column 'lddapadano' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `lddapadano`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `lddapadano`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `lddapadano`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 APPPATH\Views\cashier\lddapada-main.php(59): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `lddapadano`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 13:52:29 --> mysqli_sql_exception: Unknown column 'lddapadano' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(59): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(153): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-21 13:52:29 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'lddapadano' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(59): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `lddapadano`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:52:29 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'lddapadano' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `lddapadano`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `lddapadano`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 APPPATH\Views\cashier\lddapada-main.php(59): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `lddapadano`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:52:29 --> [Caused by] mysqli_sql_exception: Unknown column 'lddapadano' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `lddapadano`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `lddapadano`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `lddapadano`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 APPPATH\Views\cashier\lddapada-main.php(59): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `lddapadano`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 13:52:44 --> mysqli_sql_exception: Unknown column 'mds_branch' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(153): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-21 13:52:44 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:52:44 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:52:44 --> [Caused by] mysqli_sql_exception: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 13:52:58 --> mysqli_sql_exception: Unknown column 'mds_branch' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(153): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-21 13:52:58 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:52:58 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:52:58 --> [Caused by] mysqli_sql_exception: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 13:53:00 --> mysqli_sql_exception: Unknown column 'mds_branch' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(153): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-21 13:53:00 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:53:00 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:53:00 --> [Caused by] mysqli_sql_exception: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 13:53:30 --> mysqli_sql_exception: Unknown column 'mds_branch' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(153): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-21 13:53:30 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:53:30 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:53:30 --> [Caused by] mysqli_sql_exception: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 13:53:31 --> mysqli_sql_exception: Unknown column 'mds_branch' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(153): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-21 13:53:31 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:53:31 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:53:31 --> [Caused by] mysqli_sql_exception: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 13:53:31 --> mysqli_sql_exception: Unknown column 'mds_branch' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(153): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-21 13:53:31 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:53:31 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:53:31 --> [Caused by] mysqli_sql_exception: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 13:53:31 --> mysqli_sql_exception: Unknown column 'mds_branch' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(153): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-21 13:53:31 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:53:31 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:53:31 --> [Caused by] mysqli_sql_exception: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 13:53:32 --> mysqli_sql_exception: Unknown column 'mds_branch' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(153): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-21 13:53:32 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:53:32 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:53:32 --> [Caused by] mysqli_sql_exception: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 13:53:32 --> mysqli_sql_exception: Unknown column 'mds_branch' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(153): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-21 13:53:32 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:53:32 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:53:32 --> [Caused by] mysqli_sql_exception: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 13:53:32 --> mysqli_sql_exception: Unknown column 'mds_branch' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(153): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-21 13:53:32 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:53:32 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:53:32 --> [Caused by] mysqli_sql_exception: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 13:53:32 --> mysqli_sql_exception: Unknown column 'mds_branch' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(153): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-21 13:53:32 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:53:32 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:53:32 --> [Caused by] mysqli_sql_exception: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 13:53:38 --> mysqli_sql_exception: Unknown column 'mds_branch' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(153): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-21 13:53:38 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:53:38 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:53:38 --> [Caused by] mysqli_sql_exception: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 4 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `recid` = \'\'
+        ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 13:54:01 --> mysqli_sql_exception: Unknown column 'mds_branch' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(153): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-21 13:54:01 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'TASDASDASDASD\'
+        ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:54:01 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'TASDASDASDASD\'
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'TASDASDASDASD\'
+        ')
+ 3 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'TASDASDASDASD\'
+        ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:54:01 --> [Caused by] mysqli_sql_exception: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'TASDASDASDASD\'
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'TASDASDASDASD\'
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'TASDASDASDASD\'
+        ')
+ 4 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'TASDASDASDASD\'
+        ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 13:54:35 --> mysqli_sql_exception: Unknown column 'mds_branch' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(153): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-21 13:54:35 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'TASDASDASDASD\'
+        ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:54:35 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'TASDASDASDASD\'
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'TASDASDASDASD\'
+        ')
+ 3 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'TASDASDASDASD\'
+        ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:54:35 --> [Caused by] mysqli_sql_exception: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'TASDASDASDASD\'
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'TASDASDASDASD\'
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'TASDASDASDASD\'
+        ')
+ 4 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'TASDASDASDASD\'
+        ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 13:55:20 --> mysqli_sql_exception: Unknown column 'mds_branch' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(153): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-21 13:55:20 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012391203\'
+        ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:55:20 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012391203\'
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012391203\'
+        ')
+ 3 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012391203\'
+        ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:55:20 --> [Caused by] mysqli_sql_exception: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012391203\'
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012391203\'
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012391203\'
+        ')
+ 4 APPPATH\Views\cashier\lddapada-main.php(58): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012391203\'
+        ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 13:56:02 --> mysqli_sql_exception: Unknown column 'mds_branch' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(32): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(153): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-21 13:56:02 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(32): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012391203\'
+        ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:56:02 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012391203\'
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012391203\'
+        ')
+ 3 APPPATH\Views\cashier\lddapada-main.php(32): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012391203\'
+        ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:56:02 --> [Caused by] mysqli_sql_exception: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012391203\'
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012391203\'
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012391203\'
+        ')
+ 4 APPPATH\Views\cashier\lddapada-main.php(32): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012391203\'
+        ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 13:56:51 --> mysqli_sql_exception: Unknown column 'mds_branch' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(31): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(153): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-21 13:56:51 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(31): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012931023\'
+        ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:56:51 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012931023\'
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012931023\'
+        ')
+ 3 APPPATH\Views\cashier\lddapada-main.php(31): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012931023\'
+        ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:56:51 --> [Caused by] mysqli_sql_exception: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012931023\'
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012931023\'
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012931023\'
+        ')
+ 4 APPPATH\Views\cashier\lddapada-main.php(31): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012931023\'
+        ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 13:57:12 --> mysqli_sql_exception: Unknown column 'mds_branch' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n        SELEC...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n        SELEC...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n        SELEC...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(31): CodeIgniter\Database\BaseConnection->query('\r\n        SELEC...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(153): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-21 13:57:12 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(31): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012931023\'
+        ')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:57:12 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012931023\'
+        ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012931023\'
+        ')
+ 3 APPPATH\Views\cashier\lddapada-main.php(31): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012931023\'
+        ')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 13:57:12 --> [Caused by] mysqli_sql_exception: Unknown column 'mds_branch' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012931023\'
+        ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012931023\'
+        ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012931023\'
+        ')
+ 4 APPPATH\Views\cashier\lddapada-main.php(31): CodeIgniter\Database\BaseConnection->query('
+        SELECT
+            `recid`,
+            `serialno`,
+            `dvno`,
+            `mds_branch`,
+            `mds_accountno`,
+            `disbursement_date`,
+            `fund_cluster_code`
+        FROM
+            `tbl_disbursement_hd`
+        WHERE 
+            `dvno` = \'012931023\'
+        ')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(153): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 14:07:41 --> mysqli_sql_exception: Table 'fods-03032026.myctr_disbursement' doesn't exist in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('select CTRL_NO0...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select CTRL_NO0...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select CTRL_NO0...')
+#3 C:\xampp\htdocs\fods\app\Models\MyLDDAPADAModel.php(753): CodeIgniter\Database\BaseConnection->query('select CTRL_NO0...')
+#4 C:\xampp\htdocs\fods\app\Models\MyLDDAPADAModel.php(29): App\Models\MyLDDAPADAModel->get_ctr_lddapada('01', '101101', 'CTRL_NO01')
+#5 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2026-04-21 14:07:41 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'fods-03032026.myctr_disbursement' doesn't exist
+[Method: POST, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyLDDAPADAModel.php(753): CodeIgniter\Database\BaseConnection->query('select CTRL_NO01 from myctr_disbursement WHERE CTR_YEAR = \'2026\' AND CTR_MONTH = \'04\' AND CTR_DAY = \'21\'  limit 1')
+ 2 APPPATH\Models\MyLDDAPADAModel.php(29): App\Models\MyLDDAPADAModel->get_ctr_lddapada('01', '101101', 'CTRL_NO01')
+ 3 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 14:07:41 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'fods-03032026.myctr_disbursement' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select CTRL_NO01 from myctr_disbursement WHERE CTR_YEAR = \'2026\' AND CTR_MONTH = \'04\' AND CTR_DAY = \'21\'  limit 1')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select CTRL_NO01 from myctr_disbursement WHERE CTR_YEAR = \'2026\' AND CTR_MONTH = \'04\' AND CTR_DAY = \'21\'  limit 1')
+ 3 APPPATH\Models\MyLDDAPADAModel.php(753): CodeIgniter\Database\BaseConnection->query('select CTRL_NO01 from myctr_disbursement WHERE CTR_YEAR = \'2026\' AND CTR_MONTH = \'04\' AND CTR_DAY = \'21\'  limit 1')
+ 4 APPPATH\Models\MyLDDAPADAModel.php(29): App\Models\MyLDDAPADAModel->get_ctr_lddapada('01', '101101', 'CTRL_NO01')
+ 5 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 14:07:41 --> [Caused by] mysqli_sql_exception: Table 'fods-03032026.myctr_disbursement' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('select CTRL_NO01 from myctr_disbursement WHERE CTR_YEAR = \'2026\' AND CTR_MONTH = \'04\' AND CTR_DAY = \'21\'  limit 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select CTRL_NO01 from myctr_disbursement WHERE CTR_YEAR = \'2026\' AND CTR_MONTH = \'04\' AND CTR_DAY = \'21\'  limit 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select CTRL_NO01 from myctr_disbursement WHERE CTR_YEAR = \'2026\' AND CTR_MONTH = \'04\' AND CTR_DAY = \'21\'  limit 1')
+ 4 APPPATH\Models\MyLDDAPADAModel.php(753): CodeIgniter\Database\BaseConnection->query('select CTRL_NO01 from myctr_disbursement WHERE CTR_YEAR = \'2026\' AND CTR_MONTH = \'04\' AND CTR_DAY = \'21\'  limit 1')
+ 5 APPPATH\Models\MyLDDAPADAModel.php(29): App\Models\MyLDDAPADAModel->get_ctr_lddapada('01', '101101', 'CTRL_NO01')
+ 6 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 14:27:55 --> ErrorException: Undefined variable $projectdata
+[Method: GET, Route: mylddapada]
+in APPPATH\Controllers\MyLDDAPADA.php on line 87.
+ 1 APPPATH\Controllers\MyLDDAPADA.php(87): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $projectdata', 'C:\\xampp\\htdocs\\fods\\app\\Controllers\\MyLDDAPADA.php', 87)
+ 2 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-21 14:30:08 --> mysqli_sql_exception: Unknown column 'lddapadano' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\tUPDATE tb...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\tUPDATE tb...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\tUPDATE tb...')
+#3 C:\xampp\htdocs\fods\app\Models\MyLDDAPADAModel.php(100): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\tUPDATE tb...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-04-21 14:30:08 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'lddapadano' in 'field list'
+[Method: POST, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyLDDAPADAModel.php(100): CodeIgniter\Database\BaseConnection->query('
+				UPDATE tbl_disbursement_hd
+				SET
+					`serialno` = ?,
+					`dvno` = ?,
+					`lddapadano` = ?,
+					`mds_branch` = ?,
+					`mds_accountno` = ?,
+					`lddapada_date` = ?,
+					`fund_cluster_code` = ?,
+					`funding_source` = ?
+				WHERE recid = ?
+			', [...])
+ 2 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 14:30:08 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'lddapadano' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				UPDATE tbl_disbursement_hd
+				SET
+					`serialno` = \'01-104102-2026-02-0129\',
+					`dvno` = \'LDDAPTESTRARA\',
+					`lddapadano` = \'01-104102-04-003-2026\',
+					`mds_branch` = \'Land Bank of the Philippines - DOST Branch\',
+					`mds_accountno` = \'2182-9001-36\',
+					`lddapada_date` = \'2026-02-27\',
+					`fund_cluster_code` = \'07\',
+					`funding_source` = \'104102\'
+				WHERE recid = \'1\'
+			')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				UPDATE tbl_disbursement_hd
+				SET
+					`serialno` = \'01-104102-2026-02-0129\',
+					`dvno` = \'LDDAPTESTRARA\',
+					`lddapadano` = \'01-104102-04-003-2026\',
+					`mds_branch` = \'Land Bank of the Philippines - DOST Branch\',
+					`mds_accountno` = \'2182-9001-36\',
+					`lddapada_date` = \'2026-02-27\',
+					`fund_cluster_code` = \'07\',
+					`funding_source` = \'104102\'
+				WHERE recid = \'1\'
+			')
+ 3 APPPATH\Models\MyLDDAPADAModel.php(100): CodeIgniter\Database\BaseConnection->query('
+				UPDATE tbl_disbursement_hd
+				SET
+					`serialno` = ?,
+					`dvno` = ?,
+					`lddapadano` = ?,
+					`mds_branch` = ?,
+					`mds_accountno` = ?,
+					`lddapada_date` = ?,
+					`fund_cluster_code` = ?,
+					`funding_source` = ?
+				WHERE recid = ?
+			', [...])
+ 4 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 14:30:08 --> [Caused by] mysqli_sql_exception: Unknown column 'lddapadano' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+				UPDATE tbl_disbursement_hd
+				SET
+					`serialno` = \'01-104102-2026-02-0129\',
+					`dvno` = \'LDDAPTESTRARA\',
+					`lddapadano` = \'01-104102-04-003-2026\',
+					`mds_branch` = \'Land Bank of the Philippines - DOST Branch\',
+					`mds_accountno` = \'2182-9001-36\',
+					`lddapada_date` = \'2026-02-27\',
+					`fund_cluster_code` = \'07\',
+					`funding_source` = \'104102\'
+				WHERE recid = \'1\'
+			', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				UPDATE tbl_disbursement_hd
+				SET
+					`serialno` = \'01-104102-2026-02-0129\',
+					`dvno` = \'LDDAPTESTRARA\',
+					`lddapadano` = \'01-104102-04-003-2026\',
+					`mds_branch` = \'Land Bank of the Philippines - DOST Branch\',
+					`mds_accountno` = \'2182-9001-36\',
+					`lddapada_date` = \'2026-02-27\',
+					`fund_cluster_code` = \'07\',
+					`funding_source` = \'104102\'
+				WHERE recid = \'1\'
+			')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				UPDATE tbl_disbursement_hd
+				SET
+					`serialno` = \'01-104102-2026-02-0129\',
+					`dvno` = \'LDDAPTESTRARA\',
+					`lddapadano` = \'01-104102-04-003-2026\',
+					`mds_branch` = \'Land Bank of the Philippines - DOST Branch\',
+					`mds_accountno` = \'2182-9001-36\',
+					`lddapada_date` = \'2026-02-27\',
+					`fund_cluster_code` = \'07\',
+					`funding_source` = \'104102\'
+				WHERE recid = \'1\'
+			')
+ 4 APPPATH\Models\MyLDDAPADAModel.php(100): CodeIgniter\Database\BaseConnection->query('
+				UPDATE tbl_disbursement_hd
+				SET
+					`serialno` = ?,
+					`dvno` = ?,
+					`lddapadano` = ?,
+					`mds_branch` = ?,
+					`mds_accountno` = ?,
+					`lddapada_date` = ?,
+					`fund_cluster_code` = ?,
+					`funding_source` = ?
+				WHERE recid = ?
+			', [...])
+ 5 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 14:39:06 --> ErrorException: Undefined array key "recid"
+[Method: GET, Route: mylddapada]
+in APPPATH\Views\cashier\lddapada-main.php on line 1463.
+ 1 APPPATH\Views\cashier\lddapada-main.php(1463): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "recid"', 'C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php', 1463)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(73): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 15:05:58 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: mylddapada]
+in APPPATH\Views\cashier\lddapada-main.php on line 339.
+ 1 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 3 APPPATH\Controllers\MyLDDAPADA.php(75): view('cashier/lddapada-main', [...])
+ 4 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-21 15:06:07 --> ParseError: syntax error, unexpected token "endif", expecting end of file
+[Method: GET, Route: mylddapada]
+in APPPATH\Views\cashier\lddapada-main.php on line 339.
+ 1 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 3 APPPATH\Controllers\MyLDDAPADA.php(75): view('cashier/lddapada-main', [...])
+ 4 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
