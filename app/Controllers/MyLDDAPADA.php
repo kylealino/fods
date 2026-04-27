@@ -30,7 +30,7 @@ class MyLDDAPADA extends BaseController
                 break;
 
             case 'PRINT-LDDAPADA': 
-                return view('lddapada/lddapada-pdf');
+                return view('cashier/lddapada-pdf');
                 break;
 
             case 'LOAD-DV':

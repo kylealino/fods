@@ -1,0 +1,739 @@
+ERROR - 2026-04-27 10:35:54 --> mysqli_sql_exception: Unknown column 'dvno' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT dvno FRO...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT dvno FRO...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT dvno FRO...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-main.php(178): CodeIgniter\Database\BaseConnection->query('SELECT dvno FRO...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(166): view('cashier/lddapad...', Array)
+#8 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#11 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2026-04-27 10:35:54 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'dvno' in 'field list'
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-main.php(178): CodeIgniter\Database\BaseConnection->query('SELECT dvno FROM tbl_lddapada_hd ORDER BY recid DESC')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(166): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-27 10:35:54 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'dvno' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT dvno FROM tbl_lddapada_hd ORDER BY recid DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT dvno FROM tbl_lddapada_hd ORDER BY recid DESC')
+ 3 APPPATH\Views\cashier\lddapada-main.php(178): CodeIgniter\Database\BaseConnection->query('SELECT dvno FROM tbl_lddapada_hd ORDER BY recid DESC')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(166): view('cashier/lddapada-main', [...])
+ 8 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-27 10:35:54 --> [Caused by] mysqli_sql_exception: Unknown column 'dvno' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT dvno FROM tbl_lddapada_hd ORDER BY recid DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT dvno FROM tbl_lddapada_hd ORDER BY recid DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT dvno FROM tbl_lddapada_hd ORDER BY recid DESC')
+ 4 APPPATH\Views\cashier\lddapada-main.php(178): CodeIgniter\Database\BaseConnection->query('SELECT dvno FROM tbl_lddapada_hd ORDER BY recid DESC')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(166): view('cashier/lddapada-main', [...])
+ 9 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-27 11:05:04 --> mysqli_sql_exception: Unknown column 'serialno' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\tUPDATE tb...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\tUPDATE tb...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\tUPDATE tb...')
+#3 C:\xampp\htdocs\fods\app\Models\MyLDDAPADAModel.php(148): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\tUPDATE tb...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-04-27 11:05:04 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'serialno' in 'field list'
+[Method: POST, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyLDDAPADAModel.php(148): CodeIgniter\Database\BaseConnection->query('
+				UPDATE tbl_lddapada_hd
+				SET
+					`serialno` = ?,
+					`dvno` = ?,
+					`lddapadano` = ?,
+					`mds_branch` = ?,
+					`mds_accountno` = ?,
+					`lddapada_date` = ?,
+					`fund_cluster_code` = ?,
+					`funding_source` = ?
+				WHERE recid = ?
+			', [...])
+ 2 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-27 11:05:04 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'serialno' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				UPDATE tbl_lddapada_hd
+				SET
+					`serialno` = NULL,
+					`dvno` = NULL,
+					`lddapadano` = \'01--04-001-2026\',
+					`mds_branch` = \'Land Bank of the Philippines - DOST Branch\',
+					`mds_accountno` = \'2182-9001-36\',
+					`lddapada_date` = \'\',
+					`fund_cluster_code` = \'01\',
+					`funding_source` = \'\'
+				WHERE recid = \'8\'
+			')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				UPDATE tbl_lddapada_hd
+				SET
+					`serialno` = NULL,
+					`dvno` = NULL,
+					`lddapadano` = \'01--04-001-2026\',
+					`mds_branch` = \'Land Bank of the Philippines - DOST Branch\',
+					`mds_accountno` = \'2182-9001-36\',
+					`lddapada_date` = \'\',
+					`fund_cluster_code` = \'01\',
+					`funding_source` = \'\'
+				WHERE recid = \'8\'
+			')
+ 3 APPPATH\Models\MyLDDAPADAModel.php(148): CodeIgniter\Database\BaseConnection->query('
+				UPDATE tbl_lddapada_hd
+				SET
+					`serialno` = ?,
+					`dvno` = ?,
+					`lddapadano` = ?,
+					`mds_branch` = ?,
+					`mds_accountno` = ?,
+					`lddapada_date` = ?,
+					`fund_cluster_code` = ?,
+					`funding_source` = ?
+				WHERE recid = ?
+			', [...])
+ 4 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-27 11:05:04 --> [Caused by] mysqli_sql_exception: Unknown column 'serialno' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+				UPDATE tbl_lddapada_hd
+				SET
+					`serialno` = NULL,
+					`dvno` = NULL,
+					`lddapadano` = \'01--04-001-2026\',
+					`mds_branch` = \'Land Bank of the Philippines - DOST Branch\',
+					`mds_accountno` = \'2182-9001-36\',
+					`lddapada_date` = \'\',
+					`fund_cluster_code` = \'01\',
+					`funding_source` = \'\'
+				WHERE recid = \'8\'
+			', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				UPDATE tbl_lddapada_hd
+				SET
+					`serialno` = NULL,
+					`dvno` = NULL,
+					`lddapadano` = \'01--04-001-2026\',
+					`mds_branch` = \'Land Bank of the Philippines - DOST Branch\',
+					`mds_accountno` = \'2182-9001-36\',
+					`lddapada_date` = \'\',
+					`fund_cluster_code` = \'01\',
+					`funding_source` = \'\'
+				WHERE recid = \'8\'
+			')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				UPDATE tbl_lddapada_hd
+				SET
+					`serialno` = NULL,
+					`dvno` = NULL,
+					`lddapadano` = \'01--04-001-2026\',
+					`mds_branch` = \'Land Bank of the Philippines - DOST Branch\',
+					`mds_accountno` = \'2182-9001-36\',
+					`lddapada_date` = \'\',
+					`fund_cluster_code` = \'01\',
+					`funding_source` = \'\'
+				WHERE recid = \'8\'
+			')
+ 4 APPPATH\Models\MyLDDAPADAModel.php(148): CodeIgniter\Database\BaseConnection->query('
+				UPDATE tbl_lddapada_hd
+				SET
+					`serialno` = ?,
+					`dvno` = ?,
+					`lddapadano` = ?,
+					`mds_branch` = ?,
+					`mds_accountno` = ?,
+					`lddapada_date` = ?,
+					`fund_cluster_code` = ?,
+					`funding_source` = ?
+				WHERE recid = ?
+			', [...])
+ 5 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-27 11:05:46 --> mysqli_sql_exception: Unknown column 'lddapadano' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\t\t\tINSERT ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\t\t\tINSERT ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\t\t\tINSERT ...')
+#3 C:\xampp\htdocs\fods\app\Models\MyLDDAPADAModel.php(165): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\t\t\tINSERT ...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-04-27 11:05:46 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'lddapadano' in 'field list'
+[Method: POST, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyLDDAPADAModel.php(165): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO tbl_lddapada_dvno 
+						(
+							lddapada_id, 
+							lddapadano, 
+							dvno, 
+							added_by
+						)
+						VALUES (?,?,?,?)', [...])
+ 2 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-27 11:05:46 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'lddapadano' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO tbl_lddapada_dvno 
+						(
+							lddapada_id, 
+							lddapadano, 
+							dvno, 
+							added_by
+						)
+						VALUES (\'8\',\'01--04-001-2026\',\'LDDAPTESTRARA\',\'ADMIN-KYLE\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO tbl_lddapada_dvno 
+						(
+							lddapada_id, 
+							lddapadano, 
+							dvno, 
+							added_by
+						)
+						VALUES (\'8\',\'01--04-001-2026\',\'LDDAPTESTRARA\',\'ADMIN-KYLE\')')
+ 3 APPPATH\Models\MyLDDAPADAModel.php(165): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO tbl_lddapada_dvno 
+						(
+							lddapada_id, 
+							lddapadano, 
+							dvno, 
+							added_by
+						)
+						VALUES (?,?,?,?)', [...])
+ 4 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-27 11:05:46 --> [Caused by] mysqli_sql_exception: Unknown column 'lddapadano' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+						INSERT INTO tbl_lddapada_dvno 
+						(
+							lddapada_id, 
+							lddapadano, 
+							dvno, 
+							added_by
+						)
+						VALUES (\'8\',\'01--04-001-2026\',\'LDDAPTESTRARA\',\'ADMIN-KYLE\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO tbl_lddapada_dvno 
+						(
+							lddapada_id, 
+							lddapadano, 
+							dvno, 
+							added_by
+						)
+						VALUES (\'8\',\'01--04-001-2026\',\'LDDAPTESTRARA\',\'ADMIN-KYLE\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO tbl_lddapada_dvno 
+						(
+							lddapada_id, 
+							lddapadano, 
+							dvno, 
+							added_by
+						)
+						VALUES (\'8\',\'01--04-001-2026\',\'LDDAPTESTRARA\',\'ADMIN-KYLE\')')
+ 4 APPPATH\Models\MyLDDAPADAModel.php(165): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO tbl_lddapada_dvno 
+						(
+							lddapada_id, 
+							lddapadano, 
+							dvno, 
+							added_by
+						)
+						VALUES (?,?,?,?)', [...])
+ 5 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-27 11:22:23 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: mylddapada]
+in APPPATH\Views\cashier\lddapada-main.php on line 37.
+ 1 APPPATH\Views\cashier\lddapada-main.php(37): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php', 37)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(166): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-27 11:22:34 --> mysqli_sql_exception: Table 'fods-03032026.tbl_ldddapada_dvno' doesn't exist in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\t\t\tINSERT ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\t\t\tINSERT ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\t\t\tINSERT ...')
+#3 C:\xampp\htdocs\fods\app\Models\MyLDDAPADAModel.php(122): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\t\t\tINSERT ...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-04-27 11:22:34 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'fods-03032026.tbl_ldddapada_dvno' doesn't exist
+[Method: POST, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyLDDAPADAModel.php(122): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO tbl_ldddapada_dvno 
+						(
+							lddapada_id, 
+							lddapadano, 
+							dvno, 
+							added_by
+						)
+						VALUES (?,?,?,?)', [...])
+ 2 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-27 11:22:34 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'fods-03032026.tbl_ldddapada_dvno' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO tbl_ldddapada_dvno 
+						(
+							lddapada_id, 
+							lddapadano, 
+							dvno, 
+							added_by
+						)
+						VALUES (11,\'\',\'LDDAPTESTRARA\',\'ADMIN-KYLE\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO tbl_ldddapada_dvno 
+						(
+							lddapada_id, 
+							lddapadano, 
+							dvno, 
+							added_by
+						)
+						VALUES (11,\'\',\'LDDAPTESTRARA\',\'ADMIN-KYLE\')')
+ 3 APPPATH\Models\MyLDDAPADAModel.php(122): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO tbl_ldddapada_dvno 
+						(
+							lddapada_id, 
+							lddapadano, 
+							dvno, 
+							added_by
+						)
+						VALUES (?,?,?,?)', [...])
+ 4 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-27 11:22:34 --> [Caused by] mysqli_sql_exception: Table 'fods-03032026.tbl_ldddapada_dvno' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+						INSERT INTO tbl_ldddapada_dvno 
+						(
+							lddapada_id, 
+							lddapadano, 
+							dvno, 
+							added_by
+						)
+						VALUES (11,\'\',\'LDDAPTESTRARA\',\'ADMIN-KYLE\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO tbl_ldddapada_dvno 
+						(
+							lddapada_id, 
+							lddapadano, 
+							dvno, 
+							added_by
+						)
+						VALUES (11,\'\',\'LDDAPTESTRARA\',\'ADMIN-KYLE\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO tbl_ldddapada_dvno 
+						(
+							lddapada_id, 
+							lddapadano, 
+							dvno, 
+							added_by
+						)
+						VALUES (11,\'\',\'LDDAPTESTRARA\',\'ADMIN-KYLE\')')
+ 4 APPPATH\Models\MyLDDAPADAModel.php(122): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO tbl_ldddapada_dvno 
+						(
+							lddapada_id, 
+							lddapadano, 
+							dvno, 
+							added_by
+						)
+						VALUES (?,?,?,?)', [...])
+ 5 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-27 13:27:59 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "lddapada/lddapada-pdf.php"
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('lddapada/lddapada-pdf.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('lddapada/lddapada-pdf', [], true)
+ 3 APPPATH\Controllers\MyLDDAPADA.php(33): view('lddapada/lddapada-pdf')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-27 13:28:44 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: mylddapada]
+in APPPATH\Views\cashier\lddapada-pdf.php on line 47.
+ 1 APPPATH\Views\cashier\lddapada-pdf.php(47): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-pdf.php', 47)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-pdf', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(33): view('cashier/lddapada-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-27 17:34:24 --> ErrorException: Undefined variable $targetYY
+[Method: GET, Route: mylddapada]
+in APPPATH\Views\cashier\lddapada-pdf.php on line 371.
+ 1 APPPATH\Views\cashier\lddapada-pdf.php(371): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $targetYY', 'C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-pdf.php', 371)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-pdf', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(33): view('cashier/lddapada-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-27 18:09:12 --> ErrorException: Undefined variable $current_year
+[Method: GET, Route: mylddapada]
+in APPPATH\Views\cashier\lddapada-pdf.php on line 251.
+ 1 APPPATH\Views\cashier\lddapada-pdf.php(251): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $current_year', 'C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-pdf.php', 251)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-pdf', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(33): view('cashier/lddapada-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-04-27 18:09:51 --> mysqli_sql_exception: Column 'recid' in order clause is ambiguous in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\nSELECT\r\n    a...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\nSELECT\r\n    a...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\nSELECT\r\n    a...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\lddapada-pdf.php(251): CodeIgniter\Database\BaseConnection->query('\r\nSELECT\r\n    a...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapad...', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(33): view('cashier/lddapad...')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2026-04-27 18:09:51 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'recid' in order clause is ambiguous
+[Method: GET, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\lddapada-pdf.php(251): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    a.`dvno`,
+    a.`payee_name`,
+    a.`payee_account_num`,
+    a.`serialno`,
+    a.`uacs_code`,
+    a.`gross_amount`,
+    a.`total_deduction`,
+    a.`net_amount`,
+    b.`disbursement_date`
+FROM
+    `tbl_lddapada_dt` a
+LEFT JOIN
+    `tbl_disbursement_hd` b
+ON
+    a.`dvno` = b.`dvno`
+WHERE 
+    `lddapada_id` = \'12\' AND  YEAR(b.disbursement_date)  = \'2026\'
+ORDER BY
+    `recid` ASC
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-pdf', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(33): view('cashier/lddapada-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-27 18:09:51 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'recid' in order clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+SELECT
+    a.`dvno`,
+    a.`payee_name`,
+    a.`payee_account_num`,
+    a.`serialno`,
+    a.`uacs_code`,
+    a.`gross_amount`,
+    a.`total_deduction`,
+    a.`net_amount`,
+    b.`disbursement_date`
+FROM
+    `tbl_lddapada_dt` a
+LEFT JOIN
+    `tbl_disbursement_hd` b
+ON
+    a.`dvno` = b.`dvno`
+WHERE 
+    `lddapada_id` = \'12\' AND  YEAR(b.disbursement_date)  = \'2026\'
+ORDER BY
+    `recid` ASC
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+SELECT
+    a.`dvno`,
+    a.`payee_name`,
+    a.`payee_account_num`,
+    a.`serialno`,
+    a.`uacs_code`,
+    a.`gross_amount`,
+    a.`total_deduction`,
+    a.`net_amount`,
+    b.`disbursement_date`
+FROM
+    `tbl_lddapada_dt` a
+LEFT JOIN
+    `tbl_disbursement_hd` b
+ON
+    a.`dvno` = b.`dvno`
+WHERE 
+    `lddapada_id` = \'12\' AND  YEAR(b.disbursement_date)  = \'2026\'
+ORDER BY
+    `recid` ASC
+')
+ 3 APPPATH\Views\cashier\lddapada-pdf.php(251): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    a.`dvno`,
+    a.`payee_name`,
+    a.`payee_account_num`,
+    a.`serialno`,
+    a.`uacs_code`,
+    a.`gross_amount`,
+    a.`total_deduction`,
+    a.`net_amount`,
+    b.`disbursement_date`
+FROM
+    `tbl_lddapada_dt` a
+LEFT JOIN
+    `tbl_disbursement_hd` b
+ON
+    a.`dvno` = b.`dvno`
+WHERE 
+    `lddapada_id` = \'12\' AND  YEAR(b.disbursement_date)  = \'2026\'
+ORDER BY
+    `recid` ASC
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-pdf', [], true)
+ 7 APPPATH\Controllers\MyLDDAPADA.php(33): view('cashier/lddapada-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-04-27 18:09:51 --> [Caused by] mysqli_sql_exception: Column 'recid' in order clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+SELECT
+    a.`dvno`,
+    a.`payee_name`,
+    a.`payee_account_num`,
+    a.`serialno`,
+    a.`uacs_code`,
+    a.`gross_amount`,
+    a.`total_deduction`,
+    a.`net_amount`,
+    b.`disbursement_date`
+FROM
+    `tbl_lddapada_dt` a
+LEFT JOIN
+    `tbl_disbursement_hd` b
+ON
+    a.`dvno` = b.`dvno`
+WHERE 
+    `lddapada_id` = \'12\' AND  YEAR(b.disbursement_date)  = \'2026\'
+ORDER BY
+    `recid` ASC
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+SELECT
+    a.`dvno`,
+    a.`payee_name`,
+    a.`payee_account_num`,
+    a.`serialno`,
+    a.`uacs_code`,
+    a.`gross_amount`,
+    a.`total_deduction`,
+    a.`net_amount`,
+    b.`disbursement_date`
+FROM
+    `tbl_lddapada_dt` a
+LEFT JOIN
+    `tbl_disbursement_hd` b
+ON
+    a.`dvno` = b.`dvno`
+WHERE 
+    `lddapada_id` = \'12\' AND  YEAR(b.disbursement_date)  = \'2026\'
+ORDER BY
+    `recid` ASC
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+SELECT
+    a.`dvno`,
+    a.`payee_name`,
+    a.`payee_account_num`,
+    a.`serialno`,
+    a.`uacs_code`,
+    a.`gross_amount`,
+    a.`total_deduction`,
+    a.`net_amount`,
+    b.`disbursement_date`
+FROM
+    `tbl_lddapada_dt` a
+LEFT JOIN
+    `tbl_disbursement_hd` b
+ON
+    a.`dvno` = b.`dvno`
+WHERE 
+    `lddapada_id` = \'12\' AND  YEAR(b.disbursement_date)  = \'2026\'
+ORDER BY
+    `recid` ASC
+')
+ 4 APPPATH\Views\cashier\lddapada-pdf.php(251): CodeIgniter\Database\BaseConnection->query('
+SELECT
+    a.`dvno`,
+    a.`payee_name`,
+    a.`payee_account_num`,
+    a.`serialno`,
+    a.`uacs_code`,
+    a.`gross_amount`,
+    a.`total_deduction`,
+    a.`net_amount`,
+    b.`disbursement_date`
+FROM
+    `tbl_lddapada_dt` a
+LEFT JOIN
+    `tbl_disbursement_hd` b
+ON
+    a.`dvno` = b.`dvno`
+WHERE 
+    `lddapada_id` = \'12\' AND  YEAR(b.disbursement_date)  = \'2026\'
+ORDER BY
+    `recid` ASC
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-pdf', [], true)
+ 8 APPPATH\Controllers\MyLDDAPADA.php(33): view('cashier/lddapada-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

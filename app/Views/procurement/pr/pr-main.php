@@ -736,7 +736,7 @@ function renderSelectedPPMP() {
 
     selectedPPMP.forEach(function(ppmp) {
         html += `
-            <span class="badge bg-primary me-1" data-ppmp="${ppmp}">
+            <span class="badge bg-primary me-1" data-ppmp="${ppmp}">    
                 ${ppmp}
                 <a href="javascript:void(0)" onclick="removePPMP('${ppmp}')" 
                 class="ms-1 text-white">&times;</a>

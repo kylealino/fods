@@ -8,10 +8,13 @@ $recid = $this->request->getPostGet('recid');
 $lddapadano = '';
 $mds_branch = '';
 $mds_accountno = '';
-$lddapada_date = '';
+
 $fund_cluster_code = '';
 $funding_source = '';
 $dv_list = [];
+
+$lddapada_date = date('Y-m-d');
+
 
 if((!empty($recid) || !is_null($recid)) ) { 
     $query = $this->db->query("
@@ -50,6 +53,8 @@ if((!empty($recid) || !is_null($recid)) ) {
     foreach($result_dvno as $row){
         $dv_list[] = $row['dvno'];
     }
+
+
 echo view('templates/myheader.php');
 ?>
 <style>
@@ -139,7 +144,7 @@ echo view('templates/myheader.php');
                                     <span>Date</span>
                                 </div>
                                 <div class="col-sm-8">
-                                    <input type="date" name="lddapada_date" id="lddapada_date" value="<?=$lddapada_date;?>" class="form form-control form-control-sm" disabled>
+                                    <input type="date" name="lddapada_date" id="lddapada_date" value="<?=$lddapada_date;?>" class="form form-control form-control-sm">
                                 </div>
                             </div>
                         </div>
@@ -446,7 +451,7 @@ function renderSelectedDV() {
 
     selectedDV.forEach(function(dv) {
         html += `
-            <span class="badge bg-primary me-1" data-dv="${dv}">
+            <span class="badge bg-primary me-1" data-dvno="${dv}">
                 ${dv}
                 <a href="javascript:void(0)" onclick="removeDV('${dv}')" 
                 class="ms-1 text-white">&times;</a>
@@ -510,15 +515,11 @@ function loadDVItems(baseUrl) {
         computeTotals();
         return;
     }
-
-    var serialno = $('#serialno').val();
-
     $.ajax({
         url: baseUrl + 'mylddapada?meaction=LOAD-DV',
         type: 'POST',
         data: {
             dvno: selectedDV,
-            serialno: serialno
         },
         dataType: 'json',
         success: function(res) {

@@ -25,9 +25,56 @@ class MyLDDAPADAModel extends Model
 		$mds_accountno = $this->request->getPostGet('mds_accountno');
 		$lddapada_date = $this->request->getPostGet('lddapada_date');
 		$fund_cluster_code = $this->request->getPostGet('fund_cluster_code');
-		$funding_source = $this->request->getPostGet('funding_source');
 		$dvdtdata = $this->request->getPostGet('dvdtdata');
+		$dvno_list = $this->request->getPostGet('dvno_list');
+
+		if (empty($lddapada_date)) {
+			echo "
+			<script>
+			toastr.error('LDDAPADA date is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($fund_cluster_code)) {
+			echo "
+			<script>
+			toastr.error('Fund cluster code is required!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
+		if (empty($dvno_list)) {
+			echo "
+			<script>
+			toastr.error('No DV selected!', 'Oops!', {
+					progressBar: true,
+					closeButton: true,
+					timeOut:2000,
+				});
+			</script>
+			";
+			die();
+		}
 		
+		if (!empty($dvdtdata)) {
+			for($aa = 0; $aa < count($dvdtdata); $aa++){
+				$medata = explode("x|x",$dvdtdata[$aa]);
+				$dv_fundingsource = $medata[0]; 
+			}
+		}
+
+		$query = $this->db->query("SELECT `funding_source` FROM tbl_disbursement_hd WHERE `dvno` = '$dv_fundingsource'");
+		$rw = $query->getRowArray();
+		$funding_source = $rw['funding_source'];
 
 		if (empty($recid)) {
 			$cseqn =  $this->get_ctr_lddapada($fund_cluster_code,$funding_source,'CTRL_NO01');//TRANSACTION NO
@@ -57,6 +104,26 @@ class MyLDDAPADAModel extends Model
 
 			$project_id = $this->db->insertID();
 
+			if (!empty($dvno_list)) {
+				foreach($dvno_list as $dv) {
+					$this->db->query("
+						INSERT INTO tbl_lddapada_dvno 
+						(
+							lddapada_id, 
+							lddapadano, 
+							dvno, 
+							added_by
+						)
+						VALUES (?,?,?,?)",
+						[
+							$project_id,
+							$lddapadano,
+							$dv,
+							$this->cuser
+						]
+					);
+				}
+			}
 			if (!empty($dvdtdata)) {
 				for($aa = 0; $aa < count($dvdtdata); $aa++){
 					$medata = explode("x|x",$dvdtdata[$aa]);
@@ -106,8 +173,6 @@ class MyLDDAPADAModel extends Model
 			$query = $this->db->query("
 				UPDATE tbl_lddapada_hd
 				SET
-					`serialno` = ?,
-					`dvno` = ?,
 					`lddapadano` = ?,
 					`mds_branch` = ?,
 					`mds_accountno` = ?,
@@ -116,8 +181,6 @@ class MyLDDAPADAModel extends Model
 					`funding_source` = ?
 				WHERE recid = ?
 			", [
-				$serialno,
-				$dvno,
 				$lddapadano,
 				$mds_branch,
 				$mds_accountno,
@@ -129,6 +192,75 @@ class MyLDDAPADAModel extends Model
 
 			$project_id = $recid;
 
+			if (!empty($dvno_list)) {
+				$query = $this->db->query("DELETE FROM tbl_lddapada_dvno WHERE `lddapada_id` = '$project_id'");
+				foreach($dvno_list as $dv) {
+					$this->db->query("
+						INSERT INTO tbl_lddapada_dvno 
+						(
+							lddapada_id, 
+							lddapadano, 
+							dvno, 
+							added_by
+						)
+						VALUES (?,?,?,?)",
+						[
+							$project_id,
+							$lddapadano,
+							$dv,
+							$this->cuser
+						]
+					);
+				}
+			}else{
+				$query = $this->db->query("DELETE FROM tbl_pr_ppmp WHERE `lddapada_id` = '$project_id'");
+			}
+
+			if (!empty($dvdtdata)) {
+				$query = $this->db->query("DELETE FROM tbl_lddapada_dt WHERE `lddapada_id` = '$project_id'");
+				for($aa = 0; $aa < count($dvdtdata); $aa++){
+					$medata = explode("x|x",$dvdtdata[$aa]);
+					$dvno = $medata[0]; 
+					$payee_name = $medata[1]; 
+					$payee_account_num = $medata[2];
+					$serialno = $medata[3]; 
+					$uacs_code = $medata[4]; 
+					$gross_amount = $medata[5]; 
+					$total_deduction = $medata[6]; 
+					$net_amount = $medata[7]; 
+
+					$query = $this->db->query("
+						INSERT INTO `tbl_lddapada_dt`(
+							`lddapada_id`,
+							`dvno`,
+							`payee_name`,
+							`payee_account_num`,
+							`serialno`,
+							`uacs_code`,
+							`gross_amount`,
+							`total_deduction`,
+							`net_amount`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+						[
+							$project_id,
+							$dvno,
+							$payee_name,
+							$payee_account_num,
+							$serialno,
+							$uacs_code,
+							$gross_amount,
+							$total_deduction,
+							$net_amount,
+							$this->cuser
+						]
+					);
+					
+				}
+			}else{
+				$query = $this->db->query("DELETE FROM tbl_lddapada_dt WHERE `lddapada_id` = '$project_id'");
+			}
 
 			$status = "LDDAP-ADA Updated Successfully!";
 			$color = "info";

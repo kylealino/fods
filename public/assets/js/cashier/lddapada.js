@@ -449,6 +449,15 @@ function __mysys_lddapada_ent() {
 					var fund_cluster_code = document.getElementById("fund_cluster_code");
 					var funding_source = document.getElementById("funding_source");
 
+					var container = document.getElementById("selected_dvno_list");
+					var items = container.querySelectorAll('.badge');
+
+					var dvno_list = [];
+
+					items.forEach(function(el) {
+						dvno_list.push(el.getAttribute('data-dvno'));
+					});
+
 					// Prepare PS data DIRECT --
 					var rowcount1 = jQuery('.dvdata-list tr').length;
 					var dvdtdata = [];
@@ -479,6 +488,7 @@ function __mysys_lddapada_ent() {
 						fund_cluster_code: fund_cluster_code.value,
 						funding_source: funding_source.value,
 						dvdtdata:dvdtdata,
+						dvno_list: dvno_list,
 						meaction: 'MAIN-SAVE'
 					}
 
