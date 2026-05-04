@@ -1,0 +1,567 @@
+ERROR - 2026-05-04 08:48:02 --> mysqli_sql_exception: MySQL server has gone away in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('select `usernam...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select `usernam...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select `usernam...')
+#3 C:\xampp\htdocs\fods\app\Controllers\MyLogIn.php(58): CodeIgniter\Database\BaseConnection->query('select `usernam...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('ADMIN-KYLE')
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-05-04 08:48:02 --> CodeIgniter\Database\Exceptions\DatabaseException: MySQL server has gone away
+[Method: POST, Route: mylogin-auth]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Controllers\MyLogIn.php(58): CodeIgniter\Database\BaseConnection->query('select `username`,`hash_password` FROM myua_user where username = ? limit 1 ', [...])
+ 2 APPPATH\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('ADMIN-KYLE')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-04 08:48:02 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: MySQL server has gone away
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select `username`,`hash_password` FROM myua_user where username = \'ADMIN-KYLE\' limit 1 ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select `username`,`hash_password` FROM myua_user where username = \'ADMIN-KYLE\' limit 1 ')
+ 3 APPPATH\Controllers\MyLogIn.php(58): CodeIgniter\Database\BaseConnection->query('select `username`,`hash_password` FROM myua_user where username = ? limit 1 ', [...])
+ 4 APPPATH\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('ADMIN-KYLE')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-04 08:48:02 --> [Caused by] mysqli_sql_exception: MySQL server has gone away
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('select `username`,`hash_password` FROM myua_user where username = \'ADMIN-KYLE\' limit 1 ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('select `username`,`hash_password` FROM myua_user where username = \'ADMIN-KYLE\' limit 1 ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('select `username`,`hash_password` FROM myua_user where username = \'ADMIN-KYLE\' limit 1 ')
+ 4 APPPATH\Controllers\MyLogIn.php(58): CodeIgniter\Database\BaseConnection->query('select `username`,`hash_password` FROM myua_user where username = ? limit 1 ', [...])
+ 5 APPPATH\Controllers\MyLogIn.php(24): App\Controllers\MyLogIn->Verify_User('ADMIN-KYLE')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLogIn->auth()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLogIn))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-05-04 08:48:19 --> Flashdata set: User Name not Found
+ERROR - 2026-05-04 10:03:39 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?, ?, ?, ?, ?, ?, ?)' at line 12 in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\tINSERT IN...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\tINSERT IN...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\tINSERT IN...')
+#3 C:\xampp\htdocs\fods\app\Models\MyLDDAPADAModel.php(114): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\tINSERT IN...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-05-04 10:03:39 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?, ?, ?, ?, ?, ?, ?)' at line 12
+[Method: POST, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyLDDAPADAModel.php(114): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `tbl_lddapada_hd`(
+					`lddapadano`,
+					`ckno`,
+					`mds_branch`,
+					`mds_accountno`,
+					`lddapada_date`,
+					`fund_cluster_code`,
+					`funding_source`,
+					`is_ci`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?)', [...])
+ 2 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-04 10:03:39 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?, ?, ?, ?, ?, ?, ?)' at line 12
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				INSERT INTO `tbl_lddapada_hd`(
+					`lddapadano`,
+					`ckno`,
+					`mds_branch`,
+					`mds_accountno`,
+					`lddapada_date`,
+					`fund_cluster_code`,
+					`funding_source`,
+					`is_ci`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?)')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				INSERT INTO `tbl_lddapada_hd`(
+					`lddapadano`,
+					`ckno`,
+					`mds_branch`,
+					`mds_accountno`,
+					`lddapada_date`,
+					`fund_cluster_code`,
+					`funding_source`,
+					`is_ci`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?)')
+ 3 APPPATH\Models\MyLDDAPADAModel.php(114): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `tbl_lddapada_hd`(
+					`lddapadano`,
+					`ckno`,
+					`mds_branch`,
+					`mds_accountno`,
+					`lddapada_date`,
+					`fund_cluster_code`,
+					`funding_source`,
+					`is_ci`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?)', [...])
+ 4 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-04 10:03:39 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?, ?, ?, ?, ?, ?, ?)' at line 12
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+				INSERT INTO `tbl_lddapada_hd`(
+					`lddapadano`,
+					`ckno`,
+					`mds_branch`,
+					`mds_accountno`,
+					`lddapada_date`,
+					`fund_cluster_code`,
+					`funding_source`,
+					`is_ci`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				INSERT INTO `tbl_lddapada_hd`(
+					`lddapadano`,
+					`ckno`,
+					`mds_branch`,
+					`mds_accountno`,
+					`lddapada_date`,
+					`fund_cluster_code`,
+					`funding_source`,
+					`is_ci`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				INSERT INTO `tbl_lddapada_hd`(
+					`lddapadano`,
+					`ckno`,
+					`mds_branch`,
+					`mds_accountno`,
+					`lddapada_date`,
+					`fund_cluster_code`,
+					`funding_source`,
+					`is_ci`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?)')
+ 4 APPPATH\Models\MyLDDAPADAModel.php(114): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `tbl_lddapada_hd`(
+					`lddapadano`,
+					`ckno`,
+					`mds_branch`,
+					`mds_accountno`,
+					`lddapada_date`,
+					`fund_cluster_code`,
+					`funding_source`,
+					`is_ci`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?)', [...])
+ 5 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-05-04 10:04:56 --> mysqli_sql_exception: Column 'is_ci' cannot be null in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\tINSERT IN...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\tINSERT IN...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\tINSERT IN...')
+#3 C:\xampp\htdocs\fods\app\Models\MyLDDAPADAModel.php(114): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\tINSERT IN...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-05-04 10:04:56 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'is_ci' cannot be null
+[Method: POST, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyLDDAPADAModel.php(114): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `tbl_lddapada_hd`(
+					`lddapadano`,
+					`ckno`,
+					`mds_branch`,
+					`mds_accountno`,
+					`lddapada_date`,
+					`fund_cluster_code`,
+					`funding_source`,
+					`is_ci`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 2 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-04 10:04:56 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'is_ci' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				INSERT INTO `tbl_lddapada_hd`(
+					`lddapadano`,
+					`ckno`,
+					`mds_branch`,
+					`mds_accountno`,
+					`lddapada_date`,
+					`fund_cluster_code`,
+					`funding_source`,
+					`is_ci`,
+					`added_by`
+				)
+				VALUES (\'01-101101-05-001-2026\', \'202605002\', \'Land Bank of the Philippines - DOST Branch\', \'2182-9001-36\', \'2026-05-04\', \'01\', \'101101\', NULL, \'ADMIN-KYLE\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				INSERT INTO `tbl_lddapada_hd`(
+					`lddapadano`,
+					`ckno`,
+					`mds_branch`,
+					`mds_accountno`,
+					`lddapada_date`,
+					`fund_cluster_code`,
+					`funding_source`,
+					`is_ci`,
+					`added_by`
+				)
+				VALUES (\'01-101101-05-001-2026\', \'202605002\', \'Land Bank of the Philippines - DOST Branch\', \'2182-9001-36\', \'2026-05-04\', \'01\', \'101101\', NULL, \'ADMIN-KYLE\')')
+ 3 APPPATH\Models\MyLDDAPADAModel.php(114): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `tbl_lddapada_hd`(
+					`lddapadano`,
+					`ckno`,
+					`mds_branch`,
+					`mds_accountno`,
+					`lddapada_date`,
+					`fund_cluster_code`,
+					`funding_source`,
+					`is_ci`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 4 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-04 10:04:56 --> [Caused by] mysqli_sql_exception: Column 'is_ci' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+				INSERT INTO `tbl_lddapada_hd`(
+					`lddapadano`,
+					`ckno`,
+					`mds_branch`,
+					`mds_accountno`,
+					`lddapada_date`,
+					`fund_cluster_code`,
+					`funding_source`,
+					`is_ci`,
+					`added_by`
+				)
+				VALUES (\'01-101101-05-001-2026\', \'202605002\', \'Land Bank of the Philippines - DOST Branch\', \'2182-9001-36\', \'2026-05-04\', \'01\', \'101101\', NULL, \'ADMIN-KYLE\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+				INSERT INTO `tbl_lddapada_hd`(
+					`lddapadano`,
+					`ckno`,
+					`mds_branch`,
+					`mds_accountno`,
+					`lddapada_date`,
+					`fund_cluster_code`,
+					`funding_source`,
+					`is_ci`,
+					`added_by`
+				)
+				VALUES (\'01-101101-05-001-2026\', \'202605002\', \'Land Bank of the Philippines - DOST Branch\', \'2182-9001-36\', \'2026-05-04\', \'01\', \'101101\', NULL, \'ADMIN-KYLE\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+				INSERT INTO `tbl_lddapada_hd`(
+					`lddapadano`,
+					`ckno`,
+					`mds_branch`,
+					`mds_accountno`,
+					`lddapada_date`,
+					`fund_cluster_code`,
+					`funding_source`,
+					`is_ci`,
+					`added_by`
+				)
+				VALUES (\'01-101101-05-001-2026\', \'202605002\', \'Land Bank of the Philippines - DOST Branch\', \'2182-9001-36\', \'2026-05-04\', \'01\', \'101101\', NULL, \'ADMIN-KYLE\')')
+ 4 APPPATH\Models\MyLDDAPADAModel.php(114): CodeIgniter\Database\BaseConnection->query('
+				INSERT INTO `tbl_lddapada_hd`(
+					`lddapadano`,
+					`ckno`,
+					`mds_branch`,
+					`mds_accountno`,
+					`lddapada_date`,
+					`fund_cluster_code`,
+					`funding_source`,
+					`is_ci`,
+					`added_by`
+				)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 5 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-04 10:11:14 --> ErrorException: Undefined variable $ckno
+[Method: POST, Route: mylddapada]
+in APPPATH\Models\MyLDDAPADAModel.php on line 108.
+ 1 APPPATH\Models\MyLDDAPADAModel.php(108): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $ckno', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MyLDDAPADAModel.php', 108)
+ 2 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-05-04 10:43:49 --> mysqli_sql_exception: Unknown column 'remarks' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\t\t\tINSERT ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\t\t\tINSERT ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\t\t\tINSERT ...')
+#3 C:\xampp\htdocs\fods\app\Models\MyLDDAPADAModel.php(276): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\t\t\tINSERT ...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-05-04 10:43:49 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'remarks' in 'field list'
+[Method: POST, Route: mylddapada]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyLDDAPADAModel.php(276): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_lddapada_dt`(
+							`lddapada_id`,
+							`dvno`,
+							`payee_name`,
+							`payee_account_num`,
+							`serialno`,
+							`uacs_code`,
+							`gross_amount`,
+							`total_deduction`,
+							`net_amount`,
+							`remarks`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 2 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-04 10:43:49 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'remarks' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO `tbl_lddapada_dt`(
+							`lddapada_id`,
+							`dvno`,
+							`payee_name`,
+							`payee_account_num`,
+							`serialno`,
+							`uacs_code`,
+							`gross_amount`,
+							`total_deduction`,
+							`net_amount`,
+							`remarks`,
+							`added_by`
+						)
+						VALUES (\'17\', \'TES-KYLE00213\', \'GOVERNMENT SERVICE INSURANCE SYSTEM\', \'3402-1036-11\', \'01-101101-2026-02-0117\', \'50103040-01\', \'19400.00\', \'776.00\', \'18624.00\', \'test 1\', \'ADMIN-KYLE\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO `tbl_lddapada_dt`(
+							`lddapada_id`,
+							`dvno`,
+							`payee_name`,
+							`payee_account_num`,
+							`serialno`,
+							`uacs_code`,
+							`gross_amount`,
+							`total_deduction`,
+							`net_amount`,
+							`remarks`,
+							`added_by`
+						)
+						VALUES (\'17\', \'TES-KYLE00213\', \'GOVERNMENT SERVICE INSURANCE SYSTEM\', \'3402-1036-11\', \'01-101101-2026-02-0117\', \'50103040-01\', \'19400.00\', \'776.00\', \'18624.00\', \'test 1\', \'ADMIN-KYLE\')')
+ 3 APPPATH\Models\MyLDDAPADAModel.php(276): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_lddapada_dt`(
+							`lddapada_id`,
+							`dvno`,
+							`payee_name`,
+							`payee_account_num`,
+							`serialno`,
+							`uacs_code`,
+							`gross_amount`,
+							`total_deduction`,
+							`net_amount`,
+							`remarks`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 4 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-04 10:43:49 --> [Caused by] mysqli_sql_exception: Unknown column 'remarks' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+						INSERT INTO `tbl_lddapada_dt`(
+							`lddapada_id`,
+							`dvno`,
+							`payee_name`,
+							`payee_account_num`,
+							`serialno`,
+							`uacs_code`,
+							`gross_amount`,
+							`total_deduction`,
+							`net_amount`,
+							`remarks`,
+							`added_by`
+						)
+						VALUES (\'17\', \'TES-KYLE00213\', \'GOVERNMENT SERVICE INSURANCE SYSTEM\', \'3402-1036-11\', \'01-101101-2026-02-0117\', \'50103040-01\', \'19400.00\', \'776.00\', \'18624.00\', \'test 1\', \'ADMIN-KYLE\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO `tbl_lddapada_dt`(
+							`lddapada_id`,
+							`dvno`,
+							`payee_name`,
+							`payee_account_num`,
+							`serialno`,
+							`uacs_code`,
+							`gross_amount`,
+							`total_deduction`,
+							`net_amount`,
+							`remarks`,
+							`added_by`
+						)
+						VALUES (\'17\', \'TES-KYLE00213\', \'GOVERNMENT SERVICE INSURANCE SYSTEM\', \'3402-1036-11\', \'01-101101-2026-02-0117\', \'50103040-01\', \'19400.00\', \'776.00\', \'18624.00\', \'test 1\', \'ADMIN-KYLE\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO `tbl_lddapada_dt`(
+							`lddapada_id`,
+							`dvno`,
+							`payee_name`,
+							`payee_account_num`,
+							`serialno`,
+							`uacs_code`,
+							`gross_amount`,
+							`total_deduction`,
+							`net_amount`,
+							`remarks`,
+							`added_by`
+						)
+						VALUES (\'17\', \'TES-KYLE00213\', \'GOVERNMENT SERVICE INSURANCE SYSTEM\', \'3402-1036-11\', \'01-101101-2026-02-0117\', \'50103040-01\', \'19400.00\', \'776.00\', \'18624.00\', \'test 1\', \'ADMIN-KYLE\')')
+ 4 APPPATH\Models\MyLDDAPADAModel.php(276): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_lddapada_dt`(
+							`lddapada_id`,
+							`dvno`,
+							`payee_name`,
+							`payee_account_num`,
+							`serialno`,
+							`uacs_code`,
+							`gross_amount`,
+							`total_deduction`,
+							`net_amount`,
+							`remarks`,
+							`added_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [...])
+ 5 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-04 10:51:19 --> ErrorException: Undefined variable $allotment_class
+[Method: GET, Route: mylddapada]
+in APPPATH\Views\cashier\lddapada-main.php on line 338.
+ 1 APPPATH\Views\cashier\lddapada-main.php(338): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $allotment_class', 'C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php', 338)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-main', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(166): view('cashier/lddapada-main', [...])
+ 6 APPPATH\Controllers\MyLDDAPADA.php(24): App\Controllers\MyLDDAPADA->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-04 10:53:56 --> ErrorException: Trying to access array offset on value of type null
+[Method: POST, Route: mylddapada]
+in APPPATH\Models\MyLDDAPADAModel.php on line 79.
+ 1 APPPATH\Models\MyLDDAPADAModel.php(79): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MyLDDAPADAModel.php', 79)
+ 2 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-04 10:55:36 --> ErrorException: Trying to access array offset on value of type null
+[Method: POST, Route: mylddapada]
+in APPPATH\Models\MyLDDAPADAModel.php on line 79.
+ 1 APPPATH\Models\MyLDDAPADAModel.php(79): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\fods\\app\\Models\\MyLDDAPADAModel.php', 79)
+ 2 APPPATH\Controllers\MyLDDAPADA.php(28): App\Models\MyLDDAPADAModel->lddapada_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-04 11:17:13 --> ErrorException: Undefined variable $subtotal_gross_py
+[Method: GET, Route: mylddapada]
+in APPPATH\Views\cashier\lddapada-pdf.php on line 332.
+ 1 APPPATH\Views\cashier\lddapada-pdf.php(332): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $subtotal_gross_py', 'C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-pdf.php', 332)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\lddapada-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/lddapada-pdf', [], true)
+ 5 APPPATH\Controllers\MyLDDAPADA.php(33): view('cashier/lddapada-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyLDDAPADA->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyLDDAPADA))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

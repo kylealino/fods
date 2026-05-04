@@ -11,6 +11,7 @@ $mds_accountno = '';
 
 $fund_cluster_code = '';
 $funding_source = '';
+$is_ci = '';
 $dv_list = [];
 
 $lddapada_date = date('Y-m-d');
@@ -25,7 +26,8 @@ if((!empty($recid) || !is_null($recid)) ) {
             `mds_accountno`,
             `lddapada_date`,
             `fund_cluster_code`,
-            `funding_source`
+            `funding_source`,
+            `is_ci`
         FROM
             `tbl_lddapada_hd`
         WHERE 
@@ -40,6 +42,7 @@ if((!empty($recid) || !is_null($recid)) ) {
     $lddapada_date     = $data['lddapada_date'];
     $fund_cluster_code = $data['fund_cluster_code'];
     $funding_source = $data['funding_source'];
+    $is_ci = $data['is_ci'];
 }
 
     $query_dvno = $this->db->query("
@@ -121,23 +124,23 @@ echo view('templates/myheader.php');
                                     <input type="text" id="mds_accountno" name="mds_accountno" value="<?= !empty($recid) ? $mds_accountno : '2182-9001-36';?>" class="form-control form-control-sm" disabled/>
                                 </div>
                             </div>
+                            <div class="row mb-2">
+                                <div class="col-sm-4">
+                                    <span class="fw-bold">LDDAP-ADA No.:</span>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="text" 
+                                        name="lddapadano" 
+                                        id="lddapadano"
+                                        class="form-control form-control-sm lddapadano"
+                                        value="<?= $lddapadano;?>" disabled
+                                        >
+                                </div>
+                            </div>
                             <input type="hidden" id="funding_source" name="funding_source" value="<?=$funding_source;?>" class="form-control form-control-sm"/>
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <div class="row mb-2">
-                            <div class="col-sm-4">
-                                <span class="fw-bold">LDDAP-ADA No.:</span>
-                            </div>
-                            <div class="col-sm-8">
-                                <input type="text" 
-                                    name="lddapadano" 
-                                    id="lddapadano"
-                                    class="form-control form-control-sm lddapadano"
-                                    value="<?= $lddapadano;?>" disabled
-                                    >
-                            </div>
-                        </div>
                         <div class="col-sm-12">
                             <div class="row mb-2">
                                 <div class="col-sm-4">
@@ -163,6 +166,23 @@ echo view('templates/myheader.php');
                                         <option value="01">01</option>
                                         <option value="07">07</option>
                                     </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row mb-2">
+                                <div class="col-sm-4">
+                                    <span>is CI?</span>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" 
+                                            type="checkbox" 
+                                            id="is_ci" 
+                                            name="is_ci" 
+                                            value="1"
+                                            <?= (isset($is_ci) && $is_ci == 1) ? 'checked' : '' ?>>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -265,6 +285,72 @@ echo view('templates/myheader.php');
                                                 <textarea name="remarks" placeholder="" rows="1"  class="form-control form-control-sm border-black text-black remarks"></textarea>
                                             </td>
                                         </tr>
+                                            <?php if(!empty($recid)):
+                                                $query = $this->db->query("
+                                                SELECT
+                                                    `recid`,
+                                                    `lddapada_id`,
+                                                    `dvno`,
+                                                    `payee_name`,
+                                                    `payee_account_num`,
+                                                    `serialno`,
+                                                    `uacs_code`,
+                                                    `gross_amount`,
+                                                    `total_deduction`,
+                                                    `net_amount`,
+                                                    `remarks`,
+                                                    `added_by`,
+                                                    `added_at`
+                                                FROM
+                                                    `tbl_lddapada_dt`
+                                                WHERE
+                                                    `lddapada_id` = '$recid'
+                                                ");
+                                                $result = $query->getResultArray();
+                                                foreach ($result as $data):
+                                                    $dt_id = $data['recid'];
+                                                    $dvno = $data['dvno'];
+                                                    $payee_name = $data['payee_name'];
+                                                    $payee_account_num = $data['payee_account_num'];
+                                                    $serialno = $data['serialno'];
+                                                    $uacs_code = $data['uacs_code'];
+                                                    $gross_amount = $data['gross_amount'];
+                                                    $total_deduction = $data['total_deduction'];
+                                                    $net_amount = $data['net_amount'];
+                                                    $remarks = $data['remarks'];
+                                            ?>
+                                            <tr>
+                                                <td class="text-center align-middle"></td>
+                                                <td class="text-center align-middle" nowrap>
+                                                    <input type="text"  value="<?=$dvno;?>" name="dvno" class="dvno text-center"/>
+                                                </td>
+                                                <td class="text-center align-middle" nowrap>
+                                                    <input type="text"  value="<?=$payee_name;?>" name="payee_name" class="payee_name text-center"/>
+                                                </td>
+                                                <td class="text-center align-middle" nowrap>
+                                                    <input type="text"  value="<?=$payee_account_num;?>" name="payee_account_num" class="payee_account_num text-center"/>
+                                                </td>
+                                                <td class="text-center align-middle" nowrap>
+                                                    <input type="text"  value="<?=$serialno;?>" name="serialno" class="serialno text-center"/>
+                                                </td>
+                                                <td class="text-center align-middle" nowrap>
+                                                    <input type="text" value="<?=$uacs_code;?>" name="allotment_class" class="allotment_class text-center"/>
+                                                </td>
+                                                <td class="text-center align-middle" nowrap>
+                                                    <input type="number" value="<?=$gross_amount;?>" step="any"  name="gross_amount" class="gross_amount text-center"/>
+                                                </td>
+                                                <td class="text-center align-middle" nowrap>
+                                                    <input type="number"  value="<?=$total_deduction;?>" step="any"  name="total_deduction" data-dtid=""  class="total_deduction text-center"/>
+                                                </td>
+                                                <td class="text-center align-middle" nowrap>
+                                                    <input type="number"  value="<?=$net_amount;?>" step="any" name="net_amount" data-dtid="" class="net_amount text-center"/>
+                                                </td>
+                                                <td class="text-center align-middle" nowrap>
+                                                    <textarea name="remarks" placeholder="" rows="1"  class="form-control form-control-sm border-black text-black remarks"><?=$remarks;?></textarea>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; endif;?>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -407,13 +493,31 @@ var selectedDV = <?= json_encode($dv_list); ?>;
 
 $(document).ready(function() {
 
-    // render existing DV from DB
-    if (selectedDV.length > 0) {
-        renderSelectedDV();
+    // =========================================
+    // IF EDIT MODE (WITH RECID)
+    // DO NOT RELOAD FROM AJAX
+    // JUST COMPUTE EXISTING ROWS
+    // =========================================
+    <?php if(!empty($recid)): ?>
 
-        var baseUrl = $('#__siteurl').data('mesiteurl');
-        loadDVItems(baseUrl);
-    }
+        renderSelectedDV();
+        renumberRows();
+        computeTotals();
+
+    <?php else: ?>
+
+        // =========================================
+        // NEW RECORD
+        // =========================================
+        if (selectedDV.length > 0) {
+
+            renderSelectedDV();
+
+            var baseUrl = $('#__siteurl').data('mesiteurl');
+            loadDVItems(baseUrl);
+        }
+
+    <?php endif; ?>
 
 });
 
@@ -436,7 +540,7 @@ $(document).on('click', '#btn_add_dv', function() {
         return;
     }
 
-    // Add to array (appends to end/bottom)
+    // Add to array
     selectedDV.push(dv);
 
     renderSelectedDV();
@@ -447,14 +551,19 @@ $(document).on('click', '#btn_add_dv', function() {
 // RENDER BADGES
 // ===============================
 function renderSelectedDV() {
+
     var html = '';
 
     selectedDV.forEach(function(dv) {
+
         html += `
             <span class="badge bg-primary me-1" data-dvno="${dv}">
                 ${dv}
-                <a href="javascript:void(0)" onclick="removeDV('${dv}')" 
-                class="ms-1 text-white">&times;</a>
+                <a href="javascript:void(0)" 
+                   onclick="removeDV('${dv}')" 
+                   class="ms-1 text-white text-decoration-none">
+                   &times;
+                </a>
             </span>
         `;
     });
@@ -466,24 +575,35 @@ function renderSelectedDV() {
 // REMOVE DV
 // ===============================
 function removeDV(dv) {
+
     selectedDV = selectedDV.filter(p => p !== dv);
 
     renderSelectedDV();
 
-    var baseUrl = $('#__siteurl').data('mesiteurl');
-    loadDVItems(baseUrl);
+    // remove existing row
+    $('#dv_line_items tbody tr').each(function() {
 
-    setTimeout(function() {
-        computeTotals();
-    }, 200);
+        let rowDV = $(this).find('.dvno').val();
+
+        if (rowDV == dv) {
+            $(this).remove();
+        }
+
+    });
+
+    renumberRows();
+    computeTotals();
 }
 
 // ===============================
 // RENUMBER TABLE ROWS
 // ===============================
 function renumberRows() {
+
     $('#dv_line_items tbody tr:visible').each(function(index) {
+
         $(this).find('td:eq(0)').html('<b>' + (index + 1) + '</b>');
+
     });
 }
 
@@ -497,51 +617,69 @@ function computeTotals() {
     $('#dv_line_items tbody tr:visible').each(function() {
 
         let net = parseFloat($(this).find('.net_amount').val()) || 0;
+
         totalNet += net;
+
     });
 
     $('#net_amount_payable').val(
-        totalNet.toLocaleString('en-PH', { minimumFractionDigits: 2 })
+        totalNet.toLocaleString('en-PH', {
+            minimumFractionDigits: 2
+        })
     );
 }
 
 // ===============================
-// LOAD DV ITEMS - SORT BY selectedDV ORDER
+// LOAD DV ITEMS
 // ===============================
 function loadDVItems(baseUrl) {
 
     if (selectedDV.length === 0) {
+
         $('#dv_line_items tbody tr:visible').remove();
+
         computeTotals();
+
         return;
     }
+
     $.ajax({
+
         url: baseUrl + 'mylddapada?meaction=LOAD-DV',
+
         type: 'POST',
+
         data: {
             dvno: selectedDV,
         },
+
         dataType: 'json',
+
         success: function(res) {
 
-            // Clear table
+            // clear rows except template
             $('#dv_line_items tbody tr:visible').remove();
 
             var rowTemplate = $('#dv_line_items tbody tr:first');
 
-            // ✅ Create a map for quick lookup by dvno
+            // map
             var dataMap = {};
+
             $.each(res, function(i, row) {
+
                 dataMap[row.dvno] = row;
+
             });
 
-            // ✅ Loop through selectedDV in the exact order of the array
-            // This preserves the order (oldest first, newest last)
+            // preserve order
             $.each(selectedDV, function(i, dvNumber) {
+
                 var row = dataMap[dvNumber];
-                
+
                 if (row) {
+
                     var newRow = rowTemplate.clone().show();
+
                     newRow.find('.dvno').val(row.dvno);
                     newRow.find('.payee_name').val(row.payee_name);
                     newRow.find('.payee_account_num').val(row.payee_account_num);
@@ -553,20 +691,30 @@ function loadDVItems(baseUrl) {
 
                     $('#dv_line_items tbody').append(newRow);
                 }
+
             });
 
             renumberRows();
             computeTotals();
         },
+
         error: function(xhr) {
+
             console.log(xhr.responseText);
+
             alert('Error loading DV items');
+
         }
     });
 }
 
+// ===============================
+// AUTO COMPUTE
+// ===============================
 $(document).on('input', '.net_amount', function() {
+
     computeTotals();
+
 });
 
 </script>
