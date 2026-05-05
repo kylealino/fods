@@ -25,10 +25,10 @@ class MyLDDAPADAModel extends Model
 		$mds_accountno = $this->request->getPostGet('mds_accountno');
 		$lddapada_date = $this->request->getPostGet('lddapada_date');
 		$fund_cluster_code = $this->request->getPostGet('fund_cluster_code');
+		$ada_approver = $this->request->getPostGet('ada_approver');
 		$is_ci = $this->request->getPostGet('is_ci');
 		$dvdtdata = $this->request->getPostGet('dvdtdata');
 		$dvno_list = $this->request->getPostGet('dvno_list');
-
 
 		if (empty($lddapada_date)) {
 			echo "
@@ -100,9 +100,10 @@ class MyLDDAPADAModel extends Model
 					`fund_cluster_code`,
 					`funding_source`,
 					`is_ci`,
+					`ada_approver`,
 					`added_by`
 				)
-				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
 				[
 					$cseqn,
 					$ckno,
@@ -112,6 +113,7 @@ class MyLDDAPADAModel extends Model
 					$fund_cluster_code,
 					$funding_source,
 					$is_ci,
+					$ada_approver,
 					$this->cuser
 				]
 			);
@@ -195,7 +197,8 @@ class MyLDDAPADAModel extends Model
 					`mds_accountno` = ?,
 					`lddapada_date` = ?,
 					`fund_cluster_code` = ?,
-					`funding_source` = ?
+					`funding_source` = ?,
+					`ada_approver` = ?
 				WHERE recid = ?
 			", [
 				$lddapadano,
@@ -204,6 +207,7 @@ class MyLDDAPADAModel extends Model
 				$lddapada_date,
 				$fund_cluster_code,
 				$funding_source,
+				$ada_approver,
 				$recid
 			]);
 

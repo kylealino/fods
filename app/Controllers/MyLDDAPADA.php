@@ -159,11 +159,13 @@ class MyLDDAPADA extends BaseController
         ");
         $dvhddata = $dvhdquery->getResultArray();
 
-
+        $approverquery = $this->db->query("SELECT * FROM myua_user WHERE ada_tag = '1' ORDER BY recid DESC");
+        $adaapprover = $approverquery->getResultArray();
 
         return view('cashier/lddapada-main', [
             'dvdata' => $dvdata,
             'dvhddata' => $dvhddata,
+            'adaapprover' => $adaapprover,
         ]);
     }
     

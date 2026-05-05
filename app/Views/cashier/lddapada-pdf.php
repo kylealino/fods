@@ -15,15 +15,19 @@ $currentYear = date('Y');
 $lastYear = $currentYear - 1;
 $query = $this->db->query("
 SELECT
-    `ckno`
+    a.`ckno`,
+    a.`ada_approver`,
+    (select position from myua_user where full_name = a.`ada_approver`) AS `position`
 FROM
-    `tbl_lddapada_hd`
+    `tbl_lddapada_hd` a
 WHERE 
-    `recid` = '$recid'"
+    a.`recid` = '$recid'"
 );
 
 $data = $query->getRowArray();
 $ckno = $data['ckno'];
+$ada_approver = $data['ada_approver'];
+$position = $data['position'];
 
 
 $pdf = new FPDF('P', 'mm', 'A4');
@@ -876,10 +880,13 @@ $pdf->Cell(65, 9, '' , 'B', 1, 'L');
 $pdf->SetXY(185, $Y);
 $pdf->Cell(15, 9, '' , 'R', 1, 'C');
 
+$ada_approver_converted = iconv('UTF-8', 'ISO-8859-1//TRANSLIT', $ada_approver);
+$position_converted = iconv('UTF-8', 'ISO-8859-1//TRANSLIT', $position);
+
 $Y = $pdf->GetY();
 $pdf->SetFont('Arial', 'B', 6);
 $pdf->SetXY(10, $Y);
-$pdf->Cell(65, 4, 'JOVY S. MEDINA' , 'L', 1, 'C');
+$pdf->Cell(65, 4, $ada_approver_converted , 'L', 1, 'C');
 $pdf->SetXY(75, $Y);
 $pdf->Cell(30, 4, '' , 0, 1, 'C');
 $pdf->SetXY(105, $Y);
@@ -892,7 +899,7 @@ $pdf->Cell(15, 4, '' , 'R', 1, 'C');
 $Y = $pdf->GetY();
 $pdf->SetFont('Arial', '', 6);
 $pdf->SetXY(10, $Y);
-$pdf->Cell(65, 4, 'Administrative Officer V' , 'L', 1, 'C');
+$pdf->Cell(65, 4, $position_converted , 'L', 1, 'C');
 $pdf->SetXY(75, $Y);
 $pdf->Cell(30, 4, '' , 0, 1, 'C');
 $pdf->SetXY(105, $Y);
@@ -905,7 +912,7 @@ $pdf->Cell(15, 4, '' , 'R', 1, 'C');
 $Y = $pdf->GetY();
 $pdf->SetFont('Arial', '', 6);
 $pdf->SetXY(10, $Y);
-$pdf->Cell(190, 15, '(Ensures shall invalidate this document)' , 'RBL', 1, 'C');
+$pdf->Cell(190, 15, '(Erasures shall invalidate this document)' , 'RBL', 1, 'C');
 
 $Y = $pdf->GetY()+3;
 $pdf->SetFont('Arial', '', 6);

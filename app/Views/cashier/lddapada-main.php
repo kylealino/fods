@@ -8,10 +8,10 @@ $recid = $this->request->getPostGet('recid');
 $lddapadano = '';
 $mds_branch = '';
 $mds_accountno = '';
-
 $fund_cluster_code = '';
 $funding_source = '';
 $is_ci = '';
+$ada_approver = '';
 $dv_list = [];
 
 $lddapada_date = date('Y-m-d');
@@ -27,7 +27,8 @@ if((!empty($recid) || !is_null($recid)) ) {
             `lddapada_date`,
             `fund_cluster_code`,
             `funding_source`,
-            `is_ci`
+            `is_ci`,
+            `ada_approver`
         FROM
             `tbl_lddapada_hd`
         WHERE 
@@ -43,6 +44,7 @@ if((!empty($recid) || !is_null($recid)) ) {
     $fund_cluster_code = $data['fund_cluster_code'];
     $funding_source = $data['funding_source'];
     $is_ci = $data['is_ci'];
+    $ada_approver = $data['ada_approver'];
 }
 
     $query_dvno = $this->db->query("
@@ -360,7 +362,44 @@ echo view('templates/myheader.php');
                     <hr>
                     <div class="row mb-3 align-items-center justify-content-center">
 
-                        <div class="col-sm-6"></div>
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="row mb-2">
+                                        <div class="col-sm-4">
+                                            <span class="fw-bold">ADA Approver:</span>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <?php if(!empty($recid)):?>
+                                                <select name="ada_approver" id="ada_approver" class="form-control select2 form-select-sm show-tick">
+                                                    <option selected value="<?=$ada_approver;?>"><?=$ada_approver;?></option>
+                                                    <?php foreach($adaapprover as $data): ?>
+                                                        <option 
+                                                            value="<?= $data['full_name'] ?>"
+                                                            data-position="<?= $data['position'] ?>"
+                                                        >
+                                                            <?= $data['full_name'] ?>
+                                                        </option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            <?php else:?>
+                                                <select name="ada_approver" id="ada_approver" class="form-control select2 form-select-sm show-tick">
+                                                    <option selected value="">Choose...</option>
+                                                    <?php foreach($adaapprover as $data): ?>
+                                                        <option 
+                                                            value="<?= $data['full_name'] ?>"
+                                                            data-position="<?= $data['position'] ?>"
+                                                        >
+                                                            <?= $data['full_name'] ?>
+                                                        </option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            <?php endif;?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="col-sm-6">
                             <div class="row align-items-center">
@@ -392,8 +431,6 @@ echo view('templates/myheader.php');
                     </div>
                 </div>
             </form>
-
-
         </div>
     </div>
 

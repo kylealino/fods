@@ -448,6 +448,7 @@ function __mysys_lddapada_ent() {
 					var lddapada_date = document.getElementById("lddapada_date");
 					var fund_cluster_code = document.getElementById("fund_cluster_code");
 					var funding_source = document.getElementById("funding_source");
+					var ada_approver = document.getElementById("ada_approver");
 					let is_ci = document.getElementById("is_ci").checked ? 1 : 0;
 					var container = document.getElementById("selected_dvno_list");
 					var items = container.querySelectorAll('.badge');
@@ -487,6 +488,7 @@ function __mysys_lddapada_ent() {
 						lddapada_date: lddapada_date.value,
 						fund_cluster_code: fund_cluster_code.value,
 						funding_source: funding_source.value,
+						ada_approver: ada_approver.value,
 						is_ci: is_ci,
 						dvdtdata:dvdtdata,
 						dvno_list: dvno_list,
