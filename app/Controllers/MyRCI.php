@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 
-class MyLDDAPADA extends BaseController
+class MyRCI extends BaseController
 {
     public function __construct()
 	{
@@ -25,8 +25,8 @@ class MyLDDAPADA extends BaseController
                 break;
     
             case 'MAIN-SAVE': 
-                $this->mylddapada->lddapada_save();
-                return redirect()->to('mylddapada?meaction=MAIN');
+                $this->myrci->lddapada_save();
+                return redirect()->to('myrci?meaction=MAIN');
                 break;
 
             case 'PRINT-LDDAPADA': 

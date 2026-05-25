@@ -94,3 +94,7 @@ $routes->post('mydisbursement', 'MyDisbursement::index',['filter' => 'myauthuser
 //LDDAP-ADA - LDDAP-ADA module
 $routes->get('mylddapada', 'MyLDDAPADA::index',['filter' => 'myauthuser']);
 $routes->post('mylddapada', 'MyLDDAPADA::index',['filter' => 'myauthuser']);
+
+//RCI - RCI module
+$routes->get('myrci', 'MyRCI::index',['filter' => 'myauthuser']);
+$routes->post('myrci', 'MyRCI::index',['filter' => 'myauthuser']);
