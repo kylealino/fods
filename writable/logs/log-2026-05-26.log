@@ -1,0 +1,11 @@
+CRITICAL - 2026-05-26 16:29:02 --> ErrorException: Undefined variable $dvdata
+[Method: GET, Route: myrci]
+in APPPATH\Controllers\MyRCI.php on line 112.
+ 1 APPPATH\Controllers\MyRCI.php(112): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $dvdata', 'C:\\xampp\\htdocs\\fods\\app\\Controllers\\MyRCI.php', 112)
+ 2 APPPATH\Controllers\MyRCI.php(24): App\Controllers\MyRCI->loadMainView()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyRCI->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyRCI))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
