@@ -9,7 +9,7 @@ class MyRCI extends BaseController
     public function __construct()
 	{
 		$this->request = \Config\Services::request();
-        $this->mylddapada = model('App\Models\MyLDDAPADAModel');
+        $this->myrci = model('App\Models\MyRCIModel');
         $this->db = \Config\Database::connect();
         $this->session = session();
         $this->cuser = $this->session->get('__xsys_myuserzicas__');
@@ -23,12 +23,32 @@ class MyRCI extends BaseController
             case 'MAIN': 
                 return $this->loadMainView();
                 break;
-    
+            case 'MAIN-SAVE': 
+                $this->myrci->rci_save();
+                return redirect()->to('myrci?meaction=MAIN');
+                break;
+            case 'PRINT-RCI': 
+                return view('cashier/rci-pdf');
+                break;
         }
     }
     
 
     private function loadMainView() {
+
+        //serialno lookup
+        $rciquery = $this->db->query("
+        SELECT
+            `recid`,
+            `mds_branch`,
+            `mds_accountno`,
+            `fund_cluster_code`,
+            `reportno`
+        FROM
+            `tbl_rci_hd`
+        ORDER BY `recid` DESC
+        ");
+        $rcidata = $rciquery->getResultArray();
 
         $lddapadaquery = $this->db->query("
             SELECT
@@ -42,7 +62,7 @@ class MyRCI extends BaseController
                 b.payee_name,
                 c.particulars,
                 b.gross_amount,
-                '0' AS philheath_amount,
+                '0' AS philhealth_amount,
                 b.total_deduction AS tax_amount,
                 b.net_amount
             FROM tbl_lddapada_hd a
@@ -110,6 +130,7 @@ class MyRCI extends BaseController
 
         return view('cashier/rci-main', [
             'lddapadadata' => $lddapadadata,
+            'rcidata' => $rcidata,
         ]);
     }
     

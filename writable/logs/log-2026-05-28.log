@@ -1,0 +1,722 @@
+ERROR - 2026-05-28 14:34:49 --> mysqli_sql_exception: Unknown column 'philhealth_amount' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n\t\t\t\t\t\tINSERT ...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n\t\t\t\t\t\tINSERT ...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n\t\t\t\t\t\tINSERT ...')
+#3 C:\xampp\htdocs\fods\app\Models\MyRCIModel.php(149): CodeIgniter\Database\BaseConnection->query('\r\n\t\t\t\t\t\tINSERT ...', Array)
+#4 C:\xampp\htdocs\fods\app\Controllers\MyRCI.php(27): App\Models\MyRCIModel->rci_save()
+#5 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyRCI->index()
+#6 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyRCI))
+#7 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-05-28 14:34:49 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'philhealth_amount' in 'field list'
+[Method: POST, Route: myrci]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Models\MyRCIModel.php(149): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_rci_dt`(
+							`hd_rid`,
+							`lddapadano`,
+							`lddapada_date`,
+							`ckno`,
+							`dvno`,
+							`serialno`,
+							`responsibility_code`,
+							`payee_name`,
+							`particulars`,
+							`gross_amount`,
+							`philhealth_amount`,
+							`tax_amount`,
+							`net_amount`,
+							`created_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+					', [...])
+ 2 APPPATH\Controllers\MyRCI.php(27): App\Models\MyRCIModel->rci_save()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyRCI->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyRCI))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-28 14:34:49 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'philhealth_amount' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO `tbl_rci_dt`(
+							`hd_rid`,
+							`lddapadano`,
+							`lddapada_date`,
+							`ckno`,
+							`dvno`,
+							`serialno`,
+							`responsibility_code`,
+							`payee_name`,
+							`particulars`,
+							`gross_amount`,
+							`philhealth_amount`,
+							`tax_amount`,
+							`net_amount`,
+							`created_by`
+						)
+						VALUES (1, \'01-101101-05-001-2026\', \'2026-05-26\', \'9926050001\', \'DVTESTTOCASHIER\', \'01-104102-2026-02-9999\', \'19-003-00-00000-3-4-15-2026\', \'1635mm PRODUCTION SUPPLY\', \'TO OBLIGATE PAYMENT OF TESTING KYLE FROM ORS TO CASHIER\', \'99999.00\', \'0\', \'5357.09\', \'94641.91\', \'ADMIN-KYLE\')
+					')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO `tbl_rci_dt`(
+							`hd_rid`,
+							`lddapadano`,
+							`lddapada_date`,
+							`ckno`,
+							`dvno`,
+							`serialno`,
+							`responsibility_code`,
+							`payee_name`,
+							`particulars`,
+							`gross_amount`,
+							`philhealth_amount`,
+							`tax_amount`,
+							`net_amount`,
+							`created_by`
+						)
+						VALUES (1, \'01-101101-05-001-2026\', \'2026-05-26\', \'9926050001\', \'DVTESTTOCASHIER\', \'01-104102-2026-02-9999\', \'19-003-00-00000-3-4-15-2026\', \'1635mm PRODUCTION SUPPLY\', \'TO OBLIGATE PAYMENT OF TESTING KYLE FROM ORS TO CASHIER\', \'99999.00\', \'0\', \'5357.09\', \'94641.91\', \'ADMIN-KYLE\')
+					')
+ 3 APPPATH\Models\MyRCIModel.php(149): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_rci_dt`(
+							`hd_rid`,
+							`lddapadano`,
+							`lddapada_date`,
+							`ckno`,
+							`dvno`,
+							`serialno`,
+							`responsibility_code`,
+							`payee_name`,
+							`particulars`,
+							`gross_amount`,
+							`philhealth_amount`,
+							`tax_amount`,
+							`net_amount`,
+							`created_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+					', [...])
+ 4 APPPATH\Controllers\MyRCI.php(27): App\Models\MyRCIModel->rci_save()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyRCI->index()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyRCI))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-28 14:34:49 --> [Caused by] mysqli_sql_exception: Unknown column 'philhealth_amount' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+						INSERT INTO `tbl_rci_dt`(
+							`hd_rid`,
+							`lddapadano`,
+							`lddapada_date`,
+							`ckno`,
+							`dvno`,
+							`serialno`,
+							`responsibility_code`,
+							`payee_name`,
+							`particulars`,
+							`gross_amount`,
+							`philhealth_amount`,
+							`tax_amount`,
+							`net_amount`,
+							`created_by`
+						)
+						VALUES (1, \'01-101101-05-001-2026\', \'2026-05-26\', \'9926050001\', \'DVTESTTOCASHIER\', \'01-104102-2026-02-9999\', \'19-003-00-00000-3-4-15-2026\', \'1635mm PRODUCTION SUPPLY\', \'TO OBLIGATE PAYMENT OF TESTING KYLE FROM ORS TO CASHIER\', \'99999.00\', \'0\', \'5357.09\', \'94641.91\', \'ADMIN-KYLE\')
+					', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+						INSERT INTO `tbl_rci_dt`(
+							`hd_rid`,
+							`lddapadano`,
+							`lddapada_date`,
+							`ckno`,
+							`dvno`,
+							`serialno`,
+							`responsibility_code`,
+							`payee_name`,
+							`particulars`,
+							`gross_amount`,
+							`philhealth_amount`,
+							`tax_amount`,
+							`net_amount`,
+							`created_by`
+						)
+						VALUES (1, \'01-101101-05-001-2026\', \'2026-05-26\', \'9926050001\', \'DVTESTTOCASHIER\', \'01-104102-2026-02-9999\', \'19-003-00-00000-3-4-15-2026\', \'1635mm PRODUCTION SUPPLY\', \'TO OBLIGATE PAYMENT OF TESTING KYLE FROM ORS TO CASHIER\', \'99999.00\', \'0\', \'5357.09\', \'94641.91\', \'ADMIN-KYLE\')
+					')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+						INSERT INTO `tbl_rci_dt`(
+							`hd_rid`,
+							`lddapadano`,
+							`lddapada_date`,
+							`ckno`,
+							`dvno`,
+							`serialno`,
+							`responsibility_code`,
+							`payee_name`,
+							`particulars`,
+							`gross_amount`,
+							`philhealth_amount`,
+							`tax_amount`,
+							`net_amount`,
+							`created_by`
+						)
+						VALUES (1, \'01-101101-05-001-2026\', \'2026-05-26\', \'9926050001\', \'DVTESTTOCASHIER\', \'01-104102-2026-02-9999\', \'19-003-00-00000-3-4-15-2026\', \'1635mm PRODUCTION SUPPLY\', \'TO OBLIGATE PAYMENT OF TESTING KYLE FROM ORS TO CASHIER\', \'99999.00\', \'0\', \'5357.09\', \'94641.91\', \'ADMIN-KYLE\')
+					')
+ 4 APPPATH\Models\MyRCIModel.php(149): CodeIgniter\Database\BaseConnection->query('
+						INSERT INTO `tbl_rci_dt`(
+							`hd_rid`,
+							`lddapadano`,
+							`lddapada_date`,
+							`ckno`,
+							`dvno`,
+							`serialno`,
+							`responsibility_code`,
+							`payee_name`,
+							`particulars`,
+							`gross_amount`,
+							`philhealth_amount`,
+							`tax_amount`,
+							`net_amount`,
+							`created_by`
+						)
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+					', [...])
+ 5 APPPATH\Controllers\MyRCI.php(27): App\Models\MyRCIModel->rci_save()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyRCI->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyRCI))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-28 14:37:38 --> ErrorException: Undefined array key "recid"
+[Method: GET, Route: myrci]
+in APPPATH\Views\cashier\rci-main.php on line 234.
+ 1 APPPATH\Views\cashier\rci-main.php(234): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "recid"', 'C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\rci-main.php', 234)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\rci-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/rci-main', [], true)
+ 5 APPPATH\Controllers\MyRCI.php(129): view('cashier/rci-main', [...])
+ 6 APPPATH\Controllers\MyRCI.php(24): App\Controllers\MyRCI->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyRCI->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyRCI))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-28 14:43:19 --> ErrorException: Undefined variable $philheath_amount
+[Method: GET, Route: myrci]
+in APPPATH\Views\cashier\rci-main.php on line 271.
+ 1 APPPATH\Views\cashier\rci-main.php(271): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $philheath_amount', 'C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\rci-main.php', 271)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\rci-main.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/rci-main', [], true)
+ 5 APPPATH\Controllers\MyRCI.php(130): view('cashier/rci-main', [...])
+ 6 APPPATH\Controllers\MyRCI.php(24): App\Controllers\MyRCI->loadMainView()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyRCI->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyRCI))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-28 15:15:56 --> ErrorException: require(fpdf.php): Failed to open stream: No such file or directory
+[Method: GET, Route: myrci]
+in APPPATH\Views\cashier\rci-pdf.php on line 4.
+ 1 APPPATH\Views\cashier\rci-pdf.php(4): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(fpdf.php): Failed to open stream: No such file or directory', 'C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\rci-pdf.php', 4)
+ 2 APPPATH\Views\cashier\rci-pdf.php(4): require()
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\rci-pdf.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/rci-pdf', [], true)
+ 6 APPPATH\Controllers\MyRCI.php(31): view('cashier/rci-pdf')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyRCI->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyRCI))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-28 15:16:00 --> ErrorException: require(fpdf.php): Failed to open stream: No such file or directory
+[Method: GET, Route: myrci]
+in APPPATH\Views\cashier\rci-pdf.php on line 4.
+ 1 APPPATH\Views\cashier\rci-pdf.php(4): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(fpdf.php): Failed to open stream: No such file or directory', 'C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\rci-pdf.php', 4)
+ 2 APPPATH\Views\cashier\rci-pdf.php(4): require()
+ 3 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\rci-pdf.php')
+ 4 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/rci-pdf', [], true)
+ 6 APPPATH\Controllers\MyRCI.php(31): view('cashier/rci-pdf')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyRCI->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyRCI))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-28 15:16:09 --> ParseError: syntax error, unexpected single-quoted string ");", expecting ")"
+[Method: GET, Route: myrci]
+in APPPATH\Views\cashier\rci-pdf.php on line 101.
+ 1 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/rci-pdf', [], true)
+ 3 APPPATH\Controllers\MyRCI.php(31): view('cashier/rci-pdf')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyRCI->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyRCI))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-05-28 15:31:08 --> mysqli_sql_exception: Table 'fods-03032026.tbl_report_checks' doesn't exist in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT \r\n...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT \r\n...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT \r\n...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\rci-pdf.php(44): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT \r\n...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/rci-pdf', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyRCI.php(31): view('cashier/rci-pdf')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyRCI->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyRCI))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2026-05-28 15:31:08 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'fods-03032026.tbl_report_checks' doesn't exist
+[Method: GET, Route: myrci]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\rci-pdf.php(44): CodeIgniter\Database\BaseConnection->query('
+    SELECT 
+        a.disbursement_date as date,
+        a.ckno as check_no,
+        a.lddapada_no as lddap_ada,
+        a.dvno as dv_no,
+        a.ors_burs_no as ors_burs,
+        a.responsibility_center_code as resp_code,
+        a.payee,
+        a.nature_of_payment,
+        a.gross_amount,
+        a.philhealth,
+        a.tax,
+        a.net_amount,
+        a.jev_no,
+        a.jev_date
+    FROM tbl_report_checks a
+    WHERE a.recid = \'2\'
+    ORDER BY a.disbursement_date ASC
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\rci-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/rci-pdf', [], true)
+ 5 APPPATH\Controllers\MyRCI.php(31): view('cashier/rci-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyRCI->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyRCI))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-28 15:31:08 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'fods-03032026.tbl_report_checks' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT 
+        a.disbursement_date as date,
+        a.ckno as check_no,
+        a.lddapada_no as lddap_ada,
+        a.dvno as dv_no,
+        a.ors_burs_no as ors_burs,
+        a.responsibility_center_code as resp_code,
+        a.payee,
+        a.nature_of_payment,
+        a.gross_amount,
+        a.philhealth,
+        a.tax,
+        a.net_amount,
+        a.jev_no,
+        a.jev_date
+    FROM tbl_report_checks a
+    WHERE a.recid = \'2\'
+    ORDER BY a.disbursement_date ASC
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT 
+        a.disbursement_date as date,
+        a.ckno as check_no,
+        a.lddapada_no as lddap_ada,
+        a.dvno as dv_no,
+        a.ors_burs_no as ors_burs,
+        a.responsibility_center_code as resp_code,
+        a.payee,
+        a.nature_of_payment,
+        a.gross_amount,
+        a.philhealth,
+        a.tax,
+        a.net_amount,
+        a.jev_no,
+        a.jev_date
+    FROM tbl_report_checks a
+    WHERE a.recid = \'2\'
+    ORDER BY a.disbursement_date ASC
+')
+ 3 APPPATH\Views\cashier\rci-pdf.php(44): CodeIgniter\Database\BaseConnection->query('
+    SELECT 
+        a.disbursement_date as date,
+        a.ckno as check_no,
+        a.lddapada_no as lddap_ada,
+        a.dvno as dv_no,
+        a.ors_burs_no as ors_burs,
+        a.responsibility_center_code as resp_code,
+        a.payee,
+        a.nature_of_payment,
+        a.gross_amount,
+        a.philhealth,
+        a.tax,
+        a.net_amount,
+        a.jev_no,
+        a.jev_date
+    FROM tbl_report_checks a
+    WHERE a.recid = \'2\'
+    ORDER BY a.disbursement_date ASC
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\rci-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/rci-pdf', [], true)
+ 7 APPPATH\Controllers\MyRCI.php(31): view('cashier/rci-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyRCI->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyRCI))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-28 15:31:08 --> [Caused by] mysqli_sql_exception: Table 'fods-03032026.tbl_report_checks' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT 
+        a.disbursement_date as date,
+        a.ckno as check_no,
+        a.lddapada_no as lddap_ada,
+        a.dvno as dv_no,
+        a.ors_burs_no as ors_burs,
+        a.responsibility_center_code as resp_code,
+        a.payee,
+        a.nature_of_payment,
+        a.gross_amount,
+        a.philhealth,
+        a.tax,
+        a.net_amount,
+        a.jev_no,
+        a.jev_date
+    FROM tbl_report_checks a
+    WHERE a.recid = \'2\'
+    ORDER BY a.disbursement_date ASC
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT 
+        a.disbursement_date as date,
+        a.ckno as check_no,
+        a.lddapada_no as lddap_ada,
+        a.dvno as dv_no,
+        a.ors_burs_no as ors_burs,
+        a.responsibility_center_code as resp_code,
+        a.payee,
+        a.nature_of_payment,
+        a.gross_amount,
+        a.philhealth,
+        a.tax,
+        a.net_amount,
+        a.jev_no,
+        a.jev_date
+    FROM tbl_report_checks a
+    WHERE a.recid = \'2\'
+    ORDER BY a.disbursement_date ASC
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT 
+        a.disbursement_date as date,
+        a.ckno as check_no,
+        a.lddapada_no as lddap_ada,
+        a.dvno as dv_no,
+        a.ors_burs_no as ors_burs,
+        a.responsibility_center_code as resp_code,
+        a.payee,
+        a.nature_of_payment,
+        a.gross_amount,
+        a.philhealth,
+        a.tax,
+        a.net_amount,
+        a.jev_no,
+        a.jev_date
+    FROM tbl_report_checks a
+    WHERE a.recid = \'2\'
+    ORDER BY a.disbursement_date ASC
+')
+ 4 APPPATH\Views\cashier\rci-pdf.php(44): CodeIgniter\Database\BaseConnection->query('
+    SELECT 
+        a.disbursement_date as date,
+        a.ckno as check_no,
+        a.lddapada_no as lddap_ada,
+        a.dvno as dv_no,
+        a.ors_burs_no as ors_burs,
+        a.responsibility_center_code as resp_code,
+        a.payee,
+        a.nature_of_payment,
+        a.gross_amount,
+        a.philhealth,
+        a.tax,
+        a.net_amount,
+        a.jev_no,
+        a.jev_date
+    FROM tbl_report_checks a
+    WHERE a.recid = \'2\'
+    ORDER BY a.disbursement_date ASC
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\rci-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/rci-pdf', [], true)
+ 8 APPPATH\Controllers\MyRCI.php(31): view('cashier/rci-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyRCI->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyRCI))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-05-28 15:31:59 --> mysqli_sql_exception: Unknown column 'a.disbursement_date' in 'field list' in C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\fods\system\Database\MySQLi\Connection.php(327): mysqli->query('\r\n    SELECT \r\n...', 0)
+#1 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('\r\n    SELECT \r\n...')
+#2 C:\xampp\htdocs\fods\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('\r\n    SELECT \r\n...')
+#3 C:\xampp\htdocs\fods\app\Views\cashier\rci-pdf.php(44): CodeIgniter\Database\BaseConnection->query('\r\n    SELECT \r\n...')
+#4 C:\xampp\htdocs\fods\system\View\View.php(224): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\fods\system\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#6 C:\xampp\htdocs\fods\system\Common.php(1173): CodeIgniter\View\View->render('cashier/rci-pdf', Array, true)
+#7 C:\xampp\htdocs\fods\app\Controllers\MyRCI.php(31): view('cashier/rci-pdf')
+#8 C:\xampp\htdocs\fods\system\CodeIgniter.php(933): App\Controllers\MyRCI->index()
+#9 C:\xampp\htdocs\fods\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyRCI))
+#10 C:\xampp\htdocs\fods\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\fods\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\fods\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\fods\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2026-05-28 15:31:59 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'a.disbursement_date' in 'field list'
+[Method: GET, Route: myrci]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 APPPATH\Views\cashier\rci-pdf.php(44): CodeIgniter\Database\BaseConnection->query('
+    SELECT 
+        a.disbursement_date as date,
+        a.ckno as check_no,
+        a.lddapada_no as lddap_ada,
+        a.dvno as dv_no,
+        a.ors_burs_no as ors_burs,
+        a.responsibility_center_code as resp_code,
+        a.payee,
+        a.nature_of_payment,
+        a.gross_amount,
+        a.philhealth,
+        a.tax,
+        a.net_amount,
+        a.jev_no,
+        a.jev_date
+    FROM tbl_rci_dt a
+    WHERE a.recid = \'2\'
+    ORDER BY a.disbursement_date ASC
+')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\rci-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/rci-pdf', [], true)
+ 5 APPPATH\Controllers\MyRCI.php(31): view('cashier/rci-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyRCI->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyRCI))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-28 15:31:59 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'a.disbursement_date' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT 
+        a.disbursement_date as date,
+        a.ckno as check_no,
+        a.lddapada_no as lddap_ada,
+        a.dvno as dv_no,
+        a.ors_burs_no as ors_burs,
+        a.responsibility_center_code as resp_code,
+        a.payee,
+        a.nature_of_payment,
+        a.gross_amount,
+        a.philhealth,
+        a.tax,
+        a.net_amount,
+        a.jev_no,
+        a.jev_date
+    FROM tbl_rci_dt a
+    WHERE a.recid = \'2\'
+    ORDER BY a.disbursement_date ASC
+')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT 
+        a.disbursement_date as date,
+        a.ckno as check_no,
+        a.lddapada_no as lddap_ada,
+        a.dvno as dv_no,
+        a.ors_burs_no as ors_burs,
+        a.responsibility_center_code as resp_code,
+        a.payee,
+        a.nature_of_payment,
+        a.gross_amount,
+        a.philhealth,
+        a.tax,
+        a.net_amount,
+        a.jev_no,
+        a.jev_date
+    FROM tbl_rci_dt a
+    WHERE a.recid = \'2\'
+    ORDER BY a.disbursement_date ASC
+')
+ 3 APPPATH\Views\cashier\rci-pdf.php(44): CodeIgniter\Database\BaseConnection->query('
+    SELECT 
+        a.disbursement_date as date,
+        a.ckno as check_no,
+        a.lddapada_no as lddap_ada,
+        a.dvno as dv_no,
+        a.ors_burs_no as ors_burs,
+        a.responsibility_center_code as resp_code,
+        a.payee,
+        a.nature_of_payment,
+        a.gross_amount,
+        a.philhealth,
+        a.tax,
+        a.net_amount,
+        a.jev_no,
+        a.jev_date
+    FROM tbl_rci_dt a
+    WHERE a.recid = \'2\'
+    ORDER BY a.disbursement_date ASC
+')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\rci-pdf.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/rci-pdf', [], true)
+ 7 APPPATH\Controllers\MyRCI.php(31): view('cashier/rci-pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyRCI->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyRCI))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-28 15:31:59 --> [Caused by] mysqli_sql_exception: Unknown column 'a.disbursement_date' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('
+    SELECT 
+        a.disbursement_date as date,
+        a.ckno as check_no,
+        a.lddapada_no as lddap_ada,
+        a.dvno as dv_no,
+        a.ors_burs_no as ors_burs,
+        a.responsibility_center_code as resp_code,
+        a.payee,
+        a.nature_of_payment,
+        a.gross_amount,
+        a.philhealth,
+        a.tax,
+        a.net_amount,
+        a.jev_no,
+        a.jev_date
+    FROM tbl_rci_dt a
+    WHERE a.recid = \'2\'
+    ORDER BY a.disbursement_date ASC
+', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('
+    SELECT 
+        a.disbursement_date as date,
+        a.ckno as check_no,
+        a.lddapada_no as lddap_ada,
+        a.dvno as dv_no,
+        a.ors_burs_no as ors_burs,
+        a.responsibility_center_code as resp_code,
+        a.payee,
+        a.nature_of_payment,
+        a.gross_amount,
+        a.philhealth,
+        a.tax,
+        a.net_amount,
+        a.jev_no,
+        a.jev_date
+    FROM tbl_rci_dt a
+    WHERE a.recid = \'2\'
+    ORDER BY a.disbursement_date ASC
+')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('
+    SELECT 
+        a.disbursement_date as date,
+        a.ckno as check_no,
+        a.lddapada_no as lddap_ada,
+        a.dvno as dv_no,
+        a.ors_burs_no as ors_burs,
+        a.responsibility_center_code as resp_code,
+        a.payee,
+        a.nature_of_payment,
+        a.gross_amount,
+        a.philhealth,
+        a.tax,
+        a.net_amount,
+        a.jev_no,
+        a.jev_date
+    FROM tbl_rci_dt a
+    WHERE a.recid = \'2\'
+    ORDER BY a.disbursement_date ASC
+')
+ 4 APPPATH\Views\cashier\rci-pdf.php(44): CodeIgniter\Database\BaseConnection->query('
+    SELECT 
+        a.disbursement_date as date,
+        a.ckno as check_no,
+        a.lddapada_no as lddap_ada,
+        a.dvno as dv_no,
+        a.ors_burs_no as ors_burs,
+        a.responsibility_center_code as resp_code,
+        a.payee,
+        a.nature_of_payment,
+        a.gross_amount,
+        a.philhealth,
+        a.tax,
+        a.net_amount,
+        a.jev_no,
+        a.jev_date
+    FROM tbl_rci_dt a
+    WHERE a.recid = \'2\'
+    ORDER BY a.disbursement_date ASC
+')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\rci-pdf.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/rci-pdf', [], true)
+ 8 APPPATH\Controllers\MyRCI.php(31): view('cashier/rci-pdf')
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyRCI->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyRCI))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-28 16:25:39 --> ErrorException: Undefined variable $rowCounter
+[Method: GET, Route: myrci]
+in APPPATH\Views\cashier\rci-pdf.php on line 420.
+ 1 APPPATH\Views\cashier\rci-pdf.php(420): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $rowCounter', 'C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\rci-pdf.php', 420)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\rci-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/rci-pdf', [], true)
+ 5 APPPATH\Controllers\MyRCI.php(31): view('cashier/rci-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyRCI->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyRCI))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-28 16:26:28 --> ErrorException: Undefined variable $rowCounter
+[Method: GET, Route: myrci]
+in APPPATH\Views\cashier\rci-pdf.php on line 420.
+ 1 APPPATH\Views\cashier\rci-pdf.php(420): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $rowCounter', 'C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\rci-pdf.php', 420)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\fods\\app\\Views\\cashier\\rci-pdf.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('cashier/rci-pdf', [], true)
+ 5 APPPATH\Controllers\MyRCI.php(31): view('cashier/rci-pdf')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MyRCI->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyRCI))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

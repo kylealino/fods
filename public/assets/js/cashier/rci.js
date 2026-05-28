@@ -88,58 +88,45 @@ function __mysys_rci_ent() {
 					event.stopPropagation();
 
 					var recid = document.getElementById("recid");
-					var lddapadano = document.getElementById("lddapadano");
 					var mds_branch = document.getElementById("mds_branch");
 					var mds_accountno = document.getElementById("mds_accountno");
-					var lddapada_date = document.getElementById("lddapada_date");
 					var fund_cluster_code = document.getElementById("fund_cluster_code");
-					var funding_source = document.getElementById("funding_source");
-					var ada_approver = document.getElementById("ada_approver");
-					let is_ci = document.getElementById("is_ci").checked ? 1 : 0;
-					var container = document.getElementById("selected_dvno_list");
-					var items = container.querySelectorAll('.badge');
-
-					var dvno_list = [];
-
-					items.forEach(function(el) {
-						dvno_list.push(el.getAttribute('data-dvno'));
-					});
-
+					var reportno = document.getElementById("reportno");
 					// Prepare PS data DIRECT --
-					var rowcount1 = jQuery('.dvdata-list tr').length;
-					var dvdtdata = [];
-					var psdata = '';
+					var rowcount1 = jQuery('.rcidata-list tr').length;
+					var rcidtdata = [];
+					var rcidata = '';
 	
 					for (var aa = 2; aa < rowcount1; aa++) {
-						var clonedRow = jQuery('.dvdata-list tr:eq(' + aa + ')'); 
-						var dvno = clonedRow.find('input[type=text]').eq(0).val();
-						var payee_name = clonedRow.find('input[type=text]').eq(1).val();
-						var payee_account_num = clonedRow.find('input[type=text]').eq(2).val();
+						var clonedRow = jQuery('.rcidata-list tr:eq(' + aa + ')'); 
+						var lddapadano = clonedRow.find('input[type=text]').eq(0).val();
+						var lddapada_date = clonedRow.find('input[type=date]').eq(0).val();
+						var ckno = clonedRow.find('input[type=text]').eq(1).val();
+						var dvno = clonedRow.find('input[type=text]').eq(2).val();
 						var serialno = clonedRow.find('input[type=text]').eq(3).val();
-						var uacs_code = clonedRow.find('input[type=text]').eq(4).val();
+						var responsibility_code = clonedRow.find('input[type=text]').eq(4).val();
+						var payee_name = clonedRow.find('input[type=text]').eq(5).val();
+						var particulars = clonedRow.find('input[type=text]').eq(6).val();
 						var gross_amount = clonedRow.find('input[type=number]').eq(0).val();
-						var total_deduction = clonedRow.find('input[type=number]').eq(1).val();
-						var net_amount = clonedRow.find('input[type=number]').eq(2).val();  
-						var remarks = clonedRow.find('textarea').eq(0).val(); 
+						var philheath_amount = clonedRow.find('input[type=number]').eq(1).val();
+						var tax_amount = clonedRow.find('input[type=number]').eq(2).val();
+						var net_amount = clonedRow.find('input[type=number]').eq(3).val();
 						
-						psdata = dvno + 'x|x' + payee_name + 'x|x' + payee_account_num + 'x|x' + serialno + 'x|x' + uacs_code + 'x|x' + gross_amount + 'x|x' + total_deduction + 'x|x' + net_amount + 'x|x' + remarks;
-						dvdtdata.push(psdata);
+						rcidata = lddapadano + 'x|x' + lddapada_date + 'x|x' + ckno + 'x|x' + dvno + 'x|x' + serialno + 'x|x' + responsibility_code + 'x|x' + payee_name + 'x|x' + particulars + 'x|x' + gross_amount + 'x|x' + philheath_amount + 'x|x' + tax_amount + 'x|x' + net_amount;
+						rcidtdata.push(rcidata);
 					}
 
 					var mparam = { 
 						recid: recid.value,
-						lddapadano: lddapadano.value,
 						mds_branch: mds_branch.value,
 						mds_accountno: mds_accountno.value,
-						lddapada_date: lddapada_date.value,
 						fund_cluster_code: fund_cluster_code.value,
-						funding_source: funding_source.value,
-						ada_approver: ada_approver.value,
-						is_ci: is_ci,
-						dvdtdata:dvdtdata,
-						dvno_list: dvno_list,
+						reportno: reportno.value,
+						rcidtdata:rcidtdata,
 						meaction: 'MAIN-SAVE'
 					}
+
+					console.log(rcidtdata);
 
 					jQuery.ajax({ // default declaration of ajax parameters
 						type: "POST",
@@ -174,5 +161,23 @@ function __mysys_rci_ent() {
 		}
 		return result;
 	}
+
+	this.__showPdfInModal = function(pdfUrl) {
+		var pdfFrame = document.getElementById("pdfFrame");
+		var pdfModal = new bootstrap.Modal(document.getElementById("pdfModal"));
+
+		pdfFrame.src = pdfUrl;
+		pdfModal.show();
+	};
+
+	$(document).ready(function () {
+        $('#datatablesSimple').DataTable({
+            pageLength: 5,
+            lengthChange: false,
+            language: {
+            search: "Search:"
+            }
+        });
+    });
 
 }; //end main
