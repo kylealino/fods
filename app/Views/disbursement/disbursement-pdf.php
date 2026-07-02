@@ -204,11 +204,7 @@ $position_a = $data['position'];
 
 $query = $this->db->query("
 SELECT
-    `payee_tin`,
-    `is_vatable`,
-    `vat_percent`,
-    `ewt_percent`,
-    `pt_percent`
+    `payee_tin`
 FROM
     `tbl_payee`
 WHERE 
@@ -216,10 +212,6 @@ WHERE
 );
 $data = $query->getRowArray();
 $payee_tin = $data['payee_tin'];
-$is_vatable = $data['is_vatable'];
-$vat_percent = $data['vat_percent'];
-$ewt_percent = $data['ewt_percent'];
-$pt_percent = $data['pt_percent'];
 
 
 $pdf = new FPDF('P', 'mm', 'A4');
